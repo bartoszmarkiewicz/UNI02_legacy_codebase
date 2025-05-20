@@ -1,0 +1,5209 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC IEEE_DBL LFSROK SPACEOPT IEEE_FLT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F46K20 ]
+"31 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\bit.c
+[s S74 . 23 `uc 1 krok 1 0 :1:0 
+`uc 1 error 1 1 `uc 1 kod 1 2 `uc 1 PCO 1 3 `uc 1 CO 1 4 `uc 1 PCW 1 5 `uc 1 CW 1 6 `uc 1 CS 1 7 `uc 1 STR_PWM 1 8 `uc 1 MAX_PWM 1 9 `uc 1 BUF_PWM 1 10 `uc 1 ST_AD1 1 11 `uc 1 ST_AD2 1 12 `uc 1 ST_AD3 1 13 `uc 1 PORTC 1 14 `uc 1 PORTD 1 15 `uc 1 ST_GLOBAL0 1 16 `uc 1 ST_GLOBAL2 1 17 `uc 1 ST_GLOBAL3 1 18 `uc 1 ST_GLOBAL4 1 19 `uc 1 TPRZ_CW 1 20 `uc 1 ST0_WSW 1 21 `uc 1 ERR_BTY 1 22 ]
+[s S98 . 25 `uc 1 indeks 1 0 `[24]uc 1 Bf 24 1 ]
+"36 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\i2c_s.h
+[s S149 . 51 `ui 1 _pob_KCO 2 0 `ui 1 _pob_KCW 2 2 `ui 1 _pob_SRW 2 4 `ui 1 _pob_AL 2 6 `ui 1 _pob_CW 2 8 `ui 1 _pob_CO 2 10 `ui 1 _pob_DzCO 2 12 `ui 1 _pob_DzCW 2 14 `uc 1 _WYLACZ 1 16 :1:0 
+`uc 1 _ZMKCOCW 1 16 :1:1 
+`uc 1 _ROZRUCH 1 16 :1:2 
+`uc 1 _RUSZ_48 1 16 :1:3 
+`uc 1 _RUSZ_48Z3 1 16 :1:4 
+`uc 1 _RUSZ_PWR 1 16 :1:5 
+`uc 1 _VWYBIEG 1 16 :1:6 
+`uc 1 _RUSZ_CIAG 1 16 :1:7 
+`uc 1 _RUSZ_PLOMIEN 1 17 :1:0 
+`uc 1 _RUSZ_RPLM 1 17 :1:1 
+`uc 1 _RUSZ_POMPE 1 17 :1:2 
+`uc 1 _BLOKUJ_3M 1 17 :1:3 
+`uc 1 _BLOKUJ_15S 1 17 :1:4 
+`uc 1 _MODULUJ 1 17 :1:5 
+`ui 1 _AKTYWNE_SRW 2 18 `ui 1 _AKTYWNE_AL 2 20 `ui 1 _AKTYWNE_PGD 2 22 `ui 1 _AKTYWNE_KNF 2 24 `uc 1 _RUSZ_NTC_CO 1 26 :1:0 
+`uc 1 _RUSZ_NTC_CW 1 26 :1:1 
+`uc 1 _RUSZ_NTC_IN 1 26 :1:2 
+`uc 1 _RUSZ_STB 1 26 :1:3 
+`uc 1 _RUSZ_MOD 1 26 :1:4 
+`uc 1 _RUSZ_CISN 1 26 :1:5 
+`uc 1 _RUSZ_NCISN 1 26 :1:6 
+`uc 1 _RS_START 1 26 :1:7 
+`uc 1 _PW_START 1 27 :1:0 
+`uc 1 _TURBO 1 27 :1:1 
+`uc 1 _PRACA 1 27 :1:2 
+`uc 1 _OST_PL 1 27 :1:3 
+`uc 1 _RUN_MNMOD 1 27 :1:4 
+`uc 1 _KCW_PMP 1 27 :1:5 
+`uc 1 _DE_VNT 1 27 :1:6 
+`uc 1 _RPM_CW 1 27 :1:7 
+`uc 1 _prb_CIG 1 28 :1:0 
+`uc 1 _prb_PRZ 1 28 :1:1 
+`uc 1 _DE_PMP 1 28 :1:2 
+`uc 1 LICZNIK_PL 1 29 `uc 1 LICZNIK_CIG 1 30 `uc 1 LICZNIK_CIG2 1 31 `uc 1 LICZNIK_CIG3 1 32 `uc 1 LICZNIK_ANL 1 33 `uc 1 ERR_BTY 1 34 `uc 1 ROZ 1 35 `uc 1 R48 1 36 `uc 1 R48Z3 1 37 `uc 1 BL3 1 38 `uc 1 BL15 1 39 `uc 1 WYL 1 40 `uc 1 RPR 1 41 `uc 1 RPL 1 42 `uc 1 RCI 1 43 `uc 1 MNM 1 44 `uc 1 ZKP 1 45 `uc 1 VWB 1 46 `uc 1 SRV 1 47 `uc 1 KRS 1 48 `uc 1 HVZ 1 49 `uc 1 DPR 1 50 ]
+"19 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\i2c_s.c
+[s S285 . 18 `uc 1 enknf 1 0 :1:0 
+`uc 1 wymCO 1 0 :1:1 
+`uc 1 wymCW 1 0 :1:2 
+`uc 1 PRM 1 1 `uc 1 KRK 1 2 `uc 1 mstr 1 3 `uc 1 mxcw 1 4 `uc 1 mxco 1 5 `uc 1 czpr 1 6 `uc 1 tpkt 1 7 `uc 1 rdgz 1 8 `uc 1 rdpm 1 9 `uc 1 dtpm 1 10 `uc 1 mdpm 1 11 `uc 1 teco 1 12 `uc 1 tpwm 1 13 `uc 1 robg 1 14 `uc 1 opdg 1 15 `uc 1 tpcs 1 16 `uc 1 aleg 1 17 ]
+"25
+[s S327 . 15 `uc 1 _err_CO 1 0 :1:0 
+`uc 1 _su_CO 1 0 :1:1 
+`uc 1 _ad_CO 1 0 :1:2 
+`uc 1 _su_SRW_CO 1 0 :1:3 
+`uc 1 _ad_SRW_CO 1 0 :1:4 
+`uc 1 _on_DZ_CO 1 0 :1:5 
+`uc 1 _su_DZ_CO 1 0 :1:6 
+`uc 1 _ad_DZ_CO 1 0 :1:7 
+`uc 1 _ptwp_CO 1 1 :1:0 
+`uc 1 _pz_CO 1 1 :1:1 
+`uc 1 _cold_CO 1 1 :1:2 
+`uc 1 _hot_CO 1 1 :1:3 
+`uc 1 _ldDCO 1 1 :1:4 
+`uc 1 _zroPCO 1 1 :1:5 
+`uc 1 _resPCO 1 1 :1:6 
+`uc 1 _newPCO 1 1 :1:7 
+`uc 1 CO 1 2 `uc 1 PCO 1 3 `uc 1 PPCO 1 4 `uc 1 minPCO 1 5 `uc 1 maxPCO 1 6 `uc 1 PGDPCO 1 7 `c 1 DCO 1 8 `c 1 dDCO 1 9 `uc 1 indCO 1 10 `uc 1 SCO 1 11 `uc 1 AC_CO 1 12 `uc 1 MAD_CO 1 13 `uc 1 DAD_CO 1 14 ]
+"20
+[s S387 . 15 `uc 1 _err_CW 1 0 :1:0 
+`uc 1 _su_CW 1 0 :1:1 
+`uc 1 _ad_CW 1 0 :1:2 
+`uc 1 _wpz_CW 1 0 :1:3 
+`uc 1 _on_DZ_CW 1 0 :1:4 
+`uc 1 _su_DZ_CW 1 0 :1:5 
+`uc 1 _ad_DZ_CW 1 0 :1:6 
+`uc 1 _cold_CW 1 0 :1:7 
+`uc 1 _newPCW 1 1 :1:0 
+`uc 1 _wrtPCW 1 1 :1:1 
+`uc 1 _fpCW 1 1 :1:2 
+`uc 1 CW 1 2 `uc 1 PCW 1 3 `uc 1 PPCW 1 4 `uc 1 minPCW 1 5 `uc 1 maxPCW 1 6 `c 1 DCW 1 7 `c 1 dDCW 1 8 `c 1 ddDCW 1 9 `uc 1 indCW 1 10 `uc 1 SCW 1 11 `uc 1 AC_CW 1 12 `uc 1 MAD_CW 1 13 `uc 1 DAD_CW 1 14 ]
+"21
+[s S437 . 4 `uc 1 _hi 1 0 :1:0 
+`uc 1 _lo 1 0 :1:1 
+`uc 1 _no 1 0 :1:2 
+`uc 1 _error 1 0 :1:3 
+`uc 1 _work 1 0 :1:4 
+`ui 1 _no_mont 2 1 `uc 1 CS 1 3 ]
+"23
+[s S453 . 34 `uc 1 _ENPWM 1 0 :1:0 
+`uc 1 _ENOSC 1 0 :1:1 
+`uc 1 tpGZ 1 0 :1:2 
+`VNEuc 1 BufPWM 1 1 `VNEuc 1 BufOSC 1 2 `Nuc 1 NewOSC 1 3 `Nuc 1 NewPWM 1 4 `uc 1 _ENPWM2 1 5 :1:0 
+`VNEuc 1 BufPWM2 1 6 `Nuc 1 NewPWM2 1 7 `uc 1 HIPWM 1 8 `uc 1 MDMOD 1 9 `uc 1 MGMOD 1 10 `uc 1 MAXOSC 1 11 `uc 1 MINOSC 1 12 `uc 1 MAD_MOD 1 13 `uc 1 MAG_MOD 1 14 `uc 1 GWMSTART 1 15 `uc 1 MDSTART 1 16 `uc 1 MGSTART 1 17 `uc 1 GWMMAXCO 1 18 `uc 1 MDMAXCO 1 19 `uc 1 MGMAXCO 1 20 `uc 1 GWMMAXCW 1 21 `uc 1 MDMAXCW 1 22 `uc 1 MGMAXCW 1 23 `uc 1 FIRSTPB 1 24 `uc 1 PROP1 1 25 `uc 1 PROP2 1 26 `uc 1 PROP3 1 27 `uc 1 MSTART 1 28 `uc 1 MMAXCO 1 29 `uc 1 MMAXCW 1 30 `uc 1 PGD 1 31 `uc 1 MINPWM 1 32 `uc 1 MAXPWM 1 33 ]
+"34 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\i2c_s.h
+[s S528 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+[s S537 . 1 `uc 1 PSP0 1 0 :1:0 
+`uc 1 PSP1 1 0 :1:1 
+`uc 1 PSP2 1 0 :1:2 
+`uc 1 PSP3 1 0 :1:3 
+`uc 1 PSP4 1 0 :1:4 
+`uc 1 PSP5 1 0 :1:5 
+`uc 1 PSP6 1 0 :1:6 
+`uc 1 PSP7 1 0 :1:7 
+]
+[s S546 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 P1B 1 0 :1:5 
+`uc 1 P1C 1 0 :1:6 
+`uc 1 P1D 1 0 :1:7 
+]
+[s S551 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 SS2 1 0 :1:7 
+]
+[u S554 . 1 `S528 1 . 1 0 `S537 1 . 1 0 `S546 1 . 1 0 `S551 1 . 1 0 ]
+"1198 C:\Program Files\Microchip\xc8\v1.12\include\pic18f46k20.h
+[s S586 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+[s S595 . 1 `uc 1 INT0 1 0 :1:0 
+`uc 1 INT1 1 0 :1:1 
+`uc 1 INT2 1 0 :1:2 
+`uc 1 CCP2 1 0 :1:3 
+`uc 1 KBI0 1 0 :1:4 
+`uc 1 KBI1 1 0 :1:5 
+`uc 1 KBI2 1 0 :1:6 
+`uc 1 KBI3 1 0 :1:7 
+]
+[s S604 . 1 `uc 1 AN12 1 0 :1:0 
+`uc 1 AN10 1 0 :1:1 
+`uc 1 AN8 1 0 :1:2 
+`uc 1 AN9 1 0 :1:3 
+`uc 1 AN11 1 0 :1:4 
+`uc 1 PGM 1 0 :1:5 
+`uc 1 PGC 1 0 :1:6 
+`uc 1 PGD 1 0 :1:7 
+]
+[s S613 . 1 `uc 1 FLT0 1 0 :1:0 
+`uc 1 C12IN3M 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 C12IN2M 1 0 :1:3 
+]
+[s S618 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 C12IN3N 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 C12IN2N 1 0 :1:3 
+]
+[s S623 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP2_PA2 1 0 :1:3 
+]
+[u S626 . 1 `S586 1 . 1 0 `S595 1 . 1 0 `S604 1 . 1 0 `S613 1 . 1 0 `S618 1 . 1 0 `S623 1 . 1 0 ]
+"817
+[s S674 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+[s S683 . 1 `uc 1 T1OSO 1 0 :1:0 
+`uc 1 T1OSI 1 0 :1:1 
+`uc 1 CCP1 1 0 :1:2 
+`uc 1 SCK 1 0 :1:3 
+`uc 1 SDI 1 0 :1:4 
+`uc 1 SDO 1 0 :1:5 
+`uc 1 TX 1 0 :1:6 
+`uc 1 RX 1 0 :1:7 
+]
+[s S692 . 1 `uc 1 T13CKI 1 0 :1:0 
+`uc 1 CCP2 1 0 :1:1 
+`uc 1 P1A 1 0 :1:2 
+`uc 1 SCL 1 0 :1:3 
+`uc 1 SDA 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CK 1 0 :1:6 
+`uc 1 DT 1 0 :1:7 
+]
+[s S701 . 1 `uc 1 T1CKI 1 0 :1:0 
+]
+[s S703 . 1 `uc 1 T3CKI 1 0 :1:0 
+]
+[s S705 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 PA1 1 0 :1:2 
+]
+[s S708 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PA2 1 0 :1:1 
+]
+[u S711 . 1 `S674 1 . 1 0 `S683 1 . 1 0 `S692 1 . 1 0 `S701 1 . 1 0 `S703 1 . 1 0 `S705 1 . 1 0 `S708 1 . 1 0 ]
+"1022
+[s S757 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+`uc 1 RA7 1 0 :1:7 
+]
+[s S766 . 1 `uc 1 AN0 1 0 :1:0 
+`uc 1 AN1 1 0 :1:1 
+`uc 1 AN2 1 0 :1:2 
+`uc 1 AN3 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 AN4 1 0 :1:5 
+]
+[s S773 . 1 `uc 1 C12IN0M 1 0 :1:0 
+`uc 1 C12IN1M 1 0 :1:1 
+`uc 1 C2INP 1 0 :1:2 
+`uc 1 C1INP 1 0 :1:3 
+`uc 1 C1OUT 1 0 :1:4 
+`uc 1 C2OUT 1 0 :1:5 
+]
+[s S780 . 1 `uc 1 C12IN0N 1 0 :1:0 
+`uc 1 C12IN1N 1 0 :1:1 
+`uc 1 VREFM 1 0 :1:2 
+`uc 1 VREFP 1 0 :1:3 
+`uc 1 T0CKI 1 0 :1:4 
+`uc 1 SS 1 0 :1:5 
+]
+[s S787 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_SS 1 0 :1:5 
+]
+[s S790 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 VREFN 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nSS 1 0 :1:5 
+]
+[s S795 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CVREF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 LVDIN 1 0 :1:5 
+]
+[s S800 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 HLVDIN 1 0 :1:5 
+]
+[s S803 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 RJPU 1 0 :1:7 
+]
+[s S806 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+]
+[u S808 . 1 `S757 1 . 1 0 `S766 1 . 1 0 `S773 1 . 1 0 `S780 1 . 1 0 `S787 1 . 1 0 `S790 1 . 1 0 `S795 1 . 1 0 `S800 1 . 1 0 `S803 1 . 1 0 `S806 1 . 1 0 ]
+"595
+[s S871 . 35 `uc 1 _off 1 0 :1:0 
+`uc 1 _lato 1 0 :1:1 
+`uc 1 _zima 1 0 :1:2 
+`uc 1 _str_nco 1 0 :1:3 
+`uc 1 _str_ncw 1 0 :1:4 
+`uc 1 b_str_nco 1 0 :1:5 
+`uc 1 b_str_ncw 1 0 :1:6 
+`uc 1 _set_nco 1 0 :1:7 
+`uc 1 _set_ncw 1 1 :1:0 
+`uc 1 b_set_nco 1 1 :1:1 
+`uc 1 b_set_ncw 1 1 :1:2 
+`uc 1 _mod_ncw 1 1 :1:3 
+`uc 1 _set_fnserw 1 1 :1:4 
+`uc 1 _set_aleg 1 1 :1:5 
+`uc 1 _fnserw 1 1 :1:6 
+`uc 1 _fns_max 1 1 :1:7 
+`uc 1 _aleg 1 2 :1:0 
+`uc 1 _newPCO 1 2 :1:1 
+`uc 1 _newPCW 1 2 :1:2 
+`uc 1 _res 1 2 :1:3 
+`uc 1 _toInit 1 2 :1:4 
+`uc 1 _KnfDisErr 1 2 :1:5 
+`uc 1 _aktywne_KNF 1 2 :1:6 
+`uc 1 _EnAleg 1 2 :1:7 
+`uc 1 _prn_res 1 3 :1:0 
+`uc 1 _prn_cs 1 3 :1:1 
+`uc 1 _prn_in 1 3 :1:2 
+`uc 1 _newPFN 1 3 :1:3 
+`uc 1 _csn 1 3 :1:4 
+`uc 1 _plmCO 1 3 :1:5 
+`uc 1 _plmCW 1 3 :1:6 
+`uc 1 _ofnserw 1 3 :1:7 
+`uc 1 _oaleg 1 4 :1:0 
+`uc 1 _obgCO 1 4 :1:1 
+`uc 1 _obgCW 1 4 :1:2 
+`uc 1 _opKNF 1 4 :1:3 
+`uc 1 _enKNF 1 4 :1:4 
+`uc 1 _tdzCO 1 4 :1:5 
+`uc 1 _tdzCW 1 4 :1:6 
+`uc 1 _fmsg 1 4 :1:7 
+`uc 1 _ferr 1 5 :1:0 
+`uc 1 _fL3 1 5 :1:1 
+`uc 1 _pgd 1 5 :1:2 
+`uc 1 _opgres 1 5 :1:3 
+`uc 1 _opgprg 1 5 :1:4 
+`uc 1 _errCS 1 5 :1:5 
+`uc 1 _errCO 1 5 :1:6 
+`uc 1 _errCW 1 5 :1:7 
+`uc 1 _fnoCS 1 6 :1:0 
+`uc 1 _ofzima 1 6 :1:1 
+`uc 1 _oflato 1 6 :1:2 
+`uc 1 _ofoff 1 6 :1:3 
+`uc 1 _errIN 1 6 :1:4 
+`uc 1 _pmpPWM 1 6 :1:5 
+`uc 1 _trbECO 1 6 :1:6 
+`uc 1 RDZ0 1 7 `uc 1 RDZ1 1 8 `uc 1 CO 1 9 `uc 1 CW 1 10 `uc 1 CS 1 11 `uc 1 IN 1 12 `uc 1 PPCO 1 13 `uc 1 PPCW 1 14 `uc 1 KAWR 1 15 `uc 1 KERR 1 16 `ui 1 maxPCO 2 17 `ui 1 minPCO 2 19 `ui 1 maxPCW 2 21 `ui 1 minPCW 2 23 `uc 1 b_ofnserw 1 25 :1:0 
+`uc 1 b_oaleg 1 25 :1:1 
+`ui 1 PCO 2 26 `ui 1 PCW 2 28 `uc 1 KRS 1 30 `ui 1 poz 2 31 `ui 1 AC 2 33 ]
+"10 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\isr.c
+[v F4253 `(v  1 t 0 ]
+"48
+[s S1162 . 51 `ui 1 _pob_KCO 2 0 `ui 1 _pob_KCW 2 2 `ui 1 _pob_SRW 2 4 `ui 1 _pob_AL 2 6 `ui 1 _pob_CW 2 8 `ui 1 _pob_CO 2 10 `ui 1 _pob_DzCO 2 12 `ui 1 _pob_DzCW 2 14 `uc 1 _WYLACZ 1 16 :1:0 
+`uc 1 _ZMKCOCW 1 16 :1:1 
+`uc 1 _ROZRUCH 1 16 :1:2 
+`uc 1 _RUSZ_48 1 16 :1:3 
+`uc 1 _RUSZ_48Z3 1 16 :1:4 
+`uc 1 _RUSZ_PWR 1 16 :1:5 
+`uc 1 _VWYBIEG 1 16 :1:6 
+`uc 1 _RUSZ_CIAG 1 16 :1:7 
+`uc 1 _RUSZ_PLOMIEN 1 17 :1:0 
+`uc 1 _RUSZ_RPLM 1 17 :1:1 
+`uc 1 _RUSZ_POMPE 1 17 :1:2 
+`uc 1 _BLOKUJ_3M 1 17 :1:3 
+`uc 1 _BLOKUJ_15S 1 17 :1:4 
+`uc 1 _MODULUJ 1 17 :1:5 
+`ui 1 _AKTYWNE_SRW 2 18 `ui 1 _AKTYWNE_AL 2 20 `ui 1 _AKTYWNE_PGD 2 22 `ui 1 _AKTYWNE_KNF 2 24 `uc 1 _RUSZ_NTC_CO 1 26 :1:0 
+`uc 1 _RUSZ_NTC_CW 1 26 :1:1 
+`uc 1 _RUSZ_NTC_IN 1 26 :1:2 
+`uc 1 _RUSZ_STB 1 26 :1:3 
+`uc 1 _RUSZ_MOD 1 26 :1:4 
+`uc 1 _RUSZ_CISN 1 26 :1:5 
+`uc 1 _RUSZ_NCISN 1 26 :1:6 
+`uc 1 _RS_START 1 26 :1:7 
+`uc 1 _PW_START 1 27 :1:0 
+`uc 1 _TURBO 1 27 :1:1 
+`uc 1 _PRACA 1 27 :1:2 
+`uc 1 _OST_PL 1 27 :1:3 
+`uc 1 _RUN_MNMOD 1 27 :1:4 
+`uc 1 _KCW_PMP 1 27 :1:5 
+`uc 1 _DE_VNT 1 27 :1:6 
+`uc 1 _RPM_CW 1 27 :1:7 
+`uc 1 _prb_CIG 1 28 :1:0 
+`uc 1 _prb_PRZ 1 28 :1:1 
+`uc 1 _DE_PMP 1 28 :1:2 
+`uc 1 LICZNIK_PL 1 29 `uc 1 LICZNIK_CIG 1 30 `uc 1 LICZNIK_CIG2 1 31 `uc 1 LICZNIK_CIG3 1 32 `uc 1 LICZNIK_ANL 1 33 `uc 1 ERR_BTY 1 34 `uc 1 ROZ 1 35 `uc 1 R48 1 36 `uc 1 R48Z3 1 37 `uc 1 BL3 1 38 `uc 1 BL15 1 39 `uc 1 WYL 1 40 `uc 1 RPR 1 41 `uc 1 RPL 1 42 `uc 1 RCI 1 43 `uc 1 MNM 1 44 `uc 1 ZKP 1 45 `uc 1 VWB 1 46 `uc 1 SRV 1 47 `uc 1 KRS 1 48 `uc 1 HVZ 1 49 `uc 1 DPR 1 50 ]
+[s S1230 . 35 `uc 1 _off 1 0 :1:0 
+`uc 1 _lato 1 0 :1:1 
+`uc 1 _zima 1 0 :1:2 
+`uc 1 _str_nco 1 0 :1:3 
+`uc 1 _str_ncw 1 0 :1:4 
+`uc 1 b_str_nco 1 0 :1:5 
+`uc 1 b_str_ncw 1 0 :1:6 
+`uc 1 _set_nco 1 0 :1:7 
+`uc 1 _set_ncw 1 1 :1:0 
+`uc 1 b_set_nco 1 1 :1:1 
+`uc 1 b_set_ncw 1 1 :1:2 
+`uc 1 _mod_ncw 1 1 :1:3 
+`uc 1 _set_fnserw 1 1 :1:4 
+`uc 1 _set_aleg 1 1 :1:5 
+`uc 1 _fnserw 1 1 :1:6 
+`uc 1 _fns_max 1 1 :1:7 
+`uc 1 _aleg 1 2 :1:0 
+`uc 1 _newPCO 1 2 :1:1 
+`uc 1 _newPCW 1 2 :1:2 
+`uc 1 _res 1 2 :1:3 
+`uc 1 _toInit 1 2 :1:4 
+`uc 1 _KnfDisErr 1 2 :1:5 
+`uc 1 _aktywne_KNF 1 2 :1:6 
+`uc 1 _EnAleg 1 2 :1:7 
+`uc 1 _prn_res 1 3 :1:0 
+`uc 1 _prn_cs 1 3 :1:1 
+`uc 1 _prn_in 1 3 :1:2 
+`uc 1 _newPFN 1 3 :1:3 
+`uc 1 _csn 1 3 :1:4 
+`uc 1 _plmCO 1 3 :1:5 
+`uc 1 _plmCW 1 3 :1:6 
+`uc 1 _ofnserw 1 3 :1:7 
+`uc 1 _oaleg 1 4 :1:0 
+`uc 1 _obgCO 1 4 :1:1 
+`uc 1 _obgCW 1 4 :1:2 
+`uc 1 _opKNF 1 4 :1:3 
+`uc 1 _enKNF 1 4 :1:4 
+`uc 1 _tdzCO 1 4 :1:5 
+`uc 1 _tdzCW 1 4 :1:6 
+`uc 1 _fmsg 1 4 :1:7 
+`uc 1 _ferr 1 5 :1:0 
+`uc 1 _fL3 1 5 :1:1 
+`uc 1 _pgd 1 5 :1:2 
+`uc 1 _opgres 1 5 :1:3 
+`uc 1 _opgprg 1 5 :1:4 
+`uc 1 _errCS 1 5 :1:5 
+`uc 1 _errCO 1 5 :1:6 
+`uc 1 _errCW 1 5 :1:7 
+`uc 1 _fnoCS 1 6 :1:0 
+`uc 1 _ofzima 1 6 :1:1 
+`uc 1 _oflato 1 6 :1:2 
+`uc 1 _ofoff 1 6 :1:3 
+`uc 1 _errIN 1 6 :1:4 
+`uc 1 _pmpPWM 1 6 :1:5 
+`uc 1 _trbECO 1 6 :1:6 
+`uc 1 RDZ0 1 7 `uc 1 RDZ1 1 8 `uc 1 CO 1 9 `uc 1 CW 1 10 `uc 1 CS 1 11 `uc 1 IN 1 12 `uc 1 PPCO 1 13 `uc 1 PPCW 1 14 `uc 1 KAWR 1 15 `uc 1 KERR 1 16 `ui 1 maxPCO 2 17 `ui 1 minPCO 2 19 `ui 1 maxPCW 2 21 `ui 1 minPCW 2 23 `uc 1 b_ofnserw 1 25 :1:0 
+`uc 1 b_oaleg 1 25 :1:1 
+`ui 1 PCO 2 26 `ui 1 PCW 2 28 `uc 1 KRS 1 30 `ui 1 poz 2 31 `ui 1 AC 2 33 ]
+"291 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.h
+[s S1375 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+[s S1384 . 1 `uc 1 PSP0 1 0 :1:0 
+`uc 1 PSP1 1 0 :1:1 
+`uc 1 PSP2 1 0 :1:2 
+`uc 1 PSP3 1 0 :1:3 
+`uc 1 PSP4 1 0 :1:4 
+`uc 1 PSP5 1 0 :1:5 
+`uc 1 PSP6 1 0 :1:6 
+`uc 1 PSP7 1 0 :1:7 
+]
+[s S1393 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 P1B 1 0 :1:5 
+`uc 1 P1C 1 0 :1:6 
+`uc 1 P1D 1 0 :1:7 
+]
+[s S1398 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 SS2 1 0 :1:7 
+]
+[u S1401 . 1 `S528 1 . 1 0 `S537 1 . 1 0 `S546 1 . 1 0 `S551 1 . 1 0 ]
+"1198 C:\Program Files\Microchip\xc8\v1.12\include\pic18f46k20.h
+[s S1407 . 18 `uc 1 enknf 1 0 :1:0 
+`uc 1 wymCO 1 0 :1:1 
+`uc 1 wymCW 1 0 :1:2 
+`uc 1 PRM 1 1 `uc 1 KRK 1 2 `uc 1 mstr 1 3 `uc 1 mxcw 1 4 `uc 1 mxco 1 5 `uc 1 czpr 1 6 `uc 1 tpkt 1 7 `uc 1 rdgz 1 8 `uc 1 rdpm 1 9 `uc 1 dtpm 1 10 `uc 1 mdpm 1 11 `uc 1 teco 1 12 `uc 1 tpwm 1 13 `uc 1 robg 1 14 `uc 1 opdg 1 15 `uc 1 tpcs 1 16 `uc 1 aleg 1 17 ]
+"274 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.h
+[s S1472 . 15 `uc 1 _err_CO 1 0 :1:0 
+`uc 1 _su_CO 1 0 :1:1 
+`uc 1 _ad_CO 1 0 :1:2 
+`uc 1 _su_SRW_CO 1 0 :1:3 
+`uc 1 _ad_SRW_CO 1 0 :1:4 
+`uc 1 _on_DZ_CO 1 0 :1:5 
+`uc 1 _su_DZ_CO 1 0 :1:6 
+`uc 1 _ad_DZ_CO 1 0 :1:7 
+`uc 1 _ptwp_CO 1 1 :1:0 
+`uc 1 _pz_CO 1 1 :1:1 
+`uc 1 _cold_CO 1 1 :1:2 
+`uc 1 _hot_CO 1 1 :1:3 
+`uc 1 _ldDCO 1 1 :1:4 
+`uc 1 _zroPCO 1 1 :1:5 
+`uc 1 _resPCO 1 1 :1:6 
+`uc 1 _newPCO 1 1 :1:7 
+`uc 1 CO 1 2 `uc 1 PCO 1 3 `uc 1 PPCO 1 4 `uc 1 minPCO 1 5 `uc 1 maxPCO 1 6 `uc 1 PGDPCO 1 7 `c 1 DCO 1 8 `c 1 dDCO 1 9 `uc 1 indCO 1 10 `uc 1 SCO 1 11 `uc 1 AC_CO 1 12 `uc 1 MAD_CO 1 13 `uc 1 DAD_CO 1 14 ]
+"34 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[s S1503 . 15 `uc 1 _err_CW 1 0 :1:0 
+`uc 1 _su_CW 1 0 :1:1 
+`uc 1 _ad_CW 1 0 :1:2 
+`uc 1 _wpz_CW 1 0 :1:3 
+`uc 1 _on_DZ_CW 1 0 :1:4 
+`uc 1 _su_DZ_CW 1 0 :1:5 
+`uc 1 _ad_DZ_CW 1 0 :1:6 
+`uc 1 _cold_CW 1 0 :1:7 
+`uc 1 _newPCW 1 1 :1:0 
+`uc 1 _wrtPCW 1 1 :1:1 
+`uc 1 _fpCW 1 1 :1:2 
+`uc 1 CW 1 2 `uc 1 PCW 1 3 `uc 1 PPCW 1 4 `uc 1 minPCW 1 5 `uc 1 maxPCW 1 6 `c 1 DCW 1 7 `c 1 dDCW 1 8 `c 1 ddDCW 1 9 `uc 1 indCW 1 10 `uc 1 SCW 1 11 `uc 1 AC_CW 1 12 `uc 1 MAD_CW 1 13 `uc 1 DAD_CW 1 14 ]
+"237 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.h
+[s S1666 . 4 `uc 1 _hi 1 0 :1:0 
+`uc 1 _lo 1 0 :1:1 
+`uc 1 _no 1 0 :1:2 
+`uc 1 _error 1 0 :1:3 
+`uc 1 _work 1 0 :1:4 
+`ui 1 _no_mont 2 1 `uc 1 CS 1 3 ]
+"38 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[s S1675 . 20 `uc 1 _err_IN 1 0 :1:0 
+`uc 1 _newECO 1 0 :1:1 
+`uc 1 AC_IN 1 1 `uc 1 IN 1 2 `uc 1 DIN 1 3 `uc 1 DIN2 1 4 `uc 1 DDLT 1 5 `uc 1 cDLT 1 6 `uc 1 cold 1 7 `uc 1 kond 1 8 `uc 1 Eco 1 9 `uc 1 PPEco 1 10 `uc 1 Eco5HI 1 11 `uc 1 Eco5LO 1 12 `uc 1 HI 1 13 `uc 1 LO 1 14 `c 1 delta1 1 15 `c 1 delta2 1 16 `c 1 delta3 1 17 `uc 1 delta 1 18 `uc 1 pop 1 19 ]
+"182 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.h
+[s S1875 . 34 `uc 1 _ENPWM 1 0 :1:0 
+`uc 1 _ENOSC 1 0 :1:1 
+`uc 1 tpGZ 1 0 :1:2 
+`VNEuc 1 BufPWM 1 1 `VNEuc 1 BufOSC 1 2 `Nuc 1 NewOSC 1 3 `Nuc 1 NewPWM 1 4 `uc 1 _ENPWM2 1 5 :1:0 
+`VNEuc 1 BufPWM2 1 6 `Nuc 1 NewPWM2 1 7 `uc 1 HIPWM 1 8 `uc 1 MDMOD 1 9 `uc 1 MGMOD 1 10 `uc 1 MAXOSC 1 11 `uc 1 MINOSC 1 12 `uc 1 MAD_MOD 1 13 `uc 1 MAG_MOD 1 14 `uc 1 GWMSTART 1 15 `uc 1 MDSTART 1 16 `uc 1 MGSTART 1 17 `uc 1 GWMMAXCO 1 18 `uc 1 MDMAXCO 1 19 `uc 1 MGMAXCO 1 20 `uc 1 GWMMAXCW 1 21 `uc 1 MDMAXCW 1 22 `uc 1 MGMAXCW 1 23 `uc 1 FIRSTPB 1 24 `uc 1 PROP1 1 25 `uc 1 PROP2 1 26 `uc 1 PROP3 1 27 `uc 1 MSTART 1 28 `uc 1 MMAXCO 1 29 `uc 1 MMAXCW 1 30 `uc 1 PGD 1 31 `uc 1 MINPWM 1 32 `uc 1 MAXPWM 1 33 ]
+"151
+[s S1941 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+`uc 1 RA7 1 0 :1:7 
+]
+[s S1950 . 1 `uc 1 AN0 1 0 :1:0 
+`uc 1 AN1 1 0 :1:1 
+`uc 1 AN2 1 0 :1:2 
+`uc 1 AN3 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 AN4 1 0 :1:5 
+]
+[s S1957 . 1 `uc 1 C12IN0M 1 0 :1:0 
+`uc 1 C12IN1M 1 0 :1:1 
+`uc 1 C2INP 1 0 :1:2 
+`uc 1 C1INP 1 0 :1:3 
+`uc 1 C1OUT 1 0 :1:4 
+`uc 1 C2OUT 1 0 :1:5 
+]
+[s S1964 . 1 `uc 1 C12IN0N 1 0 :1:0 
+`uc 1 C12IN1N 1 0 :1:1 
+`uc 1 VREFM 1 0 :1:2 
+`uc 1 VREFP 1 0 :1:3 
+`uc 1 T0CKI 1 0 :1:4 
+`uc 1 SS 1 0 :1:5 
+]
+[s S1971 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_SS 1 0 :1:5 
+]
+[s S1974 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 VREFN 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nSS 1 0 :1:5 
+]
+[s S1979 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CVREF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 LVDIN 1 0 :1:5 
+]
+[s S1984 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 HLVDIN 1 0 :1:5 
+]
+[s S1987 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 RJPU 1 0 :1:7 
+]
+[s S1990 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+]
+[u S1992 . 1 `S757 1 . 1 0 `S766 1 . 1 0 `S773 1 . 1 0 `S780 1 . 1 0 `S787 1 . 1 0 `S790 1 . 1 0 `S795 1 . 1 0 `S800 1 . 1 0 `S803 1 . 1 0 `S806 1 . 1 0 ]
+"595 C:\Program Files\Microchip\xc8\v1.12\include\pic18f46k20.h
+[s S2004 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+[s S2013 . 1 `uc 1 T1OSO 1 0 :1:0 
+`uc 1 T1OSI 1 0 :1:1 
+`uc 1 CCP1 1 0 :1:2 
+`uc 1 SCK 1 0 :1:3 
+`uc 1 SDI 1 0 :1:4 
+`uc 1 SDO 1 0 :1:5 
+`uc 1 TX 1 0 :1:6 
+`uc 1 RX 1 0 :1:7 
+]
+[s S2022 . 1 `uc 1 T13CKI 1 0 :1:0 
+`uc 1 CCP2 1 0 :1:1 
+`uc 1 P1A 1 0 :1:2 
+`uc 1 SCL 1 0 :1:3 
+`uc 1 SDA 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CK 1 0 :1:6 
+`uc 1 DT 1 0 :1:7 
+]
+[s S2031 . 1 `uc 1 T1CKI 1 0 :1:0 
+]
+[s S2033 . 1 `uc 1 T3CKI 1 0 :1:0 
+]
+[s S2035 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 PA1 1 0 :1:2 
+]
+[s S2038 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PA2 1 0 :1:1 
+]
+[u S2041 . 1 `S674 1 . 1 0 `S683 1 . 1 0 `S692 1 . 1 0 `S701 1 . 1 0 `S703 1 . 1 0 `S705 1 . 1 0 `S708 1 . 1 0 ]
+"26 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\osc.c
+[s S2139 . 15 `uc 1 _err_CO 1 0 :1:0 
+`uc 1 _su_CO 1 0 :1:1 
+`uc 1 _ad_CO 1 0 :1:2 
+`uc 1 _su_SRW_CO 1 0 :1:3 
+`uc 1 _ad_SRW_CO 1 0 :1:4 
+`uc 1 _on_DZ_CO 1 0 :1:5 
+`uc 1 _su_DZ_CO 1 0 :1:6 
+`uc 1 _ad_DZ_CO 1 0 :1:7 
+`uc 1 _ptwp_CO 1 1 :1:0 
+`uc 1 _pz_CO 1 1 :1:1 
+`uc 1 _cold_CO 1 1 :1:2 
+`uc 1 _hot_CO 1 1 :1:3 
+`uc 1 _ldDCO 1 1 :1:4 
+`uc 1 _zroPCO 1 1 :1:5 
+`uc 1 _resPCO 1 1 :1:6 
+`uc 1 _newPCO 1 1 :1:7 
+`uc 1 CO 1 2 `uc 1 PCO 1 3 `uc 1 PPCO 1 4 `uc 1 minPCO 1 5 `uc 1 maxPCO 1 6 `uc 1 PGDPCO 1 7 `c 1 DCO 1 8 `c 1 dDCO 1 9 `uc 1 indCO 1 10 `uc 1 SCO 1 11 `uc 1 AC_CO 1 12 `uc 1 MAD_CO 1 13 `uc 1 DAD_CO 1 14 ]
+[s S2169 . 20 `uc 1 _err_IN 1 0 :1:0 
+`uc 1 _newECO 1 0 :1:1 
+`uc 1 AC_IN 1 1 `uc 1 IN 1 2 `uc 1 DIN 1 3 `uc 1 DIN2 1 4 `uc 1 DDLT 1 5 `uc 1 cDLT 1 6 `uc 1 cold 1 7 `uc 1 kond 1 8 `uc 1 Eco 1 9 `uc 1 PPEco 1 10 `uc 1 Eco5HI 1 11 `uc 1 Eco5LO 1 12 `uc 1 HI 1 13 `uc 1 LO 1 14 `c 1 delta1 1 15 `c 1 delta2 1 16 `c 1 delta3 1 17 `uc 1 delta 1 18 `uc 1 pop 1 19 ]
+[s S2191 . 15 `uc 1 _err_CW 1 0 :1:0 
+`uc 1 _su_CW 1 0 :1:1 
+`uc 1 _ad_CW 1 0 :1:2 
+`uc 1 _wpz_CW 1 0 :1:3 
+`uc 1 _on_DZ_CW 1 0 :1:4 
+`uc 1 _su_DZ_CW 1 0 :1:5 
+`uc 1 _ad_DZ_CW 1 0 :1:6 
+`uc 1 _cold_CW 1 0 :1:7 
+`uc 1 _newPCW 1 1 :1:0 
+`uc 1 _wrtPCW 1 1 :1:1 
+`uc 1 _fpCW 1 1 :1:2 
+`uc 1 CW 1 2 `uc 1 PCW 1 3 `uc 1 PPCW 1 4 `uc 1 minPCW 1 5 `uc 1 maxPCW 1 6 `c 1 DCW 1 7 `c 1 dDCW 1 8 `c 1 ddDCW 1 9 `uc 1 indCW 1 10 `uc 1 SCW 1 11 `uc 1 AC_CW 1 12 `uc 1 MAD_CW 1 13 `uc 1 DAD_CW 1 14 ]
+[s S2216 . 4 `uc 1 _on_ZW 1 0 :1:0 
+`uc 1 AC_ZW 1 1 `c 1 ZW 1 2 `c 1 SZW 1 3 ]
+[s S2221 . 4 `uc 1 _hi 1 0 :1:0 
+`uc 1 _lo 1 0 :1:1 
+`uc 1 _no 1 0 :1:2 
+`uc 1 _error 1 0 :1:3 
+`uc 1 _work 1 0 :1:4 
+`ui 1 _no_mont 2 1 `uc 1 CS 1 3 ]
+[s S2229 . 35 `uc 1 _off 1 0 :1:0 
+`uc 1 _lato 1 0 :1:1 
+`uc 1 _zima 1 0 :1:2 
+`uc 1 _str_nco 1 0 :1:3 
+`uc 1 _str_ncw 1 0 :1:4 
+`uc 1 b_str_nco 1 0 :1:5 
+`uc 1 b_str_ncw 1 0 :1:6 
+`uc 1 _set_nco 1 0 :1:7 
+`uc 1 _set_ncw 1 1 :1:0 
+`uc 1 b_set_nco 1 1 :1:1 
+`uc 1 b_set_ncw 1 1 :1:2 
+`uc 1 _mod_ncw 1 1 :1:3 
+`uc 1 _set_fnserw 1 1 :1:4 
+`uc 1 _set_aleg 1 1 :1:5 
+`uc 1 _fnserw 1 1 :1:6 
+`uc 1 _fns_max 1 1 :1:7 
+`uc 1 _aleg 1 2 :1:0 
+`uc 1 _newPCO 1 2 :1:1 
+`uc 1 _newPCW 1 2 :1:2 
+`uc 1 _res 1 2 :1:3 
+`uc 1 _toInit 1 2 :1:4 
+`uc 1 _KnfDisErr 1 2 :1:5 
+`uc 1 _aktywne_KNF 1 2 :1:6 
+`uc 1 _EnAleg 1 2 :1:7 
+`uc 1 _prn_res 1 3 :1:0 
+`uc 1 _prn_cs 1 3 :1:1 
+`uc 1 _prn_in 1 3 :1:2 
+`uc 1 _newPFN 1 3 :1:3 
+`uc 1 _csn 1 3 :1:4 
+`uc 1 _plmCO 1 3 :1:5 
+`uc 1 _plmCW 1 3 :1:6 
+`uc 1 _ofnserw 1 3 :1:7 
+`uc 1 _oaleg 1 4 :1:0 
+`uc 1 _obgCO 1 4 :1:1 
+`uc 1 _obgCW 1 4 :1:2 
+`uc 1 _opKNF 1 4 :1:3 
+`uc 1 _enKNF 1 4 :1:4 
+`uc 1 _tdzCO 1 4 :1:5 
+`uc 1 _tdzCW 1 4 :1:6 
+`uc 1 _fmsg 1 4 :1:7 
+`uc 1 _ferr 1 5 :1:0 
+`uc 1 _fL3 1 5 :1:1 
+`uc 1 _pgd 1 5 :1:2 
+`uc 1 _opgres 1 5 :1:3 
+`uc 1 _opgprg 1 5 :1:4 
+`uc 1 _errCS 1 5 :1:5 
+`uc 1 _errCO 1 5 :1:6 
+`uc 1 _errCW 1 5 :1:7 
+`uc 1 _fnoCS 1 6 :1:0 
+`uc 1 _ofzima 1 6 :1:1 
+`uc 1 _oflato 1 6 :1:2 
+`uc 1 _ofoff 1 6 :1:3 
+`uc 1 _errIN 1 6 :1:4 
+`uc 1 _pmpPWM 1 6 :1:5 
+`uc 1 _trbECO 1 6 :1:6 
+`uc 1 RDZ0 1 7 `uc 1 RDZ1 1 8 `uc 1 CO 1 9 `uc 1 CW 1 10 `uc 1 CS 1 11 `uc 1 IN 1 12 `uc 1 PPCO 1 13 `uc 1 PPCW 1 14 `uc 1 KAWR 1 15 `uc 1 KERR 1 16 `ui 1 maxPCO 2 17 `ui 1 minPCO 2 19 `ui 1 maxPCW 2 21 `ui 1 minPCW 2 23 `uc 1 b_ofnserw 1 25 :1:0 
+`uc 1 b_oaleg 1 25 :1:1 
+`ui 1 PCO 2 26 `ui 1 PCW 2 28 `uc 1 KRS 1 30 `ui 1 poz 2 31 `ui 1 AC 2 33 ]
+"17 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[s S2307 . 18 `uc 1 enknf 1 0 :1:0 
+`uc 1 wymCO 1 0 :1:1 
+`uc 1 wymCW 1 0 :1:2 
+`uc 1 PRM 1 1 `uc 1 KRK 1 2 `uc 1 mstr 1 3 `uc 1 mxcw 1 4 `uc 1 mxco 1 5 `uc 1 czpr 1 6 `uc 1 tpkt 1 7 `uc 1 rdgz 1 8 `uc 1 rdpm 1 9 `uc 1 dtpm 1 10 `uc 1 mdpm 1 11 `uc 1 teco 1 12 `uc 1 tpwm 1 13 `uc 1 robg 1 14 `uc 1 opdg 1 15 `uc 1 tpcs 1 16 `uc 1 aleg 1 17 ]
+"23
+[s S2329 . 51 `ui 1 _pob_KCO 2 0 `ui 1 _pob_KCW 2 2 `ui 1 _pob_SRW 2 4 `ui 1 _pob_AL 2 6 `ui 1 _pob_CW 2 8 `ui 1 _pob_CO 2 10 `ui 1 _pob_DzCO 2 12 `ui 1 _pob_DzCW 2 14 `uc 1 _WYLACZ 1 16 :1:0 
+`uc 1 _ZMKCOCW 1 16 :1:1 
+`uc 1 _ROZRUCH 1 16 :1:2 
+`uc 1 _RUSZ_48 1 16 :1:3 
+`uc 1 _RUSZ_48Z3 1 16 :1:4 
+`uc 1 _RUSZ_PWR 1 16 :1:5 
+`uc 1 _VWYBIEG 1 16 :1:6 
+`uc 1 _RUSZ_CIAG 1 16 :1:7 
+`uc 1 _RUSZ_PLOMIEN 1 17 :1:0 
+`uc 1 _RUSZ_RPLM 1 17 :1:1 
+`uc 1 _RUSZ_POMPE 1 17 :1:2 
+`uc 1 _BLOKUJ_3M 1 17 :1:3 
+`uc 1 _BLOKUJ_15S 1 17 :1:4 
+`uc 1 _MODULUJ 1 17 :1:5 
+`ui 1 _AKTYWNE_SRW 2 18 `ui 1 _AKTYWNE_AL 2 20 `ui 1 _AKTYWNE_PGD 2 22 `ui 1 _AKTYWNE_KNF 2 24 `uc 1 _RUSZ_NTC_CO 1 26 :1:0 
+`uc 1 _RUSZ_NTC_CW 1 26 :1:1 
+`uc 1 _RUSZ_NTC_IN 1 26 :1:2 
+`uc 1 _RUSZ_STB 1 26 :1:3 
+`uc 1 _RUSZ_MOD 1 26 :1:4 
+`uc 1 _RUSZ_CISN 1 26 :1:5 
+`uc 1 _RUSZ_NCISN 1 26 :1:6 
+`uc 1 _RS_START 1 26 :1:7 
+`uc 1 _PW_START 1 27 :1:0 
+`uc 1 _TURBO 1 27 :1:1 
+`uc 1 _PRACA 1 27 :1:2 
+`uc 1 _OST_PL 1 27 :1:3 
+`uc 1 _RUN_MNMOD 1 27 :1:4 
+`uc 1 _KCW_PMP 1 27 :1:5 
+`uc 1 _DE_VNT 1 27 :1:6 
+`uc 1 _RPM_CW 1 27 :1:7 
+`uc 1 _prb_CIG 1 28 :1:0 
+`uc 1 _prb_PRZ 1 28 :1:1 
+`uc 1 _DE_PMP 1 28 :1:2 
+`uc 1 LICZNIK_PL 1 29 `uc 1 LICZNIK_CIG 1 30 `uc 1 LICZNIK_CIG2 1 31 `uc 1 LICZNIK_CIG3 1 32 `uc 1 LICZNIK_ANL 1 33 `uc 1 ERR_BTY 1 34 `uc 1 ROZ 1 35 `uc 1 R48 1 36 `uc 1 R48Z3 1 37 `uc 1 BL3 1 38 `uc 1 BL15 1 39 `uc 1 WYL 1 40 `uc 1 RPR 1 41 `uc 1 RPL 1 42 `uc 1 RCI 1 43 `uc 1 MNM 1 44 `uc 1 ZKP 1 45 `uc 1 VWB 1 46 `uc 1 SRV 1 47 `uc 1 KRS 1 48 `uc 1 HVZ 1 49 `uc 1 DPR 1 50 ]
+"984
+[s S2481 . 2 `uc 1 Delay1 1 0 `uc 1 Delay2 1 1 ]
+[s S2484 . 1 `uc 1 Input 1 0 :1:0 
+`uc 1 Output 1 0 :1:1 
+`uc 1 Timer 1 0 :6:2 
+]
+[s S2488 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+[s S2497 . 1 `uc 1 INT0 1 0 :1:0 
+`uc 1 INT1 1 0 :1:1 
+`uc 1 INT2 1 0 :1:2 
+`uc 1 CCP2 1 0 :1:3 
+`uc 1 KBI0 1 0 :1:4 
+`uc 1 KBI1 1 0 :1:5 
+`uc 1 KBI2 1 0 :1:6 
+`uc 1 KBI3 1 0 :1:7 
+]
+[s S2506 . 1 `uc 1 AN12 1 0 :1:0 
+`uc 1 AN10 1 0 :1:1 
+`uc 1 AN8 1 0 :1:2 
+`uc 1 AN9 1 0 :1:3 
+`uc 1 AN11 1 0 :1:4 
+`uc 1 PGM 1 0 :1:5 
+`uc 1 PGC 1 0 :1:6 
+`uc 1 PGD 1 0 :1:7 
+]
+[s S2515 . 1 `uc 1 FLT0 1 0 :1:0 
+`uc 1 C12IN3M 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 C12IN2M 1 0 :1:3 
+]
+[s S2520 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 C12IN3N 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 C12IN2N 1 0 :1:3 
+]
+[s S2525 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP2_PA2 1 0 :1:3 
+]
+[u S2528 . 1 `S586 1 . 1 0 `S595 1 . 1 0 `S604 1 . 1 0 `S613 1 . 1 0 `S618 1 . 1 0 `S623 1 . 1 0 ]
+"817 C:\Program Files\Microchip\xc8\v1.12\include\pic18f46k20.h
+[s S2536 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+[s S2545 . 1 `uc 1 T1OSO 1 0 :1:0 
+`uc 1 T1OSI 1 0 :1:1 
+`uc 1 CCP1 1 0 :1:2 
+`uc 1 SCK 1 0 :1:3 
+`uc 1 SDI 1 0 :1:4 
+`uc 1 SDO 1 0 :1:5 
+`uc 1 TX 1 0 :1:6 
+`uc 1 RX 1 0 :1:7 
+]
+[s S2554 . 1 `uc 1 T13CKI 1 0 :1:0 
+`uc 1 CCP2 1 0 :1:1 
+`uc 1 P1A 1 0 :1:2 
+`uc 1 SCL 1 0 :1:3 
+`uc 1 SDA 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CK 1 0 :1:6 
+`uc 1 DT 1 0 :1:7 
+]
+[s S2563 . 1 `uc 1 T1CKI 1 0 :1:0 
+]
+[s S2565 . 1 `uc 1 T3CKI 1 0 :1:0 
+]
+[s S2567 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 PA1 1 0 :1:2 
+]
+[s S2570 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PA2 1 0 :1:1 
+]
+[u S2573 . 1 `S674 1 . 1 0 `S683 1 . 1 0 `S692 1 . 1 0 `S701 1 . 1 0 `S703 1 . 1 0 `S705 1 . 1 0 `S708 1 . 1 0 ]
+"1022
+[s S2582 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+`uc 1 RA7 1 0 :1:7 
+]
+[s S2591 . 1 `uc 1 AN0 1 0 :1:0 
+`uc 1 AN1 1 0 :1:1 
+`uc 1 AN2 1 0 :1:2 
+`uc 1 AN3 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 AN4 1 0 :1:5 
+]
+[s S2598 . 1 `uc 1 C12IN0M 1 0 :1:0 
+`uc 1 C12IN1M 1 0 :1:1 
+`uc 1 C2INP 1 0 :1:2 
+`uc 1 C1INP 1 0 :1:3 
+`uc 1 C1OUT 1 0 :1:4 
+`uc 1 C2OUT 1 0 :1:5 
+]
+[s S2605 . 1 `uc 1 C12IN0N 1 0 :1:0 
+`uc 1 C12IN1N 1 0 :1:1 
+`uc 1 VREFM 1 0 :1:2 
+`uc 1 VREFP 1 0 :1:3 
+`uc 1 T0CKI 1 0 :1:4 
+`uc 1 SS 1 0 :1:5 
+]
+[s S2612 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_SS 1 0 :1:5 
+]
+[s S2615 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 VREFN 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nSS 1 0 :1:5 
+]
+[s S2620 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CVREF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 LVDIN 1 0 :1:5 
+]
+[s S2625 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 HLVDIN 1 0 :1:5 
+]
+[s S2628 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 RJPU 1 0 :1:7 
+]
+[s S2631 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+]
+[u S2633 . 1 `S757 1 . 1 0 `S766 1 . 1 0 `S773 1 . 1 0 `S780 1 . 1 0 `S787 1 . 1 0 `S790 1 . 1 0 `S795 1 . 1 0 `S800 1 . 1 0 `S803 1 . 1 0 `S806 1 . 1 0 ]
+"595
+[s S2645 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+[s S2654 . 1 `uc 1 PSP0 1 0 :1:0 
+`uc 1 PSP1 1 0 :1:1 
+`uc 1 PSP2 1 0 :1:2 
+`uc 1 PSP3 1 0 :1:3 
+`uc 1 PSP4 1 0 :1:4 
+`uc 1 PSP5 1 0 :1:5 
+`uc 1 PSP6 1 0 :1:6 
+`uc 1 PSP7 1 0 :1:7 
+]
+[s S2663 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 P1B 1 0 :1:5 
+`uc 1 P1C 1 0 :1:6 
+`uc 1 P1D 1 0 :1:7 
+]
+[s S2668 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 SS2 1 0 :1:7 
+]
+[u S2671 . 1 `S528 1 . 1 0 `S537 1 . 1 0 `S546 1 . 1 0 `S551 1 . 1 0 ]
+"1198
+[s S2677 . 15 `uc 1 _err_CO 1 0 :1:0 
+`uc 1 _su_CO 1 0 :1:1 
+`uc 1 _ad_CO 1 0 :1:2 
+`uc 1 _su_SRW_CO 1 0 :1:3 
+`uc 1 _ad_SRW_CO 1 0 :1:4 
+`uc 1 _on_DZ_CO 1 0 :1:5 
+`uc 1 _su_DZ_CO 1 0 :1:6 
+`uc 1 _ad_DZ_CO 1 0 :1:7 
+`uc 1 _ptwp_CO 1 1 :1:0 
+`uc 1 _pz_CO 1 1 :1:1 
+`uc 1 _cold_CO 1 1 :1:2 
+`uc 1 _hot_CO 1 1 :1:3 
+`uc 1 _ldDCO 1 1 :1:4 
+`uc 1 _zroPCO 1 1 :1:5 
+`uc 1 _resPCO 1 1 :1:6 
+`uc 1 _newPCO 1 1 :1:7 
+`uc 1 CO 1 2 `uc 1 PCO 1 3 `uc 1 PPCO 1 4 `uc 1 minPCO 1 5 `uc 1 maxPCO 1 6 `uc 1 PGDPCO 1 7 `c 1 DCO 1 8 `c 1 dDCO 1 9 `uc 1 indCO 1 10 `uc 1 SCO 1 11 `uc 1 AC_CO 1 12 `uc 1 MAD_CO 1 13 `uc 1 DAD_CO 1 14 ]
+"10 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[s S2708 . 15 `uc 1 _err_CW 1 0 :1:0 
+`uc 1 _su_CW 1 0 :1:1 
+`uc 1 _ad_CW 1 0 :1:2 
+`uc 1 _wpz_CW 1 0 :1:3 
+`uc 1 _on_DZ_CW 1 0 :1:4 
+`uc 1 _su_DZ_CW 1 0 :1:5 
+`uc 1 _ad_DZ_CW 1 0 :1:6 
+`uc 1 _cold_CW 1 0 :1:7 
+`uc 1 _newPCW 1 1 :1:0 
+`uc 1 _wrtPCW 1 1 :1:1 
+`uc 1 _fpCW 1 1 :1:2 
+`uc 1 CW 1 2 `uc 1 PCW 1 3 `uc 1 PPCW 1 4 `uc 1 minPCW 1 5 `uc 1 maxPCW 1 6 `c 1 DCW 1 7 `c 1 dDCW 1 8 `c 1 ddDCW 1 9 `uc 1 indCW 1 10 `uc 1 SCW 1 11 `uc 1 AC_CW 1 12 `uc 1 MAD_CW 1 13 `uc 1 DAD_CW 1 14 ]
+"11
+[s S2734 . 4 `uc 1 _hi 1 0 :1:0 
+`uc 1 _lo 1 0 :1:1 
+`uc 1 _no 1 0 :1:2 
+`uc 1 _error 1 0 :1:3 
+`uc 1 _work 1 0 :1:4 
+`ui 1 _no_mont 2 1 `uc 1 CS 1 3 ]
+"12
+[s S2743 . 4 `uc 1 _on_ZW 1 0 :1:0 
+`uc 1 AC_ZW 1 1 `c 1 ZW 1 2 `c 1 SZW 1 3 ]
+"117 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.h
+[s S2795 . 35 `uc 1 _off 1 0 :1:0 
+`uc 1 _lato 1 0 :1:1 
+`uc 1 _zima 1 0 :1:2 
+`uc 1 _str_nco 1 0 :1:3 
+`uc 1 _str_ncw 1 0 :1:4 
+`uc 1 b_str_nco 1 0 :1:5 
+`uc 1 b_str_ncw 1 0 :1:6 
+`uc 1 _set_nco 1 0 :1:7 
+`uc 1 _set_ncw 1 1 :1:0 
+`uc 1 b_set_nco 1 1 :1:1 
+`uc 1 b_set_ncw 1 1 :1:2 
+`uc 1 _mod_ncw 1 1 :1:3 
+`uc 1 _set_fnserw 1 1 :1:4 
+`uc 1 _set_aleg 1 1 :1:5 
+`uc 1 _fnserw 1 1 :1:6 
+`uc 1 _fns_max 1 1 :1:7 
+`uc 1 _aleg 1 2 :1:0 
+`uc 1 _newPCO 1 2 :1:1 
+`uc 1 _newPCW 1 2 :1:2 
+`uc 1 _res 1 2 :1:3 
+`uc 1 _toInit 1 2 :1:4 
+`uc 1 _KnfDisErr 1 2 :1:5 
+`uc 1 _aktywne_KNF 1 2 :1:6 
+`uc 1 _EnAleg 1 2 :1:7 
+`uc 1 _prn_res 1 3 :1:0 
+`uc 1 _prn_cs 1 3 :1:1 
+`uc 1 _prn_in 1 3 :1:2 
+`uc 1 _newPFN 1 3 :1:3 
+`uc 1 _csn 1 3 :1:4 
+`uc 1 _plmCO 1 3 :1:5 
+`uc 1 _plmCW 1 3 :1:6 
+`uc 1 _ofnserw 1 3 :1:7 
+`uc 1 _oaleg 1 4 :1:0 
+`uc 1 _obgCO 1 4 :1:1 
+`uc 1 _obgCW 1 4 :1:2 
+`uc 1 _opKNF 1 4 :1:3 
+`uc 1 _enKNF 1 4 :1:4 
+`uc 1 _tdzCO 1 4 :1:5 
+`uc 1 _tdzCW 1 4 :1:6 
+`uc 1 _fmsg 1 4 :1:7 
+`uc 1 _ferr 1 5 :1:0 
+`uc 1 _fL3 1 5 :1:1 
+`uc 1 _pgd 1 5 :1:2 
+`uc 1 _opgres 1 5 :1:3 
+`uc 1 _opgprg 1 5 :1:4 
+`uc 1 _errCS 1 5 :1:5 
+`uc 1 _errCO 1 5 :1:6 
+`uc 1 _errCW 1 5 :1:7 
+`uc 1 _fnoCS 1 6 :1:0 
+`uc 1 _ofzima 1 6 :1:1 
+`uc 1 _oflato 1 6 :1:2 
+`uc 1 _ofoff 1 6 :1:3 
+`uc 1 _errIN 1 6 :1:4 
+`uc 1 _pmpPWM 1 6 :1:5 
+`uc 1 _trbECO 1 6 :1:6 
+`uc 1 RDZ0 1 7 `uc 1 RDZ1 1 8 `uc 1 CO 1 9 `uc 1 CW 1 10 `uc 1 CS 1 11 `uc 1 IN 1 12 `uc 1 PPCO 1 13 `uc 1 PPCW 1 14 `uc 1 KAWR 1 15 `uc 1 KERR 1 16 `ui 1 maxPCO 2 17 `ui 1 minPCO 2 19 `ui 1 maxPCW 2 21 `ui 1 minPCW 2 23 `uc 1 b_ofnserw 1 25 :1:0 
+`uc 1 b_oaleg 1 25 :1:1 
+`ui 1 PCO 2 26 `ui 1 PCW 2 28 `uc 1 KRS 1 30 `ui 1 poz 2 31 `ui 1 AC 2 33 ]
+"17 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[s S2873 . 2 `uc 1 focus 1 0 :1:0 
+`uc 1 dec 1 0 :1:1 
+`uc 1 hex 1 0 :1:2 
+`uc 1 autoOFF 1 0 :1:3 
+`uc 1 kropka0 1 0 :1:4 
+`uc 1 kropka1 1 0 :1:5 
+`uc 1 wygas0 1 0 :1:6 
+`uc 1 wygas1 1 0 :1:7 
+`uc 1 led0 1 1 :1:0 
+`uc 1 led1 1 1 :1:1 
+`uc 1 sdiode 1 1 :1:2 
+`uc 1 rdiode 1 1 :1:3 
+`uc 1 wbdid 1 1 :4:4 
+]
+[s S2887 . 2 `uc 1 Data1 1 0 `uc 1 Data0 1 1 ]
+[s S2890 . 4 `S2873 1 St 2 0 `S2887 1 Dt 2 2 ]
+"123 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.h
+[s S2925 . 15 `uc 1 _err_CO 1 0 :1:0 
+`uc 1 _su_CO 1 0 :1:1 
+`uc 1 _ad_CO 1 0 :1:2 
+`uc 1 _su_SRW_CO 1 0 :1:3 
+`uc 1 _ad_SRW_CO 1 0 :1:4 
+`uc 1 _on_DZ_CO 1 0 :1:5 
+`uc 1 _su_DZ_CO 1 0 :1:6 
+`uc 1 _ad_DZ_CO 1 0 :1:7 
+`uc 1 _ptwp_CO 1 1 :1:0 
+`uc 1 _pz_CO 1 1 :1:1 
+`uc 1 _cold_CO 1 1 :1:2 
+`uc 1 _hot_CO 1 1 :1:3 
+`uc 1 _ldDCO 1 1 :1:4 
+`uc 1 _zroPCO 1 1 :1:5 
+`uc 1 _resPCO 1 1 :1:6 
+`uc 1 _newPCO 1 1 :1:7 
+`uc 1 CO 1 2 `uc 1 PCO 1 3 `uc 1 PPCO 1 4 `uc 1 minPCO 1 5 `uc 1 maxPCO 1 6 `uc 1 PGDPCO 1 7 `c 1 DCO 1 8 `c 1 dDCO 1 9 `uc 1 indCO 1 10 `uc 1 SCO 1 11 `uc 1 AC_CO 1 12 `uc 1 MAD_CO 1 13 `uc 1 DAD_CO 1 14 ]
+"325 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[s S3029 . 34 `uc 1 _ENPWM 1 0 :1:0 
+`uc 1 _ENOSC 1 0 :1:1 
+`uc 1 tpGZ 1 0 :1:2 
+`VNEuc 1 BufPWM 1 1 `VNEuc 1 BufOSC 1 2 `Nuc 1 NewOSC 1 3 `Nuc 1 NewPWM 1 4 `uc 1 _ENPWM2 1 5 :1:0 
+`VNEuc 1 BufPWM2 1 6 `Nuc 1 NewPWM2 1 7 `uc 1 HIPWM 1 8 `uc 1 MDMOD 1 9 `uc 1 MGMOD 1 10 `uc 1 MAXOSC 1 11 `uc 1 MINOSC 1 12 `uc 1 MAD_MOD 1 13 `uc 1 MAG_MOD 1 14 `uc 1 GWMSTART 1 15 `uc 1 MDSTART 1 16 `uc 1 MGSTART 1 17 `uc 1 GWMMAXCO 1 18 `uc 1 MDMAXCO 1 19 `uc 1 MGMAXCO 1 20 `uc 1 GWMMAXCW 1 21 `uc 1 MDMAXCW 1 22 `uc 1 MGMAXCW 1 23 `uc 1 FIRSTPB 1 24 `uc 1 PROP1 1 25 `uc 1 PROP2 1 26 `uc 1 PROP3 1 27 `uc 1 MSTART 1 28 `uc 1 MMAXCO 1 29 `uc 1 MMAXCW 1 30 `uc 1 PGD 1 31 `uc 1 MINPWM 1 32 `uc 1 MAXPWM 1 33 ]
+"15 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwron.c
+[s S3110 . 10 `uc 1 btco 1 0 :1:0 
+`uc 1 btcw 1 0 :1:1 
+`uc 1 fz 1 0 :1:2 
+`uc 1 med_up 1 0 :1:3 
+`uc 1 fast_up 1 0 :1:4 
+`uc 1 nmod 1 0 :1:5 
+`uc 1 del1s 1 0 :1:6 
+`uc 1 deln1 1 0 :1:7 
+`uc 1 inv_mod 1 1 :1:0 
+`c 1 x_t 1 2 `c 1 x_f 1 3 `c 1 x_dt 1 4 `c 1 x_df 1 5 `uc 1 ytmp 1 6 `uc 1 srp 1 7 `uc 1 xmod 1 8 `uc 1 tmp_pwm 1 9 ]
+[s S3128 . 51 `ui 1 _pob_KCO 2 0 `ui 1 _pob_KCW 2 2 `ui 1 _pob_SRW 2 4 `ui 1 _pob_AL 2 6 `ui 1 _pob_CW 2 8 `ui 1 _pob_CO 2 10 `ui 1 _pob_DzCO 2 12 `ui 1 _pob_DzCW 2 14 `uc 1 _WYLACZ 1 16 :1:0 
+`uc 1 _ZMKCOCW 1 16 :1:1 
+`uc 1 _ROZRUCH 1 16 :1:2 
+`uc 1 _RUSZ_48 1 16 :1:3 
+`uc 1 _RUSZ_48Z3 1 16 :1:4 
+`uc 1 _RUSZ_PWR 1 16 :1:5 
+`uc 1 _VWYBIEG 1 16 :1:6 
+`uc 1 _RUSZ_CIAG 1 16 :1:7 
+`uc 1 _RUSZ_PLOMIEN 1 17 :1:0 
+`uc 1 _RUSZ_RPLM 1 17 :1:1 
+`uc 1 _RUSZ_POMPE 1 17 :1:2 
+`uc 1 _BLOKUJ_3M 1 17 :1:3 
+`uc 1 _BLOKUJ_15S 1 17 :1:4 
+`uc 1 _MODULUJ 1 17 :1:5 
+`ui 1 _AKTYWNE_SRW 2 18 `ui 1 _AKTYWNE_AL 2 20 `ui 1 _AKTYWNE_PGD 2 22 `ui 1 _AKTYWNE_KNF 2 24 `uc 1 _RUSZ_NTC_CO 1 26 :1:0 
+`uc 1 _RUSZ_NTC_CW 1 26 :1:1 
+`uc 1 _RUSZ_NTC_IN 1 26 :1:2 
+`uc 1 _RUSZ_STB 1 26 :1:3 
+`uc 1 _RUSZ_MOD 1 26 :1:4 
+`uc 1 _RUSZ_CISN 1 26 :1:5 
+`uc 1 _RUSZ_NCISN 1 26 :1:6 
+`uc 1 _RS_START 1 26 :1:7 
+`uc 1 _PW_START 1 27 :1:0 
+`uc 1 _TURBO 1 27 :1:1 
+`uc 1 _PRACA 1 27 :1:2 
+`uc 1 _OST_PL 1 27 :1:3 
+`uc 1 _RUN_MNMOD 1 27 :1:4 
+`uc 1 _KCW_PMP 1 27 :1:5 
+`uc 1 _DE_VNT 1 27 :1:6 
+`uc 1 _RPM_CW 1 27 :1:7 
+`uc 1 _prb_CIG 1 28 :1:0 
+`uc 1 _prb_PRZ 1 28 :1:1 
+`uc 1 _DE_PMP 1 28 :1:2 
+`uc 1 LICZNIK_PL 1 29 `uc 1 LICZNIK_CIG 1 30 `uc 1 LICZNIK_CIG2 1 31 `uc 1 LICZNIK_CIG3 1 32 `uc 1 LICZNIK_ANL 1 33 `uc 1 ERR_BTY 1 34 `uc 1 ROZ 1 35 `uc 1 R48 1 36 `uc 1 R48Z3 1 37 `uc 1 BL3 1 38 `uc 1 BL15 1 39 `uc 1 WYL 1 40 `uc 1 RPR 1 41 `uc 1 RPL 1 42 `uc 1 RCI 1 43 `uc 1 MNM 1 44 `uc 1 ZKP 1 45 `uc 1 VWB 1 46 `uc 1 SRV 1 47 `uc 1 KRS 1 48 `uc 1 HVZ 1 49 `uc 1 DPR 1 50 ]
+"16 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.c
+[s S3197 . 34 `uc 1 _ENPWM 1 0 :1:0 
+`uc 1 _ENOSC 1 0 :1:1 
+`uc 1 tpGZ 1 0 :1:2 
+`VNEuc 1 BufPWM 1 1 `VNEuc 1 BufOSC 1 2 `Nuc 1 NewOSC 1 3 `Nuc 1 NewPWM 1 4 `uc 1 _ENPWM2 1 5 :1:0 
+`VNEuc 1 BufPWM2 1 6 `Nuc 1 NewPWM2 1 7 `uc 1 HIPWM 1 8 `uc 1 MDMOD 1 9 `uc 1 MGMOD 1 10 `uc 1 MAXOSC 1 11 `uc 1 MINOSC 1 12 `uc 1 MAD_MOD 1 13 `uc 1 MAG_MOD 1 14 `uc 1 GWMSTART 1 15 `uc 1 MDSTART 1 16 `uc 1 MGSTART 1 17 `uc 1 GWMMAXCO 1 18 `uc 1 MDMAXCO 1 19 `uc 1 MGMAXCO 1 20 `uc 1 GWMMAXCW 1 21 `uc 1 MDMAXCW 1 22 `uc 1 MGMAXCW 1 23 `uc 1 FIRSTPB 1 24 `uc 1 PROP1 1 25 `uc 1 PROP2 1 26 `uc 1 PROP3 1 27 `uc 1 MSTART 1 28 `uc 1 MMAXCO 1 29 `uc 1 MMAXCW 1 30 `uc 1 PGD 1 31 `uc 1 MINPWM 1 32 `uc 1 MAXPWM 1 33 ]
+"96 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.h
+[s S3433 . 18 `uc 1 enknf 1 0 :1:0 
+`uc 1 wymCO 1 0 :1:1 
+`uc 1 wymCW 1 0 :1:2 
+`uc 1 PRM 1 1 `uc 1 KRK 1 2 `uc 1 mstr 1 3 `uc 1 mxcw 1 4 `uc 1 mxco 1 5 `uc 1 czpr 1 6 `uc 1 tpkt 1 7 `uc 1 rdgz 1 8 `uc 1 rdpm 1 9 `uc 1 dtpm 1 10 `uc 1 mdpm 1 11 `uc 1 teco 1 12 `uc 1 tpwm 1 13 `uc 1 robg 1 14 `uc 1 opdg 1 15 `uc 1 tpcs 1 16 `uc 1 aleg 1 17 ]
+"101
+[s S3460 . 15 `uc 1 _err_CO 1 0 :1:0 
+`uc 1 _su_CO 1 0 :1:1 
+`uc 1 _ad_CO 1 0 :1:2 
+`uc 1 _su_SRW_CO 1 0 :1:3 
+`uc 1 _ad_SRW_CO 1 0 :1:4 
+`uc 1 _on_DZ_CO 1 0 :1:5 
+`uc 1 _su_DZ_CO 1 0 :1:6 
+`uc 1 _ad_DZ_CO 1 0 :1:7 
+`uc 1 _ptwp_CO 1 1 :1:0 
+`uc 1 _pz_CO 1 1 :1:1 
+`uc 1 _cold_CO 1 1 :1:2 
+`uc 1 _hot_CO 1 1 :1:3 
+`uc 1 _ldDCO 1 1 :1:4 
+`uc 1 _zroPCO 1 1 :1:5 
+`uc 1 _resPCO 1 1 :1:6 
+`uc 1 _newPCO 1 1 :1:7 
+`uc 1 CO 1 2 `uc 1 PCO 1 3 `uc 1 PPCO 1 4 `uc 1 minPCO 1 5 `uc 1 maxPCO 1 6 `uc 1 PGDPCO 1 7 `c 1 DCO 1 8 `c 1 dDCO 1 9 `uc 1 indCO 1 10 `uc 1 SCO 1 11 `uc 1 AC_CO 1 12 `uc 1 MAD_CO 1 13 `uc 1 DAD_CO 1 14 ]
+"109
+[s S3515 . 15 `uc 1 _err_CW 1 0 :1:0 
+`uc 1 _su_CW 1 0 :1:1 
+`uc 1 _ad_CW 1 0 :1:2 
+`uc 1 _wpz_CW 1 0 :1:3 
+`uc 1 _on_DZ_CW 1 0 :1:4 
+`uc 1 _su_DZ_CW 1 0 :1:5 
+`uc 1 _ad_DZ_CW 1 0 :1:6 
+`uc 1 _cold_CW 1 0 :1:7 
+`uc 1 _newPCW 1 1 :1:0 
+`uc 1 _wrtPCW 1 1 :1:1 
+`uc 1 _fpCW 1 1 :1:2 
+`uc 1 CW 1 2 `uc 1 PCW 1 3 `uc 1 PPCW 1 4 `uc 1 minPCW 1 5 `uc 1 maxPCW 1 6 `c 1 DCW 1 7 `c 1 dDCW 1 8 `c 1 ddDCW 1 9 `uc 1 indCW 1 10 `uc 1 SCW 1 11 `uc 1 AC_CW 1 12 `uc 1 MAD_CW 1 13 `uc 1 DAD_CW 1 14 ]
+"2543 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.c
+[s S3731 . 3 `uc 1 cS 1 0 `uc 1 dS 1 1 `uc 1 S 1 2 ]
+[s S3735 . 2 `uc 1 cS 1 0 `uc 1 dS 1 1 ]
+[s S3738 . 2 `uc 1 dS 1 0 `uc 1 S 1 1 ]
+[s S3741 . 2 `uc 1 S 1 0 `uc 1 M 1 1 ]
+[s S3744 . 2 `uc 1 M 1 0 `uc 1 G 1 1 ]
+"58 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\timer1.c
+[s S3796 . 5 `uc 1 _ReceptData 1 0 :1:0 
+`uc 1 _ReceptOK 1 0 :1:1 
+`uc 1 _ReceptACK 1 0 :1:2 
+`uc 1 _TERR_TIM 1 0 :1:3 
+`uc 1 _RERR_TIM 1 0 :1:4 
+`uc 1 _RERR_REC 1 0 :1:5 
+`uc 1 _CON 1 0 :1:6 
+`uc 1 timRS 1 1 `uc 1 timRS2 1 2 `uc 1 MTRS 1 3 `uc 1 KTR 1 4 ]
+[s S3808 . 65 `uc 1 outID 1 0 `uc 1 RD_STD 1 1 :1:0 
+`uc 1 RD_KNF 1 1 :1:1 
+`uc 1 RRD_KNF 1 1 :1:2 
+`uc 1 outRDZ0 1 2 `uc 1 outRDZ1 1 3 `uc 1 outCO 1 4 `uc 1 outCW 1 5 `uc 1 outCS 1 6 `uc 1 outIN 1 7 `uc 1 outPCO 1 8 `uc 1 outPCW 1 9 `uc 1 outPCOmn 1 10 `uc 1 outPCOmx 1 11 `uc 1 outPCWmn 1 12 `uc 1 outPCWmx 1 13 `uc 1 outPPCO 1 14 `uc 1 outPPCW 1 15 `uc 1 outERR 1 16 `uc 1 outAWR 1 17 `uc 1 outSTAT0 1 18 `uc 1 outSTAT1 1 19 `uc 1 outSTAT2 1 20 `uc 1 outSTAT3 1 21 `uc 1 outKSTAT0 1 22 `uc 1 outMSTR 1 23 `uc 1 outMSTRmn 1 24 `uc 1 outMSTRmx 1 25 `uc 1 outMMAXU 1 26 `uc 1 outMMAXUmn 1 27 `uc 1 outMMAXUmx 1 28 `uc 1 outMMAXG 1 29 `uc 1 outMMAXGmn 1 30 `uc 1 outMMAXGmx 1 31 `uc 1 outRGZ 1 32 `uc 1 outRGZmn 1 33 `uc 1 outRGZmx 1 34 `uc 1 outWANL 1 35 `uc 1 outTPKT 1 36 `uc 1 outTPKTmn 1 37 `uc 1 outTPKTmx 1 38 `uc 1 outWOBG 1 39 `uc 1 outOPDG 1 40 `uc 1 outTPCS 1 41 `uc 1 outRDPM 1 42 `uc 1 outDTPM 1 43 `uc 1 outMDPM 1 44 `uc 1 inPCO 1 45 `uc 1 inPCW 1 46 `uc 1 inSTAT0 1 47 `uc 1 inSTAT1 1 48 `uc 1 inKSTAT0 1 49 `uc 1 inKRK 1 50 `uc 1 inPRM 1 51 `uc 1 inDDTA 1 52 `uc 1 inMSTR 1 53 `uc 1 inMMAXU 1 54 `uc 1 inMMAXG 1 55 `uc 1 inRGZ 1 56 `uc 1 inWANL 1 57 `uc 1 inTPKT 1 58 `uc 1 inWOBG 1 59 `uc 1 inOPDG 1 60 `uc 1 inTPCS 1 61 `uc 1 inRDPM 1 62 `uc 1 inDTPM 1 63 `uc 1 inMDPM 1 64 ]
+[s S3876 . 18 `uc 1 enknf 1 0 :1:0 
+`uc 1 wymCO 1 0 :1:1 
+`uc 1 wymCW 1 0 :1:2 
+`uc 1 PRM 1 1 `uc 1 KRK 1 2 `uc 1 mstr 1 3 `uc 1 mxcw 1 4 `uc 1 mxco 1 5 `uc 1 czpr 1 6 `uc 1 tpkt 1 7 `uc 1 rdgz 1 8 `uc 1 rdpm 1 9 `uc 1 dtpm 1 10 `uc 1 mdpm 1 11 `uc 1 teco 1 12 `uc 1 tpwm 1 13 `uc 1 robg 1 14 `uc 1 opdg 1 15 `uc 1 tpcs 1 16 `uc 1 aleg 1 17 ]
+"138 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.h
+[s S3898 . 51 `ui 1 _pob_KCO 2 0 `ui 1 _pob_KCW 2 2 `ui 1 _pob_SRW 2 4 `ui 1 _pob_AL 2 6 `ui 1 _pob_CW 2 8 `ui 1 _pob_CO 2 10 `ui 1 _pob_DzCO 2 12 `ui 1 _pob_DzCW 2 14 `uc 1 _WYLACZ 1 16 :1:0 
+`uc 1 _ZMKCOCW 1 16 :1:1 
+`uc 1 _ROZRUCH 1 16 :1:2 
+`uc 1 _RUSZ_48 1 16 :1:3 
+`uc 1 _RUSZ_48Z3 1 16 :1:4 
+`uc 1 _RUSZ_PWR 1 16 :1:5 
+`uc 1 _VWYBIEG 1 16 :1:6 
+`uc 1 _RUSZ_CIAG 1 16 :1:7 
+`uc 1 _RUSZ_PLOMIEN 1 17 :1:0 
+`uc 1 _RUSZ_RPLM 1 17 :1:1 
+`uc 1 _RUSZ_POMPE 1 17 :1:2 
+`uc 1 _BLOKUJ_3M 1 17 :1:3 
+`uc 1 _BLOKUJ_15S 1 17 :1:4 
+`uc 1 _MODULUJ 1 17 :1:5 
+`ui 1 _AKTYWNE_SRW 2 18 `ui 1 _AKTYWNE_AL 2 20 `ui 1 _AKTYWNE_PGD 2 22 `ui 1 _AKTYWNE_KNF 2 24 `uc 1 _RUSZ_NTC_CO 1 26 :1:0 
+`uc 1 _RUSZ_NTC_CW 1 26 :1:1 
+`uc 1 _RUSZ_NTC_IN 1 26 :1:2 
+`uc 1 _RUSZ_STB 1 26 :1:3 
+`uc 1 _RUSZ_MOD 1 26 :1:4 
+`uc 1 _RUSZ_CISN 1 26 :1:5 
+`uc 1 _RUSZ_NCISN 1 26 :1:6 
+`uc 1 _RS_START 1 26 :1:7 
+`uc 1 _PW_START 1 27 :1:0 
+`uc 1 _TURBO 1 27 :1:1 
+`uc 1 _PRACA 1 27 :1:2 
+`uc 1 _OST_PL 1 27 :1:3 
+`uc 1 _RUN_MNMOD 1 27 :1:4 
+`uc 1 _KCW_PMP 1 27 :1:5 
+`uc 1 _DE_VNT 1 27 :1:6 
+`uc 1 _RPM_CW 1 27 :1:7 
+`uc 1 _prb_CIG 1 28 :1:0 
+`uc 1 _prb_PRZ 1 28 :1:1 
+`uc 1 _DE_PMP 1 28 :1:2 
+`uc 1 LICZNIK_PL 1 29 `uc 1 LICZNIK_CIG 1 30 `uc 1 LICZNIK_CIG2 1 31 `uc 1 LICZNIK_CIG3 1 32 `uc 1 LICZNIK_ANL 1 33 `uc 1 ERR_BTY 1 34 `uc 1 ROZ 1 35 `uc 1 R48 1 36 `uc 1 R48Z3 1 37 `uc 1 BL3 1 38 `uc 1 BL15 1 39 `uc 1 WYL 1 40 `uc 1 RPR 1 41 `uc 1 RPL 1 42 `uc 1 RCI 1 43 `uc 1 MNM 1 44 `uc 1 ZKP 1 45 `uc 1 VWB 1 46 `uc 1 SRV 1 47 `uc 1 KRS 1 48 `uc 1 HVZ 1 49 `uc 1 DPR 1 50 ]
+"155
+[s S3996 . 4 `uc 1 _on_ZW 1 0 :1:0 
+`uc 1 AC_ZW 1 1 `c 1 ZW 1 2 `c 1 SZW 1 3 ]
+"21 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[s S4002 . 15 `uc 1 _err_CO 1 0 :1:0 
+`uc 1 _su_CO 1 0 :1:1 
+`uc 1 _ad_CO 1 0 :1:2 
+`uc 1 _su_SRW_CO 1 0 :1:3 
+`uc 1 _ad_SRW_CO 1 0 :1:4 
+`uc 1 _on_DZ_CO 1 0 :1:5 
+`uc 1 _su_DZ_CO 1 0 :1:6 
+`uc 1 _ad_DZ_CO 1 0 :1:7 
+`uc 1 _ptwp_CO 1 1 :1:0 
+`uc 1 _pz_CO 1 1 :1:1 
+`uc 1 _cold_CO 1 1 :1:2 
+`uc 1 _hot_CO 1 1 :1:3 
+`uc 1 _ldDCO 1 1 :1:4 
+`uc 1 _zroPCO 1 1 :1:5 
+`uc 1 _resPCO 1 1 :1:6 
+`uc 1 _newPCO 1 1 :1:7 
+`uc 1 CO 1 2 `uc 1 PCO 1 3 `uc 1 PPCO 1 4 `uc 1 minPCO 1 5 `uc 1 maxPCO 1 6 `uc 1 PGDPCO 1 7 `c 1 DCO 1 8 `c 1 dDCO 1 9 `uc 1 indCO 1 10 `uc 1 SCO 1 11 `uc 1 AC_CO 1 12 `uc 1 MAD_CO 1 13 `uc 1 DAD_CO 1 14 ]
+"130 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.h
+[s S4034 . 35 `uc 1 _off 1 0 :1:0 
+`uc 1 _lato 1 0 :1:1 
+`uc 1 _zima 1 0 :1:2 
+`uc 1 _str_nco 1 0 :1:3 
+`uc 1 _str_ncw 1 0 :1:4 
+`uc 1 b_str_nco 1 0 :1:5 
+`uc 1 b_str_ncw 1 0 :1:6 
+`uc 1 _set_nco 1 0 :1:7 
+`uc 1 _set_ncw 1 1 :1:0 
+`uc 1 b_set_nco 1 1 :1:1 
+`uc 1 b_set_ncw 1 1 :1:2 
+`uc 1 _mod_ncw 1 1 :1:3 
+`uc 1 _set_fnserw 1 1 :1:4 
+`uc 1 _set_aleg 1 1 :1:5 
+`uc 1 _fnserw 1 1 :1:6 
+`uc 1 _fns_max 1 1 :1:7 
+`uc 1 _aleg 1 2 :1:0 
+`uc 1 _newPCO 1 2 :1:1 
+`uc 1 _newPCW 1 2 :1:2 
+`uc 1 _res 1 2 :1:3 
+`uc 1 _toInit 1 2 :1:4 
+`uc 1 _KnfDisErr 1 2 :1:5 
+`uc 1 _aktywne_KNF 1 2 :1:6 
+`uc 1 _EnAleg 1 2 :1:7 
+`uc 1 _prn_res 1 3 :1:0 
+`uc 1 _prn_cs 1 3 :1:1 
+`uc 1 _prn_in 1 3 :1:2 
+`uc 1 _newPFN 1 3 :1:3 
+`uc 1 _csn 1 3 :1:4 
+`uc 1 _plmCO 1 3 :1:5 
+`uc 1 _plmCW 1 3 :1:6 
+`uc 1 _ofnserw 1 3 :1:7 
+`uc 1 _oaleg 1 4 :1:0 
+`uc 1 _obgCO 1 4 :1:1 
+`uc 1 _obgCW 1 4 :1:2 
+`uc 1 _opKNF 1 4 :1:3 
+`uc 1 _enKNF 1 4 :1:4 
+`uc 1 _tdzCO 1 4 :1:5 
+`uc 1 _tdzCW 1 4 :1:6 
+`uc 1 _fmsg 1 4 :1:7 
+`uc 1 _ferr 1 5 :1:0 
+`uc 1 _fL3 1 5 :1:1 
+`uc 1 _pgd 1 5 :1:2 
+`uc 1 _opgres 1 5 :1:3 
+`uc 1 _opgprg 1 5 :1:4 
+`uc 1 _errCS 1 5 :1:5 
+`uc 1 _errCO 1 5 :1:6 
+`uc 1 _errCW 1 5 :1:7 
+`uc 1 _fnoCS 1 6 :1:0 
+`uc 1 _ofzima 1 6 :1:1 
+`uc 1 _oflato 1 6 :1:2 
+`uc 1 _ofoff 1 6 :1:3 
+`uc 1 _errIN 1 6 :1:4 
+`uc 1 _pmpPWM 1 6 :1:5 
+`uc 1 _trbECO 1 6 :1:6 
+`uc 1 RDZ0 1 7 `uc 1 RDZ1 1 8 `uc 1 CO 1 9 `uc 1 CW 1 10 `uc 1 CS 1 11 `uc 1 IN 1 12 `uc 1 PPCO 1 13 `uc 1 PPCW 1 14 `uc 1 KAWR 1 15 `uc 1 KERR 1 16 `ui 1 maxPCO 2 17 `ui 1 minPCO 2 19 `ui 1 maxPCW 2 21 `ui 1 minPCW 2 23 `uc 1 b_ofnserw 1 25 :1:0 
+`uc 1 b_oaleg 1 25 :1:1 
+`ui 1 PCO 2 26 `ui 1 PCW 2 28 `uc 1 KRS 1 30 `ui 1 poz 2 31 `ui 1 AC 2 33 ]
+"126
+[s S4116 . 15 `uc 1 _err_CW 1 0 :1:0 
+`uc 1 _su_CW 1 0 :1:1 
+`uc 1 _ad_CW 1 0 :1:2 
+`uc 1 _wpz_CW 1 0 :1:3 
+`uc 1 _on_DZ_CW 1 0 :1:4 
+`uc 1 _su_DZ_CW 1 0 :1:5 
+`uc 1 _ad_DZ_CW 1 0 :1:6 
+`uc 1 _cold_CW 1 0 :1:7 
+`uc 1 _newPCW 1 1 :1:0 
+`uc 1 _wrtPCW 1 1 :1:1 
+`uc 1 _fpCW 1 1 :1:2 
+`uc 1 CW 1 2 `uc 1 PCW 1 3 `uc 1 PPCW 1 4 `uc 1 minPCW 1 5 `uc 1 maxPCW 1 6 `c 1 DCW 1 7 `c 1 dDCW 1 8 `c 1 ddDCW 1 9 `uc 1 indCW 1 10 `uc 1 SCW 1 11 `uc 1 AC_CW 1 12 `uc 1 MAD_CW 1 13 `uc 1 DAD_CW 1 14 ]
+"20 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[s S4142 . 20 `uc 1 _err_IN 1 0 :1:0 
+`uc 1 _newECO 1 0 :1:1 
+`uc 1 AC_IN 1 1 `uc 1 IN 1 2 `uc 1 DIN 1 3 `uc 1 DIN2 1 4 `uc 1 DDLT 1 5 `uc 1 cDLT 1 6 `uc 1 cold 1 7 `uc 1 kond 1 8 `uc 1 Eco 1 9 `uc 1 PPEco 1 10 `uc 1 Eco5HI 1 11 `uc 1 Eco5LO 1 12 `uc 1 HI 1 13 `uc 1 LO 1 14 `c 1 delta1 1 15 `c 1 delta2 1 16 `c 1 delta3 1 17 `uc 1 delta 1 18 `uc 1 pop 1 19 ]
+"428
+[s S4263 . 5 `uc 1 RData 1 0 :1:0 
+`uc 1 REnd 1 0 :1:1 
+`uc 1 RErrREC 1 0 :1:2 
+`uc 1 RErrBUF 1 0 :1:3 
+`uc 1 TData 1 0 :1:4 
+`uc 1 TEnd 1 0 :1:5 
+`uc 1 indeks 1 1 `uc 1 RNData 1 2 `uc 1 TNData 1 3 `uc 1 CHK 1 4 ]
+"253 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\uart9b.c
+[s S4344 . 3 `uc 1 MGPROC 1 0 `uc 1 MDPROC 1 1 `uc 1 APROC 1 2 ]
+[s S4348 . 34 `uc 1 _ENPWM 1 0 :1:0 
+`uc 1 _ENOSC 1 0 :1:1 
+`uc 1 tpGZ 1 0 :1:2 
+`VNEuc 1 BufPWM 1 1 `VNEuc 1 BufOSC 1 2 `Nuc 1 NewOSC 1 3 `Nuc 1 NewPWM 1 4 `uc 1 _ENPWM2 1 5 :1:0 
+`VNEuc 1 BufPWM2 1 6 `Nuc 1 NewPWM2 1 7 `uc 1 HIPWM 1 8 `uc 1 MDMOD 1 9 `uc 1 MGMOD 1 10 `uc 1 MAXOSC 1 11 `uc 1 MINOSC 1 12 `uc 1 MAD_MOD 1 13 `uc 1 MAG_MOD 1 14 `uc 1 GWMSTART 1 15 `uc 1 MDSTART 1 16 `uc 1 MGSTART 1 17 `uc 1 GWMMAXCO 1 18 `uc 1 MDMAXCO 1 19 `uc 1 MGMAXCO 1 20 `uc 1 GWMMAXCW 1 21 `uc 1 MDMAXCW 1 22 `uc 1 MGMAXCW 1 23 `uc 1 FIRSTPB 1 24 `uc 1 PROP1 1 25 `uc 1 PROP2 1 26 `uc 1 PROP3 1 27 `uc 1 MSTART 1 28 `uc 1 MMAXCO 1 29 `uc 1 MMAXCW 1 30 `uc 1 PGD 1 31 `uc 1 MINPWM 1 32 `uc 1 MAXPWM 1 33 ]
+"15 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.c
+[s S4386 . 10 `uc 1 btco 1 0 :1:0 
+`uc 1 btcw 1 0 :1:1 
+`uc 1 fz 1 0 :1:2 
+`uc 1 med_up 1 0 :1:3 
+`uc 1 fast_up 1 0 :1:4 
+`uc 1 nmod 1 0 :1:5 
+`uc 1 del1s 1 0 :1:6 
+`uc 1 deln1 1 0 :1:7 
+`uc 1 inv_mod 1 1 :1:0 
+`c 1 x_t 1 2 `c 1 x_f 1 3 `c 1 x_dt 1 4 `c 1 x_df 1 5 `uc 1 ytmp 1 6 `uc 1 srp 1 7 `uc 1 xmod 1 8 `uc 1 tmp_pwm 1 9 ]
+"13
+[s S4405 . 20 `uc 1 _err_IN 1 0 :1:0 
+`uc 1 _newECO 1 0 :1:1 
+`uc 1 AC_IN 1 1 `uc 1 IN 1 2 `uc 1 DIN 1 3 `uc 1 DIN2 1 4 `uc 1 DDLT 1 5 `uc 1 cDLT 1 6 `uc 1 cold 1 7 `uc 1 kond 1 8 `uc 1 Eco 1 9 `uc 1 PPEco 1 10 `uc 1 Eco5HI 1 11 `uc 1 Eco5LO 1 12 `uc 1 HI 1 13 `uc 1 LO 1 14 `c 1 delta1 1 15 `c 1 delta2 1 16 `c 1 delta3 1 17 `uc 1 delta 1 18 `uc 1 pop 1 19 ]
+"35 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.h
+[s S4432 . 18 `uc 1 enknf 1 0 :1:0 
+`uc 1 wymCO 1 0 :1:1 
+`uc 1 wymCW 1 0 :1:2 
+`uc 1 PRM 1 1 `uc 1 KRK 1 2 `uc 1 mstr 1 3 `uc 1 mxcw 1 4 `uc 1 mxco 1 5 `uc 1 czpr 1 6 `uc 1 tpkt 1 7 `uc 1 rdgz 1 8 `uc 1 rdpm 1 9 `uc 1 dtpm 1 10 `uc 1 mdpm 1 11 `uc 1 teco 1 12 `uc 1 tpwm 1 13 `uc 1 robg 1 14 `uc 1 opdg 1 15 `uc 1 tpcs 1 16 `uc 1 aleg 1 17 ]
+"17 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.c
+[s S4454 . 51 `ui 1 _pob_KCO 2 0 `ui 1 _pob_KCW 2 2 `ui 1 _pob_SRW 2 4 `ui 1 _pob_AL 2 6 `ui 1 _pob_CW 2 8 `ui 1 _pob_CO 2 10 `ui 1 _pob_DzCO 2 12 `ui 1 _pob_DzCW 2 14 `uc 1 _WYLACZ 1 16 :1:0 
+`uc 1 _ZMKCOCW 1 16 :1:1 
+`uc 1 _ROZRUCH 1 16 :1:2 
+`uc 1 _RUSZ_48 1 16 :1:3 
+`uc 1 _RUSZ_48Z3 1 16 :1:4 
+`uc 1 _RUSZ_PWR 1 16 :1:5 
+`uc 1 _VWYBIEG 1 16 :1:6 
+`uc 1 _RUSZ_CIAG 1 16 :1:7 
+`uc 1 _RUSZ_PLOMIEN 1 17 :1:0 
+`uc 1 _RUSZ_RPLM 1 17 :1:1 
+`uc 1 _RUSZ_POMPE 1 17 :1:2 
+`uc 1 _BLOKUJ_3M 1 17 :1:3 
+`uc 1 _BLOKUJ_15S 1 17 :1:4 
+`uc 1 _MODULUJ 1 17 :1:5 
+`ui 1 _AKTYWNE_SRW 2 18 `ui 1 _AKTYWNE_AL 2 20 `ui 1 _AKTYWNE_PGD 2 22 `ui 1 _AKTYWNE_KNF 2 24 `uc 1 _RUSZ_NTC_CO 1 26 :1:0 
+`uc 1 _RUSZ_NTC_CW 1 26 :1:1 
+`uc 1 _RUSZ_NTC_IN 1 26 :1:2 
+`uc 1 _RUSZ_STB 1 26 :1:3 
+`uc 1 _RUSZ_MOD 1 26 :1:4 
+`uc 1 _RUSZ_CISN 1 26 :1:5 
+`uc 1 _RUSZ_NCISN 1 26 :1:6 
+`uc 1 _RS_START 1 26 :1:7 
+`uc 1 _PW_START 1 27 :1:0 
+`uc 1 _TURBO 1 27 :1:1 
+`uc 1 _PRACA 1 27 :1:2 
+`uc 1 _OST_PL 1 27 :1:3 
+`uc 1 _RUN_MNMOD 1 27 :1:4 
+`uc 1 _KCW_PMP 1 27 :1:5 
+`uc 1 _DE_VNT 1 27 :1:6 
+`uc 1 _RPM_CW 1 27 :1:7 
+`uc 1 _prb_CIG 1 28 :1:0 
+`uc 1 _prb_PRZ 1 28 :1:1 
+`uc 1 _DE_PMP 1 28 :1:2 
+`uc 1 LICZNIK_PL 1 29 `uc 1 LICZNIK_CIG 1 30 `uc 1 LICZNIK_CIG2 1 31 `uc 1 LICZNIK_CIG3 1 32 `uc 1 LICZNIK_ANL 1 33 `uc 1 ERR_BTY 1 34 `uc 1 ROZ 1 35 `uc 1 R48 1 36 `uc 1 R48Z3 1 37 `uc 1 BL3 1 38 `uc 1 BL15 1 39 `uc 1 WYL 1 40 `uc 1 RPR 1 41 `uc 1 RPL 1 42 `uc 1 RCI 1 43 `uc 1 MNM 1 44 `uc 1 ZKP 1 45 `uc 1 VWB 1 46 `uc 1 SRV 1 47 `uc 1 KRS 1 48 `uc 1 HVZ 1 49 `uc 1 DPR 1 50 ]
+"28 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.h
+[s S4524 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+[s S4533 . 1 `uc 1 PSP0 1 0 :1:0 
+`uc 1 PSP1 1 0 :1:1 
+`uc 1 PSP2 1 0 :1:2 
+`uc 1 PSP3 1 0 :1:3 
+`uc 1 PSP4 1 0 :1:4 
+`uc 1 PSP5 1 0 :1:5 
+`uc 1 PSP6 1 0 :1:6 
+`uc 1 PSP7 1 0 :1:7 
+]
+[s S4542 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 P1B 1 0 :1:5 
+`uc 1 P1C 1 0 :1:6 
+`uc 1 P1D 1 0 :1:7 
+]
+[s S4547 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 SS2 1 0 :1:7 
+]
+[u S4550 . 1 `S528 1 . 1 0 `S537 1 . 1 0 `S546 1 . 1 0 `S551 1 . 1 0 ]
+"29
+[s S4558 . 15 `uc 1 _err_CO 1 0 :1:0 
+`uc 1 _su_CO 1 0 :1:1 
+`uc 1 _ad_CO 1 0 :1:2 
+`uc 1 _su_SRW_CO 1 0 :1:3 
+`uc 1 _ad_SRW_CO 1 0 :1:4 
+`uc 1 _on_DZ_CO 1 0 :1:5 
+`uc 1 _su_DZ_CO 1 0 :1:6 
+`uc 1 _ad_DZ_CO 1 0 :1:7 
+`uc 1 _ptwp_CO 1 1 :1:0 
+`uc 1 _pz_CO 1 1 :1:1 
+`uc 1 _cold_CO 1 1 :1:2 
+`uc 1 _hot_CO 1 1 :1:3 
+`uc 1 _ldDCO 1 1 :1:4 
+`uc 1 _zroPCO 1 1 :1:5 
+`uc 1 _resPCO 1 1 :1:6 
+`uc 1 _newPCO 1 1 :1:7 
+`uc 1 CO 1 2 `uc 1 PCO 1 3 `uc 1 PPCO 1 4 `uc 1 minPCO 1 5 `uc 1 maxPCO 1 6 `uc 1 PGDPCO 1 7 `c 1 DCO 1 8 `c 1 dDCO 1 9 `uc 1 indCO 1 10 `uc 1 SCO 1 11 `uc 1 AC_CO 1 12 `uc 1 MAD_CO 1 13 `uc 1 DAD_CO 1 14 ]
+"560 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.c
+[s S4661 . 2 `uc 1 focus 1 0 :1:0 
+`uc 1 dec 1 0 :1:1 
+`uc 1 hex 1 0 :1:2 
+`uc 1 autoOFF 1 0 :1:3 
+`uc 1 kropka0 1 0 :1:4 
+`uc 1 kropka1 1 0 :1:5 
+`uc 1 wygas0 1 0 :1:6 
+`uc 1 wygas1 1 0 :1:7 
+`uc 1 led0 1 1 :1:0 
+`uc 1 led1 1 1 :1:1 
+`uc 1 sdiode 1 1 :1:2 
+`uc 1 rdiode 1 1 :1:3 
+`uc 1 wbdid 1 1 :4:4 
+]
+[s S4675 . 2 `uc 1 Data1 1 0 `uc 1 Data0 1 1 ]
+[s S4678 . 4 `S2873 1 St 2 0 `S2887 1 Dt 2 2 ]
+[s S4681 . 3 `uc 1 setOff 1 0 :1:0 
+`uc 1 dLed1 1 1 `uc 1 dLed0 1 2 ]
+[s S4685 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+[s S4690 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 CS 1 0 :1:2 
+`uc 1 MCLR 1 0 :1:3 
+]
+[s S4695 . 1 `uc 1 NOT_RD 1 0 :1:0 
+]
+[s S4697 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_WR 1 0 :1:1 
+]
+[s S4700 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_CS 1 0 :1:2 
+]
+[s S4703 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 NOT_MCLR 1 0 :1:3 
+]
+[s S4706 . 1 `uc 1 nRD 1 0 :1:0 
+`uc 1 nWR 1 0 :1:1 
+`uc 1 nCS 1 0 :1:2 
+`uc 1 nMCLR 1 0 :1:3 
+]
+[s S4711 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 VPP 1 0 :1:3 
+]
+[s S4714 . 1 `uc 1 AN5 1 0 :1:0 
+`uc 1 AN6 1 0 :1:1 
+`uc 1 AN7 1 0 :1:2 
+]
+[s S4718 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CCP10 1 0 :1:2 
+]
+[s S4721 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 CCP2E 1 0 :1:7 
+]
+[s S4724 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 CCP6E 1 0 :1:6 
+]
+[s S4727 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 CCP7E 1 0 :1:5 
+]
+[s S4730 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 CCP8E 1 0 :1:4 
+]
+[s S4733 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP9E 1 0 :1:3 
+]
+[s S4736 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 PA2E 1 0 :1:7 
+]
+[s S4739 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 PB1E 1 0 :1:6 
+]
+[s S4742 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 PB2 1 0 :1:2 
+]
+[s S4745 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 PB3E 1 0 :1:4 
+]
+[s S4748 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 PC1E 1 0 :1:5 
+]
+[s S4751 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PC2 1 0 :1:1 
+]
+[s S4754 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 PC3E 1 0 :1:3 
+]
+[s S4757 . 1 `uc 1 PD2 1 0 :1:0 
+]
+[s S4759 . 1 `uc 1 RDE 1 0 :1:0 
+]
+[s S4761 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 RE4 1 0 :1:4 
+]
+[s S4764 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 RE5 1 0 :1:5 
+]
+[s S4767 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 RE6 1 0 :1:6 
+]
+[s S4770 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 RE7 1 0 :1:7 
+]
+[s S4773 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 WRE 1 0 :1:1 
+]
+[u S4776 . 1 `S4685 1 . 1 0 `S4690 1 . 1 0 `S4695 1 . 1 0 `S4697 1 . 1 0 `S4700 1 . 1 0 `S4703 1 . 1 0 `S4706 1 . 1 0 `S4711 1 . 1 0 `S4714 1 . 1 0 `S4718 1 . 1 0 `S4721 1 . 1 0 `S4724 1 . 1 0 `S4727 1 . 1 0 `S4730 1 . 1 0 `S4733 1 . 1 0 `S4736 1 . 1 0 `S4739 1 . 1 0 `S4742 1 . 1 0 `S4745 1 . 1 0 `S4748 1 . 1 0 `S4751 1 . 1 0 `S4754 1 . 1 0 `S4757 1 . 1 0 `S4759 1 . 1 0 `S4761 1 . 1 0 `S4764 1 . 1 0 `S4767 1 . 1 0 `S4770 1 . 1 0 `S4773 1 . 1 0 ]
+"119 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.h
+[s S4899 . 3 `*.MS2890 1 PAdr 3 0 ]
+[s S4901 . 3 `S2887 1 PWrt 2 0 `uc 1 delay 1 2 ]
+[s S4904 . 2 `S2873 1 PFrm 2 0 ]
+[s S4906 . 1 `uc 1 focus 1 0 :1:0 
+]
+[s S4908 . 5 `*.MS2890 1 CAdr 3 0 `uc 1 nCykli 1 3 `uc 1 DMask 1 4 ]
+[s S4912 . 15 `*.MCS4899 1 KAP 3 0 `*.MCS4901 1 KWP 3 3 `*.MCS4904 1 KFP 3 6 `*.MS4906 1 KFc 3 9 `*.MCS4908 1 KOut 3 12 ]
+[s S4918 . 4 `*.MCS4912 1 KL 3 0 `uc 1 nPzc 1 3 ]
+[s S4921 . 1 `uc 1 restart 1 0 :1:0 
+`uc 1 reset 1 0 :1:1 
+`uc 1 indeks 1 0 :6:2 
+]
+[s S4925 . 3 `uc 1 ncS 1 0 `uc 1 ndS 1 1 `uc 1 cykl 1 2 ]
+"399 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.c
+[v F4397 `*.MS2890  1 t 3 ]
+"717
+[s S5283 . 5 `uc 1 bk 1 0 :1:0 
+`uc 1 sbk 1 0 :1:1 
+`uc 1 ap 1 0 :1:2 
+`uc 1 dk 1 0 :1:3 
+`uc 1 fl 1 0 :1:4 
+`uc 1 c 1 0 :1:5 
+`uc 1 t 1 0 :1:6 
+`uc 1 cS 1 1 `uc 1 dS 1 2 `uc 1 krk 1 3 `uc 1 val 1 4 ]
+"331 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\keypad.c
+[s S5416 . 5 `uc 1 bk 1 0 :1:0 
+`uc 1 sbk 1 0 :1:1 
+`uc 1 ap 1 0 :1:2 
+`uc 1 dk 1 0 :1:3 
+`uc 1 fl 1 0 :1:4 
+`uc 1 c 1 0 :1:5 
+`uc 1 t 1 0 :1:6 
+`uc 1 cS 1 1 `uc 1 dS 1 2 `uc 1 krk 1 3 `uc 1 val 1 4 ]
+"29 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konsola.h
+[s S5447 . 5 `uc 1 bk 1 0 :1:0 
+`uc 1 sbk 1 0 :1:1 
+`uc 1 ap 1 0 :1:2 
+`uc 1 dk 1 0 :1:3 
+`uc 1 fl 1 0 :1:4 
+`uc 1 c 1 0 :1:5 
+`uc 1 t 1 0 :1:6 
+`uc 1 cS 1 1 `uc 1 dS 1 2 `uc 1 krk 1 3 `uc 1 val 1 4 ]
+"45
+[s S5463 . 35 `uc 1 _off 1 0 :1:0 
+`uc 1 _lato 1 0 :1:1 
+`uc 1 _zima 1 0 :1:2 
+`uc 1 _str_nco 1 0 :1:3 
+`uc 1 _str_ncw 1 0 :1:4 
+`uc 1 b_str_nco 1 0 :1:5 
+`uc 1 b_str_ncw 1 0 :1:6 
+`uc 1 _set_nco 1 0 :1:7 
+`uc 1 _set_ncw 1 1 :1:0 
+`uc 1 b_set_nco 1 1 :1:1 
+`uc 1 b_set_ncw 1 1 :1:2 
+`uc 1 _mod_ncw 1 1 :1:3 
+`uc 1 _set_fnserw 1 1 :1:4 
+`uc 1 _set_aleg 1 1 :1:5 
+`uc 1 _fnserw 1 1 :1:6 
+`uc 1 _fns_max 1 1 :1:7 
+`uc 1 _aleg 1 2 :1:0 
+`uc 1 _newPCO 1 2 :1:1 
+`uc 1 _newPCW 1 2 :1:2 
+`uc 1 _res 1 2 :1:3 
+`uc 1 _toInit 1 2 :1:4 
+`uc 1 _KnfDisErr 1 2 :1:5 
+`uc 1 _aktywne_KNF 1 2 :1:6 
+`uc 1 _EnAleg 1 2 :1:7 
+`uc 1 _prn_res 1 3 :1:0 
+`uc 1 _prn_cs 1 3 :1:1 
+`uc 1 _prn_in 1 3 :1:2 
+`uc 1 _newPFN 1 3 :1:3 
+`uc 1 _csn 1 3 :1:4 
+`uc 1 _plmCO 1 3 :1:5 
+`uc 1 _plmCW 1 3 :1:6 
+`uc 1 _ofnserw 1 3 :1:7 
+`uc 1 _oaleg 1 4 :1:0 
+`uc 1 _obgCO 1 4 :1:1 
+`uc 1 _obgCW 1 4 :1:2 
+`uc 1 _opKNF 1 4 :1:3 
+`uc 1 _enKNF 1 4 :1:4 
+`uc 1 _tdzCO 1 4 :1:5 
+`uc 1 _tdzCW 1 4 :1:6 
+`uc 1 _fmsg 1 4 :1:7 
+`uc 1 _ferr 1 5 :1:0 
+`uc 1 _fL3 1 5 :1:1 
+`uc 1 _pgd 1 5 :1:2 
+`uc 1 _opgres 1 5 :1:3 
+`uc 1 _opgprg 1 5 :1:4 
+`uc 1 _errCS 1 5 :1:5 
+`uc 1 _errCO 1 5 :1:6 
+`uc 1 _errCW 1 5 :1:7 
+`uc 1 _fnoCS 1 6 :1:0 
+`uc 1 _ofzima 1 6 :1:1 
+`uc 1 _oflato 1 6 :1:2 
+`uc 1 _ofoff 1 6 :1:3 
+`uc 1 _errIN 1 6 :1:4 
+`uc 1 _pmpPWM 1 6 :1:5 
+`uc 1 _trbECO 1 6 :1:6 
+`uc 1 RDZ0 1 7 `uc 1 RDZ1 1 8 `uc 1 CO 1 9 `uc 1 CW 1 10 `uc 1 CS 1 11 `uc 1 IN 1 12 `uc 1 PPCO 1 13 `uc 1 PPCW 1 14 `uc 1 KAWR 1 15 `uc 1 KERR 1 16 `ui 1 maxPCO 2 17 `ui 1 minPCO 2 19 `ui 1 maxPCW 2 21 `ui 1 minPCW 2 23 `uc 1 b_ofnserw 1 25 :1:0 
+`uc 1 b_oaleg 1 25 :1:1 
+`ui 1 PCO 2 26 `ui 1 PCW 2 28 `uc 1 KRS 1 30 `ui 1 poz 2 31 `ui 1 AC 2 33 ]
+"449 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konsola.c
+[s S5567 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 WREN 1 0 :1:2 
+`uc 1 WRERR 1 0 :1:3 
+`uc 1 FREE 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CFGS 1 0 :1:6 
+`uc 1 EEPGD 1 0 :1:7 
+]
+[s S5576 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 EEFS 1 0 :1:6 
+]
+[u S5579 . 1 `S5567 1 . 1 0 `S5576 1 . 1 0 ]
+"3918 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f46k20.h
+[s S5606 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 WREN 1 0 :1:2 
+`uc 1 WRERR 1 0 :1:3 
+`uc 1 FREE 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CFGS 1 0 :1:6 
+`uc 1 EEPGD 1 0 :1:7 
+]
+[s S5615 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 EEFS 1 0 :1:6 
+]
+[u S5618 . 1 `S5567 1 . 1 0 `S5576 1 . 1 0 ]
+"3912
+[s S5628 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 WREN 1 0 :1:2 
+`uc 1 WRERR 1 0 :1:3 
+`uc 1 FREE 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CFGS 1 0 :1:6 
+`uc 1 EEPGD 1 0 :1:7 
+]
+[s S5637 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 EEFS 1 0 :1:6 
+]
+[u S5640 . 1 `S5567 1 . 1 0 `S5576 1 . 1 0 ]
+"3862
+[s S5644 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+[s S5653 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S5662 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[s S5671 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S5680 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S5684 . 1 `S5644 1 . 1 0 `S5653 1 . 1 0 `S5662 1 . 1 0 `S5671 1 . 1 0 `S5680 1 . 1 0 ]
+"5 ../common/asfladd.c
+[v ___asfladd `(d  1 e 4 0 ]
+"5 ../common/asfldiv.c
+[v ___asfldiv `(d  1 e 4 0 ]
+"5 ../common/asflmul.c
+[v ___asflmul `(d  1 e 4 0 ]
+"5 ../common/asflsub.c
+[v ___asflsub `(d  1 e 4 0 ]
+"5 ../common/asftadd.c
+[v ___asftadd `(f  1 e 4 0 ]
+"5 ../common/asftdiv.c
+[v ___asftdiv `(f  1 e 4 0 ]
+"5 ../common/asftmul.c
+[v ___asftmul `(f  1 e 4 0 ]
+"5 ../common/asftsub.c
+[v ___asftsub `(f  1 e 4 0 ]
+"5 ../common/aslmul.c
+[v ___aslmul `(ul  1 e 4 0 ]
+"13 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\ac.c
+[v _InitAC `(v  1 e 0 0 ]
+"97
+[v _ReadAC `(uc  1 e 1 0 ]
+"112
+[v _ReadTabNTC `(uc  1 e 1 0 ]
+"129
+[v _ReturnACfromNTC `(uc  1 e 1 0 ]
+"142
+[v _ReadTabZNTC `(c  1 e 1 0 ]
+"10 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\bit.c
+[v _GetBit `(b  1 e 0 0 ]
+"16
+[v _GetBit2 `(b  1 e 0 0 ]
+"22
+[v _BitSet `(v  1 e 0 0 ]
+"28
+[v _BitSet2 `(v  1 e 0 0 ]
+"37 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\i2c_s.c
+[v _InitI2C `(v  1 e 0 0 ]
+"75
+[v _I2CSlaveTR `(v  1 e 0 0 ]
+"136
+[v _LiczCHK `(uc  1 e 1 0 ]
+"146
+[v _TransmitDataI2C `(v  1 e 0 0 ]
+"163
+[v _ReceptDataI2C `(v  1 e 0 0 ]
+"175
+[v _ToWork `(v  1 e 0 0 ]
+"182
+[v _SetTData `(v  1 e 0 0 ]
+"211
+[v _SetRData `(v  1 e 0 0 ]
+"217
+[v _FormatDataIMY `(v  1 e 0 0 ]
+"10 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\isr.c
+[v _ISR `II(v  1 e 0 0 ]
+"27 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\keypad.c
+[v _IncKeyTimer `(v  1 e 0 0 ]
+"77
+[v _StartKeyTim `(v  1 e 0 0 ]
+"84
+[v _KeyTim `(uc  1 e 1 0 ]
+"130
+[v _PresKeyEX `(uc  1 e 1 0 ]
+"189
+[v _ResBufKeyEx `(v  1 e 0 0 ]
+"196
+[v _WaitToLowEx `(v  1 e 0 0 ]
+"287
+[v _ExxPresKey `(uc  1 e 1 0 ]
+"326
+[v _ExxResKey `(v  1 e 0 0 ]
+"35 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[v _EnKonf `(v  1 e 0 0 ]
+"43
+[v _MKonfiguracja `(v  1 e 0 0 ]
+"135
+[v _RefKnfPar `(uc  1 e 1 0 ]
+"159
+[v _SaveKnfPar `(uc  1 e 1 0 ]
+"213
+[v _SetNST `(v  1 e 0 0 ]
+"244
+[v _RdEEParam `(v  1 e 0 0 ]
+"303
+[v _SetTpKtParam `(v  1 e 0 0 ]
+"346
+[v _SetDefaultValue `(v  1 e 0 0 ]
+"366
+[v _SetPFN `(v  1 e 0 0 ]
+"402
+[v _WriteEEPCW `(v  1 e 0 0 ]
+"406
+[v _ReadEEPCW `(uc  1 e 1 0 ]
+"412
+[v _WriteEEPCO `(v  1 e 0 0 ]
+"416
+[v _ReadEEPCO `(uc  1 e 1 0 ]
+"422
+[v _WriteEEPFN `(v  1 e 0 0 ]
+"426
+[v _ReadEEPFN `(uc  1 e 1 0 ]
+"45 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konsola.c
+[v _ReadParam `(v  1 e 0 0 ]
+"89
+[v _TrybPracy `(v  1 e 0 0 ]
+"52 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _main `(v  1 e 0 0 ]
+"229
+[v _ClearData `(v  1 e 0 0 ]
+"307
+[v _RestartFltPrt `(v  1 e 0 0 ]
+"319
+[v _KodSterownika `(uc  1 e 1 0 ]
+"346
+[v _RefInterfaceData `(v  1 e 0 0 ]
+"433
+[v _KolejkaPobudzen `(v  1 e 0 0 ]
+"542
+[v _DecyzjaAntyLeg `(v  1 e 0 0 ]
+"828
+[v _NastawaCOCW `(v  1 e 0 0 ]
+"936
+[v _DecWSW `(v  1 e 0 0 ]
+"1215
+[v _DecERR `(v  1 e 0 0 ]
+"1490
+[v _DecSTR `(v  1 e 0 0 ]
+"1686
+[v _ToObiegCO `(v  1 e 0 0 ]
+"1725
+[v _ToObiegCW `(v  1 e 0 0 ]
+"1788
+[v _SetLoMod `(v  1 e 0 0 ]
+"1796
+[v _DecRozruch `(v  1 e 0 0 ]
+"1990
+[v _SetRozruch `(v  1 e 0 0 ]
+"2015
+[v _DecWylacz `(v  1 e 0 0 ]
+"2208
+[v _SetWylacz `(v  1 e 0 0 ]
+"2264
+[v _FunkcjaSerwisowa `(v  1 e 0 0 ]
+"2345
+[v _BlokadaL3 `(v  1 e 0 0 ]
+"2373
+[v _Blokada15S `(v  1 e 0 0 ]
+"2398
+[v _GrzejON `(v  1 e 0 0 ]
+"2414
+[v _GrzejOFF `(v  1 e 0 0 ]
+"2437
+[v _Rozruch `(v  1 e 0 0 ]
+"2627
+[v _DecyzjaPLM `(v  1 e 0 0 ]
+"2643
+[v _DecyzjaPLM2 `(v  1 e 0 0 ]
+"2714
+[v _Wylacz `(v  1 e 0 0 ]
+"2937
+[v _VWybieg `(v  1 e 0 0 ]
+"2968
+[v _DetekcjaPrzeplywuWG `(v  1 e 0 0 ]
+"3020
+[v _OczekujNaPrzeplywWG `(v  1 e 0 0 ]
+"3055
+[v _ZmienKCOKCW `(v  1 e 0 0 ]
+"3149
+[v _RuszPlomien `(v  1 e 0 0 ]
+"3207
+[v _ReloadPlomien `(v  1 e 0 0 ]
+"3219
+[v _RuszCiag `(v  1 e 0 0 ]
+"3333
+[v _ReloadCiag `(v  1 e 0 0 ]
+"3354
+[v _Proba48 `(v  1 e 0 0 ]
+"3386
+[v _Rusz48 `(v  1 e 0 0 ]
+"3464
+[v _Proba48Z3 `(v  1 e 0 0 ]
+"3511
+[v _Rusz48Z3 `(v  1 e 0 0 ]
+"3573
+[v _KeyRes `(b  1 e 0 0 ]
+"3610
+[v _VZPauza `(v  1 e 0 0 ]
+"3630
+[v _ErrPTG `(v  1 e 0 0 ]
+"3795
+[v _ToReset `(v  1 e 0 0 ]
+"3815
+[v _InitGlobal `(v  1 e 0 0 ]
+"9 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\osc.c
+[v _InitOsc `(v  1 e 0 0 ]
+"38 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _InitDataPmr `(v  1 e 0 0 ]
+"70
+[v _IncPmrTimer `(v  1 e 0 0 ]
+"78
+[v _StartTim1 `(v  1 e 0 0 ]
+"82
+[v _PmrTim1 `(b  1 e 0 0 ]
+"89
+[v _StartTim2 `(v  1 e 0 0 ]
+"93
+[v _PmrTim2 `(b  1 e 0 0 ]
+"100
+[v _StartTim3 `(v  1 e 0 0 ]
+"104
+[v _PmrTim3 `(b  1 e 0 0 ]
+"111
+[v _GoldenEye `(v  1 e 0 0 ]
+"203
+[v _PredkoscZmianCW `(v  1 e 0 0 ]
+"234
+[v _FltParMod `(v  1 e 0 0 ]
+"287
+[v _FiltrPomiarowyCOCW `(v  1 e 0 0 ]
+"322
+[v _PomiarCO `(v  1 e 0 0 ]
+"444
+[v _PomiarIN `(v  1 e 0 0 ]
+"460
+[v _PomiarCW `(v  1 e 0 0 ]
+"553
+[v _PomiarZW `(v  1 e 0 0 ]
+"562
+[v _SetModPCO `(v  1 e 0 0 ]
+"650
+[v _GetPGD_PCO `(uc  1 e 1 0 ]
+"696
+[v _WritePCO `(v  1 e 0 0 ]
+"707
+[v _PomiarPCO `(v  1 e 0 0 ]
+"748
+[v _WritePCW `(v  1 e 0 0 ]
+"759
+[v _SetModPCW `(v  1 e 0 0 ]
+"770
+[v _PomiarPCW `(v  1 e 0 0 ]
+"866
+[v _WritePFN `(v  1 e 0 0 ]
+"877
+[v _PomiarPFN `(v  1 e 0 0 ]
+"909
+[v _PomiarCS `(v  1 e 0 0 ]
+"26 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.c
+[v _ProcToPmpPwm `(uc  1 e 1 0 ]
+"39
+[v _ModPmp1 `(uc  1 e 1 0 ]
+"159
+[v _RglPmp1 `(v  1 e 0 0 ]
+"197
+[v _RetMin `(c  1 e 1 0 ]
+"204
+[v _RetMax `(c  1 e 1 0 ]
+"212
+[v _RetHI `(uc  1 e 1 0 ]
+"230
+[v _RetLO `(uc  1 e 1 0 ]
+"248
+[v _RetDelta1 `(c  1 e 1 0 ]
+"255
+[v _RetDelta2 `(c  1 e 1 0 ]
+"264
+[v _RetDelta3 `(c  1 e 1 0 ]
+"270
+[v _RetDelta4 `(uc  1 e 1 0 ]
+"283
+[v _RetKrkDelta `(uc  1 e 1 0 ]
+"300
+[v _RetDelta `(uc  1 e 1 0 ]
+"311
+[v _ModPmp2 `(uc  1 e 1 0 ]
+"456
+[v _RglPmp2 `(v  1 e 0 0 ]
+"493
+[v _PmpToUP `(v  1 e 0 0 ]
+"509
+[v _PmpToDW `(v  1 e 0 0 ]
+"528
+[v _RglPmp `(v  1 e 0 0 ]
+"61 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[v _RefStan `(v  1 e 0 0 ]
+[v i2_RefStan `(v  1 e 0 0 ]
+[v i2_RefStan `(v  1 e 0 0 ]
+"120
+[v _FrsStan `(v  1 e 0 0 ]
+"231
+[v _InitPort `(v  1 e 0 0 ]
+"263
+[v _StabPort `(v  1 e 0 0 ]
+"305
+[v _RdPrt `(b  1 e 0 0 ]
+[v i2_RdPrt `(b  1 e 0 0 ]
+[v i2_RdPrt `(b  1 e 0 0 ]
+"312
+[v _SetPrt `(v  1 e 0 0 ]
+"320
+[v _RefPrt `(v  1 e 0 0 ]
+"38 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[v _ClsScr `(v  1 e 0 0 ]
+"43
+[v _EndClsScr `(v  1 e 0 0 ]
+"51
+[v _SetErr `(v  1 e 0 0 ]
+"59
+[v _SetMsg `(v  1 e 0 0 ]
+"69
+[v _PrintErr `(v  1 e 0 0 ]
+"79
+[v _PrintErrCs `(v  1 e 0 0 ]
+"90
+[v _PrintErrTm `(v  1 e 0 0 ]
+"101
+[v _EndErr `(v  1 e 0 0 ]
+"117
+[v _PrintPR `(v  1 e 0 0 ]
+"127
+[v _PrintWPR `(v  1 e 0 0 ]
+"136
+[v _EndPR `(v  1 e 0 0 ]
+"143
+[v _RNst `(v  1 e 0 0 ]
+"149
+[v _PrintNstCW `(v  1 e 0 0 ]
+"158
+[v _PrintNstCO `(v  1 e 0 0 ]
+"167
+[v _PrintNstKt `(v  1 e 0 0 ]
+"176
+[v _EndNst `(v  1 e 0 0 ]
+"182
+[v _SetL3 `(v  1 e 0 0 ]
+"189
+[v _PrintL3 `(v  1 e 0 0 ]
+"208
+[v _EndL3 `(v  1 e 0 0 ]
+"216
+[v _PrintTdzCO `(v  1 e 0 0 ]
+"222
+[v _EndTdzCO `(v  1 e 0 0 ]
+"229
+[v _PrintTdzCW `(v  1 e 0 0 ]
+"235
+[v _EndTdzCW `(v  1 e 0 0 ]
+"242
+[v _PrintOFF `(v  1 e 0 0 ]
+"248
+[v _EndOFF `(v  1 e 0 0 ]
+"255
+[v _PrintCS `(v  1 e 0 0 ]
+"261
+[v _EndCS `(v  1 e 0 0 ]
+"269
+[v _PrintCW `(v  1 e 0 0 ]
+"275
+[v _EndCW `(v  1 e 0 0 ]
+"283
+[v _PrintCO `(v  1 e 0 0 ]
+"291
+[v _PrintHex `(v  1 e 0 0 ]
+"300
+[v _TestScr `(v  1 e 0 0 ]
+"308
+[v _EndTestScr `(v  1 e 0 0 ]
+"322
+[v _SetDiode `(v  1 e 0 0 ]
+"12 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwm.c
+[v _InitPWM `(v  1 e 0 0 ]
+"66
+[v _ModParam `(v  1 e 0 0 ]
+"381
+[v _WritePWM `(v  1 e 0 0 ]
+"391
+[v _WritePWM2 `(v  1 e 0 0 ]
+"400
+[v _WriteOPWM `(v  1 e 0 0 ]
+"446
+[v _MocStart `(v  1 e 0 0 ]
+"458
+[v _MocMaksCO `(v  1 e 0 0 ]
+"470
+[v _MocMaksCW `(v  1 e 0 0 ]
+"488
+[v _IntPWM `(v  1 e 0 0 ]
+"532
+[v _IntPWM2 `(v  1 e 0 0 ]
+"8 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwron.c
+[v _PwrOnDelay `(v  1 e 0 0 ]
+"349 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\readdtal.c
+[v _ReadDataXONLID `(uc  1 e 1 0 ]
+"26 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.c
+[v _Moduluj `(v  1 e 0 0 ]
+"255
+[v _StartMCO1F `(v  1 e 0 0 ]
+"301
+[v _ModZgCO `(v  1 e 0 0 ]
+"352
+[v _ModDkCO `(v  1 e 0 0 ]
+"373
+[v _ModPruCO `(v  1 e 0 0 ]
+"446
+[v _IncMaxCO `(v  1 e 0 0 ]
+"475
+[v _ModPrzCO `(v  1 e 0 0 ]
+"497
+[v _PropOPT `(v  1 e 0 0 ]
+"518
+[v _StartCO `(v  1 e 0 0 ]
+"548
+[v _StartMCW `(v  1 e 0 0 ]
+"632
+[v _FirstPCW `(uc  1 e 1 0 ]
+"706
+[v _ClrMod `(v  1 e 0 0 ]
+"720
+[v _ModToCW `(v  1 e 0 0 ]
+"731
+[v _ModToCO `(v  1 e 0 0 ]
+"742
+[v _IncConstCOCW `(v  1 e 0 0 ]
+"749
+[v _ReadDataCO `(v  1 e 0 0 ]
+"756
+[v _ReadDataCW `(v  1 e 0 0 ]
+"765
+[v _ModZgCW `(v  1 e 0 0 ]
+"817
+[v _ModDkCW `(v  1 e 0 0 ]
+"855
+[v _ModPruCW `(v  1 e 0 0 ]
+"1074
+[v _IncMaxCW `(v  1 e 0 0 ]
+"1168
+[v _ModPrzCW `(v  1 e 0 0 ]
+"1295
+[v _PropCO `(v  1 e 0 0 ]
+"1337
+[v _StartCO4 `(v  1 e 0 0 ]
+"1367
+[v _StartMCW4 `(v  1 e 0 0 ]
+"1388
+[v _FirstPCW4 `(v  1 e 0 0 ]
+"1407
+[v _ClrMod4 `(v  1 e 0 0 ]
+"1421
+[v _ModToCW4 `(v  1 e 0 0 ]
+"1432
+[v _ModToCO4 `(v  1 e 0 0 ]
+"1443
+[v _IncConstCOCW4 `(v  1 e 0 0 ]
+"1450
+[v _ReadDataCO4 `(v  1 e 0 0 ]
+"1457
+[v _ReadDataCW4 `(v  1 e 0 0 ]
+"1466
+[v _ModZgCW4 `(v  1 e 0 0 ]
+"1537
+[v _ModDkCW4 `(v  1 e 0 0 ]
+"1558
+[v _ModPruCW4 `(v  1 e 0 0 ]
+"1699
+[v _IncMaxCW4 `(v  1 e 0 0 ]
+"1726
+[v _ModPrzCW4 `(v  1 e 0 0 ]
+"1792
+[v _PropCO4 `(v  1 e 0 0 ]
+"1834
+[v _StartCO2 `(v  1 e 0 0 ]
+"1891
+[v _StartMCW2 `(v  1 e 0 0 ]
+"1907
+[v _FirstPCW2 `(v  1 e 0 0 ]
+"1961
+[v _ClrMod2 `(v  1 e 0 0 ]
+"1971
+[v _ModToCW2 `(v  1 e 0 0 ]
+"1982
+[v _ModToCO2 `(v  1 e 0 0 ]
+"1993
+[v _IncConstCW2 `(v  1 e 0 0 ]
+"2003
+[v _IncConstCO2 `(v  1 e 0 0 ]
+"2010
+[v _ReadDataCO2 `(v  1 e 0 0 ]
+"2017
+[v _ReadDataCW2 `(v  1 e 0 0 ]
+"2026
+[v _ModZgCW2 `(v  1 e 0 0 ]
+"2097
+[v _ModDkCW2 `(v  1 e 0 0 ]
+"2118
+[v _ModPruCW2 `(v  1 e 0 0 ]
+"2313
+[v _IncMaxCW2 `(v  1 e 0 0 ]
+"2339
+[v _ModPrzCW2 `(v  1 e 0 0 ]
+"2360
+[v _PropCO2 `(v  1 e 0 0 ]
+"2401
+[v _ModToCW3 `(v  1 e 0 0 ]
+"2417
+[v _ModToCO3 `(v  1 e 0 0 ]
+"2424
+[v _StartMCO3 `(v  1 e 0 0 ]
+"2460
+[v _Trosnie `(b  1 e 0 0 ]
+"2469
+[v _Tmaleje `(b  1 e 0 0 ]
+"2476
+[v _Tstoi `(b  1 e 0 0 ]
+"2486
+[v _Tnizsza `(b  1 e 0 0 ]
+"2495
+[v _Twyzsza `(b  1 e 0 0 ]
+"2502
+[v _Trowna `(b  1 e 0 0 ]
+"2511
+[v _TFrosnie `(b  1 e 0 0 ]
+"2520
+[v _TFmaleje `(b  1 e 0 0 ]
+"2527
+[v _TFstoi `(b  1 e 0 0 ]
+"2533
+[v _RestartMod `(v  1 e 0 0 ]
+"55 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rtimer.c
+[v _StartRTdS `(v  1 e 0 0 ]
+"61
+[v _RTdS `(uc  1 e 1 0 ]
+"70
+[v _StartRTS `(v  1 e 0 0 ]
+"76
+[v _RTS `(uc  1 e 1 0 ]
+"85
+[v _StartRTM `(v  1 e 0 0 ]
+"91
+[v _RTM `(uc  1 e 1 0 ]
+"96
+[v _RTMs `(uc  1 e 1 0 ]
+"105
+[v _StartRTG `(v  1 e 0 0 ]
+"111
+[v _RTG `(uc  1 e 1 0 ]
+"120
+[v _IncRTimer `(v  1 e 0 0 ]
+"17 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\timer1.c
+[v _InitTimer1 `(v  1 e 0 0 ]
+"55
+[v _ReloadTimer1 `(v  1 e 0 0 ]
+"21 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\uart9b.c
+[v _InitUart `(v  1 e 0 0 ]
+"59
+[v _IntUSARTRC `(v  1 e 0 0 ]
+"111
+[v _StartUSARTRC `(v  1 e 0 0 ]
+"128
+[v _IntUSARTTR `(v  1 e 0 0 ]
+"146
+[v _StartUSARTTR `(v  1 e 0 0 ]
+"156
+[v _StopUSARTTR `(v  1 e 0 0 ]
+"166
+[v _ClrRSRBuf `(v  1 e 0 0 ]
+"173
+[v _ClrRSTBuf `(v  1 e 0 0 ]
+"180
+[v _SetRSTBuf `(v  1 e 0 0 ]
+"188
+[v _GetRSRBuf `(uc  1 e 1 0 ]
+"196
+[v _LiczRSCHK `(uc  1 e 1 0 ]
+"206
+[v _SetRSCHK `(v  1 e 0 0 ]
+"217
+[v _VerifyRSACK `(uc  1 e 1 0 ]
+"226
+[v _VerifyRSCHK `(uc  1 e 1 0 ]
+"235
+[v _GetRSCHK `(uc  1 e 1 0 ]
+"241
+[v _SetNDatCHK `(uc  1 e 1 0 ]
+"250
+[v _VerifyNDatCHK `(uc  1 e 1 0 ]
+"50 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.c
+[v _InitWsw `(v  1 e 0 0 ]
+"307
+[v _RefreshWSW `(v  1 e 0 0 ]
+"320
+[v _KolProc `(v  1 e 0 0 ]
+"425
+[v _SetPrWswData `(v  1 e 0 0 ]
+"442
+[v _FormatWswData `(v  1 e 0 0 ]
+"509
+[v _PrintWswData `(v  1 e 0 0 ]
+"573
+[v _SetWbtyBit `(v  1 e 0 0 ]
+"581
+[v _Swbty `(v  1 e 0 0 ]
+"598
+[v _Rwbty `(v  1 e 0 0 ]
+"615
+[v _Swsdid `(v  1 e 0 0 ]
+"621
+[v _Rwsdid `(v  1 e 0 0 ]
+"630
+[v _WswOff `(v  1 e 0 0 ]
+"635
+[v _WswOn `(v  1 e 0 0 ]
+"643
+[v _SetData `(v  1 e 0 0 ]
+"652
+[v _SetStatus `(v  1 e 0 0 ]
+"677
+[v _GetPoz `(b  1 e 0 0 ]
+"683
+[v _SetPoz `(v  1 e 0 0 ]
+"690
+[v _ResetPoz `(v  1 e 0 0 ]
+"696
+[v _ResetKol `(v  1 e 0 0 ]
+"703
+[v _RestartKol `(v  1 e 0 0 ]
+"709
+[v _AllKolToFirstPoz `(v  1 e 0 0 ]
+"5 C:\Program Files\Microchip\xc8\v1.12\sources\abdiv.c
+[v ___abdiv `(c  1 e 1 0 ]
+"5 C:\Program Files\Microchip\xc8\v1.12\sources\abmod.c
+[v ___abmod `(c  1 e 1 0 ]
+"32 C:\Program Files\Microchip\xc8\v1.12\sources\abtofl.c
+[v ___abtofl `(d  1 e 4 0 ]
+"34 C:\Program Files\Microchip\xc8\v1.12\sources\abtoft.c
+[v ___abtoft `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\aldiv.c
+[v ___aldiv `(l  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\almod.c
+[v ___almod `(l  1 e 4 0 ]
+"37 C:\Program Files\Microchip\xc8\v1.12\sources\altofl.c
+[v ___altofl `(d  1 e 4 0 ]
+"43 C:\Program Files\Microchip\xc8\v1.12\sources\altoft.c
+[v ___altoft `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\atdiv.c
+[v ___atdiv `(m  1 e 3 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\atmod.c
+[v ___atmod `(m  1 e 3 0 ]
+"38 C:\Program Files\Microchip\xc8\v1.12\sources\attofl.c
+[v ___attofl `(d  1 e 4 0 ]
+"38 C:\Program Files\Microchip\xc8\v1.12\sources\attoft.c
+[v ___attoft `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\awdiv.c
+[v ___awdiv `(i  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\awmod.c
+[v ___awmod `(i  1 e 2 0 ]
+"32 C:\Program Files\Microchip\xc8\v1.12\sources\awtofl.c
+[v ___awtofl `(d  1 e 4 0 ]
+"33 C:\Program Files\Microchip\xc8\v1.12\sources\awtoft.c
+[v ___awtoft `(f  1 e 4 0 ]
+"3 C:\Program Files\Microchip\xc8\v1.12\sources\bmul.c
+[v ___bmul `(uc  1 e 1 0 ]
+"64 C:\Program Files\Microchip\xc8\v1.12\sources\double.c
+[v ___flpack `(d  1 e 4 0 ]
+"89 C:\Program Files\Microchip\xc8\v1.12\sources\fladd.c
+[v ___fladd `(d  1 e 4 0 ]
+"50 C:\Program Files\Microchip\xc8\v1.12\sources\fldiv.c
+[v ___fldiv `(d  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v1.12\sources\flge.c
+[v ___flge `(b  1 e 0 0 ]
+"51 C:\Program Files\Microchip\xc8\v1.12\sources\flmul.c
+[v ___flmul `(d  1 e 4 0 ]
+"16 C:\Program Files\Microchip\xc8\v1.12\sources\flneg.c
+[v ___flneg `(d  1 e 4 0 ]
+"63 C:\Program Files\Microchip\xc8\v1.12\sources\float.c
+[v ___ftpack `(f  1 e 4 0 ]
+"22 C:\Program Files\Microchip\xc8\v1.12\sources\flsub.c
+[v ___flsub `(d  1 e 4 0 ]
+"44 C:\Program Files\Microchip\xc8\v1.12\sources\fltol.c
+[v ___fltol `(l  1 e 4 0 ]
+"87 C:\Program Files\Microchip\xc8\v1.12\sources\ftadd.c
+[v ___ftadd `(f  1 e 4 0 ]
+"50 C:\Program Files\Microchip\xc8\v1.12\sources\ftdiv.c
+[v ___ftdiv `(f  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v1.12\sources\ftge.c
+[v ___ftge `(b  1 e 0 0 ]
+"52 C:\Program Files\Microchip\xc8\v1.12\sources\ftmul.c
+[v ___ftmul `(f  1 e 4 0 ]
+"16 C:\Program Files\Microchip\xc8\v1.12\sources\ftneg.c
+[v ___ftneg `(f  1 e 4 0 ]
+"22 C:\Program Files\Microchip\xc8\v1.12\sources\ftsub.c
+[v ___ftsub `(f  1 e 4 0 ]
+"45 C:\Program Files\Microchip\xc8\v1.12\sources\fttol.c
+[v ___fttol `(l  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v1.12\sources\lbdiv.c
+[v ___lbdiv `(uc  1 e 1 0 ]
+[v i2___lbdiv `(uc  1 e 1 0 ]
+[v i2___lbdiv `(uc  1 e 1 0 ]
+"5 C:\Program Files\Microchip\xc8\v1.12\sources\lbmod.c
+[v ___lbmod `(uc  1 e 1 0 ]
+"28 C:\Program Files\Microchip\xc8\v1.12\sources\lbtofl.c
+[v ___lbtofl `(d  1 e 4 0 ]
+"28 C:\Program Files\Microchip\xc8\v1.12\sources\lbtoft.c
+[v ___lbtoft `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\lldiv.c
+[v ___lldiv `(ul  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\llmod.c
+[v ___llmod `(ul  1 e 4 0 ]
+"31 C:\Program Files\Microchip\xc8\v1.12\sources\lltofl.c
+[v ___lltofl `(d  1 e 4 0 ]
+"36 C:\Program Files\Microchip\xc8\v1.12\sources\lltoft.c
+[v ___lltoft `(f  1 e 4 0 ]
+"3 C:\Program Files\Microchip\xc8\v1.12\sources\lmul.c
+[v ___lmul `(ul  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\ltdiv.c
+[v ___ltdiv `(um  1 e 3 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\ltmod.c
+[v ___ltmod `(um  1 e 3 0 ]
+"31 C:\Program Files\Microchip\xc8\v1.12\sources\lttofl.c
+[v ___lttofl `(d  1 e 4 0 ]
+"31 C:\Program Files\Microchip\xc8\v1.12\sources\lttoft.c
+[v ___lttoft `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\lwdiv.c
+[v ___lwdiv `(ui  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\lwmod.c
+[v ___lwmod `(ui  1 e 2 0 ]
+"29 C:\Program Files\Microchip\xc8\v1.12\sources\lwtofl.c
+[v ___lwtofl `(d  1 e 4 0 ]
+"29 C:\Program Files\Microchip\xc8\v1.12\sources\lwtoft.c
+[v ___lwtoft `(f  1 e 4 0 ]
+"3 C:\Program Files\Microchip\xc8\v1.12\sources\tmul.c
+[v ___tmul `(um  1 e 3 0 ]
+"3 C:\Program Files\Microchip\xc8\v1.12\sources\wmul.c
+[v ___wmul `(ui  1 e 2 0 ]
+"13 plib/EEP/busy_eep.c
+[v _Busy_eep `(v  1 e 0 0 ]
+"36 plib/EEP/read_B.c
+[v _Read_b_eep `(uc  1 e 1 0 ]
+"50 plib/EEP/write_B.c
+[v _Write_b_eep `(v  1 e 0 0 ]
+[s S5567 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 WREN 1 0 :1:2 
+`uc 1 WRERR 1 0 :1:3 
+`uc 1 FREE 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CFGS 1 0 :1:6 
+`uc 1 EEPGD 1 0 :1:7 
+]
+"3862 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f46k20.h
+[s S5576 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 EEFS 1 0 :1:6 
+]
+[u S5579 . 1 `S5567 1 . 1 0 `S5576 1 . 1 0 ]
+[v _EECON1bits `VES5579  1 e 1 @4006 ]
+"3906
+[v _EECON2 `VEuc  1 e 1 @4007 ]
+"3912
+[v _EEDATA `VEuc  1 e 1 @4008 ]
+"3918
+[v _EEADR `VEuc  1 e 1 @4009 ]
+"3979
+[v _EEADRH `VEuc  1 e 1 @4010 ]
+[s S5644 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"7116
+[s S5653 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S5662 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[s S5671 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S5680 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S5684 . 1 `S5644 1 . 1 0 `S5653 1 . 1 0 `S5662 1 . 1 0 `S5671 1 . 1 0 `S5680 1 . 1 0 ]
+[v _INTCONbits `VES5684  1 e 1 @4082 ]
+[s S74 . 23 `uc 1 krok 1 0 :1:0 
+`uc 1 error 1 1 `uc 1 kod 1 2 `uc 1 PCO 1 3 `uc 1 CO 1 4 `uc 1 PCW 1 5 `uc 1 CW 1 6 `uc 1 CS 1 7 `uc 1 STR_PWM 1 8 `uc 1 MAX_PWM 1 9 `uc 1 BUF_PWM 1 10 `uc 1 ST_AD1 1 11 `uc 1 ST_AD2 1 12 `uc 1 ST_AD3 1 13 `uc 1 PORTC 1 14 `uc 1 PORTD 1 15 `uc 1 ST_GLOBAL0 1 16 `uc 1 ST_GLOBAL2 1 17 `uc 1 ST_GLOBAL3 1 18 `uc 1 ST_GLOBAL4 1 19 `uc 1 TPRZ_CW 1 20 `uc 1 ST0_WSW 1 21 `uc 1 ERR_BTY 1 22 ]
+"16 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\i2c_s.c
+[v _DtI2C `S74  1 s 23 DtI2C ]
+[s S98 . 25 `uc 1 indeks 1 0 `[24]uc 1 Bf 24 1 ]
+"17
+[v _BufI2C `S98  1 s 25 BufI2C ]
+"11 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\keypad.c
+[v _ky `[7]S5283  1 e 35 0 ]
+"20
+[v _xxky `[7]S5283  1 e 35 0 ]
+[s S3808 . 65 `uc 1 outID 1 0 `uc 1 RD_STD 1 1 :1:0 
+`uc 1 RD_KNF 1 1 :1:1 
+`uc 1 RRD_KNF 1 1 :1:2 
+`uc 1 outRDZ0 1 2 `uc 1 outRDZ1 1 3 `uc 1 outCO 1 4 `uc 1 outCW 1 5 `uc 1 outCS 1 6 `uc 1 outIN 1 7 `uc 1 outPCO 1 8 `uc 1 outPCW 1 9 `uc 1 outPCOmn 1 10 `uc 1 outPCOmx 1 11 `uc 1 outPCWmn 1 12 `uc 1 outPCWmx 1 13 `uc 1 outPPCO 1 14 `uc 1 outPPCW 1 15 `uc 1 outERR 1 16 `uc 1 outAWR 1 17 `uc 1 outSTAT0 1 18 `uc 1 outSTAT1 1 19 `uc 1 outSTAT2 1 20 `uc 1 outSTAT3 1 21 `uc 1 outKSTAT0 1 22 `uc 1 outMSTR 1 23 `uc 1 outMSTRmn 1 24 `uc 1 outMSTRmx 1 25 `uc 1 outMMAXU 1 26 `uc 1 outMMAXUmn 1 27 `uc 1 outMMAXUmx 1 28 `uc 1 outMMAXG 1 29 `uc 1 outMMAXGmn 1 30 `uc 1 outMMAXGmx 1 31 `uc 1 outRGZ 1 32 `uc 1 outRGZmn 1 33 `uc 1 outRGZmx 1 34 `uc 1 outWANL 1 35 `uc 1 outTPKT 1 36 `uc 1 outTPKTmn 1 37 `uc 1 outTPKTmx 1 38 `uc 1 outWOBG 1 39 `uc 1 outOPDG 1 40 `uc 1 outTPCS 1 41 `uc 1 outRDPM 1 42 `uc 1 outDTPM 1 43 `uc 1 outMDPM 1 44 `uc 1 inPCO 1 45 `uc 1 inPCW 1 46 `uc 1 inSTAT0 1 47 `uc 1 inSTAT1 1 48 `uc 1 inKSTAT0 1 49 `uc 1 inKRK 1 50 `uc 1 inPRM 1 51 `uc 1 inDDTA 1 52 `uc 1 inMSTR 1 53 `uc 1 inMMAXU 1 54 `uc 1 inMMAXG 1 55 `uc 1 inRGZ 1 56 `uc 1 inWANL 1 57 `uc 1 inTPKT 1 58 `uc 1 inWOBG 1 59 `uc 1 inOPDG 1 60 `uc 1 inTPCS 1 61 `uc 1 inRDPM 1 62 `uc 1 inDTPM 1 63 `uc 1 inMDPM 1 64 ]
+"17 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[v _RSDT1 `S3808  1 e 65 0 ]
+[s S285 . 18 `uc 1 enknf 1 0 :1:0 
+`uc 1 wymCO 1 0 :1:1 
+`uc 1 wymCW 1 0 :1:2 
+`uc 1 PRM 1 1 `uc 1 KRK 1 2 `uc 1 mstr 1 3 `uc 1 mxcw 1 4 `uc 1 mxco 1 5 `uc 1 czpr 1 6 `uc 1 tpkt 1 7 `uc 1 rdgz 1 8 `uc 1 rdpm 1 9 `uc 1 dtpm 1 10 `uc 1 mdpm 1 11 `uc 1 teco 1 12 `uc 1 tpwm 1 13 `uc 1 robg 1 14 `uc 1 opdg 1 15 `uc 1 tpcs 1 16 `uc 1 aleg 1 17 ]
+"24
+[v _DtKNF `S285  1 e 18 0 ]
+[s S149 . 51 `ui 1 _pob_KCO 2 0 `ui 1 _pob_KCW 2 2 `ui 1 _pob_SRW 2 4 `ui 1 _pob_AL 2 6 `ui 1 _pob_CW 2 8 `ui 1 _pob_CO 2 10 `ui 1 _pob_DzCO 2 12 `ui 1 _pob_DzCW 2 14 `uc 1 _WYLACZ 1 16 :1:0 
+`uc 1 _ZMKCOCW 1 16 :1:1 
+`uc 1 _ROZRUCH 1 16 :1:2 
+`uc 1 _RUSZ_48 1 16 :1:3 
+`uc 1 _RUSZ_48Z3 1 16 :1:4 
+`uc 1 _RUSZ_PWR 1 16 :1:5 
+`uc 1 _VWYBIEG 1 16 :1:6 
+`uc 1 _RUSZ_CIAG 1 16 :1:7 
+`uc 1 _RUSZ_PLOMIEN 1 17 :1:0 
+`uc 1 _RUSZ_RPLM 1 17 :1:1 
+`uc 1 _RUSZ_POMPE 1 17 :1:2 
+`uc 1 _BLOKUJ_3M 1 17 :1:3 
+`uc 1 _BLOKUJ_15S 1 17 :1:4 
+`uc 1 _MODULUJ 1 17 :1:5 
+`ui 1 _AKTYWNE_SRW 2 18 `ui 1 _AKTYWNE_AL 2 20 `ui 1 _AKTYWNE_PGD 2 22 `ui 1 _AKTYWNE_KNF 2 24 `uc 1 _RUSZ_NTC_CO 1 26 :1:0 
+`uc 1 _RUSZ_NTC_CW 1 26 :1:1 
+`uc 1 _RUSZ_NTC_IN 1 26 :1:2 
+`uc 1 _RUSZ_STB 1 26 :1:3 
+`uc 1 _RUSZ_MOD 1 26 :1:4 
+`uc 1 _RUSZ_CISN 1 26 :1:5 
+`uc 1 _RUSZ_NCISN 1 26 :1:6 
+`uc 1 _RS_START 1 26 :1:7 
+`uc 1 _PW_START 1 27 :1:0 
+`uc 1 _TURBO 1 27 :1:1 
+`uc 1 _PRACA 1 27 :1:2 
+`uc 1 _OST_PL 1 27 :1:3 
+`uc 1 _RUN_MNMOD 1 27 :1:4 
+`uc 1 _KCW_PMP 1 27 :1:5 
+`uc 1 _DE_VNT 1 27 :1:6 
+`uc 1 _RPM_CW 1 27 :1:7 
+`uc 1 _prb_CIG 1 28 :1:0 
+`uc 1 _prb_PRZ 1 28 :1:1 
+`uc 1 _DE_PMP 1 28 :1:2 
+`uc 1 LICZNIK_PL 1 29 `uc 1 LICZNIK_CIG 1 30 `uc 1 LICZNIK_CIG2 1 31 `uc 1 LICZNIK_CIG3 1 32 `uc 1 LICZNIK_ANL 1 33 `uc 1 ERR_BTY 1 34 `uc 1 ROZ 1 35 `uc 1 R48 1 36 `uc 1 R48Z3 1 37 `uc 1 BL3 1 38 `uc 1 BL15 1 39 `uc 1 WYL 1 40 `uc 1 RPR 1 41 `uc 1 RPL 1 42 `uc 1 RCI 1 43 `uc 1 MNM 1 44 `uc 1 ZKP 1 45 `uc 1 VWB 1 46 `uc 1 SRV 1 47 `uc 1 KRS 1 48 `uc 1 HVZ 1 49 `uc 1 DPR 1 50 ]
+"27 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _M `S149  1 e 51 0 ]
+[s S871 . 35 `uc 1 _off 1 0 :1:0 
+`uc 1 _lato 1 0 :1:1 
+`uc 1 _zima 1 0 :1:2 
+`uc 1 _str_nco 1 0 :1:3 
+`uc 1 _str_ncw 1 0 :1:4 
+`uc 1 b_str_nco 1 0 :1:5 
+`uc 1 b_str_ncw 1 0 :1:6 
+`uc 1 _set_nco 1 0 :1:7 
+`uc 1 _set_ncw 1 1 :1:0 
+`uc 1 b_set_nco 1 1 :1:1 
+`uc 1 b_set_ncw 1 1 :1:2 
+`uc 1 _mod_ncw 1 1 :1:3 
+`uc 1 _set_fnserw 1 1 :1:4 
+`uc 1 _set_aleg 1 1 :1:5 
+`uc 1 _fnserw 1 1 :1:6 
+`uc 1 _fns_max 1 1 :1:7 
+`uc 1 _aleg 1 2 :1:0 
+`uc 1 _newPCO 1 2 :1:1 
+`uc 1 _newPCW 1 2 :1:2 
+`uc 1 _res 1 2 :1:3 
+`uc 1 _toInit 1 2 :1:4 
+`uc 1 _KnfDisErr 1 2 :1:5 
+`uc 1 _aktywne_KNF 1 2 :1:6 
+`uc 1 _EnAleg 1 2 :1:7 
+`uc 1 _prn_res 1 3 :1:0 
+`uc 1 _prn_cs 1 3 :1:1 
+`uc 1 _prn_in 1 3 :1:2 
+`uc 1 _newPFN 1 3 :1:3 
+`uc 1 _csn 1 3 :1:4 
+`uc 1 _plmCO 1 3 :1:5 
+`uc 1 _plmCW 1 3 :1:6 
+`uc 1 _ofnserw 1 3 :1:7 
+`uc 1 _oaleg 1 4 :1:0 
+`uc 1 _obgCO 1 4 :1:1 
+`uc 1 _obgCW 1 4 :1:2 
+`uc 1 _opKNF 1 4 :1:3 
+`uc 1 _enKNF 1 4 :1:4 
+`uc 1 _tdzCO 1 4 :1:5 
+`uc 1 _tdzCW 1 4 :1:6 
+`uc 1 _fmsg 1 4 :1:7 
+`uc 1 _ferr 1 5 :1:0 
+`uc 1 _fL3 1 5 :1:1 
+`uc 1 _pgd 1 5 :1:2 
+`uc 1 _opgres 1 5 :1:3 
+`uc 1 _opgprg 1 5 :1:4 
+`uc 1 _errCS 1 5 :1:5 
+`uc 1 _errCO 1 5 :1:6 
+`uc 1 _errCW 1 5 :1:7 
+`uc 1 _fnoCS 1 6 :1:0 
+`uc 1 _ofzima 1 6 :1:1 
+`uc 1 _oflato 1 6 :1:2 
+`uc 1 _ofoff 1 6 :1:3 
+`uc 1 _errIN 1 6 :1:4 
+`uc 1 _pmpPWM 1 6 :1:5 
+`uc 1 _trbECO 1 6 :1:6 
+`uc 1 RDZ0 1 7 `uc 1 RDZ1 1 8 `uc 1 CO 1 9 `uc 1 CW 1 10 `uc 1 CS 1 11 `uc 1 IN 1 12 `uc 1 PPCO 1 13 `uc 1 PPCW 1 14 `uc 1 KAWR 1 15 `uc 1 KERR 1 16 `ui 1 maxPCO 2 17 `ui 1 minPCO 2 19 `ui 1 maxPCW 2 21 `ui 1 minPCW 2 23 `uc 1 b_ofnserw 1 25 :1:0 
+`uc 1 b_oaleg 1 25 :1:1 
+`ui 1 PCO 2 26 `ui 1 PCW 2 28 `uc 1 KRS 1 30 `ui 1 poz 2 31 `ui 1 AC 2 33 ]
+"28
+[v _PFN `S871  1 e 35 0 ]
+"29
+[v _zps `uc  1 e 1 0 ]
+[v _zmn `uc  1 e 1 0 ]
+[s S327 . 15 `uc 1 _err_CO 1 0 :1:0 
+`uc 1 _su_CO 1 0 :1:1 
+`uc 1 _ad_CO 1 0 :1:2 
+`uc 1 _su_SRW_CO 1 0 :1:3 
+`uc 1 _ad_SRW_CO 1 0 :1:4 
+`uc 1 _on_DZ_CO 1 0 :1:5 
+`uc 1 _su_DZ_CO 1 0 :1:6 
+`uc 1 _ad_DZ_CO 1 0 :1:7 
+`uc 1 _ptwp_CO 1 1 :1:0 
+`uc 1 _pz_CO 1 1 :1:1 
+`uc 1 _cold_CO 1 1 :1:2 
+`uc 1 _hot_CO 1 1 :1:3 
+`uc 1 _ldDCO 1 1 :1:4 
+`uc 1 _zroPCO 1 1 :1:5 
+`uc 1 _resPCO 1 1 :1:6 
+`uc 1 _newPCO 1 1 :1:7 
+`uc 1 CO 1 2 `uc 1 PCO 1 3 `uc 1 PPCO 1 4 `uc 1 minPCO 1 5 `uc 1 maxPCO 1 6 `uc 1 PGDPCO 1 7 `c 1 DCO 1 8 `c 1 dDCO 1 9 `uc 1 indCO 1 10 `uc 1 SCO 1 11 `uc 1 AC_CO 1 12 `uc 1 MAD_CO 1 13 `uc 1 DAD_CO 1 14 ]
+"13 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _DtCO `S327  1 e 15 0 ]
+[s S1675 . 20 `uc 1 _err_IN 1 0 :1:0 
+`uc 1 _newECO 1 0 :1:1 
+`uc 1 AC_IN 1 1 `uc 1 IN 1 2 `uc 1 DIN 1 3 `uc 1 DIN2 1 4 `uc 1 DDLT 1 5 `uc 1 cDLT 1 6 `uc 1 cold 1 7 `uc 1 kond 1 8 `uc 1 Eco 1 9 `uc 1 PPEco 1 10 `uc 1 Eco5HI 1 11 `uc 1 Eco5LO 1 12 `uc 1 HI 1 13 `uc 1 LO 1 14 `c 1 delta1 1 15 `c 1 delta2 1 16 `c 1 delta3 1 17 `uc 1 delta 1 18 `uc 1 pop 1 19 ]
+"14
+[v _DtIN `S1675  1 e 20 0 ]
+[s S387 . 15 `uc 1 _err_CW 1 0 :1:0 
+`uc 1 _su_CW 1 0 :1:1 
+`uc 1 _ad_CW 1 0 :1:2 
+`uc 1 _wpz_CW 1 0 :1:3 
+`uc 1 _on_DZ_CW 1 0 :1:4 
+`uc 1 _su_DZ_CW 1 0 :1:5 
+`uc 1 _ad_DZ_CW 1 0 :1:6 
+`uc 1 _cold_CW 1 0 :1:7 
+`uc 1 _newPCW 1 1 :1:0 
+`uc 1 _wrtPCW 1 1 :1:1 
+`uc 1 _fpCW 1 1 :1:2 
+`uc 1 CW 1 2 `uc 1 PCW 1 3 `uc 1 PPCW 1 4 `uc 1 minPCW 1 5 `uc 1 maxPCW 1 6 `c 1 DCW 1 7 `c 1 dDCW 1 8 `c 1 ddDCW 1 9 `uc 1 indCW 1 10 `uc 1 SCW 1 11 `uc 1 AC_CW 1 12 `uc 1 MAD_CW 1 13 `uc 1 DAD_CW 1 14 ]
+"15
+[v _DtCW `S387  1 e 15 0 ]
+[s S2216 . 4 `uc 1 _on_ZW 1 0 :1:0 
+`uc 1 AC_ZW 1 1 `c 1 ZW 1 2 `c 1 SZW 1 3 ]
+"16
+[v _DtZW `S2216  1 e 4 0 ]
+[s S437 . 4 `uc 1 _hi 1 0 :1:0 
+`uc 1 _lo 1 0 :1:1 
+`uc 1 _no 1 0 :1:2 
+`uc 1 _error 1 0 :1:3 
+`uc 1 _work 1 0 :1:4 
+`ui 1 _no_mont 2 1 `uc 1 CS 1 3 ]
+"18
+[v _DtCS `S437  1 e 4 0 ]
+"28
+[v _PmrtimFlt1 `uc  1 s 1 PmrtimFlt1 ]
+[v _PmrtimFlt2 `uc  1 s 1 PmrtimFlt2 ]
+"29
+[v _PmrtimFlt3 `ui  1 s 2 PmrtimFlt3 ]
+"30
+[v _wff `[12]uc  1 e 12 0 ]
+[s S4344 . 3 `uc 1 MGPROC 1 0 `uc 1 MDPROC 1 1 `uc 1 APROC 1 2 ]
+"12 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.c
+[v _PMP `S4344  1 e 3 0 ]
+"26 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[v _Nastawa `C[26]S2481  1 s 52 Nastawa ]
+"55
+[v _SPort `VE[26]S2484  1 s 26 SPort ]
+[s S453 . 34 `uc 1 _ENPWM 1 0 :1:0 
+`uc 1 _ENOSC 1 0 :1:1 
+`uc 1 tpGZ 1 0 :1:2 
+`VNEuc 1 BufPWM 1 1 `VNEuc 1 BufOSC 1 2 `Nuc 1 NewOSC 1 3 `Nuc 1 NewPWM 1 4 `uc 1 _ENPWM2 1 5 :1:0 
+`VNEuc 1 BufPWM2 1 6 `Nuc 1 NewPWM2 1 7 `uc 1 HIPWM 1 8 `uc 1 MDMOD 1 9 `uc 1 MGMOD 1 10 `uc 1 MAXOSC 1 11 `uc 1 MINOSC 1 12 `uc 1 MAD_MOD 1 13 `uc 1 MAG_MOD 1 14 `uc 1 GWMSTART 1 15 `uc 1 MDSTART 1 16 `uc 1 MGSTART 1 17 `uc 1 GWMMAXCO 1 18 `uc 1 MDMAXCO 1 19 `uc 1 MGMAXCO 1 20 `uc 1 GWMMAXCW 1 21 `uc 1 MDMAXCW 1 22 `uc 1 MGMAXCW 1 23 `uc 1 FIRSTPB 1 24 `uc 1 PROP1 1 25 `uc 1 PROP2 1 26 `uc 1 PROP3 1 27 `uc 1 MSTART 1 28 `uc 1 MMAXCO 1 29 `uc 1 MMAXCW 1 30 `uc 1 PGD 1 31 `uc 1 MINPWM 1 32 `uc 1 MAXPWM 1 33 ]
+"8 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwm.c
+[v _PWM `VES453  1 e 34 0 ]
+[s S3110 . 10 `uc 1 btco 1 0 :1:0 
+`uc 1 btcw 1 0 :1:1 
+`uc 1 fz 1 0 :1:2 
+`uc 1 med_up 1 0 :1:3 
+`uc 1 fast_up 1 0 :1:4 
+`uc 1 nmod 1 0 :1:5 
+`uc 1 del1s 1 0 :1:6 
+`uc 1 deln1 1 0 :1:7 
+`uc 1 inv_mod 1 1 :1:0 
+`c 1 x_t 1 2 `c 1 x_f 1 3 `c 1 x_dt 1 4 `c 1 x_df 1 5 `uc 1 ytmp 1 6 `uc 1 srp 1 7 `uc 1 xmod 1 8 `uc 1 tmp_pwm 1 9 ]
+"17 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.c
+[v _rgl `S3110  1 e 10 0 ]
+"20
+[v _tmr `uc  1 e 1 0 ]
+[v _tmr2 `uc  1 e 1 0 ]
+"21
+[v _pwm_center `uc  1 e 1 0 ]
+[v _pwm_kwr `uc  1 e 1 0 ]
+[s S3731 . 3 `uc 1 cS 1 0 `uc 1 dS 1 1 `uc 1 S 1 2 ]
+"19 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rtimer.c
+[v _CommRT `VNES3731  1 s 3 CommRT ]
+"25
+[v _dSk `VNE[11]S3735  1 e 22 0 ]
+"28
+[v _Sk `VNE[16]S3738  1 e 32 0 ]
+"31
+[v _Mn `VNE[7]S3741  1 e 14 0 ]
+"34
+[v _Gd `VNE[3]S3744  1 e 6 0 ]
+"12 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\timer1.c
+[v _RldT1 `Cui  1 e 2 0 ]
+[s S4263 . 5 `uc 1 RData 1 0 :1:0 
+`uc 1 REnd 1 0 :1:1 
+`uc 1 RErrREC 1 0 :1:2 
+`uc 1 RErrBUF 1 0 :1:3 
+`uc 1 TData 1 0 :1:4 
+`uc 1 TEnd 1 0 :1:5 
+`uc 1 indeks 1 1 `uc 1 RNData 1 2 `uc 1 TNData 1 3 `uc 1 CHK 1 4 ]
+"10 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\uart9b.c
+[v _UADt `S4263  1 e 5 0 ]
+"11
+[v _bufTUART `[35]uc  1 e 35 0 ]
+"12
+[v _bufRUART `[35]uc  1 e 35 0 ]
+"13
+[v _RSerial `VNEuc  1 e 1 0 ]
+"32 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.c
+[v _PWD `[10]S2890  1 e 40 0 ]
+"35
+[v _DWD `[7]S2890  1 e 28 0 ]
+[s S2873 . 2 `uc 1 focus 1 0 :1:0 
+`uc 1 dec 1 0 :1:1 
+`uc 1 hex 1 0 :1:2 
+`uc 1 autoOFF 1 0 :1:3 
+`uc 1 kropka0 1 0 :1:4 
+`uc 1 kropka1 1 0 :1:5 
+`uc 1 wygas0 1 0 :1:6 
+`uc 1 wygas1 1 0 :1:7 
+`uc 1 led0 1 1 :1:0 
+`uc 1 led1 1 1 :1:1 
+`uc 1 sdiode 1 1 :1:2 
+`uc 1 rdiode 1 1 :1:3 
+`uc 1 wbdid 1 1 :4:4 
+]
+"38
+[s S2887 . 2 `uc 1 Data1 1 0 `uc 1 Data0 1 1 ]
+[s S2890 . 4 `S2873 1 St 2 0 `S2887 1 Dt 2 2 ]
+[v _WswData `S2890  1 s 4 WswData ]
+[s S4681 . 3 `uc 1 setOff 1 0 :1:0 
+`uc 1 dLed1 1 1 `uc 1 dLed0 1 2 ]
+"39
+[v _LedData `S4681  1 s 3 LedData ]
+"42
+[v _mux `b  1 s 0 mux ]
+"43
+[v _wbty `[2]uc  1 s 2 wbty ]
+"44
+[v _wsdid `uc  1 s 1 wsdid ]
+"100
+[v _KL0_AP `C[2]S4899  1 e 4 0 ]
+"105
+[v _KL1_AP `C[2]S4899  1 e 4 0 ]
+"110
+[v _KL2_AP `C[2]S4899  1 e 4 0 ]
+"115
+[v _KL3_AP `C[2]S4899  1 e 4 0 ]
+"127
+[v _KL0_WP `C[2]S4901  1 e 6 0 ]
+"132
+[v _KL1_WP `C[2]S4901  1 e 6 0 ]
+"137
+[v _KL2_WP `C[2]S4901  1 e 6 0 ]
+"142
+[v _KL3_WP `C[2]S4901  1 e 6 0 ]
+"153
+[v _KL0_FP `C[2]S4904  1 e 4 0 ]
+"158
+[v _KL1_FP `C[2]S4904  1 e 4 0 ]
+"163
+[v _KL2_FP `C[2]S4904  1 e 4 0 ]
+"168
+[v _KL3_FP `C[2]S4904  1 e 4 0 ]
+"177
+[v _KL0_FC `[2]S4906  1 s 2 KL0_FC ]
+"182
+[v _KL1_FC `[2]S4906  1 s 2 KL1_FC ]
+"187
+[v _KL2_FC `[2]S4906  1 s 2 KL2_FC ]
+"192
+[v _KL3_FC `[2]S4906  1 s 2 KL3_FC ]
+[s S4908 . 4 `*.bS2890 1 CAdr 2 0 `uc 1 nCykli 1 2 `uc 1 DMask 1 3 ]
+"200
+[v _KL0_OUT `CS4908  1 e 4 0 ]
+"201
+[v _KL1_OUT `CS4908  1 e 4 0 ]
+"202
+[v _KL2_OUT `CS4908  1 e 4 0 ]
+"203
+[v _KL3_OUT `CS4908  1 e 4 0 ]
+[s S4899 . 2 `*.bS2890 1 PAdr 2 0 ]
+"207
+[s S4901 . 3 `S2887 1 PWrt 2 0 `uc 1 delay 1 2 ]
+[s S4904 . 2 `S2873 1 PFrm 2 0 ]
+[s S4906 . 1 `uc 1 focus 1 0 :1:0 
+]
+[s S4912 . 6 `*.cCS4899 1 KAP 1 0 `*.cCS4901 1 KWP 1 1 `*.cCS4904 1 KFP 1 2 `*.bS4906 1 KFc 2 3 `*.cCS4908 1 KOut 1 5 ]
+[v _KL0 `CS4912  1 e 6 0 ]
+"208
+[v _KL1 `CS4912  1 e 6 0 ]
+"209
+[v _KL2 `CS4912  1 e 6 0 ]
+"210
+[v _KL3 `CS4912  1 e 6 0 ]
+"216
+[v _Klj `C[4]S4918  1 e 8 0 ]
+"255
+[v _KInd `[4]S4921  1 s 4 KInd ]
+"256
+[v _KTim `[4]S4925  1 s 12 KTim ]
+"283
+[v _Znak `C[16]uc  1 e 16 0 ]
+"423 C:\Program Files\Microchip\xc8\v1.12\include\pic18f46k20.h
+[v _ANSEL `VEuc  1 e 1 @3966 ]
+"484
+[v _ANSELH `VEuc  1 e 1 @3967 ]
+"527
+[v _PORTA `VEuc  1 e 1 @3968 ]
+[s S757 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+`uc 1 RA7 1 0 :1:7 
+]
+"595
+[s S766 . 1 `uc 1 AN0 1 0 :1:0 
+`uc 1 AN1 1 0 :1:1 
+`uc 1 AN2 1 0 :1:2 
+`uc 1 AN3 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 AN4 1 0 :1:5 
+]
+[s S773 . 1 `uc 1 C12IN0M 1 0 :1:0 
+`uc 1 C12IN1M 1 0 :1:1 
+`uc 1 C2INP 1 0 :1:2 
+`uc 1 C1INP 1 0 :1:3 
+`uc 1 C1OUT 1 0 :1:4 
+`uc 1 C2OUT 1 0 :1:5 
+]
+[s S780 . 1 `uc 1 C12IN0N 1 0 :1:0 
+`uc 1 C12IN1N 1 0 :1:1 
+`uc 1 VREFM 1 0 :1:2 
+`uc 1 VREFP 1 0 :1:3 
+`uc 1 T0CKI 1 0 :1:4 
+`uc 1 SS 1 0 :1:5 
+]
+[s S787 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_SS 1 0 :1:5 
+]
+[s S790 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 VREFN 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nSS 1 0 :1:5 
+]
+[s S795 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CVREF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 LVDIN 1 0 :1:5 
+]
+[s S800 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 HLVDIN 1 0 :1:5 
+]
+[s S803 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 RJPU 1 0 :1:7 
+]
+[s S806 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+]
+[u S808 . 1 `S757 1 . 1 0 `S766 1 . 1 0 `S773 1 . 1 0 `S780 1 . 1 0 `S787 1 . 1 0 `S790 1 . 1 0 `S795 1 . 1 0 `S800 1 . 1 0 `S803 1 . 1 0 `S806 1 . 1 0 ]
+[v _PORTAbits `VES808  1 e 1 @3968 ]
+"764
+[v _PORTB `VEuc  1 e 1 @3969 ]
+[s S586 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"817
+[s S595 . 1 `uc 1 INT0 1 0 :1:0 
+`uc 1 INT1 1 0 :1:1 
+`uc 1 INT2 1 0 :1:2 
+`uc 1 CCP2 1 0 :1:3 
+`uc 1 KBI0 1 0 :1:4 
+`uc 1 KBI1 1 0 :1:5 
+`uc 1 KBI2 1 0 :1:6 
+`uc 1 KBI3 1 0 :1:7 
+]
+[s S604 . 1 `uc 1 AN12 1 0 :1:0 
+`uc 1 AN10 1 0 :1:1 
+`uc 1 AN8 1 0 :1:2 
+`uc 1 AN9 1 0 :1:3 
+`uc 1 AN11 1 0 :1:4 
+`uc 1 PGM 1 0 :1:5 
+`uc 1 PGC 1 0 :1:6 
+`uc 1 PGD 1 0 :1:7 
+]
+[s S613 . 1 `uc 1 FLT0 1 0 :1:0 
+`uc 1 C12IN3M 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 C12IN2M 1 0 :1:3 
+]
+[s S618 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 C12IN3N 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 C12IN2N 1 0 :1:3 
+]
+[s S623 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP2_PA2 1 0 :1:3 
+]
+[u S626 . 1 `S586 1 . 1 0 `S595 1 . 1 0 `S604 1 . 1 0 `S613 1 . 1 0 `S618 1 . 1 0 `S623 1 . 1 0 ]
+[v _PORTBbits `VES626  1 e 1 @3969 ]
+"971
+[v _PORTC `VEuc  1 e 1 @3970 ]
+[s S674 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"1022
+[s S683 . 1 `uc 1 T1OSO 1 0 :1:0 
+`uc 1 T1OSI 1 0 :1:1 
+`uc 1 CCP1 1 0 :1:2 
+`uc 1 SCK 1 0 :1:3 
+`uc 1 SDI 1 0 :1:4 
+`uc 1 SDO 1 0 :1:5 
+`uc 1 TX 1 0 :1:6 
+`uc 1 RX 1 0 :1:7 
+]
+[s S692 . 1 `uc 1 T13CKI 1 0 :1:0 
+`uc 1 CCP2 1 0 :1:1 
+`uc 1 P1A 1 0 :1:2 
+`uc 1 SCL 1 0 :1:3 
+`uc 1 SDA 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CK 1 0 :1:6 
+`uc 1 DT 1 0 :1:7 
+]
+[s S701 . 1 `uc 1 T1CKI 1 0 :1:0 
+]
+[s S703 . 1 `uc 1 T3CKI 1 0 :1:0 
+]
+[s S705 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 PA1 1 0 :1:2 
+]
+[s S708 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PA2 1 0 :1:1 
+]
+[u S711 . 1 `S674 1 . 1 0 `S683 1 . 1 0 `S692 1 . 1 0 `S701 1 . 1 0 `S703 1 . 1 0 `S705 1 . 1 0 `S708 1 . 1 0 ]
+[v _PORTCbits `VES711  1 e 1 @3970 ]
+"1161
+[v _PORTD `VEuc  1 e 1 @3971 ]
+[s S528 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"1198
+[s S537 . 1 `uc 1 PSP0 1 0 :1:0 
+`uc 1 PSP1 1 0 :1:1 
+`uc 1 PSP2 1 0 :1:2 
+`uc 1 PSP3 1 0 :1:3 
+`uc 1 PSP4 1 0 :1:4 
+`uc 1 PSP5 1 0 :1:5 
+`uc 1 PSP6 1 0 :1:6 
+`uc 1 PSP7 1 0 :1:7 
+]
+[s S546 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 P1B 1 0 :1:5 
+`uc 1 P1C 1 0 :1:6 
+`uc 1 P1D 1 0 :1:7 
+]
+[s S551 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 SS2 1 0 :1:7 
+]
+[u S554 . 1 `S528 1 . 1 0 `S537 1 . 1 0 `S546 1 . 1 0 `S551 1 . 1 0 ]
+[v _PORTDbits `VES554  1 e 1 @3971 ]
+"1302
+[v _PORTE `VEuc  1 e 1 @3972 ]
+[s S4685 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"1429
+[s S4690 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 CS 1 0 :1:2 
+`uc 1 MCLR 1 0 :1:3 
+]
+[s S4695 . 1 `uc 1 NOT_RD 1 0 :1:0 
+]
+[s S4697 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_WR 1 0 :1:1 
+]
+[s S4700 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_CS 1 0 :1:2 
+]
+[s S4703 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 NOT_MCLR 1 0 :1:3 
+]
+[s S4706 . 1 `uc 1 nRD 1 0 :1:0 
+`uc 1 nWR 1 0 :1:1 
+`uc 1 nCS 1 0 :1:2 
+`uc 1 nMCLR 1 0 :1:3 
+]
+[s S4711 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 VPP 1 0 :1:3 
+]
+[s S4714 . 1 `uc 1 AN5 1 0 :1:0 
+`uc 1 AN6 1 0 :1:1 
+`uc 1 AN7 1 0 :1:2 
+]
+[s S4718 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CCP10 1 0 :1:2 
+]
+[s S4721 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 CCP2E 1 0 :1:7 
+]
+[s S4724 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 CCP6E 1 0 :1:6 
+]
+[s S4727 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 CCP7E 1 0 :1:5 
+]
+[s S4730 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 CCP8E 1 0 :1:4 
+]
+[s S4733 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP9E 1 0 :1:3 
+]
+[s S4736 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 PA2E 1 0 :1:7 
+]
+[s S4739 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 PB1E 1 0 :1:6 
+]
+[s S4742 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 PB2 1 0 :1:2 
+]
+[s S4745 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 PB3E 1 0 :1:4 
+]
+[s S4748 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 PC1E 1 0 :1:5 
+]
+[s S4751 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PC2 1 0 :1:1 
+]
+[s S4754 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 PC3E 1 0 :1:3 
+]
+[s S4757 . 1 `uc 1 PD2 1 0 :1:0 
+]
+[s S4759 . 1 `uc 1 RDE 1 0 :1:0 
+]
+[s S4761 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 RE4 1 0 :1:4 
+]
+[s S4764 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 RE5 1 0 :1:5 
+]
+[s S4767 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 RE6 1 0 :1:6 
+]
+[s S4770 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 RE7 1 0 :1:7 
+]
+[s S4773 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 WRE 1 0 :1:1 
+]
+[u S4776 . 1 `S4685 1 . 1 0 `S4690 1 . 1 0 `S4695 1 . 1 0 `S4697 1 . 1 0 `S4700 1 . 1 0 `S4703 1 . 1 0 `S4706 1 . 1 0 `S4711 1 . 1 0 `S4714 1 . 1 0 `S4718 1 . 1 0 `S4721 1 . 1 0 `S4724 1 . 1 0 `S4727 1 . 1 0 `S4730 1 . 1 0 `S4733 1 . 1 0 `S4736 1 . 1 0 `S4739 1 . 1 0 `S4742 1 . 1 0 `S4745 1 . 1 0 `S4748 1 . 1 0 `S4751 1 . 1 0 `S4754 1 . 1 0 `S4757 1 . 1 0 `S4759 1 . 1 0 `S4761 1 . 1 0 `S4764 1 . 1 0 `S4767 1 . 1 0 `S4770 1 . 1 0 `S4773 1 . 1 0 ]
+[v _PORTEbits `VES4776  1 e 1 @3972 ]
+"2263
+[v _TRISA `VEuc  1 e 1 @3986 ]
+"2484
+[v _TRISB `VEuc  1 e 1 @3987 ]
+"2705
+[v _TRISC `VEuc  1 e 1 @3988 ]
+"2926
+[v _TRISD `VEuc  1 e 1 @3989 ]
+"3147
+[v _TRISE `VEuc  1 e 1 @3990 ]
+"4424
+[v _TXREG `VEuc  1 e 1 @4013 ]
+"4435
+[v _RCREG `VEuc  1 e 1 @4014 ]
+"4446
+[v _SPBRG `VEuc  1 e 1 @4015 ]
+"5056
+[v _CCP2CON `VEuc  1 e 1 @4026 ]
+"5125
+[v _CCPR2L `VEuc  1 e 1 @4027 ]
+"5131
+[v _CCPR2H `VEuc  1 e 1 @4028 ]
+"5137
+[v _CCP1CON `VEuc  1 e 1 @4029 ]
+"5224
+[v _CCPR1L `VEuc  1 e 1 @4030 ]
+"5230
+[v _CCPR1H `VEuc  1 e 1 @4031 ]
+"5489
+[v _ADRESH `VEuc  1 e 1 @4036 ]
+"5853
+[v _SSPADD `VEuc  1 e 1 @4040 ]
+"5859
+[v _SSPBUF `VEuc  1 e 1 @4041 ]
+"5865
+[v _T2CON `VEuc  1 e 1 @4042 ]
+"5935
+[v _PR2 `VEuc  1 e 1 @4043 ]
+"5946
+[v _TMR2 `VEuc  1 e 1 @4044 ]
+"6062
+[v _TMR1L `VEuc  1 e 1 @4046 ]
+"6068
+[v _TMR1H `VEuc  1 e 1 @4047 ]
+"7396
+[v _ACQT0 `VEb  1 e 0 @32259 ]
+"7398
+[v _ACQT1 `VEb  1 e 0 @32260 ]
+"7400
+[v _ACQT2 `VEb  1 e 0 @32261 ]
+"7402
+[v _ADCS0 `VEb  1 e 0 @32256 ]
+"7404
+[v _ADCS1 `VEb  1 e 0 @32257 ]
+"7406
+[v _ADCS2 `VEb  1 e 0 @32258 ]
+"7408
+[v _ADDEN `VEb  1 e 0 @32091 ]
+"7412
+[v _ADFM `VEb  1 e 0 @32263 ]
+"7414
+[v _ADIE `VEb  1 e 0 @31982 ]
+"7420
+[v _ADON `VEb  1 e 0 @32272 ]
+"7484
+[v _BOR `VEb  1 e 0 @32384 ]
+"7488
+[v _BRGH `VEb  1 e 0 @32098 ]
+"7608
+[v _CHS0 `VEb  1 e 0 @32274 ]
+"7610
+[v _CHS1 `VEb  1 e 0 @32275 ]
+"7612
+[v _CHS2 `VEb  1 e 0 @32276 ]
+"7614
+[v _CHS3 `VEb  1 e 0 @32277 ]
+"7618
+[v _CKE `VEb  1 e 0 @32318 ]
+"7620
+[v _CKP `VEb  1 e 0 @32308 ]
+"7630
+[v _CREN `VEb  1 e 0 @32092 ]
+"7634
+[v _CSRC `VEb  1 e 0 @32103 ]
+"7658
+[v _DA `VEb  1 e 0 @32317 ]
+"7662
+[v _DC1B0 `VEb  1 e 0 @32236 ]
+"7664
+[v _DC1B1 `VEb  1 e 0 @32237 ]
+"7666
+[v _DC2B0 `VEb  1 e 0 @32212 ]
+"7668
+[v _DC2B1 `VEb  1 e 0 @32213 ]
+"7734
+[v _GIEH `VEb  1 e 0 @32663 ]
+"7736
+[v _GIEL `VEb  1 e 0 @32662 ]
+"7742
+[v _GODONE `VEb  1 e 0 @32273 ]
+"7830
+[v _IPEN `VEb  1 e 0 @32391 ]
+"7832
+[v _IRCF0 `VEb  1 e 0 @32412 ]
+"7834
+[v _IRCF1 `VEb  1 e 0 @32413 ]
+"7836
+[v _IRCF2 `VEb  1 e 0 @32414 ]
+"8162
+[v _PLLEN `VEb  1 e 0 @31966 ]
+"8164
+[v _POR `VEb  1 e 0 @32385 ]
+"8268
+[v _RCIE `VEb  1 e 0 @31981 ]
+"8270
+[v _RCIF `VEb  1 e 0 @31989 ]
+"8272
+[v _RCIP `VEb  1 e 0 @31997 ]
+"8318
+[v _RW `VEb  1 e 0 @32314 ]
+"8322
+[v _RX9 `VEb  1 e 0 @32094 ]
+"8324
+[v _RX9D `VEb  1 e 0 @32088 ]
+"8342
+[v _SCS0 `VEb  1 e 0 @32408 ]
+"8344
+[v _SCS1 `VEb  1 e 0 @32409 ]
+"8368
+[v _SMP `VEb  1 e 0 @32319 ]
+"8384
+[v _SPEN `VEb  1 e 0 @32095 ]
+"8394
+[v _SSPEN `VEb  1 e 0 @32309 ]
+"8396
+[v _SSPIE `VEb  1 e 0 @31979 ]
+"8398
+[v _SSPIF `VEb  1 e 0 @31987 ]
+"8400
+[v _SSPIP `VEb  1 e 0 @31995 ]
+"8402
+[v _SSPM0 `VEb  1 e 0 @32304 ]
+"8404
+[v _SSPM1 `VEb  1 e 0 @32305 ]
+"8406
+[v _SSPM2 `VEb  1 e 0 @32306 ]
+"8408
+[v _SSPM3 `VEb  1 e 0 @32307 ]
+"8410
+[v _SSPOV `VEb  1 e 0 @32310 ]
+"8436
+[v _SYNC `VEb  1 e 0 @32100 ]
+"8462
+[v _T1CKPS0 `VEb  1 e 0 @32364 ]
+"8464
+[v _T1CKPS1 `VEb  1 e 0 @32365 ]
+"8472
+[v _T1RD16 `VEb  1 e 0 @32367 ]
+"8504
+[v _TMR0IE `VEb  1 e 0 @32661 ]
+"8506
+[v _TMR0IF `VEb  1 e 0 @32658 ]
+"8512
+[v _TMR1CS `VEb  1 e 0 @32361 ]
+"8514
+[v _TMR1IE `VEb  1 e 0 @31976 ]
+"8516
+[v _TMR1IF `VEb  1 e 0 @31984 ]
+"8518
+[v _TMR1IP `VEb  1 e 0 @31992 ]
+"8520
+[v _TMR1ON `VEb  1 e 0 @32360 ]
+"8522
+[v _TMR2IE `VEb  1 e 0 @31977 ]
+"8524
+[v _TMR2IF `VEb  1 e 0 @31985 ]
+"8528
+[v _TMR2ON `VEb  1 e 0 @32338 ]
+"8580
+[v _TRISC3 `VEb  1 e 0 @31907 ]
+"8582
+[v _TRISC4 `VEb  1 e 0 @31908 ]
+"8636
+[v _TX9 `VEb  1 e 0 @32102 ]
+"8640
+[v _TX9D `VEb  1 e 0 @32096 ]
+"8644
+[v _TXEN `VEb  1 e 0 @32101 ]
+"8648
+[v _TXIE `VEb  1 e 0 @31980 ]
+"8650
+[v _TXIF `VEb  1 e 0 @31988 ]
+"8652
+[v _TXIP `VEb  1 e 0 @31996 ]
+"8658
+[v _VCFG0 `VEb  1 e 0 @32268 ]
+"8662
+[v _VCFG1 `VEb  1 e 0 @32269 ]
+"8678
+[v _WCOL `VEb  1 e 0 @32311 ]
+"52 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _main `(v  1 e 0 0 ]
+{
+"223
+} 0
+"13 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\ac.c
+[v _InitAC `(v  1 e 0 0 ]
+{
+"46
+} 0
+"37 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\i2c_s.c
+[v _InitI2C `(v  1 e 0 0 ]
+{
+"68
+} 0
+"9 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\osc.c
+[v _InitOsc `(v  1 e 0 0 ]
+{
+"26
+} 0
+"3815 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _InitGlobal `(v  1 e 0 0 ]
+{
+"3821
+} 0
+"17 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\timer1.c
+[v _InitTimer1 `(v  1 e 0 0 ]
+{
+"51
+} 0
+"231 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[v _InitPort `(v  1 e 0 0 ]
+{
+"259
+} 0
+"50 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.c
+[v _InitWsw `(v  1 e 0 0 ]
+{
+"51
+[v InitWsw@i `uc  1 a 1 36 ]
+"87
+} 0
+"12 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwm.c
+[v _InitPWM `(v  1 e 0 0 ]
+{
+"59
+} 0
+"21 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\uart9b.c
+[v _InitUart `(v  1 e 0 0 ]
+{
+"54
+} 0
+"38 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _InitDataPmr `(v  1 e 0 0 ]
+{
+"66
+} 0
+"229 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _ClearData `(v  1 e 0 0 ]
+{
+"304
+} 0
+"300 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[v _TestScr `(v  1 e 0 0 ]
+{
+"306
+} 0
+"8 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwron.c
+[v _PwrOnDelay `(v  1 e 0 0 ]
+{
+"15
+} 0
+"308 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[v _EndTestScr `(v  1 e 0 0 ]
+{
+"314
+} 0
+"38
+[v _ClsScr `(v  1 e 0 0 ]
+{
+"40
+} 0
+"43
+[v _EndClsScr `(v  1 e 0 0 ]
+{
+"46
+} 0
+"244 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[v _RdEEParam `(v  1 e 0 0 ]
+{
+"299
+} 0
+"35
+[v _EnKonf `(v  1 e 0 0 ]
+{
+"38
+} 0
+"444 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _PomiarIN `(v  1 e 0 0 ]
+{
+"456
+} 0
+"307 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _RestartFltPrt `(v  1 e 0 0 ]
+{
+"315
+} 0
+"89 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konsola.c
+[v _TrybPracy `(v  1 e 0 0 ]
+{
+"91
+[v TrybPracy@key `uc  1 a 1 5 ]
+[v TrybPracy@key2 `uc  1 a 1 4 ]
+[v TrybPracy@ExtR2 `uc  1 a 1 1 ]
+[v TrybPracy@ExtR `uc  1 a 1 0 ]
+"449
+} 0
+"287 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _FiltrPomiarowyCOCW `(v  1 e 0 0 ]
+{
+"318
+} 0
+"936 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _DecWSW `(v  1 e 0 0 ]
+{
+"1209
+} 0
+"1215
+[v _DecERR `(v  1 e 0 0 ]
+{
+"1217
+[v DecERR@w `uc  1 a 1 10 ]
+"1485
+} 0
+"1490
+[v _DecSTR `(v  1 e 0 0 ]
+{
+"1683
+} 0
+"1796
+[v _DecRozruch `(v  1 e 0 0 ]
+{
+"1987
+} 0
+"2015
+[v _DecWylacz `(v  1 e 0 0 ]
+{
+"2205
+} 0
+"2264
+[v _FunkcjaSerwisowa `(v  1 e 0 0 ]
+{
+"2295
+} 0
+"542
+[v _DecyzjaAntyLeg `(v  1 e 0 0 ]
+{
+"727
+} 0
+"433
+[v _KolejkaPobudzen `(v  1 e 0 0 ]
+{
+"434
+[v KolejkaPobudzen@wr `uc  1 a 1 33 ]
+"537
+} 0
+"528 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.c
+[v _RglPmp `(v  1 e 0 0 ]
+{
+"560
+} 0
+"2437 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _Rozruch `(v  1 e 0 0 ]
+{
+"2625
+} 0
+"3207
+[v _ReloadPlomien `(v  1 e 0 0 ]
+{
+"3214
+} 0
+"3149
+[v _RuszPlomien `(v  1 e 0 0 ]
+{
+"3204
+} 0
+"3333
+[v _ReloadCiag `(v  1 e 0 0 ]
+{
+"3349
+} 0
+"3219
+[v _RuszCiag `(v  1 e 0 0 ]
+{
+"3328
+} 0
+"2345
+[v _BlokadaL3 `(v  1 e 0 0 ]
+{
+"2368
+} 0
+"2373
+[v _Blokada15S `(v  1 e 0 0 ]
+{
+"2393
+} 0
+"26 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.c
+[v _Moduluj `(v  1 e 0 0 ]
+{
+"245
+} 0
+"2968 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _DetekcjaPrzeplywuWG `(v  1 e 0 0 ]
+{
+"2969
+[v DetekcjaPrzeplywuWG@prz `uc  1 a 1 33 ]
+[v DetekcjaPrzeplywuWG@pmp `uc  1 a 1 32 ]
+"3015
+} 0
+"3020
+[v _OczekujNaPrzeplywWG `(v  1 e 0 0 ]
+{
+"3021
+[v OczekujNaPrzeplywWG@prz `uc  1 a 1 12 ]
+[v OczekujNaPrzeplywWG@pmp `uc  1 a 1 11 ]
+"3050
+} 0
+"91 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rtimer.c
+[v _RTM `(uc  1 e 1 0 ]
+{
+[v RTM@Index `Cuc  1 a 1 wreg ]
+[v RTM@Index `Cuc  1 a 1 wreg ]
+"94
+} 0
+"85
+[v _StartRTM `(v  1 e 0 0 ]
+{
+[v StartRTM@Index `Cuc  1 a 1 wreg ]
+[v StartRTM@Index `Cuc  1 a 1 wreg ]
+"89
+} 0
+"828 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _NastawaCOCW `(v  1 e 0 0 ]
+{
+"829
+[v NastawaCOCW@obg_cw `uc  1 s 1 obg_cw ]
+[v NastawaCOCW@obg_co `uc  1 s 1 obg_co ]
+[v NastawaCOCW@zmn2 `uc  1 s 1 zmn2 ]
+[v NastawaCOCW@pcw `uc  1 s 1 pcw ]
+"930
+} 0
+"176 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[v _EndNst `(v  1 e 0 0 ]
+{
+"178
+} 0
+"149
+[v _PrintNstCW `(v  1 e 0 0 ]
+{
+[v PrintNstCW@nst `Cuc  1 a 1 wreg ]
+[v PrintNstCW@nst `Cuc  1 a 1 wreg ]
+"155
+} 0
+"158
+[v _PrintNstCO `(v  1 e 0 0 ]
+{
+[v PrintNstCO@nst `Cuc  1 a 1 wreg ]
+[v PrintNstCO@nst `Cuc  1 a 1 wreg ]
+"164
+} 0
+"45 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konsola.c
+[v _ReadParam `(v  1 e 0 0 ]
+{
+"47
+[v ReadParam@ovd `uc  1 a 1 15 ]
+[v ReadParam@ovi `uc  1 a 1 14 ]
+[v ReadParam@stp `uc  1 a 1 13 ]
+"45
+[v ReadParam@param `*.bui  1 p 2 0 ]
+[v ReadParam@zmiana `*.auc  1 p 1 2 ]
+[v ReadParam@zapis `*.buc  1 p 2 3 ]
+[v ReadParam@min `ui  1 p 2 5 ]
+[v ReadParam@max `ui  1 p 2 7 ]
+[v ReadParam@rckl `uc  1 p 1 9 ]
+[v ReadParam@fst `uc  1 p 1 10 ]
+"46
+[v ReadParam@pnst `uc  1 s 1 pnst ]
+"86
+} 0
+"90 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[v _PrintErrTm `(v  1 e 0 0 ]
+{
+[v PrintErrTm@kod `Cuc  1 a 1 wreg ]
+[v PrintErrTm@kod `Cuc  1 a 1 wreg ]
+[v PrintErrTm@tm `Cuc  1 p 1 36 ]
+[v PrintErrTm@pls `Cuc  1 p 1 37 ]
+"98
+} 0
+"79
+[v _PrintErrCs `(v  1 e 0 0 ]
+{
+[v PrintErrCs@kod `Cuc  1 a 1 wreg ]
+[v PrintErrCs@kod `Cuc  1 a 1 wreg ]
+[v PrintErrCs@cs `Cuc  1 p 1 36 ]
+[v PrintErrCs@pls `Cuc  1 p 1 37 ]
+"88
+} 0
+"242
+[v _PrintOFF `(v  1 e 0 0 ]
+{
+"245
+} 0
+"248
+[v _EndOFF `(v  1 e 0 0 ]
+{
+"250
+} 0
+"255
+[v _PrintCS `(v  1 e 0 0 ]
+{
+[v PrintCS@cs `Cuc  1 a 1 wreg ]
+[v PrintCS@cs `Cuc  1 a 1 wreg ]
+"258
+} 0
+"261
+[v _EndCS `(v  1 e 0 0 ]
+{
+"263
+} 0
+"269
+[v _PrintCW `(v  1 e 0 0 ]
+{
+[v PrintCW@tm `Cuc  1 a 1 wreg ]
+[v PrintCW@tm `Cuc  1 a 1 wreg ]
+"272
+} 0
+"275
+[v _EndCW `(v  1 e 0 0 ]
+{
+"277
+} 0
+"283
+[v _PrintCO `(v  1 e 0 0 ]
+{
+[v PrintCO@tm `Cuc  1 a 1 wreg ]
+[v PrintCO@tm `Cuc  1 a 1 wreg ]
+"286
+} 0
+"189
+[v _PrintL3 `(v  1 e 0 0 ]
+{
+"204
+} 0
+"322
+[v _SetDiode `(v  1 e 0 0 ]
+{
+[v SetDiode@wd `uc  1 a 1 wreg ]
+[v SetDiode@wd `uc  1 a 1 wreg ]
+[v SetDiode@stn `uc  1 p 1 30 ]
+"325
+} 0
+"51
+[v _SetErr `(v  1 e 0 0 ]
+{
+[v SetErr@kod `Cuc  1 a 1 wreg ]
+[v SetErr@kod `Cuc  1 a 1 wreg ]
+"54
+} 0
+"59
+[v _SetMsg `(v  1 e 0 0 ]
+{
+[v SetMsg@kod `Cuc  1 a 1 wreg ]
+[v SetMsg@kod `Cuc  1 a 1 wreg ]
+"62
+} 0
+"2533 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.c
+[v _RestartMod `(v  1 e 0 0 ]
+{
+"2543
+} 0
+"1990 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _SetRozruch `(v  1 e 0 0 ]
+{
+"2010
+} 0
+"208 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[v _EndL3 `(v  1 e 0 0 ]
+{
+"211
+} 0
+"2208 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _SetWylacz `(v  1 e 0 0 ]
+{
+"2260
+} 0
+"182 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[v _SetL3 `(v  1 e 0 0 ]
+{
+"184
+} 0
+"2398 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _GrzejON `(v  1 e 0 0 ]
+{
+"2409
+} 0
+"2627
+[v _DecyzjaPLM `(v  1 e 0 0 ]
+{
+"2641
+} 0
+"2643
+[v _DecyzjaPLM2 `(v  1 e 0 0 ]
+{
+"2709
+} 0
+"69 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[v _PrintErr `(v  1 e 0 0 ]
+{
+[v PrintErr@kod `Cuc  1 a 1 wreg ]
+[v PrintErr@kod `Cuc  1 a 1 wreg ]
+[v PrintErr@pls `Cuc  1 p 1 36 ]
+"77
+} 0
+"3630 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _ErrPTG `(v  1 e 0 0 ]
+{
+"3792
+} 0
+"322 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _PomiarCO `(v  1 e 0 0 ]
+{
+"439
+} 0
+"460
+[v _PomiarCW `(v  1 e 0 0 ]
+{
+"549
+} 0
+"112 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\ac.c
+[v _ReadTabNTC `(uc  1 e 1 0 ]
+{
+[v ReadTabNTC@zrAC `uc  1 a 1 wreg ]
+"113
+[v ReadTabNTC@i `ui  1 a 2 33 ]
+"114
+[v ReadTabNTC@data `uc  1 a 1 32 ]
+"112
+[v ReadTabNTC@zrAC `uc  1 a 1 wreg ]
+"125
+} 0
+"909 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _PomiarCS `(v  1 e 0 0 ]
+{
+"911
+[v PomiarCS@cs `uc  1 a 1 9 ]
+[v PomiarCS@dac `uc  1 a 1 8 ]
+"910
+[v PomiarCS@pcs `uc  1 s 1 pcs ]
+"984
+} 0
+"707
+[v _PomiarPCO `(v  1 e 0 0 ]
+{
+"708
+[v PomiarPCO@pnst `uc  1 s 1 pnst ]
+"743
+} 0
+"770
+[v _PomiarPCW `(v  1 e 0 0 ]
+{
+"771
+[v PomiarPCW@pnst `uc  1 s 1 pnst ]
+"816
+} 0
+"129 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\ac.c
+[v _ReturnACfromNTC `(uc  1 e 1 0 ]
+{
+[v ReturnACfromNTC@data `uc  1 a 1 wreg ]
+"130
+[v ReturnACfromNTC@i `ui  1 a 2 33 ]
+"131
+[v ReturnACfromNTC@bdta `uc  1 a 1 32 ]
+"129
+[v ReturnACfromNTC@data `uc  1 a 1 wreg ]
+"138
+} 0
+"877 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _PomiarPFN `(v  1 e 0 0 ]
+{
+"878
+[v PomiarPFN@pnst `uc  1 s 1 pnst ]
+"905
+} 0
+"346 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _RefInterfaceData `(v  1 e 0 0 ]
+{
+"428
+} 0
+"3055
+[v _ZmienKCOKCW `(v  1 e 0 0 ]
+{
+"3144
+} 0
+"2714
+[v _Wylacz `(v  1 e 0 0 ]
+{
+"2932
+} 0
+"2937
+[v _VWybieg `(v  1 e 0 0 ]
+{
+"2963
+} 0
+"3354
+[v _Proba48 `(v  1 e 0 0 ]
+{
+"3380
+} 0
+"3386
+[v _Rusz48 `(v  1 e 0 0 ]
+{
+"3460
+} 0
+"3464
+[v _Proba48Z3 `(v  1 e 0 0 ]
+{
+"3506
+} 0
+"3511
+[v _Rusz48Z3 `(v  1 e 0 0 ]
+{
+"3538
+} 0
+"105 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rtimer.c
+[v _StartRTG `(v  1 e 0 0 ]
+{
+[v StartRTG@Index `Cuc  1 a 1 wreg ]
+[v StartRTG@Index `Cuc  1 a 1 wreg ]
+"109
+} 0
+"111
+[v _RTG `(uc  1 e 1 0 ]
+{
+[v RTG@Index `Cuc  1 a 1 wreg ]
+[v RTG@Index `Cuc  1 a 1 wreg ]
+"114
+} 0
+"1725 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _ToObiegCW `(v  1 e 0 0 ]
+{
+"1785
+} 0
+"1686
+[v _ToObiegCO `(v  1 e 0 0 ]
+{
+"1722
+} 0
+"381 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwm.c
+[v _WritePWM `(v  1 e 0 0 ]
+{
+[v WritePWM@tpwm `Cuc  1 a 1 wreg ]
+[v WritePWM@tpwm `Cuc  1 a 1 wreg ]
+"386
+} 0
+"2414 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _GrzejOFF `(v  1 e 0 0 ]
+{
+"2432
+} 0
+"3573
+[v _KeyRes `(b  1 e 0 0 ]
+{
+"3605
+} 0
+"305 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[v _RdPrt `(b  1 e 0 0 ]
+{
+[v RdPrt@Index `Cuc  1 a 1 wreg ]
+[v RdPrt@Index `Cuc  1 a 1 wreg ]
+"308
+} 0
+"3610 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\main.c
+[v _VZPauza `(v  1 e 0 0 ]
+{
+"3625
+} 0
+"3795
+[v _ToReset `(v  1 e 0 0 ]
+{
+"3811
+} 0
+"101 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\print.c
+[v _EndErr `(v  1 e 0 0 ]
+{
+"107
+} 0
+"78 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _StartTim1 `(v  1 e 0 0 ]
+{
+"80
+} 0
+"82
+[v _PmrTim1 `(b  1 e 0 0 ]
+{
+[v PmrTim1@tm `uc  1 a 1 wreg ]
+[v PmrTim1@tm `uc  1 a 1 wreg ]
+"85
+} 0
+"89
+[v _StartTim2 `(v  1 e 0 0 ]
+{
+"91
+} 0
+"93
+[v _PmrTim2 `(b  1 e 0 0 ]
+{
+[v PmrTim2@tm `uc  1 a 1 wreg ]
+[v PmrTim2@tm `uc  1 a 1 wreg ]
+"96
+} 0
+"111
+[v _GoldenEye `(v  1 e 0 0 ]
+{
+"112
+[v GoldenEye@dt `c  1 a 1 36 ]
+"113
+[v GoldenEye@pop `c  1 a 1 35 ]
+"199
+} 0
+"234
+[v _FltParMod `(v  1 e 0 0 ]
+{
+"236
+[v FltParMod@wr `uc  1 a 1 31 ]
+"235
+[v FltParMod@indtm `uc  1 s 1 indtm ]
+[v FltParMod@fco `uc  1 s 1 fco ]
+[v FltParMod@fcw `uc  1 s 1 fcw ]
+"282
+} 0
+"203
+[v _PredkoscZmianCW `(v  1 e 0 0 ]
+{
+"205
+[v PredkoscZmianCW@i `uc  1 a 1 30 ]
+[v PredkoscZmianCW@w `uc  1 a 1 29 ]
+"204
+[v PredkoscZmianCW@ffcw `uc  1 s 1 ffcw ]
+[v PredkoscZmianCW@indff `uc  1 s 1 indff ]
+"230
+} 0
+"562
+[v _SetModPCO `(v  1 e 0 0 ]
+{
+"613
+} 0
+"650
+[v _GetPGD_PCO `(uc  1 e 1 0 ]
+{
+"652
+[v GetPGD_PCO@m `l  1 a 4 1 ]
+"651
+[v GetPGD_PCO@p `uc  1 a 1 0 ]
+"692
+} 0
+"696
+[v _WritePCO `(v  1 e 0 0 ]
+{
+"703
+} 0
+"412 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[v _WriteEEPCO `(v  1 e 0 0 ]
+{
+"414
+} 0
+"748 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _WritePCW `(v  1 e 0 0 ]
+{
+"755
+} 0
+"402 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[v _WriteEEPCW `(v  1 e 0 0 ]
+{
+"404
+} 0
+"759 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _SetModPCW `(v  1 e 0 0 ]
+{
+"766
+} 0
+"866
+[v _WritePFN `(v  1 e 0 0 ]
+{
+"873
+} 0
+"422 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[v _WriteEEPFN `(v  1 e 0 0 ]
+{
+"424
+} 0
+"426
+[v _ReadEEPFN `(uc  1 e 1 0 ]
+{
+"428
+} 0
+"61 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[v _RefStan `(v  1 e 0 0 ]
+{
+"115
+} 0
+"120
+[v _FrsStan `(v  1 e 0 0 ]
+{
+"225
+} 0
+"630 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.c
+[v _WswOff `(v  1 e 0 0 ]
+{
+"632
+} 0
+"709
+[v _AllKolToFirstPoz `(v  1 e 0 0 ]
+{
+"710
+[v AllKolToFirstPoz@j `uc  1 a 1 29 ]
+"717
+} 0
+"635
+[v _WswOn `(v  1 e 0 0 ]
+{
+"637
+} 0
+"643
+[v _SetData `(v  1 e 0 0 ]
+{
+[v SetData@wData `*.bS2890  1 p 2 29 ]
+[v SetData@wdt1 `Cuc  1 p 1 31 ]
+[v SetData@wdt0 `Cuc  1 p 1 32 ]
+"646
+} 0
+"652
+[v _SetStatus `(v  1 e 0 0 ]
+{
+[v SetStatus@wData `*.bS2890  1 p 2 29 ]
+[v SetStatus@wst `Cui  1 p 2 31 ]
+[v SetStatus@mask `Cui  1 p 2 33 ]
+"671
+} 0
+"683
+[v _SetPoz `(v  1 e 0 0 ]
+{
+[v SetPoz@nrkol `Cuc  1 a 1 wreg ]
+[v SetPoz@nrkol `Cuc  1 a 1 wreg ]
+[v SetPoz@nrpoz `Cuc  1 p 1 29 ]
+"687
+} 0
+"696
+[v _ResetKol `(v  1 e 0 0 ]
+{
+[v ResetKol@nrkol `Cuc  1 a 1 wreg ]
+[v ResetKol@nrkol `Cuc  1 a 1 wreg ]
+"699
+} 0
+"703
+[v _RestartKol `(v  1 e 0 0 ]
+{
+[v RestartKol@nrkol `Cuc  1 a 1 wreg ]
+[v RestartKol@nrkol `Cuc  1 a 1 wreg ]
+"706
+} 0
+"615
+[v _Swsdid `(v  1 e 0 0 ]
+{
+[v Swsdid@dtd `uc  1 a 1 wreg ]
+[v Swsdid@dtd `uc  1 a 1 wreg ]
+"618
+} 0
+"621
+[v _Rwsdid `(v  1 e 0 0 ]
+{
+[v Rwsdid@dtd `uc  1 a 1 wreg ]
+[v Rwsdid@dtd `uc  1 a 1 wreg ]
+"624
+} 0
+"66 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwm.c
+[v _ModParam `(v  1 e 0 0 ]
+{
+[v ModParam@tpk `Cuc  1 a 1 wreg ]
+[v ModParam@tpk `Cuc  1 a 1 wreg ]
+[v ModParam@tpg `Cuc  1 p 1 31 ]
+"376
+} 0
+"446
+[v _MocStart `(v  1 e 0 0 ]
+{
+[v MocStart@nst `uc  1 a 1 wreg ]
+"447
+[v MocStart@tmp `ui  1 a 2 8 ]
+"446
+[v MocStart@nst `uc  1 a 1 wreg ]
+"452
+} 0
+"458
+[v _MocMaksCO `(v  1 e 0 0 ]
+{
+[v MocMaksCO@nst `uc  1 a 1 wreg ]
+"459
+[v MocMaksCO@tmp `ui  1 a 2 8 ]
+"458
+[v MocMaksCO@nst `uc  1 a 1 wreg ]
+"464
+} 0
+"470
+[v _MocMaksCW `(v  1 e 0 0 ]
+{
+[v MocMaksCW@nst `uc  1 a 1 wreg ]
+"471
+[v MocMaksCW@tmp `ui  1 a 2 8 ]
+"470
+[v MocMaksCW@nst `uc  1 a 1 wreg ]
+"476
+} 0
+"518 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.c
+[v _StartCO `(v  1 e 0 0 ]
+{
+"544
+} 0
+"749
+[v _ReadDataCO `(v  1 e 0 0 ]
+{
+"752
+} 0
+"731
+[v _ModToCO `(v  1 e 0 0 ]
+{
+"738
+} 0
+"301
+[v _ModZgCO `(v  1 e 0 0 ]
+{
+"302
+[v ModZgCO@m `l  1 a 4 1 ]
+"303
+[v ModZgCO@p `uc  1 a 1 0 ]
+"348
+} 0
+"352
+[v _ModDkCO `(v  1 e 0 0 ]
+{
+"353
+[v ModDkCO@m `l  1 a 4 8 ]
+"355
+[v ModDkCO@p `uc  1 a 1 7 ]
+[v ModDkCO@k `uc  1 a 1 6 ]
+"354
+[v ModDkCO@ada `c  1 a 1 5 ]
+"367
+} 0
+"742
+[v _IncConstCOCW `(v  1 e 0 0 ]
+{
+"745
+} 0
+"446
+[v _IncMaxCO `(v  1 e 0 0 ]
+{
+"471
+} 0
+"373
+[v _ModPruCO `(v  1 e 0 0 ]
+{
+"375
+[v ModPruCO@k `uc  1 a 1 1 ]
+[v ModPruCO@tmp `uc  1 a 1 0 ]
+"374
+[v ModPruCO@l `uc  1 s 1 l ]
+"441
+} 0
+"475
+[v _ModPrzCO `(v  1 e 0 0 ]
+{
+"493
+} 0
+"497
+[v _PropOPT `(v  1 e 0 0 ]
+{
+"508
+} 0
+"548
+[v _StartMCW `(v  1 e 0 0 ]
+{
+"569
+} 0
+"756
+[v _ReadDataCW `(v  1 e 0 0 ]
+{
+"761
+} 0
+"720
+[v _ModToCW `(v  1 e 0 0 ]
+{
+"727
+} 0
+"765
+[v _ModZgCW `(v  1 e 0 0 ]
+{
+"766
+[v ModZgCW@m `l  1 a 4 1 ]
+"767
+[v ModZgCW@p `uc  1 a 1 0 ]
+"813
+} 0
+"817
+[v _ModDkCW `(v  1 e 0 0 ]
+{
+"818
+[v ModDkCW@m `l  1 a 4 8 ]
+"820
+[v ModDkCW@p `uc  1 a 1 7 ]
+[v ModDkCW@k `uc  1 a 1 6 ]
+"819
+[v ModDkCW@ada `c  1 a 1 5 ]
+"849
+} 0
+"1074
+[v _IncMaxCW `(v  1 e 0 0 ]
+{
+"1137
+} 0
+"855
+[v _ModPruCW `(v  1 e 0 0 ]
+{
+"858
+[v ModPruCW@k `c  1 a 1 1 ]
+"857
+[v ModPruCW@tmp `uc  1 a 1 0 ]
+"856
+[v ModPruCW@l `uc  1 s 1 l ]
+[v ModPruCW@m `uc  1 s 1 m ]
+[v ModPruCW@o `uc  1 s 1 o ]
+[v ModPruCW@p `uc  1 s 1 p ]
+[v ModPruCW@q `uc  1 s 1 q ]
+[v ModPruCW@s `uc  1 s 1 s ]
+"1068
+} 0
+"1168
+[v _ModPrzCW `(v  1 e 0 0 ]
+{
+"1170
+[v ModPrzCW@r `i  1 a 2 1 ]
+"1169
+[v ModPrzCW@p `uc  1 a 1 3 ]
+[v ModPrzCW@maxmod `uc  1 a 1 0 ]
+"1288
+} 0
+"1295
+[v _PropCO `(v  1 e 0 0 ]
+{
+"1327
+} 0
+"1834
+[v _StartCO2 `(v  1 e 0 0 ]
+{
+"1887
+} 0
+"2010
+[v _ReadDataCO2 `(v  1 e 0 0 ]
+{
+"2013
+} 0
+"1982
+[v _ModToCO2 `(v  1 e 0 0 ]
+{
+"1989
+} 0
+"2003
+[v _IncConstCO2 `(v  1 e 0 0 ]
+{
+"2006
+} 0
+"1891
+[v _StartMCW2 `(v  1 e 0 0 ]
+{
+"1903
+} 0
+"2017
+[v _ReadDataCW2 `(v  1 e 0 0 ]
+{
+"2022
+} 0
+"1971
+[v _ModToCW2 `(v  1 e 0 0 ]
+{
+"1978
+} 0
+"2026
+[v _ModZgCW2 `(v  1 e 0 0 ]
+{
+"2027
+[v ModZgCW2@m `l  1 a 4 1 ]
+"2028
+[v ModZgCW2@p `uc  1 a 1 0 ]
+"2029
+[v ModZgCW2@pop `uc  1 s 1 pop ]
+"2093
+} 0
+"2097
+[v _ModDkCW2 `(v  1 e 0 0 ]
+{
+"2098
+[v ModDkCW2@m `l  1 a 4 8 ]
+"2099
+[v ModDkCW2@ada `c  1 a 1 7 ]
+"2100
+[v ModDkCW2@p `uc  1 a 1 6 ]
+[v ModDkCW2@k `uc  1 a 1 5 ]
+"2112
+} 0
+"1993
+[v _IncConstCW2 `(v  1 e 0 0 ]
+{
+"2000
+} 0
+"2313
+[v _IncMaxCW2 `(v  1 e 0 0 ]
+{
+"2335
+} 0
+"2118
+[v _ModPruCW2 `(v  1 e 0 0 ]
+{
+"2121
+[v ModPruCW2@k `c  1 a 1 1 ]
+"2120
+[v ModPruCW2@tmp `uc  1 a 1 0 ]
+"2119
+[v ModPruCW2@l `uc  1 s 1 l ]
+[v ModPruCW2@m `uc  1 s 1 m ]
+[v ModPruCW2@o `uc  1 s 1 o ]
+[v ModPruCW2@p `uc  1 s 1 p ]
+[v ModPruCW2@q `uc  1 s 1 q ]
+[v ModPruCW2@r `uc  1 s 1 r ]
+[v ModPruCW2@s `uc  1 s 1 s ]
+"2308
+} 0
+"2339
+[v _ModPrzCW2 `(v  1 e 0 0 ]
+{
+"2356
+} 0
+"2360
+[v _PropCO2 `(v  1 e 0 0 ]
+{
+"2390
+} 0
+"2424
+[v _StartMCO3 `(v  1 e 0 0 ]
+{
+"2449
+} 0
+"2417
+[v _ModToCO3 `(v  1 e 0 0 ]
+{
+"2420
+} 0
+"2401
+[v _ModToCW3 `(v  1 e 0 0 ]
+{
+"2413
+} 0
+"1337
+[v _StartCO4 `(v  1 e 0 0 ]
+{
+"1363
+} 0
+"1450
+[v _ReadDataCO4 `(v  1 e 0 0 ]
+{
+"1453
+} 0
+"1432
+[v _ModToCO4 `(v  1 e 0 0 ]
+{
+"1439
+} 0
+"1443
+[v _IncConstCOCW4 `(v  1 e 0 0 ]
+{
+"1446
+} 0
+"1367
+[v _StartMCW4 `(v  1 e 0 0 ]
+{
+"1384
+} 0
+"1457
+[v _ReadDataCW4 `(v  1 e 0 0 ]
+{
+"1462
+} 0
+"1421
+[v _ModToCW4 `(v  1 e 0 0 ]
+{
+"1428
+} 0
+"1466
+[v _ModZgCW4 `(v  1 e 0 0 ]
+{
+"1467
+[v ModZgCW4@m `l  1 a 4 1 ]
+"1468
+[v ModZgCW4@p `uc  1 a 1 0 ]
+"1469
+[v ModZgCW4@pop `uc  1 s 1 pop ]
+"1533
+} 0
+"1537
+[v _ModDkCW4 `(v  1 e 0 0 ]
+{
+"1538
+[v ModDkCW4@m `l  1 a 4 8 ]
+"1539
+[v ModDkCW4@ada `c  1 a 1 7 ]
+"1540
+[v ModDkCW4@p `uc  1 a 1 6 ]
+[v ModDkCW4@k `uc  1 a 1 5 ]
+"1552
+} 0
+"1699
+[v _IncMaxCW4 `(v  1 e 0 0 ]
+{
+"1722
+} 0
+"1558
+[v _ModPruCW4 `(v  1 e 0 0 ]
+{
+"1561
+[v ModPruCW4@k `c  1 a 1 1 ]
+"1560
+[v ModPruCW4@tmp `uc  1 a 1 0 ]
+"1559
+[v ModPruCW4@l `uc  1 s 1 l ]
+[v ModPruCW4@m `uc  1 s 1 m ]
+[v ModPruCW4@o `uc  1 s 1 o ]
+[v ModPruCW4@p `uc  1 s 1 p ]
+[v ModPruCW4@q `uc  1 s 1 q ]
+[v ModPruCW4@s `uc  1 s 1 s ]
+"1694
+} 0
+"1726
+[v _ModPrzCW4 `(v  1 e 0 0 ]
+{
+"1728
+[v ModPrzCW4@p `ui  1 a 2 9 ]
+"1727
+[v ModPrzCW4@trb `uc  1 s 1 trb ]
+"1788
+} 0
+"1792
+[v _PropCO4 `(v  1 e 0 0 ]
+{
+"1824
+} 0
+"400 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwm.c
+[v _WriteOPWM `(v  1 e 0 0 ]
+{
+[v WriteOPWM@tpwm `uc  1 a 1 wreg ]
+"402
+[v WriteOPWM@tmp `ui  1 a 2 10 ]
+"401
+[v WriteOPWM@aosc `uc  1 a 1 9 ]
+"400
+[v WriteOPWM@tpwm `uc  1 a 1 wreg ]
+"439
+} 0
+"2469 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.c
+[v _Tmaleje `(b  1 e 0 0 ]
+{
+[v Tmaleje@t `Cuc  1 a 1 wreg ]
+[v Tmaleje@t `Cuc  1 a 1 wreg ]
+"2471
+} 0
+"2476
+[v _Tstoi `(b  1 e 0 0 ]
+{
+"2478
+} 0
+"2502
+[v _Trowna `(b  1 e 0 0 ]
+{
+"2504
+} 0
+"2460
+[v _Trosnie `(b  1 e 0 0 ]
+{
+[v Trosnie@t `Cuc  1 a 1 wreg ]
+[v Trosnie@t `Cuc  1 a 1 wreg ]
+"2462
+} 0
+"632
+[v _FirstPCW `(uc  1 e 1 0 ]
+{
+"633
+[v FirstPCW@m `l  1 a 4 4 ]
+"634
+[v FirstPCW@maxmod `uc  1 a 1 3 ]
+[v FirstPCW@p2 `uc  1 a 1 2 ]
+[v FirstPCW@p `uc  1 a 1 1 ]
+[v FirstPCW@tmp `uc  1 a 1 0 ]
+"702
+} 0
+"706
+[v _ClrMod `(v  1 e 0 0 ]
+{
+"716
+} 0
+"1407
+[v _ClrMod4 `(v  1 e 0 0 ]
+{
+"1417
+} 0
+"1907
+[v _FirstPCW2 `(v  1 e 0 0 ]
+{
+"1957
+} 0
+"1961
+[v _ClrMod2 `(v  1 e 0 0 ]
+{
+"1967
+} 0
+"2511
+[v _TFrosnie `(b  1 e 0 0 ]
+{
+[v TFrosnie@t `Cuc  1 a 1 wreg ]
+[v TFrosnie@t `Cuc  1 a 1 wreg ]
+"2513
+} 0
+"2520
+[v _TFmaleje `(b  1 e 0 0 ]
+{
+[v TFmaleje@t `Cuc  1 a 1 wreg ]
+[v TFmaleje@t `Cuc  1 a 1 wreg ]
+"2522
+} 0
+"2527
+[v _TFstoi `(b  1 e 0 0 ]
+{
+"2529
+} 0
+"303 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[v _SetTpKtParam `(v  1 e 0 0 ]
+{
+"342
+} 0
+"213
+[v _SetNST `(v  1 e 0 0 ]
+{
+"240
+} 0
+"36 plib/EEP/read_B.c
+[v _Read_b_eep `(uc  1 e 1 0 ]
+{
+[v Read_b_eep@badd `ui  1 p 2 29 ]
+"45
+} 0
+"553 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _PomiarZW `(v  1 e 0 0 ]
+{
+"558
+} 0
+"97 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\ac.c
+[v _ReadAC `(uc  1 e 1 0 ]
+{
+[v ReadAC@chanel `uc  1 a 1 wreg ]
+[v ReadAC@chanel `uc  1 a 1 wreg ]
+"108
+} 0
+"142
+[v _ReadTabZNTC `(c  1 e 1 0 ]
+{
+[v ReadTabZNTC@zrAC `uc  1 a 1 wreg ]
+"143
+[v ReadTabZNTC@i `ui  1 a 2 33 ]
+"144
+[v ReadTabZNTC@data `c  1 a 1 32 ]
+"142
+[v ReadTabZNTC@zrAC `uc  1 a 1 wreg ]
+"155
+} 0
+"312 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[v _SetPrt `(v  1 e 0 0 ]
+{
+[v SetPrt@Index `Cuc  1 a 1 wreg ]
+[v SetPrt@Index `Cuc  1 a 1 wreg ]
+[v SetPrt@nw `Cuc  1 p 1 29 ]
+"316
+} 0
+"13 plib/EEP/busy_eep.c
+[v _Busy_eep `(v  1 e 0 0 ]
+{
+"15
+} 0
+"50 plib/EEP/write_B.c
+[v _Write_b_eep `(v  1 e 0 0 ]
+{
+"51
+[v Write_b_eep@GIE_BIT_VAL `uc  1 a 1 32 ]
+"50
+[v Write_b_eep@badd `ui  1 p 2 29 ]
+[v Write_b_eep@bdat `uc  1 p 1 31 ]
+"66
+} 0
+"366 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\konfig.c
+[v _SetPFN `(v  1 e 0 0 ]
+{
+"398
+} 0
+"159 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.c
+[v _RglPmp1 `(v  1 e 0 0 ]
+{
+"189
+} 0
+"39
+[v _ModPmp1 `(uc  1 e 1 0 ]
+{
+[v ModPmp1@p `uc  1 a 1 wreg ]
+"40
+[v ModPmp1@ppwm `uc  1 a 1 4 ]
+[v ModPmp1@pup `uc  1 a 1 3 ]
+[v ModPmp1@pdw `uc  1 a 1 2 ]
+[v ModPmp1@tim `uc  1 a 1 1 ]
+"39
+[v ModPmp1@p `uc  1 a 1 wreg ]
+"154
+} 0
+"456
+[v _RglPmp2 `(v  1 e 0 0 ]
+{
+"490
+} 0
+"70 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rtimer.c
+[v _StartRTS `(v  1 e 0 0 ]
+{
+[v StartRTS@Index `Cuc  1 a 1 wreg ]
+[v StartRTS@Index `Cuc  1 a 1 wreg ]
+"74
+} 0
+"391 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwm.c
+[v _WritePWM2 `(v  1 e 0 0 ]
+{
+[v WritePWM2@tpwm `Cuc  1 a 1 wreg ]
+[v WritePWM2@tpwm `Cuc  1 a 1 wreg ]
+"395
+} 0
+"76 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rtimer.c
+[v _RTS `(uc  1 e 1 0 ]
+{
+[v RTS@Index `Cuc  1 a 1 wreg ]
+[v RTS@Index `Cuc  1 a 1 wreg ]
+"79
+} 0
+"26 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.c
+[v _ProcToPmpPwm `(uc  1 e 1 0 ]
+{
+[v ProcToPmpPwm@prc `uc  1 a 1 wreg ]
+"27
+[v ProcToPmpPwm@p `ui  1 a 2 5 ]
+"26
+[v ProcToPmpPwm@prc `uc  1 a 1 wreg ]
+"33
+} 0
+"311
+[v _ModPmp2 `(uc  1 e 1 0 ]
+{
+[v ModPmp2@p `uc  1 a 1 wreg ]
+"312
+[v ModPmp2@ppwm `uc  1 a 1 9 ]
+[v ModPmp2@pup `uc  1 a 1 8 ]
+[v ModPmp2@pdw `uc  1 a 1 7 ]
+[v ModPmp2@tim `uc  1 a 1 6 ]
+"311
+[v ModPmp2@p `uc  1 a 1 wreg ]
+"451
+} 0
+"55 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rtimer.c
+[v _StartRTdS `(v  1 e 0 0 ]
+{
+[v StartRTdS@Index `Cuc  1 a 1 wreg ]
+[v StartRTdS@Index `Cuc  1 a 1 wreg ]
+"59
+} 0
+"61
+[v _RTdS `(uc  1 e 1 0 ]
+{
+[v RTdS@Index `Cuc  1 a 1 wreg ]
+[v RTdS@Index `Cuc  1 a 1 wreg ]
+"64
+} 0
+"2486 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rgl.c
+[v _Tnizsza `(b  1 e 0 0 ]
+{
+[v Tnizsza@t `Cuc  1 a 1 wreg ]
+[v Tnizsza@t `Cuc  1 a 1 wreg ]
+"2488
+} 0
+"2495
+[v _Twyzsza `(b  1 e 0 0 ]
+{
+[v Twyzsza@t `Cuc  1 a 1 wreg ]
+[v Twyzsza@t `Cuc  1 a 1 wreg ]
+"2497
+} 0
+"300 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pompa.c
+[v _RetDelta `(uc  1 e 1 0 ]
+{
+[v RetDelta@pco `uc  1 a 1 wreg ]
+"301
+[v RetDelta@k `uc  1 a 1 12 ]
+"300
+[v RetDelta@pco `uc  1 a 1 wreg ]
+[v RetDelta@eco `uc  1 p 1 37 ]
+"306
+} 0
+"283
+[v _RetKrkDelta `(uc  1 e 1 0 ]
+{
+[v RetKrkDelta@pco `uc  1 a 1 wreg ]
+"284
+[v RetKrkDelta@i `uc  1 a 1 10 ]
+[v RetKrkDelta@d `uc  1 a 1 9 ]
+[v RetKrkDelta@max `uc  1 a 1 8 ]
+[v RetKrkDelta@min `uc  1 a 1 7 ]
+"283
+[v RetKrkDelta@pco `uc  1 a 1 wreg ]
+"296
+} 0
+"212
+[v _RetHI `(uc  1 e 1 0 ]
+{
+[v RetHI@pco `uc  1 a 1 wreg ]
+"214
+[v RetHI@emax `uc  1 a 1 3 ]
+"213
+[v RetHI@w `c  1 a 1 2 ]
+"214
+[v RetHI@k `uc  1 a 1 0 ]
+"212
+[v RetHI@pco `uc  1 a 1 wreg ]
+[v RetHI@eco `uc  1 p 1 35 ]
+[v RetHI@max `uc  1 p 1 36 ]
+"225
+} 0
+"230
+[v _RetLO `(uc  1 e 1 0 ]
+{
+[v RetLO@pco `uc  1 a 1 wreg ]
+"232
+[v RetLO@ehi `uc  1 a 1 3 ]
+"231
+[v RetLO@w `c  1 a 1 2 ]
+"232
+[v RetLO@k `uc  1 a 1 0 ]
+"230
+[v RetLO@pco `uc  1 a 1 wreg ]
+[v RetLO@eco `uc  1 p 1 35 ]
+[v RetLO@min `uc  1 p 1 36 ]
+"244
+} 0
+"270
+[v _RetDelta4 `(uc  1 e 1 0 ]
+{
+[v RetDelta4@pco `uc  1 a 1 wreg ]
+"271
+[v RetDelta4@d `c  1 a 1 5 ]
+"270
+[v RetDelta4@pco `uc  1 a 1 wreg ]
+[v RetDelta4@eco `uc  1 p 1 0 ]
+[v RetDelta4@hi `uc  1 p 1 1 ]
+[v RetDelta4@lo `uc  1 p 1 2 ]
+"279
+} 0
+"197
+[v _RetMin `(c  1 e 1 0 ]
+{
+[v RetMin@a `c  1 a 1 wreg ]
+[v RetMin@a `c  1 a 1 wreg ]
+[v RetMin@b `c  1 p 1 32 ]
+"200
+} 0
+"204
+[v _RetMax `(c  1 e 1 0 ]
+{
+[v RetMax@a `c  1 a 1 wreg ]
+[v RetMax@a `c  1 a 1 wreg ]
+[v RetMax@b `c  1 p 1 29 ]
+"207
+} 0
+"248
+[v _RetDelta1 `(c  1 e 1 0 ]
+{
+[v RetDelta1@pco `uc  1 a 1 wreg ]
+[v RetDelta1@pco `uc  1 a 1 wreg ]
+[v RetDelta1@hi `uc  1 p 1 29 ]
+"250
+} 0
+"255
+[v _RetDelta2 `(c  1 e 1 0 ]
+{
+[v RetDelta2@eco `uc  1 a 1 wreg ]
+"256
+[v RetDelta2@kD `uc  1 a 1 31 ]
+"255
+[v RetDelta2@eco `uc  1 a 1 wreg ]
+[v RetDelta2@ddlt `uc  1 p 1 29 ]
+"260
+} 0
+"264
+[v _RetDelta3 `(c  1 e 1 0 ]
+{
+[v RetDelta3@pco `uc  1 a 1 wreg ]
+[v RetDelta3@pco `uc  1 a 1 wreg ]
+[v RetDelta3@lo `uc  1 p 1 29 ]
+"266
+} 0
+"130 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\keypad.c
+[v _PresKeyEX `(uc  1 e 1 0 ]
+{
+[v PresKeyEX@k `uc  1 a 1 wreg ]
+[v PresKeyEX@k `uc  1 a 1 wreg ]
+[s S5283 . 5 `uc 1 bk 1 0 :1:0 
+`uc 1 sbk 1 0 :1:1 
+`uc 1 ap 1 0 :1:2 
+`uc 1 dk 1 0 :1:3 
+`uc 1 fl 1 0 :1:4 
+`uc 1 c 1 0 :1:5 
+`uc 1 t 1 0 :1:6 
+`uc 1 cS 1 1 `uc 1 dS 1 2 `uc 1 krk 1 3 `uc 1 val 1 4 ]
+[v PresKeyEX@ky `*.bS5283  1 p 2 31 ]
+"186
+} 0
+"189
+[v _ResBufKeyEx `(v  1 e 0 0 ]
+{
+[v ResBufKeyEx@ky `*.bS5283  1 p 2 29 ]
+"193
+} 0
+"196
+[v _WaitToLowEx `(v  1 e 0 0 ]
+{
+[v WaitToLowEx@ky `*.bS5283  1 p 2 29 ]
+"199
+} 0
+"349 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\readdtal.c
+[v _ReadDataXONLID `(uc  1 e 1 0 ]
+{
+[v ReadDataXONLID@k `uc  1 a 1 wreg ]
+"352
+[v ReadDataXONLID@key `uc  1 a 1 5 ]
+"349
+[v ReadDataXONLID@k `uc  1 a 1 wreg ]
+[v ReadDataXONLID@ky `*.bS5283  1 p 2 0 ]
+[v ReadDataXONLID@dt `*.bui  1 p 2 2 ]
+[v ReadDataXONLID@ovf `*.buc  1 p 2 4 ]
+[v ReadDataXONLID@tid `uc  1 p 1 6 ]
+[v ReadDataXONLID@min `ui  1 p 2 7 ]
+[v ReadDataXONLID@max `ui  1 p 2 9 ]
+[v ReadDataXONLID@step `Cuc  1 p 1 11 ]
+[v ReadDataXONLID@step2 `Cuc  1 p 1 12 ]
+[v ReadDataXONLID@fst `Cuc  1 p 1 13 ]
+"350
+[v ReadDataXONLID@dtmo `b  1 s 0 dtmo ]
+"351
+[v ReadDataXONLID@ktu `uc  1 s 1 ktu ]
+[v ReadDataXONLID@iu `uc  1 s 1 iu ]
+[v ReadDataXONLID@pp `uc  1 s 1 pp ]
+[v ReadDataXONLID@es2 `uc  1 s 1 es2 ]
+"432
+} 0
+"287 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\keypad.c
+[v _ExxPresKey `(uc  1 e 1 0 ]
+{
+[v ExxPresKey@k `uc  1 a 1 wreg ]
+[v ExxPresKey@k `uc  1 a 1 wreg ]
+[v ExxPresKey@ky `*.bS5283  1 p 2 31 ]
+[v ExxPresKey@dTim `uc  1 p 1 33 ]
+[v ExxPresKey@pTim `uc  1 p 1 34 ]
+"324
+} 0
+"77
+[v _StartKeyTim `(v  1 e 0 0 ]
+{
+[v StartKeyTim@ky `*.bS5283  1 p 2 29 ]
+"80
+} 0
+"84
+[v _KeyTim `(uc  1 e 1 0 ]
+{
+[v KeyTim@ky `*.bS5283  1 p 2 29 ]
+"86
+} 0
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\aldiv.c
+[v ___aldiv `(l  1 e 4 0 ]
+{
+"11
+[v ___aldiv@quotient `l  1 a 4 2 ]
+"12
+[v ___aldiv@sign `uc  1 a 1 1 ]
+[v ___aldiv@counter `uc  1 a 1 0 ]
+"10
+[v ___aldiv@dividend `l  1 p 4 29 ]
+[v ___aldiv@divisor `l  1 p 4 33 ]
+"42
+} 0
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\awdiv.c
+[v ___awdiv `(i  1 e 2 0 ]
+{
+"11
+[v ___awdiv@quotient `i  1 a 2 6 ]
+"12
+[v ___awdiv@sign `uc  1 a 1 5 ]
+[v ___awdiv@counter `uc  1 a 1 4 ]
+"10
+[v ___awdiv@dividend `i  1 p 2 0 ]
+[v ___awdiv@divisor `i  1 p 2 2 ]
+"42
+} 0
+"5 C:\Program Files\Microchip\xc8\v1.12\sources\lbdiv.c
+[v ___lbdiv `(uc  1 e 1 0 ]
+{
+[v ___lbdiv@dividend `uc  1 a 1 wreg ]
+"6
+[v ___lbdiv@quotient `uc  1 a 1 32 ]
+"7
+[v ___lbdiv@counter `uc  1 a 1 31 ]
+"5
+[v ___lbdiv@dividend `uc  1 a 1 wreg ]
+[v ___lbdiv@divisor `uc  1 p 1 29 ]
+"26
+} 0
+"3 C:\Program Files\Microchip\xc8\v1.12\sources\lmul.c
+[v ___lmul `(ul  1 e 4 0 ]
+{
+"4
+[v ___lmul@product `ul  1 a 4 0 ]
+"3
+[v ___lmul@multiplier `ul  1 p 4 29 ]
+[v ___lmul@multiplicand `ul  1 p 4 33 ]
+"13
+} 0
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\lwdiv.c
+[v ___lwdiv `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwdiv@quotient `ui  1 a 2 36 ]
+"12
+[v ___lwdiv@counter `uc  1 a 1 35 ]
+"10
+[v ___lwdiv@dividend `ui  1 p 2 0 ]
+[v ___lwdiv@divisor `ui  1 p 2 2 ]
+"31
+} 0
+"10 C:\Program Files\Microchip\xc8\v1.12\sources\lwmod.c
+[v ___lwmod `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwmod@counter `uc  1 a 1 33 ]
+"10
+[v ___lwmod@dividend `ui  1 p 2 29 ]
+[v ___lwmod@divisor `ui  1 p 2 31 ]
+"26
+} 0
+"3 C:\Program Files\Microchip\xc8\v1.12\sources\wmul.c
+[v ___wmul `(ui  1 e 2 0 ]
+{
+"4
+[v ___wmul@product `ui  1 a 2 33 ]
+"3
+[v ___wmul@multiplier `ui  1 p 2 29 ]
+[v ___wmul@multiplicand `ui  1 p 2 31 ]
+"13
+} 0
+"10 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\isr.c
+[v _ISR `II(v  1 e 0 0 ]
+{
+"48
+} 0
+"75 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\i2c_s.c
+[v _I2CSlaveTR `(v  1 e 0 0 ]
+{
+"131
+} 0
+"182
+[v _SetTData `(v  1 e 0 0 ]
+{
+"207
+} 0
+"211
+[v _SetRData `(v  1 e 0 0 ]
+{
+"213
+} 0
+"163
+[v _ReceptDataI2C `(v  1 e 0 0 ]
+{
+"171
+} 0
+"136
+[v _LiczCHK `(uc  1 e 1 0 ]
+{
+[v LiczCHK@NBTI2C `Cuc  1 a 1 wreg ]
+"137
+[v LiczCHK@i `uc  1 a 1 7 ]
+"138
+[v LiczCHK@chk `uc  1 a 1 5 ]
+"136
+[v LiczCHK@NBTI2C `Cuc  1 a 1 wreg ]
+"142
+} 0
+"146
+[v _TransmitDataI2C `(v  1 e 0 0 ]
+{
+"159
+} 0
+"175
+[v _ToWork `(v  1 e 0 0 ]
+{
+"177
+} 0
+"217
+[v _FormatDataIMY `(v  1 e 0 0 ]
+{
+"399
+} 0
+"22 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\bit.c
+[v _BitSet `(v  1 e 0 0 ]
+{
+[v BitSet@data `*.buc  1 p 2 2 ]
+[v BitSet@nbit `Cuc  1 p 1 4 ]
+[v BitSet@bt `Cuc  1 p 1 5 ]
+"25
+} 0
+"59 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\uart9b.c
+[v _IntUSARTRC `(v  1 e 0 0 ]
+{
+"105
+} 0
+"128
+[v _IntUSARTTR `(v  1 e 0 0 ]
+{
+"141
+} 0
+"55 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\timer1.c
+[v _ReloadTimer1 `(v  1 e 0 0 ]
+{
+"58
+} 0
+"120 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\rtimer.c
+[v _IncRTimer `(v  1 e 0 0 ]
+{
+"122
+[v IncRTimer@i `uc  1 a 1 0 ]
+"210
+} 0
+"70 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pomiar.c
+[v _IncPmrTimer `(v  1 e 0 0 ]
+{
+"74
+} 0
+"27 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\keypad.c
+[v _IncKeyTimer `(v  1 e 0 0 ]
+{
+"28
+[v IncKeyTimer@i `uc  1 a 1 0 ]
+"73
+} 0
+"307 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.c
+[v _RefreshWSW `(v  1 e 0 0 ]
+{
+"314
+} 0
+"263 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[v _StabPort `(v  1 e 0 0 ]
+{
+"265
+[v StabPort@i `uc  1 a 1 7 ]
+[v StabPort@delay `uc  1 a 1 6 ]
+"264
+[v StabPort@tim `uc  1 s 1 tim ]
+"301
+} 0
+"488 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\pwm.c
+[v _IntPWM `(v  1 e 0 0 ]
+{
+"489
+[v IntPWM@btOsc `b  1 s 0 btOsc ]
+"528
+} 0
+"532
+[v _IntPWM2 `(v  1 e 0 0 ]
+{
+"558
+} 0
+"250 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\uart9b.c
+[v _VerifyNDatCHK `(uc  1 e 1 0 ]
+{
+[v VerifyNDatCHK@Data `Cuc  1 a 1 wreg ]
+[v VerifyNDatCHK@Data `Cuc  1 a 1 wreg ]
+"253
+} 0
+"241
+[v _SetNDatCHK `(uc  1 e 1 0 ]
+{
+[v SetNDatCHK@Data `Cuc  1 a 1 wreg ]
+"242
+[v SetNDatCHK@d `uc  1 a 1 5 ]
+[v SetNDatCHK@b `uc  1 a 1 4 ]
+[v SetNDatCHK@a `uc  1 a 1 3 ]
+"241
+[v SetNDatCHK@Data `Cuc  1 a 1 wreg ]
+"247
+} 0
+"320 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\wsw.c
+[v _KolProc `(v  1 e 0 0 ]
+{
+"321
+[v KolProc@j `uc  1 a 1 15 ]
+[v KolProc@i `uc  1 a 1 14 ]
+[v KolProc@k `uc  1 a 1 13 ]
+[v KolProc@nC `uc  1 a 1 12 ]
+[v KolProc@l `uc  1 a 1 11 ]
+"418
+} 0
+"425
+[v _SetPrWswData `(v  1 e 0 0 ]
+{
+"426
+[v SetPrWswData@i `uc  1 a 1 1 ]
+"436
+} 0
+"442
+[v _FormatWswData `(v  1 e 0 0 ]
+{
+"504
+} 0
+"509
+[v _PrintWswData `(v  1 e 0 0 ]
+{
+"511
+[v PrintWswData@i `uc  1 a 1 6 ]
+[v PrintWswData@k `uc  1 a 1 5 ]
+[v PrintWswData@j `uc  1 a 1 4 ]
+"564
+} 0
+"581
+[v _Swbty `(v  1 e 0 0 ]
+{
+[v Swbty@dtd `uc  1 a 1 wreg ]
+"582
+[v Swbty@mask `uc  1 a 1 0 ]
+"581
+[v Swbty@dtd `uc  1 a 1 wreg ]
+"595
+} 0
+"598
+[v _Rwbty `(v  1 e 0 0 ]
+{
+[v Rwbty@dtd `uc  1 a 1 wreg ]
+"599
+[v Rwbty@mask `uc  1 a 1 0 ]
+"598
+[v Rwbty@dtd `uc  1 a 1 wreg ]
+"612
+} 0
+"5 C:\Program Files\Microchip\xc8\v1.12\sources\lbmod.c
+[v ___lbmod `(uc  1 e 1 0 ]
+{
+[v ___lbmod@dividend `uc  1 a 1 wreg ]
+"6
+[v ___lbmod@rem `uc  1 a 1 3 ]
+"7
+[v ___lbmod@counter `uc  1 a 1 2 ]
+"5
+[v ___lbmod@dividend `uc  1 a 1 wreg ]
+[v ___lbmod@divisor `uc  1 p 1 0 ]
+"18
+} 0
+"305 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[v i2_RdPrt `(b  1 e 0 0 ]
+{
+[v i2RdPrt@Index `Cuc  1 a 1 wreg ]
+[v i2RdPrt@Index `Cuc  1 a 1 wreg ]
+"308
+} 0
+"5 C:\Program Files\Microchip\xc8\v1.12\sources\lbdiv.c
+[v i2___lbdiv `(uc  1 e 1 0 ]
+{
+[v i2___lbdiv@dividend `uc  1 a 1 wreg ]
+[v i2___lbdiv@quotient `uc  1 a 1 3 ]
+[v i2___lbdiv@counter `uc  1 a 1 2 ]
+[v i2___lbdiv@dividend `uc  1 a 1 wreg ]
+[v i2___lbdiv@divisor `uc  1 p 1 0 ]
+"26
+} 0
+"61 C:\praca\PICC\T02_T03\UNI-02\PLCD_T02\xc8\T02_v6ppwmLED\port.c
+[v i2_RefStan `(v  1 e 0 0 ]
+{
+[v i2_RefStan$2769 `uc  1 a 1 3 ]
+[v i2_RefStan$2768 `uc  1 a 1 2 ]
+[v i2_RefStan$2767 `uc  1 a 1 1 ]
+"115
+} 0

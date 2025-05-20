@@ -1,0 +1,2668 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Mar 20 08:54:40 2013
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	eeprom_data,global,class=EEDATA,delta=1
+     5                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     6                           	psect	bss,global,class=RAM,space=1,delta=1
+     7                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     8                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     	;#
+    98                           
+    99                           	psect	text
+   100                           ;wsw.tp.h: 11: typedef struct {
+   101                           ;wsw.tp.h: 12: unsigned focus:1;
+   102                           ;wsw.tp.h: 13: unsigned dec:1;
+   103                           ;wsw.tp.h: 14: unsigned hex:1;
+   104                           ;wsw.tp.h: 15: unsigned autoOFF:1;
+   105                           ;wsw.tp.h: 16: unsigned kropka0:1;
+   106                           ;wsw.tp.h: 17: unsigned kropka1:1;
+   107                           ;wsw.tp.h: 18: unsigned wygas0:1;
+   108                           ;wsw.tp.h: 19: unsigned wygas1:1;
+   109                           ;wsw.tp.h: 20: unsigned led0:1;
+   110                           ;wsw.tp.h: 21: unsigned led1:1;
+   111                           ;wsw.tp.h: 22: unsigned sdiode:1;
+   112                           ;wsw.tp.h: 23: unsigned rdiode:1;
+   113                           ;wsw.tp.h: 24: unsigned wbdid:4;
+   114                           ;wsw.tp.h: 25: }WStatus;
+   115                           ;wsw.tp.h: 28: typedef struct {
+   116                           ;wsw.tp.h: 29: unsigned char Data1;
+   117                           ;wsw.tp.h: 30: unsigned char Data0;
+   118                           ;wsw.tp.h: 31: }WData;
+   119                           ;wsw.tp.h: 33: typedef struct {
+   120                           ;wsw.tp.h: 34: WStatus St;
+   121                           ;wsw.tp.h: 35: WData Dt;
+   122                           ;wsw.tp.h: 36: }WPack;
+   123                           ;wsw.tp.h: 39: typedef struct {
+   124                           ;wsw.tp.h: 40: unsigned setOff:1;
+   125                           ;wsw.tp.h: 41: unsigned char dLed1;
+   126                           ;wsw.tp.h: 42: unsigned char dLed0;
+   127                           ;wsw.tp.h: 43: }LedPack;
+   128                           ;wsw.tp.h: 50: typedef struct {
+   129                           ;wsw.tp.h: 51: WPack *PAdr;
+   130                           ;wsw.tp.h: 52: }KAdrPoz;
+   131                           ;wsw.tp.h: 55: typedef struct {
+   132                           ;wsw.tp.h: 56: WData PWrt;
+   133                           ;wsw.tp.h: 57: unsigned char delay;
+   134                           ;wsw.tp.h: 58: }KWrtPoz;
+   135                           ;wsw.tp.h: 61: typedef struct {
+   136                           ;wsw.tp.h: 62: WStatus PFrm;
+   137                           ;wsw.tp.h: 63: }KFrmPoz;
+   138                           ;wsw.tp.h: 66: typedef struct {
+   139                           ;wsw.tp.h: 67: unsigned focus:1;
+   140                           ;wsw.tp.h: 68: }KFocus;
+   141                           ;wsw.tp.h: 71: typedef struct {
+   142                           ;wsw.tp.h: 72: WPack *CAdr;
+   143                           ;wsw.tp.h: 73: unsigned char nCykli;
+   144                           ;wsw.tp.h: 74: unsigned char DMask;
+   145                           ;wsw.tp.h: 75: }KOutput;
+   146                           ;wsw.tp.h: 77: typedef struct {
+   147                           ;wsw.tp.h: 78: const KAdrPoz *KAP;
+   148                           ;wsw.tp.h: 79: const KWrtPoz *KWP;
+   149                           ;wsw.tp.h: 80: const KFrmPoz *KFP;
+   150                           ;wsw.tp.h: 81: KFocus *KFc;
+   151                           ;wsw.tp.h: 82: const KOutput *KOut;
+   152                           ;wsw.tp.h: 83: }Kolejka;
+   153                           ;wsw.tp.h: 90: typedef struct {
+   154                           ;wsw.tp.h: 91: const Kolejka *KL;
+   155                           ;wsw.tp.h: 92: unsigned char nPzc;
+   156                           ;wsw.tp.h: 93: }KGlobal;
+   157                           ;wsw.tp.h: 97: typedef struct {
+   158                           ;wsw.tp.h: 98: unsigned restart:1;
+   159                           ;wsw.tp.h: 99: unsigned reset:1;
+   160                           ;wsw.tp.h: 100: unsigned indeks:6;
+   161                           ;wsw.tp.h: 101: }KIndeks;
+   162                           ;wsw.tp.h: 105: typedef struct {
+   163                           ;wsw.tp.h: 106: unsigned char ncS;
+   164                           ;wsw.tp.h: 107: unsigned char ndS;
+   165                           ;wsw.tp.h: 108: unsigned char cykl;
+   166                           ;wsw.tp.h: 109: }KTime;
+   167                           ;wsw.h: 109: void KolProc(void);
+   168                           ;wsw.h: 110: void Pulse(void);
+   169                           ;wsw.h: 111: void SetPrWswData(void);
+   170                           ;wsw.h: 112: void FormatWswData(void);
+   171                           ;wsw.h: 113: void PrintWswData(void);
+   172                           ;wsw.h: 114: void SetWbtyBit(unsigned char nrbty
+      +                          , unsigned char nrbit, const unsigned char bt);
+   173                           ;wsw.h: 116: void WswOff(void);
+   174                           ;wsw.h: 117: void WswOn(void);
+   175                           ;wsw.h: 118: void SetData(WPack *wData,const uns
+      +                          igned char wdt1,const unsigned char wdt0);
+   176                           ;wsw.h: 119: void SetStatus(WPack *wData,const u
+      +                          nsigned int wst,const unsigned int mask);
+   177                           ;wsw.h: 120: void SetPoz(const unsigned char nrk
+      +                          ol,const unsigned char nrpoz);
+   178                           ;wsw.h: 121: void ResetPoz(const unsigned char n
+      +                          rkol,const unsigned char nrpoz);
+   179                           ;wsw.h: 122: void ResetKol(const unsigned char n
+      +                          rkol);
+   180                           ;wsw.h: 123: void RestartKol(const unsigned char
+      +                           nrkol);
+   181                           ;wsw.h: 124: void BitSet(unsigned char *data, co
+      +                          nst unsigned char nbit,const unsigned char bt);
+   182                           ;main.tp.h: 7: typedef struct {
+   183                           ;main.tp.h: 8: unsigned _pob_KCO;
+   184                           ;main.tp.h: 9: unsigned _pob_KCW;
+   185                           ;main.tp.h: 10: unsigned _pob_SRW;
+   186                           ;main.tp.h: 11: unsigned _pob_AL;
+   187                           ;main.tp.h: 12: unsigned _pob_CW;
+   188                           ;main.tp.h: 13: unsigned _pob_CO;
+   189                           ;main.tp.h: 14: unsigned _pob_DzCO;
+   190                           ;main.tp.h: 15: unsigned _pob_DzCW;
+   191                           ;main.tp.h: 17: unsigned _WYLACZ:1;
+   192                           ;main.tp.h: 18: unsigned _ZMKCOCW:1;
+   193                           ;main.tp.h: 19: unsigned _ROZRUCH:1;
+   194                           ;main.tp.h: 20: unsigned _RUSZ_48:1;
+   195                           ;main.tp.h: 21: unsigned _RUSZ_48Z3:1;
+   196                           ;main.tp.h: 22: unsigned _RUSZ_PWR:1;
+   197                           ;main.tp.h: 23: unsigned _VWYBIEG:1;
+   198                           ;main.tp.h: 24: unsigned _RUSZ_CIAG:1;
+   199                           ;main.tp.h: 25: unsigned _RUSZ_PLOMIEN:1;
+   200  00B492                     _EnKonf:
+   201  000000                     
+   202                           ;konfig.c: 36: DtKNF.enknf=1;
+   203  00B492  0100               	movlb	_DtKNF shr (0+8)
+   204  00B494  8184               	bsf	_DtKNF& (0+255),0,b
+   205                           ;konfig.c: 37: StartRTS(0);
+   206  00B496  0E00               	movlw	0
+   207  00B498  EFA4  F06E         	goto	_StartRTS
+   208                           ;konfig.c: 38: }
+   209  00B49C                     __end_of_EnKonf:
+   210                           ;konfig.c: 42: void MKonfiguracja(void)
+   211                           ;konfig.c: 43: {
+   212  00B49C                     _MKonfiguracja:
+   213  000000                     
+   214                           ;konfig.c: 44: static unsigned char bf_AKTYWNE_K
+      +                          NF=0, bf_SAVE_PAR=0;
+   215  00B49C  0100               	movlb	__Lparam shr (0+8)
+   216  00B49E  6BD7               	clrf	?_GetBit2^(__Lparam& (0+65280)),b
+   217  00B4A0  C0C5  FFE8         	movff	_RSDT1+47,wreg
+   218  00B4A4  EC41  F071         	call	_GetBit2
+   219  00B4A8  0E00               	movlw	0
+   220  00B4AA  B0D8               	btfsc	status,0,c
+   221  00B4AC  0E01               	movlw	1
+   222  00B4AE  0101               	movlb	(_M+24) shr (0+8)
+   223  00B4B0  6F92               	movwf	(_M+24)& (0+255),b
+   224  00B4B2  6B93               	clrf	(_M+25)& (0+255),b
+   225                           ;konfig.c: 49: if(DtKNF.enknf&&(M._AKTYWNE_KNF||
+      +                          (RTS(0)>=20)))
+   226  00B4B4  0100               	movlb	_DtKNF shr (0+8)
+   227  00B4B6  A184               	btfss	_DtKNF& (0+255),0,b
+   228  00B4B8  D00D               	goto	l26
+   229  00B4BA  0101               	movlb	(_M+24) shr (0+8)
+   230  00B4BC  5192               	movf	(_M+24)& (0+255),w,b
+   231  00B4BE  1193               	iorwf	(_M+25)& (0+255),w,b
+   232  00B4C0  E107               	bnz	u50
+   233  00B4C2  0E00               	movlw	0
+   234  00B4C4  ECB6  F06E         	call	_RTS
+   235  00B4C8  6E00               	movwf	btemp,c
+   236  00B4CA  0E14               	movlw	20
+   237  00B4CC  5C00               	subwf	btemp,w,c
+   238  00B4CE  E302               	bnc	l26
+   239  00B4D0                     u50:
+   240                           ;konfig.c: 50: {
+   241  00B4D0  0100               	movlb	_DtKNF shr (0+8)
+   242  00B4D2  9184               	bcf	_DtKNF& (0+255),0,b
+   243  00B4D4                     l26:
+   244                           ;konfig.c: 52: }
+   245  00B4D4  010E               	movlb	F1617 shr (0+8)
+   246  00B4D6  53EE               	movf	F1617& (0+255),f,b
+   247  00B4D8  E004               	bz	u81
+   248  00B4DA  0101               	movlb	(_M+24) shr (0+8)
+   249  00B4DC  5192               	movf	(_M+24)& (0+255),w,b
+   250  00B4DE  1193               	iorwf	(_M+25)& (0+255),w,b
+   251  00B4E0  E003               	bz	u100
+   252  00B4E2                     u81:
+   253  00B4E2  0100               	movlb	_MGSD shr (0+8)
+   254  00B4E4  BD7F               	btfsc	_MGSD& (0+255),6,b
+   255  00B4E6  D008               	goto	l27
+   256  00B4E8                     u100:
+   257                           ;konfig.c: 55: {
+   258  00B4E8  010E               	movlb	F1617 shr (0+8)
+   259  00B4EA  6BEE               	clrf	F1617& (0+255),b
+   260                           ;konfig.c: 57: DtKNF.wymCO=0;
+   261  00B4EC  0100               	movlb	_DtKNF shr (0+8)
+   262  00B4EE  9384               	bcf	_DtKNF& (0+255),1,b
+   263                           ;konfig.c: 58: DtKNF.wymCW=0;
+   264  00B4F0  9584               	bcf	_DtKNF& (0+255),2,b
+   265                           ;konfig.c: 59: bf_SAVE_PAR=0;
+   266  00B4F2  010E               	movlb	F1618 shr (0+8)
+   267  00B4F4  6BEF               	clrf	F1618& (0+255),b
+   268                           ;konfig.c: 60: RdEEParam();
+   269  00B4F6  D2BE               	goto	_RdEEParam	;wreg free
+   270                           ;konfig.c: 61: return;
+   271  00B4F8                     l27:
+   272                           ;konfig.c: 62: }
+   273  00B4F8  0101               	movlb	(_M+24) shr (0+8)
+   274  00B4FA  5192               	movf	(_M+24)& (0+255),w,b
+   275  00B4FC  1193               	iorwf	(_M+25)& (0+255),w,b
+   276  00B4FE  B4D8               	btfsc	status,2,c
+   277  00B500  0012               	return	
+   278                           ;konfig.c: 64: {
+   279  00B502  010E               	movlb	F1617 shr (0+8)
+   280  00B504  53EE               	movf	F1617& (0+255),f,b
+   281  00B506  E102               	bnz	l29
+   282  00B508  010E               	movlb	F1618 shr (0+8)
+   283  00B50A  6BEF               	clrf	F1618& (0+255),b
+   284  00B50C                     l29:
+   285                           ;konfig.c: 66: bf_AKTYWNE_KNF=1;
+   286  00B50C  0E01               	movlw	1
+   287  00B50E  CFE8 FEEE          	movff	wreg,F1617
+   288                           ;konfig.c: 67: DtKNF.KRK=RSDT1.inKRK;
+   289  00B512  C0C8  F086         	movff	_RSDT1+50,_DtKNF+2
+   290                           ;konfig.c: 68: switch(DtKNF.KRK)
+   291  00B516  D049               	goto	l31
+   292  00B518                     l32:
+   293                           ;konfig.c: 69: {
+   294                           ;konfig.c: 71: {
+   295  00B518  0100               	movlb	_DtKNF shr (0+8)
+   296  00B51A  9384               	bcf	_DtKNF& (0+255),1,b
+   297                           ;konfig.c: 73: DtKNF.wymCW=0;
+   298  00B51C  9584               	bcf	_DtKNF& (0+255),2,b
+   299                           ;konfig.c: 74: RefKnfPar();
+   300  00B51E  D04E               	goto	_RefKnfPar	;wreg free
+   301                           ;konfig.c: 75: break;
+   302  00B520                     l33:
+   303                           ;konfig.c: 76: }
+   304                           ;konfig.c: 78: {
+   305  00B520  C0C9  F085         	movff	_RSDT1+51,_DtKNF+1
+   306                           ;konfig.c: 80: if(DtKNF.PRM>2)
+   307  00B524  0E02               	movlw	2
+   308  00B526  0100               	movlb	(_DtKNF+1) shr (0+8)
+   309  00B528  6585               	cpfsgt	(_DtKNF+1)& (0+255),b
+   310  00B52A  D02E               	goto	l36
+   311                           ;konfig.c: 81: {
+   312  00B52C  9384               	bcf	_DtKNF& (0+255),1,b
+   313                           ;konfig.c: 83: DtKNF.wymCW=0;
+   314  00B52E  9584               	bcf	_DtKNF& (0+255),2,b
+   315                           ;konfig.c: 84: }
+   316  00B530  D02B               	goto	l36
+   317  00B532                     l37:
+   318                           ;konfig.c: 87: {
+   319                           ;konfig.c: 90: {
+   320  00B532  C0CA  F087         	movff	_RSDT1+52,_DtKNF+3
+   321                           ;konfig.c: 92: MocStart(DtKNF.mstr);
+   322  00B536  C087  FFE8         	movff	_DtKNF+3,wreg
+   323  00B53A  ECEF  F061         	call	_MocStart
+   324                           ;konfig.c: 93: DtKNF.wymCO=1;
+   325  00B53E  0100               	movlb	_DtKNF shr (0+8)
+   326  00B540  8384               	bsf	_DtKNF& (0+255),1,b
+   327                           ;konfig.c: 94: DtKNF.wymCW=0;
+   328  00B542  9584               	bcf	_DtKNF& (0+255),2,b
+   329                           ;konfig.c: 95: break;
+   330  00B544  0012               	return	
+   331  00B546                     l38:
+   332                           ;konfig.c: 96: }
+   333                           ;konfig.c: 99: {
+   334  00B546  C0CA  F088         	movff	_RSDT1+52,_DtKNF+4
+   335                           ;konfig.c: 101: MocMaksCW(DtKNF.mxcw);
+   336  00B54A  C088  FFE8         	movff	_DtKNF+4,wreg
+   337  00B54E  EC63  F062         	call	_MocMaksCW
+   338                           ;konfig.c: 102: DtKNF.wymCO=0;
+   339  00B552  0100               	movlb	_DtKNF shr (0+8)
+   340  00B554  9384               	bcf	_DtKNF& (0+255),1,b
+   341                           ;konfig.c: 103: if(DtKNF.tpkt==0)
+   342  00B556  EE00  F08B         	lfsr	0,_DtKNF+7
+   343  00B55A  50EF               	movf	indf0,w,c
+   344  00B55C  E102               	bnz	l39
+   345                           ;konfig.c: 104: {
+   346  00B55E  8584               	bsf	_DtKNF& (0+255),2,b
+   347                           ;konfig.c: 106: }
+   348  00B560  0012               	return	
+   349  00B562                     l39:
+   350                           ;konfig.c: 107: else
+   351  00B562  0E0B               	movlw	11
+   352  00B564  ECA6  F068         	call	_RdPrt
+   353  00B568  0100               	movlb	_DtKNF shr (0+8)
+   354  00B56A  E302               	bnc	L2
+   355  00B56C  8584               	bsf	_DtKNF& (0+255),2,b
+   356  00B56E  0012               	return	
+   357                           ;konfig.c: 110: else DtKNF.wymCW=0;
+   358  00B570                     L2:
+   359  00B570  9584               	bcf	_DtKNF& (0+255),2,b
+   360                           ;konfig.c: 111: }
+   361  00B572  0012               	return	
+   362  00B574                     l43:
+   363                           ;konfig.c: 113: }
+   364                           ;konfig.c: 116: {
+   365  00B574  C0CA  F089         	movff	_RSDT1+52,_DtKNF+5
+   366                           ;konfig.c: 118: MocMaksCO(DtKNF.mxco);
+   367  00B578  C089  FFE8         	movff	_DtKNF+5,wreg
+   368  00B57C  EC29  F062         	call	_MocMaksCO
+   369                           ;konfig.c: 119: DtKNF.wymCO=1;
+   370  00B580  0100               	movlb	_DtKNF shr (0+8)
+   371  00B582  8384               	bsf	_DtKNF& (0+255),1,b
+   372                           ;konfig.c: 120: DtKNF.wymCW=0;
+   373  00B584  9584               	bcf	_DtKNF& (0+255),2,b
+   374                           ;konfig.c: 121: break;
+   375  00B586  0012               	return	
+   376  00B588                     l36:
+   377  00B588  C085  FFE8         	movff	_DtKNF+1,wreg
+   378  00B58C  0A00               	xorlw	0
+   379  00B58E  E0D1               	bz	l37
+   380  00B590  0A01               	xorlw	1
+   381  00B592  E0D9               	bz	l38
+   382  00B594  0A03               	xorlw	3
+   383  00B596  E0EE               	bz	l43
+   384  00B598  0012               	return	
+   385                           ;konfig.c: 124: break;
+   386  00B59A                     l44:
+   387                           ;konfig.c: 125: }
+   388                           ;konfig.c: 127: {
+   389  00B59A  010E               	movlb	F1618 shr (0+8)
+   390  00B59C  53EF               	movf	F1618& (0+255),f,b
+   391  00B59E  A4D8               	btfss	status,2,c
+   392  00B5A0  0012               	return	
+   393  00B5A2  D82B               	call	_SaveKnfPar	;wreg free
+   394  00B5A4  CFE8 FEEF          	movff	wreg,F1618
+   395                           ;konfig.c: 129: break;
+   396  00B5A8  0012               	return	
+   397  00B5AA                     l31:
+   398  00B5AA  C086  FFE8         	movff	_DtKNF+2,wreg
+   399  00B5AE  0A02               	xorlw	2
+   400  00B5B0  E0B3               	bz	l32
+   401  00B5B2  0A01               	xorlw	1
+   402  00B5B4  E0B5               	bz	l33
+   403  00B5B6  0A07               	xorlw	7
+   404  00B5B8  E0F0               	bz	l44
+   405  00B5BA  0012               	return	
+   406                           ;konfig.c: 132: }
+   407  00B5BC                     __end_of_MKonfiguracja:
+   408                           ;konfig.c: 134: unsigned char RefKnfPar(void)
+   409                           ;konfig.c: 135: {
+   410  00B5BC                     _RefKnfPar:
+   411  000000                     
+   412                           ;konfig.c: 136: if(RSDT1.RD_KNF)
+   413  00B5BC  0100               	movlb	(_RSDT1+1) shr (0+8)
+   414  00B5BE  A397               	btfss	(_RSDT1+1)& (0+255),1,b
+   415  00B5C0  0C00               	retlw	0
+   416                           ;konfig.c: 137: {
+   417  00B5C2  8597               	bsf	(_RSDT1+1)& (0+255),2,b
+   418                           ;konfig.c: 139: DtKNF.mstr=RSDT1.inMSTR;
+   419  00B5C4  C0CB  F087         	movff	_RSDT1+53,_DtKNF+3
+   420                           ;konfig.c: 140: DtKNF.mxcw=RSDT1.inMMAXU;
+   421  00B5C8  C0CC  F088         	movff	_RSDT1+54,_DtKNF+4
+   422                           ;konfig.c: 141: DtKNF.mxco=RSDT1.inMMAXG;
+   423  00B5CC  C0CD  F089         	movff	_RSDT1+55,_DtKNF+5
+   424                           ;konfig.c: 142: DtKNF.rdgz=RSDT1.inRGZ;
+   425  00B5D0  C0CE  F08C         	movff	_RSDT1+56,_DtKNF+8
+   426                           ;konfig.c: 143: DtKNF.aleg=RSDT1.inWANL;
+   427  00B5D4  C0CF  F095         	movff	_RSDT1+57,_DtKNF+17
+   428                           ;konfig.c: 144: DtKNF.tpkt=RSDT1.inTPKT;
+   429  00B5D8  C0D0  F08B         	movff	_RSDT1+58,_DtKNF+7
+   430                           ;konfig.c: 145: DtKNF.robg=RSDT1.inWOBG;
+   431  00B5DC  C0D1  F092         	movff	_RSDT1+59,_DtKNF+14
+   432                           ;konfig.c: 146: DtKNF.opdg=RSDT1.inOPDG;
+   433  00B5E0  C0D2  F093         	movff	_RSDT1+60,_DtKNF+15
+   434                           ;konfig.c: 147: DtKNF.tpcs=RSDT1.inTPCS;
+   435  00B5E4  C0D3  F094         	movff	_RSDT1+61,_DtKNF+16
+   436                           ;konfig.c: 148: DtKNF.rdpm=RSDT1.inRDPM;
+   437  00B5E8  C0D4  F08D         	movff	_RSDT1+62,_DtKNF+9
+   438                           ;konfig.c: 149: DtKNF.dtpm=RSDT1.inDTPM;
+   439  00B5EC  C0D5  F08E         	movff	_RSDT1+63,_DtKNF+10
+   440                           ;konfig.c: 150: DtKNF.mdpm=RSDT1.inMDPM;
+   441  00B5F0  C0D6  F08F         	movff	_RSDT1+64,_DtKNF+11
+   442                           ;konfig.c: 152: RSDT1.RRD_KNF=0;
+   443  00B5F4  9597               	bcf	(_RSDT1+1)& (0+255),2,b
+   444                           ;konfig.c: 153: RSDT1.RD_KNF=0;
+   445  00B5F6  9397               	bcf	(_RSDT1+1)& (0+255),1,b
+   446                           ;konfig.c: 154: return 1;
+   447  00B5F8  0C01               	retlw	1
+   448                           ;konfig.c: 155: }
+   449                           ;konfig.c: 157: }
+   450  00B5FA                     __end_of_RefKnfPar:
+   451                           ;konfig.c: 158: unsigned char SaveKnfPar(void)
+   452                           ;konfig.c: 159: {
+   453  00B5FA                     _SaveKnfPar:
+   454  000000                     
+   455                           ;konfig.c: 160: if(RefKnfPar())
+   456  00B5FA  DFE0               	call	_RefKnfPar	;wreg free
+   457  00B5FC  0900               	iorlw	0
+   458  00B5FE  E101 D1F3          	bz	l49
+   459                           ;konfig.c: 161: {
+   460  00B602  EE00  F087         	lfsr	0,_DtKNF+3
+   461  00B606  50EF               	movf	indf0,w,c
+   462  00B608  E005               	bz	u211
+   463  00B60A  0E63               	movlw	99
+   464  00B60C  0100               	movlb	(_DtKNF+3) shr (0+8)
+   465  00B60E  6187               	cpfslt	(_DtKNF+3)& (0+255),b
+   466  00B610  D001               	goto	u211
+   467  00B612  D008               	goto	u240
+   468  00B614                     u211:
+   469  00B614  EE00  F087         	lfsr	0,_DtKNF+3
+   470  00B618  50EF               	movf	indf0,w,c
+   471  00B61A  E004               	bz	u240
+   472  00B61C  C087  FFE8         	movff	_DtKNF+3,wreg
+   473  00B620  0A63               	xorlw	99
+   474  00B622  E118               	bnz	l50
+   475  00B624                     u240:
+   476                           ;konfig.c: 163: if(DtKNF.mstr!=eeprom_read(0x00C
+      +                          1)) eeprom_write(0x00C1,DtKNF.mstr);
+   477  00B624  0EC1               	movlw	193
+   478  00B626  0100               	movlb	__Lparam shr (0+8)
+   479  00B628  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   480  00B62A  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   481  00B62C  EC20  F073         	call	_eeprom_read	;wreg free
+   482  00B630  6E00               	movwf	btemp,c
+   483  00B632  C000  F002         	movff	btemp,btemp+2
+   484  00B636  6A03               	clrf	btemp+3,c
+   485  00B638  C087  FFE8         	movff	_DtKNF+3,wreg
+   486  00B63C  1802               	xorwf	btemp+2,w,c
+   487  00B63E  E101               	bnz	u265
+   488  00B640  5203               	movf	btemp+3,f,c
+   489  00B642                     u265:
+   490  00B642  E008               	bz	l50
+   491  00B644  0EC1               	movlw	193
+   492  00B646  0100               	movlb	__Lparam shr (0+8)
+   493  00B648  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   494  00B64A  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   495  00B64C  C087  F0DB         	movff	_DtKNF+3,?_eeprom_write+2
+   496  00B650  ECB2  F072         	call	_eeprom_write	;wreg free
+   497  00B654                     l50:
+   498                           ;konfig.c: 164: if((DtKNF.mxcw>0)&&(DtKNF.mxcw<9
+      +                          9)||DtKNF.mxcw==0||DtKNF.mxcw==99)
+   499  00B654  EE00  F088         	lfsr	0,_DtKNF+4
+   500  00B658  50EF               	movf	indf0,w,c
+   501  00B65A  E005               	bz	u291
+   502  00B65C  0E63               	movlw	99
+   503  00B65E  0100               	movlb	(_DtKNF+4) shr (0+8)
+   504  00B660  6188               	cpfslt	(_DtKNF+4)& (0+255),b
+   505  00B662  D001               	goto	u291
+   506  00B664  D008               	goto	u320
+   507  00B666                     u291:
+   508  00B666  EE00  F088         	lfsr	0,_DtKNF+4
+   509  00B66A  50EF               	movf	indf0,w,c
+   510  00B66C  E004               	bz	u320
+   511  00B66E  C088  FFE8         	movff	_DtKNF+4,wreg
+   512  00B672  0A63               	xorlw	99
+   513  00B674  E118               	bnz	l52
+   514  00B676                     u320:
+   515                           ;konfig.c: 165: if(DtKNF.mxcw!=eeprom_read(0x00C
+      +                          2)) eeprom_write(0x00C2,DtKNF.mxcw);
+   516  00B676  0EC2               	movlw	194
+   517  00B678  0100               	movlb	__Lparam shr (0+8)
+   518  00B67A  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   519  00B67C  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   520  00B67E  EC20  F073         	call	_eeprom_read	;wreg free
+   521  00B682  6E00               	movwf	btemp,c
+   522  00B684  C000  F002         	movff	btemp,btemp+2
+   523  00B688  6A03               	clrf	btemp+3,c
+   524  00B68A  C088  FFE8         	movff	_DtKNF+4,wreg
+   525  00B68E  1802               	xorwf	btemp+2,w,c
+   526  00B690  E101               	bnz	u345
+   527  00B692  5203               	movf	btemp+3,f,c
+   528  00B694                     u345:
+   529  00B694  E008               	bz	l52
+   530  00B696  0EC2               	movlw	194
+   531  00B698  0100               	movlb	__Lparam shr (0+8)
+   532  00B69A  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   533  00B69C  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   534  00B69E  C088  F0DB         	movff	_DtKNF+4,?_eeprom_write+2
+   535  00B6A2  ECB2  F072         	call	_eeprom_write	;wreg free
+   536  00B6A6                     l52:
+   537                           ;konfig.c: 166: if((DtKNF.mxco>0)&&(DtKNF.mxco<9
+      +                          9)||DtKNF.mxco==0||DtKNF.mxco==99)
+   538  00B6A6  EE00  F089         	lfsr	0,_DtKNF+5
+   539  00B6AA  50EF               	movf	indf0,w,c
+   540  00B6AC  E005               	bz	u371
+   541  00B6AE  0E63               	movlw	99
+   542  00B6B0  0100               	movlb	(_DtKNF+5) shr (0+8)
+   543  00B6B2  6189               	cpfslt	(_DtKNF+5)& (0+255),b
+   544  00B6B4  D001               	goto	u371
+   545  00B6B6  D008               	goto	u400
+   546  00B6B8                     u371:
+   547  00B6B8  EE00  F089         	lfsr	0,_DtKNF+5
+   548  00B6BC  50EF               	movf	indf0,w,c
+   549  00B6BE  E004               	bz	u400
+   550  00B6C0  C089  FFE8         	movff	_DtKNF+5,wreg
+   551  00B6C4  0A63               	xorlw	99
+   552  00B6C6  E118               	bnz	l54
+   553  00B6C8                     u400:
+   554                           ;konfig.c: 167: if(DtKNF.mxco!=eeprom_read(0x00C
+      +                          3)) eeprom_write(0x00C3,DtKNF.mxco);
+   555  00B6C8  0EC3               	movlw	195
+   556  00B6CA  0100               	movlb	__Lparam shr (0+8)
+   557  00B6CC  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   558  00B6CE  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   559  00B6D0  EC20  F073         	call	_eeprom_read	;wreg free
+   560  00B6D4  6E00               	movwf	btemp,c
+   561  00B6D6  C000  F002         	movff	btemp,btemp+2
+   562  00B6DA  6A03               	clrf	btemp+3,c
+   563  00B6DC  C089  FFE8         	movff	_DtKNF+5,wreg
+   564  00B6E0  1802               	xorwf	btemp+2,w,c
+   565  00B6E2  E101               	bnz	u425
+   566  00B6E4  5203               	movf	btemp+3,f,c
+   567  00B6E6                     u425:
+   568  00B6E6  E008               	bz	l54
+   569  00B6E8  0EC3               	movlw	195
+   570  00B6EA  0100               	movlb	__Lparam shr (0+8)
+   571  00B6EC  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   572  00B6EE  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   573  00B6F0  C089  F0DB         	movff	_DtKNF+5,?_eeprom_write+2
+   574  00B6F4  ECB2  F072         	call	_eeprom_write	;wreg free
+   575  00B6F8                     l54:
+   576                           ;konfig.c: 168: if((DtKNF.rdgz>0)&&(DtKNF.rdgz<1
+      +                          )||DtKNF.rdgz==0||DtKNF.rdgz==1)
+   577  00B6F8  EE00  F08C         	lfsr	0,_DtKNF+8
+   578  00B6FC  50EF               	movf	indf0,w,c
+   579  00B6FE  E005               	bz	u451
+   580  00B700  0E01               	movlw	1
+   581  00B702  0100               	movlb	(_DtKNF+8) shr (0+8)
+   582  00B704  618C               	cpfslt	(_DtKNF+8)& (0+255),b
+   583  00B706  D001               	goto	u451
+   584  00B708  D008               	goto	u480
+   585  00B70A                     u451:
+   586  00B70A  EE00  F08C         	lfsr	0,_DtKNF+8
+   587  00B70E  50EF               	movf	indf0,w,c
+   588  00B710  E004               	bz	u480
+   589  00B712  C08C  F000         	movff	_DtKNF+8,btemp
+   590  00B716  0400               	decf	btemp,w,c
+   591  00B718  E11E               	bnz	l56
+   592  00B71A                     u480:
+   593                           ;konfig.c: 169: if(DtKNF.rdgz!=eeprom_read(0x00C
+      +                          4))
+   594  00B71A  0EC4               	movlw	196
+   595  00B71C  0100               	movlb	__Lparam shr (0+8)
+   596  00B71E  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   597  00B720  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   598  00B722  EC20  F073         	call	_eeprom_read	;wreg free
+   599  00B726  6E00               	movwf	btemp,c
+   600  00B728  C000  F002         	movff	btemp,btemp+2
+   601  00B72C  6A03               	clrf	btemp+3,c
+   602  00B72E  C08C  FFE8         	movff	_DtKNF+8,wreg
+   603  00B732  1802               	xorwf	btemp+2,w,c
+   604  00B734  E101               	bnz	u505
+   605  00B736  5203               	movf	btemp+3,f,c
+   606  00B738                     u505:
+   607  00B738  E00E               	bz	l56
+   608                           ;konfig.c: 170: {
+   609  00B73A  0EC4               	movlw	196
+   610  00B73C  0100               	movlb	__Lparam shr (0+8)
+   611  00B73E  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   612  00B740  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   613  00B742  C08C  F0DB         	movff	_DtKNF+8,?_eeprom_write+2
+   614  00B746  ECB2  F072         	call	_eeprom_write	;wreg free
+   615                           ;konfig.c: 172: ModParam(DtKNF.tpkt,DtKNF.rdgz);
+   616  00B74A  C08C  F0D7         	movff	_DtKNF+8,?_ModParam
+   617  00B74E  C08B  FFE8         	movff	_DtKNF+7,wreg
+   618  00B752  ECB1  F05E         	call	_ModParam
+   619  00B756                     l56:
+   620                           ;konfig.c: 173: }
+   621  00B756  EE00  F095         	lfsr	0,_DtKNF+17
+   622  00B75A  50EF               	movf	indf0,w,c
+   623  00B75C  E004               	bz	u530
+   624  00B75E  C095  F000         	movff	_DtKNF+17,btemp
+   625  00B762  0400               	decf	btemp,w,c
+   626  00B764  E122               	bnz	l58
+   627  00B766                     u530:
+   628                           ;konfig.c: 175: if(DtKNF.aleg!=eeprom_read(0x00C
+      +                          6))
+   629  00B766  0EC6               	movlw	198
+   630  00B768  0100               	movlb	__Lparam shr (0+8)
+   631  00B76A  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   632  00B76C  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   633  00B76E  EC20  F073         	call	_eeprom_read	;wreg free
+   634  00B772  6E00               	movwf	btemp,c
+   635  00B774  C000  F002         	movff	btemp,btemp+2
+   636  00B778  6A03               	clrf	btemp+3,c
+   637  00B77A  C095  FFE8         	movff	_DtKNF+17,wreg
+   638  00B77E  1802               	xorwf	btemp+2,w,c
+   639  00B780  E101               	bnz	u545
+   640  00B782  5203               	movf	btemp+3,f,c
+   641  00B784                     u545:
+   642  00B784  E012               	bz	l58
+   643                           ;konfig.c: 176: {
+   644  00B786  0E01               	movlw	1
+   645  00B788  ECEC  F06E         	call	_StartRTG
+   646                           ;konfig.c: 178: eeprom_write(0x00C7,0);
+   647  00B78C  0EC7               	movlw	199
+   648  00B78E  0100               	movlb	__Lparam shr (0+8)
+   649  00B790  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   650  00B792  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   651  00B794  6BDB               	clrf	(?_eeprom_write+2)^(__Lparam& (0+65280)),b
+   652  00B796  ECB2  F072         	call	_eeprom_write	;wreg free
+   653                           ;konfig.c: 179: eeprom_write(0x00C6,DtKNF.aleg);
+   654  00B79A  0EC6               	movlw	198
+   655  00B79C  0100               	movlb	__Lparam shr (0+8)
+   656  00B79E  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   657  00B7A0  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   658  00B7A2  C095  F0DB         	movff	_DtKNF+17,?_eeprom_write+2
+   659  00B7A6  ECB2  F072         	call	_eeprom_write	;wreg free
+   660  00B7AA                     l58:
+   661                           ;konfig.c: 180: }
+   662  00B7AA  EE00  F08B         	lfsr	0,_DtKNF+7
+   663  00B7AE  50EF               	movf	indf0,w,c
+   664  00B7B0  E005               	bz	u571
+   665  00B7B2  0E03               	movlw	3
+   666  00B7B4  0100               	movlb	(_DtKNF+7) shr (0+8)
+   667  00B7B6  618B               	cpfslt	(_DtKNF+7)& (0+255),b
+   668  00B7B8  D001               	goto	u571
+   669  00B7BA  D008               	goto	u600
+   670  00B7BC                     u571:
+   671  00B7BC  EE00  F08B         	lfsr	0,_DtKNF+7
+   672  00B7C0  50EF               	movf	indf0,w,c
+   673  00B7C2  E004               	bz	u600
+   674  00B7C4  C08B  FFE8         	movff	_DtKNF+7,wreg
+   675  00B7C8  0A03               	xorlw	3
+   676  00B7CA  E131               	bnz	l60
+   677  00B7CC                     u600:
+   678                           ;konfig.c: 182: if(DtKNF.tpkt!=eeprom_read(0x00C
+      +                          5))
+   679  00B7CC  0EC5               	movlw	197
+   680  00B7CE  0100               	movlb	__Lparam shr (0+8)
+   681  00B7D0  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   682  00B7D2  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   683  00B7D4  EC20  F073         	call	_eeprom_read	;wreg free
+   684  00B7D8  6E00               	movwf	btemp,c
+   685  00B7DA  C000  F002         	movff	btemp,btemp+2
+   686  00B7DE  6A03               	clrf	btemp+3,c
+   687  00B7E0  C08B  FFE8         	movff	_DtKNF+7,wreg
+   688  00B7E4  1802               	xorwf	btemp+2,w,c
+   689  00B7E6  E101               	bnz	u625
+   690  00B7E8  5203               	movf	btemp+3,f,c
+   691  00B7EA                     u625:
+   692  00B7EA  E021               	bz	l60
+   693                           ;konfig.c: 183: {
+   694  00B7EC  DA19               	call	_SetTpKtParam	;wreg free
+   695                           ;konfig.c: 185: if((DtKNF.rdgz>0)&&(DtKNF.rdgz<1
+      +                          )||DtKNF.rdgz==0||DtKNF.rdgz==1)
+   696  00B7EE  EE00  F08C         	lfsr	0,_DtKNF+8
+   697  00B7F2  50EF               	movf	indf0,w,c
+   698  00B7F4  E005               	bz	u651
+   699  00B7F6  0E01               	movlw	1
+   700  00B7F8  0100               	movlb	(_DtKNF+8) shr (0+8)
+   701  00B7FA  618C               	cpfslt	(_DtKNF+8)& (0+255),b
+   702  00B7FC  D001               	goto	u651
+   703  00B7FE  D008               	goto	u680
+   704  00B800                     u651:
+   705  00B800  EE00  F08C         	lfsr	0,_DtKNF+8
+   706  00B804  50EF               	movf	indf0,w,c
+   707  00B806  E004               	bz	u680
+   708  00B808  C08C  F000         	movff	_DtKNF+8,btemp
+   709  00B80C  0400               	decf	btemp,w,c
+   710  00B80E  E106               	bnz	l62
+   711  00B810                     u680:
+   712                           ;konfig.c: 186: ModParam(DtKNF.tpkt,DtKNF.rdgz);
+   713  00B810  C08C  F0D7         	movff	_DtKNF+8,?_ModParam
+   714  00B814  C08B  FFE8         	movff	_DtKNF+7,wreg
+   715  00B818  ECB1  F05E         	call	_ModParam
+   716  00B81C                     l62:
+   717                           ;konfig.c: 187: SetDefaultValue();
+   718  00B81C  DA21               	call	_SetDefaultValue	;wreg free
+   719                           ;konfig.c: 188: eeprom_write(0x00C5,DtKNF.tpkt);
+   720  00B81E  0EC5               	movlw	197
+   721  00B820  0100               	movlb	__Lparam shr (0+8)
+   722  00B822  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   723  00B824  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   724  00B826  C08B  F0DB         	movff	_DtKNF+7,?_eeprom_write+2
+   725  00B82A  ECB2  F072         	call	_eeprom_write	;wreg free
+   726  00B82E                     l60:
+   727                           ;konfig.c: 189: }
+   728  00B82E  EE00  F092         	lfsr	0,_DtKNF+14
+   729  00B832  50EF               	movf	indf0,w,c
+   730  00B834  E004               	bz	u720
+   731  00B836  C092  F000         	movff	_DtKNF+14,btemp
+   732  00B83A  0400               	decf	btemp,w,c
+   733  00B83C  E118               	bnz	l63
+   734  00B83E                     u720:
+   735                           ;konfig.c: 191: if(DtKNF.robg!=eeprom_read(0x00C
+      +                          8)) eeprom_write(0x00C8,DtKNF.robg);
+   736  00B83E  0EC8               	movlw	200
+   737  00B840  0100               	movlb	__Lparam shr (0+8)
+   738  00B842  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   739  00B844  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   740  00B846  EC20  F073         	call	_eeprom_read	;wreg free
+   741  00B84A  6E00               	movwf	btemp,c
+   742  00B84C  C000  F002         	movff	btemp,btemp+2
+   743  00B850  6A03               	clrf	btemp+3,c
+   744  00B852  C092  FFE8         	movff	_DtKNF+14,wreg
+   745  00B856  1802               	xorwf	btemp+2,w,c
+   746  00B858  E101               	bnz	u735
+   747  00B85A  5203               	movf	btemp+3,f,c
+   748  00B85C                     u735:
+   749  00B85C  E008               	bz	l63
+   750  00B85E  0EC8               	movlw	200
+   751  00B860  0100               	movlb	__Lparam shr (0+8)
+   752  00B862  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   753  00B864  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   754  00B866  C092  F0DB         	movff	_DtKNF+14,?_eeprom_write+2
+   755  00B86A  ECB2  F072         	call	_eeprom_write	;wreg free
+   756  00B86E                     l63:
+   757                           ;konfig.c: 192: if(DtKNF.opdg==0||DtKNF.opdg==1)
+   758  00B86E  EE00  F093         	lfsr	0,_DtKNF+15
+   759  00B872  50EF               	movf	indf0,w,c
+   760  00B874  E004               	bz	u760
+   761  00B876  C093  F000         	movff	_DtKNF+15,btemp
+   762  00B87A  0400               	decf	btemp,w,c
+   763  00B87C  E118               	bnz	l65
+   764  00B87E                     u760:
+   765                           ;konfig.c: 193: if(DtKNF.opdg!=eeprom_read(0x00C
+      +                          C)) eeprom_write(0x00CC,DtKNF.opdg);
+   766  00B87E  0ECC               	movlw	204
+   767  00B880  0100               	movlb	__Lparam shr (0+8)
+   768  00B882  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   769  00B884  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   770  00B886  EC20  F073         	call	_eeprom_read	;wreg free
+   771  00B88A  6E00               	movwf	btemp,c
+   772  00B88C  C000  F002         	movff	btemp,btemp+2
+   773  00B890  6A03               	clrf	btemp+3,c
+   774  00B892  C093  FFE8         	movff	_DtKNF+15,wreg
+   775  00B896  1802               	xorwf	btemp+2,w,c
+   776  00B898  E101               	bnz	u775
+   777  00B89A  5203               	movf	btemp+3,f,c
+   778  00B89C                     u775:
+   779  00B89C  E008               	bz	l65
+   780  00B89E  0ECC               	movlw	204
+   781  00B8A0  0100               	movlb	__Lparam shr (0+8)
+   782  00B8A2  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   783  00B8A4  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   784  00B8A6  C093  F0DB         	movff	_DtKNF+15,?_eeprom_write+2
+   785  00B8AA  ECB2  F072         	call	_eeprom_write	;wreg free
+   786  00B8AE                     l65:
+   787                           ;konfig.c: 194: if(DtKNF.tpcs==0||DtKNF.tpcs==1)
+   788  00B8AE  EE00  F094         	lfsr	0,_DtKNF+16
+   789  00B8B2  50EF               	movf	indf0,w,c
+   790  00B8B4  E004               	bz	u800
+   791  00B8B6  C094  F000         	movff	_DtKNF+16,btemp
+   792  00B8BA  0400               	decf	btemp,w,c
+   793  00B8BC  E118               	bnz	l67
+   794  00B8BE                     u800:
+   795                           ;konfig.c: 195: if(DtKNF.tpcs!=eeprom_read(0x00C
+      +                          D)) eeprom_write(0x00CD,DtKNF.tpcs);
+   796  00B8BE  0ECD               	movlw	205
+   797  00B8C0  0100               	movlb	__Lparam shr (0+8)
+   798  00B8C2  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   799  00B8C4  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   800  00B8C6  EC20  F073         	call	_eeprom_read	;wreg free
+   801  00B8CA  6E00               	movwf	btemp,c
+   802  00B8CC  C000  F002         	movff	btemp,btemp+2
+   803  00B8D0  6A03               	clrf	btemp+3,c
+   804  00B8D2  C094  FFE8         	movff	_DtKNF+16,wreg
+   805  00B8D6  1802               	xorwf	btemp+2,w,c
+   806  00B8D8  E101               	bnz	u815
+   807  00B8DA  5203               	movf	btemp+3,f,c
+   808  00B8DC                     u815:
+   809  00B8DC  E008               	bz	l67
+   810  00B8DE  0ECD               	movlw	205
+   811  00B8E0  0100               	movlb	__Lparam shr (0+8)
+   812  00B8E2  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   813  00B8E4  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   814  00B8E6  C094  F0DB         	movff	_DtKNF+16,?_eeprom_write+2
+   815  00B8EA  ECB2  F072         	call	_eeprom_write	;wreg free
+   816  00B8EE                     l67:
+   817                           ;konfig.c: 197: if((DtKNF.rdpm>0)&&(DtKNF.rdpm<1
+      +                          )||DtKNF.rdpm==0||DtKNF.rdpm==1)
+   818  00B8EE  EE00  F08D         	lfsr	0,_DtKNF+9
+   819  00B8F2  50EF               	movf	indf0,w,c
+   820  00B8F4  E005               	bz	u841
+   821  00B8F6  0E01               	movlw	1
+   822  00B8F8  0100               	movlb	(_DtKNF+9) shr (0+8)
+   823  00B8FA  618D               	cpfslt	(_DtKNF+9)& (0+255),b
+   824  00B8FC  D001               	goto	u841
+   825  00B8FE  D008               	goto	u870
+   826  00B900                     u841:
+   827  00B900  EE00  F08D         	lfsr	0,_DtKNF+9
+   828  00B904  50EF               	movf	indf0,w,c
+   829  00B906  E004               	bz	u870
+   830  00B908  C08D  F000         	movff	_DtKNF+9,btemp
+   831  00B90C  0400               	decf	btemp,w,c
+   832  00B90E  E118               	bnz	l69
+   833  00B910                     u870:
+   834                           ;konfig.c: 198: if(DtKNF.rdpm!=eeprom_read(0x00D
+      +                          0)) eeprom_write(0x00D0,DtKNF.rdpm);
+   835  00B910  0ED0               	movlw	208
+   836  00B912  0100               	movlb	__Lparam shr (0+8)
+   837  00B914  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   838  00B916  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   839  00B918  EC20  F073         	call	_eeprom_read	;wreg free
+   840  00B91C  6E00               	movwf	btemp,c
+   841  00B91E  C000  F002         	movff	btemp,btemp+2
+   842  00B922  6A03               	clrf	btemp+3,c
+   843  00B924  C08D  FFE8         	movff	_DtKNF+9,wreg
+   844  00B928  1802               	xorwf	btemp+2,w,c
+   845  00B92A  E101               	bnz	u895
+   846  00B92C  5203               	movf	btemp+3,f,c
+   847  00B92E                     u895:
+   848  00B92E  E008               	bz	l69
+   849  00B930  0ED0               	movlw	208
+   850  00B932  0100               	movlb	__Lparam shr (0+8)
+   851  00B934  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   852  00B936  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   853  00B938  C08D  F0DB         	movff	_DtKNF+9,?_eeprom_write+2
+   854  00B93C  ECB2  F072         	call	_eeprom_write	;wreg free
+   855  00B940                     l69:
+   856                           ;konfig.c: 200: if((DtKNF.dtpm>5)&&(DtKNF.dtpm<2
+      +                          5)||DtKNF.dtpm==5||DtKNF.dtpm==25)
+   857  00B940  0E05               	movlw	5
+   858  00B942  0100               	movlb	(_DtKNF+10) shr (0+8)
+   859  00B944  658E               	cpfsgt	(_DtKNF+10)& (0+255),b
+   860  00B946  D004               	goto	u921
+   861  00B948  0E19               	movlw	25
+   862  00B94A  618E               	cpfslt	(_DtKNF+10)& (0+255),b
+   863  00B94C  D001               	goto	u921
+   864  00B94E  D008               	goto	u950
+   865  00B950                     u921:
+   866  00B950  C08E  FFE8         	movff	_DtKNF+10,wreg
+   867  00B954  0A05               	xorlw	5
+   868  00B956  E004               	bz	u950
+   869  00B958  C08E  FFE8         	movff	_DtKNF+10,wreg
+   870  00B95C  0A19               	xorlw	25
+   871  00B95E  E118               	bnz	l71
+   872  00B960                     u950:
+   873                           ;konfig.c: 201: if(DtKNF.dtpm!=eeprom_read(0x00D
+      +                          1)) eeprom_write(0x00D1,DtKNF.dtpm);
+   874  00B960  0ED1               	movlw	209
+   875  00B962  0100               	movlb	__Lparam shr (0+8)
+   876  00B964  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   877  00B966  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   878  00B968  EC20  F073         	call	_eeprom_read	;wreg free
+   879  00B96C  6E00               	movwf	btemp,c
+   880  00B96E  C000  F002         	movff	btemp,btemp+2
+   881  00B972  6A03               	clrf	btemp+3,c
+   882  00B974  C08E  FFE8         	movff	_DtKNF+10,wreg
+   883  00B978  1802               	xorwf	btemp+2,w,c
+   884  00B97A  E101               	bnz	u975
+   885  00B97C  5203               	movf	btemp+3,f,c
+   886  00B97E                     u975:
+   887  00B97E  E008               	bz	l71
+   888  00B980  0ED1               	movlw	209
+   889  00B982  0100               	movlb	__Lparam shr (0+8)
+   890  00B984  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   891  00B986  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   892  00B988  C08E  F0DB         	movff	_DtKNF+10,?_eeprom_write+2
+   893  00B98C  ECB2  F072         	call	_eeprom_write	;wreg free
+   894  00B990                     l71:
+   895                           ;konfig.c: 203: if((DtKNF.mdpm>10)&&(DtKNF.mdpm<
+      +                          80)||DtKNF.mdpm==10||DtKNF.mdpm==80)
+   896  00B990  0E0A               	movlw	10
+   897  00B992  0100               	movlb	(_DtKNF+11) shr (0+8)
+   898  00B994  658F               	cpfsgt	(_DtKNF+11)& (0+255),b
+   899  00B996  D004               	goto	u1001
+   900  00B998  0E50               	movlw	80
+   901  00B99A  618F               	cpfslt	(_DtKNF+11)& (0+255),b
+   902  00B99C  D001               	goto	u1001
+   903  00B99E  D008               	goto	u1030
+   904  00B9A0                     u1001:
+   905  00B9A0  C08F  FFE8         	movff	_DtKNF+11,wreg
+   906  00B9A4  0A0A               	xorlw	10
+   907  00B9A6  E004               	bz	u1030
+   908  00B9A8  C08F  FFE8         	movff	_DtKNF+11,wreg
+   909  00B9AC  0A50               	xorlw	80
+   910  00B9AE  E118               	bnz	l73
+   911  00B9B0                     u1030:
+   912                           ;konfig.c: 204: if(DtKNF.mdpm!=eeprom_read(0x00D
+      +                          2)) eeprom_write(0x00D2,DtKNF.mdpm);
+   913  00B9B0  0ED2               	movlw	210
+   914  00B9B2  0100               	movlb	__Lparam shr (0+8)
+   915  00B9B4  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   916  00B9B6  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   917  00B9B8  EC20  F073         	call	_eeprom_read	;wreg free
+   918  00B9BC  6E00               	movwf	btemp,c
+   919  00B9BE  C000  F002         	movff	btemp,btemp+2
+   920  00B9C2  6A03               	clrf	btemp+3,c
+   921  00B9C4  C08F  FFE8         	movff	_DtKNF+11,wreg
+   922  00B9C8  1802               	xorwf	btemp+2,w,c
+   923  00B9CA  E101               	bnz	u1055
+   924  00B9CC  5203               	movf	btemp+3,f,c
+   925  00B9CE                     u1055:
+   926  00B9CE  E008               	bz	l73
+   927  00B9D0  0ED2               	movlw	210
+   928  00B9D2  0100               	movlb	__Lparam shr (0+8)
+   929  00B9D4  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   930  00B9D6  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   931  00B9D8  C08F  F0DB         	movff	_DtKNF+11,?_eeprom_write+2
+   932  00B9DC  ECB2  F072         	call	_eeprom_write	;wreg free
+   933  00B9E0                     l73:
+   934                           ;konfig.c: 206: RSDT1.RRD_KNF=0;
+   935  00B9E0  0100               	movlb	(_RSDT1+1) shr (0+8)
+   936  00B9E2  9597               	bcf	(_RSDT1+1)& (0+255),2,b
+   937                           ;konfig.c: 207: RSDT1.RD_KNF=0;
+   938  00B9E4  9397               	bcf	(_RSDT1+1)& (0+255),1,b
+   939                           ;konfig.c: 208: return 1;
+   940  00B9E6  0C01               	retlw	1
+   941  00B9E8                     l49:
+   942                           ;konfig.c: 209: }
+   943  00B9E8  0C00               	retlw	0
+   944                           ;konfig.c: 211: }
+   945  00B9EA                     __end_of_SaveKnfPar:
+   946                           ;konfig.c: 212: void SetNST(void)
+   947                           ;konfig.c: 213: {
+   948  00B9EA                     _SetNST:
+   949  000000                     
+   950                           ;konfig.c: 214: PomiarZW();
+   951  00B9EA  EC8C  F046         	call	_PomiarZW	;wreg free
+   952                           ;konfig.c: 215: if(!DtZW._on_ZW)
+   953  00B9EE  0102               	movlb	_DtZW shr (0+8)
+   954  00B9F0  B108               	btfsc	_DtZW& (0+255),0,b
+   955  00B9F2  D00E               	goto	l76
+   956                           ;konfig.c: 216: {
+   957  00B9F4  EE00  F093         	lfsr	0,_DtKNF+15
+   958  00B9F8  50EF               	movf	indf0,w,c
+   959  00B9FA  E105               	bnz	l77
+   960                           ;konfig.c: 218: {
+   961  00B9FC  0E28               	movlw	40
+   962  00B9FE  CFE8 F211          	movff	wreg,_DtCO+5
+   963                           ;konfig.c: 220: DtCO.maxPCO=85;
+   964  00BA02  0E55               	movlw	85
+   965  00BA04  D011               	goto	L1
+   966                           ;konfig.c: 221: }
+   967  00BA06                     l77:
+   968                           ;konfig.c: 222: else
+   969  00BA06  0E23               	movlw	35
+   970  00BA08  CFE8 F211          	movff	wreg,_DtCO+5
+   971                           ;konfig.c: 225: DtCO.maxPCO=55;
+   972  00BA0C  0E37               	movlw	55
+   973  00BA0E  D00C               	goto	L1
+   974                           ;konfig.c: 226: }
+   975  00BA10                     l76:
+   976                           ;konfig.c: 228: else
+   977  00BA10  0101               	movlb	(_M+22) shr (0+8)
+   978  00BA12  0E01               	movlw	1
+   979  00BA14  6F90               	movwf	(_M+22)& (0+255),b
+   980  00BA16  6B91               	clrf	(_M+23)& (0+255),b
+   981                           ;konfig.c: 231: SetPrt(20,1);
+   982  00BA18  0100               	movlb	__Lparam shr (0+8)
+   983  00BA1A  6FDB               	movwf	?_SetPrt^(__Lparam& (0+65280)),b
+   984  00BA1C  0E14               	movlw	20
+   985  00BA1E  ECB7  F068         	call	_SetPrt
+   986                           ;konfig.c: 232: DtCO.minPCO=0;
+   987  00BA22  0102               	movlb	(_DtCO+5) shr (0+8)
+   988  00BA24  6B11               	clrf	(_DtCO+5)& (0+255),b
+   989                           ;konfig.c: 233: DtCO.maxPCO=99;
+   990  00BA26  0E63               	movlw	99
+   991  00BA28                     L1:
+   992  00BA28  CFE8 F212          	movff	wreg,_DtCO+6
+   993                           ;konfig.c: 234: }
+   994  00BA2C  C211  F0A0         	movff	_DtCO+5,_RSDT1+10
+   995                           ;konfig.c: 236: RSDT1.outPCOmx=DtCO.maxPCO;
+   996  00BA30  C212  F0A1         	movff	_DtCO+6,_RSDT1+11
+   997                           ;konfig.c: 237: if(DtCO.PCO<DtCO.minPCO) DtCO.PC
+      +                          O=DtCO.minPCO;
+   998  00BA34  C211  FFE8         	movff	_DtCO+5,wreg
+   999  00BA38  0102               	movlb	(_DtCO+3) shr (0+8)
+  1000  00BA3A  610F               	cpfslt	(_DtCO+3)& (0+255),b
+  1001  00BA3C  D002               	goto	l80
+  1002  00BA3E  C211  F20F         	movff	_DtCO+5,_DtCO+3
+  1003  00BA42                     l80:
+  1004                           ;konfig.c: 238: if(DtCO.PCO>DtCO.maxPCO) DtCO.PC
+      +                          O=DtCO.maxPCO;
+  1005  00BA42  C20F  FFE8         	movff	_DtCO+3,wreg
+  1006  00BA46  0102               	movlb	(_DtCO+6) shr (0+8)
+  1007  00BA48  6112               	cpfslt	(_DtCO+6)& (0+255),b
+  1008  00BA4A  D002               	goto	l81
+  1009  00BA4C  C212  F20F         	movff	_DtCO+6,_DtCO+3
+  1010  00BA50                     l81:
+  1011                           ;konfig.c: 239: if(DtCO.PCO!=eeprom_read(0x00C9)
+      +                          ) eeprom_write(0x00C9,DtCO.PCO);
+  1012  00BA50  0EC9               	movlw	201
+  1013  00BA52  0100               	movlb	__Lparam shr (0+8)
+  1014  00BA54  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1015  00BA56  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1016  00BA58  EC20  F073         	call	_eeprom_read	;wreg free
+  1017  00BA5C  6E00               	movwf	btemp,c
+  1018  00BA5E  C000  F002         	movff	btemp,btemp+2
+  1019  00BA62  6A03               	clrf	btemp+3,c
+  1020  00BA64  C20F  FFE8         	movff	_DtCO+3,wreg
+  1021  00BA68  1802               	xorwf	btemp+2,w,c
+  1022  00BA6A  E101               	bnz	u1105
+  1023  00BA6C  5203               	movf	btemp+3,f,c
+  1024  00BA6E                     u1105:
+  1025  00BA6E  B4D8               	btfsc	status,2,c
+  1026  00BA70  0012               	return	
+  1027  00BA72  D142               	goto	L4
+  1028                           ;konfig.c: 240: }
+  1029  00BA74                     __end_of_SetNST:
+  1030                           ;konfig.c: 243: void RdEEParam(void)
+  1031                           ;konfig.c: 244: {
+  1032  00BA74                     _RdEEParam:
+  1033  000000                     
+  1034                           ;konfig.c: 246: DtKNF.tpkt=eeprom_read(0x00C5);
+  1035  00BA74  0EC5               	movlw	197
+  1036  00BA76  0100               	movlb	__Lparam shr (0+8)
+  1037  00BA78  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1038  00BA7A  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1039  00BA7C  EC20  F073         	call	_eeprom_read	;wreg free
+  1040  00BA80  CFE8 F08B          	movff	wreg,_DtKNF+7
+  1041                           ;konfig.c: 247: RSDT1.outTPKT=DtKNF.tpkt;
+  1042  00BA84  C08B  F0BA         	movff	_DtKNF+7,_RSDT1+36
+  1043                           ;konfig.c: 248: SetTpKtParam();
+  1044  00BA88  D8CB               	call	_SetTpKtParam	;wreg free
+  1045                           ;konfig.c: 250: ModParam(DtKNF.tpkt,DtKNF.rdgz=e
+      +                          eprom_read(0x00C4));
+  1046  00BA8A  0EC4               	movlw	196
+  1047  00BA8C  0100               	movlb	__Lparam shr (0+8)
+  1048  00BA8E  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1049  00BA90  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1050  00BA92  EC20  F073         	call	_eeprom_read	;wreg free
+  1051  00BA96  CFE8 F08C          	movff	wreg,_DtKNF+8
+  1052  00BA9A  C08C  F0D7         	movff	_DtKNF+8,?_ModParam
+  1053  00BA9E  C08B  FFE8         	movff	_DtKNF+7,wreg
+  1054  00BAA2  ECB1  F05E         	call	_ModParam
+  1055                           ;konfig.c: 251: RSDT1.outRGZ=DtKNF.rdgz;
+  1056  00BAA6  C08C  F0B6         	movff	_DtKNF+8,_RSDT1+32
+  1057                           ;konfig.c: 252: MocStart(DtKNF.mstr=eeprom_read(
+      +                          0x00C1));
+  1058  00BAAA  0EC1               	movlw	193
+  1059  00BAAC  0100               	movlb	__Lparam shr (0+8)
+  1060  00BAAE  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1061  00BAB0  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1062  00BAB2  EC20  F073         	call	_eeprom_read	;wreg free
+  1063  00BAB6  CFE8 F087          	movff	wreg,_DtKNF+3
+  1064  00BABA  C087  FFE8         	movff	_DtKNF+3,wreg
+  1065  00BABE  ECEF  F061         	call	_MocStart
+  1066                           ;konfig.c: 253: RSDT1.outMSTR=DtKNF.mstr;
+  1067  00BAC2  C087  F0AD         	movff	_DtKNF+3,_RSDT1+23
+  1068                           ;konfig.c: 254: MocMaksCW(DtKNF.mxcw=eeprom_read
+      +                          (0x00C2));
+  1069  00BAC6  0EC2               	movlw	194
+  1070  00BAC8  0100               	movlb	__Lparam shr (0+8)
+  1071  00BACA  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1072  00BACC  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1073  00BACE  EC20  F073         	call	_eeprom_read	;wreg free
+  1074  00BAD2  CFE8 F088          	movff	wreg,_DtKNF+4
+  1075  00BAD6  C088  FFE8         	movff	_DtKNF+4,wreg
+  1076  00BADA  EC63  F062         	call	_MocMaksCW
+  1077                           ;konfig.c: 255: RSDT1.outMMAXU=DtKNF.mxcw;
+  1078  00BADE  C088  F0B0         	movff	_DtKNF+4,_RSDT1+26
+  1079                           ;konfig.c: 256: MocMaksCO(DtKNF.mxco=eeprom_read
+      +                          (0x00C3));
+  1080  00BAE2  0EC3               	movlw	195
+  1081  00BAE4  0100               	movlb	__Lparam shr (0+8)
+  1082  00BAE6  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1083  00BAE8  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1084  00BAEA  EC20  F073         	call	_eeprom_read	;wreg free
+  1085  00BAEE  CFE8 F089          	movff	wreg,_DtKNF+5
+  1086  00BAF2  C089  FFE8         	movff	_DtKNF+5,wreg
+  1087  00BAF6  EC29  F062         	call	_MocMaksCO
+  1088                           ;konfig.c: 257: RSDT1.outMMAXG=DtKNF.mxco;
+  1089  00BAFA  C089  F0B3         	movff	_DtKNF+5,_RSDT1+29
+  1090                           ;konfig.c: 258: DtKNF.aleg=eeprom_read(0x00C6);
+  1091  00BAFE  0EC6               	movlw	198
+  1092  00BB00  0100               	movlb	__Lparam shr (0+8)
+  1093  00BB02  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1094  00BB04  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1095  00BB06  EC20  F073         	call	_eeprom_read	;wreg free
+  1096  00BB0A  CFE8 F095          	movff	wreg,_DtKNF+17
+  1097                           ;konfig.c: 259: RSDT1.outWANL=DtKNF.aleg;
+  1098  00BB0E  C095  F0B9         	movff	_DtKNF+17,_RSDT1+35
+  1099                           ;konfig.c: 260: DtKNF.robg=eeprom_read(0x00C8);
+  1100  00BB12  0EC8               	movlw	200
+  1101  00BB14  0100               	movlb	__Lparam shr (0+8)
+  1102  00BB16  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1103  00BB18  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1104  00BB1A  EC20  F073         	call	_eeprom_read	;wreg free
+  1105  00BB1E  CFE8 F092          	movff	wreg,_DtKNF+14
+  1106                           ;konfig.c: 261: RSDT1.outWOBG=DtKNF.robg;
+  1107  00BB22  C092  F0BD         	movff	_DtKNF+14,_RSDT1+39
+  1108                           ;konfig.c: 262: PFN.poz=eeprom_read(0x00CB);
+  1109  00BB26  0ECB               	movlw	203
+  1110  00BB28  0100               	movlb	__Lparam shr (0+8)
+  1111  00BB2A  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1112  00BB2C  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1113  00BB2E  EC20  F073         	call	_eeprom_read	;wreg free
+  1114  00BB32  6E00               	movwf	btemp,c
+  1115  00BB34  0101               	movlb	(_PFN+31) shr (0+8)
+  1116  00BB36  C000  F176         	movff	btemp,_PFN+31
+  1117  00BB3A  6B77               	clrf	(_PFN+32)& (0+255),b
+  1118                           ;konfig.c: 263: SetPFN();
+  1119  00BB3C  D8A4               	call	_SetPFN	;wreg free
+  1120                           ;konfig.c: 264: DtKNF.opdg=eeprom_read(0x00CC);
+  1121  00BB3E  0ECC               	movlw	204
+  1122  00BB40  0100               	movlb	__Lparam shr (0+8)
+  1123  00BB42  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1124  00BB44  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1125  00BB46  EC20  F073         	call	_eeprom_read	;wreg free
+  1126  00BB4A  CFE8 F093          	movff	wreg,_DtKNF+15
+  1127                           ;konfig.c: 265: RSDT1.outOPDG=DtKNF.opdg;
+  1128  00BB4E  C093  F0BE         	movff	_DtKNF+15,_RSDT1+40
+  1129                           ;konfig.c: 266: DtCO.PCO=eeprom_read(0x00C9);
+  1130  00BB52  0EC9               	movlw	201
+  1131  00BB54  0100               	movlb	__Lparam shr (0+8)
+  1132  00BB56  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1133  00BB58  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1134  00BB5A  EC20  F073         	call	_eeprom_read	;wreg free
+  1135  00BB5E  CFE8 F20F          	movff	wreg,_DtCO+3
+  1136                           ;konfig.c: 267: DtCW.PCW=eeprom_read(0x00CA);
+  1137  00BB62  0ECA               	movlw	202
+  1138  00BB64  0100               	movlb	__Lparam shr (0+8)
+  1139  00BB66  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1140  00BB68  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1141  00BB6A  EC20  F073         	call	_eeprom_read	;wreg free
+  1142  00BB6E  CFE8 F21E          	movff	wreg,_DtCW+3
+  1143                           ;konfig.c: 268: SetNST();
+  1144  00BB72  DF3B               	call	_SetNST	;wreg free
+  1145                           ;konfig.c: 269: PFN.PCO=DtCO.PCO;
+  1146  00BB74  0101               	movlb	(_PFN+26) shr (0+8)
+  1147  00BB76  C20F  F171         	movff	_DtCO+3,_PFN+26
+  1148  00BB7A  6B72               	clrf	(_PFN+27)& (0+255),b
+  1149                           ;konfig.c: 270: PFN.PCW=DtCW.PCW;
+  1150  00BB7C  0101               	movlb	(_PFN+28) shr (0+8)
+  1151  00BB7E  C21E  F173         	movff	_DtCW+3,_PFN+28
+  1152  00BB82  6B74               	clrf	(_PFN+29)& (0+255),b
+  1153                           ;konfig.c: 271: DtKNF.tpcs=eeprom_read(0x00CD);
+  1154  00BB84  0ECD               	movlw	205
+  1155  00BB86  0100               	movlb	__Lparam shr (0+8)
+  1156  00BB88  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1157  00BB8A  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1158  00BB8C  EC20  F073         	call	_eeprom_read	;wreg free
+  1159  00BB90  CFE8 F094          	movff	wreg,_DtKNF+16
+  1160                           ;konfig.c: 272: RSDT1.outTPCS=DtKNF.tpcs;
+  1161  00BB94  C094  F0BF         	movff	_DtKNF+16,_RSDT1+41
+  1162                           ;konfig.c: 273: DtKNF.wymCO=0;
+  1163  00BB98  0100               	movlb	_DtKNF shr (0+8)
+  1164  00BB9A  9384               	bcf	_DtKNF& (0+255),1,b
+  1165                           ;konfig.c: 274: DtKNF.wymCW=0;
+  1166  00BB9C  9584               	bcf	_DtKNF& (0+255),2,b
+  1167                           ;konfig.c: 275: M.LICZNIK_ANL=eeprom_read(0x00C7
+      +                          );
+  1168  00BB9E  0EC7               	movlw	199
+  1169  00BBA0  0100               	movlb	__Lparam shr (0+8)
+  1170  00BBA2  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1171  00BBA4  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1172  00BBA6  EC20  F073         	call	_eeprom_read	;wreg free
+  1173  00BBAA  CFE8 F19B          	movff	wreg,_M+33
+  1174                           ;konfig.c: 277: if(M.LICZNIK_ANL)
+  1175  00BBAE  EE01  F09B         	lfsr	0,_M+33
+  1176  00BBB2  50EF               	movf	indf0,w,c
+  1177  00BBB4  E011               	bz	l84
+  1178                           ;konfig.c: 278: {
+  1179  00BBB6  EE00  F095         	lfsr	0,_DtKNF+17
+  1180  00BBBA  50EF               	movf	indf0,w,c
+  1181  00BBBC  E004               	bz	u1140
+  1182  00BBBE  EE00  F08B         	lfsr	0,_DtKNF+7
+  1183  00BBC2  50EF               	movf	indf0,w,c
+  1184  00BBC4  E009               	bz	l84
+  1185  00BBC6                     u1140:
+  1186                           ;konfig.c: 280: {
+  1187  00BBC6  0EC7               	movlw	199
+  1188  00BBC8  0100               	movlb	__Lparam shr (0+8)
+  1189  00BBCA  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1190  00BBCC  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1191  00BBCE  6BDB               	clrf	(?_eeprom_write+2)^(__Lparam& (0+65280)),b
+  1192  00BBD0  ECB2  F072         	call	_eeprom_write	;wreg free
+  1193                           ;konfig.c: 282: M.LICZNIK_ANL=0;
+  1194  00BBD4  0101               	movlb	(_M+33) shr (0+8)
+  1195  00BBD6  6B9B               	clrf	(_M+33)& (0+255),b
+  1196  00BBD8                     l84:
+  1197                           ;konfig.c: 283: }
+  1198  00BBD8  0ED0               	movlw	208
+  1199  00BBDA  0100               	movlb	__Lparam shr (0+8)
+  1200  00BBDC  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1201  00BBDE  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1202  00BBE0  EC20  F073         	call	_eeprom_read	;wreg free
+  1203  00BBE4  CFE8 F08D          	movff	wreg,_DtKNF+9
+  1204                           ;konfig.c: 287: RSDT1.outRDPM=DtKNF.rdpm;
+  1205  00BBE8  C08D  F0C0         	movff	_DtKNF+9,_RSDT1+42
+  1206                           ;konfig.c: 288: DtKNF.dtpm=eeprom_read(0x00D1);
+  1207  00BBEC  0ED1               	movlw	209
+  1208  00BBEE  0100               	movlb	__Lparam shr (0+8)
+  1209  00BBF0  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1210  00BBF2  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1211  00BBF4  EC20  F073         	call	_eeprom_read	;wreg free
+  1212  00BBF8  CFE8 F08E          	movff	wreg,_DtKNF+10
+  1213                           ;konfig.c: 289: RSDT1.outDTPM=DtKNF.dtpm;
+  1214  00BBFC  C08E  F0C1         	movff	_DtKNF+10,_RSDT1+43
+  1215                           ;konfig.c: 290: DtKNF.mdpm=eeprom_read(0x00D2);
+  1216  00BC00  0ED2               	movlw	210
+  1217  00BC02  0100               	movlb	__Lparam shr (0+8)
+  1218  00BC04  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1219  00BC06  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1220  00BC08  EC20  F073         	call	_eeprom_read	;wreg free
+  1221  00BC0C  CFE8 F08F          	movff	wreg,_DtKNF+11
+  1222                           ;konfig.c: 291: RSDT1.outMDPM=DtKNF.mdpm;
+  1223  00BC10  C08F  F0C2         	movff	_DtKNF+11,_RSDT1+44
+  1224                           ;konfig.c: 297: DtKNF.teco=0;
+  1225  00BC14  0100               	movlb	(_DtKNF+12) shr (0+8)
+  1226  00BC16  6B90               	clrf	(_DtKNF+12)& (0+255),b
+  1227                           ;konfig.c: 298: DtIN.Eco=5;
+  1228  00BC18  0E05               	movlw	5
+  1229  00BC1A  CFE8 F233          	movff	wreg,_DtIN+9
+  1230                           ;konfig.c: 299: }
+  1231  00BC1E  0C05               	retlw	5
+  1232  00BC20                     __end_of_RdEEParam:
+  1233                           ;konfig.c: 302: void SetTpKtParam(void)
+  1234                           ;konfig.c: 303: {
+  1235  00BC20                     _SetTpKtParam:
+  1236  000000                     
+  1237                           ;konfig.c: 304: switch(DtKNF.tpkt)
+  1238  00BC20  D014               	goto	l88
+  1239  00BC22                     l89:
+  1240                           ;konfig.c: 305: {
+  1241                           ;konfig.c: 307: {
+  1242  00BC22  0100               	movlb	(_DtKNF+6) shr (0+8)
+  1243  00BC24  6B8A               	clrf	(_DtKNF+6)& (0+255),b
+  1244                           ;konfig.c: 310: DtKNF.tpwm=0;
+  1245  00BC26  6B91               	clrf	(_DtKNF+13)& (0+255),b
+  1246                           ;konfig.c: 311: break;
+  1247  00BC28  0012               	return	
+  1248  00BC2A                     l90:
+  1249                           ;konfig.c: 312: }
+  1250                           ;konfig.c: 314: {
+  1251  00BC2A  0100               	movlb	(_DtKNF+6) shr (0+8)
+  1252  00BC2C  6B8A               	clrf	(_DtKNF+6)& (0+255),b
+  1253                           ;konfig.c: 317: DtKNF.tpwm=0;
+  1254  00BC2E  6B91               	clrf	(_DtKNF+13)& (0+255),b
+  1255                           ;konfig.c: 318: break;
+  1256  00BC30  0012               	return	
+  1257  00BC32                     l91:
+  1258                           ;konfig.c: 319: }
+  1259                           ;konfig.c: 321: {
+  1260  00BC32  0100               	movlb	(_DtKNF+6) shr (0+8)
+  1261  00BC34  6B8A               	clrf	(_DtKNF+6)& (0+255),b
+  1262                           ;konfig.c: 324: DtKNF.tpwm=0;
+  1263  00BC36  6B91               	clrf	(_DtKNF+13)& (0+255),b
+  1264                           ;konfig.c: 325: break;
+  1265  00BC38  0012               	return	
+  1266  00BC3A                     l92:
+  1267                           ;konfig.c: 326: }
+  1268                           ;konfig.c: 328: {
+  1269  00BC3A  0100               	movlb	(_DtKNF+6) shr (0+8)
+  1270  00BC3C  6B8A               	clrf	(_DtKNF+6)& (0+255),b
+  1271                           ;konfig.c: 331: DtKNF.tpwm=0;
+  1272  00BC3E  6B91               	clrf	(_DtKNF+13)& (0+255),b
+  1273                           ;konfig.c: 332: break;
+  1274  00BC40  0012               	return	
+  1275  00BC42                     l93:
+  1276                           ;konfig.c: 333: }
+  1277                           ;konfig.c: 335: {
+  1278  00BC42  0100               	movlb	(_DtKNF+6) shr (0+8)
+  1279  00BC44  6B8A               	clrf	(_DtKNF+6)& (0+255),b
+  1280                           ;konfig.c: 338: DtKNF.tpwm=0;
+  1281  00BC46  6B91               	clrf	(_DtKNF+13)& (0+255),b
+  1282                           ;konfig.c: 339: break;
+  1283  00BC48  0012               	return	
+  1284  00BC4A                     l88:
+  1285  00BC4A  C08B  FFE8         	movff	_DtKNF+7,wreg
+  1286  00BC4E  0A00               	xorlw	0
+  1287  00BC50  E0E8               	bz	l89
+  1288  00BC52  0A01               	xorlw	1
+  1289  00BC54  E0EA               	bz	l90
+  1290  00BC56  0A03               	xorlw	3
+  1291  00BC58  E0F0               	bz	l92
+  1292  00BC5A  0A01               	xorlw	1
+  1293  00BC5C  E0EA               	bz	l91
+  1294  00BC5E  D7F1               	goto	l93
+  1295                           ;konfig.c: 342: }
+  1296  00BC60                     __end_of_SetTpKtParam:
+  1297                           ;konfig.c: 345: void SetDefaultValue(void)
+  1298                           ;konfig.c: 346: {
+  1299  00BC60                     _SetDefaultValue:
+  1300  000000                     
+  1301                           ;konfig.c: 347: switch(DtKNF.tpkt)
+  1302  00BC60  D00D               	goto	l96
+  1303  00BC62                     l97:
+  1304                           ;konfig.c: 348: {
+  1305                           ;konfig.c: 350: {
+  1306  00BC62  0E0F               	movlw	15
+  1307  00BC64  D001               	goto	L5
+  1308                           ;konfig.c: 352: eeprom_write(0x00C1,DtKNF.mstr);
+  1309                           ;konfig.c: 353: break;
+  1310  00BC66                     l98:
+  1311                           ;konfig.c: 354: }
+  1312                           ;konfig.c: 356: {
+  1313  00BC66  0E28               	movlw	40
+  1314  00BC68                     L5:
+  1315  00BC68  CFE8 F087          	movff	wreg,_DtKNF+3
+  1316                           ;konfig.c: 358: eeprom_write(0x00C1,DtKNF.mstr);
+  1317  00BC6C  0EC1               	movlw	193
+  1318  00BC6E  0100               	movlb	__Lparam shr (0+8)
+  1319  00BC70  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1320  00BC72  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1321  00BC74  C087  F0DB         	movff	_DtKNF+3,?_eeprom_write+2
+  1322  00BC78  EFB2  F072         	goto	_eeprom_write	;wreg free
+  1323                           ;konfig.c: 359: break;
+  1324  00BC7C                     l96:
+  1325  00BC7C  C08B  FFE8         	movff	_DtKNF+7,wreg
+  1326  00BC80  0A03               	xorlw	3
+  1327  00BC82  E0EF               	bz	l97
+  1328  00BC84  D7F0               	goto	l98
+  1329                           ;konfig.c: 362: }
+  1330  00BC86                     __end_of_SetDefaultValue:
+  1331                           ;konfig.c: 365: void SetPFN(void)
+  1332                           ;konfig.c: 366: {
+  1333  00BC86                     _SetPFN:
+  1334  000000                     
+  1335                           ;konfig.c: 367: if(PFN.poz==1)
+  1336  00BC86  0101               	movlb	(_PFN+31) shr (0+8)
+  1337  00BC88  5176               	movf	(_PFN+31)& (0+255),w,b
+  1338  00BC8A  0A01               	xorlw	1
+  1339  00BC8C  1177               	iorwf	(_PFN+32)& (0+255),w,b
+  1340  00BC8E  E107               	bnz	l100
+  1341                           ;konfig.c: 368: {
+  1342  00BC90  0101               	movlb	_PFN shr (0+8)
+  1343  00BC92  9557               	bcf	_PFN& (0+255),2,b
+  1344                           ;konfig.c: 370: PFN._lato=0;
+  1345  00BC94  9357               	bcf	_PFN& (0+255),1,b
+  1346                           ;konfig.c: 371: PFN._off=1;
+  1347  00BC96  8157               	bsf	_PFN& (0+255),0,b
+  1348                           ;konfig.c: 372: PFN._csn=0;
+  1349  00BC98  0101               	movlb	(_PFN+3) shr (0+8)
+  1350  00BC9A  995A               	bcf	(_PFN+3)& (0+255),4,b
+  1351                           ;konfig.c: 373: }
+  1352  00BC9C  0012               	return	
+  1353  00BC9E                     l100:
+  1354                           ;konfig.c: 374: else
+  1355  00BC9E  0101               	movlb	(_PFN+31) shr (0+8)
+  1356  00BCA0  5176               	movf	(_PFN+31)& (0+255),w,b
+  1357  00BCA2  0A03               	xorlw	3
+  1358  00BCA4  1177               	iorwf	(_PFN+32)& (0+255),w,b
+  1359  00BCA6  E107               	bnz	l102
+  1360                           ;konfig.c: 376: {
+  1361  00BCA8  0101               	movlb	_PFN shr (0+8)
+  1362  00BCAA  8557               	bsf	_PFN& (0+255),2,b
+  1363                           ;konfig.c: 378: PFN._lato=0;
+  1364  00BCAC  9357               	bcf	_PFN& (0+255),1,b
+  1365                           ;konfig.c: 379: PFN._off=0;
+  1366  00BCAE  9157               	bcf	_PFN& (0+255),0,b
+  1367                           ;konfig.c: 380: PFN._csn=0;
+  1368  00BCB0  0101               	movlb	(_PFN+3) shr (0+8)
+  1369  00BCB2  995A               	bcf	(_PFN+3)& (0+255),4,b
+  1370                           ;konfig.c: 381: }
+  1371  00BCB4  0012               	return	
+  1372  00BCB6                     l102:
+  1373                           ;konfig.c: 382: else
+  1374  00BCB6  0101               	movlb	(_PFN+31) shr (0+8)
+  1375  00BCB8  5176               	movf	(_PFN+31)& (0+255),w,b
+  1376  00BCBA  0A02               	xorlw	2
+  1377  00BCBC  1177               	iorwf	(_PFN+32)& (0+255),w,b
+  1378                           ;konfig.c: 384: {
+  1379  00BCBE  0101               	movlb	_PFN shr (0+8)
+  1380  00BCC0  E106               	bnz	L3
+  1381  00BCC2  9557               	bcf	_PFN& (0+255),2,b
+  1382                           ;konfig.c: 386: PFN._lato=1;
+  1383  00BCC4  8357               	bsf	_PFN& (0+255),1,b
+  1384                           ;konfig.c: 387: PFN._off=0;
+  1385  00BCC6  9157               	bcf	_PFN& (0+255),0,b
+  1386                           ;konfig.c: 388: PFN._csn=0;
+  1387  00BCC8  0101               	movlb	(_PFN+3) shr (0+8)
+  1388  00BCCA  995A               	bcf	(_PFN+3)& (0+255),4,b
+  1389                           ;konfig.c: 389: }
+  1390  00BCCC  0012               	return	
+  1391                           ;konfig.c: 390: else
+  1392  00BCCE                     L3:
+  1393  00BCCE  8557               	bsf	_PFN& (0+255),2,b
+  1394                           ;konfig.c: 393: PFN._lato=0;
+  1395  00BCD0  0101               	movlb	_PFN shr (0+8)
+  1396  00BCD2  9357               	bcf	_PFN& (0+255),1,b
+  1397                           ;konfig.c: 394: PFN._off=0;
+  1398  00BCD4  9157               	bcf	_PFN& (0+255),0,b
+  1399                           ;konfig.c: 395: PFN._csn=0;
+  1400  00BCD6  0101               	movlb	(_PFN+3) shr (0+8)
+  1401  00BCD8  995A               	bcf	(_PFN+3)& (0+255),4,b
+  1402                           ;konfig.c: 396: PFN.poz=3;
+  1403  00BCDA  0101               	movlb	(_PFN+31) shr (0+8)
+  1404  00BCDC  0E03               	movlw	3
+  1405  00BCDE  6F76               	movwf	(_PFN+31)& (0+255),b
+  1406  00BCE0  6B77               	clrf	(_PFN+32)& (0+255),b
+  1407                           ;konfig.c: 397: }
+  1408  00BCE2  0C00               	retlw	0
+  1409  00BCE4                     __end_of_SetPFN:
+  1410                           ;konfig.c: 401: void WriteEEPCW(void)
+  1411                           ;konfig.c: 402: {
+  1412  00BCE4                     _WriteEEPCW:
+  1413  000000                     
+  1414                           ;konfig.c: 403: eeprom_write(0x00CA,DtCW.PCW);
+  1415  00BCE4  0ECA               	movlw	202
+  1416  00BCE6  0100               	movlb	__Lparam shr (0+8)
+  1417  00BCE8  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1418  00BCEA  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1419  00BCEC  C21E  F0DB         	movff	_DtCW+3,?_eeprom_write+2
+  1420  00BCF0  EFB2  F072         	goto	_eeprom_write	;wreg free
+  1421                           ;konfig.c: 404: }
+  1422  00BCF4                     __end_of_WriteEEPCW:
+  1423                           ;konfig.c: 405: unsigned char ReadEEPCW(void)
+  1424                           ;konfig.c: 406: {
+  1425  00BCF4                     _ReadEEPCW:
+  1426  000000                     
+  1427                           ;konfig.c: 407: return eeprom_read(0x00CA);
+  1428  00BCF4  0ECA               	movlw	202
+  1429  00BCF6  D013               	goto	L7
+  1430                           ;konfig.c: 408: }
+  1431  00BCF8                     __end_of_ReadEEPCW:
+  1432                           ;konfig.c: 411: void WriteEEPCO(void)
+  1433                           ;konfig.c: 412: {
+  1434  00BCF8                     _WriteEEPCO:
+  1435  000000                     
+  1436  00BCF8                     L4:
+  1437                           ;konfig.c: 413: eeprom_write(0x00C9,DtCO.PCO);
+  1438  00BCF8  0EC9               	movlw	201
+  1439  00BCFA  0100               	movlb	__Lparam shr (0+8)
+  1440  00BCFC  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1441  00BCFE  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1442  00BD00  C20F  F0DB         	movff	_DtCO+3,?_eeprom_write+2
+  1443  00BD04  EFB2  F072         	goto	_eeprom_write	;wreg free
+  1444                           ;konfig.c: 414: }
+  1445  00BD08                     __end_of_WriteEEPCO:
+  1446                           ;konfig.c: 415: unsigned char ReadEEPCO(void)
+  1447                           ;konfig.c: 416: {
+  1448  00BD08                     _ReadEEPCO:
+  1449  000000                     
+  1450                           ;konfig.c: 417: return eeprom_read(0x00C9);
+  1451  00BD08  0EC9               	movlw	201
+  1452  00BD0A  D009               	goto	L7
+  1453                           ;konfig.c: 418: }
+  1454  00BD0C                     __end_of_ReadEEPCO:
+  1455                           ;konfig.c: 421: void WriteEEPFN(void)
+  1456                           ;konfig.c: 422: {
+  1457  00BD0C                     _WriteEEPFN:
+  1458  000000                     
+  1459                           ;konfig.c: 423: eeprom_write(0x00CB,PFN.poz);
+  1460  00BD0C  0ECB               	movlw	203
+  1461  00BD0E  0100               	movlb	__Lparam shr (0+8)
+  1462  00BD10  6FD9               	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1463  00BD12  6BDA               	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1464  00BD14  C176  F0DB         	movff	_PFN+31,?_eeprom_write+2
+  1465  00BD18  EFB2  F072         	goto	_eeprom_write	;wreg free
+  1466                           ;konfig.c: 424: }
+  1467  00BD1C                     __end_of_WriteEEPFN:
+  1468                           ;konfig.c: 425: unsigned char ReadEEPFN(void)
+  1469                           ;konfig.c: 426: {
+  1470  00BD1C                     _ReadEEPFN:
+  1471  000000                     
+  1472                           ;konfig.c: 427: return eeprom_read(0x00CB);
+  1473  00BD1C  0ECB               	movlw	203
+  1474  00BD1E                     L7:
+  1475  00BD1E  0100               	movlb	__Lparam shr (0+8)
+  1476  00BD20  6FDD               	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1477  00BD22  6BDE               	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1478  00BD24  EF20  F073         	goto	_eeprom_read	;wreg free
+  1479                           ;konfig.c: 428: }
+  1480  00BD28                     __end_of_ReadEEPFN:
+  1481  000000                     
+  1482  000000                     
+  1483  000000                     
+  1484  000000                     
+  1485  000000                     
+  1486  000000                     
+  1487  000000                     
+  1488  000000                     
+  1489  000000                     
+  1490  000000                     
+  1491  000000                     
+  1492  000000                     
+  1493  000000                     
+  1494  000000                     
+  1495  000000                     
+  1496  000000                     
+  1497  000000                     
+  1498  000000                     
+  1499  000000                     
+  1500  000000                     
+  1501  000000                     
+  1502  000000                     
+  1503  000000                     
+  1504  000000                     
+  1505  000000                     
+  1506  000000                     
+  1507  000000                     
+  1508  000000                     
+  1509  000000                     
+  1510  000000                     
+  1511  000000                     
+  1512  000000                     
+  1513  000000                     
+  1514  000000                     
+  1515  000000                     
+  1516  000000                     
+  1517  000000                     
+  1518  000000                     
+  1519  000000                     
+  1520  000000                     
+  1521  000000                     
+  1522  000000                     
+  1523  000000                     
+  1524  000000                     
+  1525  000000                     
+  1526  000000                     
+  1527  000000                     
+  1528  000000                     
+  1529  000000                     
+  1530  000000                     
+  1531  000000                     
+  1532  000000                     
+  1533  000000                     
+  1534  000000                     
+  1535  000000                     
+  1536  000000                     
+  1537  000000                     
+  1538  000000                     
+  1539  000000                     
+  1540  000000                     
+  1541  000000                     
+  1542  000000                     
+  1543  000000                     
+  1544  000000                     
+  1545  000000                     
+  1546  000000                     
+  1547  000000                     
+  1548  000000                     
+  1549  000000                     
+  1550  000000                     
+  1551  000000                     
+  1552  000000                     
+  1553  000000                     
+  1554  000000                     
+  1555  000000                     
+  1556  000000                     
+  1557  000000                     
+  1558  000000                     
+  1559  000000                     
+  1560  000000                     
+  1561  000000                     
+  1562  000000                     
+  1563  000000                     
+  1564  000000                     
+  1565  000000                     
+  1566  000000                     
+  1567  000000                     
+  1568  000000                     
+  1569  000000                     
+  1570  000000                     
+  1571  000000                     
+  1572  000000                     
+  1573  000000                     
+  1574  000000                     
+  1575  000000                     
+  1576  000000                     
+  1577  000000                     
+  1578  000000                     
+  1579  000000                     
+  1580  000000                     
+  1581  000000                     
+  1582  000000                     
+  1583  000000                     
+  1584  000000                     
+  1585  000000                     
+  1586  000000                     
+  1587  000000                     
+  1588  000000                     
+  1589  000000                     
+  1590  000000                     
+  1591  000000                     
+  1592  000000                     
+  1593  000000                     
+  1594  000000                     
+  1595  000000                     
+  1596  000000                     
+  1597  000000                     
+  1598  000000                     
+  1599  000000                     
+  1600  000000                     
+  1601  000000                     
+  1602  000000                     
+  1603  000000                     
+  1604  000000                     
+  1605  000000                     
+  1606  000000                     
+  1607  000000                     
+  1608  000000                     
+  1609  000000                     
+  1610  000000                     
+  1611  000000                     
+  1612  000000                     
+  1613  000000                     
+  1614  000000                     
+  1615  000000                     
+  1616  000000                     
+  1617  000000                     
+  1618  000000                     
+  1619  000000                     
+  1620  000000                     
+  1621  000000                     
+  1622  000000                     
+  1623  000000                     
+  1624  000000                     
+  1625  000000                     
+  1626  000000                     
+  1627  000000                     
+  1628  000000                     
+  1629  000000                     
+  1630  000000                     
+  1631  000000                     
+  1632  000000                     
+  1633  000000                     
+  1634  000000                     
+  1635  000000                     
+  1636  000000                     
+  1637  000000                     
+  1638  000000                     
+  1639  000000                     
+  1640  000000                     
+  1641  000000                     
+  1642  000000                     
+  1643  000000                     
+  1644  000000                     
+  1645  000000                     
+  1646  000000                     
+  1647  000000                     
+  1648  000000                     
+  1649  000000                     
+  1650  000000                     
+  1651  000000                     
+  1652  000000                     
+  1653  000000                     
+  1654  000000                     
+  1655  000000                     
+  1656  000000                     
+  1657  000000                     
+  1658  000000                     
+  1659  000000                     
+  1660  000000                     
+  1661  000000                     
+  1662  000000                     
+  1663  000000                     
+  1664  000000                     
+  1665  000000                     
+  1666  000000                     
+  1667  000000                     
+  1668  000000                     
+  1669  000000                     
+  1670  000000                     
+  1671  000000                     
+  1672  000000                     
+  1673  000000                     
+  1674  000000                     
+  1675  000000                     
+  1676  000000                     
+  1677  000000                     
+  1678  000000                     
+  1679  000000                     
+  1680  000000                     
+  1681  000000                     
+  1682  000000                     
+  1683  000000                     
+  1684  000000                     
+  1685  000000                     
+  1686  000000                     
+  1687  000000                     
+  1688  000000                     
+  1689  000000                     
+  1690  000000                     
+  1691  000000                     
+  1692  000000                     
+  1693  000000                     
+  1694  000000                     
+  1695  000000                     
+  1696  000000                     
+  1697  000000                     
+  1698  000000                     
+  1699  000000                     
+  1700  000000                     
+  1701  000000                     
+  1702  000000                     
+  1703  000000                     
+  1704  000000                     
+  1705  000000                     
+  1706  000000                     
+  1707  000000                     
+  1708  000000                     
+  1709  000000                     
+  1710  000000                     
+  1711  000000                     
+  1712  000000                     
+  1713  000000                     
+  1714  000000                     
+  1715  000000                     
+  1716  000000                     
+  1717  000000                     
+  1718  000000                     
+  1719  000000                     
+  1720  000000                     
+  1721  000000                     
+  1722  000000                     
+  1723  000000                     
+  1724  000000                     
+  1725  000000                     
+  1726  000000                     
+  1727  000000                     
+  1728  000000                     
+  1729  000000                     
+  1730  000000                     
+  1731  000000                     
+  1732  000000                     
+  1733  000000                     
+  1734  000000                     
+  1735  000000                     
+  1736  000000                     
+  1737  000000                     
+  1738  000000                     
+  1739  000000                     
+  1740  000000                     
+  1741  000000                     
+  1742  000000                     
+  1743  000000                     
+  1744  000000                     
+  1745  000000                     
+  1746  000000                     
+  1747  000000                     
+  1748  000000                     
+  1749  000000                     
+  1750  000000                     
+  1751  000000                     
+  1752  000000                     
+  1753  000000                     
+  1754  000000                     
+  1755  000000                     
+  1756  000000                     
+  1757  000000                     
+  1758  000000                     
+  1759  000000                     
+  1760  000000                     
+  1761  000000                     
+  1762  000000                     
+  1763  000000                     
+  1764  000000                     
+  1765  000000                     
+  1766  000000                     
+  1767  000000                     
+  1768  000000                     
+  1769  000000                     
+  1770  000000                     
+  1771  000000                     
+  1772  000000                     
+  1773  000000                     
+  1774  000000                     
+  1775  000000                     
+  1776  000000                     
+  1777  000000                     
+  1778  000000                     
+  1779  000000                     
+  1780  000000                     
+  1781  000000                     
+  1782  000000                     
+  1783  000000                     
+  1784  000000                     
+  1785  000000                     
+  1786  000000                     
+  1787  000000                     
+  1788  000000                     
+  1789  000000                     
+  1790  000000                     
+  1791  000000                     
+  1792  000000                     
+  1793  000000                     
+  1794  000000                     
+  1795  000000                     
+  1796  000000                     
+  1797  000000                     
+  1798  000000                     
+  1799  000000                     
+  1800  000000                     
+  1801  000000                     
+  1802  000000                     
+  1803  000000                     
+  1804  000000                     
+  1805  000000                     
+  1806  000000                     
+  1807  000000                     
+  1808  000000                     
+  1809  000000                     
+  1810  000000                     
+  1811  000000                     
+  1812  000000                     
+  1813  000000                     
+  1814  000000                     
+  1815  000000                     
+  1816  000000                     
+  1817  000000                     
+  1818  000000                     
+  1819  000000                     
+  1820  000000                     
+  1821  000000                     
+  1822  000000                     
+  1823  000000                     
+  1824  000000                     
+  1825  000000                     
+  1826  000000                     
+  1827  000000                     
+  1828  000000                     
+  1829  000000                     
+  1830  000000                     
+  1831  000000                     
+  1832  000000                     
+  1833  000000                     
+  1834  000000                     
+  1835  000000                     
+  1836  000000                     
+  1837  000000                     
+  1838  000000                     
+  1839  000000                     
+  1840  000000                     
+  1841  000000                     
+  1842  000000                     
+  1843  000000                     
+  1844  000000                     
+  1845  000000                     
+  1846  000000                     
+  1847  000000                     
+  1848  000000                     
+  1849  000000                     
+  1850  000000                     
+  1851  000000                     
+  1852  000000                     
+  1853  000000                     
+  1854  000000                     
+  1855  000000                     
+  1856  000000                     
+  1857  000000                     
+  1858  000000                     
+  1859  000000                     
+  1860  000000                     
+  1861  000000                     
+  1862  000000                     
+  1863  000000                     
+  1864  000000                     
+  1865  000000                     
+  1866  000000                     
+  1867  000000                     
+  1868  000000                     
+  1869  000000                     
+  1870  000000                     
+  1871  000000                     
+  1872  000000                     
+  1873  000000                     
+  1874  000000                     
+  1875  000000                     
+  1876  000000                     
+  1877  000000                     
+  1878  000000                     
+  1879  000000                     
+  1880  000000                     
+  1881  000000                     
+  1882  000000                     
+  1883  000000                     
+  1884  000000                     
+  1885  000000                     
+  1886  000000                     
+  1887  000000                     
+  1888  000000                     
+  1889  000000                     
+  1890  000000                     
+  1891  000000                     
+  1892  000000                     
+  1893  000000                     
+  1894  000000                     
+  1895  000000                     
+  1896  000000                     
+  1897  000000                     
+  1898  000000                     
+  1899  000000                     
+  1900  000000                     
+  1901  000000                     
+  1902  000000                     
+  1903  000000                     
+  1904  000000                     
+  1905  000000                     
+  1906  000000                     
+  1907  000000                     
+  1908  000000                     
+  1909  000000                     
+  1910  000000                     
+  1911  000000                     
+  1912  000000                     
+  1913  000000                     
+  1914  000000                     
+  1915  000000                     
+  1916  000000                     
+  1917                           
+  1918                           	psect	eeprom_data
+  1919                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+  1920                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+  1921                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+  1922                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+  1923                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+  1924                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+  1925                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+  1926                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+  1927                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+  1928                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+  1929                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+  1930                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+  1931                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+  1932                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+  1933                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+  1934                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+  1935                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+  1936                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+  1937                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+  1938                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+  1939                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+  1940                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+  1941                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+  1942                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+  1943                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+  1944                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+  1945                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+  1946                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+  1947                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+  1948                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+  1949                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+  1950                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+  1951                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+  1952                           ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+  1953                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+  1954                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+  1955                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+  1956                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+  1957                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+  1958                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+  1959                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+  1960                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+  1961                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+  1962                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+  1963                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+  1964                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+  1965                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+  1966                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+  1967                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+  1968                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+  1969                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+  1970                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+  1971                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+  1972                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+  1973                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+  1974                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+  1975                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+  1976                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+  1977                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+  1978                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+  1979                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+  1980                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+  1981                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+  1982                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+  1983                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+  1984                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+  1985                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+  1986                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+  1987                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+  1988                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+  1989                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+  1990                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+  1991                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+  1992                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+  1993                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+  1994                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+  1995                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+  1996                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+  1997                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+  1998                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+  1999                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+  2000                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+  2001                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+  2002                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+  2003                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+  2004                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+  2005                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+  2006                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+  2007                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+  2008                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+  2009                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+  2010                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+  2011                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+  2012                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+  2013                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+  2014                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+  2015                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+  2016                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+  2017                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+  2018                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+  2019  F001A8  63 63 62 62 61 60  	db	99,99,98,98,97,96,95,95	;#
+      +       5F 5F              
+  2020                           ;eeprom.h: 156: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "94" "," "93" "," "92" ","
+      +                           "92" "," "91" "," "90" "," "90" "," "89");
+  2021  F001B0  5E 5D 5C 5C 5B 5A  	db	94,93,92,92,91,90,90,89	;#
+      +       5A 59              
+  2022                           ;eeprom.h: 157: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "88" "," "88" "," "87" ","
+      +                           "87" "," "86" "," "85" "," "85" "," "84");
+  2023  F001B8  58 58 57 57 56 55  	db	88,88,87,87,86,85,85,84	;#
+      +       55 54              
+  2024                           ;eeprom.h: 158: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "84" "," "83" "," "82" ","
+      +                           "82" "," "81" "," "81" "," "80" "," "80");
+  2025  F001C0  54 53 52 52 51 51  	db	84,83,82,82,81,81,80,80	;#
+      +       50 50              
+  2026                           ;eeprom.h: 159: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "79" "," "79" "," "78" ","
+      +                           "77" "," "77" "," "76" "," "76" "," "75");
+  2027  F001C8  4F 4F 4E 4D 4D 4C  	db	79,79,78,77,77,76,76,75	;#
+      +       4C 4B              
+  2028                           ;eeprom.h: 160: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "75" "," "74" "," "74" ","
+      +                           "73" "," "73" "," "72" "," "72" "," "71");
+  2029  F001D0  4B 4A 4A 49 49 48  	db	75,74,74,73,73,72,72,71	;#
+      +       48 47              
+  2030                           ;eeprom.h: 161: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "71" "," "70" "," "70" ","
+      +                           "70" "," "69" "," "69" "," "68" "," "68");
+  2031  F001D8  47 46 46 46 45 45  	db	71,70,70,70,69,69,68,68	;#
+      +       44 44              
+  2032                           ;eeprom.h: 162: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "67" "," "67" "," "66" ","
+      +                           "66" "," "65" "," "65" "," "64" "," "64");
+  2033  F001E0  43 43 42 42 41 41  	db	67,67,66,66,65,65,64,64	;#
+      +       40 40              
+  2034                           ;eeprom.h: 163: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "64" "," "63" "," "63" ","
+      +                           "62" "," "62" "," "61" "," "61" "," "61");
+  2035  F001E8  40 3F 3F 3E 3E 3D  	db	64,63,63,62,62,61,61,61	;#
+      +       3D 3D              
+  2036                           ;eeprom.h: 164: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "60" "," "60" "," "59" ","
+      +                           "59" "," "58" "," "58" "," "57" "," "57");
+  2037  F001F0  3C 3C 3B 3B 3A 3A  	db	60,60,59,59,58,58,57,57	;#
+      +       39 39              
+  2038                           ;eeprom.h: 165: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "57" "," "56" "," "56" ","
+      +                           "55" "," "55" "," "54" "," "54" "," "54");
+  2039  F001F8  39 38 38 37 37 36  	db	57,56,56,55,55,54,54,54	;#
+      +       36 36              
+  2040                           ;eeprom.h: 166: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "53" "," "53" "," "52" ","
+      +                           "52" "," "52" "," "51" "," "51" "," "50");
+  2041  F00200  35 35 34 34 34 33  	db	53,53,52,52,52,51,51,50	;#
+      +       33 32              
+  2042                           ;eeprom.h: 167: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "50" "," "49" "," "49" ","
+      +                           "49" "," "48" "," "48" "," "47" "," "47");
+  2043  F00208  32 31 31 31 30 30  	db	50,49,49,49,48,48,47,47	;#
+      +       2F 2F              
+  2044                           ;eeprom.h: 168: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "46" "," "46" "," "46" ","
+      +                           "45" "," "45" "," "44" "," "44" "," "44");
+  2045  F00210  2E 2E 2E 2D 2D 2C  	db	46,46,46,45,45,44,44,44	;#
+      +       2C 2C              
+  2046                           ;eeprom.h: 169: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "43" "," "43" "," "42" ","
+      +                           "42" "," "41" "," "41" "," "41" "," "40");
+  2047  F00218  2B 2B 2A 2A 29 29  	db	43,43,42,42,41,41,41,40	;#
+      +       29 28              
+  2048                           ;eeprom.h: 170: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "40" "," "39" "," "39" ","
+      +                           "38" "," "38" "," "37" "," "37" "," "37");
+  2049  F00220  28 27 27 26 26 25  	db	40,39,39,38,38,37,37,37	;#
+      +       25 25              
+  2050                           ;eeprom.h: 171: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "36" "," "36" "," "35" ","
+      +                           "35" "," "34" "," "34" "," "33" "," "33");
+  2051  F00228  24 24 23 23 22 22  	db	36,36,35,35,34,34,33,33	;#
+      +       21 21              
+  2052                           ;eeprom.h: 172: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "32" "," "32" "," "31" ","
+      +                           "31" "," "30" "," "30" "," "29" "," "29");
+  2053  F00230  20 20 1F 1F 1E 1E  	db	32,32,31,31,30,30,29,29	;#
+      +       1D 1D              
+  2054                           ;eeprom.h: 173: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "28" "," "28" "," "27" ","
+      +                           "27" "," "26" "," "26" "," "25" "," "24");
+  2055  F00238  1C 1C 1B 1B 1A 1A  	db	28,28,27,27,26,26,25,24	;#
+      +       19 18              
+  2056                           ;eeprom.h: 174: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "24" "," "23" "," "23" ","
+      +                           "22" "," "22" "," "21" "," "21" "," "20");
+  2057  F00240  18 17 17 16 16 15  	db	24,23,23,22,22,21,21,20	;#
+      +       15 14              
+  2058                           ;eeprom.h: 175: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "19" "," "19" "," "18" ","
+      +                           "17" "," "17" "," "16" "," "16" "," "15");
+  2059  F00248  13 13 12 11 11 10  	db	19,19,18,17,17,16,16,15	;#
+      +       10 0F              
+  2060                           ;eeprom.h: 176: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "14" "," "14" "," "13" ","
+      +                           "12" "," "11" "," "11" "," "10" "," "09");
+  2061  F00250  0E 0E 0D 0C 0B 0B  	db	14,14,13,12,11,11,10,9	;#
+      +       0A 09              
+  2062                           ;eeprom.h: 177: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "08" "," "07" "," "06" ","
+      +                           "06" "," "05" "," "04" "," "03" "," "02");
+  2063  F00258  08 07 06 06 05 04  	db	8,7,6,6,5,4,3,2	;#
+      +       03 02              
+  2064                           ;eeprom.h: 178: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "01" "," "00" "," "00" ","
+      +                           "00" "," "00" "," "00" "," "00" "," "00");
+  2065  F00260  01 00 00 00 00 00  	db	1,0,0,0,0,0,0,0	;#
+      +       00 00              
+  2066                           ;eeprom.h: 208: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "0" "," "40" "," "99" "," 
+      +                          "99" "," "0" "," "3" "," "0" "," "0");
+  2067  F00268  00 28 63 63 00 03  	db	0,40,99,99,0,3,0,0	;#
+      +       00 00              
+  2068                           ;eeprom.h: 209: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "1" "," "85" "," "60" "," 
+      +                          "3" "," "0" "," "0" "," "00" "," "00");
+  2069  F00270  01 55 3C 03 00 00  	db	1,85,60,3,0,0,0,0	;#
+      +       00 00              
+  2070                           ;eeprom.h: 211: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "0" "," "20" "," "15" "," 
+      +                          "0" "," "5" "," "0" "," "0" "," "0");
+  2071  F00278  00 14 0F 00 05 00  	db	0,20,15,0,5,0,0,0	;#
+      +       00 00              
+  2072                           ;eeprom.h: 212: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "0" "," "0" "," "0" "," "0
+      +                          " "," "0" "," "0" "," "0" "," "0");
+  2073  F00280  00 00 00 00 00 00  	db	0,0,0,0,0,0,0,0	;#
+      +       00 00              
+  2074                           ;eeprom.h: 217: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "40" "," "40" "," "39" ","
+      +                           "38" "," "38" "," "37" "," "36" "," "36");
+  2075  F00288  28 28 27 26 26 25  	db	40,40,39,38,38,37,36,36	;#
+      +       24 24              
+  2076                           ;eeprom.h: 218: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "35" "," "34" "," "34" ","
+      +                           "33" "," "33" "," "32" "," "32" "," "31");
+  2077  F00290  23 22 22 21 21 20  	db	35,34,34,33,33,32,32,31	;#
+      +       20 1F              
+  2078                           ;eeprom.h: 219: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "31" "," "30" "," "30" ","
+      +                           "29" "," "29" "," "28" "," "28" "," "27");
+  2079  F00298  1F 1E 1E 1D 1D 1C  	db	31,30,30,29,29,28,28,27	;#
+      +       1C 1B              
+  2080                           ;eeprom.h: 220: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "27" "," "26" "," "26" ","
+      +                           "25" "," "25" "," "24" "," "24" "," "23");
+  2081  F002A0  1B 1A 1A 19 19 18  	db	27,26,26,25,25,24,24,23	;#
+      +       18 17              
+  2082                           ;eeprom.h: 221: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "23" "," "22" "," "22" ","
+      +                           "22" "," "21" "," "21" "," "20" "," "20");
+  2083  F002A8  17 16 16 16 15 15  	db	23,22,22,22,21,21,20,20	;#
+      +       14 14              
+  2084                           ;eeprom.h: 222: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "20" "," "19" "," "19" ","
+      +                           "18" "," "18" "," "18" "," "17" "," "17");
+  2085  F002B0  14 13 13 12 12 12  	db	20,19,19,18,18,18,17,17	;#
+      +       11 11              
+  2086                           ;eeprom.h: 223: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "17" "," "16" "," "16" ","
+      +                           "15" "," "15" "," "15" "," "14" "," "14");
+  2087  F002B8  11 10 10 0F 0F 0F  	db	17,16,16,15,15,15,14,14	;#
+      +       0E 0E              
+  2088                           ;eeprom.h: 224: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "14" "," "13" "," "13" ","
+      +                           "13" "," "12" "," "12" "," "12" "," "11");
+  2089  F002C0  0E 0D 0D 0D 0C 0C  	db	14,13,13,13,12,12,12,11	;#
+      +       0C 0B              
+  2090                           ;eeprom.h: 225: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "11" "," "11" "," "10" ","
+      +                           "10" "," "10" "," "9" "," "9" "," "9");
+  2091  F002C8  0B 0B 0A 0A 0A 09  	db	11,11,10,10,10,9,9,9	;#
+      +       09 09              
+  2092                           ;eeprom.h: 226: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "8" "," "8" "," "8" "," "7
+      +                          " "," "7" "," "7" "," "6" "," "6");
+  2093  F002D0  08 08 08 07 07 07  	db	8,8,8,7,7,7,6,6	;#
+      +       06 06              
+  2094                           ;eeprom.h: 227: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "6" "," "5" "," "5" "," "5
+      +                          " "," "4" "," "4" "," "4" "," "3");
+  2095  F002D8  06 05 05 05 04 04  	db	6,5,5,5,4,4,4,3	;#
+      +       04 03              
+  2096                           ;eeprom.h: 228: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "3" "," "3" "," "2" "," "2
+      +                          " "," "2" "," "1" "," "1" "," "1");
+  2097  F002E0  03 03 02 02 02 01  	db	3,3,2,2,2,1,1,1	;#
+      +       01 01              
+  2098                           ;eeprom.h: 229: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "1" "," "0" "," "0" "," "0
+      +                          " "," "-1" "," "-1" "," "-1" "," "-2");
+  2099  F002E8  01 00 00 00 FF FF  	db	1,0,0,0,-1,-1,-1,-2	;#
+      +       FF FE              
+  2100                           ;eeprom.h: 230: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-2" "," "-2" "," "-2" ","
+      +                           "-3" "," "-3" "," "-3" "," "-4" "," "-4");
+  2101  F002F0  FE FE FE FD FD FD  	db	-2,-2,-2,-3,-3,-3,-4,-4	;#
+      +       FC FC              
+  2102                           ;eeprom.h: 231: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-4" "," "-5" "," "-5" ","
+      +                           "-5" "," "-6" "," "-6" "," "-6" "," "-7");
+  2103  F002F8  FC FB FB FB FA FA  	db	-4,-5,-5,-5,-6,-6,-6,-7	;#
+      +       FA F9              
+  2104                           ;eeprom.h: 232: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-7" "," "-7" "," "-8" ","
+      +                           "-8" "," "-8" "," "-9" "," "-9" "," "-9");
+  2105  F00300  F9 F9 F8 F8 F8 F7  	db	-7,-7,-8,-8,-8,-9,-9,-9	;#
+      +       F7 F7              
+  2106                           ;eeprom.h: 233: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-9" "," "-10" "," "-10" "
+      +                          ," "-10" "," "-11" "," "-11" "," "-11" "," "-12"
+      +                          );
+  2107  F00308  F7 F6 F6 F6 F5 F5  	db	-9,-10,-10,-10,-11,-11,-11,-12	;#
+      +       F5 F4              
+  2108                           ;eeprom.h: 234: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-12" "," "-13" "," "-13" 
+      +                          "," "-13" "," "-13" "," "-14" "," "-14" "," "-14
+      +                          ");
+  2109  F00310  F4 F3 F3 F3 F3 F2  	db	-12,-13,-13,-13,-13,-14,-14,-14	;#
+      +       F2 F2              
+  2110                           ;eeprom.h: 235: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-15" "," "-15" "," "-16" 
+      +                          "," "-16" "," "-16" "," "-17" "," "-17" "," "-17
+      +                          ");
+  2111  F00318  F1 F1 F0 F0 F0 EF  	db	-15,-15,-16,-16,-16,-17,-17,-17	;#
+      +       EF EF              
+  2112                           ;eeprom.h: 236: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-18" "," "-18" "," "-18" 
+      +                          "," "-19" "," "-19" "," "-20" "," "-20" "," "-20
+      +                          ");
+  2113  F00320  EE EE EE ED ED EC  	db	-18,-18,-18,-19,-19,-20,-20,-20	;#
+      +       EC EC              
+  2114                           ;eeprom.h: 237: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-21" "," "-21" "," "-22" 
+      +                          "," "-22" "," "-22" "," "-23" "," "-23" "," "-24
+      +                          ");
+  2115  F00328  EB EB EA EA EA E9  	db	-21,-21,-22,-22,-22,-23,-23,-24	;#
+      +       E9 E8              
+  2116                           ;eeprom.h: 238: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-24" "," "-25" "," "-25" 
+      +                          "," "-25" "," "-26" "," "-26" "," "-27" "," "-27
+      +                          ");
+  2117  F00330  E8 E7 E7 E7 E6 E6  	db	-24,-25,-25,-25,-26,-26,-27,-27	;#
+      +       E5 E5              
+  2118                           ;eeprom.h: 239: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-28" "," "-28" "," "-29" 
+      +                          "," "-29" "," "-30" "," "-30" "," "-31" "," "-31
+      +                          ");
+  2119  F00338  E4 E4 E3 E3 E2 E2  	db	-28,-28,-29,-29,-30,-30,-31,-31	;#
+      +       E1 E1              
+  2120                           ;eeprom.h: 240: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-32" "," "-33" "," "-33" 
+      +                          "," "-34" "," "-35" "," "-35" "," "-36" "," "-37
+      +                          ");
+  2121  F00340  E0 DF DF DE DD DD  	db	-32,-33,-33,-34,-35,-35,-36,-37	;#
+      +       DC DB              
+  2122                           ;eeprom.h: 241: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-37" "," "-38" "," "-39" 
+      +                          "," "-40" "," "-40" "," "-40" "," "-40" "," "-40
+      +                          ");
+  2123  F00348  DB DA D9 D8 D8 D8  	db	-37,-38,-39,-40,-40,-40,-40,-40	;#
+      +       D8 D8              
+  2124                           
+  2125                           	psect	bigbss
+  2126  000EEE                     F1617:
+  2127  000EEE                     	ds	1
+  2128  000EEE                     F1618:
+  2129  000EEE                     	ds	1
+  2130  000000                     
+  2131  000000                     
+  2132  000000                     
+  2133  000000                     
+  2134  000000                     
+  2135  000000                     
+  2136  000000                     
+  2137  000000                     
+  2138  000000                     
+  2139  000000                     
+  2140  000000                     
+  2141  000000                     
+  2142  000000                     
+  2143  000000                     
+  2144  000000                     
+  2145  000000                     
+  2146  000000                     
+  2147  000000                     
+  2148  000000                     
+  2149  000000                     
+  2150  000000                     
+  2151  000000                     
+  2152  000000                     
+  2153  000000                     
+  2154  000000                     
+  2155  000000                     
+  2156  000000                     
+  2157  000000                     
+  2158  000000                     
+  2159  000000                     
+  2160  000000                     
+  2161  000000                     
+  2162  000000                     
+  2163  000000                     
+  2164  000000                     
+  2165  000000                     
+  2166  000000                     
+  2167  000000                     
+  2168  000000                     
+  2169  000000                     
+  2170  000000                     
+  2171  000000                     
+  2172  000000                     
+  2173  000000                     
+  2174  000000                     
+  2175  000000                     
+  2176  000000                     
+  2177  000000                     
+  2178  000000                     
+  2179  000000                     
+  2180  000000                     
+  2181  000000                     
+  2182  000000                     
+  2183  000000                     
+  2184  000000                     
+  2185  000000                     
+  2186  000000                     
+  2187  000000                     
+  2188  000000                     
+  2189  000000                     
+  2190  000000                     
+  2191  000000                     
+  2192  000000                     
+  2193  000000                     
+  2194  000000                     
+  2195  000000                     
+  2196  000000                     
+  2197  000000                     
+  2198  000000                     
+  2199  000000                     
+  2200  000000                     
+  2201  000000                     
+  2202  000000                     
+  2203  000000                     
+  2204  000000                     
+  2205  000000                     
+  2206  000000                     
+  2207  000000                     
+  2208  000000                     
+  2209  000000                     
+  2210  000000                     
+  2211  000000                     
+  2212  000000                     
+  2213  000000                     
+  2214  000000                     
+  2215  000000                     
+  2216  000000                     
+  2217  000000                     
+  2218  000000                     
+  2219  000000                     
+  2220  000000                     
+  2221  000000                     
+  2222  000000                     
+  2223  000000                     
+  2224  000000                     
+  2225  000000                     
+  2226  000000                     
+  2227  000000                     
+  2228  000000                     
+  2229  000000                     
+  2230  000000                     
+  2231  000000                     
+  2232  000000                     
+  2233  000000                     
+  2234  000000                     
+  2235  000000                     
+  2236  000000                     
+  2237  000000                     
+  2238  000000                     
+  2239  000000                     
+  2240  000000                     
+  2241  000000                     
+  2242  000000                     
+  2243  000000                     
+  2244  000000                     
+  2245  000000                     
+  2246  000000                     
+  2247  000000                     
+  2248  000000                     
+  2249  000000                     
+  2250  000000                     
+  2251  000000                     
+  2252  000000                     
+  2253  000000                     
+  2254  000000                     
+  2255  000000                     
+  2256  000000                     
+  2257  000000                     
+  2258  000000                     
+  2259  000000                     
+  2260  000000                     
+  2261  000000                     
+  2262                           
+  2263                           	psect	bss
+  2264  00007F                     _MGSD:
+  2265  00007F                     	ds	5
+  2266  00007F                     _DtKNF:
+  2267  00007F                     	ds	18
+  2268  00007F                     _RSDT1:
+  2269  00007F                     	ds	65
+  2270                           
+  2271                           	psect	temp
+  2272  000000                     btemp:
+  2273  000000                     	ds	4
+  2274                           indf0	equ	0xFEF
+  2275                           wreg	equ	0xFE8
+  2276                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Wed Mar 20 08:54:40 2013
+
+                      _M 017A                 _PomiarZW 8D18  
+__end_of_SetDefaultValue BC86                       l31 B5AA  
+                     l32 B518                       l33 B520  
+                     l50 B654                       l26 B4D4  
+                     l43 B574                       l27 B4F8  
+                     l60 B82E                       l52 B6A6  
+                     l44 B59A                       l36 B588  
+                     l37 B532                       l29 B50C  
+                     l62 B81C                       l54 B6F8  
+                     l38 B546                       l71 B990  
+                     l63 B86E                       l39 B562  
+                     l80 BA42                       l56 B756  
+                     l81 BA50                       l73 B9E0  
+                     l65 B8AE                       l49 B9E8  
+                     l90 BC2A                       l58 B7AA  
+                     l91 BC32                       l67 B8EE  
+                     l92 BC3A                       l84 BBD8  
+                     l76 BA10                       l93 BC42  
+                     l77 BA06                       l69 B940  
+                     l96 BC7C                       l88 BC4A  
+                     l97 BC62                       l89 BC22  
+                     l98 BC66                       u50 B4D0  
+                     u81 B4E2                 _StartRTG DDD8  
+               _StartRTS DD48             _SetTpKtParam BC20  
+                    l100 BC9E                      l102 BCB6  
+                    u100 B4E8                      u211 B614  
+                    u400 B6C8                      u320 B676  
+                    u240 B624                      u600 B7CC  
+                    u505 B738                      u425 B6E6  
+                    u345 B694                      u265 B642  
+                    _PFN 0157                      u530 B766  
+                    u451 B70A                      u371 B6B8  
+                    u291 B666                      u800 B8BE  
+                    u720 B83E                      u480 B71A  
+                    u625 B7EA                      u545 B784  
+                    u651 B800                      u571 B7BC  
+                    u815 B8DC                      u735 B85C  
+                    u760 B87E                      u680 B810  
+                    u921 B950                      u841 B900  
+                    u950 B960                      u870 B910  
+                    u775 B89C                      u975 B97E  
+                    u895 B92E                      _RTS DD6C  
+   __end_of_SetTpKtParam BC60                      wreg 000FE8  
+          ?_eeprom_write 00D9                     F1617 0EEE  
+                   F1618 0EEF                     u1001 B9A0  
+                   u1030 B9B0                     u1105 BA6E  
+                   u1140 BBC6                     u1055 B9CE  
+                   _MGSD 007F                     _DtCO 020C  
+                   _DtCW 021B                     _DtIN 022A  
+                   _DtZW 0208                     indf0 000FEF  
+                   btemp 0000                  ?_SetPrt 00DB  
+             _WriteEEPCO BCF8               _WriteEEPFN BD0C  
+             _WriteEEPCW BCE4       __end_of_WriteEEPCO BD08  
+     __end_of_WriteEEPFN BD1C       __end_of_WriteEEPCW BCF4  
+                  _RSDT1 0096                    _DtKNF 0084  
+                  _RdPrt D14C               used_btemp0 0001  
+             used_btemp1 0001               used_btemp2 0001  
+             used_btemp3 0001              _eeprom_read E640  
+                _GetBit2 E282                    status 000FD8  
+               ?_GetBit2 00D7                  __Lparam 00D7  
+           ?_eeprom_read 00DD                  __ramtop 1000  
+         __end_of_EnKonf B49C           __end_of_SetPFN BCE4  
+         __end_of_SetNST BA74          _SetDefaultValue BC60  
+                 _EnKonf B492                   _SetPFN BC86  
+                 _SetNST B9EA                _RdEEParam BA74  
+                 _SetPrt D16E        __end_of_RdEEParam BC20  
+           _eeprom_write E564                _ReadEEPCO BD08  
+              _ReadEEPFN BD1C                _ReadEEPCW BCF4  
+      __end_of_ReadEEPCO BD0C        __end_of_ReadEEPFN BD28  
+      __end_of_ReadEEPCW BCF8            _MKonfiguracja B49C  
+              _MocMaksCO C452                _MocMaksCW C4C6  
+              _RefKnfPar B5BC        __end_of_RefKnfPar B5FA  
+               _ModParam BD62                 _MocStart C3DE  
+              ?_ModParam 00D7    __end_of_MKonfiguracja B5BC  
+             _SaveKnfPar B5FA       __end_of_SaveKnfPar B9EA  

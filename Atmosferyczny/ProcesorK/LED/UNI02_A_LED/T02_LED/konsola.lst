@@ -1,0 +1,2445 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Mar 20 08:54:42 2013
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     5                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     6                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     7  000000                     
+     8                           ;       param _fst assigned to ?_ReadParam+11
+     9  000000                     _ReadParam$fst	set	?_ReadParam+11
+    10                           ;       param _rckl assigned to ?_ReadParam+10
+    11  000000                     _ReadParam$rckl	set	?_ReadParam+10
+    12                           ;       param _max assigned to ?_ReadParam+8
+    13  000000                     _ReadParam$max	set	?_ReadParam+8
+    14                           ;       param _min assigned to ?_ReadParam+6
+    15  000000                     _ReadParam$min	set	?_ReadParam+6
+    16                           ;       param _zapis assigned to ?_ReadParam+4
+    17  000000                     _ReadParam$zapis	set	?_ReadParam+4
+    18                           ;       param _zmiana assigned to ?_ReadParam+2
+    19  000000                     _ReadParam$zmiana	set	?_ReadParam+2
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98  000000                     
+    99  000000                     
+   100  000000                     
+   101  000000                     
+   102  000000                     
+   103  000000                     
+   104  000000                     
+   105  000000                     
+   106  000000                     
+   107  000000                     
+   108                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   109                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   110                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   111                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   112                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   113                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   114                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   115                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   116                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   117                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   118                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   119                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   120                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   121                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   122                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   123                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   124                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   125                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   126                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   127                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   128                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   129                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   130                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   131                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   132                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   133                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   134                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   135                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   136                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   137                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   138                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   139                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   140                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   141                           ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   142                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   143                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   144                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   145                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   146                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   147                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   148                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   149                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   150                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   151                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   152                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   153                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   154                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   155                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   156                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   157                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   158                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   159                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   160                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   161                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   162                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   163                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   164                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   165                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   166                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   167                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   168                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   169                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   170                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   171                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   172                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   173                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   174                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   175                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   176                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   177                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   178                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   179                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   180                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   181                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   182                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+   183                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   184                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   185                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+   186                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   187                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   188                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   189                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   190                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   191                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   192                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   193                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+   194                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   195                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   196                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   197                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   198                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   199                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   200                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   201                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   202                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   203                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   204                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   205                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   206                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   207                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   208  000000                     _ReadParam$param	set	?_ReadParam
+   209                           
+   210                           	psect	text
+   211                           ;konsola.c: 44: void ReadParam(unsigned int *par
+      +                          am,unsigned char *zmiana,unsigned char *zapis,un
+      +                          signed int min, unsigned int max, unsigned char 
+      +                          rckl, unsigned char fst)
+   212                           ;konsola.c: 45: {
+   213  00AAB8  00D7               	dw	?_ReadParam
+   214                           ;	_key assigned to ?a_TrybPracy+3
+   215  000000                     _TrybPracy$key	set	?a_TrybPracy+3
+   216                           ;	_key2 assigned to ?a_TrybPracy+2
+   217  000000                     _TrybPracy$key2	set	?a_TrybPracy+2
+   218                           ;	_ExtR2 assigned to ?a_TrybPracy+1
+   219  000000                     _TrybPracy$ExtR2	set	?a_TrybPracy+1
+   220                           ;	_ExtR assigned to ?a_TrybPracy+0
+   221  000000                     _TrybPracy$ExtR	set	?a_TrybPracy
+   222                           ;	_ovi assigned to ?a_ReadParam+2
+   223  000000                     _ReadParam$ovi	set	?a_ReadParam+2
+   224                           ;	_ovd assigned to ?a_ReadParam+1
+   225  000000                     _ReadParam$ovd	set	?a_ReadParam+1
+   226                           ;	_stp assigned to ?a_ReadParam+0
+   227  000000                     _ReadParam$stp	set	?a_ReadParam
+   228  00AABA                     _ReadParam:
+   229  000000                     
+   230                           ;_param stored from fsr1
+   231                           ;_param stored from fsr1
+   232                           ;konsola.c: 46: static unsigned char pnst;
+   233  00AABA  0100               	movlb	__Lparam shr (0+8)
+   234  00AABC  6BE5               	clrf	(?a_ReadParam+2)^(__Lparam& (0+65280)),b
+   235                           ;konsola.c: 50: ovd=0;
+   236  00AABE  6BE4               	clrf	(?a_ReadParam+1)^(__Lparam& (0+65280)),b
+   237                           ;konsola.c: 51: if(*param<min) *param=min;
+   238                           ; _param loaded to fsr1
+   239  00AAC0  C0D7  FFE1         	movff	?_ReadParam,fsr1l
+   240  00AAC4  C0D8  FFE2         	movff	?_ReadParam+1,fsr1h
+   241  00AAC8  CFE6 F000          	movff	postinc1,btemp
+   242  00AACC  CFE5 F001          	movff	postdec1,btemp+1
+   243  00AAD0  51DE               	movf	(?_ReadParam+7)^(__Lparam& (0+65280)),w
+   244  00AAD2  5C01               	subwf	btemp+1,w,c
+   245  00AAD4  E102               	bnz	u15
+   246  00AAD6  51DD               	movf	(?_ReadParam+6)^(__Lparam& (0+65280)),w
+   247  00AAD8  5C00               	subwf	btemp,w,c
+   248  00AADA                     u15:
+   249  00AADA  E204               	bc	l19
+   250  00AADC  C0DD  FFE6         	movff	?_ReadParam+6,postinc1
+   251  00AAE0  C0DE  FFE5         	movff	?_ReadParam+7,postdec1
+   252  00AAE4                     l19:
+   253                           ;konsola.c: 52: if(*param>max) *param=max;
+   254  00AAE4  CFE6 F000          	movff	postinc1,btemp
+   255  00AAE8  CFE5 F001          	movff	postdec1,btemp+1
+   256  00AAEC  0100               	movlb	__Lparam shr (0+8)
+   257  00AAEE  5001               	movf	btemp+1,w,c
+   258  00AAF0  5DE0               	subwf	(?_ReadParam+9)^(__Lparam& (0+65280)),w
+   259  00AAF2  E102               	bnz	u25
+   260  00AAF4  5000               	movf	btemp,w,c
+   261  00AAF6  5DDF               	subwf	(?_ReadParam+8)^(__Lparam& (0+65280)),w
+   262  00AAF8                     u25:
+   263  00AAF8  E204               	bc	l20
+   264  00AAFA  C0DF  FFE6         	movff	?_ReadParam+8,postinc1
+   265  00AAFE  C0E0  FFE5         	movff	?_ReadParam+9,postdec1
+   266  00AB02                     l20:
+   267                           ;_param stored from fsr1
+   268  00AB02  CFE1 F0D7          	movff	fsr1l,?_ReadParam
+   269  00AB06  CFE2 F0D8          	movff	fsr1h,?_ReadParam+1
+   270                           ;konsola.c: 53: if((max-min)>99) stp=5;
+   271  00AB0A  C0DF  F000         	movff	?_ReadParam+8,btemp
+   272  00AB0E  C0E0  F001         	movff	?_ReadParam+9,btemp+1
+   273  00AB12  0100               	movlb	__Lparam shr (0+8)
+   274  00AB14  51DD               	movf	(?_ReadParam+6)^(__Lparam& (0+65280)),w
+   275  00AB16  5E00               	subwf	btemp,f,c
+   276  00AB18  51DE               	movf	(?_ReadParam+7)^(__Lparam& (0+65280)),w
+   277  00AB1A  5A01               	subwfb	btemp+1,f,c
+   278  00AB1C  0E00               	movlw	0
+   279  00AB1E  5C01               	subwf	btemp+1,w,c
+   280  00AB20  0E64               	movlw	100
+   281  00AB22  B4D8               	btfsc	status,2,c
+   282  00AB24  5C00               	subwf	btemp,w,c
+   283  00AB26  E302               	bnc	l21
+   284  00AB28  0E05               	movlw	5
+   285  00AB2A  D002               	goto	L1
+   286  00AB2C                     l21:
+   287                           ;konsola.c: 54: else stp=1;
+   288  00AB2C  0E01               	movlw	1
+   289  00AB2E  0100               	movlb	__Lparam shr (0+8)
+   290  00AB30                     L1:
+   291  00AB30  6FE3               	movwf	?a_ReadParam^(__Lparam& (0+65280)),b
+   292                           ;konsola.c: 55: if(!(RdPrt(25)&&RdPrt(24)))
+   293  00AB32  0E19               	movlw	25
+   294  00AB34  ECA6  F068         	call	_RdPrt
+   295  00AB38  E305               	bnc	u60
+   296  00AB3A  0E18               	movlw	24
+   297  00AB3C  ECA6  F068         	call	_RdPrt
+   298  00AB40  E301 D0E5          	bc	l23
+   299  00AB44                     u60:
+   300                           ;konsola.c: 56: {
+   301  00AB44  0E19               	movlw	25
+   302  00AB46  ECA6  F068         	call	_RdPrt
+   303  00AB4A  E243               	bc	l24
+   304                           ;konsola.c: 58: {
+   305  00AB4C  0100               	movlb	__Lparam shr (0+8)
+   306  00AB4E  0EDA               	movlw	low (_xxky+10)
+   307  00AB50  6FE6               	movwf	?_ReadDataXONLID^(__Lparam& (0+65280)),b
+   308  00AB52  0E01               	movlw	high (_xxky+10)
+   309  00AB54  6FE7               	movwf	(?_ReadDataXONLID+1)^(__Lparam& (0+65280)
+      +                          ),b
+   310  00AB56  C0D7  F0E8         	movff	?_ReadParam,?_ReadDataXONLID+2
+   311  00AB5A  C0D8  F0E9         	movff	?_ReadParam+1,?_ReadDataXONLID+3
+   312  00AB5E  0EE5               	movlw	low (?a_ReadParam+2)
+   313  00AB60  6FEA               	movwf	(?_ReadDataXONLID+4)^(__Lparam& (0+65280)
+      +                          ),b
+   314  00AB62  0E00               	movlw	high (?a_ReadParam+2)
+   315  00AB64  6FEB               	movwf	(?_ReadDataXONLID+5)^(__Lparam& (0+65280)
+      +                          ),b
+   316  00AB66  0E01               	movlw	1
+   317  00AB68  6FEC               	movwf	(?_ReadDataXONLID+6)^(__Lparam& (0+65280)
+      +                          ),b
+   318  00AB6A  C0DD  F0ED         	movff	?_ReadParam+6,?_ReadDataXONLID+7
+   319  00AB6E  C0DE  F0EE         	movff	?_ReadParam+7,?_ReadDataXONLID+8
+   320  00AB72  C0DF  F0EF         	movff	?_ReadParam+8,?_ReadDataXONLID+9
+   321  00AB76  C0E0  F0F0         	movff	?_ReadParam+9,?_ReadDataXONLID+10
+   322  00AB7A  6FF1               	movwf	(?_ReadDataXONLID+11)^(__Lparam& (0+65280
+      +                          )),b
+   323  00AB7C  51E3               	movf	?a_ReadParam^(__Lparam& (0+65280)),w
+   324  00AB7E  6FF2               	movwf	(?_ReadDataXONLID+12)^(__Lparam& (0+65280
+      +                          )),b
+   325  00AB80  51E2               	movf	(?_ReadParam+11)^(__Lparam& (0+65280)),w
+   326  00AB82  6FF3               	movwf	(?_ReadDataXONLID+13)^(__Lparam& (0+65280
+      +                          )),b
+   327  00AB84  0E18               	movlw	24
+   328  00AB86  ECA6  F068         	call	_RdPrt
+   329  00AB8A  0E00               	movlw	0
+   330  00AB8C  B0D8               	btfsc	status,0,c
+   331  00AB8E  0E01               	movlw	1
+   332  00AB90  EC7A  F06B         	call	_ReadDataXONLID
+   333                           ;konsola.c: 60: if(rckl&&ovi) *param=min;
+   334  00AB94  0100               	movlb	__Lparam shr (0+8)
+   335  00AB96  51E1               	movf	(?_ReadParam+10)^(__Lparam& (0+65280)),w
+   336  00AB98  E00A               	bz	l25
+   337  00AB9A  51E5               	movf	(?a_ReadParam+2)^(__Lparam& (0+65280)),w
+   338  00AB9C  E008               	bz	l25
+   339  00AB9E  C0D7  FFE9         	movff	?_ReadParam,fsr0l
+   340  00ABA2  C0D8  FFEA         	movff	?_ReadParam+1,fsr0h
+   341  00ABA6  C0DD  FFEE         	movff	?_ReadParam+6,postinc0
+   342  00ABAA  C0DE  FFED         	movff	?_ReadParam+7,postdec0
+   343  00ABAE                     l25:
+   344                           ;konsola.c: 61: if(!rckl&&RdPrt(24)&&(*param==ma
+      +                          x)) *zmiana=1;
+   345  00ABAE  0100               	movlb	__Lparam shr (0+8)
+   346  00ABB0  51E1               	movf	(?_ReadParam+10)^(__Lparam& (0+65280)),w
+   347  00ABB2  E15E               	bnz	l27
+   348  00ABB4  0E18               	movlw	24
+   349  00ABB6  ECA6  F068         	call	_RdPrt
+   350  00ABBA  E35A               	bnc	l27
+   351  00ABBC  C0D7  FFE9         	movff	?_ReadParam,fsr0l
+   352  00ABC0  C0D8  FFEA         	movff	?_ReadParam+1,fsr0h
+   353  00ABC4  0100               	movlb	__Lparam shr (0+8)
+   354  00ABC6  52EE               	movf	postinc0,f,c
+   355  00ABC8  51E0               	movf	(?_ReadParam+9)^(__Lparam& (0+65280)),w
+   356  00ABCA  18ED               	xorwf	postdec0,w,c
+   357  00ABCC  C0DF  FFE8         	movff	?_ReadParam+8,wreg
+   358  00ABD0  D046               	goto	L8
+   359                           ;konsola.c: 62: }
+   360  00ABD2                     l24:
+   361                           ;konsola.c: 63: else
+   362  00ABD2  0E18               	movlw	24
+   363  00ABD4  ECA6  F068         	call	_RdPrt
+   364  00ABD8  E24B               	bc	l27
+   365                           ;konsola.c: 65: {
+   366  00ABDA  0100               	movlb	__Lparam shr (0+8)
+   367  00ABDC  0EDF               	movlw	low (_xxky+15)
+   368  00ABDE  6FE6               	movwf	?_ReadDataXONLID^(__Lparam& (0+65280)),b
+   369  00ABE0  0E01               	movlw	high (_xxky+15)
+   370  00ABE2  6FE7               	movwf	(?_ReadDataXONLID+1)^(__Lparam& (0+65280)
+      +                          ),b
+   371  00ABE4  C0D7  F0E8         	movff	?_ReadParam,?_ReadDataXONLID+2
+   372  00ABE8  C0D8  F0E9         	movff	?_ReadParam+1,?_ReadDataXONLID+3
+   373  00ABEC  0EE4               	movlw	low (?a_ReadParam+1)
+   374  00ABEE  6FEA               	movwf	(?_ReadDataXONLID+4)^(__Lparam& (0+65280)
+      +                          ),b
+   375  00ABF0  0E00               	movlw	high (?a_ReadParam+1)
+   376  00ABF2  6FEB               	movwf	(?_ReadDataXONLID+5)^(__Lparam& (0+65280)
+      +                          ),b
+   377  00ABF4  6BEC               	clrf	(?_ReadDataXONLID+6)^(__Lparam& (0+65280))
+      +                          ,b
+   378  00ABF6  C0DD  F0ED         	movff	?_ReadParam+6,?_ReadDataXONLID+7
+   379  00ABFA  C0DE  F0EE         	movff	?_ReadParam+7,?_ReadDataXONLID+8
+   380  00ABFE  C0DF  F0EF         	movff	?_ReadParam+8,?_ReadDataXONLID+9
+   381  00AC02  C0E0  F0F0         	movff	?_ReadParam+9,?_ReadDataXONLID+10
+   382  00AC06  0E01               	movlw	1
+   383  00AC08  6FF1               	movwf	(?_ReadDataXONLID+11)^(__Lparam& (0+65280
+      +                          )),b
+   384  00AC0A  51E3               	movf	?a_ReadParam^(__Lparam& (0+65280)),w
+   385  00AC0C  6FF2               	movwf	(?_ReadDataXONLID+12)^(__Lparam& (0+65280
+      +                          )),b
+   386  00AC0E  51E2               	movf	(?_ReadParam+11)^(__Lparam& (0+65280)),w
+   387  00AC10  6FF3               	movwf	(?_ReadDataXONLID+13)^(__Lparam& (0+65280
+      +                          )),b
+   388  00AC12  0E19               	movlw	25
+   389  00AC14  ECA6  F068         	call	_RdPrt
+   390  00AC18  0E00               	movlw	0
+   391  00AC1A  B0D8               	btfsc	status,0,c
+   392  00AC1C  0E01               	movlw	1
+   393  00AC1E  EC7A  F06B         	call	_ReadDataXONLID
+   394                           ;konsola.c: 67: if(rckl&&ovd) *param=max;
+   395  00AC22  0100               	movlb	__Lparam shr (0+8)
+   396  00AC24  51E1               	movf	(?_ReadParam+10)^(__Lparam& (0+65280)),w
+   397  00AC26  E00A               	bz	l29
+   398  00AC28  51E4               	movf	(?a_ReadParam+1)^(__Lparam& (0+65280)),w
+   399  00AC2A  E008               	bz	l29
+   400  00AC2C  C0D7  FFE9         	movff	?_ReadParam,fsr0l
+   401  00AC30  C0D8  FFEA         	movff	?_ReadParam+1,fsr0h
+   402  00AC34  C0DF  FFEE         	movff	?_ReadParam+8,postinc0
+   403  00AC38  C0E0  FFED         	movff	?_ReadParam+9,postdec0
+   404  00AC3C                     l29:
+   405                           ;konsola.c: 68: if(!rckl&&RdPrt(25)&&(*param==mi
+      +                          n)) *zmiana=1;
+   406  00AC3C  0100               	movlb	__Lparam shr (0+8)
+   407  00AC3E  51E1               	movf	(?_ReadParam+10)^(__Lparam& (0+65280)),w
+   408  00AC40  0E19               	movlw	25
+   409  00AC42  E117               	bnz	L9
+   410  00AC44  ECA6  F068         	call	_RdPrt
+   411  00AC48  E313               	bnc	l27
+   412  00AC4A  C0D7  FFE9         	movff	?_ReadParam,fsr0l
+   413  00AC4E  C0D8  FFEA         	movff	?_ReadParam+1,fsr0h
+   414  00AC52  0100               	movlb	__Lparam shr (0+8)
+   415  00AC54  52EE               	movf	postinc0,f,c
+   416  00AC56  51DE               	movf	(?_ReadParam+7)^(__Lparam& (0+65280)),w
+   417  00AC58  18ED               	xorwf	postdec0,w,c
+   418  00AC5A  C0DD  FFE8         	movff	?_ReadParam+6,wreg
+   419  00AC5E                     L8:
+   420  00AC5E  B4D8               	btfsc	status,2,c
+   421  00AC60  18EF               	xorwf	indf0,w,c
+   422  00AC62  E106               	bnz	l27
+   423  00AC64  C0D9  FFE9         	movff	?_ReadParam+2,fsr0l
+   424  00AC68  C0DA  FFEA         	movff	?_ReadParam+3,fsr0h
+   425  00AC6C  0E01               	movlw	1
+   426  00AC6E  6EEF               	movwf	indf0,c
+   427  00AC70                     l27:
+   428                           ;konsola.c: 69: }
+   429  00AC70  0E19               	movlw	25
+   430  00AC72                     L9:
+   431  00AC72  ECA6  F068         	call	_RdPrt
+   432  00AC76  E210               	bc	l31
+   433  00AC78  0E18               	movlw	24
+   434  00AC7A  ECA6  F068         	call	_RdPrt
+   435  00AC7E  E20C               	bc	l31
+   436                           ;konsola.c: 71: {
+   437  00AC80  0E06               	movlw	6
+   438  00AC82  EC98  F06E         	call	_RTdS
+   439  00AC86  6E00               	movwf	btemp,c
+   440  00AC88  0E06               	movlw	6
+   441  00AC8A  5C00               	subwf	btemp,w,c
+   442  00AC8C  E305               	bnc	l31
+   443  00AC8E  C0D9  FFE9         	movff	?_ReadParam+2,fsr0l
+   444  00AC92  C0DA  FFEA         	movff	?_ReadParam+3,fsr0h
+   445  00AC96  6AEF               	clrf	indf0,c
+   446  00AC98                     l31:
+   447                           ;konsola.c: 73: }
+   448                           ; _param loaded to fsr2
+   449  00AC98  C0D7  FFD9         	movff	?_ReadParam,fsr2l
+   450  00AC9C  C0D8  FFDA         	movff	?_ReadParam+1,fsr2h
+   451  00ACA0  CFDE F000          	movff	postinc2,btemp
+   452  00ACA4  CFDD F001          	movff	postdec2,btemp+1
+   453  00ACA8  CF44  FFE8         	movff	F1503,wreg
+   454  00ACAC  1800               	xorwf	btemp,w,c
+   455  00ACAE  E101               	bnz	u295
+   456  00ACB0  5201               	movf	btemp+1,f,c
+   457  00ACB2                     u295:
+   458  00ACB2  B4D8               	btfsc	status,2,c
+   459  00ACB4  0012               	return	
+   460                           ; _zmiana loaded to fsr1
+   461  00ACB6  C0D9  FFE1         	movff	?_ReadParam+2,fsr1l
+   462  00ACBA  C0DA  FFE2         	movff	?_ReadParam+3,fsr1h
+   463                           ;konsola.c: 76: {
+   464  00ACBE  0100               	movlb	__Lparam shr (0+8)
+   465  00ACC0  51E1               	movf	(?_ReadParam+10)^(__Lparam& (0+65280)),w
+   466  00ACC2  A4D8               	btfss	status,2,c
+   467  00ACC4  51E5               	movf	(?a_ReadParam+2)^(__Lparam& (0+65280)),w
+   468  00ACC6  E115               	bnz	u376
+   469                           ;konsola.c: 78: else
+   470  00ACC8  51E1               	movf	(?_ReadParam+10)^(__Lparam& (0+65280)),w
+   471  00ACCA  E004               	bz	l36
+   472  00ACCC  51E4               	movf	(?a_ReadParam+1)^(__Lparam& (0+65280)),w
+   473  00ACCE  E002               	bz	l36
+   474  00ACD0  0E02               	movlw	2
+   475  00ACD2  D010               	goto	u378
+   476  00ACD4                     l36:
+   477                           ;konsola.c: 80: else *zmiana=(pnst<*param)?3:2;
+   478  00ACD4  CFDE F002          	movff	postinc2,btemp+2
+   479  00ACD8  CFDD F003          	movff	postdec2,btemp+3
+   480  00ACDC  CF44  F000         	movff	F1503,btemp
+   481  00ACE0  6A01               	clrf	btemp+1,c
+   482  00ACE2  5003               	movf	btemp+3,w,c
+   483  00ACE4  5C01               	subwf	btemp+1,w,c
+   484  00ACE6  E102               	bnz	u365
+   485  00ACE8  5002               	movf	btemp+2,w,c
+   486  00ACEA  5C00               	subwf	btemp,w,c
+   487  00ACEC                     u365:
+   488  00ACEC  E302               	bnc	u376
+   489  00ACEE  0E02               	movlw	2
+   490  00ACF0  D001               	goto	u378
+   491  00ACF2                     u376:
+   492  00ACF2  0E03               	movlw	3
+   493  00ACF4                     u378:
+   494  00ACF4  6EE7               	movwf	indf1,c
+   495                           ;konsola.c: 81: pnst=*param;
+   496  00ACF6  CFDF FF44          	movff	indf2,F1503
+   497                           ;konsola.c: 82: StartRTdS(6);
+   498  00ACFA  0E06               	movlw	6
+   499  00ACFC  EC86  F06E         	call	_StartRTdS
+   500                           ;konsola.c: 83: *zapis=1;
+   501  00AD00  C0DB  FFE9         	movff	?_ReadParam+4,fsr0l
+   502  00AD04  C0DC  FFEA         	movff	?_ReadParam+5,fsr0h
+   503  00AD08  0E01               	movlw	1
+   504  00AD0A  6EEF               	movwf	indf0,c
+   505                           ;konsola.c: 84: }
+   506  00AD0C  0C01               	retlw	1
+   507  00AD0E                     l23:
+   508  00AD0E  C0D9  FFE9         	movff	?_ReadParam+2,fsr0l
+   509  00AD12  C0DA  FFEA         	movff	?_ReadParam+3,fsr0h
+   510  00AD16  6AEF               	clrf	indf0,c
+   511                           ;konsola.c: 86: }
+   512  00AD18  0C00               	retlw	0
+   513  00AD1A                     __end_of_ReadParam:
+   514                           ;konsola.c: 88: void TrybPracy(void)
+   515                           ;konsola.c: 89: {
+   516  00AD1A                     _TrybPracy:
+   517  000000                     
+   518                           ;konsola.c: 91: unsigned char key,key2,ExtR,ExtR
+      +                          2;
+   519  00AD1A  0101               	movlb	(_PFN+2) shr (0+8)
+   520  00AD1C  9D59               	bcf	(_PFN+2)& (0+255),6,b
+   521                           ;konsola.c: 94: PFN._opgres=0;
+   522  00AD1E  0101               	movlb	(_PFN+5) shr (0+8)
+   523  00AD20  975C               	bcf	(_PFN+5)& (0+255),3,b
+   524                           ;konsola.c: 95: if(!PFN._aktywne_KNF&&!PFN._opgr
+      +                          es)
+   525  00AD22  0101               	movlb	(_PFN+2) shr (0+8)
+   526  00AD24  BD59               	btfsc	(_PFN+2)& (0+255),6,b
+   527  00AD26  D39D               	goto	l40
+   528  00AD28  0101               	movlb	(_PFN+5) shr (0+8)
+   529  00AD2A  B75C               	btfsc	(_PFN+5)& (0+255),3,b
+   530  00AD2C  D39A               	goto	l40
+   531                           ;konsola.c: 96: {
+   532  00AD2E  0E17               	movlw	23
+   533  00AD30  ECA6  F068         	call	_RdPrt
+   534  00AD34  E249               	bc	l41
+   535                           ;konsola.c: 100: {
+   536  00AD36  0100               	movlb	__Lparam shr (0+8)
+   537  00AD38  0EAD               	movlw	low _ky
+   538  00AD3A  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+   539  00AD3C  0E01               	movlw	high _ky
+   540  00AD3E  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+   541  00AD40  0E16               	movlw	22
+   542  00AD42  ECA6  F068         	call	_RdPrt
+   543  00AD46  0E00               	movlw	0
+   544  00AD48  B0D8               	btfsc	status,0,c
+   545  00AD4A  0E01               	movlw	1
+   546  00AD4C  EC8B  F069         	call	_PresKeyEX
+   547  00AD50  0100               	movlb	__Lparam shr (0+8)
+   548  00AD52  6FDA               	movwf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+   549                           ;konsola.c: 102: if(key!=100&&key>=16)
+   550  00AD54  51DA               	movf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),w
+   551  00AD56  0A64               	xorlw	100
+   552  00AD58  E037               	bz	l41
+   553  00AD5A  0E0F               	movlw	15
+   554  00AD5C  65DA               	cpfsgt	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+   555  00AD5E  D034               	goto	l41
+   556                           ;konsola.c: 103: {
+   557  00AD60  0EAD               	movlw	low _ky
+   558  00AD62  6FDB               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+   559  00AD64  0E01               	movlw	high _ky
+   560  00AD66  6FDC               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+   561  00AD68  EC93  F06A         	call	_WaitToLowEx	;wreg free
+   562                           ;konsola.c: 105: PFN._off=!PFN._off;
+   563  00AD6C  0101               	movlb	_PFN shr (0+8)
+   564  00AD6E  0E00               	movlw	0
+   565  00AD70  A157               	btfss	_PFN& (0+255),0,b
+   566  00AD72  0E01               	movlw	1
+   567  00AD74  6E00               	movwf	btemp,c
+   568  00AD76  EE01  F057         	lfsr	0,_PFN
+   569  00AD7A  18EF               	xorwf	indf0,w,c
+   570  00AD7C  0BFE               	andlw	-2
+   571  00AD7E  1800               	xorwf	btemp,w,c
+   572  00AD80  6EEF               	movwf	indf0,c
+   573                           ;konsola.c: 106: PFN._set_nco=0;
+   574  00AD82  9F57               	bcf	_PFN& (0+255),7,b
+   575                           ;konsola.c: 107: PFN._set_ncw=0;
+   576  00AD84  0101               	movlb	(_PFN+1) shr (0+8)
+   577  00AD86  9158               	bcf	(_PFN+1)& (0+255),0,b
+   578                           ;konsola.c: 108: PFN._str_nco=0;
+   579  00AD88  0101               	movlb	_PFN shr (0+8)
+   580  00AD8A  9757               	bcf	_PFN& (0+255),3,b
+   581                           ;konsola.c: 109: PFN._str_ncw=0;
+   582  00AD8C  9957               	bcf	_PFN& (0+255),4,b
+   583                           ;konsola.c: 110: PFN._prn_res=0;
+   584  00AD8E  0101               	movlb	(_PFN+3) shr (0+8)
+   585  00AD90  915A               	bcf	(_PFN+3)& (0+255),0,b
+   586                           ;konsola.c: 111: PFN._set_fnserw=0;
+   587  00AD92  0101               	movlb	(_PFN+1) shr (0+8)
+   588  00AD94  9958               	bcf	(_PFN+1)& (0+255),4,b
+   589                           ;konsola.c: 112: PFN._fnserw=0;
+   590  00AD96  9D58               	bcf	(_PFN+1)& (0+255),6,b
+   591                           ;konsola.c: 113: PFN._set_aleg=0;
+   592  00AD98  9B58               	bcf	(_PFN+1)& (0+255),5,b
+   593                           ;konsola.c: 114: PFN._aleg=0;
+   594  00AD9A  0101               	movlb	(_PFN+2) shr (0+8)
+   595  00AD9C  9159               	bcf	(_PFN+2)& (0+255),0,b
+   596                           ;konsola.c: 115: ResBufKeyEx(&ky[2]);
+   597  00AD9E  0100               	movlb	__Lparam shr (0+8)
+   598  00ADA0  0EB7               	movlw	low (_ky+10)
+   599  00ADA2  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+   600  00ADA4  0E01               	movlw	high (_ky+10)
+   601  00ADA6  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+   602  00ADA8  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+   603                           ;konsola.c: 116: ResBufKeyEx(&ky[3]);
+   604  00ADAC  0100               	movlb	__Lparam shr (0+8)
+   605  00ADAE  0EBC               	movlw	low (_ky+15)
+   606  00ADB0  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+   607  00ADB2  0E01               	movlw	high (_ky+15)
+   608  00ADB4  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+   609  00ADB6  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+   610                           ;konsola.c: 117: ResBufKeyEx(&ky[1]);
+   611  00ADBA  0100               	movlb	__Lparam shr (0+8)
+   612  00ADBC  0EB2               	movlw	low (_ky+5)
+   613  00ADBE  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+   614  00ADC0  0E01               	movlw	high (_ky+5)
+   615  00ADC2  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+   616  00ADC4  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+   617  00ADC8                     l41:
+   618                           ;konsola.c: 118: }
+   619  00ADC8  0101               	movlb	_PFN shr (0+8)
+   620  00ADCA  B157               	btfsc	_PFN& (0+255),0,b
+   621  00ADCC  D009               	goto	l43
+   622  00ADCE  0101               	movlb	_PFN shr (0+8)
+   623  00ADD0  B357               	btfsc	_PFN& (0+255),1,b
+   624  00ADD2  D006               	goto	l43
+   625  00ADD4  0101               	movlb	_PFN shr (0+8)
+   626  00ADD6  B557               	btfsc	_PFN& (0+255),2,b
+   627  00ADD8  D003               	goto	l43
+   628                           ;konsola.c: 122: {
+   629  00ADDA  0101               	movlb	_PFN shr (0+8)
+   630  00ADDC  9357               	bcf	_PFN& (0+255),1,b
+   631                           ;konsola.c: 124: PFN._zima=1;
+   632  00ADDE  8557               	bsf	_PFN& (0+255),2,b
+   633  00ADE0                     l43:
+   634                           ;konsola.c: 125: }
+   635  00ADE0  0E16               	movlw	22
+   636  00ADE2  ECA6  F068         	call	_RdPrt
+   637  00ADE6  E24E               	bc	l44
+   638  00ADE8  0E18               	movlw	24
+   639  00ADEA  ECA6  F068         	call	_RdPrt
+   640  00ADEE  E24A               	bc	l44
+   641  00ADF0  0E19               	movlw	25
+   642  00ADF2  ECA6  F068         	call	_RdPrt
+   643  00ADF6  E246               	bc	l44
+   644  00ADF8  0101               	movlb	_PFN shr (0+8)
+   645  00ADFA  B157               	btfsc	_PFN& (0+255),0,b
+   646  00ADFC  D043               	goto	l44
+   647  00ADFE  0101               	movlb	(_PFN+1) shr (0+8)
+   648  00AE00  BD58               	btfsc	(_PFN+1)& (0+255),6,b
+   649  00AE02  D040               	goto	l44
+   650  00AE04  0101               	movlb	(_PFN+2) shr (0+8)
+   651  00AE06  B159               	btfsc	(_PFN+2)& (0+255),0,b
+   652  00AE08  D03D               	goto	l44
+   653                           ;konsola.c: 128: {
+   654  00AE0A  0100               	movlb	__Lparam shr (0+8)
+   655  00AE0C  0EB2               	movlw	low (_ky+5)
+   656  00AE0E  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+   657  00AE10  0E01               	movlw	high (_ky+5)
+   658  00AE12  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+   659  00AE14  0E17               	movlw	23
+   660  00AE16  ECA6  F068         	call	_RdPrt
+   661  00AE1A  0E00               	movlw	0
+   662  00AE1C  B0D8               	btfsc	status,0,c
+   663  00AE1E  0E01               	movlw	1
+   664  00AE20  EC8B  F069         	call	_PresKeyEX
+   665  00AE24  0100               	movlb	__Lparam shr (0+8)
+   666  00AE26  6FDA               	movwf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+   667                           ;konsola.c: 130: if(key!=100&&key>=8)
+   668  00AE28  51DA               	movf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),w
+   669  00AE2A  0A64               	xorlw	100
+   670  00AE2C  E02B               	bz	l44
+   671  00AE2E  0E07               	movlw	7
+   672  00AE30  65DA               	cpfsgt	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+   673  00AE32  D028               	goto	l44
+   674                           ;konsola.c: 131: {
+   675  00AE34  0EB2               	movlw	low (_ky+5)
+   676  00AE36  6FDB               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+   677  00AE38  0E01               	movlw	high (_ky+5)
+   678  00AE3A  6FDC               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+   679  00AE3C  EC93  F06A         	call	_WaitToLowEx	;wreg free
+   680                           ;konsola.c: 133: PFN._lato=!PFN._lato;
+   681  00AE40  0101               	movlb	_PFN shr (0+8)
+   682  00AE42  0E00               	movlw	0
+   683  00AE44  A357               	btfss	_PFN& (0+255),1,b
+   684  00AE46  0E01               	movlw	1
+   685  00AE48  6E00               	movwf	btemp,c
+   686  00AE4A  EE01  F057         	lfsr	0,_PFN
+   687  00AE4E  3600               	rlcf	btemp,f,c
+   688  00AE50  50EF               	movf	indf0,w,c
+   689  00AE52  1800               	xorwf	btemp,w,c
+   690  00AE54  0BFD               	andlw	-3
+   691  00AE56  1800               	xorwf	btemp,w,c
+   692  00AE58  6EEF               	movwf	indf0,c
+   693                           ;konsola.c: 134: PFN._zima=!PFN._lato;
+   694  00AE5A  0E00               	movlw	0
+   695  00AE5C  A357               	btfss	_PFN& (0+255),1,b
+   696  00AE5E  0E01               	movlw	1
+   697  00AE60  6E00               	movwf	btemp,c
+   698  00AE62  EE01  F057         	lfsr	0,_PFN
+   699  00AE66  3600               	rlcf	btemp,f,c
+   700  00AE68  3600               	rlcf	btemp,f,c
+   701  00AE6A  50EF               	movf	indf0,w,c
+   702  00AE6C  1800               	xorwf	btemp,w,c
+   703  00AE6E  0BFB               	andlw	-5
+   704  00AE70  1800               	xorwf	btemp,w,c
+   705  00AE72  6EEF               	movwf	indf0,c
+   706                           ;konsola.c: 135: PFN._set_nco=0;
+   707  00AE74  9F57               	bcf	_PFN& (0+255),7,b
+   708                           ;konsola.c: 136: PFN._set_ncw=0;
+   709  00AE76  0101               	movlb	(_PFN+1) shr (0+8)
+   710  00AE78  9158               	bcf	(_PFN+1)& (0+255),0,b
+   711                           ;konsola.c: 137: PFN._fnserw=0;
+   712  00AE7A  9D58               	bcf	(_PFN+1)& (0+255),6,b
+   713                           ;konsola.c: 138: PFN._aleg=0;
+   714  00AE7C  0101               	movlb	(_PFN+2) shr (0+8)
+   715  00AE7E  9159               	bcf	(_PFN+2)& (0+255),0,b
+   716                           ;konsola.c: 139: PFN._prn_res=0;
+   717  00AE80  0101               	movlb	(_PFN+3) shr (0+8)
+   718  00AE82  915A               	bcf	(_PFN+3)& (0+255),0,b
+   719  00AE84                     l44:
+   720                           ;konsola.c: 140: }
+   721  00AE84  0101               	movlb	(_PFN+4) shr (0+8)
+   722  00AE86  A15B               	btfss	(_PFN+4)& (0+255),0,b
+   723  00AE88  D002               	goto	l46
+   724  00AE8A  0101               	movlb	(_PFN+1) shr (0+8)
+   725  00AE8C  9B58               	bcf	(_PFN+1)& (0+255),5,b
+   726  00AE8E                     l46:
+   727                           ;konsola.c: 145: if(PFN._ofnserw) PFN._set_fnser
+      +                          w=0;
+   728  00AE8E  0101               	movlb	(_PFN+3) shr (0+8)
+   729  00AE90  AF5A               	btfss	(_PFN+3)& (0+255),7,b
+   730  00AE92  D002               	goto	l47
+   731  00AE94  0101               	movlb	(_PFN+1) shr (0+8)
+   732  00AE96  9958               	bcf	(_PFN+1)& (0+255),4,b
+   733  00AE98                     l47:
+   734                           ;konsola.c: 147: if(!RdPrt(22)&&!RdPrt(24)&&!RdP
+      +                          rt(25)&&!PFN._off&&!PFN._fnserw&&!PFN._aleg)
+   735  00AE98  0E16               	movlw	22
+   736  00AE9A  ECA6  F068         	call	_RdPrt
+   737  00AE9E  E301 D0D8          	bc	l48
+   738  00AEA2  0E18               	movlw	24
+   739  00AEA4  ECA6  F068         	call	_RdPrt
+   740  00AEA8  E301 D0D3          	bc	l48
+   741  00AEAC  0E19               	movlw	25
+   742  00AEAE  ECA6  F068         	call	_RdPrt
+   743  00AEB2  E301 D0CE          	bc	l48
+   744  00AEB6  0101               	movlb	_PFN shr (0+8)
+   745  00AEB8  B157               	btfsc	_PFN& (0+255),0,b
+   746  00AEBA  D0CB               	goto	l48
+   747  00AEBC  0101               	movlb	(_PFN+1) shr (0+8)
+   748  00AEBE  BD58               	btfsc	(_PFN+1)& (0+255),6,b
+   749  00AEC0  D0C8               	goto	l48
+   750  00AEC2  0101               	movlb	(_PFN+2) shr (0+8)
+   751  00AEC4  B159               	btfsc	(_PFN+2)& (0+255),0,b
+   752  00AEC6  D0C5               	goto	l48
+   753                           ;konsola.c: 148: {
+   754  00AEC8  0100               	movlb	__Lparam shr (0+8)
+   755  00AECA  0EB2               	movlw	low (_ky+5)
+   756  00AECC  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+   757  00AECE  0E01               	movlw	high (_ky+5)
+   758  00AED0  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+   759  00AED2  0E17               	movlw	23
+   760  00AED4  ECA6  F068         	call	_RdPrt
+   761  00AED8  0E00               	movlw	0
+   762  00AEDA  B0D8               	btfsc	status,0,c
+   763  00AEDC  0E01               	movlw	1
+   764  00AEDE  EC8B  F069         	call	_PresKeyEX
+   765  00AEE2  0100               	movlb	__Lparam shr (0+8)
+   766  00AEE4  6FDA               	movwf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+   767                           ;konsola.c: 150: if(key==100)
+   768  00AEE6  51DA               	movf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),w
+   769  00AEE8  0A64               	xorlw	100
+   770  00AEEA  E001 D0B2          	bnz	l48
+   771                           ;konsola.c: 151: {
+   772  00AEEE  0EB2               	movlw	low (_ky+5)
+   773  00AEF0  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+   774  00AEF2  0E01               	movlw	high (_ky+5)
+   775  00AEF4  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+   776  00AEF6  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+   777                           ;konsola.c: 153: PFN.b_set_nco=0;
+   778  00AEFA  0101               	movlb	(_PFN+1) shr (0+8)
+   779  00AEFC  9358               	bcf	(_PFN+1)& (0+255),1,b
+   780                           ;konsola.c: 154: PFN.b_set_ncw=0;
+   781  00AEFE  9558               	bcf	(_PFN+1)& (0+255),2,b
+   782                           ;konsola.c: 155: PFN._set_ncw=0;
+   783  00AF00  9158               	bcf	(_PFN+1)& (0+255),0,b
+   784                           ;konsola.c: 156: PFN._prn_res=0;
+   785  00AF02  0101               	movlb	(_PFN+3) shr (0+8)
+   786  00AF04  915A               	bcf	(_PFN+3)& (0+255),0,b
+   787                           ;konsola.c: 157: if(PFN._set_nco)
+   788  00AF06  0101               	movlb	_PFN shr (0+8)
+   789  00AF08  AF57               	btfss	_PFN& (0+255),7,b
+   790  00AF0A  D06B               	goto	l50
+   791                           ;konsola.c: 158: {
+   792  00AF0C  0101               	movlb	(_PFN+2) shr (0+8)
+   793  00AF0E  A359               	btfss	(_PFN+2)& (0+255),1,b
+   794  00AF10  D028               	goto	l51
+   795                           ;konsola.c: 160: {
+   796  00AF12  0101               	movlb	(_PFN+2) shr (0+8)
+   797  00AF14  9359               	bcf	(_PFN+2)& (0+255),1,b
+   798                           ;konsola.c: 162: PFN._set_nco=0;
+   799  00AF16  0101               	movlb	_PFN shr (0+8)
+   800  00AF18  9F57               	bcf	_PFN& (0+255),7,b
+   801                           ;konsola.c: 163: PFN.b_set_nco=0;
+   802  00AF1A  0101               	movlb	(_PFN+1) shr (0+8)
+   803  00AF1C  9358               	bcf	(_PFN+1)& (0+255),1,b
+   804                           ;konsola.c: 164: PFN._set_ncw=0;
+   805  00AF1E  9158               	bcf	(_PFN+1)& (0+255),0,b
+   806                           ;konsola.c: 165: PFN.b_set_ncw=0;
+   807  00AF20  9558               	bcf	(_PFN+1)& (0+255),2,b
+   808                           ;konsola.c: 166: PFN._set_fnserw=0;
+   809  00AF22  9958               	bcf	(_PFN+1)& (0+255),4,b
+   810                           ;konsola.c: 167: PFN._set_aleg=0;
+   811  00AF24  9B58               	bcf	(_PFN+1)& (0+255),5,b
+   812                           ;konsola.c: 168: SetPrt(25,0);
+   813  00AF26  0100               	movlb	__Lparam shr (0+8)
+   814  00AF28  6BDB               	clrf	?_SetPrt^(__Lparam& (0+65280)),b
+   815  00AF2A  0E19               	movlw	25
+   816  00AF2C  ECB7  F068         	call	_SetPrt
+   817                           ;konsola.c: 169: SetPrt(24,0);
+   818  00AF30  0100               	movlb	__Lparam shr (0+8)
+   819  00AF32  6BDB               	clrf	?_SetPrt^(__Lparam& (0+65280)),b
+   820  00AF34  0E18               	movlw	24
+   821  00AF36  ECB7  F068         	call	_SetPrt
+   822                           ;konsola.c: 170: SetPrt(23,0);
+   823  00AF3A  0100               	movlb	__Lparam shr (0+8)
+   824  00AF3C  6BDB               	clrf	?_SetPrt^(__Lparam& (0+65280)),b
+   825  00AF3E  0E17               	movlw	23
+   826  00AF40  ECB7  F068         	call	_SetPrt
+   827                           ;konsola.c: 171: ResBufKeyEx(&ky[3]);
+   828  00AF44  0100               	movlb	__Lparam shr (0+8)
+   829  00AF46  0EBC               	movlw	low (_ky+15)
+   830  00AF48  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+   831  00AF4A  0E01               	movlw	high (_ky+15)
+   832  00AF4C  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+   833  00AF4E  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+   834                           ;konsola.c: 172: ResBufKeyEx(&ky[2]);
+   835  00AF52  0100               	movlb	__Lparam shr (0+8)
+   836  00AF54  0EB7               	movlw	low (_ky+10)
+   837  00AF56  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+   838  00AF58  0E01               	movlw	high (_ky+10)
+   839  00AF5A  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+   840  00AF5C  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+   841                           ;konsola.c: 173: }
+   842  00AF60  D06D               	goto	l57
+   843  00AF62                     l51:
+   844                           ;konsola.c: 174: else
+   845  00AF62  0101               	movlb	_PFN shr (0+8)
+   846  00AF64  A557               	btfss	_PFN& (0+255),2,b
+   847  00AF66  D00C               	goto	l53
+   848  00AF68  0101               	movlb	(_PFN+4) shr (0+8)
+   849  00AF6A  B55B               	btfsc	(_PFN+4)& (0+255),2,b
+   850  00AF6C  D009               	goto	l53
+   851  00AF6E  0101               	movlb	(_PFN+1) shr (0+8)
+   852  00AF70  B958               	btfsc	(_PFN+1)& (0+255),4,b
+   853  00AF72  D006               	goto	l53
+   854  00AF74  0101               	movlb	_PFN shr (0+8)
+   855  00AF76  9F57               	bcf	_PFN& (0+255),7,b
+   856  00AF78  0101               	movlb	(_PFN+1) shr (0+8)
+   857  00AF7A  8958               	bsf	(_PFN+1)& (0+255),4,b
+   858  00AF7C  8F58               	bsf	(_PFN+1)& (0+255),7,b
+   859  00AF7E  D05E               	goto	l57
+   860  00AF80                     l53:
+   861                           ;konsola.c: 176: else
+   862  00AF80  0101               	movlb	(_PFN+2) shr (0+8)
+   863  00AF82  AF59               	btfss	(_PFN+2)& (0+255),7,b
+   864  00AF84  D006               	goto	l55
+   865  00AF86  0101               	movlb	(_PFN+1) shr (0+8)
+   866  00AF88  BB58               	btfsc	(_PFN+1)& (0+255),5,b
+   867  00AF8A  D003               	goto	l55
+   868  00AF8C  0101               	movlb	_PFN shr (0+8)
+   869  00AF8E  9F57               	bcf	_PFN& (0+255),7,b
+   870  00AF90  D039               	goto	L4
+   871  00AF92                     l55:
+   872                           ;konsola.c: 178: else
+   873  00AF92  0101               	movlb	(_PFN+2) shr (0+8)
+   874  00AF94  9359               	bcf	(_PFN+2)& (0+255),1,b
+   875                           ;konsola.c: 181: PFN._set_nco=0;
+   876  00AF96  0101               	movlb	_PFN shr (0+8)
+   877  00AF98  9F57               	bcf	_PFN& (0+255),7,b
+   878                           ;konsola.c: 182: PFN.b_set_nco=0;
+   879  00AF9A  0101               	movlb	(_PFN+1) shr (0+8)
+   880  00AF9C  9358               	bcf	(_PFN+1)& (0+255),1,b
+   881                           ;konsola.c: 183: PFN._set_ncw=0;
+   882  00AF9E  9158               	bcf	(_PFN+1)& (0+255),0,b
+   883                           ;konsola.c: 184: PFN.b_set_ncw=0;
+   884  00AFA0  9558               	bcf	(_PFN+1)& (0+255),2,b
+   885                           ;konsola.c: 185: PFN._set_fnserw=0;
+   886  00AFA2  9958               	bcf	(_PFN+1)& (0+255),4,b
+   887                           ;konsola.c: 186: PFN._set_aleg=0;
+   888  00AFA4  9B58               	bcf	(_PFN+1)& (0+255),5,b
+   889                           ;konsola.c: 187: SetPrt(25,0);
+   890  00AFA6  0100               	movlb	__Lparam shr (0+8)
+   891  00AFA8  6BDB               	clrf	?_SetPrt^(__Lparam& (0+65280)),b
+   892  00AFAA  0E19               	movlw	25
+   893  00AFAC  ECB7  F068         	call	_SetPrt
+   894                           ;konsola.c: 188: SetPrt(24,0);
+   895  00AFB0  0100               	movlb	__Lparam shr (0+8)
+   896  00AFB2  6BDB               	clrf	?_SetPrt^(__Lparam& (0+65280)),b
+   897  00AFB4  0E18               	movlw	24
+   898  00AFB6  ECB7  F068         	call	_SetPrt
+   899                           ;konsola.c: 189: SetPrt(23,0);
+   900  00AFBA  0100               	movlb	__Lparam shr (0+8)
+   901  00AFBC  6BDB               	clrf	?_SetPrt^(__Lparam& (0+65280)),b
+   902  00AFBE  0E17               	movlw	23
+   903  00AFC0  ECB7  F068         	call	_SetPrt
+   904                           ;konsola.c: 190: ResBufKeyEx(&ky[3]);
+   905  00AFC4  0100               	movlb	__Lparam shr (0+8)
+   906  00AFC6  0EBC               	movlw	low (_ky+15)
+   907  00AFC8  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+   908  00AFCA  0E01               	movlw	high (_ky+15)
+   909  00AFCC  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+   910  00AFCE  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+   911                           ;konsola.c: 191: ResBufKeyEx(&ky[2]);
+   912  00AFD2  0100               	movlb	__Lparam shr (0+8)
+   913  00AFD4  0EB7               	movlw	low (_ky+10)
+   914  00AFD6  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+   915  00AFD8  0E01               	movlw	high (_ky+10)
+   916  00AFDA  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+   917  00AFDC  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+   918                           ;konsola.c: 192: }
+   919  00AFE0  D02D               	goto	l57
+   920  00AFE2                     l50:
+   921                           ;konsola.c: 194: else
+   922  00AFE2  0101               	movlb	(_PFN+1) shr (0+8)
+   923  00AFE4  A958               	btfss	(_PFN+1)& (0+255),4,b
+   924  00AFE6  D011               	goto	l58
+   925  00AFE8  0101               	movlb	(_PFN+5) shr (0+8)
+   926  00AFEA  B15C               	btfsc	(_PFN+5)& (0+255),0,b
+   927  00AFEC  D00E               	goto	l58
+   928  00AFEE  0101               	movlb	(_PFN+4) shr (0+8)
+   929  00AFF0  BF5B               	btfsc	(_PFN+4)& (0+255),7,b
+   930  00AFF2  D00B               	goto	l58
+   931                           ;konsola.c: 196: {
+   932  00AFF4  0101               	movlb	(_PFN+2) shr (0+8)
+   933  00AFF6  AF59               	btfss	(_PFN+2)& (0+255),7,b
+   934  00AFF8  D011               	goto	u1000
+   935  00AFFA  0101               	movlb	(_PFN+1) shr (0+8)
+   936  00AFFC  BB58               	btfsc	(_PFN+1)& (0+255),5,b
+   937  00AFFE  D00E               	goto	u1000
+   938  00B000  0101               	movlb	(_PFN+1) shr (0+8)
+   939  00B002  9958               	bcf	(_PFN+1)& (0+255),4,b
+   940  00B004                     L4:
+   941  00B004  0101               	movlb	(_PFN+1) shr (0+8)
+   942  00B006  8B58               	bsf	(_PFN+1)& (0+255),5,b
+   943  00B008  D019               	goto	l57
+   944                           ;konsola.c: 198: else
+   945                           ;konsola.c: 201: PFN._set_nco=0;
+   946                           ;konsola.c: 202: PFN.b_set_nco=0;
+   947                           ;konsola.c: 203: PFN._set_ncw=0;
+   948                           ;konsola.c: 204: PFN.b_set_ncw=0;
+   949                           ;konsola.c: 205: PFN._set_fnserw=0;
+   950                           ;konsola.c: 206: PFN._set_aleg=0;
+   951                           ;konsola.c: 207: }
+   952  00B00A                     l58:
+   953                           ;konsola.c: 209: else
+   954  00B00A  0101               	movlb	(_PFN+1) shr (0+8)
+   955  00B00C  AB58               	btfss	(_PFN+1)& (0+255),5,b
+   956  00B00E  D011               	goto	l62
+   957  00B010  0101               	movlb	(_PFN+5) shr (0+8)
+   958  00B012  B15C               	btfsc	(_PFN+5)& (0+255),0,b
+   959  00B014  D00E               	goto	l62
+   960  00B016  0101               	movlb	(_PFN+4) shr (0+8)
+   961  00B018  BF5B               	btfsc	(_PFN+4)& (0+255),7,b
+   962  00B01A  D00B               	goto	l62
+   963  00B01C                     u1000:
+   964                           ;konsola.c: 211: {
+   965  00B01C  0101               	movlb	(_PFN+2) shr (0+8)
+   966  00B01E  9359               	bcf	(_PFN+2)& (0+255),1,b
+   967                           ;konsola.c: 213: PFN._set_nco=0;
+   968  00B020  0101               	movlb	_PFN shr (0+8)
+   969  00B022  9F57               	bcf	_PFN& (0+255),7,b
+   970                           ;konsola.c: 214: PFN.b_set_nco=0;
+   971  00B024  0101               	movlb	(_PFN+1) shr (0+8)
+   972  00B026  9358               	bcf	(_PFN+1)& (0+255),1,b
+   973                           ;konsola.c: 215: PFN._set_ncw=0;
+   974  00B028  9158               	bcf	(_PFN+1)& (0+255),0,b
+   975                           ;konsola.c: 216: PFN.b_set_ncw=0;
+   976  00B02A  9558               	bcf	(_PFN+1)& (0+255),2,b
+   977                           ;konsola.c: 217: PFN._set_fnserw=0;
+   978  00B02C  9958               	bcf	(_PFN+1)& (0+255),4,b
+   979                           ;konsola.c: 218: PFN._set_aleg=0;
+   980  00B02E  9B58               	bcf	(_PFN+1)& (0+255),5,b
+   981                           ;konsola.c: 219: }
+   982  00B030  D005               	goto	l57
+   983  00B032                     l62:
+   984                           ;konsola.c: 220: else
+   985  00B032  0101               	movlb	(_PFN+1) shr (0+8)
+   986  00B034  9958               	bcf	(_PFN+1)& (0+255),4,b
+   987                           ;konsola.c: 223: PFN._set_aleg=0;
+   988  00B036  9B58               	bcf	(_PFN+1)& (0+255),5,b
+   989                           ;konsola.c: 224: PFN._set_nco=1;
+   990  00B038  0101               	movlb	_PFN shr (0+8)
+   991  00B03A  8F57               	bsf	_PFN& (0+255),7,b
+   992  00B03C                     l57:
+   993                           ;konsola.c: 225: }
+   994  00B03C  0E09               	movlw	9
+   995  00B03E  EC86  F06E         	call	_StartRTdS
+   996                           ;konsola.c: 227: if(PFN._set_nco)
+   997  00B042  0101               	movlb	_PFN shr (0+8)
+   998  00B044  AF57               	btfss	_PFN& (0+255),7,b
+   999  00B046  D005               	goto	l48
+  1000                           ;konsola.c: 228: {
+  1001  00B048  0101               	movlb	(_PFN+1) shr (0+8)
+  1002  00B04A  9358               	bcf	(_PFN+1)& (0+255),1,b
+  1003                           ;konsola.c: 230: RestartKol(2);
+  1004  00B04C  0E02               	movlw	2
+  1005  00B04E  EC5B  F041         	call	_RestartKol
+  1006  00B052                     l48:
+  1007                           ;konsola.c: 233: }
+  1008  00B052  0E09               	movlw	9
+  1009  00B054  EC98  F06E         	call	_RTdS
+  1010  00B058  6E00               	movwf	btemp,c
+  1011  00B05A  0E1F               	movlw	31
+  1012  00B05C  5C00               	subwf	btemp,w,c
+  1013  00B05E  E308               	bnc	l65
+  1014                           ;konsola.c: 237: {
+  1015  00B060  0101               	movlb	_PFN shr (0+8)
+  1016  00B062  9F57               	bcf	_PFN& (0+255),7,b
+  1017                           ;konsola.c: 239: PFN.b_set_nco=0;
+  1018  00B064  0101               	movlb	(_PFN+1) shr (0+8)
+  1019  00B066  9358               	bcf	(_PFN+1)& (0+255),1,b
+  1020                           ;konsola.c: 240: PFN._set_ncw=0;
+  1021  00B068  9158               	bcf	(_PFN+1)& (0+255),0,b
+  1022                           ;konsola.c: 241: PFN.b_set_ncw=0;
+  1023  00B06A  9558               	bcf	(_PFN+1)& (0+255),2,b
+  1024                           ;konsola.c: 242: PFN._set_fnserw=0;
+  1025  00B06C  9958               	bcf	(_PFN+1)& (0+255),4,b
+  1026                           ;konsola.c: 243: PFN._set_aleg=0;
+  1027  00B06E  9B58               	bcf	(_PFN+1)& (0+255),5,b
+  1028  00B070                     l65:
+  1029                           ;konsola.c: 244: }
+  1030  00B070  0E16               	movlw	22
+  1031  00B072  ECA6  F068         	call	_RdPrt
+  1032  00B076  E25B               	bc	l66
+  1033  00B078  0E19               	movlw	25
+  1034  00B07A  ECA6  F068         	call	_RdPrt
+  1035  00B07E  E257               	bc	l66
+  1036  00B080  0101               	movlb	_PFN shr (0+8)
+  1037  00B082  B157               	btfsc	_PFN& (0+255),0,b
+  1038  00B084  D054               	goto	l66
+  1039  00B086  0101               	movlb	(_PFN+1) shr (0+8)
+  1040  00B088  BD58               	btfsc	(_PFN+1)& (0+255),6,b
+  1041  00B08A  D051               	goto	l66
+  1042  00B08C  0101               	movlb	(_PFN+2) shr (0+8)
+  1043  00B08E  B159               	btfsc	(_PFN+2)& (0+255),0,b
+  1044  00B090  D04E               	goto	l66
+  1045                           ;konsola.c: 247: {
+  1046  00B092  0101               	movlb	(_PFN+1) shr (0+8)
+  1047  00B094  A958               	btfss	(_PFN+1)& (0+255),4,b
+  1048  00B096  D025               	goto	l67
+  1049                           ;konsola.c: 249: {
+  1050  00B098  0100               	movlb	__Lparam shr (0+8)
+  1051  00B09A  0EB7               	movlw	low (_ky+10)
+  1052  00B09C  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1053  00B09E  0E01               	movlw	high (_ky+10)
+  1054  00B0A0  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1055  00B0A2  0E18               	movlw	24
+  1056  00B0A4  ECA6  F068         	call	_RdPrt
+  1057  00B0A8  0E00               	movlw	0
+  1058  00B0AA  B0D8               	btfsc	status,0,c
+  1059  00B0AC  0E01               	movlw	1
+  1060  00B0AE  EC8B  F069         	call	_PresKeyEX
+  1061  00B0B2  0100               	movlb	__Lparam shr (0+8)
+  1062  00B0B4  6FDA               	movwf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+  1063                           ;konsola.c: 251: if(key!=100&&key>=10)
+  1064  00B0B6  51DA               	movf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),w
+  1065  00B0B8  0A64               	xorlw	100
+  1066  00B0BA  E013               	bz	l67
+  1067  00B0BC  0E09               	movlw	9
+  1068  00B0BE  65DA               	cpfsgt	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+  1069  00B0C0  D010               	goto	l67
+  1070                           ;konsola.c: 252: {
+  1071  00B0C2  0EB7               	movlw	low (_ky+10)
+  1072  00B0C4  6FDB               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+  1073  00B0C6  0E01               	movlw	high (_ky+10)
+  1074  00B0C8  6FDC               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+  1075  00B0CA  EC93  F06A         	call	_WaitToLowEx	;wreg free
+  1076                           ;konsola.c: 254: PFN._fnserw=1;
+  1077  00B0CE  0101               	movlb	(_PFN+1) shr (0+8)
+  1078  00B0D0  8D58               	bsf	(_PFN+1)& (0+255),6,b
+  1079                           ;konsola.c: 255: PFN._prn_res=0;
+  1080  00B0D2  0101               	movlb	(_PFN+3) shr (0+8)
+  1081  00B0D4  915A               	bcf	(_PFN+3)& (0+255),0,b
+  1082                           ;konsola.c: 256: PFN._set_nco=0;
+  1083  00B0D6  0101               	movlb	_PFN shr (0+8)
+  1084  00B0D8  9F57               	bcf	_PFN& (0+255),7,b
+  1085                           ;konsola.c: 257: PFN._set_ncw=0;
+  1086  00B0DA  0101               	movlb	(_PFN+1) shr (0+8)
+  1087  00B0DC  9158               	bcf	(_PFN+1)& (0+255),0,b
+  1088                           ;konsola.c: 258: PFN.b_ofnserw=0;
+  1089  00B0DE  0101               	movlb	(_PFN+25) shr (0+8)
+  1090  00B0E0  9170               	bcf	(_PFN+25)& (0+255),0,b
+  1091  00B0E2                     l67:
+  1092                           ;konsola.c: 259: }
+  1093  00B0E2  0101               	movlb	(_PFN+1) shr (0+8)
+  1094  00B0E4  AB58               	btfss	(_PFN+1)& (0+255),5,b
+  1095  00B0E6  D023               	goto	l66
+  1096                           ;konsola.c: 262: {
+  1097  00B0E8  0100               	movlb	__Lparam shr (0+8)
+  1098  00B0EA  0EB7               	movlw	low (_ky+10)
+  1099  00B0EC  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1100  00B0EE  0E01               	movlw	high (_ky+10)
+  1101  00B0F0  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1102  00B0F2  0E18               	movlw	24
+  1103  00B0F4  ECA6  F068         	call	_RdPrt
+  1104  00B0F8  0E00               	movlw	0
+  1105  00B0FA  B0D8               	btfsc	status,0,c
+  1106  00B0FC  0E01               	movlw	1
+  1107  00B0FE  EC8B  F069         	call	_PresKeyEX
+  1108  00B102  0100               	movlb	__Lparam shr (0+8)
+  1109  00B104  6FDA               	movwf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+  1110                           ;konsola.c: 264: if(key!=100&&key>=10)
+  1111  00B106  51DA               	movf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),w
+  1112  00B108  0A64               	xorlw	100
+  1113  00B10A  E011               	bz	l66
+  1114  00B10C  0E09               	movlw	9
+  1115  00B10E  65DA               	cpfsgt	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+  1116  00B110  D00E               	goto	l66
+  1117                           ;konsola.c: 265: {
+  1118  00B112  0EB7               	movlw	low (_ky+10)
+  1119  00B114  6FDB               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+  1120  00B116  0E01               	movlw	high (_ky+10)
+  1121  00B118  6FDC               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+  1122  00B11A  EC93  F06A         	call	_WaitToLowEx	;wreg free
+  1123                           ;konsola.c: 267: PFN._aleg=1;
+  1124  00B11E  0101               	movlb	(_PFN+2) shr (0+8)
+  1125  00B120  8159               	bsf	(_PFN+2)& (0+255),0,b
+  1126                           ;konsola.c: 268: PFN._set_nco=0;
+  1127  00B122  0101               	movlb	_PFN shr (0+8)
+  1128  00B124  9F57               	bcf	_PFN& (0+255),7,b
+  1129                           ;konsola.c: 269: PFN._set_ncw=0;
+  1130  00B126  0101               	movlb	(_PFN+1) shr (0+8)
+  1131  00B128  9158               	bcf	(_PFN+1)& (0+255),0,b
+  1132                           ;konsola.c: 270: PFN.b_oaleg=0;
+  1133  00B12A  0101               	movlb	(_PFN+25) shr (0+8)
+  1134  00B12C  9370               	bcf	(_PFN+25)& (0+255),1,b
+  1135  00B12E                     l66:
+  1136                           ;konsola.c: 271: }
+  1137  00B12E  0E16               	movlw	22
+  1138  00B130  ECA6  F068         	call	_RdPrt
+  1139  00B134  E25F               	bc	l71
+  1140  00B136  0E17               	movlw	23
+  1141  00B138  ECA6  F068         	call	_RdPrt
+  1142  00B13C  E25B               	bc	l71
+  1143  00B13E  0101               	movlb	_PFN shr (0+8)
+  1144  00B140  B157               	btfsc	_PFN& (0+255),0,b
+  1145  00B142  D058               	goto	l71
+  1146  00B144  0101               	movlb	(_PFN+1) shr (0+8)
+  1147  00B146  BD58               	btfsc	(_PFN+1)& (0+255),6,b
+  1148  00B148  D055               	goto	l71
+  1149  00B14A  0101               	movlb	(_PFN+2) shr (0+8)
+  1150  00B14C  B159               	btfsc	(_PFN+2)& (0+255),0,b
+  1151  00B14E  D052               	goto	l71
+  1152  00B150  0101               	movlb	(_PFN+1) shr (0+8)
+  1153  00B152  B958               	btfsc	(_PFN+1)& (0+255),4,b
+  1154  00B154  D04F               	goto	l71
+  1155  00B156  0101               	movlb	(_PFN+1) shr (0+8)
+  1156  00B158  BB58               	btfsc	(_PFN+1)& (0+255),5,b
+  1157  00B15A  D04C               	goto	l71
+  1158  00B15C  0101               	movlb	_PFN shr (0+8)
+  1159  00B15E  BF57               	btfsc	_PFN& (0+255),7,b
+  1160  00B160  D049               	goto	l71
+  1161  00B162  0101               	movlb	(_PFN+1) shr (0+8)
+  1162  00B164  B158               	btfsc	(_PFN+1)& (0+255),0,b
+  1163  00B166  D046               	goto	l71
+  1164                           ;konsola.c: 277: {
+  1165  00B168  0100               	movlb	__Lparam shr (0+8)
+  1166  00B16A  0EBC               	movlw	low (_ky+15)
+  1167  00B16C  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1168  00B16E  0E01               	movlw	high (_ky+15)
+  1169  00B170  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1170  00B172  0E19               	movlw	25
+  1171  00B174  ECA6  F068         	call	_RdPrt
+  1172  00B178  0E00               	movlw	0
+  1173  00B17A  B0D8               	btfsc	status,0,c
+  1174  00B17C  0E01               	movlw	1
+  1175  00B17E  EC8B  F069         	call	_PresKeyEX
+  1176  00B182  0100               	movlb	__Lparam shr (0+8)
+  1177  00B184  6FDA               	movwf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+  1178                           ;konsola.c: 279: key2=PresKeyEX(RdPrt(24),&ky[2]
+      +                          );
+  1179  00B186  0EB7               	movlw	low (_ky+10)
+  1180  00B188  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1181  00B18A  0E01               	movlw	high (_ky+10)
+  1182  00B18C  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1183  00B18E  0E18               	movlw	24
+  1184  00B190  ECA6  F068         	call	_RdPrt
+  1185  00B194  0E00               	movlw	0
+  1186  00B196  B0D8               	btfsc	status,0,c
+  1187  00B198  0E01               	movlw	1
+  1188  00B19A  EC8B  F069         	call	_PresKeyEX
+  1189  00B19E  0100               	movlb	__Lparam shr (0+8)
+  1190  00B1A0  6FD9               	movwf	(?a_TrybPracy+2)^(__Lparam& (0+65280)),b
+  1191                           ;konsola.c: 280: if(key==100||key>=8||key2==100|
+      +                          |key2>=8)
+  1192  00B1A2  51DA               	movf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),w
+  1193  00B1A4  0A64               	xorlw	100
+  1194  00B1A6  E00B               	bz	u1430
+  1195  00B1A8  0E07               	movlw	7
+  1196  00B1AA  65DA               	cpfsgt	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+  1197  00B1AC  D001               	goto	u1391
+  1198  00B1AE  D007               	goto	u1430
+  1199  00B1B0                     u1391:
+  1200  00B1B0  0100               	movlb	__Lparam shr (0+8)
+  1201  00B1B2  51D9               	movf	(?a_TrybPracy+2)^(__Lparam& (0+65280)),w
+  1202  00B1B4  0A64               	xorlw	100
+  1203  00B1B6  E003               	bz	u1430
+  1204  00B1B8  0E07               	movlw	7
+  1205  00B1BA  65D9               	cpfsgt	(?a_TrybPracy+2)^(__Lparam& (0+65280)),b
+  1206  00B1BC  D01B               	goto	l71
+  1207  00B1BE                     u1430:
+  1208                           ;konsola.c: 281: {
+  1209  00B1BE  0100               	movlb	__Lparam shr (0+8)
+  1210  00B1C0  0EBC               	movlw	low (_ky+15)
+  1211  00B1C2  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+  1212  00B1C4  0E01               	movlw	high (_ky+15)
+  1213  00B1C6  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+  1214  00B1C8  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+  1215                           ;konsola.c: 283: ResBufKeyEx(&ky[2]);
+  1216  00B1CC  0100               	movlb	__Lparam shr (0+8)
+  1217  00B1CE  0EB7               	movlw	low (_ky+10)
+  1218  00B1D0  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+  1219  00B1D2  0E01               	movlw	high (_ky+10)
+  1220  00B1D4  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+  1221  00B1D6  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+  1222                           ;konsola.c: 284: RestartKol(2);
+  1223  00B1DA  0E02               	movlw	2
+  1224  00B1DC  EC5B  F041         	call	_RestartKol
+  1225                           ;konsola.c: 287: PFN.b_set_ncw=0;
+  1226  00B1E0  0101               	movlb	(_PFN+1) shr (0+8)
+  1227  00B1E2  9558               	bcf	(_PFN+1)& (0+255),2,b
+  1228                           ;konsola.c: 288: PFN._prn_res=0;
+  1229  00B1E4  0101               	movlb	(_PFN+3) shr (0+8)
+  1230  00B1E6  915A               	bcf	(_PFN+3)& (0+255),0,b
+  1231                           ;konsola.c: 289: PFN._set_ncw=1;
+  1232  00B1E8  0101               	movlb	(_PFN+1) shr (0+8)
+  1233  00B1EA  8158               	bsf	(_PFN+1)& (0+255),0,b
+  1234                           ;konsola.c: 290: PFN._mod_ncw=0;
+  1235  00B1EC  9758               	bcf	(_PFN+1)& (0+255),3,b
+  1236                           ;konsola.c: 291: StartRTdS(9);
+  1237  00B1EE  0E09               	movlw	9
+  1238  00B1F0  EC86  F06E         	call	_StartRTdS
+  1239  00B1F4                     l71:
+  1240                           ;konsola.c: 292: }
+  1241  00B1F4  0101               	movlb	(_PFN+6) shr (0+8)
+  1242  00B1F6  AB5D               	btfss	(_PFN+6)& (0+255),5,b
+  1243  00B1F8  D00E               	goto	u1520
+  1244  00B1FA  0101               	movlb	(_PFN+6) shr (0+8)
+  1245  00B1FC  B95D               	btfsc	(_PFN+6)& (0+255),4,b
+  1246  00B1FE  D00B               	goto	u1520
+  1247  00B200  0101               	movlb	(_PFN+6) shr (0+8)
+  1248  00B202  A35D               	btfss	(_PFN+6)& (0+255),1,b
+  1249  00B204  D008               	goto	u1520
+  1250  00B206  0101               	movlb	(_PFN+4) shr (0+8)
+  1251  00B208  B55B               	btfsc	(_PFN+4)& (0+255),2,b
+  1252  00B20A  D005               	goto	u1520
+  1253  00B20C  0101               	movlb	(_PFN+4) shr (0+8)
+  1254  00B20E  A35B               	btfss	(_PFN+4)& (0+255),1,b
+  1255  00B210  D002               	goto	u1520
+  1256  00B212  0E01               	movlw	1
+  1257  00B214  D001               	goto	u1530
+  1258  00B216                     u1520:
+  1259  00B216  0E00               	movlw	0
+  1260  00B218                     u1530:
+  1261  00B218  0100               	movlb	__Lparam shr (0+8)
+  1262  00B21A  6FD7               	movwf	?a_TrybPracy^(__Lparam& (0+65280)),b
+  1263                           ;konsola.c: 296: ExtR2=(PFN._errIN||!PFN._obgCO)
+      +                          ?0:1;
+  1264  00B21C  0101               	movlb	(_PFN+6) shr (0+8)
+  1265  00B21E  B95D               	btfsc	(_PFN+6)& (0+255),4,b
+  1266  00B220  D005               	goto	u1560
+  1267  00B222  0101               	movlb	(_PFN+4) shr (0+8)
+  1268  00B224  A35B               	btfss	(_PFN+4)& (0+255),1,b
+  1269  00B226  D002               	goto	u1560
+  1270  00B228  0E01               	movlw	1
+  1271  00B22A  D001               	goto	u1570
+  1272  00B22C                     u1560:
+  1273  00B22C  0E00               	movlw	0
+  1274  00B22E                     u1570:
+  1275  00B22E  0100               	movlb	__Lparam shr (0+8)
+  1276  00B230  6FD8               	movwf	(?a_TrybPracy+1)^(__Lparam& (0+65280)),b
+  1277                           ;konsola.c: 298: if(RTdS(10)>50)
+  1278  00B232  0E0A               	movlw	10
+  1279  00B234  EC98  F06E         	call	_RTdS
+  1280  00B238  6E00               	movwf	btemp,c
+  1281  00B23A  0E33               	movlw	51
+  1282  00B23C  5C00               	subwf	btemp,w,c
+  1283                           ;konsola.c: 299: {
+  1284  00B23E  0101               	movlb	(_PFN+3) shr (0+8)
+  1285  00B240  E301               	bnc	L10
+  1286  00B242  915A               	bcf	(_PFN+3)& (0+255),0,b
+  1287                           ;konsola.c: 301: }
+  1288  00B244                     L10:
+  1289  00B244  A15A               	btfss	(_PFN+3)& (0+255),0,b
+  1290  00B246  D00B               	goto	l74
+  1291  00B248  0101               	movlb	(_PFN+5) shr (0+8)
+  1292  00B24A  BB5C               	btfsc	(_PFN+5)& (0+255),5,b
+  1293  00B24C  D003               	goto	u1630
+  1294  00B24E  0101               	movlb	(_PFN+6) shr (0+8)
+  1295  00B250  A15D               	btfss	(_PFN+6)& (0+255),0,b
+  1296  00B252  D005               	goto	l74
+  1297  00B254                     u1630:
+  1298  00B254  0101               	movlb	(_PFN+6) shr (0+8)
+  1299  00B256  A95D               	btfss	(_PFN+6)& (0+255),4,b
+  1300  00B258  D002               	goto	l74
+  1301                           ;konsola.c: 303: {
+  1302  00B25A  0101               	movlb	(_PFN+3) shr (0+8)
+  1303  00B25C  915A               	bcf	(_PFN+3)& (0+255),0,b
+  1304  00B25E                     l74:
+  1305                           ;konsola.c: 305: }
+  1306  00B25E  0101               	movlb	(_PFN+3) shr (0+8)
+  1307  00B260  A15A               	btfss	(_PFN+3)& (0+255),0,b
+  1308  00B262  D00E               	goto	l75
+  1309  00B264  0101               	movlb	(_PFN+5) shr (0+8)
+  1310  00B266  BB5C               	btfsc	(_PFN+5)& (0+255),5,b
+  1311  00B268  D003               	goto	u1700
+  1312  00B26A  0101               	movlb	(_PFN+6) shr (0+8)
+  1313  00B26C  A15D               	btfss	(_PFN+6)& (0+255),0,b
+  1314  00B26E  D008               	goto	l75
+  1315  00B270                     u1700:
+  1316  00B270  0101               	movlb	(_PFN+4) shr (0+8)
+  1317  00B272  B55B               	btfsc	(_PFN+4)& (0+255),2,b
+  1318  00B274  D003               	goto	u1740
+  1319  00B276  0101               	movlb	(_PFN+6) shr (0+8)
+  1320  00B278  A55D               	btfss	(_PFN+6)& (0+255),2,b
+  1321  00B27A  D002               	goto	l75
+  1322  00B27C                     u1740:
+  1323                           ;konsola.c: 307: {
+  1324  00B27C  0101               	movlb	(_PFN+3) shr (0+8)
+  1325  00B27E  915A               	bcf	(_PFN+3)& (0+255),0,b
+  1326  00B280                     l75:
+  1327                           ;konsola.c: 309: }
+  1328  00B280  0101               	movlb	(_PFN+3) shr (0+8)
+  1329  00B282  A15A               	btfss	(_PFN+3)& (0+255),0,b
+  1330  00B284  D042               	goto	l92
+  1331                           ;konsola.c: 311: {
+  1332                           ;konsola.c: 313: PFN._prn_in=0;
+  1333                           ;konsola.c: 314: }
+  1334                           ;konsola.c: 315: else
+  1335  00B286  0100               	movlb	__Lparam shr (0+8)
+  1336  00B288  51D7               	movf	?a_TrybPracy^(__Lparam& (0+65280)),w
+  1337  00B28A  E008               	bz	l78
+  1338                           ;konsola.c: 318: {
+  1339  00B28C  0E0A               	movlw	10
+  1340  00B28E  EC98  F06E         	call	_RTdS
+  1341  00B292  6E00               	movwf	btemp,c
+  1342  00B294  0E19               	movlw	25
+  1343  00B296  5C00               	subwf	btemp,w,c
+  1344  00B298  E226               	bc	u1850
+  1345  00B29A  D018               	goto	L7
+  1346                           ;konsola.c: 320: {
+  1347                           ;konsola.c: 322: PFN._prn_in=0;
+  1348                           ;konsola.c: 323: }
+  1349                           ;konsola.c: 324: else
+  1350                           ;konsola.c: 327: PFN._prn_in=1;
+  1351                           ;konsola.c: 328: }
+  1352  00B29C                     l78:
+  1353                           ;konsola.c: 330: else
+  1354  00B29C  0100               	movlb	__Lparam shr (0+8)
+  1355  00B29E  51D8               	movf	(?a_TrybPracy+1)^(__Lparam& (0+65280)),w
+  1356  00B2A0  E026               	bz	l82
+  1357                           ;konsola.c: 333: {
+  1358  00B2A2  0101               	movlb	(_PFN+5) shr (0+8)
+  1359  00B2A4  BB5C               	btfsc	(_PFN+5)& (0+255),5,b
+  1360  00B2A6  D003               	goto	u1810
+  1361  00B2A8  0101               	movlb	(_PFN+6) shr (0+8)
+  1362  00B2AA  A15D               	btfss	(_PFN+6)& (0+255),0,b
+  1363  00B2AC  D008               	goto	l83
+  1364  00B2AE                     u1810:
+  1365                           ;konsola.c: 335: {
+  1366  00B2AE  0E0A               	movlw	10
+  1367  00B2B0  EC98  F06E         	call	_RTdS
+  1368  00B2B4  6E00               	movwf	btemp,c
+  1369  00B2B6  0E32               	movlw	50
+  1370  00B2B8  5C00               	subwf	btemp,w,c
+  1371  00B2BA  E22B               	bc	l77
+  1372  00B2BC  D014               	goto	u1850
+  1373                           ;konsola.c: 337: {
+  1374                           ;konsola.c: 339: PFN._prn_in=1;
+  1375                           ;konsola.c: 340: }
+  1376  00B2BE                     l83:
+  1377                           ;konsola.c: 342: else
+  1378  00B2BE  0E0A               	movlw	10
+  1379  00B2C0  EC98  F06E         	call	_RTdS
+  1380  00B2C4  6E00               	movwf	btemp,c
+  1381  00B2C6  0E19               	movlw	25
+  1382  00B2C8  5C00               	subwf	btemp,w,c
+  1383  00B2CA  E203               	bc	l86
+  1384  00B2CC                     L7:
+  1385                           ;konsola.c: 345: {
+  1386  00B2CC  0101               	movlb	(_PFN+3) shr (0+8)
+  1387  00B2CE  835A               	bsf	(_PFN+3)& (0+255),1,b
+  1388  00B2D0  D01E               	goto	L5
+  1389                           ;konsola.c: 347: PFN._prn_in=0;
+  1390                           ;konsola.c: 348: }
+  1391  00B2D2                     l86:
+  1392                           ;konsola.c: 349: else
+  1393  00B2D2  0101               	movlb	(_PFN+6) shr (0+8)
+  1394  00B2D4  B95D               	btfsc	(_PFN+6)& (0+255),4,b
+  1395  00B2D6  D7FA               	goto	L7
+  1396                           ;konsola.c: 352: {
+  1397  00B2D8  0E0A               	movlw	10
+  1398  00B2DA  EC98  F06E         	call	_RTdS
+  1399  00B2DE  6E00               	movwf	btemp,c
+  1400  00B2E0  0E19               	movlw	25
+  1401  00B2E2  5C00               	subwf	btemp,w,c
+  1402  00B2E4  E316               	bnc	l77
+  1403  00B2E6                     u1850:
+  1404                           ;konsola.c: 354: {
+  1405  00B2E6  0101               	movlb	(_PFN+3) shr (0+8)
+  1406  00B2E8  935A               	bcf	(_PFN+3)& (0+255),1,b
+  1407                           ;konsola.c: 356: PFN._prn_in=1;
+  1408  00B2EA  855A               	bsf	(_PFN+3)& (0+255),2,b
+  1409                           ;konsola.c: 357: }
+  1410  00B2EC  D012               	goto	l77
+  1411                           ;konsola.c: 359: else
+  1412                           ;konsola.c: 362: PFN._prn_in=0;
+  1413                           ;konsola.c: 363: }
+  1414  00B2EE                     l82:
+  1415                           ;konsola.c: 367: else
+  1416  00B2EE  0101               	movlb	(_PFN+5) shr (0+8)
+  1417  00B2F0  BB5C               	btfsc	(_PFN+5)& (0+255),5,b
+  1418  00B2F2  D00B               	goto	l92
+  1419  00B2F4  0101               	movlb	(_PFN+6) shr (0+8)
+  1420  00B2F6  B15D               	btfsc	(_PFN+6)& (0+255),0,b
+  1421  00B2F8  D008               	goto	l92
+  1422                           ;konsola.c: 370: {
+  1423  00B2FA  0E0A               	movlw	10
+  1424  00B2FC  EC98  F06E         	call	_RTdS
+  1425  00B300  6E00               	movwf	btemp,c
+  1426  00B302  0E32               	movlw	50
+  1427  00B304  5C00               	subwf	btemp,w,c
+  1428  00B306  E205               	bc	l77
+  1429  00B308  D7E1               	goto	L7
+  1430                           ;konsola.c: 372: {
+  1431                           ;konsola.c: 374: PFN._prn_in=0;
+  1432                           ;konsola.c: 375: }
+  1433  00B30A                     l92:
+  1434                           ;konsola.c: 377: else
+  1435  00B30A  0101               	movlb	(_PFN+3) shr (0+8)
+  1436  00B30C  935A               	bcf	(_PFN+3)& (0+255),1,b
+  1437  00B30E                     L5:
+  1438                           ;konsola.c: 380: PFN._prn_in=0;
+  1439  00B30E  0101               	movlb	(_PFN+3) shr (0+8)
+  1440  00B310  955A               	bcf	(_PFN+3)& (0+255),2,b
+  1441  00B312                     l77:
+  1442                           ;konsola.c: 381: }
+  1443  00B312  0101               	movlb	_PFN shr (0+8)
+  1444  00B314  B157               	btfsc	_PFN& (0+255),0,b
+  1445  00B316  D048               	goto	l95
+  1446  00B318  0101               	movlb	(_PFN+1) shr (0+8)
+  1447  00B31A  BD58               	btfsc	(_PFN+1)& (0+255),6,b
+  1448  00B31C  D003               	goto	u1940
+  1449  00B31E  0101               	movlb	(_PFN+3) shr (0+8)
+  1450  00B320  AF5A               	btfss	(_PFN+3)& (0+255),7,b
+  1451  00B322  D042               	goto	l95
+  1452  00B324                     u1940:
+  1453                           ;konsola.c: 387: {
+  1454  00B324  0100               	movlb	__Lparam shr (0+8)
+  1455  00B326  0EB7               	movlw	low (_ky+10)
+  1456  00B328  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1457  00B32A  0E01               	movlw	high (_ky+10)
+  1458  00B32C  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1459  00B32E  0E18               	movlw	24
+  1460  00B330  ECA6  F068         	call	_RdPrt
+  1461  00B334  0E00               	movlw	0
+  1462  00B336  B0D8               	btfsc	status,0,c
+  1463  00B338  0E01               	movlw	1
+  1464  00B33A  EC8B  F069         	call	_PresKeyEX
+  1465  00B33E  6E00               	movwf	btemp,c
+  1466  00B340  C000  F002         	movff	btemp,btemp+2
+  1467  00B344  6A03               	clrf	btemp+3,c
+  1468  00B346  5003               	movf	btemp+3,w,c
+  1469  00B348  0A80               	xorlw	128
+  1470  00B34A  0F80               	addlw	-128
+  1471  00B34C  0E01               	movlw	1
+  1472  00B34E  B4D8               	btfsc	status,2,c
+  1473  00B350  5C02               	subwf	btemp+2,w,c
+  1474                           ;konsola.c: 389: {
+  1475  00B352  0100               	movlb	__Lparam shr (0+8)
+  1476  00B354  E309               	bnc	L11
+  1477  00B356  0EB7               	movlw	low (_ky+10)
+  1478  00B358  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+  1479  00B35A  0E01               	movlw	high (_ky+10)
+  1480  00B35C  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+  1481  00B35E  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+  1482                           ;konsola.c: 391: PFN._fns_max=1;
+  1483  00B362  0101               	movlb	(_PFN+1) shr (0+8)
+  1484  00B364  8F58               	bsf	(_PFN+1)& (0+255),7,b
+  1485                           ;konsola.c: 392: }
+  1486  00B366  0100               	movlb	__Lparam shr (0+8)
+  1487  00B368                     L11:
+  1488  00B368  0EBC               	movlw	low (_ky+15)
+  1489  00B36A  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1490  00B36C  0E01               	movlw	high (_ky+15)
+  1491  00B36E  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1492  00B370  0E19               	movlw	25
+  1493  00B372  ECA6  F068         	call	_RdPrt
+  1494  00B376  0E00               	movlw	0
+  1495  00B378  B0D8               	btfsc	status,0,c
+  1496  00B37A  0E01               	movlw	1
+  1497  00B37C  EC8B  F069         	call	_PresKeyEX
+  1498  00B380  6E00               	movwf	btemp,c
+  1499  00B382  C000  F002         	movff	btemp,btemp+2
+  1500  00B386  6A03               	clrf	btemp+3,c
+  1501  00B388  5003               	movf	btemp+3,w,c
+  1502  00B38A  0A80               	xorlw	128
+  1503  00B38C  0F80               	addlw	-128
+  1504  00B38E  0E01               	movlw	1
+  1505  00B390  B4D8               	btfsc	status,2,c
+  1506  00B392  5C02               	subwf	btemp+2,w,c
+  1507                           ;konsola.c: 394: {
+  1508  00B394  0100               	movlb	__Lparam shr (0+8)
+  1509  00B396  E309               	bnc	L12
+  1510  00B398  0EBC               	movlw	low (_ky+15)
+  1511  00B39A  6FDB               	movwf	?_ResBufKeyEx^(__Lparam& (0+65280)),b
+  1512  00B39C  0E01               	movlw	high (_ky+15)
+  1513  00B39E  6FDC               	movwf	(?_ResBufKeyEx+1)^(__Lparam& (0+65280)),b
+  1514  00B3A0  EC7D  F06A         	call	_ResBufKeyEx	;wreg free
+  1515                           ;konsola.c: 396: PFN._fns_max=0;
+  1516  00B3A4  0101               	movlb	(_PFN+1) shr (0+8)
+  1517  00B3A6  9F58               	bcf	(_PFN+1)& (0+255),7,b
+  1518  00B3A8                     l95:
+  1519                           ;konsola.c: 397: }
+  1520  00B3A8  0100               	movlb	__Lparam shr (0+8)
+  1521  00B3AA                     L12:
+  1522  00B3AA  0EAD               	movlw	low _ky
+  1523  00B3AC  6FDB               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1524  00B3AE  0E01               	movlw	high _ky
+  1525  00B3B0  6FDC               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1526  00B3B2  0E16               	movlw	22
+  1527  00B3B4  ECA6  F068         	call	_RdPrt
+  1528  00B3B8  0E00               	movlw	0
+  1529  00B3BA  B0D8               	btfsc	status,0,c
+  1530  00B3BC  0E01               	movlw	1
+  1531  00B3BE  EC8B  F069         	call	_PresKeyEX
+  1532  00B3C2  0100               	movlb	__Lparam shr (0+8)
+  1533  00B3C4  6FDA               	movwf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),b
+  1534                           ;konsola.c: 402: if(key==100)
+  1535  00B3C6  51DA               	movf	(?a_TrybPracy+3)^(__Lparam& (0+65280)),w
+  1536  00B3C8  0A64               	xorlw	100
+  1537  00B3CA  E15A               	bnz	l103
+  1538                           ;konsola.c: 403: {
+  1539  00B3CC  0101               	movlb	_PFN shr (0+8)
+  1540  00B3CE  BF57               	btfsc	_PFN& (0+255),7,b
+  1541  00B3D0  D018               	goto	u2140
+  1542  00B3D2  0101               	movlb	(_PFN+1) shr (0+8)
+  1543  00B3D4  B158               	btfsc	(_PFN+1)& (0+255),0,b
+  1544  00B3D6  D015               	goto	u2140
+  1545  00B3D8  0101               	movlb	_PFN shr (0+8)
+  1546  00B3DA  B757               	btfsc	_PFN& (0+255),3,b
+  1547  00B3DC  D012               	goto	u2140
+  1548  00B3DE  0101               	movlb	_PFN shr (0+8)
+  1549  00B3E0  B957               	btfsc	_PFN& (0+255),4,b
+  1550  00B3E2  D00F               	goto	u2140
+  1551  00B3E4  0101               	movlb	(_PFN+3) shr (0+8)
+  1552  00B3E6  B15A               	btfsc	(_PFN+3)& (0+255),0,b
+  1553  00B3E8  D00C               	goto	u2140
+  1554  00B3EA  0101               	movlb	(_PFN+1) shr (0+8)
+  1555  00B3EC  B958               	btfsc	(_PFN+1)& (0+255),4,b
+  1556  00B3EE  D009               	goto	u2140
+  1557  00B3F0  0101               	movlb	(_PFN+1) shr (0+8)
+  1558  00B3F2  BD58               	btfsc	(_PFN+1)& (0+255),6,b
+  1559  00B3F4  D006               	goto	u2140
+  1560  00B3F6  0101               	movlb	(_PFN+1) shr (0+8)
+  1561  00B3F8  BB58               	btfsc	(_PFN+1)& (0+255),5,b
+  1562  00B3FA  D003               	goto	u2140
+  1563  00B3FC  0101               	movlb	(_PFN+2) shr (0+8)
+  1564  00B3FE  A159               	btfss	(_PFN+2)& (0+255),0,b
+  1565  00B400  D011               	goto	l99
+  1566  00B402                     u2140:
+  1567                           ;konsola.c: 405: {
+  1568  00B402  0100               	movlb	__Lparam shr (0+8)
+  1569  00B404  0EAD               	movlw	low _ky
+  1570  00B406  6FDB               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+  1571  00B408  0E01               	movlw	high _ky
+  1572  00B40A  6FDC               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+  1573  00B40C  EC93  F06A         	call	_WaitToLowEx	;wreg free
+  1574                           ;konsola.c: 407: PFN._set_nco=0;
+  1575  00B410  0101               	movlb	_PFN shr (0+8)
+  1576  00B412  9F57               	bcf	_PFN& (0+255),7,b
+  1577                           ;konsola.c: 408: PFN._set_ncw=0;
+  1578  00B414  0101               	movlb	(_PFN+1) shr (0+8)
+  1579  00B416  9158               	bcf	(_PFN+1)& (0+255),0,b
+  1580                           ;konsola.c: 409: PFN._str_nco=0;
+  1581  00B418  0101               	movlb	_PFN shr (0+8)
+  1582  00B41A  9757               	bcf	_PFN& (0+255),3,b
+  1583                           ;konsola.c: 410: PFN._str_ncw=0;
+  1584  00B41C  9957               	bcf	_PFN& (0+255),4,b
+  1585                           ;konsola.c: 411: PFN._mod_ncw=0;
+  1586  00B41E  0101               	movlb	(_PFN+1) shr (0+8)
+  1587  00B420  9758               	bcf	(_PFN+1)& (0+255),3,b
+  1588  00B422  D026               	goto	L6
+  1589                           ;konsola.c: 412: PFN._prn_res=0;
+  1590                           ;konsola.c: 413: PFN._set_fnserw=0;
+  1591                           ;konsola.c: 414: PFN._fnserw=0;
+  1592                           ;konsola.c: 415: PFN._set_aleg=0;
+  1593                           ;konsola.c: 416: PFN._aleg=0;
+  1594                           ;konsola.c: 417: }
+  1595  00B424                     l99:
+  1596                           ;konsola.c: 418: else
+  1597  00B424  0101               	movlb	_PFN shr (0+8)
+  1598  00B426  B157               	btfsc	_PFN& (0+255),0,b
+  1599  00B428  D02B               	goto	l103
+  1600  00B42A  0101               	movlb	(_PFN+5) shr (0+8)
+  1601  00B42C  B15C               	btfsc	(_PFN+5)& (0+255),0,b
+  1602  00B42E  D028               	goto	l103
+  1603  00B430  0101               	movlb	(_PFN+4) shr (0+8)
+  1604  00B432  BF5B               	btfsc	(_PFN+4)& (0+255),7,b
+  1605  00B434  D025               	goto	l103
+  1606                           ;konsola.c: 420: {
+  1607  00B436  0100               	movlb	__Lparam shr (0+8)
+  1608  00B438  0EAD               	movlw	low _ky
+  1609  00B43A  6FDB               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+  1610  00B43C  0E01               	movlw	high _ky
+  1611  00B43E  6FDC               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+  1612  00B440  EC93  F06A         	call	_WaitToLowEx	;wreg free
+  1613                           ;konsola.c: 422: if(!PFN._errCS||(PFN._fnoCS&&!P
+      +                          FN._errIN))
+  1614  00B444  0101               	movlb	(_PFN+5) shr (0+8)
+  1615  00B446  AB5C               	btfss	(_PFN+5)& (0+255),5,b
+  1616  00B448  D006               	goto	u2240
+  1617  00B44A  0101               	movlb	(_PFN+6) shr (0+8)
+  1618  00B44C  A15D               	btfss	(_PFN+6)& (0+255),0,b
+  1619  00B44E  D005               	goto	l102
+  1620  00B450  0101               	movlb	(_PFN+6) shr (0+8)
+  1621  00B452  B95D               	btfsc	(_PFN+6)& (0+255),4,b
+  1622  00B454  D002               	goto	l102
+  1623  00B456                     u2240:
+  1624                           ;konsola.c: 423: {
+  1625  00B456  0101               	movlb	(_PFN+3) shr (0+8)
+  1626  00B458  815A               	bsf	(_PFN+3)& (0+255),0,b
+  1627  00B45A                     l102:
+  1628                           ;konsola.c: 425: }
+  1629  00B45A  0E0A               	movlw	10
+  1630  00B45C  EC86  F06E         	call	_StartRTdS
+  1631                           ;konsola.c: 427: }
+  1632  00B460  D00F               	goto	l103
+  1633  00B462                     l40:
+  1634                           ;konsola.c: 431: else
+  1635  00B462  0101               	movlb	_PFN shr (0+8)
+  1636  00B464  9F57               	bcf	_PFN& (0+255),7,b
+  1637                           ;konsola.c: 434: PFN._set_ncw=0;
+  1638  00B466  0101               	movlb	(_PFN+1) shr (0+8)
+  1639  00B468  9158               	bcf	(_PFN+1)& (0+255),0,b
+  1640                           ;konsola.c: 435: PFN._str_nco=0;
+  1641  00B46A  0101               	movlb	_PFN shr (0+8)
+  1642  00B46C  9757               	bcf	_PFN& (0+255),3,b
+  1643                           ;konsola.c: 436: PFN._str_ncw=0;
+  1644  00B46E  9957               	bcf	_PFN& (0+255),4,b
+  1645  00B470                     L6:
+  1646                           ;konsola.c: 437: PFN._prn_res=0;
+  1647  00B470  0101               	movlb	(_PFN+3) shr (0+8)
+  1648  00B472  915A               	bcf	(_PFN+3)& (0+255),0,b
+  1649                           ;konsola.c: 438: PFN._set_fnserw=0;
+  1650  00B474  0101               	movlb	(_PFN+1) shr (0+8)
+  1651  00B476  9958               	bcf	(_PFN+1)& (0+255),4,b
+  1652                           ;konsola.c: 439: PFN._fnserw=0;
+  1653  00B478  9D58               	bcf	(_PFN+1)& (0+255),6,b
+  1654                           ;konsola.c: 440: PFN._set_aleg=0;
+  1655  00B47A  9B58               	bcf	(_PFN+1)& (0+255),5,b
+  1656                           ;konsola.c: 441: PFN._aleg=0;
+  1657  00B47C  0101               	movlb	(_PFN+2) shr (0+8)
+  1658  00B47E  9159               	bcf	(_PFN+2)& (0+255),0,b
+  1659  00B480                     l103:
+  1660                           ;konsola.c: 442: }
+  1661  00B480  0E16               	movlw	22
+  1662  00B482  ECA6  F068         	call	_RdPrt
+  1663                           ;konsola.c: 445: {
+  1664  00B486  0101               	movlb	(_PFN+2) shr (0+8)
+  1665  00B488  E302               	bnc	L13
+  1666  00B48A  8759               	bsf	(_PFN+2)& (0+255),3,b
+  1667                           ;konsola.c: 447: }
+  1668  00B48C  0012               	return	
+  1669                           ;konsola.c: 448: else PFN._res=0;
+  1670  00B48E                     L13:
+  1671  00B48E  9759               	bcf	(_PFN+2)& (0+255),3,b
+  1672                           ;konsola.c: 449: }
+  1673  00B490  0012               	return	
+  1674  00B492                     __end_of_TrybPracy:
+  1675  000000                     
+  1676  000000                     
+  1677  000000                     
+  1678  000000                     
+  1679  000000                     
+  1680  000000                     
+  1681  000000                     
+  1682  000000                     
+  1683  000000                     
+  1684  000000                     
+  1685  000000                     
+  1686  000000                     
+  1687  000000                     
+  1688  000000                     
+  1689  000000                     
+  1690  000000                     
+  1691  000000                     
+  1692  000000                     
+  1693  000000                     
+  1694  000000                     
+  1695  000000                     
+  1696  000000                     
+  1697  000000                     
+  1698  000000                     
+  1699  000000                     
+  1700  000000                     
+  1701  000000                     
+  1702  000000                     
+  1703  000000                     
+  1704  000000                     
+  1705  000000                     
+  1706  000000                     
+  1707  000000                     
+  1708  000000                     
+  1709  000000                     
+  1710  000000                     
+  1711  000000                     
+  1712  000000                     
+  1713  000000                     
+  1714  000000                     
+  1715  000000                     
+  1716  000000                     
+  1717  000000                     
+  1718  000000                     
+  1719  000000                     
+  1720  000000                     
+  1721  000000                     
+  1722  000000                     
+  1723  000000                     
+  1724  000000                     
+  1725  000000                     
+  1726  000000                     
+  1727  000000                     
+  1728  000000                     
+  1729  000000                     
+  1730  000000                     
+  1731  000000                     
+  1732  000000                     
+  1733  000000                     
+  1734  000000                     
+  1735  000000                     
+  1736  000000                     
+  1737  000000                     
+  1738  000000                     
+  1739  000000                     
+  1740  000000                     
+  1741  000000                     
+  1742  000000                     
+  1743  000000                     
+  1744  000000                     
+  1745  000000                     
+  1746  000000                     
+  1747  000000                     
+  1748  000000                     
+  1749  000000                     
+  1750  000000                     
+  1751  000000                     
+  1752  000000                     
+  1753  000000                     
+  1754  000000                     
+  1755  000000                     
+  1756  000000                     
+  1757  000000                     
+  1758  000000                     
+  1759  000000                     
+  1760  000000                     
+  1761  000000                     
+  1762  000000                     
+  1763  000000                     
+  1764  000000                     
+  1765  000000                     
+  1766  000000                     
+  1767  000000                     
+  1768  000000                     
+  1769  000000                     
+  1770  000000                     
+  1771  000000                     
+  1772  000000                     
+  1773  000000                     
+  1774  000000                     
+  1775  000000                     
+  1776  000000                     
+  1777  000000                     
+  1778  000000                     
+  1779  000000                     
+  1780  000000                     
+  1781  000000                     
+  1782  000000                     
+  1783  000000                     
+  1784  000000                     
+  1785  000000                     
+  1786  000000                     
+  1787  000000                     
+  1788  000000                     
+  1789  000000                     
+  1790  000000                     
+  1791  000000                     
+  1792  000000                     
+  1793  000000                     
+  1794  000000                     
+  1795  000000                     
+  1796  000000                     
+  1797  000000                     
+  1798  000000                     
+  1799  000000                     
+  1800  000000                     
+  1801  000000                     
+  1802  000000                     
+  1803  000000                     
+  1804  000000                     
+  1805  000000                     
+  1806  000000                     
+  1807  000000                     
+  1808  000000                     
+  1809  000000                     
+  1810  000000                     
+  1811  000000                     
+  1812  000000                     
+  1813  000000                     
+  1814  000000                     
+  1815  000000                     
+  1816  000000                     
+  1817  000000                     
+  1818  000000                     
+  1819  000000                     
+  1820  000000                     
+  1821  000000                     
+  1822  000000                     
+  1823  000000                     
+  1824  000000                     
+  1825  000000                     
+  1826  000000                     
+  1827  000000                     
+  1828  000000                     
+  1829  000000                     
+  1830  000000                     
+  1831  000000                     
+  1832  000000                     
+  1833  000000                     
+  1834  000000                     
+  1835  000000                     
+  1836  000000                     
+  1837  000000                     
+  1838  000000                     
+  1839  000000                     
+  1840  000000                     
+  1841  000000                     
+  1842  000000                     
+  1843  000000                     
+  1844  000000                     
+  1845  000000                     
+  1846  000000                     
+  1847  000000                     
+  1848  000000                     
+  1849  000000                     
+  1850  000000                     
+  1851  000000                     
+  1852  000000                     
+  1853  000000                     
+  1854  000000                     
+  1855  000000                     
+  1856  000000                     
+  1857  000000                     
+  1858  000000                     
+  1859  000000                     
+  1860  000000                     
+  1861  000000                     
+  1862  000000                     
+  1863  000000                     
+  1864  000000                     
+  1865  000000                     
+  1866  000000                     
+  1867  000000                     
+  1868  000000                     
+  1869  000000                     
+  1870  000000                     
+  1871  000000                     
+  1872  000000                     
+  1873  000000                     
+  1874  000000                     
+  1875  000000                     
+  1876  000000                     
+  1877  000000                     
+  1878  000000                     
+  1879  000000                     
+  1880  000000                     
+  1881  000000                     
+  1882  000000                     
+  1883  000000                     
+  1884  000000                     
+  1885  000000                     
+  1886  000000                     
+  1887  000000                     
+  1888  000000                     
+  1889  000000                     
+  1890  000000                     
+  1891  000000                     
+  1892  000000                     
+  1893  000000                     
+  1894  000000                     
+  1895  000000                     
+  1896  000000                     
+  1897  000000                     
+  1898  000000                     
+  1899  000000                     
+  1900  000000                     
+  1901  000000                     
+  1902  000000                     
+  1903  000000                     
+  1904  000000                     
+  1905  000000                     
+  1906  000000                     
+  1907  000000                     
+  1908  000000                     
+  1909  000000                     
+  1910  000000                     
+  1911  000000                     
+  1912  000000                     
+  1913  000000                     
+  1914  000000                     
+  1915  000000                     
+  1916  000000                     
+  1917  000000                     
+  1918  000000                     
+  1919  000000                     
+  1920  000000                     
+  1921  000000                     
+  1922  000000                     
+  1923  000000                     
+  1924  000000                     
+  1925  000000                     
+  1926  000000                     
+  1927  000000                     
+  1928  000000                     
+  1929  000000                     
+  1930  000000                     
+  1931  000000                     
+  1932  000000                     
+  1933  000000                     
+  1934  000000                     
+  1935  000000                     
+  1936  000000                     
+  1937  000000                     
+  1938  000000                     
+  1939  000000                     
+  1940  000000                     
+  1941  000000                     
+  1942  000000                     
+  1943  000000                     
+  1944  000000                     
+  1945  000000                     
+  1946  000000                     
+  1947  000000                     
+  1948  000000                     
+  1949  000000                     
+  1950  000000                     
+  1951  000000                     
+  1952  000000                     
+  1953  000000                     
+  1954  000000                     
+  1955  000000                     
+  1956  000000                     
+  1957  000000                     
+  1958  000000                     
+  1959  000000                     
+  1960  000000                     
+  1961  000000                     
+  1962  000000                     
+  1963  000000                     
+  1964  000000                     
+  1965  000000                     
+  1966  000000                     
+  1967  000000                     
+  1968  000000                     
+  1969  000000                     
+  1970  000000                     
+  1971  000000                     
+  1972  000000                     
+  1973  000000                     
+  1974  000000                     
+  1975  000000                     
+  1976  000000                     
+  1977  000000                     
+  1978  000000                     
+  1979  000000                     
+  1980  000000                     
+  1981  000000                     
+  1982  000000                     
+  1983  000000                     
+  1984  000000                     
+  1985  000000                     
+  1986  000000                     
+  1987  000000                     
+  1988  000000                     
+  1989  000000                     
+  1990  000000                     
+  1991  000000                     
+  1992  000000                     
+  1993  000000                     
+  1994  000000                     
+  1995  000000                     
+  1996  000000                     
+  1997  000000                     
+  1998  000000                     
+  1999  000000                     
+  2000  000000                     
+  2001  000000                     
+  2002  000000                     
+  2003  000000                     
+  2004  000000                     
+  2005  000000                     
+  2006  000000                     
+  2007  000000                     
+  2008  000000                     
+  2009  000000                     
+  2010  000000                     
+  2011  000000                     
+  2012  000000                     
+  2013  000000                     
+  2014  000000                     
+  2015  000000                     
+  2016  000000                     
+  2017  000000                     
+  2018  000000                     
+  2019  000000                     
+  2020  000000                     
+  2021  000000                     
+  2022  000000                     
+  2023  000000                     
+  2024  000000                     
+  2025  000000                     
+  2026  000000                     
+  2027  000000                     
+  2028  000000                     
+  2029  000000                     
+  2030  000000                     
+  2031  000000                     
+  2032  000000                     
+  2033  000000                     
+  2034  000000                     
+  2035  000000                     
+  2036  000000                     
+  2037  000000                     
+  2038  000000                     
+  2039  000000                     
+  2040  000000                     
+  2041  000000                     
+  2042  000000                     
+  2043  000000                     
+  2044  000000                     
+  2045  000000                     
+  2046  000000                     
+  2047  000000                     
+  2048  000000                     
+  2049  000000                     
+  2050  000000                     
+  2051  000000                     
+  2052  000000                     
+  2053  000000                     
+  2054  000000                     
+  2055  000000                     
+  2056  000000                     
+  2057  000000                     
+  2058  000000                     
+  2059  000000                     
+  2060  000000                     
+  2061  000000                     
+  2062  000000                     
+  2063  000000                     
+  2064  000000                     
+  2065  000000                     
+  2066  000000                     
+  2067  000000                     
+  2068  000000                     
+  2069  000000                     
+  2070  000000                     
+  2071  000000                     
+  2072  000000                     
+  2073  000000                     
+  2074  000000                     
+  2075  000000                     
+  2076  000000                     
+  2077  000000                     
+  2078  000000                     
+  2079  000000                     
+  2080  000000                     
+  2081  000000                     
+  2082  000000                     
+  2083  000000                     
+  2084  000000                     
+  2085  000000                     
+  2086  000000                     
+  2087  000000                     
+  2088  000000                     
+  2089  000000                     
+  2090  000000                     
+  2091  000000                     
+  2092  000000                     
+  2093  000000                     
+  2094  000000                     
+  2095  000000                     
+  2096  000000                     
+  2097  000000                     
+  2098  000000                     
+  2099  000000                     
+  2100  000000                     
+  2101  000000                     
+  2102  000000                     
+  2103  000000                     
+  2104  000000                     
+  2105  000000                     
+  2106  000000                     
+  2107  000000                     
+  2108  000000                     
+  2109  000000                     
+  2110  000000                     
+  2111                           
+  2112                           	psect	bigbss
+  2113  000F44                     F1503:
+  2114  000F44                     	ds	1
+  2115  000000                     
+  2116  000000                     
+  2117  000000                     
+  2118  000000                     
+  2119  000000                     
+  2120  000000                     
+  2121  000000                     
+  2122  000000                     
+  2123  000000                     
+  2124  000000                     
+  2125  000000                     
+  2126  000000                     
+  2127  000000                     
+  2128  000000                     
+  2129  000000                     
+  2130  000000                     
+  2131  000000                     
+  2132  000000                     
+  2133  000000                     
+  2134  000000                     
+  2135  000000                     
+  2136  000000                     
+  2137  000000                     
+  2138  000000                     
+  2139  000000                     
+  2140  000000                     
+  2141  000000                     
+  2142  000000                     
+  2143  000000                     
+  2144  000000                     
+  2145  000000                     
+  2146  000000                     
+  2147  000000                     
+  2148  000000                     
+  2149  000000                     
+  2150  000000                     
+  2151  000000                     
+  2152  000000                     
+  2153  000000                     
+  2154  000000                     
+  2155  000000                     
+  2156  000000                     
+  2157  000000                     
+  2158  000000                     
+  2159  000000                     
+  2160  000000                     
+  2161  000000                     
+  2162  000000                     
+  2163  000000                     
+  2164  000000                     
+  2165  000000                     
+  2166  000000                     
+  2167  000000                     
+  2168  000000                     
+  2169  000000                     
+  2170  000000                     
+  2171  000000                     
+  2172  000000                     
+  2173  000000                     
+  2174  000000                     
+  2175  000000                     
+  2176  000000                     
+  2177  000000                     
+  2178  000000                     
+  2179  000000                     
+  2180  000000                     
+  2181  000000                     
+  2182  000000                     
+  2183  000000                     
+  2184  000000                     
+  2185  000000                     
+  2186  000000                     
+  2187  000000                     
+  2188  000000                     
+  2189  000000                     
+  2190  000000                     
+  2191  000000                     
+  2192  000000                     
+  2193  000000                     
+  2194  000000                     
+  2195  000000                     
+  2196  000000                     
+  2197  000000                     
+  2198  000000                     
+  2199  000000                     
+  2200  000000                     
+  2201  000000                     
+  2202  000000                     
+  2203  000000                     
+  2204  000000                     
+  2205  000000                     
+  2206  000000                     
+  2207  000000                     
+  2208  000000                     
+  2209  000000                     
+  2210  000000                     
+  2211  000000                     
+  2212  000000                     
+  2213  000000                     
+  2214  000000                     
+  2215  000000                     
+  2216  000000                     
+  2217  000000                     
+  2218  000000                     
+  2219  000000                     
+  2220  000000                     
+  2221  000000                     
+  2222  000000                     
+  2223  000000                     
+  2224  000000                     
+  2225  000000                     
+  2226  000000                     
+  2227  000000                     
+  2228  000000                     
+  2229  000000                     
+  2230  000000                     
+  2231  000000                     
+  2232  000000                     
+  2233  000000                     
+  2234  000000                     
+  2235  000000                     
+  2236  000000                     
+  2237  000000                     
+  2238  000000                     
+  2239  000000                     
+  2240  000000                     
+  2241  000000                     
+  2242  000000                     
+  2243  000000                     
+  2244  000000                     
+  2245  000000                     
+  2246  000000                     
+  2247                           
+  2248                           	psect	temp
+  2249  000000                     btemp:
+  2250  000000                     	ds	4
+  2251                           indf0	equ	0xFEF
+  2252                           postinc0	equ	0xFEE
+  2253                           postdec0	equ	0xFED
+  2254                           fsr0h	equ	0xFEA
+  2255                           fsr0l	equ	0xFE9
+  2256                           wreg	equ	0xFE8
+  2257                           indf1	equ	0xFE7
+  2258                           postinc1	equ	0xFE6
+  2259                           postdec1	equ	0xFE5
+  2260                           fsr1h	equ	0xFE2
+  2261                           fsr1l	equ	0xFE1
+  2262                           indf2	equ	0xFDF
+  2263                           postinc2	equ	0xFDE
+  2264                           postdec2	equ	0xFDD
+  2265                           fsr2h	equ	0xFDA
+  2266                           fsr2l	equ	0xFD9
+  2267                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Wed Mar 20 08:54:42 2013
+
+        _PresKeyEX D316                 l20 AB02                 l21 AB2C  
+               l31 AC98                 l23 AD0E                 l40 B462  
+               l24 ABD2                 l41 ADC8                 l25 ABAE  
+               l50 AFE2                 l51 AF62                 l43 ADE0  
+               l27 AC70                 l19 AAE4                 l44 AE84  
+               l36 ACD4                 l53 AF80                 l29 AC3C  
+               l62 B032                 l46 AE8E                 l71 B1F4  
+               l55 AF92                 l47 AE98                 l48 B052  
+               l65 B070                 l57 B03C                 l82 B2EE  
+               l74 B25E                 l66 B12E                 l58 B00A  
+               l83 B2BE                 l75 B280                 l67 B0E2  
+               l92 B30A                 l77 B312                 l86 B2D2  
+               l78 B29C                 l95 B3A8                 l99 B424  
+               u15 AADA                 u25 AAF8                 u60 AB44  
+               _ky 01AD         ?_PresKeyEX 00DB                l102 B45A  
+              l103 B480                _PFN 0157                u365 ACEC  
+              u295 ACB2                u376 ACF2                u378 ACF4  
+              wreg 000FE8          _StartRTdS DD0C         _RestartKol 82B6  
+             F1503 0F44          _TrybPracy AD1A  __end_of_TrybPracy B492  
+             u1000 B01C               u2140 B402               u1430 B1BE  
+             u2240 B456               u1520 B216               u1530 B218  
+             u1700 B270               u1630 B254               u1391 B1B0  
+             u1560 B22C               u1810 B2AE               u1570 B22E  
+             u1740 B27C               u1850 B2E6               u1940 B324  
+      _WaitToLowEx D526               _RTdS DD30        ?a_ReadParam 00E3  
+             fsr0h 000FEA               indf0 000FEF               fsr0l 000FE9  
+             indf1 000FE7               fsr1l 000FE1               indf2 000FDF  
+             fsr2l 000FD9               btemp 0000               _xxky 01D0  
+          ?_SetPrt 00DB     _ReadDataXONLID D6F4       ?_WaitToLowEx 00DB  
+  ?_ReadDataXONLID 00E6              _RdPrt D14C         used_btemp0 0001  
+       used_btemp1 0001         used_btemp2 0001         used_btemp3 0001  
+      ?a_TrybPracy 00D7              status 000FD8            __Lparam 00D7  
+          __ramtop 1000             _SetPrt D16E            postdec0 000FED  
+          postdec1 000FE5            postdec2 000FDD            postinc0 000FEE  
+          postinc1 000FE6            postinc2 000FDE        _ResBufKeyEx D4FA  
+        _ReadParam AABA  __end_of_ReadParam AD1A         ?_ReadParam 00D7  
+     ?_ResBufKeyEx 00DB  

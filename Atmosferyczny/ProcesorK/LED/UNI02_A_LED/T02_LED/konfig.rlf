@@ -1,0 +1,3005 @@
+˝
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Mar 20 08:54:40 2013
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	eeprom_data,global,class=EEDATA,delta=1
+     5                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+  ˝   6                           	psect	bss,global,class=RAM,space=1,delta=1
+     7                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     8                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+   ˝ 14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  ˝000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  00000˝0                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000    ˝                 
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000         ˝            
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000              ˝       
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     	;#
+    98                        ˝   
+    99                           	psect	text
+   100                           ;wsw.tp.h: 11: typedef struct {
+   101                           ;wsw.tp.h: 12: unsigned focus:1;
+   102                           ;wsw.tp.h: 13: unsigned dec:1;
+   103                           ;wsw.tp.h: 14: unsigned hex:1;
+   104                           ;wsw.tp.h: 15: unsigned autoOFF:1;
+   105                           ;wsw.tp.h: 16: unsigned kropka0:1;
+   106                           ;wsw.tp.h: 17: unsigned kropka1:˝1;
+   107                           ;wsw.tp.h: 18: unsigned wygas0:1;
+   108                           ;wsw.tp.h: 19: unsigned wygas1:1;
+   109                           ;wsw.tp.h: 20: unsigned led0:1;
+   110                           ;wsw.tp.h: 21: unsigned led1:1;
+   111                           ;wsw.tp.h: 22: unsigned sdiode:1;
+   112                           ;wsw.tp.h: 23: unsigned rdiode:1;
+   113                           ;wsw.tp.h: 24: unsigned wbdid:4;
+   114                           ;wsw.tp.h˝: 25: }WStatus;
+   115                           ;wsw.tp.h: 28: typedef struct {
+   116                           ;wsw.tp.h: 29: unsigned char Data1;
+   117                           ;wsw.tp.h: 30: unsigned char Data0;
+   118                           ;wsw.tp.h: 31: }WData;
+   119                           ;wsw.tp.h: 33: typedef struct {
+   120                           ;wsw.tp.h: 34: WStatus St;
+   121                           ;wsw.tp.h: 35: WData Dt;
+   122                           ;wsw.tp.h: 36: }WP˝ack;
+   123                           ;wsw.tp.h: 39: typedef struct {
+   124                           ;wsw.tp.h: 40: unsigned setOff:1;
+   125                           ;wsw.tp.h: 41: unsigned char dLed1;
+   126                           ;wsw.tp.h: 42: unsigned char dLed0;
+   127                           ;wsw.tp.h: 43: }LedPack;
+   128                           ;wsw.tp.h: 50: typedef struct {
+   129                           ;wsw.tp.h: 51: WPack *PAdr;
+   130                           ;wsw.tp.h: 52: }K˝AdrPoz;
+   131                           ;wsw.tp.h: 55: typedef struct {
+   132                           ;wsw.tp.h: 56: WData PWrt;
+   133                           ;wsw.tp.h: 57: unsigned char delay;
+   134                           ;wsw.tp.h: 58: }KWrtPoz;
+   135                           ;wsw.tp.h: 61: typedef struct {
+   136                           ;wsw.tp.h: 62: WStatus PFrm;
+   137                           ;wsw.tp.h: 63: }KFrmPoz;
+   138                           ;wsw.tp.h: 66: typedef struct {˝
+   139                           ;wsw.tp.h: 67: unsigned focus:1;
+   140                           ;wsw.tp.h: 68: }KFocus;
+   141                           ;wsw.tp.h: 71: typedef struct {
+   142                           ;wsw.tp.h: 72: WPack *CAdr;
+   143                           ;wsw.tp.h: 73: unsigned char nCykli;
+   144                           ;wsw.tp.h: 74: unsigned char DMask;
+   145                           ;wsw.tp.h: 75: }KOutput;
+   146                           ;wsw.tp.h: 77: typedef struct˝ {
+   147                           ;wsw.tp.h: 78: const KAdrPoz *KAP;
+   148                           ;wsw.tp.h: 79: const KWrtPoz *KWP;
+   149                           ;wsw.tp.h: 80: const KFrmPoz *KFP;
+   150                           ;wsw.tp.h: 81: KFocus *KFc;
+   151                           ;wsw.tp.h: 82: const KOutput *KOut;
+   152                           ;wsw.tp.h: 83: }Kolejka;
+   153                           ;wsw.tp.h: 90: typedef struct {
+   154                           ;wsw.tp.h: 91: c˝onst Kolejka *KL;
+   155                           ;wsw.tp.h: 92: unsigned char nPzc;
+   156                           ;wsw.tp.h: 93: }KGlobal;
+   157                           ;wsw.tp.h: 97: typedef struct {
+   158                           ;wsw.tp.h: 98: unsigned restart:1;
+   159                           ;wsw.tp.h: 99: unsigned reset:1;
+   160                           ;wsw.tp.h: 100: unsigned indeks:6;
+   161                           ;wsw.tp.h: 101: }KIndeks;
+   162                           ;wsw.t˝p.h: 105: typedef struct {
+   163                           ;wsw.tp.h: 106: unsigned char ncS;
+   164                           ;wsw.tp.h: 107: unsigned char ndS;
+   165                           ;wsw.tp.h: 108: unsigned char cykl;
+   166                           ;wsw.tp.h: 109: }KTime;
+   167                           ;wsw.h: 109: void KolProc(void);
+   168                           ;wsw.h: 110: void Pulse(void);
+   169                           ;wsw.h: 111: void SetPrWswData(void);
+   170             ˝              ;wsw.h: 112: void FormatWswData(void);
+   171                           ;wsw.h: 113: void PrintWswData(void);
+   172                           ;wsw.h: 114: void SetWbtyBit(unsigned char nrbty
+      +                          , unsigned char nrbit, const unsigned char bt);
+   173                           ;wsw.h: 116: void WswOff(void);
+   174                           ;wsw.h: 117: void WswOn(void);
+   175                           ;wsw.h: 118: void SetData(WPack *wData,const uns
+      +    ˝                      igned char wdt1,const unsigned char wdt0);
+   176                           ;wsw.h: 119: void SetStatus(WPack *wData,const u
+      +                          nsigned int wst,const unsigned int mask);
+   177                           ;wsw.h: 120: void SetPoz(const unsigned char nrk
+      +                          ol,const unsigned char nrpoz);
+   178                           ;wsw.h: 121: void ResetPoz(const unsigned char n
+      +                          rkol,const unsigned char n˝rpoz);
+   179                           ;wsw.h: 122: void ResetKol(const unsigned char n
+      +                          rkol);
+   180                           ;wsw.h: 123: void RestartKol(const unsigned char
+      +                           nrkol);
+   181                           ;wsw.h: 124: void BitSet(unsigned char *data, co
+      +                          nst unsigned char nbit,const unsigned char bt);
+   182                           ;main.tp.h: 7: typedef struct {
+   183                      ˝     ;main.tp.h: 8: unsigned _pob_KCO;
+   184                           ;main.tp.h: 9: unsigned _pob_KCW;
+   185                           ;main.tp.h: 10: unsigned _pob_SRW;
+   186                           ;main.tp.h: 11: unsigned _pob_AL;
+   187                           ;main.tp.h: 12: unsigned _pob_CW;
+   188                           ;main.tp.h: 13: unsigned _pob_CO;
+   189                           ;main.tp.h: 14: unsigned _pob_DzCO;
+   190                           ;main.tp.h: 15: unsigned _pob_Dz˝CW;
+   191                           ;main.tp.h: 17: unsigned _WYLACZ:1;
+   192                           ;main.tp.h: 18: unsigned _ZMKCOCW:1;
+   193                           ;main.tp.h: 19: unsigned _ROZRUCH:1;
+   194                           ;main.tp.h: 20: unsigned _RUSZ_48:1;
+   195                           ;main.tp.h: 21: unsigned _RUSZ_48Z3:1;
+   196                           ;main.tp.h: 22: unsigned _RUSZ_PWR:1;
+   197                           ;main.tp.h: 23: unsigned _VWYBIEG:1;
+   198       é                     ;main.tp.h: 24: unsigned _RUSZ_CIAG:1;
+   199                           ;main.tp.h: 25: unsigned _RUSZ_PLOMIEN:1;
+   200        4text  â                      _EnKonf:
+   201  000000                     
+   202                           ;konfig.c: 36: DtKNF.enknf=1;
+   203        4text          1   bss    	 /                	movlb	_DtKNF shr (0+8)
+   204        4text          Å   1ˇ   bss    
+ m                	bsf	_DtKNF& (0+255),0,b
+   205                           ;konfig.c: 37: StartRTS(0);
+   206        4text     &   0E00               	movlw	0
+   207        4text          Ô   1ˇ       _StartRTS 	
+         ¸	    _StartRTS 	 S          	goto	_StartRTS
+   208                           ;konfig.c: 38: }
+   209        4text 
+    ©                      __end_of_EnKonf:
+   210                           ;konfig.c: 42: void MKonfiguracja(void)
+   211                           ;konfig.c: 43: {
+   212        4text 
+    Ÿ                      _MKonfiguracja:
+   213  000000                     
+   214                           ;konfig.c: 44: static unsigned char bf_AKTYWNE_K
+      +                          NF=0, bf_SAVE_PAR=0;
+   215        4text 
+            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   216        4text        $  k   1 ˇ   __Lparam 
+ ?_GetBit2  ?                	clrf	?_GetBit2^(__Lparam& (0+65280)),b
+   217        4text          ¿   ¸bss F    -   FFE8         	movff	_RSDT1+47,wreg
+   218        4text          Ï   1ˇ       _GetBit2 	
+         ¸	    _GetBit2 	            	call	_GetBit2
+   219        4text     &   0E00               	movlw	0
+   220        4text     /   B0D8               	btfsc	status,0,c
+   221        4text     &   0E01               	movlw	1
+   222        4text             1    _M    	 0                	movlb	(_M+24) shr (0+8)
+   223        4text          o   1ˇ    _M    
+ 1                	movwf	(_M+24)& (0+255),b
+   224        4text           k   1ˇ    _M    
+ ≤                	clrf	(_M+25)& (0+255),b
+   225                           ;konfig.c: 49: if(DtKNF.enknf&&(M._AKTYWNE_KNF||
+      +                          (RTS(0)>=20)))
+   226        4text "            1   bss    	 /                	movlb	_DtKNF shr (0+8)
+   227        4text $         °   1ˇ   bss    
+ 2                	btfss	_DtKNF& (0+255),0,b
+   228        4text &    '   D00D               	goto	l26
+   229        4text (            1    _M    	 0                	movlb	(_M+24) shr (0+8)
+   230        4text *         Q   1ˇ    _M    
+ 2                	movf	(_M+24)& (0+255),w,b
+   231        4text ,            1ˇ    _M    
+ 3                	iorwf	(_M+25)& (0+255),w,b
+   232        4text .    &   E107               	bnz	u50
+   233        4text 0    &   0E00               	movlw	0
+   234        4text 2         Ï   1ˇ       _RTS 	
+         ¸	    _RTS 	           	call	_RTS
+   235        4text 6         n   1temp  &                	movwf	btemp,c
+   236        4text 8    '   0E14               	movlw	20
+   237        4text :         \   1temp  (                	subwf	btemp,w,c
+   238        4text <    &   E302               	bnc	l26
+   239        4text >    T                      u50:
+   240                           ;konfig.c: 50: {
+   241        4text >            1   bss    	 /                	movlb	_DtKNF shr (0+8)
+   242        4text @         ë   1ˇ   bss    
+ 0                	bcf	_DtKNF& (0+255),0,b
+   243        4text B    T                      l26:
+   244                           ;konfig.c: 52: }
+   245        4text B            1   bigbss 	 .                	movlb	F1617 shr (0+8)
+   246        4text D         S   1ˇ   bigbss 
+ 0                	movf	F1617& (0+255),f,b
+   247        4text F    %   E004               	bz	u81
+   248        4text H            1    _M    	 0                	movlb	(_M+24) shr (0+8)
+   249        4text J         Q   1ˇ    _M    
+ 2                	movf	(_M+24)& (0+255),w,b
+   250        4text L            1ˇ    _M    
+ 3                	iorwf	(_M+25)& (0+255),w,b
+   251        4text N    &   E003               	bz	u100
+   252        4text P    "                      u81:
+   253        4text P            1   bss 	 .                	movlb	_MGSD shr (0+8)
+   254        4text R         Ω   1ˇ   bss 
+ 1                	btfsc	_MGSD& (0+255),6,b
+   255        4text T    '   D008               	goto	l27
+   256        4text V    U                      u100:
+   257                           ;konfig.c: 55: {
+   258        4text V            1   bigbss 	 .                	movlb	F1617 shr (0+8)
+   259        4text X         k   1ˇ   bigbss 
+ m                	clrf	F1617& (0+255),b
+   260                           ;konfig.c: 57: DtKNF.wymCO=0;
+   261        4text Z            1   bss    	 /                	movlb	_DtKNF shr (0+8)
+   262        4text \         ì   1ˇ   bss    
+ o                	bcf	_DtKNF& (0+255),1,b
+   263                           ;konfig.c: 58: DtKNF.wymCW=0;
+   264        4text ^         ï   1ˇ   bss    
+ o                	bcf	_DtKNF& (0+255),2,b
+   265                           ;konfig.c: 59: bf_SAVE_PAR=0;
+   266        4text `            1   bigbss    	 .                	movlb	F1618 shr (0+8)
+   267        4text b         k   1ˇ   bigbss    
+ k                	clrf	F1618& (0+255),b
+   268                           ;konfig.c: 60: RdEEParam();
+   269        4text d    q   D2BE               	goto	_RdEEParam	;wreg free
+   270                           ;konfig.c: 61: return;
+   271        4text f    T                      l27:
+   272                           ;konfig.c: 62: }
+   273        4text f            1    _M    	 0                	movlb	(_M+24) shr (0+8)
+   274        4text h         Q   1ˇ    _M    
+ 2                	movf	(_M+24)& (0+255),w,b
+   275        4text j            1ˇ    _M    
+ 3                	iorwf	(_M+25)& (0+255),w,b
+   276        4text l    /   B4D8               	btfsc	status,2,c
+   277        4text n    X   0012               	return	
+   278                           ;konfig.c: 64: {
+   279        4text p            1   bigbss 	 .                	movlb	F1617 shr (0+8)
+   280        4text r         S   1ˇ   bigbss 
+ 0                	movf	F1617& (0+255),f,b
+   281        4text t    &   E102               	bnz	l29
+   282        4text v            1   bigbss    	 .                	movlb	F1618 shr (0+8)
+   283        4text x         k   1ˇ   bigbss    
+ .                	clrf	F1618& (0+255),b
+   284        4text z    d                      l29:
+   285                           ;konfig.c: 66: bf_AKTYWNE_KNF=1;
+   286        4text z    &   0E01               	movlw	1
+   287        4text |       CFE8      ¸bigbss  k           	movff	wreg,F1617
+   288                           ;konfig.c: 67: DtKNF.KRK=RSDT1.inKRK;
+   289        4text Ä         ¿   ¸bss I            ¸bss     m          	movff	_RSDT1+50,_DtKNF+2
+   290                           ;konfig.c: 68: switch(DtKNF.KRK)
+   291        4text Ñ    '   D049               	goto	l31
+   292        4text Ü    Ü                      l32:
+   293                           ;konfig.c: 69: {
+   294                           ;konfig.c: 71: {
+   295        4text Ü            1   bss    	 /                	movlb	_DtKNF shr (0+8)
+   296        4text à         ì   1ˇ   bss    
+ o                	bcf	_DtKNF& (0+255),1,b
+   297                           ;konfig.c: 73: DtKNF.wymCW=0;
+   298        4text ä         ï   1ˇ   bss    
+ m                	bcf	_DtKNF& (0+255),2,b
+   299                           ;konfig.c: 74: RefKnfPar();
+   300        4text å    p   D04E               	goto	_RefKnfPar	;wreg free
+   301                           ;konfig.c: 75: break;
+   302        4text é    Ü                      l33:
+   303                           ;konfig.c: 76: }
+   304                           ;konfig.c: 78: {
+   305        4text é         ¿   ¸bss J            ¸bss     k          	movff	_RSDT1+51,_DtKNF+1
+   306                           ;konfig.c: 80: if(DtKNF.PRM>2)
+   307        4text í    &   0E02               	movlw	2
+   308        4text î            1   bss    	 3                	movlb	(_DtKNF+1) shr (0+8)
+   309        4text ñ         e   1ˇ   bss    
+ 5                	cpfsgt	(_DtKNF+1)& (0+255),b
+   310        4text ò    Y   D02E               	goto	l36
+   311                           ;konfig.c: 81: {
+   312        4text ö         ì   1ˇ   bss    
+ o                	bcf	_DtKNF& (0+255),1,b
+   313                           ;konfig.c: 83: DtKNF.wymCW=0;
+   314        4text ú         ï   1ˇ   bss    
+ b                	bcf	_DtKNF& (0+255),2,b
+   315                           ;konfig.c: 84: }
+   316        4text û    '   D02B               	goto	l36
+   317        4text †    Ü                      l37:
+   318                           ;konfig.c: 87: {
+   319                           ;konfig.c: 90: {
+   320        4text †         ¿   ¸bss K            ¸bss     q          	movff	_RSDT1+52,_DtKNF+3
+   321                           ;konfig.c: 92: MocStart(DtKNF.mstr);
+   322        4text §         ¿   ¸bss     ,   FFE8         	movff	_DtKNF+3,wreg
+   323        4text ®         Ï   1ˇ       _MocStart 	
+         ¸	    _MocStart 	 `          	call	_MocStart
+   324                           ;konfig.c: 93: DtKNF.wymCO=1;
+   325        4text ¨            1   bss    	 /                	movlb	_DtKNF shr (0+8)
+   326        4text Æ         É   1ˇ   bss    
+ o                	bsf	_DtKNF& (0+255),1,b
+   327                           ;konfig.c: 94: DtKNF.wymCW=0;
+   328        4text ∞         ï   1ˇ   bss    
+ g                	bcf	_DtKNF& (0+255),2,b
+   329                           ;konfig.c: 95: break;
+   330        4text ≤    &   0012               	return	
+   331        4text ¥    Ü                      l38:
+   332                           ;konfig.c: 96: }
+   333                           ;konfig.c: 99: {
+   334        4text ¥         ¿   ¸bss K            ¸bss 	    s          	movff	_RSDT1+52,_DtKNF+4
+   335                           ;konfig.c: 101: MocMaksCW(DtKNF.mxcw);
+   336        4text ∏         ¿   ¸bss 	    ,   FFE8         	movff	_DtKNF+4,wreg
+   337        4text º          Ï   1ˇ       _MocMaksCW 	
+         ¸	    _MocMaksCW 	 b          	call	_MocMaksCW
+   338                           ;konfig.c: 102: DtKNF.wymCO=0;
+   339        4text ¿            1   bss    	 /                	movlb	_DtKNF shr (0+8)
+   340        4text ¬         ì   1ˇ   bss    
+ s                	bcf	_DtKNF& (0+255),1,b
+   341                           ;konfig.c: 103: if(DtKNF.tpkt==0)
+   342        4text ƒ         Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+7
+   343        4text »    -   50EF               	movf	indf0,w,c
+   344        4text      Y   E102               	bnz	l39
+   345                           ;konfig.c: 104: {
+   346        4text Ã         Ö   1ˇ   bss    
+ c                	bsf	_DtKNF& (0+255),2,b
+   347                           ;konfig.c: 106: }
+   348        4text Œ    &   0012               	return	
+   349        4text –    X                      l39:
+   350                           ;konfig.c: 107: else
+   351        4text –    '   0E0B               	movlw	11
+   352        4text “         Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   353        4text ÷            1   bss    	 /                	movlb	_DtKNF shr (0+8)
+   354        4text ÿ    %   E302               	bnc	L2
+   355        4text ⁄         Ö   1ˇ   bss    
+ 0                	bsf	_DtKNF& (0+255),2,b
+   356        4text ‹    k   0012               	return	
+   357                           ;konfig.c: 110: else DtKNF.wymCW=0;
+   358        4text ﬁ    !                      L2:
+   359        4text ﬁ         ï   1ˇ   bss    
+ c                	bcf	_DtKNF& (0+255),2,b
+   360                           ;konfig.c: 111: }
+   361        4text ‡    &   0012               	return	
+   362        4text ‚    à                      l43:
+   363                           ;konfig.c: 113: }
+   364                           ;konfig.c: 116: {
+   365        4text ‚         ¿   ¸bss K            ¸bss 
+    s          	movff	_RSDT1+52,_DtKNF+5
+   366                           ;konfig.c: 118: MocMaksCO(DtKNF.mxco);
+   367        4text Ê         ¿   ¸bss 
+    ,   FFE8         	movff	_DtKNF+5,wreg
+   368        4text Í          Ï   1ˇ       _MocMaksCO 	
+         ¸	    _MocMaksCO 	 b          	call	_MocMaksCO
+   369                           ;konfig.c: 119: DtKNF.wymCO=1;
+   370        4text Ó            1   bss    	 /                	movlb	_DtKNF shr (0+8)
+   371        4text          É   1ˇ   bss    
+ p                	bsf	_DtKNF& (0+255),1,b
+   372                           ;konfig.c: 120: DtKNF.wymCW=0;
+   373        4text Ú         ï   1ˇ   bss    
+ h                	bcf	_DtKNF& (0+255),2,b
+   374                           ;konfig.c: 121: break;
+   375        4text Ù    &   0012               	return	
+   376        4text ˆ    "                      l36:
+   377        4text ˆ         ¿   ¸bss     ,   FFE8         	movff	_DtKNF+1,wreg
+   378        4text ˙    &   0A00               	xorlw	0
+   379        4text ¸    %   E0D1               	bz	l37
+   380        4text ˛    &   0A01               	xorlw	1
+   381        4text     %   E0D9               	bz	l38
+   382        4text    &   0A03               	xorlw	3
+   383        4text    %   E0EE               	bz	l43
+   384        4text    ^   0012               	return	
+   385                           ;konfig.c: 124: break;
+   386        4text    à                      l44:
+   387                           ;konfig.c: 125: }
+   388                           ;konfig.c: 127: {
+   389        4text            1   bigbss    	 .                	movlb	F1618 shr (0+8)
+   390        4text 
+        S   1ˇ   bigbss    
+ 0                	movf	F1618& (0+255),f,b
+   391        4text    /   A4D8               	btfss	status,2,c
+   392        4text    &   0012               	return	
+   393        4text    :   D82B               	call	_SaveKnfPar	;wreg free
+   394        4text       CFE8      ¸bigbss     \           	movff	wreg,F1618
+   395                           ;konfig.c: 129: break;
+   396        4text    &   0012               	return	
+   397        4text    "                      l31:
+   398        4text         ¿   ¸bss     ,   FFE8         	movff	_DtKNF+2,wreg
+   399        4text    &   0A02               	xorlw	2
+   400        4text    %   E0B3               	bz	l32
+   401        4text     &   0A01               	xorlw	1
+   402        4text "   %   E0B5               	bz	l33
+   403        4text $   &   0A07               	xorlw	7
+   404        4text &   %   E0F0               	bz	l44
+   405        4text (   Y   0012               	return	
+   406                           ;konfig.c: 132: }
+   407        4text *   ∑                      __end_of_MKonfiguracja:
+   408                           ;konfig.c: 134: unsigned char RefKnfPar(void)
+   409                           ;konfig.c: 135: {
+   410        4text *   è                      _RefKnfPar:
+   411  000000                     
+   412                           ;konfig.c: 136: if(RSDT1.RD_KNF)
+   413        4text *           1   bss    	 3                	movlb	(_RSDT1+1) shr (0+8)
+   414        4text ,        £   1ˇ   bss    
+ 6                	btfss	(_RSDT1+1)& (0+255),1,b
+   415        4text .   Y   0C00               	retlw	0
+   416                           ;konfig.c: 137: {
+   417        4text 0        Ö   1ˇ   bss    
+ ~                	bsf	(_RSDT1+1)& (0+255),2,b
+   418                           ;konfig.c: 139: DtKNF.mstr=RSDT1.inMSTR;
+   419        4text 2        ¿   ¸bss L            ¸bss     v          	movff	_RSDT1+53,_DtKNF+3
+   420                           ;konfig.c: 140: DtKNF.mxcw=RSDT1.inMMAXU;
+   421        4text 6        ¿   ¸bss M            ¸bss 	    v          	movff	_RSDT1+54,_DtKNF+4
+   422                           ;konfig.c: 141: DtKNF.mxco=RSDT1.inMMAXG;
+   423        4text :        ¿   ¸bss N            ¸bss 
+    t          	movff	_RSDT1+55,_DtKNF+5
+   424                           ;konfig.c: 142: DtKNF.rdgz=RSDT1.inRGZ;
+   425        4text >        ¿   ¸bss O            ¸bss     u          	movff	_RSDT1+56,_DtKNF+8
+   426                           ;konfig.c: 143: DtKNF.aleg=RSDT1.inWANL;
+   427        4text B        ¿   ¸bss P            ¸bss     v          	movff	_RSDT1+57,_DtKNF+17
+   428                           ;konfig.c: 144: DtKNF.tpkt=RSDT1.inTPKT;
+   429        4text F        ¿   ¸bss Q            ¸bss     u          	movff	_RSDT1+58,_DtKNF+7
+   430                           ;konfig.c: 145: DtKNF.robg=RSDT1.inWOBG;
+   431        4text J        ¿   ¸bss R            ¸bss     v          	movff	_RSDT1+59,_DtKNF+14
+   432                           ;konfig.c: 146: DtKNF.opdg=RSDT1.inOPDG;
+   433        4text N        ¿   ¸bss S            ¸bss     v          	movff	_RSDT1+60,_DtKNF+15
+   434                           ;konfig.c: 147: DtKNF.tpcs=RSDT1.inTPCS;
+   435        4text R        ¿   ¸bss T            ¸bss     v          	movff	_RSDT1+61,_DtKNF+16
+   436                           ;konfig.c: 148: DtKNF.rdpm=RSDT1.inRDPM;
+   437        4text V        ¿   ¸bss U            ¸bss     u          	movff	_RSDT1+62,_DtKNF+9
+   438                           ;konfig.c: 149: DtKNF.dtpm=RSDT1.inDTPM;
+   439        4text Z        ¿   ¸bss V            ¸bss     v          	movff	_RSDT1+63,_DtKNF+10
+   440                           ;konfig.c: 150: DtKNF.mdpm=RSDT1.inMDPM;
+   441        4text ^        ¿   ¸bss W            ¸bss     n          	movff	_RSDT1+64,_DtKNF+11
+   442                           ;konfig.c: 152: RSDT1.RRD_KNF=0;
+   443        4text b        ï   1ˇ   bss    
+ u                	bcf	(_RSDT1+1)& (0+255),2,b
+   444                           ;konfig.c: 153: RSDT1.RD_KNF=0;
+   445        4text d        ì   1ˇ   bss    
+ o                	bcf	(_RSDT1+1)& (0+255),1,b
+   446                           ;konfig.c: 154: return 1;
+   447        4text f   å   0C01               	retlw	1
+   448                           ;konfig.c: 155: }
+   449                           ;konfig.c: 157: }
+   450        4text h   ¥                      __end_of_RefKnfPar:
+   451                           ;konfig.c: 158: unsigned char SaveKnfPar(void)
+   452                           ;konfig.c: 159: {
+   453        4text h   è                      _SaveKnfPar:
+   454  000000                     
+   455                           ;konfig.c: 160: if(RefKnfPar())
+   456        4text h   9   DFE0               	call	_RefKnfPar	;wreg free
+   457        4text j   &   0900               	iorlw	0
+   458        4text l   X   E101 D1F3          	bz	l49
+   459                           ;konfig.c: 161: {
+   460        4text p        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+3
+   461        4text t   -   50EF               	movf	indf0,w,c
+   462        4text v   &   E005               	bz	u211
+   463        4text x   '   0E63               	movlw	99
+   464        4text z           1   bss    	 3                	movlb	(_DtKNF+3) shr (0+8)
+   465        4text |        a   1ˇ   bss    
+ 5                	cpfslt	(_DtKNF+3)& (0+255),b
+   466        4text ~   (   D001               	goto	u211
+   467        4text Ä   (   D008               	goto	u240
+   468        4text Ç   #                      u211:
+   469        4text Ç        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+3
+   470        4text Ü   -   50EF               	movf	indf0,w,c
+   471        4text à   &   E004               	bz	u240
+   472        4text ä        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+3,wreg
+   473        4text é   '   0A63               	xorlw	99
+   474        4text ê   &   E118               	bnz	l50
+   475        4text í   ª                      u240:
+   476                           ;konfig.c: 163: if(DtKNF.mstr!=eeprom_read(0x00C
+      +                          1)) eeprom_write(0x00C1,DtKNF.mstr);
+   477        4text í   (   0EC1               	movlw	193
+   478        4text î           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   479        4text ñ      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   480        4text ò      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   481        4text ö      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   482        4text û        n   1temp  &                	movwf	btemp,c
+   483        4text †        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   484        4text §        j   1temp     '                	clrf	btemp+3,c
+   485        4text ¶        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+3,wreg
+   486        4text ™           1temp     *                	xorwf	btemp+2,w,c
+   487        4text ¨   '   E101               	bnz	u265
+   488        4text Æ        R   1temp     )                	movf	btemp+3,f,c
+   489        4text ∞   #                      u265:
+   490        4text ∞   %   E008               	bz	l50
+   491        4text ≤   (   0EC1               	movlw	193
+   492        4text ¥           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   493        4text ∂      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   494        4text ∏      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   495        4text ∫        ¿   ¸bss             ¸ ?_eeprom_write     2          	movff	_DtKNF+3,?_eeprom_write+2
+   496        4text æ      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   497        4text ¬   ∏                      l50:
+   498                           ;konfig.c: 164: if((DtKNF.mxcw>0)&&(DtKNF.mxcw<9
+      +                          9)||DtKNF.mxcw==0||DtKNF.mxcw==99)
+   499        4text ¬        Ó   ˆ   bss 	   	   
+         1bss 	   ˇ   
+ "          	lfsr	0,_DtKNF+4
+   500        4text ∆   -   50EF               	movf	indf0,w,c
+   501        4text »   &   E005               	bz	u291
+   502        4text     '   0E63               	movlw	99
+   503        4text Ã           1   bss 	   	 3                	movlb	(_DtKNF+4) shr (0+8)
+   504        4text Œ        a   1ˇ   bss 	   
+ 5                	cpfslt	(_DtKNF+4)& (0+255),b
+   505        4text –   (   D001               	goto	u291
+   506        4text “   (   D008               	goto	u320
+   507        4text ‘   #                      u291:
+   508        4text ‘        Ó   ˆ   bss 	   	   
+         1bss 	   ˇ   
+ "          	lfsr	0,_DtKNF+4
+   509        4text ÿ   -   50EF               	movf	indf0,w,c
+   510        4text ⁄   &   E004               	bz	u320
+   511        4text ‹        ¿   ¸bss 	    ,   FFE8         	movff	_DtKNF+4,wreg
+   512        4text ‡   '   0A63               	xorlw	99
+   513        4text ‚   &   E118               	bnz	l52
+   514        4text ‰   ª                      u320:
+   515                           ;konfig.c: 165: if(DtKNF.mxcw!=eeprom_read(0x00C
+      +                          2)) eeprom_write(0x00C2,DtKNF.mxcw);
+   516        4text ‰   (   0EC2               	movlw	194
+   517        4text Ê           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   518        4text Ë      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   519        4text Í      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   520        4text Ï      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   521        4text         n   1temp  &                	movwf	btemp,c
+   522        4text Ú        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   523        4text ˆ        j   1temp     '                	clrf	btemp+3,c
+   524        4text ¯        ¿   ¸bss 	    ,   FFE8         	movff	_DtKNF+4,wreg
+   525        4text ¸           1temp     *                	xorwf	btemp+2,w,c
+   526        4text ˛   '   E101               	bnz	u345
+   527        4text          R   1temp     )                	movf	btemp+3,f,c
+   528        4text    #                      u345:
+   529        4text    %   E008               	bz	l52
+   530        4text    (   0EC2               	movlw	194
+   531        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   532        4text       )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   533        4text 
+      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   534        4text         ¿   ¸bss 	            ¸ ?_eeprom_write     2          	movff	_DtKNF+4,?_eeprom_write+2
+   535        4text       #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   536        4text    ∏                      l52:
+   537                           ;konfig.c: 166: if((DtKNF.mxco>0)&&(DtKNF.mxco<9
+      +                          9)||DtKNF.mxco==0||DtKNF.mxco==99)
+   538        4text         Ó   ˆ   bss 
+   	   
+         1bss 
+   ˇ   
+ "          	lfsr	0,_DtKNF+5
+   539        4text    -   50EF               	movf	indf0,w,c
+   540        4text    &   E005               	bz	u371
+   541        4text    '   0E63               	movlw	99
+   542        4text            1   bss 
+   	 3                	movlb	(_DtKNF+5) shr (0+8)
+   543        4text          a   1ˇ   bss 
+   
+ 5                	cpfslt	(_DtKNF+5)& (0+255),b
+   544        4text "   (   D001               	goto	u371
+   545        4text $   (   D008               	goto	u400
+   546        4text &   #                      u371:
+   547        4text &        Ó   ˆ   bss 
+   	   
+         1bss 
+   ˇ   
+ "          	lfsr	0,_DtKNF+5
+   548        4text *   -   50EF               	movf	indf0,w,c
+   549        4text ,   &   E004               	bz	u400
+   550        4text .        ¿   ¸bss 
+    ,   FFE8         	movff	_DtKNF+5,wreg
+   551        4text 2   '   0A63               	xorlw	99
+   552        4text 4   &   E118               	bnz	l54
+   553        4text 6   ª                      u400:
+   554                           ;konfig.c: 167: if(DtKNF.mxco!=eeprom_read(0x00C
+      +                          3)) eeprom_write(0x00C3,DtKNF.mxco);
+   555        4text 6   (   0EC3               	movlw	195
+   556        4text 8           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   557        4text :      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   558        4text <      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   559        4text >      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   560        4text B        n   1temp  &                	movwf	btemp,c
+   561        4text D        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   562        4text H        j   1temp     '                	clrf	btemp+3,c
+   563        4text J        ¿   ¸bss 
+    ,   FFE8         	movff	_DtKNF+5,wreg
+   564        4text N           1temp     *                	xorwf	btemp+2,w,c
+   565        4text P   '   E101               	bnz	u425
+   566        4text R        R   1temp     )                	movf	btemp+3,f,c
+   567        4text T   #                      u425:
+   568        4text T   %   E008               	bz	l54
+   569        4text V   (   0EC3               	movlw	195
+   570        4text X           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   571        4text Z      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   572        4text \      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   573        4text ^        ¿   ¸bss 
+            ¸ ?_eeprom_write     2          	movff	_DtKNF+5,?_eeprom_write+2
+   574        4text b      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   575        4text f   ∂                      l54:
+   576                           ;konfig.c: 168: if((DtKNF.rdgz>0)&&(DtKNF.rdgz<1
+      +                          )||DtKNF.rdgz==0||DtKNF.rdgz==1)
+   577        4text f        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+8
+   578        4text j   -   50EF               	movf	indf0,w,c
+   579        4text l   &   E005               	bz	u451
+   580        4text n   &   0E01               	movlw	1
+   581        4text p           1   bss    	 3                	movlb	(_DtKNF+8) shr (0+8)
+   582        4text r        a   1ˇ   bss    
+ 5                	cpfslt	(_DtKNF+8)& (0+255),b
+   583        4text t   (   D001               	goto	u451
+   584        4text v   (   D008               	goto	u480
+   585        4text x   #                      u451:
+   586        4text x        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+8
+   587        4text |   -   50EF               	movf	indf0,w,c
+   588        4text ~   &   E004               	bz	u480
+   589        4text Ä        ¿   ¸bss             ¸temp  '          	movff	_DtKNF+8,btemp
+   590        4text Ñ           1temp  '                	decf	btemp,w,c
+   591        4text Ü   &   E11E               	bnz	l56
+   592        4text à   ö                      u480:
+   593                           ;konfig.c: 169: if(DtKNF.rdgz!=eeprom_read(0x00C
+      +                          4))
+   594        4text à   (   0EC4               	movlw	196
+   595        4text ä           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   596        4text å      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   597        4text é      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   598        4text ê      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   599        4text î        n   1temp  &                	movwf	btemp,c
+   600        4text ñ        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   601        4text ö        j   1temp     '                	clrf	btemp+3,c
+   602        4text ú        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+8,wreg
+   603        4text †           1temp     *                	xorwf	btemp+2,w,c
+   604        4text ¢   '   E101               	bnz	u505
+   605        4text §        R   1temp     )                	movf	btemp+3,f,c
+   606        4text ¶   #                      u505:
+   607        4text ¶   X   E00E               	bz	l56
+   608                           ;konfig.c: 170: {
+   609        4text ®   (   0EC4               	movlw	196
+   610        4text ™           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   611        4text ¨      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   612        4text Æ      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   613        4text ∞        ¿   ¸bss             ¸ ?_eeprom_write     2          	movff	_DtKNF+8,?_eeprom_write+2
+   614        4text ¥      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 Ç          	call	_eeprom_write	;wreg free
+   615                           ;konfig.c: 172: ModParam(DtKNF.tpkt,DtKNF.rdgz);
+   616        4text ∏        ¿   ¸bss             ¸ ?_ModParam  ,          	movff	_DtKNF+8,?_ModParam
+   617        4text º        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+7,wreg
+   618        4text ¿        Ï   1ˇ       _ModParam 	
+         ¸	    _ModParam 	 !          	call	_ModParam
+   619        4text ƒ   U                      l56:
+   620                           ;konfig.c: 173: }
+   621        4text ƒ        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ #          	lfsr	0,_DtKNF+17
+   622        4text »   -   50EF               	movf	indf0,w,c
+   623        4text     &   E004               	bz	u530
+   624        4text Ã        ¿   ¸bss             ¸temp  (          	movff	_DtKNF+17,btemp
+   625        4text –           1temp  '                	decf	btemp,w,c
+   626        4text “   &   E122               	bnz	l58
+   627        4text ‘   ö                      u530:
+   628                           ;konfig.c: 175: if(DtKNF.aleg!=eeprom_read(0x00C
+      +                          6))
+   629        4text ‘   (   0EC6               	movlw	198
+   630        4text ÷           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   631        4text ÿ      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   632        4text ⁄      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   633        4text ‹      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   634        4text ‡        n   1temp  &                	movwf	btemp,c
+   635        4text ‚        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   636        4text Ê        j   1temp     '                	clrf	btemp+3,c
+   637        4text Ë        ¿   ¸bss     -   FFE8         	movff	_DtKNF+17,wreg
+   638        4text Ï           1temp     *                	xorwf	btemp+2,w,c
+   639        4text Ó   '   E101               	bnz	u545
+   640        4text         R   1temp     )                	movf	btemp+3,f,c
+   641        4text Ú   #                      u545:
+   642        4text Ú   X   E012               	bz	l58
+   643                           ;konfig.c: 176: {
+   644        4text Ù   &   0E01               	movlw	1
+   645        4text ˆ        Ï   1ˇ       _StartRTG 	
+         ¸	    _StartRTG 	 j          	call	_StartRTG
+   646                           ;konfig.c: 178: eeprom_write(0x00C7,0);
+   647        4text ˙   (   0EC7               	movlw	199
+   648        4text ¸           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   649        4text ˛      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   650        4text        /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   651        4text       /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+2)^(__Lparam& (0+65280)),b
+   652        4text       #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 Ç          	call	_eeprom_write	;wreg free
+   653                           ;konfig.c: 179: eeprom_write(0x00C6,DtKNF.aleg);
+   654        4text    (   0EC6               	movlw	198
+   655        4text 
+           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   656        4text       )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   657        4text       /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   658        4text         ¿   ¸bss             ¸ ?_eeprom_write     3          	movff	_DtKNF+17,?_eeprom_write+2
+   659        4text       #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   660        4text    U                      l58:
+   661                           ;konfig.c: 180: }
+   662        4text         Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+7
+   663        4text    -   50EF               	movf	indf0,w,c
+   664        4text    &   E005               	bz	u571
+   665        4text     &   0E03               	movlw	3
+   666        4text "           1   bss    	 3                	movlb	(_DtKNF+7) shr (0+8)
+   667        4text $        a   1ˇ   bss    
+ 5                	cpfslt	(_DtKNF+7)& (0+255),b
+   668        4text &   (   D001               	goto	u571
+   669        4text (   (   D008               	goto	u600
+   670        4text *   #                      u571:
+   671        4text *        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+7
+   672        4text .   -   50EF               	movf	indf0,w,c
+   673        4text 0   &   E004               	bz	u600
+   674        4text 2        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+7,wreg
+   675        4text 6   &   0A03               	xorlw	3
+   676        4text 8   &   E131               	bnz	l60
+   677        4text :   ö                      u600:
+   678                           ;konfig.c: 182: if(DtKNF.tpkt!=eeprom_read(0x00C
+      +                          5))
+   679        4text :   (   0EC5               	movlw	197
+   680        4text <           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   681        4text >      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   682        4text @      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   683        4text B      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   684        4text F        n   1temp  &                	movwf	btemp,c
+   685        4text H        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   686        4text L        j   1temp     '                	clrf	btemp+3,c
+   687        4text N        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+7,wreg
+   688        4text R           1temp     *                	xorwf	btemp+2,w,c
+   689        4text T   '   E101               	bnz	u625
+   690        4text V        R   1temp     )                	movf	btemp+3,f,c
+   691        4text X   #                      u625:
+   692        4text X   X   E021               	bz	l60
+   693                           ;konfig.c: 183: {
+   694        4text Z   –   DA19               	call	_SetTpKtParam	;wreg free
+   695                           ;konfig.c: 185: if((DtKNF.rdgz>0)&&(DtKNF.rdgz<1
+      +                          )||DtKNF.rdgz==0||DtKNF.rdgz==1)
+   696        4text \        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+8
+   697        4text `   -   50EF               	movf	indf0,w,c
+   698        4text b   &   E005               	bz	u651
+   699        4text d   &   0E01               	movlw	1
+   700        4text f           1   bss    	 3                	movlb	(_DtKNF+8) shr (0+8)
+   701        4text h        a   1ˇ   bss    
+ 5                	cpfslt	(_DtKNF+8)& (0+255),b
+   702        4text j   (   D001               	goto	u651
+   703        4text l   (   D008               	goto	u680
+   704        4text n   #                      u651:
+   705        4text n        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+8
+   706        4text r   -   50EF               	movf	indf0,w,c
+   707        4text t   &   E004               	bz	u680
+   708        4text v        ¿   ¸bss             ¸temp  '          	movff	_DtKNF+8,btemp
+   709        4text z           1temp  '                	decf	btemp,w,c
+   710        4text |   &   E106               	bnz	l62
+   711        4text ~   u                      u680:
+   712                           ;konfig.c: 186: ModParam(DtKNF.tpkt,DtKNF.rdgz);
+   713        4text ~        ¿   ¸bss             ¸ ?_ModParam  ,          	movff	_DtKNF+8,?_ModParam
+   714        4text Ç        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+7,wreg
+   715        4text Ü        Ï   1ˇ       _ModParam 	
+         ¸	    _ModParam 	 !          	call	_ModParam
+   716        4text ä   f                      l62:
+   717                           ;konfig.c: 187: SetDefaultValue();
+   718        4text ä   ë   DA21               	call	_SetDefaultValue	;wreg free
+   719                           ;konfig.c: 188: eeprom_write(0x00C5,DtKNF.tpkt);
+   720        4text å   (   0EC5               	movlw	197
+   721        4text é           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   722        4text ê      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   723        4text í      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   724        4text î        ¿   ¸bss             ¸ ?_eeprom_write     2          	movff	_DtKNF+7,?_eeprom_write+2
+   725        4text ò      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   726        4text ú   U                      l60:
+   727                           ;konfig.c: 189: }
+   728        4text ú        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ #          	lfsr	0,_DtKNF+14
+   729        4text †   -   50EF               	movf	indf0,w,c
+   730        4text ¢   &   E004               	bz	u720
+   731        4text §        ¿   ¸bss             ¸temp  (          	movff	_DtKNF+14,btemp
+   732        4text ®           1temp  '                	decf	btemp,w,c
+   733        4text ™   &   E118               	bnz	l63
+   734        4text ¨   ª                      u720:
+   735                           ;konfig.c: 191: if(DtKNF.robg!=eeprom_read(0x00C
+      +                          8)) eeprom_write(0x00C8,DtKNF.robg);
+   736        4text ¨   (   0EC8               	movlw	200
+   737        4text Æ           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   738        4text ∞      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   739        4text ≤      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   740        4text ¥      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   741        4text ∏        n   1temp  &                	movwf	btemp,c
+   742        4text ∫        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   743        4text æ        j   1temp     '                	clrf	btemp+3,c
+   744        4text ¿        ¿   ¸bss     -   FFE8         	movff	_DtKNF+14,wreg
+   745        4text ƒ           1temp     *                	xorwf	btemp+2,w,c
+   746        4text ∆   '   E101               	bnz	u735
+   747        4text »        R   1temp     )                	movf	btemp+3,f,c
+   748        4text     #                      u735:
+   749        4text     %   E008               	bz	l63
+   750        4text Ã   (   0EC8               	movlw	200
+   751        4text Œ           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   752        4text –      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   753        4text “      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   754        4text ‘        ¿   ¸bss             ¸ ?_eeprom_write     3          	movff	_DtKNF+14,?_eeprom_write+2
+   755        4text ÿ      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   756        4text ‹   t                      l63:
+   757                           ;konfig.c: 192: if(DtKNF.opdg==0||DtKNF.opdg==1)
+   758        4text ‹        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ #          	lfsr	0,_DtKNF+15
+   759        4text ‡   -   50EF               	movf	indf0,w,c
+   760        4text ‚   &   E004               	bz	u760
+   761        4text ‰        ¿   ¸bss             ¸temp  (          	movff	_DtKNF+15,btemp
+   762        4text Ë           1temp  '                	decf	btemp,w,c
+   763        4text Í   &   E118               	bnz	l65
+   764        4text Ï   ª                      u760:
+   765                           ;konfig.c: 193: if(DtKNF.opdg!=eeprom_read(0x00C
+      +                          C)) eeprom_write(0x00CC,DtKNF.opdg);
+   766        4text Ï   (   0ECC               	movlw	204
+   767        4text Ó           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   768        4text       (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   769        4text Ú      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   770        4text Ù      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   771        4text ¯        n   1temp  &                	movwf	btemp,c
+   772        4text ˙        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   773        4text ˛        j   1temp     '                	clrf	btemp+3,c
+   774        4text          ¿   ¸bss     -   FFE8         	movff	_DtKNF+15,wreg
+   775        4text            1temp     *                	xorwf	btemp+2,w,c
+   776        4text    '   E101               	bnz	u775
+   777        4text         R   1temp     )                	movf	btemp+3,f,c
+   778        4text 
+   #                      u775:
+   779        4text 
+   %   E008               	bz	l65
+   780        4text    (   0ECC               	movlw	204
+   781        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   782        4text       )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   783        4text       /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   784        4text         ¿   ¸bss             ¸ ?_eeprom_write     3          	movff	_DtKNF+15,?_eeprom_write+2
+   785        4text       #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   786        4text    t                      l65:
+   787                           ;konfig.c: 194: if(DtKNF.tpcs==0||DtKNF.tpcs==1)
+   788        4text         Ó   ˆ   bss    	   
+         1bss    ˇ   
+ #          	lfsr	0,_DtKNF+16
+   789        4text     -   50EF               	movf	indf0,w,c
+   790        4text "   &   E004               	bz	u800
+   791        4text $        ¿   ¸bss             ¸temp  (          	movff	_DtKNF+16,btemp
+   792        4text (           1temp  '                	decf	btemp,w,c
+   793        4text *   &   E118               	bnz	l67
+   794        4text ,   ª                      u800:
+   795                           ;konfig.c: 195: if(DtKNF.tpcs!=eeprom_read(0x00C
+      +                          D)) eeprom_write(0x00CD,DtKNF.tpcs);
+   796        4text ,   (   0ECD               	movlw	205
+   797        4text .           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   798        4text 0      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   799        4text 2      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   800        4text 4      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   801        4text 8        n   1temp  &                	movwf	btemp,c
+   802        4text :        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   803        4text >        j   1temp     '                	clrf	btemp+3,c
+   804        4text @        ¿   ¸bss     -   FFE8         	movff	_DtKNF+16,wreg
+   805        4text D           1temp     *                	xorwf	btemp+2,w,c
+   806        4text F   '   E101               	bnz	u815
+   807        4text H        R   1temp     )                	movf	btemp+3,f,c
+   808        4text J   #                      u815:
+   809        4text J   %   E008               	bz	l67
+   810        4text L   (   0ECD               	movlw	205
+   811        4text N           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   812        4text P      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   813        4text R      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   814        4text T        ¿   ¸bss             ¸ ?_eeprom_write     3          	movff	_DtKNF+16,?_eeprom_write+2
+   815        4text X      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   816        4text \   ∂                      l67:
+   817                           ;konfig.c: 197: if((DtKNF.rdpm>0)&&(DtKNF.rdpm<1
+      +                          )||DtKNF.rdpm==0||DtKNF.rdpm==1)
+   818        4text \        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+9
+   819        4text `   -   50EF               	movf	indf0,w,c
+   820        4text b   &   E005               	bz	u841
+   821        4text d   &   0E01               	movlw	1
+   822        4text f           1   bss    	 3                	movlb	(_DtKNF+9) shr (0+8)
+   823        4text h        a   1ˇ   bss    
+ 5                	cpfslt	(_DtKNF+9)& (0+255),b
+   824        4text j   (   D001               	goto	u841
+   825        4text l   (   D008               	goto	u870
+   826        4text n   #                      u841:
+   827        4text n        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+9
+   828        4text r   -   50EF               	movf	indf0,w,c
+   829        4text t   &   E004               	bz	u870
+   830        4text v        ¿   ¸bss             ¸temp  '          	movff	_DtKNF+9,btemp
+   831        4text z           1temp  '                	decf	btemp,w,c
+   832        4text |   &   E118               	bnz	l69
+   833        4text ~   ª                      u870:
+   834                           ;konfig.c: 198: if(DtKNF.rdpm!=eeprom_read(0x00D
+      +                          0)) eeprom_write(0x00D0,DtKNF.rdpm);
+   835        4text ~   (   0ED0               	movlw	208
+   836        4text Ä           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   837        4text Ç      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   838        4text Ñ      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   839        4text Ü      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   840        4text ä        n   1temp  &                	movwf	btemp,c
+   841        4text å        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   842        4text ê        j   1temp     '                	clrf	btemp+3,c
+   843        4text í        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+9,wreg
+   844        4text ñ           1temp     *                	xorwf	btemp+2,w,c
+   845        4text ò   '   E101               	bnz	u895
+   846        4text ö        R   1temp     )                	movf	btemp+3,f,c
+   847        4text ú   #                      u895:
+   848        4text ú   %   E008               	bz	l69
+   849        4text û   (   0ED0               	movlw	208
+   850        4text †           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   851        4text ¢      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   852        4text §      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   853        4text ¶        ¿   ¸bss             ¸ ?_eeprom_write     2          	movff	_DtKNF+9,?_eeprom_write+2
+   854        4text ™      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   855        4text Æ   ∏                      l69:
+   856                           ;konfig.c: 200: if((DtKNF.dtpm>5)&&(DtKNF.dtpm<2
+      +                          5)||DtKNF.dtpm==5||DtKNF.dtpm==25)
+   857        4text Æ   &   0E05               	movlw	5
+   858        4text ∞           1   bss    	 4                	movlb	(_DtKNF+10) shr (0+8)
+   859        4text ≤        e   1ˇ   bss    
+ 6                	cpfsgt	(_DtKNF+10)& (0+255),b
+   860        4text ¥   (   D004               	goto	u921
+   861        4text ∂   '   0E19               	movlw	25
+   862        4text ∏        a   1ˇ   bss    
+ 6                	cpfslt	(_DtKNF+10)& (0+255),b
+   863        4text ∫   (   D001               	goto	u921
+   864        4text º   (   D008               	goto	u950
+   865        4text æ   #                      u921:
+   866        4text æ        ¿   ¸bss     -   FFE8         	movff	_DtKNF+10,wreg
+   867        4text ¬   &   0A05               	xorlw	5
+   868        4text ƒ   &   E004               	bz	u950
+   869        4text ∆        ¿   ¸bss     -   FFE8         	movff	_DtKNF+10,wreg
+   870        4text     '   0A19               	xorlw	25
+   871        4text Ã   &   E118               	bnz	l71
+   872        4text Œ   ª                      u950:
+   873                           ;konfig.c: 201: if(DtKNF.dtpm!=eeprom_read(0x00D
+      +                          1)) eeprom_write(0x00D1,DtKNF.dtpm);
+   874        4text Œ   (   0ED1               	movlw	209
+   875        4text –           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   876        4text “      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   877        4text ‘      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   878        4text ÷      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   879        4text ⁄        n   1temp  &                	movwf	btemp,c
+   880        4text ‹        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   881        4text ‡        j   1temp     '                	clrf	btemp+3,c
+   882        4text ‚        ¿   ¸bss     -   FFE8         	movff	_DtKNF+10,wreg
+   883        4text Ê           1temp     *                	xorwf	btemp+2,w,c
+   884        4text Ë   '   E101               	bnz	u975
+   885        4text Í        R   1temp     )                	movf	btemp+3,f,c
+   886        4text Ï   #                      u975:
+   887        4text Ï   %   E008               	bz	l71
+   888        4text Ó   (   0ED1               	movlw	209
+   889        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   890        4text Ú      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   891        4text Ù      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   892        4text ˆ        ¿   ¸bss             ¸ ?_eeprom_write     3          	movff	_DtKNF+10,?_eeprom_write+2
+   893        4text ˙      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   894        4text ˛   ∫                      l71:
+   895                           ;konfig.c: 203: if((DtKNF.mdpm>10)&&(DtKNF.mdpm<
+      +                          80)||DtKNF.mdpm==10||DtKNF.mdpm==80)
+   896        4text ˛   '   0E0A               	movlw	10
+   897        4text             1   bss    	 4                	movlb	(_DtKNF+11) shr (0+8)
+   898        4text         e   1ˇ   bss    
+ 6                	cpfsgt	(_DtKNF+11)& (0+255),b
+   899        4text    )   D004               	goto	u1001
+   900        4text    '   0E50               	movlw	80
+   901        4text         a   1ˇ   bss    
+ 6                	cpfslt	(_DtKNF+11)& (0+255),b
+   902        4text 
+   )   D001               	goto	u1001
+   903        4text    )   D008               	goto	u1030
+   904        4text    $                      u1001:
+   905        4text         ¿   ¸bss     -   FFE8         	movff	_DtKNF+11,wreg
+   906        4text    '   0A0A               	xorlw	10
+   907        4text    '   E004               	bz	u1030
+   908        4text         ¿   ¸bss     -   FFE8         	movff	_DtKNF+11,wreg
+   909        4text    '   0A50               	xorlw	80
+   910        4text    &   E118               	bnz	l73
+   911        4text    º                      u1030:
+   912                           ;konfig.c: 204: if(DtKNF.mdpm!=eeprom_read(0x00D
+      +                          2)) eeprom_write(0x00D2,DtKNF.mdpm);
+   913        4text    (   0ED2               	movlw	210
+   914        4text             1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   915        4text "      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+   916        4text $      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+   917        4text &      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+   918        4text *        n   1temp  &                	movwf	btemp,c
+   919        4text ,        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   920        4text 0        j   1temp     '                	clrf	btemp+3,c
+   921        4text 2        ¿   ¸bss     -   FFE8         	movff	_DtKNF+11,wreg
+   922        4text 6           1temp     *                	xorwf	btemp+2,w,c
+   923        4text 8   (   E101               	bnz	u1055
+   924        4text :        R   1temp     )                	movf	btemp+3,f,c
+   925        4text <   $                      u1055:
+   926        4text <   %   E008               	bz	l73
+   927        4text >   (   0ED2               	movlw	210
+   928        4text @           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   929        4text B      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+   930        4text D      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+   931        4text F        ¿   ¸bss             ¸ ?_eeprom_write     3          	movff	_DtKNF+11,?_eeprom_write+2
+   932        4text J      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 0          	call	_eeprom_write	;wreg free
+   933        4text N   d                      l73:
+   934                           ;konfig.c: 206: RSDT1.RRD_KNF=0;
+   935        4text N           1   bss    	 3                	movlb	(_RSDT1+1) shr (0+8)
+   936        4text P        ï   1ˇ   bss    
+ u                	bcf	(_RSDT1+1)& (0+255),2,b
+   937                           ;konfig.c: 207: RSDT1.RD_KNF=0;
+   938        4text R        ì   1ˇ   bss    
+ o                	bcf	(_RSDT1+1)& (0+255),1,b
+   939                           ;konfig.c: 208: return 1;
+   940        4text T   &   0C01               	retlw	1
+   941        4text V   U                      l49:
+   942                           ;konfig.c: 209: }
+   943        4text V   Y   0C00               	retlw	0
+   944                           ;konfig.c: 211: }
+   945        4text X   ®                      __end_of_SaveKnfPar:
+   946                           ;konfig.c: 212: void SetNST(void)
+   947                           ;konfig.c: 213: {
+   948        4text X   á                      _SetNST:
+   949  000000                     
+   950                           ;konfig.c: 214: PomiarZW();
+   951        4text X        Ï   1ˇ       _PomiarZW 	
+         ¸	    _PomiarZW 	 n          	call	_PomiarZW	;wreg free
+   952                           ;konfig.c: 215: if(!DtZW._on_ZW)
+   953        4text \           1    _DtZW 	 .                	movlb	_DtZW shr (0+8)
+   954        4text ^        ±   1ˇ    _DtZW 
+ 1                	btfsc	_DtZW& (0+255),0,b
+   955        4text `   Z   D00E               	goto	l76
+   956                           ;konfig.c: 216: {
+   957        4text b        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ #          	lfsr	0,_DtKNF+15
+   958        4text f   -   50EF               	movf	indf0,w,c
+   959        4text h   Y   E105               	bnz	l77
+   960                           ;konfig.c: 218: {
+   961        4text j   '   0E28               	movlw	40
+   962        4text l      CFE8      ¸ _DtCO     g           	movff	wreg,_DtCO+5
+   963                           ;konfig.c: 220: DtCO.maxPCO=85;
+   964        4text p   '   0E55               	movlw	85
+   965        4text r   Y   D011               	goto	L1
+   966                           ;konfig.c: 221: }
+   967        4text t   X                      l77:
+   968                           ;konfig.c: 222: else
+   969        4text t   '   0E23               	movlw	35
+   970        4text v      CFE8      ¸ _DtCO     g           	movff	wreg,_DtCO+5
+   971                           ;konfig.c: 225: DtCO.maxPCO=55;
+   972        4text z   '   0E37               	movlw	55
+   973        4text |   Y   D00C               	goto	L1
+   974                           ;konfig.c: 226: }
+   975        4text ~   X                      l76:
+   976                           ;konfig.c: 228: else
+   977        4text ~           1    _M    	 0                	movlb	(_M+22) shr (0+8)
+   978        4text Ä   &   0E01               	movlw	1
+   979        4text Ç        o   1ˇ    _M    
+ 1                	movwf	(_M+22)& (0+255),b
+   980        4text Ñ        k   1ˇ    _M    
+ o                	clrf	(_M+23)& (0+255),b
+   981                           ;konfig.c: 231: SetPrt(20,1);
+   982        4text Ü           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   983        4text à      #  o   1 ˇ   __Lparam 
+ ?_SetPrt  ?                	movwf	?_SetPrt^(__Lparam& (0+65280)),b
+   984        4text ä   '   0E14               	movlw	20
+   985        4text å        Ï   1ˇ       _SetPrt 	
+         ¸	    _SetPrt 	 _          	call	_SetPrt
+   986                           ;konfig.c: 232: DtCO.minPCO=0;
+   987        4text ê           1    _DtCO    	 2                	movlb	(_DtCO+5) shr (0+8)
+   988        4text í        k   1ˇ    _DtCO    
+ s                	clrf	(_DtCO+5)& (0+255),b
+   989                           ;konfig.c: 233: DtCO.maxPCO=99;
+   990        4text î   '   0E63               	movlw	99
+   991        4text ñ   !                      L1:
+   992        4text ñ      CFE8      ¸ _DtCO     Y           	movff	wreg,_DtCO+6
+   993                           ;konfig.c: 234: }
+   994        4text ö        ¿   ¸ _DtCO             ¸bss !    w          	movff	_DtCO+5,_RSDT1+10
+   995                           ;konfig.c: 236: RSDT1.outPCOmx=DtCO.maxPCO;
+   996        4text û        ¿   ¸ _DtCO             ¸bss "    ¨          	movff	_DtCO+6,_RSDT1+11
+   997                           ;konfig.c: 237: if(DtCO.PCO<DtCO.minPCO) DtCO.PC
+      +                          O=DtCO.minPCO;
+   998        4text ¢        ¿   ¸ _DtCO     +   FFE8         	movff	_DtCO+5,wreg
+   999        4text ¶           1    _DtCO    	 2                	movlb	(_DtCO+3) shr (0+8)
+  1000        4text ®        a   1ˇ    _DtCO    
+ 4                	cpfslt	(_DtCO+3)& (0+255),b
+  1001        4text ™   '   D002               	goto	l80
+  1002        4text ¨        ¿   ¸ _DtCO             ¸ _DtCO     (          	movff	_DtCO+5,_DtCO+3
+  1003        4text ∞   §                      l80:
+  1004                           ;konfig.c: 238: if(DtCO.PCO>DtCO.maxPCO) DtCO.PC
+      +                          O=DtCO.maxPCO;
+  1005        4text ∞        ¿   ¸ _DtCO     +   FFE8         	movff	_DtCO+3,wreg
+  1006        4text ¥           1    _DtCO    	 2                	movlb	(_DtCO+6) shr (0+8)
+  1007        4text ∂        a   1ˇ    _DtCO    
+ 4                	cpfslt	(_DtCO+6)& (0+255),b
+  1008        4text ∏   '   D002               	goto	l81
+  1009        4text ∫        ¿   ¸ _DtCO             ¸ _DtCO     (          	movff	_DtCO+6,_DtCO+3
+  1010        4text æ   ∂                      l81:
+  1011                           ;konfig.c: 239: if(DtCO.PCO!=eeprom_read(0x00C9)
+      +                          ) eeprom_write(0x00C9,DtCO.PCO);
+  1012        4text æ   (   0EC9               	movlw	201
+  1013        4text ¿           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1014        4text ¬      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1015        4text ƒ      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1016        4text ∆      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1017        4text          n   1temp  &                	movwf	btemp,c
+  1018        4text Ã        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+  1019        4text –        j   1temp     '                	clrf	btemp+3,c
+  1020        4text “        ¿   ¸ _DtCO     +   FFE8         	movff	_DtCO+3,wreg
+  1021        4text ÷           1temp     *                	xorwf	btemp+2,w,c
+  1022        4text ÿ   (   E101               	bnz	u1105
+  1023        4text ⁄        R   1temp     )                	movf	btemp+3,f,c
+  1024        4text ‹   $                      u1105:
+  1025        4text ‹   /   B4D8               	btfsc	status,2,c
+  1026        4text ﬁ   &   0012               	return	
+  1027        4text ‡   Y   D142               	goto	L4
+  1028                           ;konfig.c: 240: }
+  1029        4text ‚   ß                      __end_of_SetNST:
+  1030                           ;konfig.c: 243: void RdEEParam(void)
+  1031                           ;konfig.c: 244: {
+  1032        4text ‚   û                      _RdEEParam:
+  1033  000000                     
+  1034                           ;konfig.c: 246: DtKNF.tpkt=eeprom_read(0x00C5);
+  1035        4text ‚   (   0EC5               	movlw	197
+  1036        4text ‰           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1037        4text Ê      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1038        4text Ë      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1039        4text Í      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1040        4text Ó      CFE8      ¸bss     r           	movff	wreg,_DtKNF+7
+  1041                           ;konfig.c: 247: RSDT1.outTPKT=DtKNF.tpkt;
+  1042        4text Ú        ¿   ¸bss             ¸bss ;    l          	movff	_DtKNF+7,_RSDT1+36
+  1043                           ;konfig.c: 248: SetTpKtParam();
+  1044        4text ˆ   ƒ   D8CB               	call	_SetTpKtParam	;wreg free
+  1045                           ;konfig.c: 250: ModParam(DtKNF.tpkt,DtKNF.rdgz=e
+      +                          eprom_read(0x00C4));
+  1046        4text ¯   (   0EC4               	movlw	196
+  1047        4text ˙           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1048        4text ¸      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1049        4text ˛      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1050        4text        "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1051        4text       CFE8      ¸bss     '           	movff	wreg,_DtKNF+8
+  1052        4text         ¿   ¸bss             ¸ ?_ModParam  ,          	movff	_DtKNF+8,?_ModParam
+  1053        4text         ¿   ¸bss     ,   FFE8         	movff	_DtKNF+7,wreg
+  1054        4text         Ï   1ˇ       _ModParam 	
+         ¸	    _ModParam 	 k          	call	_ModParam
+  1055                           ;konfig.c: 251: RSDT1.outRGZ=DtKNF.rdgz;
+  1056        4text         ¿   ¸bss             ¸bss 7    ®          	movff	_DtKNF+8,_RSDT1+32
+  1057                           ;konfig.c: 252: MocStart(DtKNF.mstr=eeprom_read(
+      +                          0x00C1));
+  1058        4text    (   0EC1               	movlw	193
+  1059        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1060        4text       (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1061        4text       .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1062        4text        "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1063        4text $      CFE8      ¸bss     '           	movff	wreg,_DtKNF+3
+  1064        4text (        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+3,wreg
+  1065        4text ,        Ï   1ˇ       _MocStart 	
+         ¸	    _MocStart 	 l          	call	_MocStart
+  1066                           ;konfig.c: 253: RSDT1.outMSTR=DtKNF.mstr;
+  1067        4text 0        ¿   ¸bss             ¸bss .    ©          	movff	_DtKNF+3,_RSDT1+23
+  1068                           ;konfig.c: 254: MocMaksCW(DtKNF.mxcw=eeprom_read
+      +                          (0x00C2));
+  1069        4text 4   (   0EC2               	movlw	194
+  1070        4text 6           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1071        4text 8      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1072        4text :      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1073        4text <      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1074        4text @      CFE8      ¸bss 	    '           	movff	wreg,_DtKNF+4
+  1075        4text D        ¿   ¸bss 	    ,   FFE8         	movff	_DtKNF+4,wreg
+  1076        4text H         Ï   1ˇ       _MocMaksCW 	
+         ¸	    _MocMaksCW 	 n          	call	_MocMaksCW
+  1077                           ;konfig.c: 255: RSDT1.outMMAXU=DtKNF.mxcw;
+  1078        4text L        ¿   ¸bss 	            ¸bss 1    ©          	movff	_DtKNF+4,_RSDT1+26
+  1079                           ;konfig.c: 256: MocMaksCO(DtKNF.mxco=eeprom_read
+      +                          (0x00C3));
+  1080        4text P   (   0EC3               	movlw	195
+  1081        4text R           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1082        4text T      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1083        4text V      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1084        4text X      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1085        4text \      CFE8      ¸bss 
+    '           	movff	wreg,_DtKNF+5
+  1086        4text `        ¿   ¸bss 
+    ,   FFE8         	movff	_DtKNF+5,wreg
+  1087        4text d         Ï   1ˇ       _MocMaksCO 	
+         ¸	    _MocMaksCO 	 n          	call	_MocMaksCO
+  1088                           ;konfig.c: 257: RSDT1.outMMAXG=DtKNF.mxco;
+  1089        4text h        ¿   ¸bss 
+            ¸bss 4    |          	movff	_DtKNF+5,_RSDT1+29
+  1090                           ;konfig.c: 258: DtKNF.aleg=eeprom_read(0x00C6);
+  1091        4text l   (   0EC6               	movlw	198
+  1092        4text n           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1093        4text p      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1094        4text r      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1095        4text t      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1096        4text x      CFE8      ¸bss     s           	movff	wreg,_DtKNF+17
+  1097                           ;konfig.c: 259: RSDT1.outWANL=DtKNF.aleg;
+  1098        4text |        ¿   ¸bss             ¸bss :    }          	movff	_DtKNF+17,_RSDT1+35
+  1099                           ;konfig.c: 260: DtKNF.robg=eeprom_read(0x00C8);
+  1100        4text Ä   (   0EC8               	movlw	200
+  1101        4text Ç           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1102        4text Ñ      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1103        4text Ü      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1104        4text à      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1105        4text å      CFE8      ¸bss     s           	movff	wreg,_DtKNF+14
+  1106                           ;konfig.c: 261: RSDT1.outWOBG=DtKNF.robg;
+  1107        4text ê        ¿   ¸bss             ¸bss >    z          	movff	_DtKNF+14,_RSDT1+39
+  1108                           ;konfig.c: 262: PFN.poz=eeprom_read(0x00CB);
+  1109        4text î   (   0ECB               	movlw	203
+  1110        4text ñ           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1111        4text ò      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1112        4text ö      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1113        4text ú      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1114        4text †        n   1temp  &                	movwf	btemp,c
+  1115        4text ¢           1    _PFN    	 2                	movlb	(_PFN+31) shr (0+8)
+  1116        4text §        ¿   ¸temp          ¸ _PFN     &          	movff	btemp,_PFN+31
+  1117        4text ®        k   1ˇ    _PFN     
+ m                	clrf	(_PFN+32)& (0+255),b
+  1118                           ;konfig.c: 263: SetPFN();
+  1119        4text ™   á   D8A4               	call	_SetPFN	;wreg free
+  1120                           ;konfig.c: 264: DtKNF.opdg=eeprom_read(0x00CC);
+  1121        4text ¨   (   0ECC               	movlw	204
+  1122        4text Æ           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1123        4text ∞      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1124        4text ≤      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1125        4text ¥      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1126        4text ∏      CFE8      ¸bss     s           	movff	wreg,_DtKNF+15
+  1127                           ;konfig.c: 265: RSDT1.outOPDG=DtKNF.opdg;
+  1128        4text º        ¿   ¸bss             ¸bss ?    {          	movff	_DtKNF+15,_RSDT1+40
+  1129                           ;konfig.c: 266: DtCO.PCO=eeprom_read(0x00C9);
+  1130        4text ¿   (   0EC9               	movlw	201
+  1131        4text ¬           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1132        4text ƒ      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1133        4text ∆      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1134        4text »      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1135        4text Ã      CFE8      ¸ _DtCO     u           	movff	wreg,_DtCO+3
+  1136                           ;konfig.c: 267: DtCW.PCW=eeprom_read(0x00CA);
+  1137        4text –   (   0ECA               	movlw	202
+  1138        4text “           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1139        4text ‘      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1140        4text ÷      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1141        4text ÿ      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1142        4text ‹      CFE8      ¸ _DtCW     a           	movff	wreg,_DtCW+3
+  1143                           ;konfig.c: 268: SetNST();
+  1144        4text ‡   y   DF3B               	call	_SetNST	;wreg free
+  1145                           ;konfig.c: 269: PFN.PCO=DtCO.PCO;
+  1146        4text ‚           1    _PFN    	 2                	movlb	(_PFN+26) shr (0+8)
+  1147        4text ‰        ¿   ¸ _DtCO             ¸ _PFN     (          	movff	_DtCO+3,_PFN+26
+  1148        4text Ë        k   1ˇ    _PFN    
+ u                	clrf	(_PFN+27)& (0+255),b
+  1149                           ;konfig.c: 270: PFN.PCW=DtCW.PCW;
+  1150        4text Í           1    _PFN    	 2                	movlb	(_PFN+28) shr (0+8)
+  1151        4text Ï        ¿   ¸ _DtCW             ¸ _PFN     (          	movff	_DtCW+3,_PFN+28
+  1152        4text         k   1ˇ    _PFN    
+ É                	clrf	(_PFN+29)& (0+255),b
+  1153                           ;konfig.c: 271: DtKNF.tpcs=eeprom_read(0x00CD);
+  1154        4text Ú   (   0ECD               	movlw	205
+  1155        4text Ù           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1156        4text ˆ      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1157        4text ¯      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1158        4text ˙      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1159        4text ˛      CFE8      ¸bss     s           	movff	wreg,_DtKNF+16
+  1160                           ;konfig.c: 272: RSDT1.outTPCS=DtKNF.tpcs;
+  1161        4text         ¿   ¸bss             ¸bss @    l          	movff	_DtKNF+16,_RSDT1+41
+  1162                           ;konfig.c: 273: DtKNF.wymCO=0;
+  1163        4text            1   bss    	 /                	movlb	_DtKNF shr (0+8)
+  1164        4text         ì   1ˇ   bss    
+ p                	bcf	_DtKNF& (0+255),1,b
+  1165                           ;konfig.c: 274: DtKNF.wymCW=0;
+  1166        4text 
+        ï   1ˇ   bss    
+ ¶                	bcf	_DtKNF& (0+255),2,b
+  1167                           ;konfig.c: 275: M.LICZNIK_ANL=eeprom_read(0x00C7
+      +                          );
+  1168        4text    (   0EC7               	movlw	199
+  1169        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1170        4text       (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1171        4text       .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1172        4text       "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1173        4text       CFE8      ¸ _M !    g           	movff	wreg,_M+33
+  1174                           ;konfig.c: 277: if(M.LICZNIK_ANL)
+  1175        4text         Ó   ˆ    _M !   	   
+         1 _M !   ˇ   
+           	lfsr	0,_M+33
+  1176        4text     -   50EF               	movf	indf0,w,c
+  1177        4text "   X   E011               	bz	l84
+  1178                           ;konfig.c: 278: {
+  1179        4text $        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ #          	lfsr	0,_DtKNF+17
+  1180        4text (   -   50EF               	movf	indf0,w,c
+  1181        4text *   '   E004               	bz	u1140
+  1182        4text ,        Ó   ˆ   bss    	   
+         1bss    ˇ   
+ "          	lfsr	0,_DtKNF+7
+  1183        4text 0   -   50EF               	movf	indf0,w,c
+  1184        4text 2   %   E009               	bz	l84
+  1185        4text 4   W                      u1140:
+  1186                           ;konfig.c: 280: {
+  1187        4text 4   (   0EC7               	movlw	199
+  1188        4text 6           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1189        4text 8      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1190        4text :      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1191        4text <      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+2)^(__Lparam& (0+65280)),b
+  1192        4text >      #  Ï   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 r          	call	_eeprom_write	;wreg free
+  1193                           ;konfig.c: 282: M.LICZNIK_ANL=0;
+  1194        4text B           1    _M !   	 0                	movlb	(_M+33) shr (0+8)
+  1195        4text D        k   1ˇ    _M !   
+ 0                	clrf	(_M+33)& (0+255),b
+  1196        4text F   U                      l84:
+  1197                           ;konfig.c: 283: }
+  1198        4text F   (   0ED0               	movlw	208
+  1199        4text H           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1200        4text J      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1201        4text L      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1202        4text N      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1203        4text R      CFE8      ¸bss     r           	movff	wreg,_DtKNF+9
+  1204                           ;konfig.c: 287: RSDT1.outRDPM=DtKNF.rdpm;
+  1205        4text V        ¿   ¸bss             ¸bss A    |          	movff	_DtKNF+9,_RSDT1+42
+  1206                           ;konfig.c: 288: DtKNF.dtpm=eeprom_read(0x00D1);
+  1207        4text Z   (   0ED1               	movlw	209
+  1208        4text \           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1209        4text ^      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1210        4text `      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1211        4text b      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1212        4text f      CFE8      ¸bss     s           	movff	wreg,_DtKNF+10
+  1213                           ;konfig.c: 289: RSDT1.outDTPM=DtKNF.dtpm;
+  1214        4text j        ¿   ¸bss             ¸bss B    }          	movff	_DtKNF+10,_RSDT1+43
+  1215                           ;konfig.c: 290: DtKNF.mdpm=eeprom_read(0x00D2);
+  1216        4text n   (   0ED2               	movlw	210
+  1217        4text p           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1218        4text r      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1219        4text t      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1220        4text v      "  Ï   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 /          	call	_eeprom_read	;wreg free
+  1221        4text z      CFE8      ¸bss     s           	movff	wreg,_DtKNF+11
+  1222                           ;konfig.c: 291: RSDT1.outMDPM=DtKNF.mdpm;
+  1223        4text ~        ¿   ¸bss             ¸bss C    k          	movff	_DtKNF+11,_RSDT1+44
+  1224                           ;konfig.c: 297: DtKNF.teco=0;
+  1225        4text Ç           1   bss    	 4                	movlb	(_DtKNF+12) shr (0+8)
+  1226        4text Ñ        k   1ˇ   bss    
+ q                	clrf	(_DtKNF+12)& (0+255),b
+  1227                           ;konfig.c: 298: DtIN.Eco=5;
+  1228        4text Ü   &   0E05               	movlw	5
+  1229        4text à      CFE8      ¸ _DtIN 	    Y           	movff	wreg,_DtIN+9
+  1230                           ;konfig.c: 299: }
+  1231        4text å   &   0C05               	retlw	5
+  1232        4text é   ≠                      __end_of_RdEEParam:
+  1233                           ;konfig.c: 302: void SetTpKtParam(void)
+  1234                           ;konfig.c: 303: {
+  1235        4text é   î                      _SetTpKtParam:
+  1236  000000                     
+  1237                           ;konfig.c: 304: switch(DtKNF.tpkt)
+  1238        4text é   '   D014               	goto	l88
+  1239        4text ê   à                      l89:
+  1240                           ;konfig.c: 305: {
+  1241                           ;konfig.c: 307: {
+  1242        4text ê           1   bss    	 3                	movlb	(_DtKNF+6) shr (0+8)
+  1243        4text í        k   1ˇ   bss    
+ r                	clrf	(_DtKNF+6)& (0+255),b
+  1244                           ;konfig.c: 310: DtKNF.tpwm=0;
+  1245        4text î        k   1ˇ   bss    
+ l                	clrf	(_DtKNF+13)& (0+255),b
+  1246                           ;konfig.c: 311: break;
+  1247        4text ñ   &   0012               	return	
+  1248        4text ò   à                      l90:
+  1249                           ;konfig.c: 312: }
+  1250                           ;konfig.c: 314: {
+  1251        4text ò           1   bss    	 3                	movlb	(_DtKNF+6) shr (0+8)
+  1252        4text ö        k   1ˇ   bss    
+ r                	clrf	(_DtKNF+6)& (0+255),b
+  1253                           ;konfig.c: 317: DtKNF.tpwm=0;
+  1254        4text ú        k   1ˇ   bss    
+ l                	clrf	(_DtKNF+13)& (0+255),b
+  1255                           ;konfig.c: 318: break;
+  1256        4text û   &   0012               	return	
+  1257        4text †   à                      l91:
+  1258                           ;konfig.c: 319: }
+  1259                           ;konfig.c: 321: {
+  1260        4text †           1   bss    	 3                	movlb	(_DtKNF+6) shr (0+8)
+  1261        4text ¢        k   1ˇ   bss    
+ r                	clrf	(_DtKNF+6)& (0+255),b
+  1262                           ;konfig.c: 324: DtKNF.tpwm=0;
+  1263        4text §        k   1ˇ   bss    
+ l                	clrf	(_DtKNF+13)& (0+255),b
+  1264                           ;konfig.c: 325: break;
+  1265        4text ¶   &   0012               	return	
+  1266        4text ®   à                      l92:
+  1267                           ;konfig.c: 326: }
+  1268                           ;konfig.c: 328: {
+  1269        4text ®           1   bss    	 3                	movlb	(_DtKNF+6) shr (0+8)
+  1270        4text ™        k   1ˇ   bss    
+ r                	clrf	(_DtKNF+6)& (0+255),b
+  1271                           ;konfig.c: 331: DtKNF.tpwm=0;
+  1272        4text ¨        k   1ˇ   bss    
+ l                	clrf	(_DtKNF+13)& (0+255),b
+  1273                           ;konfig.c: 332: break;
+  1274        4text Æ   &   0012               	return	
+  1275        4text ∞   à                      l93:
+  1276                           ;konfig.c: 333: }
+  1277                           ;konfig.c: 335: {
+  1278        4text ∞           1   bss    	 3                	movlb	(_DtKNF+6) shr (0+8)
+  1279        4text ≤        k   1ˇ   bss    
+ r                	clrf	(_DtKNF+6)& (0+255),b
+  1280                           ;konfig.c: 338: DtKNF.tpwm=0;
+  1281        4text ¥        k   1ˇ   bss    
+ l                	clrf	(_DtKNF+13)& (0+255),b
+  1282                           ;konfig.c: 339: break;
+  1283        4text ∂   &   0012               	return	
+  1284        4text ∏   "                      l88:
+  1285        4text ∏        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+7,wreg
+  1286        4text º   &   0A00               	xorlw	0
+  1287        4text æ   %   E0E8               	bz	l89
+  1288        4text ¿   &   0A01               	xorlw	1
+  1289        4text ¬   %   E0EA               	bz	l90
+  1290        4text ƒ   &   0A03               	xorlw	3
+  1291        4text ∆   %   E0F0               	bz	l92
+  1292        4text »   &   0A01               	xorlw	1
+  1293        4text     %   E0EA               	bz	l91
+  1294        4text Ã   Z   D7F1               	goto	l93
+  1295                           ;konfig.c: 342: }
+  1296        4text Œ   ≥                      __end_of_SetTpKtParam:
+  1297                           ;konfig.c: 345: void SetDefaultValue(void)
+  1298                           ;konfig.c: 346: {
+  1299        4text Œ   ó                      _SetDefaultValue:
+  1300  000000                     
+  1301                           ;konfig.c: 347: switch(DtKNF.tpkt)
+  1302        4text Œ   '   D00D               	goto	l96
+  1303        4text –   à                      l97:
+  1304                           ;konfig.c: 348: {
+  1305                           ;konfig.c: 350: {
+  1306        4text –   '   0E0F               	movlw	15
+  1307        4text “   ∞   D001               	goto	L5
+  1308                           ;konfig.c: 352: eeprom_write(0x00C1,DtKNF.mstr);
+  1309                           ;konfig.c: 353: break;
+  1310        4text ‘   à                      l98:
+  1311                           ;konfig.c: 354: }
+  1312                           ;konfig.c: 356: {
+  1313        4text ‘   '   0E28               	movlw	40
+  1314        4text ÷   !                      L5:
+  1315        4text ÷      CFE8      ¸bss     y           	movff	wreg,_DtKNF+3
+  1316                           ;konfig.c: 358: eeprom_write(0x00C1,DtKNF.mstr);
+  1317        4text ⁄   (   0EC1               	movlw	193
+  1318        4text ‹           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1319        4text ﬁ      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1320        4text ‡      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1321        4text ‚        ¿   ¸bss             ¸ ?_eeprom_write     2          	movff	_DtKNF+3,?_eeprom_write+2
+  1322        4text Ê      #  Ô   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 h          	goto	_eeprom_write	;wreg free
+  1323                           ;konfig.c: 359: break;
+  1324        4text Í   "                      l96:
+  1325        4text Í        ¿   ¸bss     ,   FFE8         	movff	_DtKNF+7,wreg
+  1326        4text Ó   &   0A03               	xorlw	3
+  1327        4text    %   E0EF               	bz	l97
+  1328        4text Ú   Z   D7F0               	goto	l98
+  1329                           ;konfig.c: 362: }
+  1330        4text Ù   ≠                      __end_of_SetDefaultValue:
+  1331                           ;konfig.c: 365: void SetPFN(void)
+  1332                           ;konfig.c: 366: {
+  1333        4text Ù   ä                      _SetPFN:
+  1334  000000                     
+  1335                           ;konfig.c: 367: if(PFN.poz==1)
+  1336        4text Ù           1    _PFN    	 2                	movlb	(_PFN+31) shr (0+8)
+  1337        4text ˆ        Q   1ˇ    _PFN    
+ 4                	movf	(_PFN+31)& (0+255),w,b
+  1338        4text ¯   &   0A01               	xorlw	1
+  1339        4text ˙           1ˇ    _PFN     
+ 5                	iorwf	(_PFN+32)& (0+255),w,b
+  1340        4text ¸   Z   E107               	bnz	l100
+  1341                           ;konfig.c: 368: {
+  1342        4text ˛           1    _PFN 	 -                	movlb	_PFN shr (0+8)
+  1343        4text          ï   1ˇ    _PFN 
+ l                	bcf	_PFN& (0+255),2,b
+  1344                           ;konfig.c: 370: PFN._lato=0;
+  1345        4text         ì   1ˇ    _PFN 
+ k                	bcf	_PFN& (0+255),1,b
+  1346                           ;konfig.c: 371: PFN._off=1;
+  1347        4text         Å   1ˇ    _PFN 
+ k                	bsf	_PFN& (0+255),0,b
+  1348                           ;konfig.c: 372: PFN._csn=0;
+  1349        4text            1    _PFN    	 1                	movlb	(_PFN+3) shr (0+8)
+  1350        4text         ô   1ˇ    _PFN    
+ e                	bcf	(_PFN+3)& (0+255),4,b
+  1351                           ;konfig.c: 373: }
+  1352        4text 
+   &   0012               	return	
+  1353        4text    Y                      l100:
+  1354                           ;konfig.c: 374: else
+  1355        4text            1    _PFN    	 2                	movlb	(_PFN+31) shr (0+8)
+  1356        4text         Q   1ˇ    _PFN    
+ 4                	movf	(_PFN+31)& (0+255),w,b
+  1357        4text    &   0A03               	xorlw	3
+  1358        4text            1ˇ    _PFN     
+ 5                	iorwf	(_PFN+32)& (0+255),w,b
+  1359        4text    Z   E107               	bnz	l102
+  1360                           ;konfig.c: 376: {
+  1361        4text            1    _PFN 	 -                	movlb	_PFN shr (0+8)
+  1362        4text         Ö   1ˇ    _PFN 
+ l                	bsf	_PFN& (0+255),2,b
+  1363                           ;konfig.c: 378: PFN._lato=0;
+  1364        4text         ì   1ˇ    _PFN 
+ k                	bcf	_PFN& (0+255),1,b
+  1365                           ;konfig.c: 379: PFN._off=0;
+  1366        4text         ë   1ˇ    _PFN 
+ k                	bcf	_PFN& (0+255),0,b
+  1367                           ;konfig.c: 380: PFN._csn=0;
+  1368        4text            1    _PFN    	 1                	movlb	(_PFN+3) shr (0+8)
+  1369        4text          ô   1ˇ    _PFN    
+ e                	bcf	(_PFN+3)& (0+255),4,b
+  1370                           ;konfig.c: 381: }
+  1371        4text "   &   0012               	return	
+  1372        4text $   Y                      l102:
+  1373                           ;konfig.c: 382: else
+  1374        4text $           1    _PFN    	 2                	movlb	(_PFN+31) shr (0+8)
+  1375        4text &        Q   1ˇ    _PFN    
+ 4                	movf	(_PFN+31)& (0+255),w,b
+  1376        4text (   &   0A02               	xorlw	2
+  1377        4text *           1ˇ    _PFN     
+ h                	iorwf	(_PFN+32)& (0+255),w,b
+  1378                           ;konfig.c: 384: {
+  1379        4text ,           1    _PFN 	 -                	movlb	_PFN shr (0+8)
+  1380        4text .   %   E106               	bnz	L3
+  1381        4text 0        ï   1ˇ    _PFN 
+ l                	bcf	_PFN& (0+255),2,b
+  1382                           ;konfig.c: 386: PFN._lato=1;
+  1383        4text 2        É   1ˇ    _PFN 
+ k                	bsf	_PFN& (0+255),1,b
+  1384                           ;konfig.c: 387: PFN._off=0;
+  1385        4text 4        ë   1ˇ    _PFN 
+ k                	bcf	_PFN& (0+255),0,b
+  1386                           ;konfig.c: 388: PFN._csn=0;
+  1387        4text 6           1    _PFN    	 1                	movlb	(_PFN+3) shr (0+8)
+  1388        4text 8        ô   1ˇ    _PFN    
+ e                	bcf	(_PFN+3)& (0+255),4,b
+  1389                           ;konfig.c: 389: }
+  1390        4text :   \   0012               	return	
+  1391                           ;konfig.c: 390: else
+  1392        4text <   !                      L3:
+  1393        4text <        Ö   1ˇ    _PFN 
+ l                	bsf	_PFN& (0+255),2,b
+  1394                           ;konfig.c: 393: PFN._lato=0;
+  1395        4text >           1    _PFN 	 -                	movlb	_PFN shr (0+8)
+  1396        4text @        ì   1ˇ    _PFN 
+ k                	bcf	_PFN& (0+255),1,b
+  1397                           ;konfig.c: 394: PFN._off=0;
+  1398        4text B        ë   1ˇ    _PFN 
+ k                	bcf	_PFN& (0+255),0,b
+  1399                           ;konfig.c: 395: PFN._csn=0;
+  1400        4text D           1    _PFN    	 1                	movlb	(_PFN+3) shr (0+8)
+  1401        4text F        ô   1ˇ    _PFN    
+ n                	bcf	(_PFN+3)& (0+255),4,b
+  1402                           ;konfig.c: 396: PFN.poz=3;
+  1403        4text H           1    _PFN    	 2                	movlb	(_PFN+31) shr (0+8)
+  1404        4text J   &   0E03               	movlw	3
+  1405        4text L        o   1ˇ    _PFN    
+ 3                	movwf	(_PFN+31)& (0+255),b
+  1406        4text N        k   1ˇ    _PFN     
+ e                	clrf	(_PFN+32)& (0+255),b
+  1407                           ;konfig.c: 397: }
+  1408        4text P   &   0C00               	retlw	0
+  1409        4text R   ®                      __end_of_SetPFN:
+  1410                           ;konfig.c: 401: void WriteEEPCW(void)
+  1411                           ;konfig.c: 402: {
+  1412        4text R   û                      _WriteEEPCW:
+  1413  000000                     
+  1414                           ;konfig.c: 403: eeprom_write(0x00CA,DtCW.PCW);
+  1415        4text R   (   0ECA               	movlw	202
+  1416        4text T           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1417        4text V      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1418        4text X      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1419        4text Z        ¿   ¸ _DtCW             ¸ ?_eeprom_write     1          	movff	_DtCW+3,?_eeprom_write+2
+  1420        4text ^      #  Ô   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 c          	goto	_eeprom_write	;wreg free
+  1421                           ;konfig.c: 404: }
+  1422        4text b   ¥                      __end_of_WriteEEPCW:
+  1423                           ;konfig.c: 405: unsigned char ReadEEPCW(void)
+  1424                           ;konfig.c: 406: {
+  1425        4text b   ö                      _ReadEEPCW:
+  1426  000000                     
+  1427                           ;konfig.c: 407: return eeprom_read(0x00CA);
+  1428        4text b   (   0ECA               	movlw	202
+  1429        4text d   Y   D013               	goto	L7
+  1430                           ;konfig.c: 408: }
+  1431        4text f   ´                      __end_of_ReadEEPCW:
+  1432                           ;konfig.c: 411: void WriteEEPCO(void)
+  1433                           ;konfig.c: 412: {
+  1434        4text f   N                      _WriteEEPCO:
+  1435  000000                     
+  1436        4text f   q                      L4:
+  1437                           ;konfig.c: 413: eeprom_write(0x00C9,DtCO.PCO);
+  1438        4text f   (   0EC9               	movlw	201
+  1439        4text h           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1440        4text j      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1441        4text l      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1442        4text n        ¿   ¸ _DtCO             ¸ ?_eeprom_write     1          	movff	_DtCO+3,?_eeprom_write+2
+  1443        4text r      #  Ô   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 c          	goto	_eeprom_write	;wreg free
+  1444                           ;konfig.c: 414: }
+  1445        4text v   ¥                      __end_of_WriteEEPCO:
+  1446                           ;konfig.c: 415: unsigned char ReadEEPCO(void)
+  1447                           ;konfig.c: 416: {
+  1448        4text v   ö                      _ReadEEPCO:
+  1449  000000                     
+  1450                           ;konfig.c: 417: return eeprom_read(0x00C9);
+  1451        4text v   (   0EC9               	movlw	201
+  1452        4text x   Y   D009               	goto	L7
+  1453                           ;konfig.c: 418: }
+  1454        4text z   ´                      __end_of_ReadEEPCO:
+  1455                           ;konfig.c: 421: void WriteEEPFN(void)
+  1456                           ;konfig.c: 422: {
+  1457        4text z   ù                      _WriteEEPFN:
+  1458  000000                     
+  1459                           ;konfig.c: 423: eeprom_write(0x00CB,PFN.poz);
+  1460        4text z   (   0ECB               	movlw	203
+  1461        4text |           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1462        4text ~      )  o   1 ˇ   __Lparam 
+ ?_eeprom_write  E                	movwf	?_eeprom_write^(__Lparam& (0+65280)),b
+  1463        4text Ä      /  k   1 ˇ   __Lparam 
+ ?_eeprom_write     H                	clrf	(?_eeprom_write+1)^(__Lparam& (0+65280)),b
+  1464        4text Ç        ¿   ¸ _PFN             ¸ ?_eeprom_write     1          	movff	_PFN+31,?_eeprom_write+2
+  1465        4text Ü      #  Ô   1ˇ       _eeprom_write 	
+         ¸	    _eeprom_write 	 c          	goto	_eeprom_write	;wreg free
+  1466                           ;konfig.c: 424: }
+  1467        4text ä   ¥                      __end_of_WriteEEPFN:
+  1468                           ;konfig.c: 425: unsigned char ReadEEPFN(void)
+  1469                           ;konfig.c: 426: {
+  1470        4text ä   ö                      _ReadEEPFN:
+  1471  000000                     
+  1472                           ;konfig.c: 427: return eeprom_read(0x00CB);
+  1473        4text ä   (   0ECB               	movlw	203
+  1474        4text å   !                      L7:
+  1475        4text å           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1476        4text é      (  o   1 ˇ   __Lparam 
+ ?_eeprom_read  D                	movwf	?_eeprom_read^(__Lparam& (0+65280)),b
+  1477        4text ê      .  k   1 ˇ   __Lparam 
+ ?_eeprom_read     G                	clrf	(?_eeprom_read+1)^(__Lparam& (0+65280)),b
+  1478        4text í      "  Ô   1ˇ       _eeprom_read 	
+         ¸	    _eeprom_read 	 b          	goto	_eeprom_read	;wreg free
+  1479                           ;konfig.c: 428: }
+  1480        4text ñ   ˝                     __end_of_ReadEEPFN:
+  1481  000000                     
+  1482  000000                     
+  1483  000000                     
+  1484  000000                     
+  1485  000000                     
+  1486  000000                     
+  1487  000000                     
+  1488  000000                     
+  1489  000000                     
+  1490  000000                     
+  1491  000000                     
+  1492  000000                     
+  1493  000000                     
+˝  1494  000000                     
+  1495  000000                     
+  1496  000000                     
+  1497  000000                     
+  1498  000000                     
+  1499  000000                     
+  1500  000000                     
+  1501  000000                     
+  1502  000000                     
+  1503  000000                     
+  1504  000000                     
+  1505  000000                     
+  1506  000000                     
+  1507  000000                     
+  150˝8  000000                     
+  1509  000000                     
+  1510  000000                     
+  1511  000000                     
+  1512  000000                     
+  1513  000000                     
+  1514  000000                     
+  1515  000000                     
+  1516  000000                     
+  1517  000000                     
+  1518  000000                     
+  1519  000000                     
+  1520  000000                     
+  1521  000000                     
+  1522  00˝0000                     
+  1523  000000                     
+  1524  000000                     
+  1525  000000                     
+  1526  000000                     
+  1527  000000                     
+  1528  000000                     
+  1529  000000                     
+  1530  000000                     
+  1531  000000                     
+  1532  000000                     
+  1533  000000                     
+  1534  000000                     
+  1535  000000                     
+  1536  000000 ˝                    
+  1537  000000                     
+  1538  000000                     
+  1539  000000                     
+  1540  000000                     
+  1541  000000                     
+  1542  000000                     
+  1543  000000                     
+  1544  000000                     
+  1545  000000                     
+  1546  000000                     
+  1547  000000                     
+  1548  000000                     
+  1549  000000                     
+  1550  000000      ˝               
+  1551  000000                     
+  1552  000000                     
+  1553  000000                     
+  1554  000000                     
+  1555  000000                     
+  1556  000000                     
+  1557  000000                     
+  1558  000000                     
+  1559  000000                     
+  1560  000000                     
+  1561  000000                     
+  1562  000000                     
+  1563  000000                     
+  1564  000000           ˝          
+  1565  000000                     
+  1566  000000                     
+  1567  000000                     
+  1568  000000                     
+  1569  000000                     
+  1570  000000                     
+  1571  000000                     
+  1572  000000                     
+  1573  000000                     
+  1574  000000                     
+  1575  000000                     
+  1576  000000                     
+  1577  000000                     
+  1578  000000                ˝     
+  1579  000000                     
+  1580  000000                     
+  1581  000000                     
+  1582  000000                     
+  1583  000000                     
+  1584  000000                     
+  1585  000000                     
+  1586  000000                     
+  1587  000000                     
+  1588  000000                     
+  1589  000000                     
+  1590  000000                     
+  1591  000000                     
+  1592  000000                     ˝
+  1593  000000                     
+  1594  000000                     
+  1595  000000                     
+  1596  000000                     
+  1597  000000                     
+  1598  000000                     
+  1599  000000                     
+  1600  000000                     
+  1601  000000                     
+  1602  000000                     
+  1603  000000                     
+  1604  000000                     
+  1605  000000                     
+  1606  000000                     
+  16˝07  000000                     
+  1608  000000                     
+  1609  000000                     
+  1610  000000                     
+  1611  000000                     
+  1612  000000                     
+  1613  000000                     
+  1614  000000                     
+  1615  000000                     
+  1616  000000                     
+  1617  000000                     
+  1618  000000                     
+  1619  000000                     
+  1620  000000                     
+  1621  0˝00000                     
+  1622  000000                     
+  1623  000000                     
+  1624  000000                     
+  1625  000000                     
+  1626  000000                     
+  1627  000000                     
+  1628  000000                     
+  1629  000000                     
+  1630  000000                     
+  1631  000000                     
+  1632  000000                     
+  1633  000000                     
+  1634  000000                     
+  1635  000000˝                     
+  1636  000000                     
+  1637  000000                     
+  1638  000000                     
+  1639  000000                     
+  1640  000000                     
+  1641  000000                     
+  1642  000000                     
+  1643  000000                     
+  1644  000000                     
+  1645  000000                     
+  1646  000000                     
+  1647  000000                     
+  1648  000000                     
+  1649  000000     ˝                
+  1650  000000                     
+  1651  000000                     
+  1652  000000                     
+  1653  000000                     
+  1654  000000                     
+  1655  000000                     
+  1656  000000                     
+  1657  000000                     
+  1658  000000                     
+  1659  000000                     
+  1660  000000                     
+  1661  000000                     
+  1662  000000                     
+  1663  000000          ˝           
+  1664  000000                     
+  1665  000000                     
+  1666  000000                     
+  1667  000000                     
+  1668  000000                     
+  1669  000000                     
+  1670  000000                     
+  1671  000000                     
+  1672  000000                     
+  1673  000000                     
+  1674  000000                     
+  1675  000000                     
+  1676  000000                     
+  1677  000000               ˝      
+  1678  000000                     
+  1679  000000                     
+  1680  000000                     
+  1681  000000                     
+  1682  000000                     
+  1683  000000                     
+  1684  000000                     
+  1685  000000                     
+  1686  000000                     
+  1687  000000                     
+  1688  000000                     
+  1689  000000                     
+  1690  000000                     
+  1691  000000                    ˝ 
+  1692  000000                     
+  1693  000000                     
+  1694  000000                     
+  1695  000000                     
+  1696  000000                     
+  1697  000000                     
+  1698  000000                     
+  1699  000000                     
+  1700  000000                     
+  1701  000000                     
+  1702  000000                     
+  1703  000000                     
+  1704  000000                     
+  1705  000000                     
+  1˝706  000000                     
+  1707  000000                     
+  1708  000000                     
+  1709  000000                     
+  1710  000000                     
+  1711  000000                     
+  1712  000000                     
+  1713  000000                     
+  1714  000000                     
+  1715  000000                     
+  1716  000000                     
+  1717  000000                     
+  1718  000000                     
+  1719  000000                     
+  1720  ˝000000                     
+  1721  000000                     
+  1722  000000                     
+  1723  000000                     
+  1724  000000                     
+  1725  000000                     
+  1726  000000                     
+  1727  000000                     
+  1728  000000                     
+  1729  000000                     
+  1730  000000                     
+  1731  000000                     
+  1732  000000                     
+  1733  000000                     
+  1734  00000˝0                     
+  1735  000000                     
+  1736  000000                     
+  1737  000000                     
+  1738  000000                     
+  1739  000000                     
+  1740  000000                     
+  1741  000000                     
+  1742  000000                     
+  1743  000000                     
+  1744  000000                     
+  1745  000000                     
+  1746  000000                     
+  1747  000000                     
+  1748  000000    ˝                 
+  1749  000000                     
+  1750  000000                     
+  1751  000000                     
+  1752  000000                     
+  1753  000000                     
+  1754  000000                     
+  1755  000000                     
+  1756  000000                     
+  1757  000000                     
+  1758  000000                     
+  1759  000000                     
+  1760  000000                     
+  1761  000000                     
+  1762  000000         ˝            
+  1763  000000                     
+  1764  000000                     
+  1765  000000                     
+  1766  000000                     
+  1767  000000                     
+  1768  000000                     
+  1769  000000                     
+  1770  000000                     
+  1771  000000                     
+  1772  000000                     
+  1773  000000                     
+  1774  000000                     
+  1775  000000                     
+  1776  000000              ˝       
+  1777  000000                     
+  1778  000000                     
+  1779  000000                     
+  1780  000000                     
+  1781  000000                     
+  1782  000000                     
+  1783  000000                     
+  1784  000000                     
+  1785  000000                     
+  1786  000000                     
+  1787  000000                     
+  1788  000000                     
+  1789  000000                     
+  1790  000000                   ˝  
+  1791  000000                     
+  1792  000000                     
+  1793  000000                     
+  1794  000000                     
+  1795  000000                     
+  1796  000000                     
+  1797  000000                     
+  1798  000000                     
+  1799  000000                     
+  1800  000000                     
+  1801  000000                     
+  1802  000000                     
+  1803  000000                     
+  1804  000000                     
+  ˝1805  000000                     
+  1806  000000                     
+  1807  000000                     
+  1808  000000                     
+  1809  000000                     
+  1810  000000                     
+  1811  000000                     
+  1812  000000                     
+  1813  000000                     
+  1814  000000                     
+  1815  000000                     
+  1816  000000                     
+  1817  000000                     
+  1818  000000                     
+  1819 ˝ 000000                     
+  1820  000000                     
+  1821  000000                     
+  1822  000000                     
+  1823  000000                     
+  1824  000000                     
+  1825  000000                     
+  1826  000000                     
+  1827  000000                     
+  1828  000000                     
+  1829  000000                     
+  1830  000000                     
+  1831  000000                     
+  1832  000000                     
+  1833  0000˝00                     
+  1834  000000                     
+  1835  000000                     
+  1836  000000                     
+  1837  000000                     
+  1838  000000                     
+  1839  000000                     
+  1840  000000                     
+  1841  000000                     
+  1842  000000                     
+  1843  000000                     
+  1844  000000                     
+  1845  000000                     
+  1846  000000                     
+  1847  000000   ˝                  
+  1848  000000                     
+  1849  000000                     
+  1850  000000                     
+  1851  000000                     
+  1852  000000                     
+  1853  000000                     
+  1854  000000                     
+  1855  000000                     
+  1856  000000                     
+  1857  000000                     
+  1858  000000                     
+  1859  000000                     
+  1860  000000                     
+  1861  000000        ˝             
+  1862  000000                     
+  1863  000000                     
+  1864  000000                     
+  1865  000000                     
+  1866  000000                     
+  1867  000000                     
+  1868  000000                     
+  1869  000000                     
+  1870  000000                     
+  1871  000000                     
+  1872  000000                     
+  1873  000000                     
+  1874  000000                     
+  1875  000000             ˝        
+  1876  000000                     
+  1877  000000                     
+  1878  000000                     
+  1879  000000                     
+  1880  000000                     
+  1881  000000                     
+  1882  000000                     
+  1883  000000                     
+  1884  000000                     
+  1885  000000                     
+  1886  000000                     
+  1887  000000                     
+  1888  000000                     
+  1889  000000                  ˝   
+  1890  000000                     
+  1891  000000                     
+  1892  000000                     
+  1893  000000                     
+  1894  000000                     
+  1895  000000                     
+  1896  000000                     
+  1897  000000                     
+  1898  000000                     
+  1899  000000                     
+  1900  000000                     
+  1901  000000                     
+  1902  000000                     
+  1903  000000                     
+ ˝ 1904  000000                     
+  1905  000000                     
+  1906  000000                     
+  1907  000000                     
+  1908  000000                     
+  1909  000000                     
+  1910  000000                     
+  1911  000000                     
+  1912  000000                     
+  1913  000000                     
+  1914  000000                     
+  1915  000000                     
+  1916  000000                     
+  1917                           
+  1918  ˝                         	psect	eeprom_data
+  1919                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+  1920                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+  1921                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+  1922                           ;pic18f45k20.h: 23: stat˝ic volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+  1923                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+  1924                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+  1925                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+  1926           ˝                ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+  1927                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+  1928                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+  1929                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                    ˝      d char TBLPTRL @ 0xFF6;
+  1930                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+  1931                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+  1932                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+  1933                           ;pic18f45k20.h: 34: static volatil˝e near unsigne
+      +                          d char INTCON @ 0xFF2;
+  1934                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+  1935                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+  1936                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+  1937                          ˝ ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+  1938                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+  1939                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+  1940                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char ˝PLUSW0 @ 0xFEB;
+  1941                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+  1942                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+  1943                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+  1944                           ;pic18f45k20.h: 45: static volatile near unsigne
+ ˝     +                          d char INDF1 @ 0xFE7;
+  1945                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+  1946                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+  1947                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+  1948                           ;pi˝c18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+  1949                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+  1950                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+  1951                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+  1952 ˝                          ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+  1953                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+  1954                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+  1955                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +          ˝                d char PREINC2 @ 0xFDC;
+  1956                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+  1957                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+  1958                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+  1959                           ;pic18f45k20.h: 60: stat˝ic volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+  1960                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+  1961                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+  1962                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+  1963             ˝              ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+  1964                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+  1965                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+  1966                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char W˝DTCON @ 0xFD1;
+  1967                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+  1968                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+  1969                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+  1970                           ;pic18f45k20.h: 73: static volatile near unsigne
+  ˝    +                          d int TMR1 @ 0xFCE;
+  1971                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+  1972                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+  1973                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+  1974                           ;pic18f45k20.h: 77: static near uns˝igned char T2
+      +                          CON @ 0xFCA;
+  1975                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+  1976                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+  1977                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+  1978                           ;pic18f45k˝20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+  1979                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+  1980                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+  1981                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3˝;
+  1982                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+  1983                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+  1984                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+  1985                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +               ˝           CON2 @ 0xFC0;
+  1986                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+  1987                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+  1988                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+  1989                           ;pic18f45k20.h: 94: static volatile nea˝r unsigne
+      +                          d char CCP1CON @ 0xFBD;
+  1990                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+  1991                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+  1992                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+  1993                        ˝   ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+  1994                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+  1995                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+  1996                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CO˝N @ 0xFB7;
+  1997                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+  1998                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+  1999                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+  2000                           ;pic18f45k20.h: 106: static volatile near unsi˝gn
+      +                          ed char TMR3H @ 0xFB3;
+  2001                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+  2002                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+  2003                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+  2004                           ;pic18f45k20.h˝: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+  2005                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+  2006                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+  2007                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+  2008                       ˝    ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+  2009                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+  2010                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+  2011                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char˝ TXSTA @ 0xFAC;
+  2012                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+  2013                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+  2014                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+  2015                           ;pic18f45k20.h: 128: static near unsigned ch‘ar E
+      +                          EADRH @ 0xFAA;
+  2016                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+  2017                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+  2018                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+  2019        4eeprom_data  O  63 63 62 62 61 60  	db	99,99,98,98,97,96,95,95	;#
+      +       5F 5F              
+  2020                           ;eeprom.h: 156: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "94" "," "93" "," "92" ","
+      +                           "92" "," "91" "," "90" "," "90" "," "89");
+  2021        4eeprom_data     O  5E 5D 5C 5C 5B 5A  	db	94,93,92,92,91,90,90,89	;#
+      +       5A 59              
+  2022                           ;eeprom.h: 157: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "88" "," "88" "," "87" ","
+      +                           "87" "," "86" "," "85" "," "85" "," "84");
+  2023        4eeprom_data     O  58 58 57 57 56 55  	db	88,88,87,87,86,85,85,84	;#
+      +       55 54              
+  2024                           ;eeprom.h: 158: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "84" "," "83" "," "82" ","
+      +                           "82" "," "81" "," "81" "," "80" "," "80");
+  2025        4eeprom_data     O  54 53 52 52 51 51  	db	84,83,82,82,81,81,80,80	;#
+      +       50 50              
+  2026                           ;eeprom.h: 159: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "79" "," "79" "," "78" ","
+      +                           "77" "," "77" "," "76" "," "76" "," "75");
+  2027        4eeprom_data      O  4F 4F 4E 4D 4D 4C  	db	79,79,78,77,77,76,76,75	;#
+      +       4C 4B              
+  2028                           ;eeprom.h: 160: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "75" "," "74" "," "74" ","
+      +                           "73" "," "73" "," "72" "," "72" "," "71");
+  2029        4eeprom_data (    O  4B 4A 4A 49 49 48  	db	75,74,74,73,73,72,72,71	;#
+      +       48 47              
+  2030                           ;eeprom.h: 161: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "71" "," "70" "," "70" ","
+      +                           "70" "," "69" "," "69" "," "68" "," "68");
+  2031        4eeprom_data 0    O  47 46 46 46 45 45  	db	71,70,70,70,69,69,68,68	;#
+      +       44 44              
+  2032                           ;eeprom.h: 162: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "67" "," "67" "," "66" ","
+      +                           "66" "," "65" "," "65" "," "64" "," "64");
+  2033        4eeprom_data 8    O  43 43 42 42 41 41  	db	67,67,66,66,65,65,64,64	;#
+      +       40 40              
+  2034                           ;eeprom.h: 163: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "64" "," "63" "," "63" ","
+      +                           "62" "," "62" "," "61" "," "61" "," "61");
+  2035        4eeprom_data @    O  40 3F 3F 3E 3E 3D  	db	64,63,63,62,62,61,61,61	;#
+      +       3D 3D              
+  2036                           ;eeprom.h: 164: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "60" "," "60" "," "59" ","
+      +                           "59" "," "58" "," "58" "," "57" "," "57");
+  2037        4eeprom_data H    O  3C 3C 3B 3B 3A 3A  	db	60,60,59,59,58,58,57,57	;#
+      +       39 39              
+  2038                           ;eeprom.h: 165: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "57" "," "56" "," "56" ","
+      +                           "55" "," "55" "," "54" "," "54" "," "54");
+  2039        4eeprom_data P    O  39 38 38 37 37 36  	db	57,56,56,55,55,54,54,54	;#
+      +       36 36              
+  2040                           ;eeprom.h: 166: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "53" "," "53" "," "52" ","
+      +                           "52" "," "52" "," "51" "," "51" "," "50");
+  2041        4eeprom_data X    O  35 35 34 34 34 33  	db	53,53,52,52,52,51,51,50	;#
+      +       33 32              
+  2042                           ;eeprom.h: 167: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "50" "," "49" "," "49" ","
+      +                           "49" "," "48" "," "48" "," "47" "," "47");
+  2043        4eeprom_data `    O  32 31 31 31 30 30  	db	50,49,49,49,48,48,47,47	;#
+      +       2F 2F              
+  2044                           ;eeprom.h: 168: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "46" "," "46" "," "46" ","
+      +                           "45" "," "45" "," "44" "," "44" "," "44");
+  2045        4eeprom_data h    O  2E 2E 2E 2D 2D 2C  	db	46,46,46,45,45,44,44,44	;#
+      +       2C 2C              
+  2046                           ;eeprom.h: 169: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "43" "," "43" "," "42" ","
+      +                           "42" "," "41" "," "41" "," "41" "," "40");
+  2047        4eeprom_data p    O  2B 2B 2A 2A 29 29  	db	43,43,42,42,41,41,41,40	;#
+      +       29 28              
+  2048                           ;eeprom.h: 170: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "40" "," "39" "," "39" ","
+      +                           "38" "," "38" "," "37" "," "37" "," "37");
+  2049        4eeprom_data x    O  28 27 27 26 26 25  	db	40,39,39,38,38,37,37,37	;#
+      +       25 25              
+  2050                           ;eeprom.h: 171: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "36" "," "36" "," "35" ","
+      +                           "35" "," "34" "," "34" "," "33" "," "33");
+  2051        4eeprom_data Ä    O  24 24 23 23 22 22  	db	36,36,35,35,34,34,33,33	;#
+      +       21 21              
+  2052                           ;eeprom.h: 172: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "32" "," "32" "," "31" ","
+      +                           "31" "," "30" "," "30" "," "29" "," "29");
+  2053        4eeprom_data à    O  20 20 1F 1F 1E 1E  	db	32,32,31,31,30,30,29,29	;#
+      +       1D 1D              
+  2054                           ;eeprom.h: 173: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "28" "," "28" "," "27" ","
+      +                           "27" "," "26" "," "26" "," "25" "," "24");
+  2055        4eeprom_data ê    O  1C 1C 1B 1B 1A 1A  	db	28,28,27,27,26,26,25,24	;#
+      +       19 18              
+  2056                           ;eeprom.h: 174: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "24" "," "23" "," "23" ","
+      +                           "22" "," "22" "," "21" "," "21" "," "20");
+  2057        4eeprom_data ò    O  18 17 17 16 16 15  	db	24,23,23,22,22,21,21,20	;#
+      +       15 14              
+  2058                           ;eeprom.h: 175: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "19" "," "19" "," "18" ","
+      +                           "17" "," "17" "," "16" "," "16" "," "15");
+  2059        4eeprom_data †    O  13 13 12 11 11 10  	db	19,19,18,17,17,16,16,15	;#
+      +       10 0F              
+  2060                           ;eeprom.h: 176: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "14" "," "14" "," "13" ","
+      +                           "12" "," "11" "," "11" "," "10" "," "09");
+  2061        4eeprom_data ®    N  0E 0E 0D 0C 0B 0B  	db	14,14,13,12,11,11,10,9	;#
+      +       0A 09              
+  2062                           ;eeprom.h: 177: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "08" "," "07" "," "06" ","
+      +                           "06" "," "05" "," "04" "," "03" "," "02");
+  2063        4eeprom_data ∞    G  08 07 06 06 05 04  	db	8,7,6,6,5,4,3,2	;#
+      +       03 02              
+  2064                           ;eeprom.h: 178: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "01" "," "00" "," "00" ","
+      +                           "00" "," "00" "," "00" "," "00" "," "00");
+  2065        4eeprom_data ∏    B  01 00 00 00 00 00  	db	1,0,0,0,0,0,0,0	;#
+      +       00 00              
+  2066                           ;eeprom.h: 208: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "0" "," "40" "," "99" "," 
+      +                          "99" "," "0" "," "3" "," "0" "," "0");
+  2067        4eeprom_data ¿    F  00 28 63 63 00 03  	db	0,40,99,99,0,3,0,0	;#
+      +       00 00              
+  2068                           ;eeprom.h: 209: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "1" "," "85" "," "60" "," 
+      +                          "3" "," "0" "," "0" "," "00" "," "00");
+  2069        4eeprom_data »    C  01 55 3C 03 00 00  	db	1,85,60,3,0,0,0,0	;#
+      +       00 00              
+  2070                           ;eeprom.h: 211: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "0" "," "20" "," "15" "," 
+      +                          "0" "," "5" "," "0" "," "0" "," "0");
+  2071        4eeprom_data –    A  00 14 0F 00 05 00  	db	0,20,15,0,5,0,0,0	;#
+      +       00 00              
+  2072                           ;eeprom.h: 212: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "0" "," "0" "," "0" "," "0
+      +                          " "," "0" "," "0" "," "0" "," "0");
+  2073        4eeprom_data ÿ    G  00 00 00 00 00 00  	db	0,0,0,0,0,0,0,0	;#
+      +       00 00              
+  2074                           ;eeprom.h: 217: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "40" "," "40" "," "39" ","
+      +                           "38" "," "38" "," "37" "," "36" "," "36");
+  2075        4eeprom_data ‡    O  28 28 27 26 26 25  	db	40,40,39,38,38,37,36,36	;#
+      +       24 24              
+  2076                           ;eeprom.h: 218: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "35" "," "34" "," "34" ","
+      +                           "33" "," "33" "," "32" "," "32" "," "31");
+  2077        4eeprom_data Ë    O  23 22 22 21 21 20  	db	35,34,34,33,33,32,32,31	;#
+      +       20 1F              
+  2078                           ;eeprom.h: 219: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "31" "," "30" "," "30" ","
+      +                           "29" "," "29" "," "28" "," "28" "," "27");
+  2079        4eeprom_data     O  1F 1E 1E 1D 1D 1C  	db	31,30,30,29,29,28,28,27	;#
+      +       1C 1B              
+  2080                           ;eeprom.h: 220: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "27" "," "26" "," "26" ","
+      +                           "25" "," "25" "," "24" "," "24" "," "23");
+  2081        4eeprom_data ¯    O  1B 1A 1A 19 19 18  	db	27,26,26,25,25,24,24,23	;#
+      +       18 17              
+  2082                           ;eeprom.h: 221: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "23" "," "22" "," "22" ","
+      +                           "22" "," "21" "," "21" "," "20" "," "20");
+  2083        4eeprom_data     O  17 16 16 16 15 15  	db	23,22,22,22,21,21,20,20	;#
+      +       14 14              
+  2084                           ;eeprom.h: 222: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "20" "," "19" "," "19" ","
+      +                           "18" "," "18" "," "18" "," "17" "," "17");
+  2085        4eeprom_data    O  14 13 13 12 12 12  	db	20,19,19,18,18,18,17,17	;#
+      +       11 11              
+  2086                           ;eeprom.h: 223: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "17" "," "16" "," "16" ","
+      +                           "15" "," "15" "," "15" "," "14" "," "14");
+  2087        4eeprom_data    O  11 10 10 0F 0F 0F  	db	17,16,16,15,15,15,14,14	;#
+      +       0E 0E              
+  2088                           ;eeprom.h: 224: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "14" "," "13" "," "13" ","
+      +                           "13" "," "12" "," "12" "," "12" "," "11");
+  2089        4eeprom_data    L  0E 0D 0D 0D 0C 0C  	db	14,13,13,13,12,12,12,11	;#
+      +       0C 0B              
+  2090                           ;eeprom.h: 225: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "11" "," "11" "," "10" ","
+      +                           "10" "," "10" "," "9" "," "9" "," "9");
+  2091        4eeprom_data     D  0B 0B 0A 0A 0A 09  	db	11,11,10,10,10,9,9,9	;#
+      +       09 09              
+  2092                           ;eeprom.h: 226: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "8" "," "8" "," "8" "," "7
+      +                          " "," "7" "," "7" "," "6" "," "6");
+  2093        4eeprom_data (   ?  08 08 08 07 07 07  	db	8,8,8,7,7,7,6,6	;#
+      +       06 06              
+  2094                           ;eeprom.h: 227: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "6" "," "5" "," "5" "," "5
+      +                          " "," "4" "," "4" "," "4" "," "3");
+  2095        4eeprom_data 0   ?  06 05 05 05 04 04  	db	6,5,5,5,4,4,4,3	;#
+      +       04 03              
+  2096                           ;eeprom.h: 228: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "3" "," "3" "," "2" "," "2
+      +                          " "," "2" "," "1" "," "1" "," "1");
+  2097        4eeprom_data 8   C  03 03 02 02 02 01  	db	3,3,2,2,2,1,1,1	;#
+      +       01 01              
+  2098                           ;eeprom.h: 229: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "1" "," "0" "," "0" "," "0
+      +                          " "," "-1" "," "-1" "," "-1" "," "-2");
+  2099        4eeprom_data @   K  01 00 00 00 FF FF  	db	1,0,0,0,-1,-1,-1,-2	;#
+      +       FF FE              
+  2100                           ;eeprom.h: 230: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-2" "," "-2" "," "-2" ","
+      +                           "-3" "," "-3" "," "-3" "," "-4" "," "-4");
+  2101        4eeprom_data H   O  FE FE FE FD FD FD  	db	-2,-2,-2,-3,-3,-3,-4,-4	;#
+      +       FC FC              
+  2102                           ;eeprom.h: 231: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-4" "," "-5" "," "-5" ","
+      +                           "-5" "," "-6" "," "-6" "," "-6" "," "-7");
+  2103        4eeprom_data P   O  FC FB FB FB FA FA  	db	-4,-5,-5,-5,-6,-6,-6,-7	;#
+      +       FA F9              
+  2104                           ;eeprom.h: 232: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-7" "," "-7" "," "-8" ","
+      +                           "-8" "," "-8" "," "-9" "," "-9" "," "-9");
+  2105        4eeprom_data X   x  F9 F9 F8 F8 F8 F7  	db	-7,-7,-8,-8,-8,-9,-9,-9	;#
+      +       F7 F7              
+  2106                           ;eeprom.h: 233: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-9" "," "-10" "," "-10" "
+      +                          ," "-10" "," "-11" "," "-11" "," "-11" "," "-12"
+      +                          );
+  2107        4eeprom_data `   Ä  F7 F6 F6 F6 F5 F5  	db	-9,-10,-10,-10,-11,-11,-11,-12	;#
+      +       F5 F4              
+  2108                           ;eeprom.h: 234: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-12" "," "-13" "," "-13" 
+      +                          "," "-13" "," "-13" "," "-14" "," "-14" "," "-14
+      +                          ");
+  2109        4eeprom_data h   Å  F4 F3 F3 F3 F3 F2  	db	-12,-13,-13,-13,-13,-14,-14,-14	;#
+      +       F2 F2              
+  2110                           ;eeprom.h: 235: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-15" "," "-15" "," "-16" 
+      +                          "," "-16" "," "-16" "," "-17" "," "-17" "," "-17
+      +                          ");
+  2111        4eeprom_data p   Å  F1 F1 F0 F0 F0 EF  	db	-15,-15,-16,-16,-16,-17,-17,-17	;#
+      +       EF EF              
+  2112                           ;eeprom.h: 236: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-18" "," "-18" "," "-18" 
+      +                          "," "-19" "," "-19" "," "-20" "," "-20" "," "-20
+      +                          ");
+  2113        4eeprom_data x   Å  EE EE EE ED ED EC  	db	-18,-18,-18,-19,-19,-20,-20,-20	;#
+      +       EC EC              
+  2114                           ;eeprom.h: 237: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-21" "," "-21" "," "-22" 
+      +                          "," "-22" "," "-22" "," "-23" "," "-23" "," "-24
+      +                          ");
+  2115        4eeprom_data Ä   Å  EB EB EA EA EA E9  	db	-21,-21,-22,-22,-22,-23,-23,-24	;#
+      +       E9 E8              
+  2116                           ;eeprom.h: 238: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-24" "," "-25" "," "-25" 
+      +                          "," "-25" "," "-26" "," "-26" "," "-27" "," "-27
+      +                          ");
+  2117        4eeprom_data à   Å  E8 E7 E7 E7 E6 E6  	db	-24,-25,-25,-25,-26,-26,-27,-27	;#
+      +       E5 E5              
+  2118                           ;eeprom.h: 239: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-28" "," "-28" "," "-29" 
+      +                          "," "-29" "," "-30" "," "-30" "," "-31" "," "-31
+      +                          ");
+  2119        4eeprom_data ê   Å  E4 E4 E3 E3 E2 E2  	db	-28,-28,-29,-29,-30,-30,-31,-31	;#
+      +       E1 E1              
+  2120                           ;eeprom.h: 240: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-32" "," "-33" "," "-33" 
+      +                          "," "-34" "," "-35" "," "-35" "," "-36" "," "-37
+      +                          ");
+  2121        4eeprom_data ò   Å  E0 DF DF DE DD DD  	db	-32,-33,-33,-34,-35,-35,-36,-37	;#
+      +       DC DB              
+  2122                           ;eeprom.h: 241: asm("\tpsect eeprom_data,class=E
+      +                          EDATA"); asm("\tdb\t" "-37" "," "-38" "," "-39" 
+      +                          "," "-40" "," "-40" "," "-40" "," "-40" "," "-40
+      +                          ");
+  2123        4eeprom_data †   ∑   DB DA D9 D8 D8 D8  	db	-37,-38,-39,-40,-40,-40,-40,-40	;#
+      +       D8 D8              
+  2124                           
+  2125                           	psect	bigbss
+  2126        4bigbss                        F1617:
+   2127        4bigbss  #                      	ds	1
+  2128        4bigbss                        F1618:
+   2129        4bigbss  ˝                     	ds	1
+  2130  000000                     
+  2131  000000                     
+  2132  000000                     
+  2133  000000                     
+  2134  000000                     
+  2135  000000                     
+  2136  000000                     
+  2137  000000                     
+  2138  000000                     
+  2139  000000                     
+  2140  000000                     
+  2141  000000                     
+  2142  000000                     
+  2143  000000˝                     
+  2144  000000                     
+  2145  000000                     
+  2146  000000                     
+  2147  000000                     
+  2148  000000                     
+  2149  000000                     
+  2150  000000                     
+  2151  000000                     
+  2152  000000                     
+  2153  000000                     
+  2154  000000                     
+  2155  000000                     
+  2156  000000                     
+  2157  000000     ˝                
+  2158  000000                     
+  2159  000000                     
+  2160  000000                     
+  2161  000000                     
+  2162  000000                     
+  2163  000000                     
+  2164  000000                     
+  2165  000000                     
+  2166  000000                     
+  2167  000000                     
+  2168  000000                     
+  2169  000000                     
+  2170  000000                     
+  2171  000000          ˝           
+  2172  000000                     
+  2173  000000                     
+  2174  000000                     
+  2175  000000                     
+  2176  000000                     
+  2177  000000                     
+  2178  000000                     
+  2179  000000                     
+  2180  000000                     
+  2181  000000                     
+  2182  000000                     
+  2183  000000                     
+  2184  000000                     
+  2185  000000               ˝      
+  2186  000000                     
+  2187  000000                     
+  2188  000000                     
+  2189  000000                     
+  2190  000000                     
+  2191  000000                     
+  2192  000000                     
+  2193  000000                     
+  2194  000000                     
+  2195  000000                     
+  2196  000000                     
+  2197  000000                     
+  2198  000000                     
+  2199  000000                    ˝ 
+  2200  000000                     
+  2201  000000                     
+  2202  000000                     
+  2203  000000                     
+  2204  000000                     
+  2205  000000                     
+  2206  000000                     
+  2207  000000                     
+  2208  000000                     
+  2209  000000                     
+  2210  000000                     
+  2211  000000                     
+  2212  000000                     
+  2213  000000                     
+  2˝214  000000                     
+  2215  000000                     
+  2216  000000                     
+  2217  000000                     
+  2218  000000                     
+  2219  000000                     
+  2220  000000                     
+  2221  000000                     
+  2222  000000                     
+  2223  000000                     
+  2224  000000                     
+  2225  000000                     
+  2226  000000                     
+  2227  000000                     
+  2228  ˝000000                     
+  2229  000000                     
+  2230  000000                     
+  2231  000000                     
+  2232  000000                     
+  2233  000000                     
+  2234  000000                     
+  2235  000000                     
+  2236  000000                     
+  2237  000000                     
+  2238  000000                     
+  2239  000000                     
+  2240  000000                     
+  2241  000000                     
+  2242  00000˝0                     
+  2243  000000                     
+  2244  000000                     
+  2245  000000                     
+  2246  000000                     
+  2247  000000                     
+  2248  000000                     
+  2249  000000                     
+  2250  000000                     
+  2251  000000                     
+  2252  000000                     
+  2253  000000                     
+  2254  000000                     
+  2255  000000                     
+  2256  000000                     
+  2257  000000                     
+  2258  000000                     
+  2259  000000                     
+  2260  000000                     
+  2261  000000                     
+  2262                           
+  2263                           	psect	bss
+  2264        4bss                        _MGSD:
+   2265        4bss  #                      	ds	5
+  2266        4bss                        _DtKNF:
+   2267        4bss  $                      	ds	18
+  2268        4bss                        _RSDT1:
+   2269        4bss  s                      	ds	65
+  2270                           
+  2271                           	psect	temp
+  2272        4temp                        btemp:
+   2273        4temp  L                     	ds	4
+  2274                           indf0	equ	0xFEF
+  2275                           wreg	equ	0xFE8
+  2276                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Wed Mar 20 08:54:40 2013
+
+                      _M       4 _M                    _PomiarZW       4 _PomiarZW     
+__end_of_SetDefaultValue       4text Ù                           l31       4text       
+                     l32       4text Ü                            l33       4text é       
+                     l50       4text ¬                           l26       4text B       
+                     l43       4text ‚                            l27       4text f       
+                     l60       4text ú                           l52       4text       
+                     l44       4text                            l36       4text ˆ       
+                     l37       4text †                            l29       4text z       
+                     l62       4text ä                           l54       4text f      
+                     l38       4text ¥                            l71       4text ˛      
+                     l63       4text ‹                           l39       4text –       
+                     l80       4text ∞                           l56       4text ƒ      
+                     l81       4text æ                           l73       4text N      
+                     l65       4text                            l49       4text V      
+                     l90       4text ò                           l58       4text       
+                     l91       4text †                           l67       4text \      
+                     l92       4text ®                           l84       4text F      
+                     l76       4text ~                           l93       4text ∞      
+                     l77       4text t                           l69       4text Æ      
+                     l96       4text Í                           l88       4text ∏      
+                     l97       4text –                           l89       4text ê      
+                     l98       4text ‘                           u50       4text >       
+                     u81       4text P                      _StartRTG       4 _StartRTG     
+               _StartRTS       4 _StartRTS                _SetTpKtParam       4text é      
+                    l100       4text                           l102       4text $      
+                    u100       4text V                           u211       4text Ç      
+                    u400       4text 6                          u320       4text ‰      
+                    u240       4text í                          u600       4text :      
+                    u505       4text ¶                          u425       4text T      
+                    u345       4text                           u265       4text ∞      
+                    _PFN       4 _PFN                         u530       4text ‘      
+                    u451       4text x                          u371       4text &      
+                    u291       4text ‘                          u800       4text ,      
+                    u720       4text ¨                          u480       4text à      
+                    u625       4text X                          u545       4text Ú      
+                    u651       4text n                          u571       4text *      
+                    u815       4text J                          u735       4text        
+                    u760       4text Ï                          u680       4text ~      
+                    u921       4text æ                          u841       4text n      
+                    u950       4text Œ                          u870       4text ~      
+                    u775       4text 
+                          u975       4text Ï      
+                    u895       4text ú                          _RTS       4 _RTS     
+   __end_of_SetTpKtParam       4text Œ   =                       wreg 000FE8  
+          ?_eeprom_write       4 ?_eeprom_write                        F1617       4bigbss     
+                   F1618       4bigbss                           u1001       4text       
+                   u1030       4text                          u1105       4text ‹      
+                   u1140       4text 4                         u1055       4text <      
+                   _MGSD       4bss                        _DtCO       4 _DtCO     
+                   _DtCW       4 _DtCW                        _DtIN       4 _DtIN     
+                   _DtZW       4 _DtZW  =                      indf0 000FEF  
+                   btemp       4temp                     ?_SetPrt       4 ?_SetPrt     
+             _WriteEEPCO       4text f                   _WriteEEPFN       4text z      
+             _WriteEEPCW       4text R           __end_of_WriteEEPCO       4text v      
+     __end_of_WriteEEPFN       4text ä           __end_of_WriteEEPCW       4text b      
+                  _RSDT1       4bss                          _DtKNF       4bss        
+                  _RdPrt       4 _RdPrt                  used_btemp0       4 used_btemp0     
+             used_btemp1       4 used_btemp1                  used_btemp2       4 used_btemp2     
+             used_btemp3       4 used_btemp3                 _eeprom_read       4 _eeprom_read     
+                _GetBit2       4 _GetBit2  =                     status 000FD8  
+               ?_GetBit2       4 ?_GetBit2                     __Lparam       4 __Lparam     
+           ?_eeprom_read       4 ?_eeprom_read                     __ramtop       4 __ramtop     
+         __end_of_EnKonf       4text 
+                __end_of_SetPFN       4text R      
+         __end_of_SetNST       4text ‚              _SetDefaultValue       4text Œ      
+                 _EnKonf       4text                      _SetPFN       4text Ù      
+                 _SetNST       4text X                    _RdEEParam       4text ‚      
+                 _SetPrt       4 _SetPrt           __end_of_RdEEParam       4text é      
+           _eeprom_write       4 _eeprom_write                   _ReadEEPCO       4text v      
+              _ReadEEPFN       4text ä                    _ReadEEPCW       4text b      
+      __end_of_ReadEEPCO       4text z            __end_of_ReadEEPFN       4text ñ      
+      __end_of_ReadEEPCW       4text f                _MKonfiguracja       4text 
+       
+              _MocMaksCO       4 _MocMaksCO                   _MocMaksCW       4 _MocMaksCW     
+              _RefKnfPar       4text *            __end_of_RefKnfPar       4text h      
+               _ModParam       4 _ModParam                    _MocStart       4 _MocStart     
+              ?_ModParam       4 ?_ModParam       __end_of_MKonfiguracja       4text *      
+             _SaveKnfPar       4text h           __end_of_SaveKnfPar       4text X      
+   

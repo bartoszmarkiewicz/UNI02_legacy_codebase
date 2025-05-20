@@ -1,0 +1,2774 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Fri Nov 21 09:58:05 2014
+
+
+     1                           	processor	18F65J90
+     2                           	opt	pw 80
+     3                           	psect	data,global,class=RAM,space=1,delta=1
+     4                           	psect	idata,global,class=CODE,delta=1
+     5                           	psect	text,global,reloc=2,class=CODE,delta=1
+     6                           	psect	const,global,class=CODE,delta=1
+     7                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     8                           	psect	bss,global,class=RAM,space=1,delta=1
+     9                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+    10                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98  000000                     
+    99  000000                     
+   100                           
+   101                           	psect	data
+   102                           ;pic18f85j90.h: 18: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   103                           ;pic18f85j90.h: 19: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   104                           ;pic18f85j90.h: 20: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   105                           ;pic18f85j90.h: 21: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   106                           ;pic18f85j90.h: 22: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   107                           ;pic18f85j90.h: 23: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   108                           ;pic18f85j90.h: 24: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   109                           ;pic18f85j90.h: 25: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   110                           ;pic18f85j90.h: 26: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   111                           ;pic18f85j90.h: 27: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   112                           ;pic18f85j90.h: 28: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   113                           ;pic18f85j90.h: 29: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   114                           ;pic18f85j90.h: 30: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   115                           ;pic18f85j90.h: 31: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   116                           ;pic18f85j90.h: 32: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   117                           ;pic18f85j90.h: 33: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   118                           ;pic18f85j90.h: 34: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   119                           ;pic18f85j90.h: 35: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   120                           ;pic18f85j90.h: 36: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   121                           ;pic18f85j90.h: 37: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   122                           ;pic18f85j90.h: 38: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   123                           ;pic18f85j90.h: 39: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   124                           ;pic18f85j90.h: 40: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   125                           ;pic18f85j90.h: 41: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   126                           ;pic18f85j90.h: 42: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   127                           ;pic18f85j90.h: 43: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   128                           ;pic18f85j90.h: 44: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   129                           ;pic18f85j90.h: 45: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   130                           ;pic18f85j90.h: 46: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   131                           ;pic18f85j90.h: 47: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   132                           ;pic18f85j90.h: 48: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   133                           ;pic18f85j90.h: 49: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   134                           ;pic18f85j90.h: 50: static near unsigned char BS
+      +                          R @ 0xFE0;
+   135                           ;pic18f85j90.h: 51: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   136                           ;pic18f85j90.h: 52: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   137                           ;pic18f85j90.h: 53: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   138                           ;pic18f85j90.h: 54: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   139                           ;pic18f85j90.h: 55: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   140                           ;pic18f85j90.h: 56: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   141                           ;pic18f85j90.h: 57: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   142                           ;pic18f85j90.h: 58: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   143                           ;pic18f85j90.h: 59: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   144                           ;pic18f85j90.h: 60: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   145                           ;pic18f85j90.h: 62: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   146                           ;pic18f85j90.h: 63: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   147                           ;pic18f85j90.h: 64: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   148                           ;pic18f85j90.h: 65: static near unsigned char LC
+      +                          DREG @ 0xFD2;
+   149                           ;pic18f85j90.h: 66: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   150                           ;pic18f85j90.h: 67: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   151                           ;pic18f85j90.h: 68: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   152                           ;pic18f85j90.h: 69: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   153                           ;pic18f85j90.h: 71: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   154                           ;pic18f85j90.h: 72: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   155                           ;pic18f85j90.h: 73: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   156                           ;pic18f85j90.h: 74: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   157                           ;pic18f85j90.h: 75: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   158                           ;pic18f85j90.h: 76: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   159                           ;pic18f85j90.h: 77: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   160                           ;pic18f85j90.h: 78: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   161                           ;pic18f85j90.h: 79: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   162                           ;pic18f85j90.h: 80: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   163                           ;pic18f85j90.h: 81: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   164                           ;pic18f85j90.h: 82: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   165                           ;pic18f85j90.h: 84: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   166                           ;pic18f85j90.h: 85: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   167                           ;pic18f85j90.h: 86: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   168                           ;pic18f85j90.h: 87: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   169                           ;pic18f85j90.h: 88: static near unsigned char LC
+      +                          DDATA4 @ 0xFBF;
+   170                           ;pic18f85j90.h: 89: static near unsigned char LC
+      +                          DDATA3 @ 0xFBE;
+   171                           ;pic18f85j90.h: 90: static near unsigned char LC
+      +                          DDATA2 @ 0xFBD;
+   172                           ;pic18f85j90.h: 91: static near unsigned char LC
+      +                          DDATA1 @ 0xFBC;
+   173                           ;pic18f85j90.h: 92: static near unsigned char LC
+      +                          DDATA0 @ 0xFBB;
+   174                           ;pic18f85j90.h: 93: static near unsigned char LC
+      +                          DSE5 @ 0xFBA;
+   175                           ;pic18f85j90.h: 94: static near unsigned char LC
+      +                          DSE4 @ 0xFB9;
+   176                           ;pic18f85j90.h: 95: static near unsigned char LC
+      +                          DSE3 @ 0xFB8;
+   177                           ;pic18f85j90.h: 96: static near unsigned char LC
+      +                          DSE2 @ 0xFB7;
+   178                           ;pic18f85j90.h: 97: static near unsigned char LC
+      +                          DSE1 @ 0xFB6;
+   179                           ;pic18f85j90.h: 98: static volatile near unsigne
+      +                          d char CVRCON @ 0xFB5;
+   180                           ;pic18f85j90.h: 99: static volatile near unsigne
+      +                          d char CMCON @ 0xFB4;
+   181                           ;pic18f85j90.h: 100: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   182                           ;pic18f85j90.h: 101: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   183                           ;pic18f85j90.h: 103: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   184                           ;pic18f85j90.h: 104: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   185                           ;pic18f85j90.h: 105: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   186                           ;pic18f85j90.h: 107: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   187                           ;pic18f85j90.h: 108: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   188                           ;pic18f85j90.h: 110: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   189                           ;pic18f85j90.h: 111: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   190                           ;pic18f85j90.h: 113: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   191                           ;pic18f85j90.h: 114: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   192                           ;pic18f85j90.h: 116: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   193                           ;pic18f85j90.h: 117: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   194                           ;pic18f85j90.h: 119: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   195                           ;pic18f85j90.h: 120: static volatile near unsign
+      +                          ed char LCDPS @ 0xFAA;
+   196                           ;pic18f85j90.h: 121: static near unsigned char L
+      +                          CDSE0 @ 0xFA9;
+   197                           ;pic18f85j90.h: 122: static volatile near unsign
+      +                          ed char LCDCON @ 0xFA8;
+   198                           ;pic18f85j90.h: 123: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   199                           ;pic18f85j90.h: 124: static volatile near unsign
+      +                          ed char EECON1 @ 0xFA6;
+   200                           ;pic18f85j90.h: 125: static near unsigned char I
+      +                          PR3 @ 0xFA5;
+   201                           ;pic18f85j90.h: 126: static volatile near unsign
+      +                          ed char PIR3 @ 0xFA4;
+   202  000036                     _PZK:
+   203  000036                     	ds	2
+   204  000036                     	ds	2
+   205  000036                     	ds	2
+   206  000036                     	ds	2
+   207  000036                     	ds	1
+   208  000036                     	ds	2
+   209  000036                     	ds	2
+   210  000036                     	ds	2
+   211  000036                     	ds	2
+   212  000036                     	ds	1
+   213  000036                     	ds	2
+   214  000036                     	ds	2
+   215  000036                     	ds	2
+   216  000036                     	ds	2
+   217  000036                     	ds	1
+   218  000036                     	ds	2
+   219  000036                     	ds	2
+   220  000036                     	ds	2
+   221  000036                     	ds	2
+   222  000036                     	ds	1
+   223  000036                     	ds	2
+   224  000036                     	ds	2
+   225  000036                     	ds	2
+   226  000036                     	ds	2
+   227  000036                     	ds	1
+   228  000036                     	ds	2
+   229  000036                     	ds	2
+   230  000036                     	ds	2
+   231  000036                     	ds	2
+   232  000036                     	ds	1
+   233  000036                     	ds	2
+   234  000036                     	ds	2
+   235  000036                     	ds	2
+   236  000036                     	ds	2
+   237  000036                     	ds	1
+   238  000036                     	ds	2
+   239  000036                     	ds	2
+   240  000036                     	ds	2
+   241  000036                     	ds	2
+   242  000036                     	ds	1
+   243  000036                     	ds	2
+   244  000036                     	ds	2
+   245  000036                     	ds	2
+   246  000036                     	ds	2
+   247  000036                     	ds	1
+   248  000036                     	ds	2
+   249  000036                     	ds	2
+   250  000036                     	ds	2
+   251  000036                     	ds	2
+   252  000036                     	ds	1
+   253  000036                     	ds	2
+   254  000036                     	ds	2
+   255  000036                     	ds	2
+   256  000036                     	ds	2
+   257  000036                     	ds	1
+   258  000036                     	ds	2
+   259  000036                     	ds	2
+   260  000036                     	ds	2
+   261  000036                     	ds	2
+   262  000036                     	ds	1
+   263  000036                     	ds	2
+   264  000036                     	ds	2
+   265  000036                     	ds	2
+   266  000036                     	ds	2
+   267  000036                     	ds	1
+   268  000036                     	ds	2
+   269  000036                     	ds	2
+   270  000036                     	ds	2
+   271  000036                     	ds	2
+   272  000036                     	ds	1
+   273  000036                     	ds	2
+   274  000036                     	ds	2
+   275  000036                     	ds	2
+   276  000036                     	ds	2
+   277  000036                     	ds	1
+   278  000036                     	ds	2
+   279  000036                     	ds	2
+   280  000036                     	ds	2
+   281  000036                     	ds	2
+   282  000036                     	ds	1
+   283  000036                     	ds	2
+   284  000036                     	ds	2
+   285  000036                     	ds	2
+   286  000036                     	ds	2
+   287  000036                     	ds	1
+   288                           
+   289                           	psect	idata
+   290  000878  0000               	dw	0
+   291  00087A  0063               	dw	99
+   292  00087C  0000               	dw	0
+   293  00087E  0000               	dw	0
+   294  000880  20                 	db	32
+   295  000881  0000               	dw	0
+   296  000883  0063               	dw	99
+   297  000885  0000               	dw	0
+   298  000887  0000               	dw	0
+   299  000889  20                 	db	32
+   300  00088A  0000               	dw	0
+   301  00088C  0063               	dw	99
+   302  00088E  0000               	dw	0
+   303  000890  0000               	dw	0
+   304  000892  20                 	db	32
+   305  000893  000A               	dw	10
+   306  000895  0014               	dw	20
+   307  000897  0000               	dw	0
+   308  000899  0000               	dw	0
+   309  00089B  26                 	db	38
+   310  00089C  0019               	dw	25
+   311  00089E  0050               	dw	80
+   312  0008A0  0000               	dw	0
+   313  0008A2  0000               	dw	0
+   314  0008A4  26                 	db	38
+   315  0008A5  0001               	dw	1
+   316  0008A7  0002               	dw	2
+   317  0008A9  0000               	dw	0
+   318  0008AB  0000               	dw	0
+   319  0008AD  02                 	db	2
+   320  0008AE  0000               	dw	0
+   321  0008B0  0001               	dw	1
+   322  0008B2  0000               	dw	0
+   323  0008B4  0000               	dw	0
+   324  0008B6  22                 	db	34
+   325  0008B7  0000               	dw	0
+   326  0008B9  0001               	dw	1
+   327  0008BB  0001               	dw	1
+   328  0008BD  0000               	dw	0
+   329  0008BF  22                 	db	34
+   330  0008C0  0000               	dw	0
+   331  0008C2  0001               	dw	1
+   332  0008C4  0000               	dw	0
+   333  0008C6  0000               	dw	0
+   334  0008C8  22                 	db	34
+   335  0008C9  0000               	dw	0
+   336  0008CB  0001               	dw	1
+   337  0008CD  0000               	dw	0
+   338  0008CF  0000               	dw	0
+   339  0008D1  22                 	db	34
+   340  0008D2  0001               	dw	1
+   341  0008D4  0004               	dw	4
+   342  0008D6  0000               	dw	0
+   343  0008D8  0000               	dw	0
+   344  0008DA  22                 	db	34
+   345  0008DB  0000               	dw	0
+   346  0008DD  0001               	dw	1
+   347  0008DF  0000               	dw	0
+   348  0008E1  0000               	dw	0
+   349  0008E3  22                 	db	34
+   350  0008E4  0005               	dw	5
+   351  0008E6  0019               	dw	25
+   352  0008E8  0000               	dw	0
+   353  0008EA  0000               	dw	0
+   354  0008EC  2A                 	db	42
+   355  0008ED  000A               	dw	10
+   356  0008EF  0032               	dw	50
+   357  0008F1  0000               	dw	0
+   358  0008F3  0000               	dw	0
+   359  0008F5  22                 	db	34
+   360  0008F6  0000               	dw	0
+   361  0008F8  0001               	dw	1
+   362  0008FA  0000               	dw	0
+   363  0008FC  0000               	dw	0
+   364  0008FE  22                 	db	34
+   365  0008FF  0000               	dw	0
+   366  000901  0005               	dw	5
+   367  000903  0000               	dw	0
+   368  000905  0000               	dw	0
+   369  000907  22                 	db	34
+   370  000908  0000               	dw	0
+   371  00090A  0019               	dw	25
+   372  00090C  0000               	dw	0
+   373  00090E  0000               	dw	0
+   374  000910  22                 	db	34
+   375                           
+   376                           	psect	text
+   377                           ;konfig3.c: 33: DtPZK PZK[17]=
+   378                           ;konfig3.c: 34: {
+   379                           ;konfig3.c: 35: 0 ,99,0,0,0,0,0,0,0,1,
+   380                           ;konfig3.c: 36: 0 ,99,0,0,0,0,0,0,0,1,
+   381                           ;konfig3.c: 37: 0 ,99,0,0,0,0,0,0,0,1,
+   382                           ;konfig3.c: 38: 10,20,0,0,0,1,1,0,0,1,
+   383                           ;konfig3.c: 39: 25,80,0,0,0,1,1,0,0,1,
+   384                           ;konfig3.c: 41: 1 , 2,0,0,0,1,0,0,0,0,
+   385                           ;konfig3.c: 43: 0 , 1,0,0,0,1,0,0,0,1,
+   386                           ;konfig3.c: 44: 0 , 1,1,0,0,1,0,0,0,1,
+   387                           ;konfig3.c: 45: 0 , 1,0,0,0,1,0,0,0,1,
+   388                           ;konfig3.c: 46: 0 , 1,0,0,0,1,0,0,0,1,
+   389                           ;konfig3.c: 48: 1 , 4,0,0,0,1,0,0,0,1,
+   390                           ;konfig3.c: 49: 0 , 1,0,0,0,1,0,0,0,1,
+   391                           ;konfig3.c: 50: 5 ,25,0,0,0,1,0,1,0,1,
+   392                           ;konfig3.c: 51: 10,50,0,0,0,1,0,0,0,1,
+   393                           ;konfig3.c: 52: 0 , 1,0,0,0,1,0,0,0,1,
+   394                           ;konfig3.c: 54: 0 , 5,0,0,0,1,0,0,0,1,
+   395                           ;konfig3.c: 55: 0 ,25,0,0,0,1,0,0,0,1
+   396                           ;konfig3.c: 56: };
+   397                           ;konfig3.c: 61: void InitKonf(void)
+   398                           ;konfig3.c: 62: {
+   399  00594E                     _InitKonf:
+   400  000000                     
+   401                           ;konfig3.c: 63: DtKNF.KRK=0;
+   402  00594E  0101               	movlb	(_DtKNF+3) shr (0+8)
+   403  005950  6BF5               	clrf	(_DtKNF+3)& (0+255),b
+   404                           ;konfig3.c: 64: DtKNF.PRM=0;
+   405  005952  6BF4               	clrf	(_DtKNF+2)& (0+255),b
+   406                           ;konfig3.c: 65: }
+   407  005954  0012               	return	
+   408  005956                     __end_of_InitKonf:
+   409                           ;konfig3.c: 68: void ExitKonf(void)
+   410                           ;konfig3.c: 69: {
+   411  005956                     _ExitKonf:
+   412  000000                     
+   413                           ;konfig3.c: 70: PFN._aktywne_KNF=0;
+   414  005956  0102               	movlb	(_PFN+3) shr (0+8)
+   415  005958  9F09               	bcf	(_PFN+3)& (0+255),7,b
+   416                           ;konfig3.c: 71: EndPR();
+   417  00595A  EC95  F021         	call	_EndPR	;wreg free
+   418                           ;konfig3.c: 72: ClrAllMarks();
+   419  00595E  ECEC  F01C         	call	_ClrAllMarks	;wreg free
+   420                           ;konfig3.c: 73: DtKNF.PRM=0;
+   421  005962  0101               	movlb	(_DtKNF+2) shr (0+8)
+   422  005964  6BF4               	clrf	(_DtKNF+2)& (0+255),b
+   423                           ;konfig3.c: 74: DtKNF.KRK=0;
+   424  005966  6BF5               	clrf	(_DtKNF+3)& (0+255),b
+   425                           ;konfig3.c: 75: WaitToLowEx(&ky[0]);
+   426  005968  0100               	movlb	__Lparam shr (0+8)
+   427  00596A  0EA5               	movlw	low _ky
+   428  00596C  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+   429  00596E  0E02               	movlw	high _ky
+   430  005970  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+   431  005972  ECE6  F035         	call	_WaitToLowEx	;wreg free
+   432                           ;konfig3.c: 76: WaitToLowEx(&ky[1]);
+   433  005976  0100               	movlb	__Lparam shr (0+8)
+   434  005978  0EAA               	movlw	low (_ky+5)
+   435  00597A  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+   436  00597C  0E02               	movlw	high (_ky+5)
+   437  00597E  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+   438  005980  ECE6  F035         	call	_WaitToLowEx	;wreg free
+   439                           ;konfig3.c: 77: PFN._KnfDisErr=0;
+   440  005984  0102               	movlb	(_PFN+3) shr (0+8)
+   441  005986  9D09               	bcf	(_PFN+3)& (0+255),6,b
+   442                           ;konfig3.c: 78: }
+   443  005988  0012               	return	
+   444  00598A                     __end_of_ExitKonf:
+   445                           ;konfig3.c: 81: void UpdateKnfPar(unsigned char 
+      +                          par)
+   446                           ;konfig3.c: 82: {
+   447  00598A                     _UpdateKnfPar:
+   448  000000                     
+   449                           ; _par loaded to fsr2l
+   450  00598A  6ED9               	movwf	fsr2l,c
+   451                           ;konfig3.c: 83: switch(par)
+   452  00598C  D033               	goto	l27
+   453  00598E                     l28:
+   454                           ;konfig3.c: 84: {
+   455                           ;konfig3.c: 86: RSDT1.inMSTR=PZK[0].dta;
+   456  00598E  C03A  F294         	movff	_PZK+4,_RSDT1+56
+   457                           ;konfig3.c: 87: break;
+   458  005992  0012               	return	
+   459  005994                     l29:
+   460                           ;konfig3.c: 88: case 1:
+   461                           ;konfig3.c: 89: RSDT1.inMMAXU=PZK[1].dta;
+   462  005994  C043  F295         	movff	_PZK+13,_RSDT1+57
+   463                           ;konfig3.c: 90: break;
+   464  005998  0012               	return	
+   465  00599A                     l30:
+   466                           ;konfig3.c: 91: case 2:
+   467                           ;konfig3.c: 92: RSDT1.inMMAXG=PZK[2].dta;
+   468  00599A  C04C  F296         	movff	_PZK+22,_RSDT1+58
+   469                           ;konfig3.c: 93: break;
+   470  00599E  0012               	return	
+   471  0059A0                     l31:
+   472                           ;konfig3.c: 94: case 3:
+   473                           ;konfig3.c: 95: RSDT1.inMMIN=PZK[3].dta;
+   474  0059A0  C055  F29D         	movff	_PZK+31,_RSDT1+65
+   475                           ;konfig3.c: 96: break;
+   476  0059A4  0012               	return	
+   477  0059A6                     l32:
+   478                           ;konfig3.c: 97: case 4:
+   479                           ;konfig3.c: 98: RSDT1.inMMAX=PZK[4].dta;
+   480  0059A6  C05E  F29E         	movff	_PZK+40,_RSDT1+66
+   481                           ;konfig3.c: 99: break;
+   482  0059AA  0012               	return	
+   483  0059AC                     l33:
+   484                           ;konfig3.c: 100: case 5:
+   485                           ;konfig3.c: 101: RSDT1.inKODKT=PZK[5].dta;
+   486  0059AC  C067  F298         	movff	_PZK+49,_RSDT1+60
+   487                           ;konfig3.c: 102: break;
+   488  0059B0  0012               	return	
+   489  0059B2                     l34:
+   490                           ;konfig3.c: 103: case 6:
+   491                           ;konfig3.c: 104: RSDT1.inWOBG=PZK[6].dta;
+   492  0059B2  C070  F299         	movff	_PZK+58,_RSDT1+61
+   493                           ;konfig3.c: 105: break;
+   494  0059B6  0012               	return	
+   495  0059B8                     l35:
+   496                           ;konfig3.c: 106: case 7:
+   497                           ;konfig3.c: 107: RSDT1.inOPDG=PZK[7].dta;
+   498  0059B8  C079  F29B         	movff	_PZK+67,_RSDT1+63
+   499                           ;konfig3.c: 108: break;
+   500  0059BC  0012               	return	
+   501  0059BE                     l36:
+   502                           ;konfig3.c: 109: case 8:
+   503                           ;konfig3.c: 110: RSDT1.inTPCS=PZK[8].dta;
+   504  0059BE  C082  F29C         	movff	_PZK+76,_RSDT1+64
+   505                           ;konfig3.c: 111: break;
+   506  0059C2  0012               	return	
+   507  0059C4                     l37:
+   508                           ;konfig3.c: 112: case 9:
+   509                           ;konfig3.c: 113: RSDT1.inWANL=PZK[9].dta;
+   510  0059C4  C08B  F297         	movff	_PZK+85,_RSDT1+59
+   511                           ;konfig3.c: 114: break;
+   512  0059C8  0012               	return	
+   513  0059CA                     l38:
+   514                           ;konfig3.c: 115: case 10:
+   515                           ;konfig3.c: 116: RSDT1.inNOKR=PZK[10].dta;
+   516  0059CA  C094  F29A         	movff	_PZK+94,_RSDT1+62
+   517                           ;konfig3.c: 117: break;
+   518  0059CE  0012               	return	
+   519  0059D0                     l39:
+   520                           ;konfig3.c: 118: case 11:
+   521                           ;konfig3.c: 119: RSDT1.inRDPM=PZK[11].dta;
+   522  0059D0  C09D  F29F         	movff	_PZK+103,_RSDT1+67
+   523                           ;konfig3.c: 120: break;
+   524  0059D4  0012               	return	
+   525  0059D6                     l40:
+   526                           ;konfig3.c: 121: case 12:
+   527                           ;konfig3.c: 122: RSDT1.inDTPM=PZK[12].dta;
+   528  0059D6  C0A6  F2A0         	movff	_PZK+112,_RSDT1+68
+   529                           ;konfig3.c: 123: break;
+   530  0059DA  0012               	return	
+   531  0059DC                     l41:
+   532                           ;konfig3.c: 124: case 13:
+   533                           ;konfig3.c: 125: RSDT1.inMDPM=PZK[13].dta;
+   534  0059DC  C0AF  F2A1         	movff	_PZK+121,_RSDT1+69
+   535                           ;konfig3.c: 126: break;
+   536  0059E0  0012               	return	
+   537  0059E2                     l42:
+   538                           ;konfig3.c: 127: case 14:
+   539                           ;konfig3.c: 128: RSDT1.inTECO=PZK[14].dta;
+   540  0059E2  C0B8  F2A2         	movff	_PZK+130,_RSDT1+70
+   541                           ;konfig3.c: 129: break;
+   542  0059E6  0012               	return	
+   543  0059E8                     l43:
+   544                           ;konfig3.c: 130: case 15:
+   545                           ;konfig3.c: 131: RSDT1.inTMMAXG2=PZK[15].dta;
+   546  0059E8  C0C1  F2A3         	movff	_PZK+139,_RSDT1+71
+   547                           ;konfig3.c: 132: break;
+   548  0059EC  0012               	return	
+   549  0059EE                     l44:
+   550                           ;konfig3.c: 133: case 16:
+   551                           ;konfig3.c: 134: RSDT1.inMMAXG2=PZK[16].dta;
+   552  0059EE  C0CA  F2A4         	movff	_PZK+148,_RSDT1+72
+   553                           ;konfig3.c: 135: break;
+   554  0059F2  0012               	return	
+   555  0059F4                     l27:
+   556  0059F4  50D9               	movf	fsr2l,w,c
+   557  0059F6  0F00               	addlw	0
+   558  0059F8  E610               	bmi	l26
+   559  0059FA  0FEF               	addlw	-17
+   560  0059FC  E70E               	bnn	l26
+   561  0059FE  0F11               	addlw	17
+   562  005A00  0D02               	mullw	2
+   563  005A02  0E56               	movlw	low S30004
+   564  005A04  24F3               	addwf	prodl,w,c
+   565  005A06  6EF6               	movwf	tblptrl,c
+   566  005A08  0E08               	movlw	high S30004
+   567  005A0A  20F4               	addwfc	prodh,w,c
+   568  005A0C  6EF7               	movwf	tblptrh,c
+   569  005A0E  0009               	tblrd		*+
+   570  005A10  50F5               	movf	tablat,w,c
+   571  005A12  0009               	tblrd		*+
+   572  005A14  CFF5 FFFA          	movff	tablat,pclath
+   573  005A18  6EF9               	movwf	pcl,c
+   574  005A1A                     l26:
+   575                           ;konfig3.c: 138: }
+   576  005A1A  0012               	return	
+   577  005A1C                     __end_of_UpdateKnfPar:
+   578                           ;konfig3.c: 141: void DecShowHide(void)
+   579                           ;konfig3.c: 142: {
+   580  005A1C                     _DecShowHide:
+   581  000000                     
+   582                           ;konfig3.c: 145: if(RSDT1.inKODKT<3)
+   583  005A1C  0E03               	movlw	3
+   584  005A1E  0102               	movlb	(_RSDT1+60) shr (0+8)
+   585  005A20  6198               	cpfslt	(_RSDT1+60)& (0+255),b
+   586  005A22  D004               	goto	l46
+   587                           ;konfig3.c: 146: {
+   588  005A24  0100               	movlb	(_PZK+35) shr (0+8)
+   589  005A26  8B59               	bsf	(_PZK+35)& (0+255),5,b
+   590                           ;konfig3.c: 148: PZK[4].shw=1;
+   591  005A28  8B62               	bsf	(_PZK+44)& (0+255),5,b
+   592                           ;konfig3.c: 149: }
+   593  005A2A  D003               	goto	l47
+   594  005A2C                     l46:
+   595                           ;konfig3.c: 150: else
+   596  005A2C  0100               	movlb	(_PZK+35) shr (0+8)
+   597  005A2E  9B59               	bcf	(_PZK+35)& (0+255),5,b
+   598                           ;konfig3.c: 153: PZK[4].shw=0;
+   599  005A30  9B62               	bcf	(_PZK+44)& (0+255),5,b
+   600  005A32                     l47:
+   601                           ;konfig3.c: 154: }
+   602  005A32  0100               	movlb	__Lparam shr (0+8)
+   603  005A34  6BD0               	clrf	?_GetBit2^(__Lparam& (0+65280)),b
+   604  005A36  C277  FFE8         	movff	_RSDT1+27,wreg
+   605  005A3A  EC95  F03E         	call	_GetBit2
+   606  005A3E  0100               	movlb	(_PZK+53) shr (0+8)
+   607  005A40  9B6B               	bcf	(_PZK+53)& (0+255),5,b
+   608  005A42  B0D8               	btfsc	status,0,c
+   609  005A44  8B6B               	bsf	(_PZK+53)& (0+255),5,b
+   610                           ;konfig3.c: 160: PZK[9].shw=GetBit2(RSDT1.outKST
+      +                          AT0,1);
+   611  005A46  0E01               	movlw	1
+   612  005A48  0100               	movlb	__Lparam shr (0+8)
+   613  005A4A  6FD0               	movwf	?_GetBit2^(__Lparam& (0+65280)),b
+   614  005A4C  C277  FFE8         	movff	_RSDT1+27,wreg
+   615  005A50  EC95  F03E         	call	_GetBit2
+   616  005A54  0100               	movlb	(_PZK+89) shr (0+8)
+   617  005A56  9B8F               	bcf	(_PZK+89)& (0+255),5,b
+   618  005A58  B0D8               	btfsc	status,0,c
+   619  005A5A  8B8F               	bsf	(_PZK+89)& (0+255),5,b
+   620                           ;konfig3.c: 165: if(RSDT1.inRDPM==0)
+   621  005A5C  EE02  F09F         	lfsr	0,_RSDT1+67
+   622  005A60  50EF               	movf	indf0,w,c
+   623  005A62  E104               	bnz	l48
+   624                           ;konfig3.c: 166: {
+   625  005A64  9BAA               	bcf	(_PZK+116)& (0+255),5,b
+   626                           ;konfig3.c: 168: PZK[13].shw=0;
+   627  005A66  9BB3               	bcf	(_PZK+125)& (0+255),5,b
+   628                           ;konfig3.c: 169: PZK[14].shw=0;
+   629  005A68  9BBC               	bcf	(_PZK+134)& (0+255),5,b
+   630                           ;konfig3.c: 170: }
+   631  005A6A  D004               	goto	l49
+   632  005A6C                     l48:
+   633                           ;konfig3.c: 171: else
+   634  005A6C  0100               	movlb	(_PZK+116) shr (0+8)
+   635  005A6E  8BAA               	bsf	(_PZK+116)& (0+255),5,b
+   636                           ;konfig3.c: 174: PZK[13].shw=1;
+   637  005A70  8BB3               	bsf	(_PZK+125)& (0+255),5,b
+   638                           ;konfig3.c: 175: PZK[14].shw=1;
+   639  005A72  8BBC               	bsf	(_PZK+134)& (0+255),5,b
+   640  005A74                     l49:
+   641                           ;konfig3.c: 176: }
+   642  005A74  EE02  F0A3         	lfsr	0,_RSDT1+71
+   643  005A78  50EF               	movf	indf0,w,c
+   644                           ;konfig3.c: 180: {
+   645  005A7A  0100               	movlb	(_PZK+152) shr (0+8)
+   646  005A7C  E102               	bnz	L3
+   647  005A7E  9BCE               	bcf	(_PZK+152)& (0+255),5,b
+   648                           ;konfig3.c: 182: }
+   649  005A80  0012               	return	
+   650                           ;konfig3.c: 183: else
+   651  005A82                     L3:
+   652  005A82  8BCE               	bsf	(_PZK+152)& (0+255),5,b
+   653                           ;konfig3.c: 186: }
+   654  005A84  0012               	return	
+   655  005A86                     __end_of_DecShowHide:
+   656                           ;konfig3.c: 190: void MKonfiguracja(void)
+   657                           ;konfig3.c: 191: {
+   658  005A86                     _MKonfiguracja:
+   659  000000                     
+   660                           ;	_key assigned to ?a_MKonfiguracja+0
+   661  000000                     _MKonfiguracja$key	set	?a_MKonfiguracja
+   662                           ;konfig3.c: 192: unsigned char key,fst,wkonf;
+   663  005A86  0102               	movlb	(_PFN+3) shr (0+8)
+   664  005A88  AF09               	btfss	(_PFN+3)& (0+255),7,b
+   665  005A8A  D007               	goto	l53
+   666  005A8C  0E01               	movlw	1
+   667  005A8E  0101               	movlb	(_DtKNF+3) shr (0+8)
+   668  005A90  65F5               	cpfsgt	(_DtKNF+3)& (0+255),b
+   669  005A92  D003               	goto	l53
+   670  005A94  0102               	movlb	(_PFN+4) shr (0+8)
+   671  005A96  AF0A               	btfss	(_PFN+4)& (0+255),7,b
+   672                           ;konfig3.c: 195: {
+   673  005A98  D75E               	goto	_ExitKonf	;wreg free
+   674                           ;konfig3.c: 197: return;
+   675  005A9A                     l53:
+   676                           ;konfig3.c: 198: }
+   677  005A9A  0102               	movlb	(_PFN+3) shr (0+8)
+   678  005A9C  AF09               	btfss	(_PFN+3)& (0+255),7,b
+   679  005A9E  EF5D  F031         	goto	l56
+   680  005AA2  0E00               	movlw	0
+   681  005AA4  EC64  F03B         	call	_RTM
+   682  005AA8  6E00               	movwf	btemp,c
+   683  005AAA  0E0A               	movlw	10
+   684  005AAC  5C00               	subwf	btemp,w,c
+   685  005AAE  E204               	bc	u150
+   686  005AB0  0102               	movlb	(_PFN+5) shr (0+8)
+   687  005AB2  AF0B               	btfss	(_PFN+5)& (0+255),7,b
+   688  005AB4  EF5D  F031         	goto	l56
+   689  005AB8                     u150:
+   690                           ;konfig3.c: 201: {
+   691  005AB8  D74E               	goto	_ExitKonf	;wreg free
+   692                           ;konfig3.c: 203: return;
+   693                           ;konfig3.c: 204: }
+   694  005ABA                     l57:
+   695                           ;konfig3.c: 207: {
+   696                           ;konfig3.c: 210: {
+   697  005ABA  0102               	movlb	(_RSDT1+54) shr (0+8)
+   698  005ABC  6B92               	clrf	(_RSDT1+54)& (0+255),b
+   699                           ;konfig3.c: 212: RSDT1.inKRK=DtKNF.KRK;
+   700  005ABE  C1F5  F291         	movff	_DtKNF+3,_RSDT1+53
+   701                           ;konfig3.c: 213: if(!PFN._off) return;
+   702  005AC2  0102               	movlb	_PFN shr (0+8)
+   703  005AC4  A106               	btfss	_PFN& (0+255),0,b
+   704  005AC6  0012               	return	
+   705                           ;konfig3.c: 214: if(MGSD._NO_ODB||PFN._toInit) r
+      +                          eturn;
+   706  005AC8  0102               	movlb	(_MGSD+1) shr (0+8)
+   707  005ACA  B3EC               	btfsc	(_MGSD+1)& (0+255),1,b
+   708  005ACC  0012               	return	
+   709  005ACE  0102               	movlb	(_PFN+3) shr (0+8)
+   710  005AD0  BB09               	btfsc	(_PFN+3)& (0+255),5,b
+   711  005AD2  0012               	return	
+   712                           ;konfig3.c: 217: key=PresKeyEX(RdPrt(0)&&RdPrt(1
+      +                          ),&ky[6]);
+   713  005AD4  0100               	movlb	__Lparam shr (0+8)
+   714  005AD6  0EC3               	movlw	low (_ky+30)
+   715  005AD8  6FD4               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+   716  005ADA  0E02               	movlw	high (_ky+30)
+   717  005ADC  6FD5               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+   718  005ADE  0E00               	movlw	0
+   719  005AE0  EC68  F039         	call	_RdPrt
+   720  005AE4  E306               	bnc	u220
+   721  005AE6  0E01               	movlw	1
+   722  005AE8  EC68  F039         	call	_RdPrt
+   723  005AEC  E302               	bnc	u220
+   724  005AEE  0E01               	movlw	1
+   725  005AF0  D001               	goto	u230
+   726  005AF2                     u220:
+   727  005AF2  0E00               	movlw	0
+   728  005AF4                     u230:
+   729  005AF4  ECDE  F034         	call	_PresKeyEX
+   730  005AF8  0100               	movlb	__Lparam shr (0+8)
+   731  005AFA  6FCF               	movwf	?a_MKonfiguracja^(__Lparam& (0+65280)),b
+   732                           ;konfig3.c: 219: if(PFN._enKNF&&key!=100&&key>=5
+      +                          0)
+   733  005AFC  0102               	movlb	(_PFN+5) shr (0+8)
+   734  005AFE  A10B               	btfss	(_PFN+5)& (0+255),0,b
+   735  005B00  D02F               	goto	l60
+   736  005B02  0100               	movlb	__Lparam shr (0+8)
+   737  005B04  51CF               	movf	?a_MKonfiguracja^(__Lparam& (0+65280)),w
+   738  005B06  0A64               	xorlw	100
+   739  005B08  E02B               	bz	l60
+   740  005B0A  0E31               	movlw	49
+   741  005B0C  65CF               	cpfsgt	?a_MKonfiguracja^(__Lparam& (0+65280)),b
+   742  005B0E  D028               	goto	l60
+   743                           ;konfig3.c: 220: {
+   744  005B10  0EC3               	movlw	low (_ky+30)
+   745  005B12  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+   746  005B14  0E02               	movlw	high (_ky+30)
+   747  005B16  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+   748  005B18  ECE6  F035         	call	_WaitToLowEx	;wreg free
+   749                           ;konfig3.c: 222: WaitToLowEx(&ky[0]);
+   750  005B1C  0100               	movlb	__Lparam shr (0+8)
+   751  005B1E  0EA5               	movlw	low _ky
+   752  005B20  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+   753  005B22  0E02               	movlw	high _ky
+   754  005B24  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+   755  005B26  ECE6  F035         	call	_WaitToLowEx	;wreg free
+   756                           ;konfig3.c: 223: WaitToLowEx(&ky[1]);
+   757  005B2A  0100               	movlb	__Lparam shr (0+8)
+   758  005B2C  0EAA               	movlw	low (_ky+5)
+   759  005B2E  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+   760  005B30  0E02               	movlw	high (_ky+5)
+   761  005B32  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+   762  005B34  ECE6  F035         	call	_WaitToLowEx	;wreg free
+   763                           ;konfig3.c: 224: PFN._aktywne_KNF=1;
+   764  005B38  0102               	movlb	(_PFN+3) shr (0+8)
+   765  005B3A  8F09               	bsf	(_PFN+3)& (0+255),7,b
+   766                           ;konfig3.c: 225: StartRTM(0);
+   767  005B3C  0E00               	movlw	0
+   768  005B3E  EC52  F03B         	call	_StartRTM
+   769                           ;konfig3.c: 226: DtKNF.KNPAR=17;
+   770  005B42  0E11               	movlw	17
+   771  005B44  CFE8 F1F3          	movff	wreg,_DtKNF+1
+   772                           ;konfig3.c: 227: DtKNF.PRM=0;
+   773  005B48  0101               	movlb	(_DtKNF+2) shr (0+8)
+   774  005B4A  6BF4               	clrf	(_DtKNF+2)& (0+255),b
+   775                           ;konfig3.c: 228: DtKNF.KRK=1;
+   776  005B4C  0E01               	movlw	1
+   777  005B4E  CFE8 F1F5          	movff	wreg,_DtKNF+3
+   778                           ;konfig3.c: 229: RSDT1.inPRM=0;
+   779  005B52  0102               	movlb	(_RSDT1+54) shr (0+8)
+   780  005B54  6B92               	clrf	(_RSDT1+54)& (0+255),b
+   781                           ;konfig3.c: 230: ClrAllMarks();
+   782  005B56  ECEC  F01C         	call	_ClrAllMarks	;wreg free
+   783                           ;konfig3.c: 231: StartRTS(0);
+   784  005B5A  0E00               	movlw	0
+   785  005B5C  EF34  F03B         	goto	_StartRTS
+   786                           ;konfig3.c: 232: }
+   787  005B60                     l60:
+   788                           ;konfig3.c: 233: else
+   789  005B60  0101               	movlb	(_DtKNF+2) shr (0+8)
+   790  005B62  6BF4               	clrf	(_DtKNF+2)& (0+255),b
+   791                           ;konfig3.c: 236: DtKNF.KRK=0;
+   792  005B64  6BF5               	clrf	(_DtKNF+3)& (0+255),b
+   793                           ;konfig3.c: 237: RSDT1.inPRM=0;
+   794  005B66  0102               	movlb	(_RSDT1+54) shr (0+8)
+   795  005B68  6B92               	clrf	(_RSDT1+54)& (0+255),b
+   796                           ;konfig3.c: 238: RSDT1.inKRK=DtKNF.KRK;
+   797  005B6A  C1F5  F291         	movff	_DtKNF+3,_RSDT1+53
+   798                           ;konfig3.c: 239: return;
+   799  005B6E  0012               	return	
+   800                           ;konfig3.c: 240: }
+   801  005B70                     l62:
+   802                           ;konfig3.c: 242: }
+   803                           ;konfig3.c: 245: {
+   804  005B70  0102               	movlb	(_RSDT1+54) shr (0+8)
+   805  005B72  6B92               	clrf	(_RSDT1+54)& (0+255),b
+   806                           ;konfig3.c: 247: RSDT1.inKRK=DtKNF.KRK;
+   807  005B74  C1F5  F291         	movff	_DtKNF+3,_RSDT1+53
+   808                           ;konfig3.c: 248: if((RTS(0)>=5))
+   809  005B78  0E00               	movlw	0
+   810  005B7A  EC46  F03B         	call	_RTS
+   811  005B7E  6E00               	movwf	btemp,c
+   812  005B80  0E05               	movlw	5
+   813  005B82  5C00               	subwf	btemp,w,c
+   814  005B84  E301               	bnc	l63
+   815                           ;konfig3.c: 249: {
+   816  005B86  D6E7               	goto	_ExitKonf	;wreg free
+   817                           ;konfig3.c: 251: return;
+   818  005B88                     l63:
+   819                           ;konfig3.c: 252: }
+   820  005B88  0102               	movlb	(_RSDT1+1) shr (0+8)
+   821  005B8A  A55D               	btfss	(_RSDT1+1)& (0+255),2,b
+   822  005B8C  0012               	return	
+   823  005B8E  0102               	movlb	(_PFN+4) shr (0+8)
+   824  005B90  AF0A               	btfss	(_PFN+4)& (0+255),7,b
+   825  005B92  0012               	return	
+   826                           ;konfig3.c: 254: {
+   827  005B94  0102               	movlb	(_RSDT1+1) shr (0+8)
+   828  005B96  875D               	bsf	(_RSDT1+1)& (0+255),3,b
+   829                           ;konfig3.c: 256: RSDT1.inMSTR=PZK[0].dta=PZK[0].
+      +                          bfdta=RSDT1.outMSTR;
+   830  005B98  0100               	movlb	(_PZK+6) shr (0+8)
+   831  005B9A  C27A  F03C         	movff	_RSDT1+30,_PZK+6
+   832  005B9E  6B3D               	clrf	(_PZK+7)& (0+255),b
+   833  005BA0  C03C  F03A         	movff	_PZK+6,_PZK+4
+   834  005BA4  C03D  F03B         	movff	_PZK+7,_PZK+5
+   835  005BA8  C03A  F294         	movff	_PZK+4,_RSDT1+56
+   836                           ;konfig3.c: 257: RSDT1.inMMAXU=PZK[1].dta=PZK[1]
+      +                          .bfdta=RSDT1.outMMAXU;
+   837  005BAC  C27B  F045         	movff	_RSDT1+31,_PZK+15
+   838  005BB0  6B46               	clrf	(_PZK+16)& (0+255),b
+   839  005BB2  C045  F043         	movff	_PZK+15,_PZK+13
+   840  005BB6  C046  F044         	movff	_PZK+16,_PZK+14
+   841  005BBA  C043  F295         	movff	_PZK+13,_RSDT1+57
+   842                           ;konfig3.c: 258: RSDT1.inMMAXG=PZK[2].dta=PZK[2]
+      +                          .bfdta=RSDT1.outMMAXG;
+   843  005BBE  C27C  F04E         	movff	_RSDT1+32,_PZK+24
+   844  005BC2  6B4F               	clrf	(_PZK+25)& (0+255),b
+   845  005BC4  C04E  F04C         	movff	_PZK+24,_PZK+22
+   846  005BC8  C04F  F04D         	movff	_PZK+25,_PZK+23
+   847  005BCC  C04C  F296         	movff	_PZK+22,_RSDT1+58
+   848                           ;konfig3.c: 259: RSDT1.inMMIN=PZK[3].dta=PZK[3].
+      +                          bfdta=RSDT1.outMMIN;
+   849  005BD0  C283  F057         	movff	_RSDT1+39,_PZK+33
+   850  005BD4  6B58               	clrf	(_PZK+34)& (0+255),b
+   851  005BD6  C057  F055         	movff	_PZK+33,_PZK+31
+   852  005BDA  C058  F056         	movff	_PZK+34,_PZK+32
+   853  005BDE  C055  F29D         	movff	_PZK+31,_RSDT1+65
+   854                           ;konfig3.c: 260: RSDT1.inMMAX=PZK[4].dta=PZK[4].
+      +                          bfdta=RSDT1.outMMAX;
+   855  005BE2  C284  F060         	movff	_RSDT1+40,_PZK+42
+   856  005BE6  6B61               	clrf	(_PZK+43)& (0+255),b
+   857  005BE8  C060  F05E         	movff	_PZK+42,_PZK+40
+   858  005BEC  C061  F05F         	movff	_PZK+43,_PZK+41
+   859  005BF0  C05E  F29E         	movff	_PZK+40,_RSDT1+66
+   860                           ;konfig3.c: 261: RSDT1.inKODKT=PZK[5].dta=PZK[5]
+      +                          .bfdta=RSDT1.outKODKT;
+   861  005BF4  C27E  F069         	movff	_RSDT1+34,_PZK+51
+   862  005BF8  6B6A               	clrf	(_PZK+52)& (0+255),b
+   863  005BFA  C069  F067         	movff	_PZK+51,_PZK+49
+   864  005BFE  C06A  F068         	movff	_PZK+52,_PZK+50
+   865  005C02  C067  F298         	movff	_PZK+49,_RSDT1+60
+   866                           ;konfig3.c: 262: RSDT1.inWOBG=PZK[6].dta=PZK[6].
+      +                          bfdta=RSDT1.outWOBG;
+   867  005C06  C27F  F072         	movff	_RSDT1+35,_PZK+60
+   868  005C0A  6B73               	clrf	(_PZK+61)& (0+255),b
+   869  005C0C  C072  F070         	movff	_PZK+60,_PZK+58
+   870  005C10  C073  F071         	movff	_PZK+61,_PZK+59
+   871  005C14  C070  F299         	movff	_PZK+58,_RSDT1+61
+   872                           ;konfig3.c: 263: RSDT1.inOPDG=PZK[7].dta=PZK[7].
+      +                          bfdta=RSDT1.outOPDG;
+   873  005C18  C281  F07B         	movff	_RSDT1+37,_PZK+69
+   874  005C1C  6B7C               	clrf	(_PZK+70)& (0+255),b
+   875  005C1E  C07B  F079         	movff	_PZK+69,_PZK+67
+   876  005C22  C07C  F07A         	movff	_PZK+70,_PZK+68
+   877  005C26  C079  F29B         	movff	_PZK+67,_RSDT1+63
+   878                           ;konfig3.c: 264: RSDT1.inTPCS=PZK[8].dta=PZK[8].
+      +                          bfdta=RSDT1.outTPCS;
+   879  005C2A  C282  F084         	movff	_RSDT1+38,_PZK+78
+   880  005C2E  6B85               	clrf	(_PZK+79)& (0+255),b
+   881  005C30  C084  F082         	movff	_PZK+78,_PZK+76
+   882  005C34  C085  F083         	movff	_PZK+79,_PZK+77
+   883  005C38  C082  F29C         	movff	_PZK+76,_RSDT1+64
+   884                           ;konfig3.c: 265: RSDT1.inWANL=PZK[9].dta=PZK[9].
+      +                          bfdta=RSDT1.outWANL;
+   885  005C3C  C27D  F08D         	movff	_RSDT1+33,_PZK+87
+   886  005C40  6B8E               	clrf	(_PZK+88)& (0+255),b
+   887  005C42  C08D  F08B         	movff	_PZK+87,_PZK+85
+   888  005C46  C08E  F08C         	movff	_PZK+88,_PZK+86
+   889  005C4A  C08B  F297         	movff	_PZK+85,_RSDT1+59
+   890                           ;konfig3.c: 266: RSDT1.inNOKR=PZK[10].dta=PZK[10
+      +                          ].bfdta=RSDT1.outNOKR;
+   891  005C4E  C280  F096         	movff	_RSDT1+36,_PZK+96
+   892  005C52  6B97               	clrf	(_PZK+97)& (0+255),b
+   893  005C54  C096  F094         	movff	_PZK+96,_PZK+94
+   894  005C58  C097  F095         	movff	_PZK+97,_PZK+95
+   895  005C5C  C094  F29A         	movff	_PZK+94,_RSDT1+62
+   896                           ;konfig3.c: 267: RSDT1.inRDPM=PZK[11].dta=PZK[11
+      +                          ].bfdta=RSDT1.outRDPM;
+   897  005C60  C285  F09F         	movff	_RSDT1+41,_PZK+105
+   898  005C64  6BA0               	clrf	(_PZK+106)& (0+255),b
+   899  005C66  C09F  F09D         	movff	_PZK+105,_PZK+103
+   900  005C6A  C0A0  F09E         	movff	_PZK+106,_PZK+104
+   901  005C6E  C09D  F29F         	movff	_PZK+103,_RSDT1+67
+   902                           ;konfig3.c: 268: RSDT1.inDTPM=PZK[12].dta=PZK[12
+      +                          ].bfdta=RSDT1.outDTPM;
+   903  005C72  C286  F0A8         	movff	_RSDT1+42,_PZK+114
+   904  005C76  6BA9               	clrf	(_PZK+115)& (0+255),b
+   905  005C78  C0A8  F0A6         	movff	_PZK+114,_PZK+112
+   906  005C7C  C0A9  F0A7         	movff	_PZK+115,_PZK+113
+   907  005C80  C0A6  F2A0         	movff	_PZK+112,_RSDT1+68
+   908                           ;konfig3.c: 269: RSDT1.inMDPM=PZK[13].dta=PZK[13
+      +                          ].bfdta=RSDT1.outMDPM;
+   909  005C84  C287  F0B1         	movff	_RSDT1+43,_PZK+123
+   910  005C88  6BB2               	clrf	(_PZK+124)& (0+255),b
+   911  005C8A  C0B1  F0AF         	movff	_PZK+123,_PZK+121
+   912  005C8E  C0B2  F0B0         	movff	_PZK+124,_PZK+122
+   913  005C92  C0AF  F2A1         	movff	_PZK+121,_RSDT1+69
+   914                           ;konfig3.c: 270: RSDT1.inTECO=PZK[14].dta=PZK[14
+      +                          ].bfdta=RSDT1.outTECO;
+   915  005C96  C288  F0BA         	movff	_RSDT1+44,_PZK+132
+   916  005C9A  6BBB               	clrf	(_PZK+133)& (0+255),b
+   917  005C9C  C0BA  F0B8         	movff	_PZK+132,_PZK+130
+   918  005CA0  C0BB  F0B9         	movff	_PZK+133,_PZK+131
+   919  005CA4  C0B8  F2A2         	movff	_PZK+130,_RSDT1+70
+   920                           ;konfig3.c: 271: RSDT1.inTMMAXG2=PZK[15].dta=PZK
+      +                          [15].bfdta=RSDT1.outTMMAXG2;
+   921  005CA8  C289  F0C3         	movff	_RSDT1+45,_PZK+141
+   922  005CAC  6BC4               	clrf	(_PZK+142)& (0+255),b
+   923  005CAE  C0C3  F0C1         	movff	_PZK+141,_PZK+139
+   924  005CB2  C0C4  F0C2         	movff	_PZK+142,_PZK+140
+   925  005CB6  C0C1  F2A3         	movff	_PZK+139,_RSDT1+71
+   926                           ;konfig3.c: 272: RSDT1.inMMAXG2=PZK[16].dta=PZK[
+      +                          16].bfdta=RSDT1.outMMAXG2;
+   927  005CBA  C28A  F0CC         	movff	_RSDT1+46,_PZK+150
+   928  005CBE  6BCD               	clrf	(_PZK+151)& (0+255),b
+   929  005CC0  C0CC  F0CA         	movff	_PZK+150,_PZK+148
+   930  005CC4  C0CD  F0CB         	movff	_PZK+151,_PZK+149
+   931  005CC8  C0CA  F2A4         	movff	_PZK+148,_RSDT1+72
+   932                           ;konfig3.c: 273: DecShowHide();
+   933  005CCC  DEA7               	call	_DecShowHide	;wreg free
+   934                           ;konfig3.c: 274: if(PZK[5].shw) DtKNF.PRM=nrp=5;
+   935  005CCE  0100               	movlb	(_PZK+53) shr (0+8)
+   936  005CD0  AB6B               	btfss	(_PZK+53)& (0+255),5,b
+   937  005CD2  D007               	goto	l65
+   938  005CD4  0101               	movlb	_nrp shr (0+8)
+   939  005CD6  0E05               	movlw	5
+   940  005CD8                     L1:
+   941  005CD8  6FF0               	movwf	_nrp& (0+255),b
+   942  005CDA  6BF1               	clrf	(_nrp+1)& (0+255),b
+   943  005CDC  C1F0  F1F4         	movff	_nrp,_DtKNF+2
+   944  005CE0  D006               	goto	l68
+   945  005CE2                     l65:
+   946                           ;konfig3.c: 275: else DtKNF.PRM=nrp=0;
+   947  005CE2  0101               	movlb	_nrp shr (0+8)
+   948  005CE4  0E00               	movlw	0
+   949  005CE6  D7F8               	goto	L1
+   950                           ;konfig3.c: 277: switch(RSDT1.vKNF)
+   951  005CE8                     l69:
+   952                           ;konfig3.c: 278: {
+   953                           ;konfig3.c: 280: DtKNF.KNPAR=15;
+   954  005CE8  0E0F               	movlw	15
+   955  005CEA  D008               	goto	L2
+   956                           ;konfig3.c: 281: break;
+   957  005CEC                     l70:
+   958  005CEC  D006               	goto	l71
+   959                           ;konfig3.c: 284: break;
+   960                           ;konfig3.c: 287: break;
+   961  005CEE                     l68:
+   962  005CEE  C276  FFE8         	movff	_RSDT1+26,wreg
+   963  005CF2  0A01               	xorlw	1
+   964  005CF4  E0F9               	bz	l69
+   965  005CF6  0A03               	xorlw	3
+   966  005CF8  E0F9               	bz	l70
+   967  005CFA                     l71:
+   968                           ;konfig3.c: 285: default:
+   969                           ;konfig3.c: 286: DtKNF.KNPAR=17;
+   970  005CFA  0E11               	movlw	17
+   971                           ;konfig3.c: 282: case 2:
+   972                           ;konfig3.c: 283: DtKNF.KNPAR=17;
+   973  005CFC                     L2:
+   974  005CFC  CFE8 F1F3          	movff	wreg,_DtKNF+1
+   975                           ;konfig3.c: 290: RSDT1.RRD_KNF=0;
+   976  005D00  0102               	movlb	(_RSDT1+1) shr (0+8)
+   977  005D02  975D               	bcf	(_RSDT1+1)& (0+255),3,b
+   978                           ;konfig3.c: 291: DtKNF.KRK=2;
+   979  005D04  0E02               	movlw	2
+   980  005D06  CFE8 F1F5          	movff	wreg,_DtKNF+3
+   981                           ;konfig3.c: 292: }
+   982  005D0A  0C02               	retlw	2
+   983  005D0C                     l72:
+   984                           ;konfig3.c: 294: }
+   985                           ;konfig3.c: 297: {
+   986  005D0C  0102               	movlb	(_RSDT1+54) shr (0+8)
+   987  005D0E  6B92               	clrf	(_RSDT1+54)& (0+255),b
+   988                           ;konfig3.c: 299: RSDT1.inKRK=DtKNF.KRK;
+   989  005D10  C1F5  F291         	movff	_DtKNF+3,_RSDT1+53
+   990                           ;konfig3.c: 300: RSDT1.inDDTA=0;
+   991  005D14  0102               	movlb	(_RSDT1+55) shr (0+8)
+   992  005D16  6B93               	clrf	(_RSDT1+55)& (0+255),b
+   993                           ;konfig3.c: 301: PFN._off=1;
+   994  005D18  0102               	movlb	_PFN shr (0+8)
+   995  005D1A  8106               	bsf	_PFN& (0+255),0,b
+   996                           ;konfig3.c: 302: PFN._lato=0;
+   997  005D1C  9306               	bcf	_PFN& (0+255),1,b
+   998                           ;konfig3.c: 303: PFN._zima=0;
+   999  005D1E  9506               	bcf	_PFN& (0+255),2,b
+  1000                           ;konfig3.c: 304: PFN._KnfDisErr=1;
+  1001  005D20  0102               	movlb	(_PFN+3) shr (0+8)
+  1002  005D22  8D09               	bsf	(_PFN+3)& (0+255),6,b
+  1003                           ;konfig3.c: 305: Mark(6,0);
+  1004  005D24  0100               	movlb	__Lparam shr (0+8)
+  1005  005D26  6BDD               	clrf	?_Mark^(__Lparam& (0+65280)),b
+  1006  005D28  0E06               	movlw	6
+  1007  005D2A  ECDB  F023         	call	_Mark
+  1008                           ;konfig3.c: 306: Mark(4,0);
+  1009  005D2E  0100               	movlb	__Lparam shr (0+8)
+  1010  005D30  6BDD               	clrf	?_Mark^(__Lparam& (0+65280)),b
+  1011  005D32  0E04               	movlw	4
+  1012  005D34  ECDB  F023         	call	_Mark
+  1013                           ;konfig3.c: 307: Mark(11,0);
+  1014  005D38  0100               	movlb	__Lparam shr (0+8)
+  1015  005D3A  6BDD               	clrf	?_Mark^(__Lparam& (0+65280)),b
+  1016  005D3C  0E0B               	movlw	11
+  1017  005D3E  ECDB  F023         	call	_Mark
+  1018                           ;konfig3.c: 308: Mark(14,0);
+  1019  005D42  0100               	movlb	__Lparam shr (0+8)
+  1020  005D44  6BDD               	clrf	?_Mark^(__Lparam& (0+65280)),b
+  1021  005D46  0E0E               	movlw	14
+  1022  005D48  ECDB  F023         	call	_Mark
+  1023                           ;konfig3.c: 309: DecShowHide();
+  1024  005D4C  DE67               	call	_DecShowHide	;wreg free
+  1025                           ;konfig3.c: 310: if(PZK[nrp].shw)
+  1026  005D4E  0E09               	movlw	9
+  1027  005D50  6E02               	movwf	btemp+2,c
+  1028  005D52  6A03               	clrf	btemp+3,c
+  1029  005D54  C1F0  F000         	movff	_nrp,btemp
+  1030  005D58  C1F1  F001         	movff	_nrp+1,btemp+1
+  1031  005D5C  ECA1  F03F         	call	lwmul
+  1032  005D60  0E3E               	movlw	low (_PZK+8)
+  1033  005D62  2404               	addwf	btemp+4,w,c
+  1034  005D64  6EE9               	movwf	fsr0l,c
+  1035  005D66  0E00               	movlw	high (_PZK+8)
+  1036  005D68  2005               	addwfc	btemp+5,w,c
+  1037  005D6A  6EEA               	movwf	fsr0h,c
+  1038  005D6C  50EF               	movf	indf0,w,c
+  1039  005D6E  6E00               	movwf	btemp,c
+  1040  005D70  AA00               	btfss	btemp,5,c
+  1041  005D72  D01F               	goto	l73
+  1042                           ;konfig3.c: 311: {
+  1043  005D74  0100               	movlb	__Lparam shr (0+8)
+  1044  005D76  0EF0               	movlw	low _nrp
+  1045  005D78  6FD0               	movwf	?_ReadParam^(__Lparam& (0+65280)),b
+  1046  005D7A  0E01               	movlw	high _nrp
+  1047  005D7C  6FD1               	movwf	(?_ReadParam+1)^(__Lparam& (0+65280)),b
+  1048  005D7E  0EE3               	movlw	low _zm
+  1049  005D80  6FD2               	movwf	(?_ReadParam+2)^(__Lparam& (0+65280)),b
+  1050  005D82  0E07               	movlw	high _zm
+  1051  005D84  6FD3               	movwf	(?_ReadParam+3)^(__Lparam& (0+65280)),b
+  1052  005D86  0EE4               	movlw	low _zp
+  1053  005D88  6FD4               	movwf	(?_ReadParam+4)^(__Lparam& (0+65280)),b
+  1054  005D8A  0E07               	movlw	high _zp
+  1055  005D8C  6FD5               	movwf	(?_ReadParam+5)^(__Lparam& (0+65280)),b
+  1056  005D8E  6BD6               	clrf	(?_ReadParam+6)^(__Lparam& (0+65280)),b
+  1057  005D90  6BD7               	clrf	(?_ReadParam+7)^(__Lparam& (0+65280)),b
+  1058  005D92  C1F3  F000         	movff	_DtKNF+1,btemp
+  1059  005D96  0EFF               	movlw	255
+  1060  005D98  2400               	addwf	btemp,w,c
+  1061  005D9A  6FD8               	movwf	(?_ReadParam+8)^(__Lparam& (0+65280)),b
+  1062  005D9C  6BD9               	clrf	(?_ReadParam+9)^(__Lparam& (0+65280)),b
+  1063  005D9E  0EFF               	movlw	255
+  1064  005DA0  23D9               	addwfc	(?_ReadParam+9)^(__Lparam& (0+65280)),f,
+      +                          b
+  1065  005DA2  0E01               	movlw	1
+  1066  005DA4  6FDA               	movwf	(?_ReadParam+10)^(__Lparam& (0+65280)),b
+  1067  005DA6  6BDB               	clrf	(?_ReadParam+11)^(__Lparam& (0+65280)),b
+  1068  005DA8  ECA9  F026         	call	_ReadParam	;wreg free
+  1069                           ;konfig3.c: 313: DtKNF.PRM=nrp;
+  1070  005DAC  C1F0  F1F4         	movff	_nrp,_DtKNF+2
+  1071                           ;konfig3.c: 314: }
+  1072  005DB0  D052               	goto	l74
+  1073  005DB2                     l73:
+  1074                           ;konfig3.c: 315: else
+  1075  005DB2  C7E3  FFE8         	movff	_zm,wreg
+  1076  005DB6  0A03               	xorlw	3
+  1077  005DB8  E11B               	bnz	l75
+  1078                           ;konfig3.c: 318: {
+  1079  005DBA  C1F3  F000         	movff	_DtKNF+1,btemp
+  1080  005DBE  0EFF               	movlw	255
+  1081  005DC0  2400               	addwf	btemp,w,c
+  1082  005DC2  6E02               	movwf	btemp+2,c
+  1083  005DC4  6A03               	clrf	btemp+3,c
+  1084  005DC6  0EFF               	movlw	255
+  1085  005DC8  2203               	addwfc	btemp+3,f,c
+  1086  005DCA  C1F0  F000         	movff	_nrp,btemp
+  1087  005DCE  C1F1  F001         	movff	_nrp+1,btemp+1
+  1088  005DD2  5003               	movf	btemp+3,w,c
+  1089  005DD4  5C01               	subwf	btemp+1,w,c
+  1090  005DD6  E102               	bnz	u365
+  1091  005DD8  5002               	movf	btemp+2,w,c
+  1092  005DDA  5C00               	subwf	btemp,w,c
+  1093  005DDC                     u365:
+  1094  005DDC  E204               	bc	l76
+  1095  005DDE  0101               	movlb	_nrp shr (0+8)
+  1096  005DE0  4BF0               	infsnz	_nrp& (0+255),f,b
+  1097  005DE2  2BF1               	incf	(_nrp+1)& (0+255),f,b
+  1098  005DE4  0012               	return	
+  1099  005DE6                     l76:
+  1100                           ;konfig3.c: 320: else nrp=0;
+  1101  005DE6  EE01  F0F0         	lfsr	0,_nrp
+  1102  005DEA  6AEE               	clrf	postinc0,c
+  1103  005DEC  6AEE               	clrf	postinc0,c
+  1104                           ;konfig3.c: 321: }
+  1105  005DEE  0012               	return	
+  1106  005DF0                     l75:
+  1107                           ;konfig3.c: 322: else
+  1108  005DF0  C7E3  FFE8         	movff	_zm,wreg
+  1109  005DF4  0A02               	xorlw	2
+  1110  005DF6  E114               	bnz	l79
+  1111                           ;konfig3.c: 324: {
+  1112  005DF8  0101               	movlb	_nrp shr (0+8)
+  1113  005DFA  51F0               	movf	_nrp& (0+255),w,b
+  1114  005DFC  11F1               	iorwf	(_nrp+1)& (0+255),w,b
+  1115  005DFE  E004               	bz	l80
+  1116  005E00  07F0               	decf	_nrp& (0+255),f,b
+  1117  005E02  0E00               	movlw	0
+  1118  005E04  5BF1               	subwfb	(_nrp+1)& (0+255),f,b
+  1119  005E06  0C00               	retlw	0
+  1120  005E08                     l80:
+  1121                           ;konfig3.c: 326: else nrp=DtKNF.KNPAR-1;
+  1122  005E08  C1F3  F000         	movff	_DtKNF+1,btemp
+  1123  005E0C  6A01               	clrf	btemp+1,c
+  1124  005E0E  0EFF               	movlw	255
+  1125  005E10  2400               	addwf	btemp,w,c
+  1126  005E12  CFE8 F1F0          	movff	wreg,_nrp
+  1127  005E16  0EFF               	movlw	255
+  1128  005E18  2001               	addwfc	btemp+1,w,c
+  1129  005E1A  CFE8 F1F1          	movff	wreg,_nrp+1
+  1130                           ;konfig3.c: 327: }
+  1131  005E1E  0012               	return	
+  1132  005E20                     l79:
+  1133                           ;konfig3.c: 328: else
+  1134  005E20  C1F3  F000         	movff	_DtKNF+1,btemp
+  1135  005E24  0EFF               	movlw	255
+  1136  005E26  2400               	addwf	btemp,w,c
+  1137  005E28  6E02               	movwf	btemp+2,c
+  1138  005E2A  6A03               	clrf	btemp+3,c
+  1139  005E2C  0EFF               	movlw	255
+  1140  005E2E  2203               	addwfc	btemp+3,f,c
+  1141  005E30  C1F0  F000         	movff	_nrp,btemp
+  1142  005E34  C1F1  F001         	movff	_nrp+1,btemp+1
+  1143  005E38  5003               	movf	btemp+3,w,c
+  1144  005E3A  5C01               	subwf	btemp+1,w,c
+  1145  005E3C  E102               	bnz	u395
+  1146  005E3E  5002               	movf	btemp+2,w,c
+  1147  005E40  5C00               	subwf	btemp,w,c
+  1148  005E42                     u395:
+  1149  005E42  E204               	bc	l83
+  1150  005E44  0101               	movlb	_nrp shr (0+8)
+  1151  005E46  4BF0               	infsnz	_nrp& (0+255),f,b
+  1152  005E48  2BF1               	incf	(_nrp+1)& (0+255),f,b
+  1153  005E4A  0012               	return	
+  1154  005E4C                     l83:
+  1155                           ;konfig3.c: 331: else nrp=0;
+  1156  005E4C  EE01  F0F0         	lfsr	0,_nrp
+  1157  005E50  6AEE               	clrf	postinc0,c
+  1158  005E52  6AEE               	clrf	postinc0,c
+  1159                           ;konfig3.c: 332: }
+  1160  005E54  0012               	return	
+  1161  005E56                     l74:
+  1162                           ;konfig3.c: 334: }
+  1163  005E56  0101               	movlb	(_DtKNF+2) shr (0+8)
+  1164  005E58  29F4               	incf	(_DtKNF+2)& (0+255),w,b
+  1165  005E5A  0100               	movlb	__Lparam shr (0+8)
+  1166  005E5C  6FD0               	movwf	?_PrintPR^(__Lparam& (0+65280)),b
+  1167  005E5E  6BD1               	clrf	(?_PrintPR+1)^(__Lparam& (0+65280)),b
+  1168  005E60  0E73               	movlw	115
+  1169  005E62  EC37  F021         	call	_PrintPR
+  1170                           ;konfig3.c: 336: key=PresKeyEX(RdPrt(1),&ky[1]);
+  1171  005E66  0100               	movlb	__Lparam shr (0+8)
+  1172  005E68  0EAA               	movlw	low (_ky+5)
+  1173  005E6A  6FD4               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1174  005E6C  0E02               	movlw	high (_ky+5)
+  1175  005E6E  6FD5               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1176  005E70  0E01               	movlw	1
+  1177  005E72  EC68  F039         	call	_RdPrt
+  1178  005E76  0E00               	movlw	0
+  1179  005E78  B0D8               	btfsc	status,0,c
+  1180  005E7A  0E01               	movlw	1
+  1181  005E7C  ECDE  F034         	call	_PresKeyEX
+  1182  005E80  0100               	movlb	__Lparam shr (0+8)
+  1183  005E82  6FCF               	movwf	?a_MKonfiguracja^(__Lparam& (0+65280)),b
+  1184                           ;konfig3.c: 337: if(key>0)
+  1185  005E84  51CF               	movf	?a_MKonfiguracja^(__Lparam& (0+65280)),w
+  1186  005E86  E02E               	bz	l85
+  1187                           ;konfig3.c: 338: {
+  1188  005E88  0EAA               	movlw	low (_ky+5)
+  1189  005E8A  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+  1190  005E8C  0E02               	movlw	high (_ky+5)
+  1191  005E8E  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+  1192  005E90  ECE6  F035         	call	_WaitToLowEx	;wreg free
+  1193                           ;konfig3.c: 340: WaitToLowEx(&ky[0]);
+  1194  005E94  0100               	movlb	__Lparam shr (0+8)
+  1195  005E96  0EA5               	movlw	low _ky
+  1196  005E98  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+  1197  005E9A  0E02               	movlw	high _ky
+  1198  005E9C  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+  1199  005E9E  ECE6  F035         	call	_WaitToLowEx	;wreg free
+  1200                           ;konfig3.c: 341: RSDT1.inDDTA=PZK[DtKNF.PRM].bfd
+      +                          ta=PZK[DtKNF.PRM].dta;
+  1201  005EA2  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1202  005EA6  0D09               	mullw	9
+  1203  005EA8  0E3A               	movlw	low (_PZK+4)
+  1204  005EAA  24F3               	addwf	prodl,w,c
+  1205  005EAC  6EE9               	movwf	fsr0l,c
+  1206  005EAE  0E00               	movlw	high (_PZK+4)
+  1207  005EB0  20F4               	addwfc	prodh,w,c
+  1208  005EB2  6EEA               	movwf	fsr0h,c
+  1209  005EB4  CFEE F000          	movff	postinc0,btemp
+  1210  005EB8  CFED F001          	movff	postdec0,btemp+1
+  1211  005EBC  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1212  005EC0  0D09               	mullw	9
+  1213  005EC2  0E3C               	movlw	low (_PZK+6)
+  1214  005EC4  24F3               	addwf	prodl,w,c
+  1215  005EC6  6EE9               	movwf	fsr0l,c
+  1216  005EC8  0E00               	movlw	high (_PZK+6)
+  1217  005ECA  20F4               	addwfc	prodh,w,c
+  1218  005ECC  6EEA               	movwf	fsr0h,c
+  1219  005ECE  C000  FFEE         	movff	btemp,postinc0
+  1220  005ED2  C001  FFEF         	movff	btemp+1,indf0
+  1221  005ED6  C000  F293         	movff	btemp,_RSDT1+55
+  1222                           ;konfig3.c: 342: RSDT1.inPRM=DtKNF.PRM;
+  1223  005EDA  C1F4  F292         	movff	_DtKNF+2,_RSDT1+54
+  1224                           ;konfig3.c: 343: DtKNF.KRK=3;
+  1225  005EDE  0E03               	movlw	3
+  1226  005EE0  CFE8 F1F5          	movff	wreg,_DtKNF+3
+  1227  005EE4                     l85:
+  1228                           ;konfig3.c: 344: }
+  1229  005EE4  0100               	movlb	__Lparam shr (0+8)
+  1230  005EE6  0EA5               	movlw	low _ky
+  1231  005EE8  6FD4               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1232  005EEA  0E02               	movlw	high _ky
+  1233  005EEC  6FD5               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1234  005EEE  0E00               	movlw	0
+  1235  005EF0  EC68  F039         	call	_RdPrt
+  1236  005EF4  0E00               	movlw	0
+  1237  005EF6  B0D8               	btfsc	status,0,c
+  1238  005EF8  0E01               	movlw	1
+  1239  005EFA  ECDE  F034         	call	_PresKeyEX
+  1240  005EFE  0100               	movlb	__Lparam shr (0+8)
+  1241  005F00  6FCF               	movwf	?a_MKonfiguracja^(__Lparam& (0+65280)),b
+  1242                           ;konfig3.c: 346: if(key!=100&&key>=20)
+  1243  005F02  51CF               	movf	?a_MKonfiguracja^(__Lparam& (0+65280)),w
+  1244  005F04  0A64               	xorlw	100
+  1245  005F06  B4D8               	btfsc	status,2,c
+  1246  005F08  0012               	return	
+  1247  005F0A  0E13               	movlw	19
+  1248  005F0C  65CF               	cpfsgt	?a_MKonfiguracja^(__Lparam& (0+65280)),b
+  1249  005F0E  0C13               	retlw	19
+  1250                           ;konfig3.c: 347: {
+  1251  005F10  0EA5               	movlw	low _ky
+  1252  005F12  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+  1253  005F14  0E02               	movlw	high _ky
+  1254  005F16  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+  1255  005F18  ECE6  F035         	call	_WaitToLowEx	;wreg free
+  1256                           ;konfig3.c: 349: StartRTS(0);
+  1257  005F1C  0E00               	movlw	0
+  1258  005F1E  EC34  F03B         	call	_StartRTS
+  1259                           ;konfig3.c: 350: DtKNF.KRK=4;
+  1260  005F22  0E04               	movlw	4
+  1261  005F24  CFE8 F1F5          	movff	wreg,_DtKNF+3
+  1262                           ;konfig3.c: 351: }
+  1263  005F28  0C04               	retlw	4
+  1264  005F2A                     l87:
+  1265                           ;konfig3.c: 353: }
+  1266                           ;konfig3.c: 356: {
+  1267  005F2A  C1F4  F292         	movff	_DtKNF+2,_RSDT1+54
+  1268                           ;konfig3.c: 358: RSDT1.inKRK=DtKNF.KRK;
+  1269  005F2E  C1F5  F291         	movff	_DtKNF+3,_RSDT1+53
+  1270                           ;konfig3.c: 359: PFN._off=0;
+  1271  005F32  0102               	movlb	_PFN shr (0+8)
+  1272  005F34  9106               	bcf	_PFN& (0+255),0,b
+  1273                           ;konfig3.c: 360: PFN._lato=1;
+  1274  005F36  8306               	bsf	_PFN& (0+255),1,b
+  1275                           ;konfig3.c: 361: PFN._zima=0;
+  1276  005F38  9506               	bcf	_PFN& (0+255),2,b
+  1277                           ;konfig3.c: 362: PFN._KnfDisErr=PZK[DtKNF.PRM].n
+      +                          o_msg;
+  1278  005F3A  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1279  005F3E  0D09               	mullw	9
+  1280  005F40  0E3E               	movlw	low (_PZK+8)
+  1281  005F42  24F3               	addwf	prodl,w,c
+  1282  005F44  6EE9               	movwf	fsr0l,c
+  1283  005F46  0E00               	movlw	high (_PZK+8)
+  1284  005F48  20F4               	addwfc	prodh,w,c
+  1285  005F4A  6EEA               	movwf	fsr0h,c
+  1286  005F4C  50EF               	movf	indf0,w,c
+  1287  005F4E  6E00               	movwf	btemp,c
+  1288  005F50  C000  F001         	movff	btemp,btemp+1
+  1289  005F54  0102               	movlb	(_PFN+3) shr (0+8)
+  1290  005F56  9D09               	bcf	(_PFN+3)& (0+255),6,b
+  1291  005F58  B201               	btfsc	btemp+1,1,c
+  1292  005F5A  8D09               	bsf	(_PFN+3)& (0+255),6,b
+  1293                           ;konfig3.c: 363: if((PZK[DtKNF.PRM].max-PZK[DtKN
+      +                          F.PRM].min)>10) fst=1;
+  1294  005F5C  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1295  005F60  0D09               	mullw	9
+  1296  005F62  0E36               	movlw	low _PZK
+  1297  005F64  24F3               	addwf	prodl,w,c
+  1298  005F66  6EE9               	movwf	fsr0l,c
+  1299  005F68  0E00               	movlw	high _PZK
+  1300  005F6A  20F4               	addwfc	prodh,w,c
+  1301  005F6C  6EEA               	movwf	fsr0h,c
+  1302  005F6E  CFEE F002          	movff	postinc0,btemp+2
+  1303  005F72  CFED F003          	movff	postdec0,btemp+3
+  1304  005F76  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1305  005F7A  0D09               	mullw	9
+  1306  005F7C  0E38               	movlw	low (_PZK+2)
+  1307  005F7E  24F3               	addwf	prodl,w,c
+  1308  005F80  6EE9               	movwf	fsr0l,c
+  1309  005F82  0E00               	movlw	high (_PZK+2)
+  1310  005F84  20F4               	addwfc	prodh,w,c
+  1311  005F86  6EEA               	movwf	fsr0h,c
+  1312  005F88  CFEE F000          	movff	postinc0,btemp
+  1313  005F8C  CFED F001          	movff	postdec0,btemp+1
+  1314  005F90  5002               	movf	btemp+2,w,c
+  1315  005F92  5C00               	subwf	btemp,w,c
+  1316  005F94  6EF6               	movwf	tblptrl,c
+  1317  005F96  5003               	movf	btemp+3,w,c
+  1318  005F98  5801               	subwfb	btemp+1,w,c
+  1319  005F9A  6EF7               	movwf	tblptrh,c
+  1320  005F9C  0E00               	movlw	0
+  1321  005F9E  5CF7               	subwf	tblptrh,w,c
+  1322  005FA0  0E0B               	movlw	11
+  1323  005FA2  B4D8               	btfsc	status,2,c
+  1324  005FA4  5CF6               	subwf	tblptrl,w,c
+  1325  005FA6  E303               	bnc	l88
+  1326  005FA8  0E01               	movlw	1
+  1327  005FAA  6ED9               	movwf	fsr2l,c
+  1328  005FAC  D001               	goto	l89
+  1329  005FAE                     l88:
+  1330                           ;konfig3.c: 364: else fst=0;
+  1331  005FAE  6AD9               	clrf	fsr2l,c
+  1332  005FB0                     l89:
+  1333                           ;konfig3.c: 365: ReadParam(&(PZK[DtKNF.PRM].bfdt
+      +                          a),&zm,&zp,PZK[DtKNF.PRM].min,PZK[DtKNF.PRM].max
+      +                          ,PZK[DtKNF.PRM].rld,fst);
+  1334  005FB0  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1335  005FB4  0D09               	mullw	9
+  1336  005FB6  0E3C               	movlw	low (_PZK+6)
+  1337  005FB8  24F3               	addwf	prodl,w,c
+  1338  005FBA  0100               	movlb	__Lparam shr (0+8)
+  1339  005FBC  6FD0               	movwf	?_ReadParam^(__Lparam& (0+65280)),b
+  1340  005FBE  0E00               	movlw	high (_PZK+6)
+  1341  005FC0  20F4               	addwfc	prodh,w,c
+  1342  005FC2  6FD1               	movwf	(?_ReadParam+1)^(__Lparam& (0+65280)),b
+  1343  005FC4  0EE3               	movlw	low _zm
+  1344  005FC6  6FD2               	movwf	(?_ReadParam+2)^(__Lparam& (0+65280)),b
+  1345  005FC8  0E07               	movlw	high _zm
+  1346  005FCA  6FD3               	movwf	(?_ReadParam+3)^(__Lparam& (0+65280)),b
+  1347  005FCC  0EE4               	movlw	low _zp
+  1348  005FCE  6FD4               	movwf	(?_ReadParam+4)^(__Lparam& (0+65280)),b
+  1349  005FD0  0E07               	movlw	high _zp
+  1350  005FD2  6FD5               	movwf	(?_ReadParam+5)^(__Lparam& (0+65280)),b
+  1351  005FD4  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1352  005FD8  0D09               	mullw	9
+  1353  005FDA  0E36               	movlw	low _PZK
+  1354  005FDC  24F3               	addwf	prodl,w,c
+  1355  005FDE  6EE9               	movwf	fsr0l,c
+  1356  005FE0  0E00               	movlw	high _PZK
+  1357  005FE2  20F4               	addwfc	prodh,w,c
+  1358  005FE4  6EEA               	movwf	fsr0h,c
+  1359  005FE6  CFEE F0D6          	movff	postinc0,?_ReadParam+6
+  1360  005FEA  CFED F0D7          	movff	postdec0,?_ReadParam+7
+  1361  005FEE  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1362  005FF2  0D09               	mullw	9
+  1363  005FF4  0E38               	movlw	low (_PZK+2)
+  1364  005FF6  24F3               	addwf	prodl,w,c
+  1365  005FF8  6EE9               	movwf	fsr0l,c
+  1366  005FFA  0E00               	movlw	high (_PZK+2)
+  1367  005FFC  20F4               	addwfc	prodh,w,c
+  1368  005FFE  6EEA               	movwf	fsr0h,c
+  1369  006000  CFEE F0D8          	movff	postinc0,?_ReadParam+8
+  1370  006004  CFED F0D9          	movff	postdec0,?_ReadParam+9
+  1371  006008  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1372  00600C  0D09               	mullw	9
+  1373  00600E  0E3E               	movlw	low (_PZK+8)
+  1374  006010  24F3               	addwf	prodl,w,c
+  1375  006012  6EE9               	movwf	fsr0l,c
+  1376  006014  0E00               	movlw	high (_PZK+8)
+  1377  006016  20F4               	addwfc	prodh,w,c
+  1378  006018  6EEA               	movwf	fsr0h,c
+  1379  00601A  50EF               	movf	indf0,w,c
+  1380  00601C  0B01               	andlw	1
+  1381  00601E  6FDA               	movwf	(?_ReadParam+10)^(__Lparam& (0+65280)),b
+  1382  006020  50D9               	movf	fsr2l,w,c
+  1383  006022  6FDB               	movwf	(?_ReadParam+11)^(__Lparam& (0+65280)),b
+  1384  006024  ECA9  F026         	call	_ReadParam	;wreg free
+  1385                           ;konfig3.c: 366: RSDT1.inDDTA=(char)PZK[DtKNF.PR
+      +                          M].bfdta;
+  1386  006028  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1387  00602C  0D09               	mullw	9
+  1388  00602E  0E3C               	movlw	low (_PZK+6)
+  1389  006030  24F3               	addwf	prodl,w,c
+  1390  006032  6EE9               	movwf	fsr0l,c
+  1391  006034  0E00               	movlw	high (_PZK+6)
+  1392  006036  20F4               	addwfc	prodh,w,c
+  1393  006038  6EEA               	movwf	fsr0h,c
+  1394  00603A  CFEF F293          	movff	indf0,_RSDT1+55
+  1395                           ;konfig3.c: 368: if(!(!PFN._KnfDisErr&&(PFN._fer
+      +                          r||PFN._fmsg)))
+  1396  00603E  0102               	movlb	(_PFN+3) shr (0+8)
+  1397  006040  BD09               	btfsc	(_PFN+3)& (0+255),6,b
+  1398  006042  D006               	goto	u500
+  1399  006044  0102               	movlb	(_PFN+5) shr (0+8)
+  1400  006046  B90B               	btfsc	(_PFN+5)& (0+255),4,b
+  1401  006048  D094               	goto	l90
+  1402  00604A  0102               	movlb	(_PFN+5) shr (0+8)
+  1403  00604C  B70B               	btfsc	(_PFN+5)& (0+255),3,b
+  1404  00604E  D091               	goto	l90
+  1405  006050                     u500:
+  1406                           ;konfig3.c: 369: {
+  1407  006050  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1408  006054  0D09               	mullw	9
+  1409  006056  0E3E               	movlw	low (_PZK+8)
+  1410  006058  24F3               	addwf	prodl,w,c
+  1411  00605A  6EE9               	movwf	fsr0l,c
+  1412  00605C  0E00               	movlw	high (_PZK+8)
+  1413  00605E  20F4               	addwfc	prodh,w,c
+  1414  006060  6EEA               	movwf	fsr0h,c
+  1415  006062  50EF               	movf	indf0,w,c
+  1416  006064  6E00               	movwf	btemp,c
+  1417  006066  B400               	btfsc	btemp,2,c
+  1418  006068  D010               	goto	l91
+  1419  00606A  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1420  00606E  0D09               	mullw	9
+  1421  006070  0E3C               	movlw	low (_PZK+6)
+  1422  006072  24F3               	addwf	prodl,w,c
+  1423  006074  6EE9               	movwf	fsr0l,c
+  1424  006076  0E00               	movlw	high (_PZK+6)
+  1425  006078  20F4               	addwfc	prodh,w,c
+  1426  00607A  6EEA               	movwf	fsr0h,c
+  1427  00607C  50EF               	movf	indf0,w,c
+  1428  00607E  0100               	movlb	__Lparam shr (0+8)
+  1429  006080  6FD0               	movwf	?_PrintWPR^(__Lparam& (0+65280)),b
+  1430  006082  0E00               	movlw	0
+  1431  006084  EC64  F021         	call	_PrintWPR
+  1432  006088  D00E               	goto	l92
+  1433  00608A                     l91:
+  1434                           ;konfig3.c: 371: else PrintWPR(PZK[DtKNF.PRM].bf
+      +                          dta,0);
+  1435  00608A  0100               	movlb	__Lparam shr (0+8)
+  1436  00608C  6BD0               	clrf	?_PrintWPR^(__Lparam& (0+65280)),b
+  1437  00608E  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1438  006092  0D09               	mullw	9
+  1439  006094  0E3C               	movlw	low (_PZK+6)
+  1440  006096  24F3               	addwf	prodl,w,c
+  1441  006098  6EE9               	movwf	fsr0l,c
+  1442  00609A  0E00               	movlw	high (_PZK+6)
+  1443  00609C  20F4               	addwfc	prodh,w,c
+  1444  00609E  6EEA               	movwf	fsr0h,c
+  1445  0060A0  50EF               	movf	indf0,w,c
+  1446  0060A2  EC64  F021         	call	_PrintWPR
+  1447  0060A6                     l92:
+  1448                           ;konfig3.c: 372: Mark(11,PZK[DtKNF.PRM].bfdta>=P
+      +                          ZK[DtKNF.PRM].max);
+  1449  0060A6  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1450  0060AA  0D09               	mullw	9
+  1451  0060AC  0E38               	movlw	low (_PZK+2)
+  1452  0060AE  24F3               	addwf	prodl,w,c
+  1453  0060B0  6EE1               	movwf	fsr1l,c
+  1454  0060B2  0E00               	movlw	high (_PZK+2)
+  1455  0060B4  20F4               	addwfc	prodh,w,c
+  1456  0060B6  6EE2               	movwf	fsr1h,c
+  1457  0060B8  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1458  0060BC  0D09               	mullw	9
+  1459  0060BE  0E3C               	movlw	low (_PZK+6)
+  1460  0060C0  24F3               	addwf	prodl,w,c
+  1461  0060C2  6EE9               	movwf	fsr0l,c
+  1462  0060C4  0E00               	movlw	high (_PZK+6)
+  1463  0060C6  20F4               	addwfc	prodh,w,c
+  1464  0060C8  6EEA               	movwf	fsr0h,c
+  1465  0060CA  52EE               	movf	postinc0,f,c
+  1466  0060CC  52E6               	movf	postinc1,f,c
+  1467  0060CE  50E5               	movf	postdec1,w,c
+  1468  0060D0  5CED               	subwf	postdec0,w,c
+  1469  0060D2  E102               	bnz	u525
+  1470  0060D4  50E7               	movf	indf1,w,c
+  1471  0060D6  5CEF               	subwf	indf0,w,c
+  1472  0060D8                     u525:
+  1473  0060D8  0E00               	movlw	0
+  1474  0060DA  B0D8               	btfsc	status,0,c
+  1475  0060DC  0E01               	movlw	1
+  1476  0060DE  0100               	movlb	__Lparam shr (0+8)
+  1477  0060E0  6FDD               	movwf	?_Mark^(__Lparam& (0+65280)),b
+  1478  0060E2  0E0B               	movlw	11
+  1479  0060E4  ECDB  F023         	call	_Mark
+  1480                           ;konfig3.c: 373: Mark(14,PZK[DtKNF.PRM].bfdta<=P
+      +                          ZK[DtKNF.PRM].min);
+  1481  0060E8  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1482  0060EC  0D09               	mullw	9
+  1483  0060EE  0E3C               	movlw	low (_PZK+6)
+  1484  0060F0  24F3               	addwf	prodl,w,c
+  1485  0060F2  6EE1               	movwf	fsr1l,c
+  1486  0060F4  0E00               	movlw	high (_PZK+6)
+  1487  0060F6  20F4               	addwfc	prodh,w,c
+  1488  0060F8  6EE2               	movwf	fsr1h,c
+  1489  0060FA  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1490  0060FE  0D09               	mullw	9
+  1491  006100  0E36               	movlw	low _PZK
+  1492  006102  24F3               	addwf	prodl,w,c
+  1493  006104  6EE9               	movwf	fsr0l,c
+  1494  006106  0E00               	movlw	high _PZK
+  1495  006108  20F4               	addwfc	prodh,w,c
+  1496  00610A  6EEA               	movwf	fsr0h,c
+  1497  00610C  52EE               	movf	postinc0,f,c
+  1498  00610E  52E6               	movf	postinc1,f,c
+  1499  006110  50E5               	movf	postdec1,w,c
+  1500  006112  5CED               	subwf	postdec0,w,c
+  1501  006114  E102               	bnz	u535
+  1502  006116  50E7               	movf	indf1,w,c
+  1503  006118  5CEF               	subwf	indf0,w,c
+  1504  00611A                     u535:
+  1505  00611A  0E00               	movlw	0
+  1506  00611C  B0D8               	btfsc	status,0,c
+  1507  00611E  0E01               	movlw	1
+  1508  006120  0100               	movlb	__Lparam shr (0+8)
+  1509  006122  6FDD               	movwf	?_Mark^(__Lparam& (0+65280)),b
+  1510  006124  0E0E               	movlw	14
+  1511  006126  ECDB  F023         	call	_Mark
+  1512                           ;konfig3.c: 374: Mark(4,PZK[DtKNF.PRM].T);
+  1513  00612A  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1514  00612E  0D09               	mullw	9
+  1515  006130  0E3E               	movlw	low (_PZK+8)
+  1516  006132  24F3               	addwf	prodl,w,c
+  1517  006134  6EE9               	movwf	fsr0l,c
+  1518  006136  0E00               	movlw	high (_PZK+8)
+  1519  006138  20F4               	addwfc	prodh,w,c
+  1520  00613A  6EEA               	movwf	fsr0h,c
+  1521  00613C  30EF               	rrcf	indf0,w,c
+  1522  00613E  6E00               	movwf	btemp,c
+  1523  006140  3200               	rrcf	btemp,f,c
+  1524  006142  3000               	rrcf	btemp,w,c
+  1525  006144  0B01               	andlw	1
+  1526  006146  0100               	movlb	__Lparam shr (0+8)
+  1527  006148  6FDD               	movwf	?_Mark^(__Lparam& (0+65280)),b
+  1528  00614A  0E04               	movlw	4
+  1529  00614C  ECDB  F023         	call	_Mark
+  1530                           ;konfig3.c: 375: Mark(6,PZK[DtKNF.PRM].B);
+  1531  006150  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1532  006154  0D09               	mullw	9
+  1533  006156  0E3E               	movlw	low (_PZK+8)
+  1534  006158  24F3               	addwf	prodl,w,c
+  1535  00615A  6EE9               	movwf	fsr0l,c
+  1536  00615C  0E00               	movlw	high (_PZK+8)
+  1537  00615E  20F4               	addwfc	prodh,w,c
+  1538  006160  6EEA               	movwf	fsr0h,c
+  1539  006162  38EF               	swapf	indf0,w,c
+  1540  006164  0B01               	andlw	1
+  1541  006166  0100               	movlb	__Lparam shr (0+8)
+  1542  006168  6FDD               	movwf	?_Mark^(__Lparam& (0+65280)),b
+  1543  00616A  0E06               	movlw	6
+  1544  00616C  ECDB  F023         	call	_Mark
+  1545                           ;konfig3.c: 376: }
+  1546  006170  D016               	goto	l93
+  1547  006172                     l90:
+  1548                           ;konfig3.c: 377: else
+  1549  006172  EC95  F021         	call	_EndPR	;wreg free
+  1550                           ;konfig3.c: 380: Mark(11,0);
+  1551  006176  0100               	movlb	__Lparam shr (0+8)
+  1552  006178  6BDD               	clrf	?_Mark^(__Lparam& (0+65280)),b
+  1553  00617A  0E0B               	movlw	11
+  1554  00617C  ECDB  F023         	call	_Mark
+  1555                           ;konfig3.c: 381: Mark(14,0);
+  1556  006180  0100               	movlb	__Lparam shr (0+8)
+  1557  006182  6BDD               	clrf	?_Mark^(__Lparam& (0+65280)),b
+  1558  006184  0E0E               	movlw	14
+  1559  006186  ECDB  F023         	call	_Mark
+  1560                           ;konfig3.c: 382: Mark(4,0);
+  1561  00618A  0100               	movlb	__Lparam shr (0+8)
+  1562  00618C  6BDD               	clrf	?_Mark^(__Lparam& (0+65280)),b
+  1563  00618E  0E04               	movlw	4
+  1564  006190  ECDB  F023         	call	_Mark
+  1565                           ;konfig3.c: 383: Mark(6,0);
+  1566  006194  0100               	movlb	__Lparam shr (0+8)
+  1567  006196  6BDD               	clrf	?_Mark^(__Lparam& (0+65280)),b
+  1568  006198  0E06               	movlw	6
+  1569  00619A  ECDB  F023         	call	_Mark
+  1570  00619E                     l93:
+  1571                           ;konfig3.c: 384: }
+  1572  00619E  0100               	movlb	__Lparam shr (0+8)
+  1573  0061A0  0EAA               	movlw	low (_ky+5)
+  1574  0061A2  6FD4               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1575  0061A4  0E02               	movlw	high (_ky+5)
+  1576  0061A6  6FD5               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1577  0061A8  0E01               	movlw	1
+  1578  0061AA  EC68  F039         	call	_RdPrt
+  1579  0061AE  0E00               	movlw	0
+  1580  0061B0  B0D8               	btfsc	status,0,c
+  1581  0061B2  0E01               	movlw	1
+  1582  0061B4  ECDE  F034         	call	_PresKeyEX
+  1583  0061B8  0100               	movlb	__Lparam shr (0+8)
+  1584  0061BA  6FCF               	movwf	?a_MKonfiguracja^(__Lparam& (0+65280)),b
+  1585                           ;konfig3.c: 386: if(key>0)
+  1586  0061BC  51CF               	movf	?a_MKonfiguracja^(__Lparam& (0+65280)),w
+  1587  0061BE  E02E               	bz	l94
+  1588                           ;konfig3.c: 387: {
+  1589  0061C0  0EAA               	movlw	low (_ky+5)
+  1590  0061C2  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+  1591  0061C4  0E02               	movlw	high (_ky+5)
+  1592  0061C6  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+  1593  0061C8  ECE6  F035         	call	_WaitToLowEx	;wreg free
+  1594                           ;konfig3.c: 389: PZK[DtKNF.PRM].dta=PZK[DtKNF.PR
+      +                          M].bfdta;
+  1595  0061CC  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1596  0061D0  0D09               	mullw	9
+  1597  0061D2  0E3C               	movlw	low (_PZK+6)
+  1598  0061D4  24F3               	addwf	prodl,w,c
+  1599  0061D6  6EE1               	movwf	fsr1l,c
+  1600  0061D8  0E00               	movlw	high (_PZK+6)
+  1601  0061DA  20F4               	addwfc	prodh,w,c
+  1602  0061DC  6EE2               	movwf	fsr1h,c
+  1603  0061DE  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1604  0061E2  0D09               	mullw	9
+  1605  0061E4  0E3A               	movlw	low (_PZK+4)
+  1606  0061E6  24F3               	addwf	prodl,w,c
+  1607  0061E8  6EE9               	movwf	fsr0l,c
+  1608  0061EA  0E00               	movlw	high (_PZK+4)
+  1609  0061EC  20F4               	addwfc	prodh,w,c
+  1610  0061EE  6EEA               	movwf	fsr0h,c
+  1611  0061F0  CFE6 FFEE          	movff	postinc1,postinc0
+  1612  0061F4  CFE5 FFED          	movff	postdec1,postdec0
+  1613                           ;konfig3.c: 390: RSDT1.inDDTA=PZK[DtKNF.PRM].dta
+      +                          ;
+  1614  0061F8  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1615  0061FC  0D09               	mullw	9
+  1616  0061FE  0E3A               	movlw	low (_PZK+4)
+  1617  006200  24F3               	addwf	prodl,w,c
+  1618  006202  6EE9               	movwf	fsr0l,c
+  1619  006204  0E00               	movlw	high (_PZK+4)
+  1620  006206  20F4               	addwfc	prodh,w,c
+  1621  006208  6EEA               	movwf	fsr0h,c
+  1622  00620A  CFEF F293          	movff	indf0,_RSDT1+55
+  1623                           ;konfig3.c: 391: UpdateKnfPar(DtKNF.PRM);
+  1624  00620E  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1625  006212  ECC5  F02C         	call	_UpdateKnfPar
+  1626                           ;konfig3.c: 392: DtKNF.KRK=2;
+  1627  006216  0E02               	movlw	2
+  1628  006218  CFE8 F1F5          	movff	wreg,_DtKNF+3
+  1629  00621C                     l94:
+  1630                           ;konfig3.c: 393: }
+  1631  00621C  0100               	movlb	__Lparam shr (0+8)
+  1632  00621E  0EA5               	movlw	low _ky
+  1633  006220  6FD4               	movwf	?_PresKeyEX^(__Lparam& (0+65280)),b
+  1634  006222  0E02               	movlw	high _ky
+  1635  006224  6FD5               	movwf	(?_PresKeyEX+1)^(__Lparam& (0+65280)),b
+  1636  006226  0E00               	movlw	0
+  1637  006228  EC68  F039         	call	_RdPrt
+  1638  00622C  0E00               	movlw	0
+  1639  00622E  B0D8               	btfsc	status,0,c
+  1640  006230  0E01               	movlw	1
+  1641  006232  ECDE  F034         	call	_PresKeyEX
+  1642  006236  0100               	movlb	__Lparam shr (0+8)
+  1643  006238  6FCF               	movwf	?a_MKonfiguracja^(__Lparam& (0+65280)),b
+  1644                           ;konfig3.c: 395: if(key>0)
+  1645  00623A  51CF               	movf	?a_MKonfiguracja^(__Lparam& (0+65280)),w
+  1646  00623C  B4D8               	btfsc	status,2,c
+  1647  00623E  0012               	return	
+  1648                           ;konfig3.c: 396: {
+  1649  006240  0EA5               	movlw	low _ky
+  1650  006242  6FD4               	movwf	?_WaitToLowEx^(__Lparam& (0+65280)),b
+  1651  006244  0E02               	movlw	high _ky
+  1652  006246  6FD5               	movwf	(?_WaitToLowEx+1)^(__Lparam& (0+65280)),b
+  1653  006248  ECE6  F035         	call	_WaitToLowEx	;wreg free
+  1654                           ;konfig3.c: 398: PZK[DtKNF.PRM].bfdta=PZK[DtKNF.
+      +                          PRM].dta;
+  1655  00624C  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1656  006250  0D09               	mullw	9
+  1657  006252  0E3A               	movlw	low (_PZK+4)
+  1658  006254  24F3               	addwf	prodl,w,c
+  1659  006256  6EE1               	movwf	fsr1l,c
+  1660  006258  0E00               	movlw	high (_PZK+4)
+  1661  00625A  20F4               	addwfc	prodh,w,c
+  1662  00625C  6EE2               	movwf	fsr1h,c
+  1663  00625E  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1664  006262  0D09               	mullw	9
+  1665  006264  0E3C               	movlw	low (_PZK+6)
+  1666  006266  24F3               	addwf	prodl,w,c
+  1667  006268  6EE9               	movwf	fsr0l,c
+  1668  00626A  0E00               	movlw	high (_PZK+6)
+  1669  00626C  20F4               	addwfc	prodh,w,c
+  1670  00626E  6EEA               	movwf	fsr0h,c
+  1671  006270  CFE6 FFEE          	movff	postinc1,postinc0
+  1672  006274  CFE5 FFED          	movff	postdec1,postdec0
+  1673                           ;konfig3.c: 399: RSDT1.inDDTA=PZK[DtKNF.PRM].dta
+      +                          ;
+  1674  006278  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1675  00627C  0D09               	mullw	9
+  1676  00627E  0E3A               	movlw	low (_PZK+4)
+  1677  006280  24F3               	addwf	prodl,w,c
+  1678  006282  6EE9               	movwf	fsr0l,c
+  1679  006284  0E00               	movlw	high (_PZK+4)
+  1680  006286  20F4               	addwfc	prodh,w,c
+  1681  006288  6EEA               	movwf	fsr0h,c
+  1682  00628A  CFEF F293          	movff	indf0,_RSDT1+55
+  1683                           ;konfig3.c: 400: UpdateKnfPar(DtKNF.PRM);
+  1684  00628E  C1F4  FFE8         	movff	_DtKNF+2,wreg
+  1685  006292  ECC5  F02C         	call	_UpdateKnfPar
+  1686                           ;konfig3.c: 401: DtKNF.KRK=2;
+  1687  006296  0E02               	movlw	2
+  1688  006298  CFE8 F1F5          	movff	wreg,_DtKNF+3
+  1689                           ;konfig3.c: 402: }
+  1690  00629C  0C02               	retlw	2
+  1691  00629E                     l96:
+  1692                           ;konfig3.c: 404: }
+  1693                           ;konfig3.c: 407: {
+  1694  00629E  0102               	movlb	(_RSDT1+54) shr (0+8)
+  1695  0062A0  6B92               	clrf	(_RSDT1+54)& (0+255),b
+  1696                           ;konfig3.c: 409: RSDT1.inKRK=DtKNF.KRK;
+  1697  0062A2  C1F5  F291         	movff	_DtKNF+3,_RSDT1+53
+  1698                           ;konfig3.c: 410: if((RTS(0)>=1))
+  1699  0062A6  0E00               	movlw	0
+  1700  0062A8  EC46  F03B         	call	_RTS
+  1701  0062AC  6E00               	movwf	btemp,c
+  1702  0062AE  0E01               	movlw	1
+  1703  0062B0  5C00               	subwf	btemp,w,c
+  1704  0062B2  B0D8               	btfsc	status,0,c
+  1705                           ;konfig3.c: 411: {
+  1706  0062B4  ECAB  F02C         	call	_ExitKonf	;wreg free
+  1707                           ;konfig3.c: 413: return;
+  1708  0062B8  0012               	return	
+  1709                           ;konfig3.c: 414: }
+  1710  0062BA                     l56:
+  1711  0062BA  C1F5  FFE8         	movff	_DtKNF+3,wreg
+  1712  0062BE  0A00               	xorlw	0
+  1713  0062C0  E102 EF5D  F02D    	bz	l57
+  1714  0062C6  0A01               	xorlw	1
+  1715  0062C8  E101 D452          	bz	l62
+  1716  0062CC  0A03               	xorlw	3
+  1717  0062CE  E101 D51D          	bz	l72
+  1718  0062D2  0A01               	xorlw	1
+  1719  0062D4  E101 D629          	bz	l87
+  1720  0062D8  0A07               	xorlw	7
+  1721  0062DA  E0E1               	bz	l96
+  1722  0062DC  0012               	return	
+  1723                           ;konfig3.c: 417: }
+  1724  0062DE                     __end_of_MKonfiguracja:
+  1725  000000                     
+  1726  000000                     
+  1727  000000                     
+  1728  000000                     
+  1729  000000                     
+  1730  000000                     
+  1731  000000                     
+  1732  000000                     
+  1733  000000                     
+  1734  000000                     
+  1735  000000                     
+  1736  000000                     
+  1737  000000                     
+  1738  000000                     
+  1739  000000                     
+  1740  000000                     
+  1741  000000                     
+  1742  000000                     
+  1743  000000                     
+  1744  000000                     
+  1745  000000                     
+  1746  000000                     
+  1747  000000                     
+  1748  000000                     
+  1749  000000                     
+  1750  000000                     
+  1751  000000                     
+  1752  000000                     
+  1753  000000                     
+  1754  000000                     
+  1755  000000                     
+  1756  000000                     
+  1757  000000                     
+  1758  000000                     
+  1759  000000                     
+  1760  000000                     
+  1761  000000                     
+  1762  000000                     
+  1763  000000                     
+  1764  000000                     
+  1765  000000                     
+  1766  000000                     
+  1767  000000                     
+  1768  000000                     
+  1769  000000                     
+  1770  000000                     
+  1771  000000                     
+  1772  000000                     
+  1773  000000                     
+  1774  000000                     
+  1775  000000                     
+  1776  000000                     
+  1777  000000                     
+  1778  000000                     
+  1779  000000                     
+  1780  000000                     
+  1781  000000                     
+  1782  000000                     
+  1783  000000                     
+  1784  000000                     
+  1785  000000                     
+  1786  000000                     
+  1787  000000                     
+  1788  000000                     
+  1789  000000                     
+  1790  000000                     
+  1791  000000                     
+  1792  000000                     
+  1793  000000                     
+  1794  000000                     
+  1795  000000                     
+  1796  000000                     
+  1797  000000                     
+  1798  000000                     
+  1799  000000                     
+  1800  000000                     
+  1801  000000                     
+  1802  000000                     
+  1803  000000                     
+  1804  000000                     
+  1805  000000                     
+  1806  000000                     
+  1807  000000                     
+  1808  000000                     
+  1809  000000                     
+  1810  000000                     
+  1811  000000                     
+  1812  000000                     
+  1813  000000                     
+  1814  000000                     
+  1815  000000                     
+  1816  000000                     
+  1817  000000                     
+  1818  000000                     
+  1819  000000                     
+  1820  000000                     
+  1821  000000                     
+  1822  000000                     
+  1823  000000                     
+  1824  000000                     
+  1825  000000                     
+  1826  000000                     
+  1827  000000                     
+  1828  000000                     
+  1829  000000                     
+  1830  000000                     
+  1831  000000                     
+  1832  000000                     
+  1833  000000                     
+  1834  000000                     
+  1835  000000                     
+  1836  000000                     
+  1837  000000                     
+  1838  000000                     
+  1839  000000                     
+  1840  000000                     
+  1841  000000                     
+  1842  000000                     
+  1843  000000                     
+  1844  000000                     
+  1845  000000                     
+  1846  000000                     
+  1847  000000                     
+  1848  000000                     
+  1849  000000                     
+  1850  000000                     
+  1851  000000                     
+  1852  000000                     
+  1853  000000                     
+  1854  000000                     
+  1855  000000                     
+  1856  000000                     
+  1857  000000                     
+  1858  000000                     
+  1859  000000                     
+  1860  000000                     
+  1861  000000                     
+  1862  000000                     
+  1863  000000                     
+  1864  000000                     
+  1865  000000                     
+  1866  000000                     
+  1867  000000                     
+  1868  000000                     
+  1869  000000                     
+  1870  000000                     
+  1871  000000                     
+  1872  000000                     
+  1873  000000                     
+  1874  000000                     
+  1875  000000                     
+  1876  000000                     
+  1877  000000                     
+  1878  000000                     
+  1879  000000                     
+  1880  000000                     
+  1881  000000                     
+  1882  000000                     
+  1883  000000                     
+  1884  000000                     
+  1885  000000                     
+  1886  000000                     
+  1887  000000                     
+  1888  000000                     
+  1889  000000                     
+  1890  000000                     
+  1891  000000                     
+  1892  000000                     
+  1893  000000                     
+  1894  000000                     
+  1895  000000                     
+  1896  000000                     
+  1897  000000                     
+  1898  000000                     
+  1899  000000                     
+  1900  000000                     
+  1901  000000                     
+  1902  000000                     
+  1903  000000                     
+  1904  000000                     
+  1905  000000                     
+  1906  000000                     
+  1907  000000                     
+  1908  000000                     
+  1909  000000                     
+  1910  000000                     
+  1911  000000                     
+  1912  000000                     
+  1913  000000                     
+  1914  000000                     
+  1915  000000                     
+  1916  000000                     
+  1917  000000                     
+  1918  000000                     
+  1919  000000                     
+  1920  000000                     
+  1921  000000                     
+  1922  000000                     
+  1923  000000                     
+  1924  000000                     
+  1925  000000                     
+  1926  000000                     
+  1927  000000                     
+  1928  000000                     
+  1929  000000                     
+  1930  000000                     
+  1931  000000                     
+  1932  000000                     
+  1933  000000                     
+  1934  000000                     
+  1935  000000                     
+  1936  000000                     
+  1937  000000                     
+  1938  000000                     
+  1939  000000                     
+  1940  000000                     
+  1941  000000                     
+  1942  000000                     
+  1943  000000                     
+  1944  000000                     
+  1945  000000                     
+  1946  000000                     
+  1947  000000                     
+  1948  000000                     
+  1949  000000                     
+  1950  000000                     
+  1951  000000                     
+  1952  000000                     
+  1953  000000                     
+  1954  000000                     
+  1955  000000                     
+  1956  000000                     
+  1957  000000                     
+  1958  000000                     
+  1959  000000                     
+  1960  000000                     
+  1961  000000                     
+  1962  000000                     
+  1963  000000                     
+  1964  000000                     
+  1965  000000                     
+  1966  000000                     
+  1967  000000                     
+  1968  000000                     
+  1969  000000                     
+  1970  000000                     
+  1971  000000                     
+  1972  000000                     
+  1973  000000                     
+  1974  000000                     
+  1975  000000                     
+  1976  000000                     
+  1977  000000                     
+  1978  000000                     
+  1979  000000                     
+  1980  000000                     
+  1981  000000                     
+  1982  000000                     
+  1983  000000                     
+  1984  000000                     
+  1985  000000                     
+  1986  000000                     
+  1987  000000                     
+  1988  000000                     
+  1989  000000                     
+  1990  000000                     
+  1991  000000                     
+  1992  000000                     
+  1993  000000                     
+  1994  000000                     
+  1995  000000                     
+  1996  000000                     
+  1997  000000                     
+  1998  000000                     
+  1999  000000                     
+  2000  000000                     
+  2001  000000                     
+  2002  000000                     
+  2003  000000                     
+  2004  000000                     
+  2005  000000                     
+  2006  000000                     
+  2007  000000                     
+  2008  000000                     
+  2009  000000                     
+  2010  000000                     
+  2011  000000                     
+  2012  000000                     
+  2013  000000                     
+  2014  000000                     
+  2015  000000                     
+  2016  000000                     
+  2017  000000                     
+  2018  000000                     
+  2019  000000                     
+  2020  000000                     
+  2021  000000                     
+  2022  000000                     
+  2023  000000                     
+  2024  000000                     
+  2025  000000                     
+  2026  000000                     
+  2027  000000                     
+  2028  000000                     
+  2029  000000                     
+  2030  000000                     
+  2031  000000                     
+  2032  000000                     
+  2033  000000                     
+  2034  000000                     
+  2035  000000                     
+  2036  000000                     
+  2037  000000                     
+  2038  000000                     
+  2039  000000                     
+  2040  000000                     
+  2041  000000                     
+  2042  000000                     
+  2043  000000                     
+  2044  000000                     
+  2045  000000                     
+  2046  000000                     
+  2047  000000                     
+  2048  000000                     
+  2049  000000                     
+  2050  000000                     
+  2051  000000                     
+  2052  000000                     
+  2053  000000                     
+  2054  000000                     
+  2055  000000                     
+  2056  000000                     
+  2057  000000                     
+  2058  000000                     
+  2059  000000                     
+  2060  000000                     
+  2061  000000                     
+  2062  000000                     
+  2063  000000                     
+  2064  000000                     
+  2065  000000                     
+  2066  000000                     
+  2067  000000                     
+  2068  000000                     
+  2069  000000                     
+  2070  000000                     
+  2071  000000                     
+  2072  000000                     
+  2073  000000                     
+  2074  000000                     
+  2075  000000                     
+  2076  000000                     
+  2077  000000                     
+  2078  000000                     
+  2079  000000                     
+  2080  000000                     
+  2081  000000                     
+  2082  000000                     
+  2083  000000                     
+  2084  000000                     
+  2085  000000                     
+  2086  000000                     
+  2087  000000                     
+  2088  000000                     
+  2089  000000                     
+  2090  000000                     
+  2091  000000                     
+  2092  000000                     
+  2093  000000                     
+  2094  000000                     
+  2095  000000                     
+  2096  000000                     
+  2097  000000                     
+  2098  000000                     
+  2099  000000                     
+  2100  000000                     
+  2101  000000                     
+  2102  000000                     
+  2103  000000                     
+  2104  000000                     
+  2105  000000                     
+  2106  000000                     
+  2107  000000                     
+  2108  000000                     
+  2109  000000                     
+  2110  000000                     
+  2111  000000                     
+  2112  000000                     
+  2113  000000                     
+  2114  000000                     
+  2115  000000                     
+  2116  000000                     
+  2117  000000                     
+  2118  000000                     
+  2119  000000                     
+  2120  000000                     
+  2121  000000                     
+  2122  000000                     
+  2123  000000                     
+  2124  000000                     
+  2125  000000                     
+  2126  000000                     
+  2127  000000                     
+  2128  000000                     
+  2129  000000                     
+  2130  000000                     
+  2131  000000                     
+  2132  000000                     
+  2133  000000                     
+  2134  000000                     
+  2135  000000                     
+  2136  000000                     
+  2137  000000                     
+  2138  000000                     
+  2139  000000                     
+  2140  000000                     
+  2141  000000                     
+  2142  000000                     
+  2143  000000                     
+  2144  000000                     
+  2145  000000                     
+  2146  000000                     
+  2147  000000                     
+  2148  000000                     
+  2149  000000                     
+  2150  000000                     
+  2151  000000                     
+  2152  000000                     
+  2153  000000                     
+  2154  000000                     
+  2155  000000                     
+  2156  000000                     
+  2157  000000                     
+  2158  000000                     
+  2159  000000                     
+  2160  000000                     
+  2161  000000                     
+  2162  000000                     
+  2163  000000                     
+  2164  000000                     
+  2165  000000                     
+  2166  000000                     
+  2167  000000                     
+  2168  000000                     
+  2169  000000                     
+  2170  000000                     
+  2171  000000                     
+  2172  000000                     
+  2173  000000                     
+  2174  000000                     
+  2175  000000                     
+  2176  000000                     
+  2177  000000                     
+  2178  000000                     
+  2179  000000                     
+  2180  000000                     
+  2181  000000                     
+  2182  000000                     
+  2183  000000                     
+  2184  000000                     
+  2185  000000                     
+  2186  000000                     
+  2187  000000                     
+  2188  000000                     
+  2189  000000                     
+  2190  000000                     
+  2191  000000                     
+  2192  000000                     
+  2193  000000                     
+  2194  000000                     
+  2195  000000                     
+  2196  000000                     
+  2197  000000                     
+  2198  000000                     
+  2199  000000                     
+  2200  000000                     
+  2201  000000                     
+  2202  000000                     
+  2203  000000                     
+  2204  000000                     
+  2205  000000                     
+  2206  000000                     
+  2207  000000                     
+  2208  000000                     
+  2209  000000                     
+  2210  000000                     
+  2211  000000                     
+  2212  000000                     
+  2213  000000                     
+  2214  000000                     
+  2215  000000                     
+  2216  000000                     
+  2217  000000                     
+  2218  000000                     
+  2219  000000                     
+  2220  000000                     
+  2221  000000                     
+  2222  000000                     
+  2223  000000                     
+  2224  000000                     
+  2225  000000                     
+  2226  000000                     
+  2227  000000                     
+  2228  000000                     
+  2229  000000                     
+  2230  000000                     
+  2231  000000                     
+  2232  000000                     
+  2233  000000                     
+  2234  000000                     
+  2235  000000                     
+  2236  000000                     
+  2237  000000                     
+  2238  000000                     
+  2239  000000                     
+  2240  000000                     
+  2241  000000                     
+  2242  000000                     
+  2243  000000                     
+  2244  000000                     
+  2245  000000                     
+  2246  000000                     
+  2247  000000                     
+  2248  000000                     
+  2249  000000                     
+  2250  000000                     
+  2251  000000                     
+  2252  000000                     
+  2253  000000                     
+  2254  000000                     
+  2255  000000                     
+  2256  000000                     
+  2257  000000                     
+  2258  000000                     
+  2259  000000                     
+  2260  000000                     
+  2261  000000                     
+  2262  000000                     
+  2263  000000                     
+  2264  000000                     
+  2265  000000                     
+  2266  000000                     
+  2267  000000                     
+  2268  000000                     
+  2269  000000                     
+  2270  000000                     
+  2271  000000                     
+  2272  000000                     
+  2273  000000                     
+  2274  000000                     
+  2275  000000                     
+  2276  000000                     
+  2277  000000                     
+  2278  000000                     
+  2279  000000                     
+  2280  000000                     
+  2281  000000                     
+  2282  000000                     
+  2283  000000                     
+  2284  000000                     
+  2285  000000                     
+  2286  000000                     
+  2287  000000                     
+  2288  000000                     
+  2289  000000                     
+  2290  000000                     
+  2291  000000                     
+  2292  000000                     
+  2293  000000                     
+  2294  000000                     
+  2295  000000                     
+  2296  000000                     
+  2297  000000                     
+  2298  000000                     
+  2299  000000                     
+  2300  000000                     
+  2301  000000                     
+  2302  000000                     
+  2303  000000                     
+  2304  000000                     
+  2305  000000                     
+  2306  000000                     
+  2307  000000                     
+  2308  000000                     
+  2309  000000                     
+  2310  000000                     
+  2311  000000                     
+  2312  000000                     
+  2313  000000                     
+  2314  000000                     
+  2315  000000                     
+  2316  000000                     
+  2317  000000                     
+  2318  000000                     
+  2319  000000                     
+  2320  000000                     
+  2321  000000                     
+  2322  000000                     
+  2323  000000                     
+  2324  000000                     
+  2325  000000                     
+  2326  000000                     
+  2327  000000                     
+  2328  000000                     
+  2329  000000                     
+  2330  000000                     
+  2331  000000                     
+  2332  000000                     
+  2333  000000                     
+  2334  000000                     
+  2335  000000                     
+  2336  000000                     
+  2337  000000                     
+  2338  000000                     
+  2339  000000                     
+  2340  000000                     
+  2341  000000                     
+  2342  000000                     
+  2343  000000                     
+  2344  000000                     
+  2345  000000                     
+  2346  000000                     
+  2347  000000                     
+  2348  000000                     
+  2349  000000                     
+  2350  000000                     
+  2351  000000                     
+  2352  000000                     
+  2353  000000                     
+  2354  000000                     
+  2355  000000                     
+  2356  000000                     
+  2357  000000                     
+  2358  000000                     
+  2359  000000                     
+  2360  000000                     
+  2361  000000                     
+  2362  000000                     
+  2363  000000                     
+  2364  000000                     
+  2365  000000                     
+  2366  000000                     
+  2367  000000                     
+  2368  000000                     
+  2369  000000                     
+  2370  000000                     
+  2371  000000                     
+  2372  000000                     
+  2373  000000                     
+  2374  000000                     
+  2375  000000                     
+  2376  000000                     
+  2377  000000                     
+  2378  000000                     
+  2379  000000                     
+  2380  000000                     
+  2381  000000                     
+  2382  000000                     
+  2383  000000                     
+  2384  000000                     
+  2385  000000                     
+  2386  000000                     
+  2387  000000                     
+  2388  000000                     
+  2389  000000                     
+  2390  000000                     
+  2391  000000                     
+  2392  000000                     
+  2393  000000                     
+  2394  000000                     
+  2395  000000                     
+  2396  000000                     
+  2397  000000                     
+  2398  000000                     
+  2399  000000                     
+  2400  000000                     
+  2401  000000                     
+  2402  000000                     
+  2403  000000                     
+  2404  000000                     
+  2405  000000                     
+  2406  000000                     
+  2407  000000                     
+  2408  000000                     
+  2409  000000                     
+  2410  000000                     
+  2411  000000                     
+  2412  000000                     
+  2413  000000                     
+  2414  000000                     
+  2415  000000                     
+  2416  000000                     
+  2417  000000                     
+  2418  000000                     
+  2419  000000                     
+  2420  000000                     
+  2421  000000                     
+  2422  000000                     
+  2423  000000                     
+  2424  000000                     
+  2425  000000                     
+  2426  000000                     
+  2427  000000                     
+  2428  000000                     
+  2429  000000                     
+  2430  000000                     
+  2431  000000                     
+  2432  000000                     
+  2433  000000                     
+  2434  000000                     
+  2435  000000                     
+  2436  000000                     
+  2437  000000                     
+  2438  000000                     
+  2439  000000                     
+  2440  000000                     
+  2441  000000                     
+  2442  000000                     
+  2443  000000                     
+  2444  000000                     
+  2445  000000                     
+  2446  000000                     
+  2447  000000                     
+  2448  000000                     
+  2449  000000                     
+  2450  000000                     
+  2451  000000                     
+  2452  000000                     
+  2453  000000                     
+  2454  000000                     
+  2455  000000                     
+  2456  000000                     
+  2457  000000                     
+  2458  000000                     
+  2459  000000                     
+  2460  000000                     
+  2461  000000                     
+  2462  000000                     
+  2463  000000                     
+  2464  000000                     
+  2465  000000                     
+  2466  000000                     
+  2467  000000                     
+  2468  000000                     
+  2469  000000                     
+  2470  000000                     
+  2471  000000                     
+  2472  000000                     
+  2473  000000                     
+  2474  000000                     
+  2475  000000                     
+  2476  000000                     
+  2477  000000                     
+  2478  000000                     
+  2479  000000                     
+  2480  000000                     
+  2481  000000                     
+  2482  000000                     
+  2483  000000                     
+  2484  000000                     
+  2485  000000                     
+  2486  000000                     
+  2487  000000                     
+  2488  000000                     
+  2489  000000                     
+  2490  000000                     
+  2491  000000                     
+  2492  000000                     
+  2493  000000                     
+  2494  000000                     
+  2495  000000                     
+  2496                           
+  2497                           	psect	const
+  2498  000856                     S30004:
+  2499  000856  598E               	dw	l28	;
+  2500  000858  5994               	dw	l29	;
+  2501  00085A  599A               	dw	l30	;
+  2502  00085C  59A0               	dw	l31	;
+  2503  00085E  59A6               	dw	l32	;
+  2504  000860  59AC               	dw	l33	;
+  2505  000862  59B2               	dw	l34	;
+  2506  000864  59B8               	dw	l35	;
+  2507  000866  59BE               	dw	l36	;
+  2508  000868  59C4               	dw	l37	;
+  2509  00086A  59CA               	dw	l38	;
+  2510  00086C  59D0               	dw	l39	;
+  2511  00086E  59D6               	dw	l40	;
+  2512  000870  59DC               	dw	l41	;
+  2513  000872  59E2               	dw	l42	;
+  2514  000874  59E8               	dw	l43	;
+  2515  000876  59EE               	dw	l44	;
+  2516                           
+  2517                           	psect	bigbss
+  2518  0007E3                     _zm:
+  2519  0007E3                     	ds	1
+  2520  0007E3                     _zp:
+  2521  0007E3                     	ds	1
+  2522  000000                     
+  2523  000000                     
+  2524  000000                     
+  2525  000000                     
+  2526  000000                     
+  2527  000000                     
+  2528  000000                     
+  2529                           
+  2530                           	psect	bss
+  2531  0001F0                     _nrp:
+  2532  0001F0                     	ds	2
+  2533  0001F0                     _DtKNF:
+  2534  0001F0                     	ds	13
+  2535                           
+  2536                           	psect	temp
+  2537  000000                     btemp:
+  2538  000000                     	ds	6
+  2539                           pclath	equ	0xFFA
+  2540                           pcl	equ	0xFF9
+  2541                           tblptrh	equ	0xFF7
+  2542                           tblptrl	equ	0xFF6
+  2543                           tablat	equ	0xFF5
+  2544                           prodh	equ	0xFF4
+  2545                           prodl	equ	0xFF3
+  2546                           indf0	equ	0xFEF
+  2547                           postinc0	equ	0xFEE
+  2548                           postdec0	equ	0xFED
+  2549                           fsr0h	equ	0xFEA
+  2550                           fsr0l	equ	0xFE9
+  2551                           wreg	equ	0xFE8
+  2552                           indf1	equ	0xFE7
+  2553                           postinc1	equ	0xFE6
+  2554                           postdec1	equ	0xFE5
+  2555                           fsr1h	equ	0xFE2
+  2556                           fsr1l	equ	0xFE1
+  2557                           fsr2l	equ	0xFD9
+  2558                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Fri Nov 21 09:58:05 2014
+
+             _PrintWPR 42C8              _PresKeyEX 69BC  
+                   l30 599A                     l31 59A0  
+                   l40 59D6                     l32 59A6  
+                   l41 59DC                     l33 59AC  
+                   l42 59E2                     l34 59B2  
+                   l26 5A1A                     l43 59E8  
+                   l35 59B8                     l27 59F4  
+                   l60 5B60                     l44 59EE  
+                   l36 59BE                     l28 598E  
+                   l53 5A9A                     l37 59C4  
+                   l29 5994                     l70 5CEC  
+                   l62 5B70                     l46 5A2C  
+                   l38 59CA                     l71 5CFA  
+                   l63 5B88                     l47 5A32  
+                   l39 59D0                     l80 5E08  
+                   l72 5D0C                     l56 62BA  
+                   l48 5A6C                     l73 5DB2  
+                   l65 5CE2                     l57 5ABA  
+                   l49 5A74                     l90 6172  
+                   l74 5E56                     l91 608A  
+                   l83 5E4C                     l75 5DF0  
+                   l92 60A6                     l76 5DE6  
+                   l68 5CEE                     l93 619E  
+                   l85 5EE4                     l69 5CE8  
+                   l94 621C                     l87 5F2A  
+                   l79 5E20                     l96 629E  
+                   l88 5FAE                     l89 5FB0  
+                   _ky 02A5                     _zm 07E3  
+                   _zp 07E4              ?_PrintWPR 00D0  
+                   pcl 000FF9               _StartRTM 76A4  
+             _StartRTS 7668             ?_PresKeyEX 00D4  
+          _ClrAllMarks 39D8                    u220 5AF2  
+                  u230 5AF4                    u150 5AB8  
+                  u500 6050                    _PFN 0206  
+                  u525 60D8                    u365 5DDC  
+                  u535 611A                    u395 5E42  
+                  _RTM 76C8                    _PZK 0036  
+                  _RTS 768C                    _nrp 01F0  
+                  wreg 000FE8                   _MGSD 02EB  
+          _WaitToLowEx 6BCC                   _Mark 47B6  
+                 indf0 000FEF                   fsr0l 000FE9  
+                 indf1 000FE7                   fsr1l 000FE1  
+                 fsr2l 000FD9                   btemp 0000  
+                 prodh 000FF4                   prodl 000FF3  
+                 lwmul 7F42        ?a_MKonfiguracja 00CF  
+                S30004 0856           ?_WaitToLowEx 00D4  
+                ?_Mark 00DD                  _RSDT1 025C  
+                _DtKNF 01F2                  _EndPR 432A  
+                _RdPrt 72D0             used_btemp0 0001  
+           used_btemp1 0001             used_btemp2 0001  
+           used_btemp3 0001             used_btemp4 0001  
+           used_btemp5 0001                  pclath 000FFA  
+                tablat 000FF5                _GetBit2 7D2A  
+                status 000FD8               ?_GetBit2 00D0  
+     __end_of_InitKonf 5956       __end_of_ExitKonf 598A  
+              __Lparam 00CF                _PrintPR 426E  
+             ?_PrintPR 00D0                __ramtop 0800  
+              postdec0 000FED                postdec1 000FE5  
+              postinc0 000FEE                postinc1 000FE6  
+         _UpdateKnfPar 598A            _DecShowHide 5A1C  
+ __end_of_UpdateKnfPar 5A1C    __end_of_DecShowHide 5A86  
+               tblptrh 000FF7                 tblptrl 000FF6  
+        _MKonfiguracja 5A86              _ReadParam 4D52  
+             _InitKonf 594E             ?_ReadParam 00D0  
+             _ExitKonf 5956  __end_of_MKonfiguracja 62DE  

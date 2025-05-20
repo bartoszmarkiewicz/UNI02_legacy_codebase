@@ -1,0 +1,1624 @@
+˝
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Mar 20 08:54:40 2013
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	rbss,global,common,class=COMRAM,space=1,d
+      +                          elta=1
+     5                           	psect	bss,global,class=RAM,space=1,delta=1
+˝     6                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     7                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     8                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                   ˝  
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+  ˝  27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41 ˝ 000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  0000˝00                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000   ˝                  
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000        ˝             
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000             ˝        
+    98                           
+    99                           	psect	text
+   100                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   101                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   102                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   103       ˝                    ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   104                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   105                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   106                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                   ˝       d char PCL @ 0xFF9;
+   107                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   108                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   109                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   110                           ;pic18f45k20.h: 30: static volat˝ile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   111                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   112                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   113                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   114                 ˝          ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   115                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   116                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   117                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char IND˝F0 @ 0xFEF;
+   118                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   119                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   120                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   121                           ;pic18f45k20.h: 41: static volatile near unsi˝gne
+      +                          d char PLUSW0 @ 0xFEB;
+   122                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   123                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   124                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   125                           ;pic18˝f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   126                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   127                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   128                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @˝ 0xFE4;
+   129                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   130                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   131                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   132                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +˝                          R @ 0xFE0;
+   133                           ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   134                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   135                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   136                           ;pic18f45k20.h: 56: st˝atic volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   137                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   138                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   139                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   140       ˝                    ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   141                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   142                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   143                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                     ˝     d int TMR0 @ 0xFD6;
+   144                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   145                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   146                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   147                           ;pic18f45k20.h: 68: static volatile near unsig˝ne
+      +                          d char WDTCON @ 0xFD1;
+   148                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   149                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   150                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   151                           ;pic18f˝45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   152                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   153                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   154                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   155                  ˝         ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   156                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   157                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   158                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;˝
+   159                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   160                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   161                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   162                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +   ˝                       d char ADRESL @ 0xFC3;
+   163                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   164                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   165                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   166                           ;pic18f45k20.h: 89: static ˝near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   167                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   168                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   169                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   170                      ˝     ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   171                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   172                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   173                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int C˝CPR2 @ 0xFBB;
+   174                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+   175                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   176                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   177                           ;pic18f45k20.h: 102: static volatile near unsign
+   ˝   +                          ed char PWM1CON @ 0xFB7;
+   178                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   179                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   180                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   181                           ;p˝ic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   182                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   183                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   184                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   ˝185                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+   186                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   187                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   188                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char ˝RCREG @ 0xFAE;
+   189                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   190                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   191                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   192                           ;pic18f45k20.h: 121: static volatile near uns˝ign
+      +                          ed char TXSTA @ 0xFAC;
+   193                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   194                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   195                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   196                           ˝;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   197                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   198                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   199                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   20 0        4text  ˝                     _InitUart:
+   201                           ;       param _nData assigned to ?_LiczRSCHK+2
+   202  000000                     _LiczRSCHK$nData	set	?_LiczRSCHK+2
+   203                           ;       param _bf assigned to ?_LiczRSCHK+0
+   204  000000                     _LiczRSCHK$bf	set	?_LiczRSCHK
+   205                           ;       param _data assigned to ?_SetRSTBuf+0
+   206  000000                     _SetRSTBuf$data	set	?_SetRSTBuf
+   207  000000                     
+   G 208                           ;uart9b.c: 22: unsigned char rc;
+   209        4text  b   9EAC               	bcf	4012,7,c
+   210                           ;uart9b.c: 27: RX9=1;
+   211        4text     |   8CAB               	bsf	4011,6,c
+   212                           ;uart9b.c: 28: SPBRG=((8*4*1000000/2400)/64)-1;
+   213        4text     (   0ECF               	movlw	207
+   214        4text     c   6EAF               	movwf	4015,c
+   215                           ;uart9b.c: 29: SYNC=0;
+   216        4text     c   98AC               	bcf	4012,4,c
+   217                           ;uart9b.c: 30: BRGH=0;
+   218        4text 
+    d   94AC               	bcf	4012,2,c
+   219                           ;uart9b.c: 31: ADDEN=1;
+   220        4text     b   86AB               	bsf	4011,3,c
+   221                           ;uart9b.c: 32: TX9=1;
+   222        4text     c   8CAC               	bsf	4012,6,c
+   223                           ;uart9b.c: 33: RCIP=1;
+   224        4text     c   8A9F               	bsf	3999,5,c
+   225                           ;uart9b.c: 34: RCIE=1;
+   226        4text     c   8A9D               	bsf	3997,5,c
+   227                           ;uart9b.c: 35: TXIP=1;
+   228        4text     c   889F               	bsf	3999,4,c
+   229                           ;uart9b.c: 36: TXEN=1;
+   230        4text     c   8AAC               	bsf	4012,5,c
+   231                           ;uart9b.c: 37: SPEN=1;
+   232        4text     c   8EAB               	bsf	4011,7,c
+   233                           ;uart9b.c: 38: CREN=1;
+   234        4text     i   88AB               	bsf	4011,4,c
+   235                           ;uart9b.c: 41: UADt.RData=0;
+   236        4text             1   bss 	 .                	movlb	_UADt shr (0+8)
+   237        4text          ë   1ˇ   bss 
+ o                	bcf	_UADt& (0+255),0,b
+   238                           ;uart9b.c: 42: UADt.RErrREC=0;
+   239        4text           ï   1ˇ   bss 
+ o                	bcf	_UADt& (0+255),2,b
+   240                           ;uart9b.c: 43: UADt.RErrBUF=0;
+   241        4text "         ó   1ˇ   bss 
+ m                	bcf	_UADt& (0+255),3,b
+   242                           ;uart9b.c: 45: UADt.TData=0;
+   243        4text $         ô   1ˇ   bss 
+ n                	bcf	_UADt& (0+255),4,b
+   244                           ;uart9b.c: 46: UADt.RNData=0;
+   245        4text &         k   1ˇ   bss    
+ q                	clrf	(_UADt+2)& (0+255),b
+   246                           ;uart9b.c: 47: UADt.TNData=0;
+   247        4text (         k   1ˇ   bss    
+ o                	clrf	(_UADt+3)& (0+255),b
+   248                           ;uart9b.c: 49: UADt.REnd=0;
+   249        4text *         ì   1ˇ   bss 
+ l                	bcf	_UADt& (0+255),1,b
+   250                           ;uart9b.c: 50: UADt.TEnd=0;
+   251        4text ,         õ   1ˇ   bss 
+ n                	bcf	_UADt& (0+255),5,b
+   252                           ;uart9b.c: 51: UADt.indeks=0;
+   253        4text .         k   1ˇ   bss    
+ l                	clrf	(_UADt+1)& (0+255),b
+   254                           ;uart9b.c: 52: rc=RCREG;
+   255        4text 0    6   50AE               	movf	4014,w,c	;volatile
+   256        4text 2    d   6ED9               	movwf	fsr2l,c
+   257                           ;uart9b.c: 53: TXIE=0;
+   258        4text 4    ]   989D               	bcf	3997,4,c
+   259                           ;uart9b.c: 54: }
+   260        4text 6    &   0012               	return	
+   261        4text 8    ®                      __end_of_InitUart:
+   262                           ;uart9b.c: 58: void IntUSARTRC(void)
+   263                           ;uart9b.c: 59: {
+   264        4text 8    é                      _IntUSARTRC:
+   265  000000                     
+   266                           ;uart9b.c: 60: if(ADDEN&&RX9D)
+   267        4text 8    -   B6AB               	btfsc	4011,3,c
+   268        4text :    7   A0AB               	btfss	4011,0,c	;volatile
+   269        4text <    X   D016               	goto	l4
+   270                           ;uart9b.c: 61: {
+   271        4text >       CFAE      ¸rbss  s           	movff	4014,_RSerial	;volatile
+   272                           ;uart9b.c: 63: if(RSerial==0x02)
+   273        4text B         P   1rbss  4                	movf	_RSerial,w,c	;volatile
+   274        4text D    &   0A02               	xorlw	2
+   275        4text F    /   A4D8               	btfss	status,2,c
+   276        4text H    X   0012               	return	
+   277                           ;uart9b.c: 64: {
+   278        4text J    j   96AB               	bcf	4011,3,c
+   279                           ;uart9b.c: 66: UADt.indeks=0;
+   280        4text L            1   bss    	 2                	movlb	(_UADt+1) shr (0+8)
+   281        4text N         k   1ˇ   bss    
+ É                	clrf	(_UADt+1)& (0+255),b
+   282                           ;uart9b.c: 67: bufRUART[UADt.indeks++]=RSerial;
+   283        4text P         Ó   ˆ   bss    	   
+         1bss    ˇ   
+ !          	lfsr	0,_UADt+1
+   284        4text T    -   50EF               	movf	indf0,w,c
+   285        4text V    -   2AEF               	incf	indf0,f,c
+   286        4text X         Ó   ˆ   bigbss 	   
+         1bigbss ˇ   
+ #          	lfsr	0,_bufRUART
+   287        4text \    .   26E9               	addwf	fsr0l,f,c
+   288        4text ^    &   0E00               	movlw	0
+   289        4text `    /   22EA               	addwfc	fsr0h,f,c
+   290        4text b         ¿   ¸rbss  u   FFEF         	movff	_RSerial,indf0	;volatile
+   291                           ;uart9b.c: 68: UADt.RData=1;
+   292        4text f         Å   1ˇ   bss 
+ a                	bsf	_UADt& (0+255),0,b
+   293                           ;uart9b.c: 69: }
+   294        4text h    &   0C00               	retlw	0
+   295        4text j    S                      l4:
+   296                           ;uart9b.c: 71: }
+   297        4text j       CFAE      ¸rbss  u           	movff	4014,_RSerial	;volatile
+   298                           ;uart9b.c: 73: if (UADt.indeks<35)
+   299        4text n    '   0E23               	movlw	35
+   300        4text p            1   bss    	 2                	movlb	(_UADt+1) shr (0+8)
+   301        4text r         a   1ˇ   bss    
+ 4                	cpfslt	(_UADt+1)& (0+255),b
+   302        4text t    X   D02D               	goto	l6
+   303                           ;uart9b.c: 74: {
+   304        4text v         Ó   ˆ   bss    	   
+         1bss    ˇ   
+ !          	lfsr	0,_UADt+1
+   305        4text z    -   50EF               	movf	indf0,w,c
+   306        4text |    -   2AEF               	incf	indf0,f,c
+   307        4text ~         Ó   ˆ   bigbss 	   
+         1bigbss ˇ   
+ #          	lfsr	0,_bufRUART
+   308        4text Ç    .   26E9               	addwf	fsr0l,f,c
+   309        4text Ñ    &   0E00               	movlw	0
+   310        4text Ü    /   22EA               	addwfc	fsr0h,f,c
+   311        4text à         ¿   ¸rbss  Ä   FFEF         	movff	_RSerial,indf0	;volatile
+   312                           ;uart9b.c: 76: UADt.RNData=bufRUART[1];
+   313        4text å         ¿   ¸bigbss             ¸bss     {          	movff	_bufRUART+1,_UADt+2
+   314                           ;uart9b.c: 77: if(VerifyNDatCHK(UADt.RNData))
+   315        4text ê         ¿   ¸bss     +   FFE8         	movff	_UADt+2,wreg
+   316        4text î    2   D928               	call	_VerifyNDatCHK
+   317        4text ñ    &   0900               	iorlw	0
+   318        4text ò    V   E015               	bz	l7
+   319                           ;uart9b.c: 78: {
+   320        4text ö         ¿   ¸bss     +   FFE8         	movff	_UADt+2,wreg
+   321        4text û    '   0B1F               	andlw	31
+   322        4text †       CFE8      ¸bss     õ           	movff	wreg,_UADt+2
+   323                           ;uart9b.c: 81: if(UADt.RNData>35) UADt.RNData=35
+      +                          ;
+   324        4text §    '   0E23               	movlw	35
+   325        4text ¶            1   bss    	 2                	movlb	(_UADt+2) shr (0+8)
+   326        4text ®         e   1ˇ   bss    
+ 4                	cpfsgt	(_UADt+2)& (0+255),b
+   327        4text ™    &   D002               	goto	l8
+   328        4text ¨       CFE8      ¸bss     &           	movff	wreg,_UADt+2
+   329        4text ∞    o                      l8:
+   330                           ;uart9b.c: 82: if (UADt.indeks>=UADt.RNData)
+   331        4text ∞         ¿   ¸bss     +   FFE8         	movff	_UADt+2,wreg
+   332        4text ¥            1   bss    	 2                	movlb	(_UADt+1) shr (0+8)
+   333        4text ∂         ]   1ˇ   bss    
+ 5                	subwf	(_UADt+1)& (0+255),w,b
+   334        4text ∏    /   A0D8               	btfss	status,0,c
+   335        4text ∫    X   0012               	return	
+   336                           ;uart9b.c: 83: {
+   337        4text º    i   86AB               	bsf	4011,3,c
+   338                           ;uart9b.c: 85: UADt.RData=0;
+   339        4text æ         ë   1ˇ   bss 
+ l                	bcf	_UADt& (0+255),0,b
+   340                           ;uart9b.c: 86: UADt.REnd=1;
+   341        4text ¿         É   1ˇ   bss 
+ a                	bsf	_UADt& (0+255),1,b
+   342                           ;uart9b.c: 87: }
+   343        4text ¬    &   0012               	return	
+   344        4text ƒ    V                      l7:
+   345                           ;uart9b.c: 89: else
+   346        4text ƒ    i   86AB               	bsf	4011,3,c
+   347                           ;uart9b.c: 92: UADt.RData=0;
+   348        4text ∆            1   bss 	 .                	movlb	_UADt shr (0+8)
+   349        4text »         ë   1ˇ   bss 
+ l                	bcf	_UADt& (0+255),0,b
+   350                           ;uart9b.c: 93: UADt.REnd=0;
+   351        4text           ì   1ˇ   bss 
+ o                	bcf	_UADt& (0+255),1,b
+   352                           ;uart9b.c: 94: UADt.RErrBUF=1;
+   353        4text Ã         á   1ˇ   bss 
+ a                	bsf	_UADt& (0+255),3,b
+   354                           ;uart9b.c: 95: }
+   355        4text Œ    &   0012               	return	
+   356        4text –    V                      l6:
+   357                           ;uart9b.c: 97: else
+   358        4text –    j   86AB               	bsf	4011,3,c
+   359                           ;uart9b.c: 100: UADt.RData=0;
+   360        4text “            1   bss 	 .                	movlb	_UADt shr (0+8)
+   361        4text ‘         ë   1ˇ   bss 
+ m                	bcf	_UADt& (0+255),0,b
+   362                           ;uart9b.c: 101: UADt.REnd=0;
+   363        4text ÷         ì   1ˇ   bss 
+ p                	bcf	_UADt& (0+255),1,b
+   364                           ;uart9b.c: 102: UADt.RErrBUF=1;
+   365        4text ÿ         á   1ˇ   bss 
+ b                	bsf	_UADt& (0+255),3,b
+   366                           ;uart9b.c: 104: }
+   367        4text ⁄    &   0012               	return	
+   368        4text ‹    Æ                      __end_of_IntUSARTRC:
+   369                           ;uart9b.c: 110: void StartUSARTRC(void)
+   370                           ;uart9b.c: 111: {
+   371        4text ‹    é                      _StartUSARTRC:
+   372  000000                     
+   373                           ;uart9b.c: 112: UADt.REnd=0;
+   374        4text ‹            1   bss 	 .                	movlb	_UADt shr (0+8)
+   375        4text ﬁ         ì   1ˇ   bss 
+ i                	bcf	_UADt& (0+255),1,b
+   376                           ;uart9b.c: 113: ADDEN=1;
+   377        4text ‡    d   86AB               	bsf	4011,3,c
+   378                           ;uart9b.c: 114: CREN=1;
+   379        4text ‚    ^   88AB               	bsf	4011,4,c
+   380                           ;uart9b.c: 115: }
+   381        4text ‰    &   0012               	return	
+   382        4text Ê    Æ                      __end_of_StartUSARTRC:
+   383                           ;uart9b.c: 127: void IntUSARTTR(void)
+   384                           ;uart9b.c: 128: {
+   385        4text Ê    ò                      _IntUSARTTR:
+   386  000000                     
+   387                           ;uart9b.c: 129: if(!UADt.indeks) TX9D=1;
+   388        4text Ê         Ó   ˆ   bss    	   
+         1bss    ˇ   
+ !          	lfsr	0,_UADt+1
+   389        4text Í    -   50EF               	movf	indf0,w,c
+   390        4text Ï    &   E102               	bnz	l14
+   391        4text Ó    5   80AC               	bsf	4012,0,c	;volatile
+   392        4text     '   D001               	goto	l15
+   393        4text Ú    `                      l14:
+   394                           ;uart9b.c: 130: else TX9D=0;
+   395        4text Ú    5   90AC               	bcf	4012,0,c	;volatile
+   396        4text Ù    ò                      l15:
+   397                           ;uart9b.c: 131: if(UADt.TNData>35) UADt.TNData=3
+      +                          5;
+   398        4text Ù    '   0E23               	movlw	35
+   399        4text ˆ            1   bss    	 2                	movlb	(_UADt+3) shr (0+8)
+   400        4text ¯         e   1ˇ   bss    
+ 4                	cpfsgt	(_UADt+3)& (0+255),b
+   401        4text ˙    '   D002               	goto	l16
+   402        4text ¸       CFE8      ¸bss     &           	movff	wreg,_UADt+3
+   403        4text     ú                      l16:
+   404                           ;uart9b.c: 132: if(UADt.indeks>35-1) UADt.indeks
+      +                          =35-1;
+   405        4text     '   0E22               	movlw	34
+   406        4text            1   bss    	 2                	movlb	(_UADt+1) shr (0+8)
+   407        4text         e   1ˇ   bss    
+ 4                	cpfsgt	(_UADt+1)& (0+255),b
+   408        4text    '   D002               	goto	l17
+   409        4text       CFE8      ¸bss     &           	movff	wreg,_UADt+1
+   410        4text    r                      l17:
+   411                           ;uart9b.c: 133: TXREG=bufTUART[UADt.indeks++];
+   412        4text         Ó   ˆ   bss    	   
+         1bss    ˇ   
+ !          	lfsr	0,_UADt+1
+   413        4text    -   50EF               	movf	indf0,w,c
+   414        4text    -   2AEF               	incf	indf0,f,c
+   415        4text       "  Ó   ˆ   bigbss #   	   
+         1bigbss #   ˇ   
+ #          	lfsr	0,_bufTUART
+   416        4text    .   26E9               	addwf	fsr0l,f,c
+   417        4text    &   0E00               	movlw	0
+   418        4text    /   22EA               	addwfc	fsr0h,f,c
+   419        4text    -   50EF               	movf	indf0,w,c
+   420        4text     ≤   6EAD               	movwf	4013,c	;volatile
+   421                           ;uart9b.c: 134: if(UADt.indeks<UADt.TNData) UADt
+      +                          .TData=1;
+   422        4text "        ¿   ¸bss     +   FFE8         	movff	_UADt+3,wreg
+   423        4text &           1   bss    	 2                	movlb	(_UADt+1) shr (0+8)
+   424        4text (        a   1ˇ   bss    
+ 4                	cpfslt	(_UADt+1)& (0+255),b
+   425        4text *   '   D002               	goto	l18
+   426        4text ,        â   1ˇ   bss 
+ /                	bsf	_UADt& (0+255),4,b
+   427        4text .   &   0012               	return	
+   428        4text 0   X                      l18:
+   429                           ;uart9b.c: 135: else
+   430        4text 0           1   bss 	 .                	movlb	_UADt shr (0+8)
+   431        4text 2        ô   1ˇ   bss 
+ m                	bcf	_UADt& (0+255),4,b
+   432                           ;uart9b.c: 138: UADt.TEnd=1;
+   433        4text 4        ã   1ˇ   bss 
+ h                	bsf	_UADt& (0+255),5,b
+   434                           ;uart9b.c: 139: TXIE=0;
+   435        4text 6   ^   989D               	bcf	3997,4,c
+   436                           ;uart9b.c: 140: }
+   437        4text 8   &   0012               	return	
+   438        4text :   Æ                      __end_of_IntUSARTTR:
+   439                           ;uart9b.c: 145: void StartUSARTTR(void)
+   440                           ;uart9b.c: 146: {
+   441        4text :   í                      _StartUSARTTR:
+   442  000000                     
+   443                           ;uart9b.c: 147: if(TXIE) return;
+   444        4text :   -   B89D               	btfsc	3997,4,c
+   445        4text <   ü   0012               	return	
+   446                           ;uart9b.c: 148: UADt.TNData=(bufTUART[1]&0b00011
+      +                          111);
+   447        4text >        ¿   ¸bigbss $    /   FFE8         	movff	_bufTUART+1,wreg
+   448        4text B   '   0B1F               	andlw	31
+   449        4text D      CFE8      ¸bss     ú           	movff	wreg,_UADt+3
+   450                           ;uart9b.c: 149: if(UADt.TNData>35) UADt.TNData=3
+      +                          5;
+   451        4text H   '   0E23               	movlw	35
+   452        4text J           1   bss    	 2                	movlb	(_UADt+3) shr (0+8)
+   453        4text L        e   1ˇ   bss    
+ 4                	cpfsgt	(_UADt+3)& (0+255),b
+   454        4text N   '   D002               	goto	l22
+   455        4text P      CFE8      ¸bss     &           	movff	wreg,_UADt+3
+   456        4text T   b                      l22:
+   457                           ;uart9b.c: 150: UADt.indeks=0;
+   458        4text T           1   bss    	 2                	movlb	(_UADt+1) shr (0+8)
+   459        4text V        k   1ˇ   bss    
+ p                	clrf	(_UADt+1)& (0+255),b
+   460                           ;uart9b.c: 151: UADt.TEnd=0;
+   461        4text X        õ   1ˇ   bss 
+ h                	bcf	_UADt& (0+255),5,b
+   462                           ;uart9b.c: 152: TXIE=1;
+   463        4text Z   ^   889D               	bsf	3997,4,c
+   464                           ;uart9b.c: 153: }
+   465        4text \   &   0012               	return	
+   466        4text ^   Ø                      __end_of_StartUSARTTR:
+   467                           ;uart9b.c: 155: void StopUSARTTR(void)
+   468                           ;uart9b.c: 156: {
+   469        4text ^   à                      _StopUSARTTR:
+   470  000000                     
+   471                           ;uart9b.c: 157: TXIE=0;
+   472        4text ^   j   989D               	bcf	3997,4,c
+   473                           ;uart9b.c: 158: UADt.TData=0;
+   474        4text `           1   bss 	 .                	movlb	_UADt shr (0+8)
+   475        4text b        ô   1ˇ   bss 
+ m                	bcf	_UADt& (0+255),4,b
+   476                           ;uart9b.c: 159: UADt.TEnd=0;
+   477        4text d        õ   1ˇ   bss 
+ b                	bcf	_UADt& (0+255),5,b
+   478                           ;uart9b.c: 161: }
+   479        4text f   &   0012               	return	
+   480        4text h   ¨                      __end_of_StopUSARTTR:
+   481                           ;uart9b.c: 165: void ClrRSRBuf(void)
+   482                           ;uart9b.c: 166: {
+   483        4text h   è                      _ClrRSRBuf:
+   484  000000                     
+   485                           ;uart9b.c: 167: unsigned char i;
+   486        4text h   +   6AD9               	clrf	fsr2l,c
+   487        4text j   "                      l25:
+   488        4text j   -   50D9               	movf	fsr2l,w,c
+   489        4text l        Ó   ˆ   bigbss 	   
+         1bigbss ˇ   
+ #          	lfsr	0,_bufRUART
+   490        4text p   .   26E9               	addwf	fsr0l,f,c
+   491        4text r   &   0E00               	movlw	0
+   492        4text t   /   22EA               	addwfc	fsr0h,f,c
+   493        4text v   +   6AEF               	clrf	indf0,c
+   494        4text x   -   2AD9               	incf	fsr2l,f,c
+   495        4text z   '   0E22               	movlw	34
+   496        4text |   -   64D9               	cpfsgt	fsr2l,c
+   497        4text ~   '   D7F5               	goto	l25
+   498        4text Ä   Z   0C22               	retlw	34
+   499                           ;uart9b.c: 169: }
+   500        4text Ç   ™                      __end_of_ClrRSRBuf:
+   501                           ;uart9b.c: 172: void ClrRSTBuf(void)
+   502                           ;uart9b.c: 173: {
+   503        4text Ç   è                      _ClrRSTBuf:
+   504  000000                     
+   505                           ;uart9b.c: 174: unsigned char i;
+   506        4text Ç   +   6AD9               	clrf	fsr2l,c
+   507        4text Ñ   "                      l29:
+   508        4text Ñ   -   50D9               	movf	fsr2l,w,c
+   509        4text Ü      "  Ó   ˆ   bigbss #   	   
+         1bigbss #   ˇ   
+ #          	lfsr	0,_bufTUART
+   510        4text ä   .   26E9               	addwf	fsr0l,f,c
+   511        4text å   &   0E00               	movlw	0
+   512        4text é   /   22EA               	addwfc	fsr0h,f,c
+   513        4text ê   +   6AEF               	clrf	indf0,c
+   514        4text í   -   2AD9               	incf	fsr2l,f,c
+   515        4text î   '   0E22               	movlw	34
+   516        4text ñ   -   64D9               	cpfsgt	fsr2l,c
+   517        4text ò   '   D7F5               	goto	l29
+   518        4text ö   Z   0C22               	retlw	34
+   519                           ;uart9b.c: 176: }
+   520        4text ú   ˚                      __end_of_ClrRSTBuf:
+   521                           ;uart9b.c: 179: void SetRSTBuf(const unsigned ch
+      +                          ar indeks,const unsigned char data)
+   522                           ;uart9b.c: 180: {
+   523        4text ú            2 ?_SetRSTBuf  '                	dw	?_SetRSTBuf
+   524        4text û   à                      _SetRSTBuf:
+   525  000000                     
+   526                           ; _indeks loaded to fsr2l
+   527        4text û   §   6ED9               	movwf	fsr2l,c
+   528                           ;uart9b.c: 181: if(indeks<35) bufTUART[indeks]=d
+      +                          ata;
+   529        4text †   '   0E23               	movlw	35
+   530        4text ¢   -   60D9               	cpfslt	fsr2l,c
+   531        4text §   '   D009               	goto	l33
+   532        4text ¶   -   50D9               	movf	fsr2l,w,c
+   533        4text ®      "  Ó   ˆ   bigbss #   	   
+         1bigbss #   ˇ   
+ #          	lfsr	0,_bufTUART
+   534        4text ¨   .   26E9               	addwf	fsr0l,f,c
+   535        4text Æ   &   0E00               	movlw	0
+   536        4text ∞   /   22EA               	addwfc	fsr0h,f,c
+   537        4text ≤        ¿   ¸ ?_SetRSTBuf  0   FFEF         	movff	?_SetRSTBuf,indf0
+   538        4text ∂   &   0C00               	retlw	0
+   539        4text ∏   m                      l33:
+   540                           ;uart9b.c: 182: else bufTUART[35-1]=data;
+   541        4text ∏        ¿   ¸ ?_SetRSTBuf          ¸bigbss E    d          	movff	?_SetRSTBuf,_bufTUART+34
+   542                           ;uart9b.c: 184: }
+   543        4text º   &   0012               	return	
+   544        4text æ   Î                      __end_of_SetRSTBuf:
+   545                           ;uart9b.c: 187: unsigned char GetRSRBuf(const un
+      +                          signed char indeks)
+   546                           ;uart9b.c: 188: {
+   547        4text æ   à                      _GetRSRBuf:
+   548  000000                     
+   549                           ; _indeks loaded to fsr2l
+   550        4text æ   ¶   6ED9               	movwf	fsr2l,c
+   551                           ;uart9b.c: 189: if(indeks<35) return bufRUART[in
+      +                          deks];
+   552        4text ¿   '   0E23               	movlw	35
+   553        4text ¬   -   60D9               	cpfslt	fsr2l,c
+   554        4text ƒ   '   D008               	goto	l36
+   555        4text ∆   -   50D9               	movf	fsr2l,w,c
+   556        4text »        Ó   ˆ   bigbss 	   
+         1bigbss ˇ   
+ #          	lfsr	0,_bufRUART
+   557        4text Ã   .   26E9               	addwf	fsr0l,f,c
+   558        4text Œ   &   0E00               	movlw	0
+   559        4text –   /   22EA               	addwfc	fsr0h,f,c
+   560        4text “   -   50EF               	movf	indf0,w,c
+   561        4text ‘   &   0012               	return	
+   562        4text ÷   o                      l36:
+   563                           ;uart9b.c: 190: else return bufRUART[35-1];
+   564        4text ÷        ¿   ¸bigbss "    0   FFE8         	movff	_bufRUART+34,wreg
+   565        4text ⁄   Y   0012               	return	
+   566                           ;uart9b.c: 191: }
+   567        4text ‹                        __end_of_GetRSRBuf:
+   568                           ;uart9b.c: 195: unsigned char LiczRSCHK(const un
+      +                          signed char *bf,const unsigned char nData)
+   569                           ;uart9b.c: 196: {
+   570        4text ‹            2 ?_LiczRSCHK  '                	dw	?_LiczRSCHK
+   571        4text ﬁ   ì                      _LiczRSCHK:
+   572  000000                     
+   573                           ;uart9b.c: 197: unsigned char i,chk;
+   574        4text ﬁ   ™   6AE1               	clrf	fsr1l,c
+   575                           ;uart9b.c: 199: for(i=0;i<nData;i++) chk+=(*(bf+
+      +                          i)+i)^0xAA;
+   576        4text ‡   +   6AD9               	clrf	fsr2l,c
+   577        4text ‚   "                      l42:
+   578        4text ‚           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   579        4text ‰      ,  Q   1 ˇ   __Lparam 
+ ?_LiczRSCHK     E                	movf	(?_LiczRSCHK+2)^(__Lparam& (0+65280)),w
+   580        4text Ê   .   5CD9               	subwf	fsr2l,w,c
+   581        4text Ë   &   E21C               	bc	u200
+   582        4text Í   -   50D9               	movf	fsr2l,w,c
+   583        4text Ï      &  %   1 ˇ   __Lparam 
+ ?_LiczRSCHK  B                	addwf	?_LiczRSCHK^(__Lparam& (0+65280)),w
+   584        4text Ó        n   1temp  &                	movwf	btemp,c
+   585        4text    &   0E00               	movlw	0
+   586        4text Ú      ,  !   1 ˇ   __Lparam 
+ ?_LiczRSCHK     G                	addwfc	(?_LiczRSCHK+1)^(__Lparam& (0+65280)),w
+   587        4text Ù        n   1temp     (                	movwf	btemp+1,c
+   588        4text ˆ        ¿   ¸temp  ,   FFF6         	movff	btemp,tblptrl
+   589        4text ˙        ¿   ¸temp     .   FFF7         	movff	btemp+1,tblptrh
+   590        4text ˛           1 __ramtop ˇˇˇˇ 1                	movlw	(high __ramtop+-1)
+   591        4text     /   64F7               	cpfsgt	tblptrh,c
+   592        4text    '   D003               	bra	u197
+   593        4text    '   0008               	tblrd		*
+   594        4text    .   50F5               	movf	tablat,w,c
+   595        4text    '   D005               	bra	u190
+   596        4text 
+   #                      u197:
+   597        4text 
+   2   CFF6 FFE9          	movff	tblptrl,fsr0l
+   598        4text    2   CFF7 FFEA          	movff	tblptrh,fsr0h
+   599        4text    -   50EF               	movf	indf0,w,c
+   600        4text    #                      u190:
+   601        4text         n   1temp  &                	movwf	btemp,c
+   602        4text    -   50D9               	movf	fsr2l,w,c
+   603        4text         $   1temp  (                	addwf	btemp,w,c
+   604        4text    (   0AAA               	xorlw	-86
+   605        4text    .   26E1               	addwf	fsr1l,f,c
+   606        4text    -   2AD9               	incf	fsr2l,f,c
+   607        4text     '   D7E0               	goto	l42
+   608        4text "   `                      u200:
+   609                           ;uart9b.c: 200: return chk;
+   610        4text "   -   50E1               	movf	fsr1l,w,c
+   611        4text $   Y   0012               	return	
+   612                           ;uart9b.c: 201: }
+   613        4text &   ⁄                      __end_of_LiczRSCHK:
+   614                           ;uart9b.c: 205: void SetRSCHK(unsigned char nDat
+      +                          a)
+   615                           ;uart9b.c: 206: {
+   616        4text &   Ü                      _SetRSCHK:
+   617  000000                     
+   618                           ; _nData loaded to prodl
+   619        4text &   t   6EF3               	movwf	prodl,c
+   620                           ;uart9b.c: 207: if(nData>35) nData=35;
+   621        4text (   '   0E23               	movlw	35
+   622        4text *   -   64F3               	cpfsgt	prodl,c
+   623        4text ,   '   D001               	goto	l44
+   624        4text .   ,   6EF3               	movwf	prodl,c
+   625        4text 0   h                      l44:
+   626                           ;uart9b.c: 208: if(!nData) nData=35;
+   627        4text 0   -   50F3               	movf	prodl,w,c
+   628        4text 2   &   E102               	bnz	l45
+   629        4text 4   '   0E23               	movlw	35
+   630        4text 6   ,   6EF3               	movwf	prodl,c
+   631        4text 8   õ                      l45:
+   632                           ;uart9b.c: 209: UADt.CHK=LiczRSCHK(bufTUART,nDat
+      +                          a-1);
+   633        4text 8           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   634        4text :           1bigbss #    ,                	movlw	low _bufTUART
+   635        4text <      &  o   1 ˇ   __Lparam 
+ ?_LiczRSCHK  B                	movwf	?_LiczRSCHK^(__Lparam& (0+65280)),b
+   636        4text >           1bigbss #    -                	movlw	high _bufTUART
+   637        4text @      ,  o   1 ˇ   __Lparam 
+ ?_LiczRSCHK     F                	movwf	(?_LiczRSCHK+1)^(__Lparam& (0+65280)),b
+   638        4text B   -   04F3               	decf	prodl,w,c
+   639        4text D      ,  o   1 ˇ   __Lparam 
+ ?_LiczRSCHK     F                	movwf	(?_LiczRSCHK+2)^(__Lparam& (0+65280)),b
+   640        4text F   9   DFCB               	call	_LiczRSCHK	;wreg free
+   641        4text H      CFE8      ¸bss     s           	movff	wreg,_UADt+4
+   642                           ;uart9b.c: 210: bufTUART[nData-1]=UADt.CHK;
+   643        4text L   -   50F3               	movf	prodl,w,c
+   644        4text N      "  Ó   ˆ   bigbss "   	   
+         1bigbss "   ˇ   
+ &          	lfsr	0,_bufTUART+-1
+   645        4text R   .   26E9               	addwf	fsr0l,f,c
+   646        4text T   &   0E00               	movlw	0
+   647        4text V   /   22EA               	addwfc	fsr0h,f,c
+   648        4text X        ¿   ¸bss     _   FFEF         	movff	_UADt+4,indf0
+   649                           ;uart9b.c: 211: }
+   650        4text \   &   0C00               	retlw	0
+   651        4text ^   ¥                      __end_of_SetRSCHK:
+   652                           ;uart9b.c: 216: unsigned char VerifyRSACK(void)
+   653                           ;uart9b.c: 217: {
+   654        4text ^   †                      _VerifyRSACK:
+   655  000000                     
+   656                           ;uart9b.c: 218: if(bufRUART[2]==0xff) return 1;
+   657        4text ^        ¿   ¸bigbss             ¸temp  *          	movff	_bufRUART+2,btemp
+   658        4text b        (   1temp  '                	incf	btemp,w,c
+   659        4text d   &   E101               	bnz	l47
+   660        4text f   &   0C01               	retlw	1
+   661        4text h   ]                      l47:
+   662                           ;uart9b.c: 219: return 0;
+   663        4text h   Y   0C00               	retlw	0
+   664                           ;uart9b.c: 220: }
+   665        4text j   Ë                      __end_of_VerifyRSACK:
+   666                           ;uart9b.c: 225: unsigned char VerifyRSCHK(unsign
+      +                          ed char nData)
+   667                           ;uart9b.c: 226: {
+   668        4text j   â                      _VerifyRSCHK:
+   669  000000                     
+   670                           ; _nData loaded to prodl
+   671        4text j   t   6EF3               	movwf	prodl,c
+   672                           ;uart9b.c: 227: if(nData>35) nData=35;
+   673        4text l   '   0E23               	movlw	35
+   674        4text n   -   64F3               	cpfsgt	prodl,c
+   675        4text p   '   D001               	goto	l49
+   676        4text r   ,   6EF3               	movwf	prodl,c
+   677        4text t   h                      l49:
+   678                           ;uart9b.c: 228: if(!nData) nData=35;
+   679        4text t   -   50F3               	movf	prodl,w,c
+   680        4text v   &   E102               	bnz	l50
+   681        4text x   '   0E23               	movlw	35
+   682        4text z   ,   6EF3               	movwf	prodl,c
+   683        4text |   ≤                      l50:
+   684                           ;uart9b.c: 229: if(bufRUART[nData-1]==LiczRSCHK(
+      +                          bufRUART,nData-1)) return 1;
+   685        4text |           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   686        4text ~           1bigbss  ,                	movlw	low _bufRUART
+   687        4text Ä      &  o   1 ˇ   __Lparam 
+ ?_LiczRSCHK  B                	movwf	?_LiczRSCHK^(__Lparam& (0+65280)),b
+   688        4text Ç           1bigbss  -                	movlw	high _bufRUART
+   689        4text Ñ      ,  o   1 ˇ   __Lparam 
+ ?_LiczRSCHK     F                	movwf	(?_LiczRSCHK+1)^(__Lparam& (0+65280)),b
+   690        4text Ü   -   04F3               	decf	prodl,w,c
+   691        4text à      ,  o   1 ˇ   __Lparam 
+ ?_LiczRSCHK     F                	movwf	(?_LiczRSCHK+2)^(__Lparam& (0+65280)),b
+   692        4text ä   9   DFA9               	call	_LiczRSCHK	;wreg free
+   693        4text å        n   1temp  &                	movwf	btemp,c
+   694        4text é        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   695        4text í        j   1temp     '                	clrf	btemp+3,c
+   696        4text î   -   50F3               	movf	prodl,w,c
+   697        4text ñ      "  Ó   ˆ   bigbss ˇˇˇˇ	   
+         1bigbss ˇˇˇˇˇ   
+ &          	lfsr	0,_bufRUART+-1
+   698        4text ö   .   26E9               	addwf	fsr0l,f,c
+   699        4text ú   &   0E00               	movlw	0
+   700        4text û   /   22EA               	addwfc	fsr0h,f,c
+   701        4text †   -   50EF               	movf	indf0,w,c
+   702        4text ¢        n   1temp  &                	movwf	btemp,c
+   703        4text §           1temp     *                	xorwf	btemp+2,w,c
+   704        4text ¶   '   E101               	bnz	u265
+   705        4text ®        R   1temp     )                	movf	btemp+3,f,c
+   706        4text ™   #                      u265:
+   707        4text ™   &   E101               	bnz	l51
+   708        4text ¨   &   0C01               	retlw	1
+   709        4text Æ   ]                      l51:
+   710                           ;uart9b.c: 230: return 0;
+   711        4text Æ   Y   0C00               	retlw	0
+   712                           ;uart9b.c: 231: }
+   713        4text ∞   ¥                      __end_of_VerifyRSCHK:
+   714                           ;uart9b.c: 234: unsigned char GetRSCHK(void)
+   715                           ;uart9b.c: 235: {
+   716        4text ∞   é                      _GetRSCHK:
+   717  000000                     
+   718                           ;uart9b.c: 236: return UADt.CHK;
+   719        4text ∞        ¿   ¸bss     +   FFE8         	movff	_UADt+4,wreg
+   720        4text ¥   Y   0012               	return	
+   721                           ;uart9b.c: 237: }
+   722        4text ∂   È                      __end_of_GetRSCHK:
+   723                           ;uart9b.c: 240: unsigned char SetNDatCHK(const u
+      +                          nsigned char Data)
+   724                           ;uart9b.c: 241: {
+   725        4text ∂   á                      _SetNDatCHK:
+   726  000000                     
+   727                           ; _Data loaded to prodl
+   728        4text ∂   r   6EF3               	movwf	prodl,c
+   729                           ;uart9b.c: 242: unsigned char a,b,d;
+   730        4text ∏   -   50F3               	movf	prodl,w,c
+   731        4text ∫   '   0B1F               	andlw	31
+   732        4text º   m   6ED9               	movwf	fsr2l,c
+   733                           ;uart9b.c: 244: a=d&0b00000111;
+   734        4text æ   -   50D9               	movf	fsr2l,w,c
+   735        4text ¿   &   0B07               	andlw	7
+   736        4text ¬   r   6EE1               	movwf	fsr1l,c
+   737                           ;uart9b.c: 245: b=0b00000100|(d>>3);
+   738        4text ƒ   .   38D9               	swapf	fsr2l,w,c
+   739        4text ∆   -   46E8               	rlncf	wreg,f,c
+   740        4text »   '   0B1F               	andlw	31
+   741        4text     &   0904               	iorlw	4
+   742        4text Ã   r   6EE9               	movwf	fsr0l,c
+   743                           ;uart9b.c: 246: return d|((a^b)<<5);
+   744        4text Œ   -   50E9               	movf	fsr0l,w,c
+   745        4text –   .   18E1               	xorwf	fsr1l,w,c
+   746        4text “        n   1temp  &                	movwf	btemp,c
+   747        4text ‘   &   0E05               	movlw	5
+   748        4text ÷        n   1temp     (                	movwf	btemp+1,c
+   749        4text ÿ   #                      u275:
+   750        4text ÿ   -   90D8               	bcf	status,0,c
+   751        4text ⁄        6   1temp  '                	rlcf	btemp,f,c
+   752        4text ‹        .   1temp     +                	decfsz	btemp+1,f,c
+   753        4text ﬁ   (   D7FC               	goto	u275
+   754        4text ‡   -   50D9               	movf	fsr2l,w,c
+   755        4text ‚           1temp  (                	iorwf	btemp,w,c
+   756        4text ‰   Y   0012               	return	
+   757                           ;uart9b.c: 247: }
+   758        4text Ê   Ó                      __end_of_SetNDatCHK:
+   759                           ;uart9b.c: 249: unsigned char VerifyNDatCHK(cons
+      +                          t unsigned char Data)
+   760                           ;uart9b.c: 250: {
+   761        4text Ê   ä                      _VerifyNDatCHK:
+   762  000000                     
+   763                           ; _Data loaded to prodh
+   764        4text Ê   §   6EF4               	movwf	prodh,c
+   765                           ;uart9b.c: 251: if(SetNDatCHK(Data)==Data) retur
+      +                          n 1;
+   766        4text Ë   -   50F4               	movf	prodh,w,c
+   767        4text Í   /   DFE5               	call	_SetNDatCHK
+   768        4text Ï   .   18F4               	xorwf	prodh,w,c
+   769        4text Ó   &   E101               	bnz	l55
+   770        4text    &   0C01               	retlw	1
+   771        4text Ú   ]                      l55:
+   772                           ;uart9b.c: 252: return 0;
+   773        4text Ú   Y   0C00               	retlw	0
+   774                           ;uart9b.c: 253: }
+   775        4text Ù   ˝                     __end_of_VerifyNDatCHK:
+   776  000000                     
+   777  000000                     
+   778  000000                     
+   779  000000                     
+   780  000000                     
+   781  000000                     
+   782  000000                     
+   783  000000                     
+   784  000000                     
+   785  000000                     
+   786  000000                     
+   787  000000                     
+   788  000000                  ˝   
+   789  000000                     
+   790  000000                     
+   791  000000                     
+   792  000000                     
+   793  000000                     
+   794  000000                     
+   795  000000                     
+   796  000000                     
+   797  000000                     
+   798  000000                     
+   799  000000                     
+   800  000000                     
+   801  000000                     
+   802  000000                     
+ ˝  803  000000                     
+   804  000000                     
+   805  000000                     
+   806  000000                     
+   807  000000                     
+   808  000000                     
+   809  000000                     
+   810  000000                     
+   811  000000                     
+   812  000000                     
+   813  000000                     
+   814  000000                     
+   815  000000                     
+   816  000000                     
+   817˝  000000                     
+   818  000000                     
+   819  000000                     
+   820  000000                     
+   821  000000                     
+   822  000000                     
+   823  000000                     
+   824  000000                     
+   825  000000                     
+   826  000000                     
+   827  000000                     
+   828  000000                     
+   829  000000                     
+   830  000000                     
+   831  000˝000                     
+   832  000000                     
+   833  000000                     
+   834  000000                     
+   835  000000                     
+   836  000000                     
+   837  000000                     
+   838  000000                     
+   839  000000                     
+   840  000000                     
+   841  000000                     
+   842  000000                     
+   843  000000                     
+   844  000000                     
+   845  000000  ˝                   
+   846  000000                     
+   847  000000                     
+   848  000000                     
+   849  000000                     
+   850  000000                     
+   851  000000                     
+   852  000000                     
+   853  000000                     
+   854  000000                     
+   855  000000                     
+   856  000000                     
+   857  000000                     
+   858  000000                     
+   859  000000       ˝              
+   860  000000                     
+   861  000000                     
+   862  000000                     
+   863  000000                     
+   864  000000                     
+   865  000000                     
+   866  000000                     
+   867  000000                     
+   868  000000                     
+   869  000000                     
+   870  000000                     
+   871  000000                     
+   872  000000                     
+   873  000000            ˝         
+   874  000000                     
+   875  000000                     
+   876  000000                     
+   877  000000                     
+   878  000000                     
+   879  000000                     
+   880  000000                     
+   881  000000                     
+   882  000000                     
+   883  000000                     
+   884  000000                     
+   885  000000                     
+   886  000000                     
+   887  000000                 ˝    
+   888  000000                     
+   889  000000                     
+   890  000000                     
+   891  000000                     
+   892  000000                     
+   893  000000                     
+   894  000000                     
+   895  000000                     
+   896  000000                     
+   897  000000                     
+   898  000000                     
+   899  000000                     
+   900  000000                     
+   901  000000                     
+˝   902  000000                     
+   903  000000                     
+   904  000000                     
+   905  000000                     
+   906  000000                     
+   907  000000                     
+   908  000000                     
+   909  000000                     
+   910  000000                     
+   911  000000                     
+   912  000000                     
+   913  000000                     
+   914  000000                     
+   915  000000                     
+   91˝6  000000                     
+   917  000000                     
+   918  000000                     
+   919  000000                     
+   920  000000                     
+   921  000000                     
+   922  000000                     
+   923  000000                     
+   924  000000                     
+   925  000000                     
+   926  000000                     
+   927  000000                     
+   928  000000                     
+   929  000000                     
+   930  00˝0000                     
+   931  000000                     
+   932  000000                     
+   933  000000                     
+   934  000000                     
+   935  000000                     
+   936  000000                     
+   937  000000                     
+   938  000000                     
+   939  000000                     
+   940  000000                     
+   941  000000                     
+   942  000000                     
+   943  000000                     
+   944  000000 ˝                    
+   945  000000                     
+   946  000000                     
+   947  000000                     
+   948  000000                     
+   949  000000                     
+   950  000000                     
+   951  000000                     
+   952  000000                     
+   953  000000                     
+   954  000000                     
+   955  000000                     
+   956  000000                     
+   957  000000                     
+   958  000000      ˝               
+   959  000000                     
+   960  000000                     
+   961  000000                     
+   962  000000                     
+   963  000000                     
+   964  000000                     
+   965  000000                     
+   966  000000                     
+   967  000000                     
+   968  000000                     
+   969  000000                     
+   970  000000                     
+   971  000000                     
+   972  000000           ˝          
+   973  000000                     
+   974  000000                     
+   975  000000                     
+   976  000000                     
+   977  000000                     
+   978  000000                     
+   979  000000                     
+   980  000000                     
+   981  000000                     
+   982  000000                     
+   983  000000                     
+   984  000000                     
+   985  000000                     
+   986  000000                ˝     
+   987  000000                     
+   988  000000                     
+   989  000000                     
+   990  000000                     
+   991  000000                     
+   992  000000                     
+   993  000000                     
+   994  000000                     
+   995  000000                     
+   996  000000                     
+   997  000000                     
+   998  000000                     
+   999  000000                     
+  1000  000000                     ˝
+  1001  000000                     
+  1002  000000                     
+  1003  000000                     
+  1004  000000                     
+  1005  000000                     
+  1006  000000                     
+  1007  000000                     
+  1008  000000                     
+  1009  000000                     
+  1010  000000                     
+  1011  000000                     
+  1012  000000                     
+  1013  000000                     
+  1014  000000                     
+  10˝15  000000                     
+  1016  000000                     
+  1017  000000                     
+  1018  000000                     
+  1019  000000                     
+  1020  000000                     
+  1021  000000                     
+  1022  000000                     
+  1023  000000                     
+  1024  000000                     
+  1025  000000                     
+  1026  000000                     
+  1027  000000                     
+  1028  000000                     
+  1029  0˝00000                     
+  1030  000000                     
+  1031  000000                     
+  1032  000000                     
+  1033  000000                     
+  1034  000000                     
+  1035  000000                     
+  1036  000000                     
+  1037  000000                     
+  1038  000000                     
+  1039  000000                     
+  1040  000000                     
+  1041  000000                     
+  1042  000000                     
+  1043  000000˝                     
+  1044  000000                     
+  1045  000000                     
+  1046  000000                     
+  1047  000000                     
+  1048  000000                     
+  1049  000000                     
+  1050  000000                     
+  1051  000000                     
+  1052  000000                     
+  1053  000000                     
+  1054  000000                     
+  1055  000000                     
+  1056  000000                     
+  1057  000000     ˝                
+  1058  000000                     
+  1059  000000                     
+  1060  000000                     
+  1061  000000                     
+  1062  000000                     
+  1063  000000                     
+  1064  000000                     
+  1065  000000                     
+  1066  000000                     
+  1067  000000                     
+  1068  000000                     
+  1069  000000                     
+  1070  000000                     
+  1071  000000          ˝           
+  1072  000000                     
+  1073  000000                     
+  1074  000000                     
+  1075  000000                     
+  1076  000000                     
+  1077  000000                     
+  1078  000000                     
+  1079  000000                     
+  1080  000000                     
+  1081  000000                     
+  1082  000000                     
+  1083  000000                     
+  1084  000000                     
+  1085  000000               ˝      
+  1086  000000                     
+  1087  000000                     
+  1088  000000                     
+  1089  000000                     
+  1090  000000                     
+  1091  000000                     
+  1092  000000                     
+  1093  000000                     
+  1094  000000                     
+  1095  000000                     
+  1096  000000                     
+  1097  000000                     
+  1098  000000                     
+  1099  000000                    ˝ 
+  1100  000000                     
+  1101  000000                     
+  1102  000000                     
+  1103  000000                     
+  1104  000000                     
+  1105  000000                     
+  1106  000000                     
+  1107  000000                     
+  1108  000000                     
+  1109  000000                     
+  1110  000000                     
+  1111  000000                     
+  1112  000000                     
+  1113  000000                     
+  1˝114  000000                     
+  1115  000000                     
+  1116  000000                     
+  1117  000000                     
+  1118  000000                     
+  1119  000000                     
+  1120  000000                     
+  1121  000000                     
+  1122  000000                     
+  1123  000000                     
+  1124  000000                     
+  1125  000000                     
+  1126  000000                     
+  1127  000000                     
+  1128  ˝000000                     
+  1129  000000                     
+  1130  000000                     
+  1131  000000                     
+  1132  000000                     
+  1133  000000                     
+  1134  000000                     
+  1135  000000                     
+  1136  000000                     
+  1137  000000                     
+  1138  000000                     
+  1139  000000                     
+  1140  000000                     
+  1141  000000                     
+  1142  00000˝0                     
+  1143  000000                     
+  1144  000000                     
+  1145  000000                     
+  1146  000000                     
+  1147  000000                     
+  1148  000000                     
+  1149  000000                     
+  1150  000000                     
+  1151  000000                     
+  1152  000000                     
+  1153  000000                     
+  1154  000000                     
+  1155  000000                     
+  1156  000000    ˝                 
+  1157  000000                     
+  1158  000000                     
+  1159  000000                     
+  1160  000000                     
+  1161  000000                     
+  1162  000000                     
+  1163  000000                     
+  1164  000000                     
+  1165  000000                     
+  1166  000000                     
+  1167  000000                     
+  1168  000000                     
+  1169  000000                     
+  1170  000000         ˝            
+  1171  000000                     
+  1172  000000                     
+  1173  000000                     
+  1174  000000                     
+  1175  000000                     
+  1176  000000                     
+  1177  000000                     
+  1178  000000                     
+  1179  000000                     
+  1180  000000                     
+  1181  000000                     
+  1182  000000                     
+  1183  000000                     
+  1184  000000              ˝       
+  1185  000000                     
+  1186  000000                     
+  1187  000000                     
+  1188  000000                     
+  1189  000000                     
+  1190  000000                     
+  1191  000000                     
+  1192  000000                     
+  1193  000000                     
+  1194  000000                     
+  1195  000000                     
+  1196  000000                     
+  1197  000000                     
+  1198  000000                   ˝  
+  1199  000000                     
+  1200  000000                     
+  1201  000000                     
+  1202  000000                     
+  1203  000000                     
+  1204  000000                     
+  1205  000000                     
+  1206  000000                     
+  1207  000000                     
+  1208  000000                     
+  1209  000000                     
+  1210  000000                     
+  1211  000000                     
+  1212  000000                     
+  ˝1213  000000                     
+  1214  000000                     
+  1215  000000                     
+  1216  000000                     
+  1217  000000                     
+  1218  000000                     
+  1219  000000                     
+  1220  000000                     
+  1221  000000                     
+  1222  000000                     
+  1223  000000                     
+  1224  000000                     
+  1225  000000                     
+  1226  000000                     
+  1227 ˝ 000000                     
+  1228  000000                     
+  1229  000000                     
+  1230  000000                     
+  1231  000000                     
+  1232  000000                     
+  1233  000000                     
+  1234  000000                     
+  1235  000000                     
+  1236  000000                     
+  1237  000000                     
+  1238  000000                     
+  1239  000000                     
+  1240  000000                     
+  1241  0000˝00                     
+  1242  000000                     
+  1243  000000                     
+  1244  000000                     
+  1245  000000                     
+  1246  000000                     
+  1247  000000                     
+  1248  000000                     
+  1249  000000                     
+  1250  000000                     
+  1251  000000                     
+  1252  000000                     
+  1253  000000                     
+  1254  000000                     
+  1255  000000   ˝                  
+  1256  000000                     
+  1257  000000                     
+  1258  000000                     
+  1259  000000                     
+  1260  000000                     
+  1261  000000                     
+  1262  000000                     
+  1263  000000                     
+  1264  000000                     
+  1265  000000                     
+  1266  000000                     
+  1267  000000                     
+  1268  000000                     
+  1269  000000        ˝             
+  1270  000000                     
+  1271  000000                     
+  1272  000000                     
+  1273  000000                     
+  1274  000000                     
+  1275  000000                     
+  1276  000000                     
+  1277  000000                     
+  1278  000000                     
+  1279  000000                     
+  1280  000000                     
+  1281  000000                     
+  1282  000000                     
+  1283  000000             Ï        
+  1284  000000                     
+  1285  000000                     
+  1286  000000                     
+  1287  000000                     
+  1288  000000                     
+  1289  000000                     
+  1290  000000                     
+  1291  000000                     
+  1292  000000                     
+  1293  000000                     
+  1294  000000                     
+  1295                           
+  1296                           	psect	rbss
+  1297        4rbss                        _RSerial:
+   1298        4rbss  ˝                     	ds	1
+  1299  000000                     
+  1300  000000                     
+  1301  000000                     
+  1302  000000                     
+  1303  000000                     
+  1304  000000                     
+  1305  000000                     
+  1306  000000                     
+  1307  000000                     
+  1308  000000                     
+  1309  000000                     
+  1310  000000                     
+  1311  000000                     
+  1312  000000˝                     
+  1313  000000                     
+  1314  000000                     
+  1315  000000                     
+  1316  000000                     
+  1317  000000                     
+  1318  000000                     
+  1319  000000                     
+  1320  000000                     
+  1321  000000                     
+  1322  000000                     
+  1323  000000                     
+  1324  000000                     
+  1325  000000                     
+  1326  000000     ˝                
+  1327  000000                     
+  1328  000000                     
+  1329  000000                     
+  1330  000000                     
+  1331  000000                     
+  1332  000000                     
+  1333  000000                     
+  1334  000000                     
+  1335  000000                     
+  1336  000000                     
+  1337  000000                     
+  1338  000000                     
+  1339  000000                     
+  1340  000000          ^           
+  1341  000000                     
+  1342  000000                     
+  1343  000000                     
+  1344  000000                     
+  1345  000000                     
+  1346  000000                     
+  1347  000000                     
+  1348                           
+  1349                           	psect	bss
+  1350        4bss                        _UADt:
+   1351        4bss  t                      	ds	5
+  1352                           
+  1353                           	psect	bigbss
+  1354        4bigbss                         _bufRUART:
+   1355        4bigbss  $                      	ds	35
+  1356        4bigbss                         _bufTUART:
+   1357        4bigbss  s                      	ds	35
+  1358                           
+  1359                           	psect	temp
+  1360        4temp                        btemp:
+   1361        4temp  ˝                     	ds	4
+  1362                           tblptrh	equ	0xFF7
+  1363                           tblptrl	equ	0xFF6
+  1364                           tablat	equ	0xFF5
+  1365                           prodh	equ	0xFF4
+  1366                           prodl	equ	0xFF3
+  1367                           indf0	equ	0xFEF
+  1368                           fsr0h	equ	0xFEA
+  1369                           fsr0l	equ	0xFE9
+  1370                           wreg	equ	0xFE8
+  1371                           fsr1l	equ	0xFE1
+  1372                           fsr2l	equ	0xFD9
+  1373                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Wed Mar 20 08:54:40 2013
+
+                    l4       4text j                           l6       4text –       
+                    l7       4text ƒ                           l8       4text ∞       
+                   l22       4text T                         l14       4text Ú       
+                   l15       4text Ù                          l16       4text        
+                   l33       4text ∏                         l25       4text j      
+                   l17       4text                          l50       4text |      
+                   l42       4text ‚                         l18       4text 0      
+                   l51       4text Æ                         l44       4text 0      
+                   l36       4text ÷                         l45       4text 8      
+                   l29       4text Ñ                         l55       4text Ú      
+                   l47       4text h                         l49       4text t      
+                  u200       4text "                        u190       4text       
+                  u265       4text ™                        u275       4text ÿ      
+                  u197       4text 
+   9                     wreg 000FE8  
+             _bufRUART       4bigbss                  _bufTUART       4bigbss #       
+                 _UADt       4bss  ∑                    fsr0h 000FEA  
+                 indf0 000FEF                   fsr0l 000FE9  
+                 fsr1l 000FE1                   fsr2l 000FD9  
+                 btemp       4temp  X                    prodh 000FF4  
+                 prodl 000FF3            _VerifyRSACK       4text ^      
+          _VerifyRSCHK       4text j                 used_btemp0       4 used_btemp0     
+           used_btemp1       4 used_btemp1                used_btemp2       4 used_btemp2     
+           used_btemp3       4 used_btemp3          __end_of_GetRSCHK       4text ∂      
+  __end_of_VerifyRSACK       4text j        __end_of_VerifyRSCHK       4text ∞   Y   
+                tablat 000FF5                  status 000FD8  
+              _RSerial       4rbss          __end_of_InitUart       4text 8       
+        _VerifyNDatCHK       4text Ê           __end_of_SetRSCHK       4text ^      
+              __Lparam       4 __Lparam               _StopUSARTTR       4text ^      
+  __end_of_StopUSARTTR       4text h      __end_of_VerifyNDatCHK       4text Ù      
+              __ramtop       4 __ramtop                _IntUSARTRC       4text 8       
+           _IntUSARTTR       4text Ê                   _ClrRSRBuf       4text h      
+            _ClrRSTBuf       4text Ç         __end_of_IntUSARTRC       4text ‹       
+   __end_of_IntUSARTTR       4text :          __end_of_ClrRSRBuf       4text Ç      
+    __end_of_ClrRSTBuf       4text ú                  _GetRSRBuf       4text æ      
+    __end_of_GetRSRBuf       4text ‹               _StartUSARTRC       4text ‹       
+         _StartUSARTTR       4text :   X                  tblptrh 000FF7  
+               tblptrl 000FF6               _GetRSCHK       4text ∞      
+            _LiczRSCHK       4text ﬁ          __end_of_LiczRSCHK       4text &      
+ __end_of_StartUSARTRC       4text Ê        __end_of_StartUSARTTR       4text ^      
+           _SetNDatCHK       4text ∂                 ?_LiczRSCHK       4 ?_LiczRSCHK     
+   __end_of_SetNDatCHK       4text Ê                   _InitUart       4text     
+            _SetRSTBuf       4text û          __end_of_SetRSTBuf       4text æ      
+             _SetRSCHK       4text &                 ?_SetRSTBuf       4 ?_SetRSTBuf     
+   

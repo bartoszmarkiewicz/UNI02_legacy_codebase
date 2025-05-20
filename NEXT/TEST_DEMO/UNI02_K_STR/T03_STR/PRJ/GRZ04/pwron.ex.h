@@ -1,0 +1,1 @@
+void PwrOnDelay(void);

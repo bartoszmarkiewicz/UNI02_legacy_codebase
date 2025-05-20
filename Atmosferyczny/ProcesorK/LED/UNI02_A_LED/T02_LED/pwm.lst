@@ -1,0 +1,2116 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Mar 20 08:54:39 2013
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	rbit,global,bit,common,class=COMRAM,space
+      +                          =1,delta=1
+     5                           	psect	bss,global,class=RAM,space=1,delta=1
+     6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97                           
+    98                           	psect	text
+    99                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   100                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   101                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   102                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   103                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   104                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   105                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   106                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   107                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   108                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   109                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   110                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   111                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   112                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   113                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   114                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   115                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   116                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   117                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   118                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   119                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   120                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   121                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   122                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   123                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   124                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   125                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   126                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   127                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   128                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   129                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   130                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   131                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   132                           ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   133                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   134                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   135                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   136                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   137                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   138                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   139                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   140                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   141                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   142                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   143                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   144                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   145                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   146                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   147                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   148                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   149                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   150                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   151                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   152                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   153                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   154                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   155                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   156                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   157                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   158                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   159                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   160                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   161                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   162                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   163                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   164                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   165                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   166                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   167                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   168                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   169                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   170                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   171                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   172                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   173                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+   174                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   175                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   176                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+   177                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   178                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   179                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   180                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   181                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   182                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   183                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   184                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+   185                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   186                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   187                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   188                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   189                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   190                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   191                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   192                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   193                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   194                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   195                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   196                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   197                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   198                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   199  00BD28                     _InitPWM:
+   200  000000                     
+   201                           ;pwm.c: 14: CCP1CON=0;
+   202  00BD28  6ABD               	clrf	4029,c	;volatile
+   203                           ;pwm.c: 15: CCPR1L=0;
+   204  00BD2A  6ABE               	clrf	4030,c	;volatile
+   205                           ;pwm.c: 16: CCPR1H=0;
+   206  00BD2C  6ABF               	clrf	4031,c	;volatile
+   207                           ;pwm.c: 17: CCP1CON=0b00001100;
+   208  00BD2E  0E0C               	movlw	12
+   209  00BD30  6EBD               	movwf	4029,c	;volatile
+   210                           ;pwm.c: 19: CCP2CON=0;
+   211  00BD32  6ABA               	clrf	4026,c	;volatile
+   212                           ;pwm.c: 20: CCPR2L=0;
+   213  00BD34  6ABB               	clrf	4027,c	;volatile
+   214                           ;pwm.c: 21: CCPR2H=0;
+   215  00BD36  6ABC               	clrf	4028,c	;volatile
+   216                           ;pwm.c: 22: CCP2CON=0b00001100;
+   217  00BD38  0E0C               	movlw	12
+   218  00BD3A  6EBA               	movwf	4026,c	;volatile
+   219                           ;pwm.c: 24: TMR2=0;
+   220  00BD3C  6ACC               	clrf	4044,c	;volatile
+   221                           ;pwm.c: 25: T2CON=0b00000010;
+   222  00BD3E  0E02               	movlw	2
+   223  00BD40  6ECA               	movwf	4042,c
+   224                           ;pwm.c: 26: PR2=0x7C;
+   225  00BD42  0E7C               	movlw	124
+   226  00BD44  6ECB               	movwf	4043,c
+   227                           ;pwm.c: 27: TMR2IE=1;
+   228  00BD46  829D               	bsf	3997,1,c
+   229                           ;pwm.c: 28: TMR2ON=1;
+   230  00BD48  84CA               	bsf	4042,2,c
+   231                           ;pwm.c: 40: PWM.HIPWM=(0x7C+1)<<1;
+   232  00BD4A  0EFA               	movlw	-6
+   233  00BD4C  CFE8 F276          	movff	wreg,_PWM+8
+   234                           ;pwm.c: 53: PWM.BufPWM=0;
+   235  00BD50  0102               	movlb	(_PWM+1) shr (0+8)
+   236  00BD52  6B6F               	clrf	(_PWM+1)& (0+255),b
+   237                           ;pwm.c: 54: PWM.NewPWM=0;
+   238  00BD54  6B72               	clrf	(_PWM+4)& (0+255),b
+   239                           ;pwm.c: 55: PWM.BufOSC=0;
+   240  00BD56  6B70               	clrf	(_PWM+2)& (0+255),b
+   241                           ;pwm.c: 56: PWM.NewOSC=0;
+   242  00BD58  6B71               	clrf	(_PWM+3)& (0+255),b
+   243                           ;pwm.c: 57: PWM.BufPWM2=0;
+   244  00BD5A  6B74               	clrf	(_PWM+6)& (0+255),b
+   245                           ;pwm.c: 58: PWM.NewPWM2=0;
+   246  00BD5C  6B75               	clrf	(_PWM+7)& (0+255),b
+   247                           ;pwm.c: 59: }
+   248  00BD5E  0012               	return	
+   249  00BD60                     __end_of_InitPWM:
+   250                           ;       param _tpg assigned to ?_ModParam+0
+   251  000000                     _ModParam$tpg	set	?_ModParam
+   252                           ;pwm.c: 65: void ModParam(const unsigned char tp
+      +                          k,const unsigned char tpg)
+   253                           ;pwm.c: 66: {
+   254  00BD60  00D7               	dw	?_ModParam
+   255  00BD62                     _ModParam:
+   256  000000                     
+   257                           ; _tpk loaded to fsr2l
+   258  00BD62  6ED9               	movwf	fsr2l,c
+   259                           ;pwm.c: 67: PWM.tpGZ=(tpg!=0);
+   260  00BD64  0E00               	movlw	0
+   261  00BD66  6A00               	clrf	btemp,c
+   262  00BD68  0100               	movlb	__Lparam shr (0+8)
+   263  00BD6A  63D7               	cpfseq	?_ModParam^(__Lparam& (0+65280)),b
+   264  00BD6C  2A00               	incf	btemp,f,c
+   265  00BD6E  EE02  F06E         	lfsr	0,_PWM
+   266  00BD72  3600               	rlcf	btemp,f,c
+   267  00BD74  3600               	rlcf	btemp,f,c
+   268  00BD76  50EF               	movf	indf0,w,c
+   269  00BD78  1800               	xorwf	btemp,w,c
+   270  00BD7A  0BFB               	andlw	-5
+   271  00BD7C  1800               	xorwf	btemp,w,c
+   272  00BD7E  6EEF               	movwf	indf0,c
+   273                           ;pwm.c: 70: if(!PWM.tpGZ)
+   274  00BD80  0102               	movlb	_PWM shr (0+8)
+   275  00BD82  A56E               	btfss	_PWM& (0+255),2,b
+   276  00BD84  D12D               	goto	l7
+   277  00BD86  D265               	goto	l15
+   278                           ;pwm.c: 71: {
+   279  00BD88                     l8:
+   280                           ;pwm.c: 73: {
+   281                           ;pwm.c: 75: {
+   282  00BD88  0102               	movlb	_PWM shr (0+8)
+   283  00BD8A  836E               	bsf	_PWM& (0+255),1,b
+   284                           ;pwm.c: 77: PWM.MDMOD=0x30;
+   285  00BD8C  0E30               	movlw	48
+   286  00BD8E  CFE8 F277          	movff	wreg,_PWM+9
+   287                           ;pwm.c: 78: PWM.MGMOD=0x9F;
+   288  00BD92  0E9F               	movlw	-97
+   289  00BD94  CFE8 F278          	movff	wreg,_PWM+10
+   290                           ;pwm.c: 79: PWM.MAXOSC=20;
+   291  00BD98  0E14               	movlw	20
+   292  00BD9A  CFE8 F279          	movff	wreg,_PWM+11
+   293                           ;pwm.c: 80: PWM.MINOSC=5;
+   294  00BD9E  0E05               	movlw	5
+   295  00BDA0  CFE8 F27A          	movff	wreg,_PWM+12
+   296                           ;pwm.c: 81: PWM.MAD_MOD=0x14;
+   297  00BDA4  0E14               	movlw	20
+   298  00BDA6  CFE8 F27B          	movff	wreg,_PWM+13
+   299                           ;pwm.c: 82: PWM.MAG_MOD=0xF7;
+   300  00BDAA  0EF7               	movlw	-9
+   301  00BDAC  CFE8 F27C          	movff	wreg,_PWM+14
+   302                           ;pwm.c: 83: PWM.GWMSTART=99;
+   303  00BDB0  0E63               	movlw	99
+   304  00BDB2  CFE8 F27D          	movff	wreg,_PWM+15
+   305                           ;pwm.c: 84: PWM.MDSTART=0x30;
+   306  00BDB6  0E30               	movlw	48
+   307  00BDB8  CFE8 F27E          	movff	wreg,_PWM+16
+   308                           ;pwm.c: 85: PWM.MGSTART=0x9F+10;
+   309  00BDBC  0EA9               	movlw	-87
+   310  00BDBE  CFE8 F27F          	movff	wreg,_PWM+17
+   311                           ;pwm.c: 86: PWM.GWMMAXCO=99;
+   312  00BDC2  0E63               	movlw	99
+   313  00BDC4  CFE8 F280          	movff	wreg,_PWM+18
+   314                           ;pwm.c: 87: PWM.MDMAXCO=0x30;
+   315  00BDC8  0E30               	movlw	48
+   316  00BDCA  CFE8 F281          	movff	wreg,_PWM+19
+   317                           ;pwm.c: 88: PWM.MGMAXCO=0x9F+10;
+   318  00BDCE  0EA9               	movlw	-87
+   319  00BDD0  CFE8 F282          	movff	wreg,_PWM+20
+   320                           ;pwm.c: 89: PWM.GWMMAXCW=99;
+   321  00BDD4  0E63               	movlw	99
+   322  00BDD6  CFE8 F283          	movff	wreg,_PWM+21
+   323                           ;pwm.c: 90: PWM.MDMAXCW=0x30;
+   324  00BDDA  0E30               	movlw	48
+   325  00BDDC  CFE8 F284          	movff	wreg,_PWM+22
+   326                           ;pwm.c: 91: PWM.MGMAXCW=0x9F+10;
+   327  00BDE0  0EA9               	movlw	-87
+   328  00BDE2  CFE8 F285          	movff	wreg,_PWM+23
+   329                           ;pwm.c: 92: PWM.FIRSTPB=0x75;
+   330  00BDE6  0E75               	movlw	117
+   331  00BDE8  CFE8 F286          	movff	wreg,_PWM+24
+   332                           ;pwm.c: 93: PWM.PROP1=0x9F-1*((0x9F-0x30)/7);
+   333  00BDEC  0E90               	movlw	-112
+   334  00BDEE  CFE8 F287          	movff	wreg,_PWM+25
+   335                           ;pwm.c: 94: PWM.PROP2=0x9F-2*((0x9F-0x30)/7);
+   336  00BDF2  0E81               	movlw	-127
+   337  00BDF4  CFE8 F288          	movff	wreg,_PWM+26
+   338                           ;pwm.c: 95: PWM.PROP3=0x9F-3*((0x9F-0x30)/7);
+   339  00BDF8  0E72               	movlw	114
+   340  00BDFA  CFE8 F289          	movff	wreg,_PWM+27
+   341                           ;pwm.c: 96: break;
+   342  00BDFE  0C72               	retlw	114
+   343  00BE00                     l9:
+   344                           ;pwm.c: 97: }
+   345                           ;pwm.c: 99: {
+   346  00BE00  0102               	movlb	_PWM shr (0+8)
+   347  00BE02  836E               	bsf	_PWM& (0+255),1,b
+   348                           ;pwm.c: 101: PWM.MDMOD=0x20;
+   349  00BE04  0E20               	movlw	32
+   350  00BE06  CFE8 F277          	movff	wreg,_PWM+9
+   351                           ;pwm.c: 102: PWM.MGMOD=0x9F;
+   352  00BE0A  0E9F               	movlw	-97
+   353  00BE0C  CFE8 F278          	movff	wreg,_PWM+10
+   354                           ;pwm.c: 103: PWM.MAXOSC=30;
+   355  00BE10  0E1E               	movlw	30
+   356  00BE12  CFE8 F279          	movff	wreg,_PWM+11
+   357                           ;pwm.c: 104: PWM.MINOSC=5;
+   358  00BE16  0E05               	movlw	5
+   359  00BE18  CFE8 F27A          	movff	wreg,_PWM+12
+   360                           ;pwm.c: 105: PWM.MAD_MOD=0x14;
+   361  00BE1C  0E14               	movlw	20
+   362  00BE1E  CFE8 F27B          	movff	wreg,_PWM+13
+   363                           ;pwm.c: 106: PWM.MAG_MOD=0xF7;
+   364  00BE22  0EF7               	movlw	-9
+   365  00BE24  CFE8 F27C          	movff	wreg,_PWM+14
+   366                           ;pwm.c: 107: PWM.GWMSTART=99;
+   367  00BE28  0E63               	movlw	99
+   368  00BE2A  CFE8 F27D          	movff	wreg,_PWM+15
+   369                           ;pwm.c: 108: PWM.MDSTART=0x20;
+   370  00BE2E  0E20               	movlw	32
+   371  00BE30  CFE8 F27E          	movff	wreg,_PWM+16
+   372                           ;pwm.c: 109: PWM.MGSTART=0x9F+10;
+   373  00BE34  0EA9               	movlw	-87
+   374  00BE36  CFE8 F27F          	movff	wreg,_PWM+17
+   375                           ;pwm.c: 110: PWM.GWMMAXCO=99;
+   376  00BE3A  0E63               	movlw	99
+   377  00BE3C  CFE8 F280          	movff	wreg,_PWM+18
+   378                           ;pwm.c: 111: PWM.MDMAXCO=0x20;
+   379  00BE40  0E20               	movlw	32
+   380  00BE42  CFE8 F281          	movff	wreg,_PWM+19
+   381                           ;pwm.c: 112: PWM.MGMAXCO=0x9F+10;
+   382  00BE46  0EA9               	movlw	-87
+   383  00BE48  CFE8 F282          	movff	wreg,_PWM+20
+   384                           ;pwm.c: 113: PWM.GWMMAXCW=99;
+   385  00BE4C  0E63               	movlw	99
+   386  00BE4E  CFE8 F283          	movff	wreg,_PWM+21
+   387                           ;pwm.c: 114: PWM.MDMAXCW=0x20;
+   388  00BE52  0E20               	movlw	32
+   389  00BE54  CFE8 F284          	movff	wreg,_PWM+22
+   390                           ;pwm.c: 115: PWM.MGMAXCW=0x9F+10;
+   391  00BE58  0EA9               	movlw	-87
+   392  00BE5A  CFE8 F285          	movff	wreg,_PWM+23
+   393                           ;pwm.c: 116: PWM.FIRSTPB=0x75;
+   394  00BE5E  0E75               	movlw	117
+   395  00BE60  CFE8 F286          	movff	wreg,_PWM+24
+   396                           ;pwm.c: 117: PWM.PROP1=0x9F-1*((0x9F-0x20)/7);
+   397  00BE64  0E8D               	movlw	-115
+   398  00BE66  CFE8 F287          	movff	wreg,_PWM+25
+   399                           ;pwm.c: 118: PWM.PROP2=0x9F-2*((0x9F-0x20)/7);
+   400  00BE6A  0E7B               	movlw	123
+   401  00BE6C  CFE8 F288          	movff	wreg,_PWM+26
+   402                           ;pwm.c: 119: PWM.PROP3=0x9F-3*((0x9F-0x20)/7);
+   403  00BE70  0E69               	movlw	105
+   404  00BE72  CFE8 F289          	movff	wreg,_PWM+27
+   405                           ;pwm.c: 120: break;
+   406  00BE76  0C69               	retlw	105
+   407  00BE78                     l10:
+   408                           ;pwm.c: 121: }
+   409                           ;pwm.c: 150: {
+   410  00BE78  0102               	movlb	_PWM shr (0+8)
+   411  00BE7A  836E               	bsf	_PWM& (0+255),1,b
+   412                           ;pwm.c: 152: PWM.MDMOD=0x30;
+   413  00BE7C  0E30               	movlw	48
+   414  00BE7E  CFE8 F277          	movff	wreg,_PWM+9
+   415                           ;pwm.c: 153: PWM.MGMOD=0xA0;
+   416  00BE82  0EA0               	movlw	-96
+   417  00BE84  CFE8 F278          	movff	wreg,_PWM+10
+   418                           ;pwm.c: 154: PWM.MAXOSC=25;
+   419  00BE88  0E19               	movlw	25
+   420  00BE8A  CFE8 F279          	movff	wreg,_PWM+11
+   421                           ;pwm.c: 155: PWM.MINOSC=5;
+   422  00BE8E  0E05               	movlw	5
+   423  00BE90  CFE8 F27A          	movff	wreg,_PWM+12
+   424                           ;pwm.c: 156: PWM.MAD_MOD=0x14;
+   425  00BE94  0E14               	movlw	20
+   426  00BE96  CFE8 F27B          	movff	wreg,_PWM+13
+   427                           ;pwm.c: 157: PWM.MAG_MOD=0xF7;
+   428  00BE9A  0EF7               	movlw	-9
+   429  00BE9C  CFE8 F27C          	movff	wreg,_PWM+14
+   430                           ;pwm.c: 158: PWM.GWMSTART=99;
+   431  00BEA0  0E63               	movlw	99
+   432  00BEA2  CFE8 F27D          	movff	wreg,_PWM+15
+   433                           ;pwm.c: 159: PWM.MDSTART=0x30;
+   434  00BEA6  0E30               	movlw	48
+   435  00BEA8  CFE8 F27E          	movff	wreg,_PWM+16
+   436                           ;pwm.c: 160: PWM.MGSTART=0xA0+10;
+   437  00BEAC  0EAA               	movlw	-86
+   438  00BEAE  CFE8 F27F          	movff	wreg,_PWM+17
+   439                           ;pwm.c: 161: PWM.GWMMAXCO=99;
+   440  00BEB2  0E63               	movlw	99
+   441  00BEB4  CFE8 F280          	movff	wreg,_PWM+18
+   442                           ;pwm.c: 162: PWM.MDMAXCO=0x30;
+   443  00BEB8  0E30               	movlw	48
+   444  00BEBA  CFE8 F281          	movff	wreg,_PWM+19
+   445                           ;pwm.c: 163: PWM.MGMAXCO=0xA0+10;
+   446  00BEBE  0EAA               	movlw	-86
+   447  00BEC0  CFE8 F282          	movff	wreg,_PWM+20
+   448                           ;pwm.c: 164: PWM.GWMMAXCW=99;
+   449  00BEC4  0E63               	movlw	99
+   450  00BEC6  CFE8 F283          	movff	wreg,_PWM+21
+   451                           ;pwm.c: 165: PWM.MDMAXCW=0x30;
+   452  00BECA  0E30               	movlw	48
+   453  00BECC  CFE8 F284          	movff	wreg,_PWM+22
+   454                           ;pwm.c: 166: PWM.MGMAXCW=0xA0+10;
+   455  00BED0  0EAA               	movlw	-86
+   456  00BED2  CFE8 F285          	movff	wreg,_PWM+23
+   457                           ;pwm.c: 167: PWM.FIRSTPB=0x6E;
+   458  00BED6  0E6E               	movlw	110
+   459  00BED8  CFE8 F286          	movff	wreg,_PWM+24
+   460                           ;pwm.c: 168: PWM.PROP1=0xA0-1*((0xA0-0x30)/7);
+   461  00BEDC  0E90               	movlw	-112
+   462  00BEDE  CFE8 F287          	movff	wreg,_PWM+25
+   463                           ;pwm.c: 169: PWM.PROP2=0xA0-2*((0xA0-0x30)/7);
+   464  00BEE2  0E80               	movlw	-128
+   465  00BEE4  CFE8 F288          	movff	wreg,_PWM+26
+   466                           ;pwm.c: 170: PWM.PROP3=0xA0-3*((0xA0-0x30)/7);
+   467  00BEE8  0E70               	movlw	112
+   468  00BEEA  CFE8 F289          	movff	wreg,_PWM+27
+   469                           ;pwm.c: 171: break;
+   470  00BEEE  0C70               	retlw	112
+   471  00BEF0                     l11:
+   472                           ;pwm.c: 172: }
+   473                           ;pwm.c: 174: {
+   474  00BEF0  0102               	movlb	_PWM shr (0+8)
+   475  00BEF2  836E               	bsf	_PWM& (0+255),1,b
+   476                           ;pwm.c: 176: PWM.MDMOD=0x2D;
+   477  00BEF4  0E2D               	movlw	45
+   478  00BEF6  CFE8 F277          	movff	wreg,_PWM+9
+   479                           ;pwm.c: 177: PWM.MGMOD=0x9F;
+   480  00BEFA  0E9F               	movlw	-97
+   481  00BEFC  CFE8 F278          	movff	wreg,_PWM+10
+   482                           ;pwm.c: 178: PWM.MAXOSC=15;
+   483  00BF00  0E0F               	movlw	15
+   484  00BF02  CFE8 F279          	movff	wreg,_PWM+11
+   485                           ;pwm.c: 179: PWM.MINOSC=5;
+   486  00BF06  0E05               	movlw	5
+   487  00BF08  CFE8 F27A          	movff	wreg,_PWM+12
+   488                           ;pwm.c: 180: PWM.MAD_MOD=0x14;
+   489  00BF0C  0E14               	movlw	20
+   490  00BF0E  CFE8 F27B          	movff	wreg,_PWM+13
+   491                           ;pwm.c: 181: PWM.MAG_MOD=0xF7;
+   492  00BF12  0EF7               	movlw	-9
+   493  00BF14  CFE8 F27C          	movff	wreg,_PWM+14
+   494                           ;pwm.c: 182: PWM.GWMSTART=99;
+   495  00BF18  0E63               	movlw	99
+   496  00BF1A  CFE8 F27D          	movff	wreg,_PWM+15
+   497                           ;pwm.c: 183: PWM.MDSTART=0x2D;
+   498  00BF1E  0E2D               	movlw	45
+   499  00BF20  CFE8 F27E          	movff	wreg,_PWM+16
+   500                           ;pwm.c: 184: PWM.MGSTART=0x9F+10;
+   501  00BF24  0EA9               	movlw	-87
+   502  00BF26  CFE8 F27F          	movff	wreg,_PWM+17
+   503                           ;pwm.c: 185: PWM.GWMMAXCO=99;
+   504  00BF2A  0E63               	movlw	99
+   505  00BF2C  CFE8 F280          	movff	wreg,_PWM+18
+   506                           ;pwm.c: 186: PWM.MDMAXCO=0x2D;
+   507  00BF30  0E2D               	movlw	45
+   508  00BF32  CFE8 F281          	movff	wreg,_PWM+19
+   509                           ;pwm.c: 187: PWM.MGMAXCO=0x9F+10;
+   510  00BF36  0EA9               	movlw	-87
+   511  00BF38  CFE8 F282          	movff	wreg,_PWM+20
+   512                           ;pwm.c: 188: PWM.GWMMAXCW=99;
+   513  00BF3C  0E63               	movlw	99
+   514  00BF3E  CFE8 F283          	movff	wreg,_PWM+21
+   515                           ;pwm.c: 189: PWM.MDMAXCW=0x2D;
+   516  00BF42  0E2D               	movlw	45
+   517  00BF44  CFE8 F284          	movff	wreg,_PWM+22
+   518                           ;pwm.c: 190: PWM.MGMAXCW=0x9F+10;
+   519  00BF48  0EA9               	movlw	-87
+   520  00BF4A  CFE8 F285          	movff	wreg,_PWM+23
+   521                           ;pwm.c: 191: PWM.FIRSTPB=0x6E;
+   522  00BF4E  0E6E               	movlw	110
+   523  00BF50  CFE8 F286          	movff	wreg,_PWM+24
+   524                           ;pwm.c: 192: PWM.PROP1=0x9F-1*((0x9F-0x2D)/7);
+   525  00BF54  0E8F               	movlw	-113
+   526  00BF56  CFE8 F287          	movff	wreg,_PWM+25
+   527                           ;pwm.c: 193: PWM.PROP2=0x9F-2*((0x9F-0x2D)/7);
+   528  00BF5A  0E7F               	movlw	127
+   529  00BF5C  CFE8 F288          	movff	wreg,_PWM+26
+   530                           ;pwm.c: 194: PWM.PROP3=0x9F-3*((0x9F-0x2D)/7);
+   531  00BF60  0E6F               	movlw	111
+   532  00BF62  CFE8 F289          	movff	wreg,_PWM+27
+   533                           ;pwm.c: 195: break;
+   534  00BF66  0C6F               	retlw	111
+   535  00BF68                     l12:
+   536                           ;pwm.c: 196: }
+   537                           ;pwm.c: 198: {
+   538  00BF68  0102               	movlb	_PWM shr (0+8)
+   539  00BF6A  836E               	bsf	_PWM& (0+255),1,b
+   540                           ;pwm.c: 200: PWM.MDMOD=0x2D;
+   541  00BF6C  0E2D               	movlw	45
+   542  00BF6E  CFE8 F277          	movff	wreg,_PWM+9
+   543                           ;pwm.c: 201: PWM.MGMOD=0x9F;
+   544  00BF72  0E9F               	movlw	-97
+   545  00BF74  CFE8 F278          	movff	wreg,_PWM+10
+   546                           ;pwm.c: 202: PWM.MAXOSC=15;
+   547  00BF78  0E0F               	movlw	15
+   548  00BF7A  CFE8 F279          	movff	wreg,_PWM+11
+   549                           ;pwm.c: 203: PWM.MINOSC=5;
+   550  00BF7E  0E05               	movlw	5
+   551  00BF80  CFE8 F27A          	movff	wreg,_PWM+12
+   552                           ;pwm.c: 204: PWM.MAD_MOD=0x14;
+   553  00BF84  0E14               	movlw	20
+   554  00BF86  CFE8 F27B          	movff	wreg,_PWM+13
+   555                           ;pwm.c: 205: PWM.MAG_MOD=0xF7;
+   556  00BF8A  0EF7               	movlw	-9
+   557  00BF8C  CFE8 F27C          	movff	wreg,_PWM+14
+   558                           ;pwm.c: 206: PWM.GWMSTART=99;
+   559  00BF90  0E63               	movlw	99
+   560  00BF92  CFE8 F27D          	movff	wreg,_PWM+15
+   561                           ;pwm.c: 207: PWM.MDSTART=0x2D;
+   562  00BF96  0E2D               	movlw	45
+   563  00BF98  CFE8 F27E          	movff	wreg,_PWM+16
+   564                           ;pwm.c: 208: PWM.MGSTART=0x9F+10;
+   565  00BF9C  0EA9               	movlw	-87
+   566  00BF9E  CFE8 F27F          	movff	wreg,_PWM+17
+   567                           ;pwm.c: 209: PWM.GWMMAXCO=99;
+   568  00BFA2  0E63               	movlw	99
+   569  00BFA4  CFE8 F280          	movff	wreg,_PWM+18
+   570                           ;pwm.c: 210: PWM.MDMAXCO=0x2D;
+   571  00BFA8  0E2D               	movlw	45
+   572  00BFAA  CFE8 F281          	movff	wreg,_PWM+19
+   573                           ;pwm.c: 211: PWM.MGMAXCO=0x9F+10;
+   574  00BFAE  0EA9               	movlw	-87
+   575  00BFB0  CFE8 F282          	movff	wreg,_PWM+20
+   576                           ;pwm.c: 212: PWM.GWMMAXCW=99;
+   577  00BFB4  0E63               	movlw	99
+   578  00BFB6  CFE8 F283          	movff	wreg,_PWM+21
+   579                           ;pwm.c: 213: PWM.MDMAXCW=0x2D;
+   580  00BFBA  0E2D               	movlw	45
+   581  00BFBC  CFE8 F284          	movff	wreg,_PWM+22
+   582                           ;pwm.c: 214: PWM.MGMAXCW=0x9F+10;
+   583  00BFC0  0EA9               	movlw	-87
+   584  00BFC2  CFE8 F285          	movff	wreg,_PWM+23
+   585                           ;pwm.c: 215: PWM.FIRSTPB=0x6E;
+   586  00BFC6  0E6E               	movlw	110
+   587  00BFC8  CFE8 F286          	movff	wreg,_PWM+24
+   588                           ;pwm.c: 216: PWM.PROP1=0x9F-1*((0x9F-0x2D)/7);
+   589  00BFCC  0E8F               	movlw	-113
+   590  00BFCE  CFE8 F287          	movff	wreg,_PWM+25
+   591                           ;pwm.c: 217: PWM.PROP2=0x9F-2*((0x9F-0x2D)/7);
+   592  00BFD2  0E7F               	movlw	127
+   593  00BFD4  CFE8 F288          	movff	wreg,_PWM+26
+   594                           ;pwm.c: 218: PWM.PROP3=0x9F-3*((0x9F-0x2D)/7);
+   595  00BFD8  0E6F               	movlw	111
+   596  00BFDA  CFE8 F289          	movff	wreg,_PWM+27
+   597                           ;pwm.c: 219: break;
+   598  00BFDE  0C6F               	retlw	111
+   599  00BFE0                     l7:
+   600  00BFE0  50D9               	movf	fsr2l,w,c
+   601  00BFE2  E101 D6D1          	bz	l8
+   602  00BFE6  0A01               	xorlw	1
+   603  00BFE8  E101 D70A          	bz	l9
+   604  00BFEC  0A03               	xorlw	3
+   605  00BFEE  E101 D743          	bz	l10
+   606  00BFF2  0A01               	xorlw	1
+   607  00BFF4  E101 D77C          	bz	l11
+   608  00BFF8  D7B7               	goto	l12
+   609                           ;pwm.c: 222: }
+   610                           ;pwm.c: 223: else
+   611  00BFFA                     l16:
+   612                           ;pwm.c: 226: {
+   613                           ;pwm.c: 228: {
+   614  00BFFA  0102               	movlb	_PWM shr (0+8)
+   615  00BFFC  836E               	bsf	_PWM& (0+255),1,b
+   616                           ;pwm.c: 230: PWM.MDMOD=0x48;
+   617  00BFFE  0E48               	movlw	72
+   618  00C000  CFE8 F277          	movff	wreg,_PWM+9
+   619                           ;pwm.c: 231: PWM.MGMOD=0xEB;
+   620  00C004  0EEB               	movlw	-21
+   621  00C006  CFE8 F278          	movff	wreg,_PWM+10
+   622                           ;pwm.c: 232: PWM.MAXOSC=20;
+   623  00C00A  0E14               	movlw	20
+   624  00C00C  CFE8 F279          	movff	wreg,_PWM+11
+   625                           ;pwm.c: 233: PWM.MINOSC=5;
+   626  00C010  0E05               	movlw	5
+   627  00C012  CFE8 F27A          	movff	wreg,_PWM+12
+   628                           ;pwm.c: 234: PWM.MAD_MOD=0x14;
+   629  00C016  0E14               	movlw	20
+   630  00C018  CFE8 F27B          	movff	wreg,_PWM+13
+   631                           ;pwm.c: 235: PWM.MAG_MOD=0xF7;
+   632  00C01C  0EF7               	movlw	-9
+   633  00C01E  CFE8 F27C          	movff	wreg,_PWM+14
+   634                           ;pwm.c: 236: PWM.GWMSTART=99;
+   635  00C022  0E63               	movlw	99
+   636  00C024  CFE8 F27D          	movff	wreg,_PWM+15
+   637                           ;pwm.c: 237: PWM.MDSTART=0x48;
+   638  00C028  0E48               	movlw	72
+   639  00C02A  CFE8 F27E          	movff	wreg,_PWM+16
+   640                           ;pwm.c: 238: PWM.MGSTART=0xEB+10;
+   641  00C02E  0EF5               	movlw	-11
+   642  00C030  CFE8 F27F          	movff	wreg,_PWM+17
+   643                           ;pwm.c: 239: PWM.GWMMAXCO=99;
+   644  00C034  0E63               	movlw	99
+   645  00C036  CFE8 F280          	movff	wreg,_PWM+18
+   646                           ;pwm.c: 240: PWM.MDMAXCO=0x48;
+   647  00C03A  0E48               	movlw	72
+   648  00C03C  CFE8 F281          	movff	wreg,_PWM+19
+   649                           ;pwm.c: 241: PWM.MGMAXCO=0xEB+10;
+   650  00C040  0EF5               	movlw	-11
+   651  00C042  CFE8 F282          	movff	wreg,_PWM+20
+   652                           ;pwm.c: 242: PWM.GWMMAXCW=99;
+   653  00C046  0E63               	movlw	99
+   654  00C048  CFE8 F283          	movff	wreg,_PWM+21
+   655                           ;pwm.c: 243: PWM.MDMAXCW=0x48;
+   656  00C04C  0E48               	movlw	72
+   657  00C04E  CFE8 F284          	movff	wreg,_PWM+22
+   658                           ;pwm.c: 244: PWM.MGMAXCW=0xEB+10;
+   659  00C052  0EF5               	movlw	-11
+   660  00C054  CFE8 F285          	movff	wreg,_PWM+23
+   661                           ;pwm.c: 245: PWM.FIRSTPB=0xAA;
+   662  00C058  0EAA               	movlw	-86
+   663  00C05A  CFE8 F286          	movff	wreg,_PWM+24
+   664                           ;pwm.c: 246: PWM.PROP1=0xEB-1*((0xEB-0x48)/7);
+   665  00C05E  0ED4               	movlw	-44
+   666  00C060  CFE8 F287          	movff	wreg,_PWM+25
+   667                           ;pwm.c: 247: PWM.PROP2=0xEB-2*((0xEB-0x48)/7);
+   668  00C064  0EBD               	movlw	-67
+   669  00C066  CFE8 F288          	movff	wreg,_PWM+26
+   670                           ;pwm.c: 248: PWM.PROP3=0xEB-3*((0xEB-0x48)/7);
+   671  00C06A  0EA6               	movlw	-90
+   672  00C06C  CFE8 F289          	movff	wreg,_PWM+27
+   673                           ;pwm.c: 249: break;
+   674  00C070  0CA6               	retlw	166
+   675  00C072                     l17:
+   676                           ;pwm.c: 250: }
+   677                           ;pwm.c: 252: {
+   678  00C072  0102               	movlb	_PWM shr (0+8)
+   679  00C074  836E               	bsf	_PWM& (0+255),1,b
+   680                           ;pwm.c: 254: PWM.MDMOD=0x40;
+   681  00C076  0E40               	movlw	64
+   682  00C078  CFE8 F277          	movff	wreg,_PWM+9
+   683                           ;pwm.c: 255: PWM.MGMOD=0xE0;
+   684  00C07C  0EE0               	movlw	-32
+   685  00C07E  CFE8 F278          	movff	wreg,_PWM+10
+   686                           ;pwm.c: 256: PWM.MAXOSC=30;
+   687  00C082  0E1E               	movlw	30
+   688  00C084  CFE8 F279          	movff	wreg,_PWM+11
+   689                           ;pwm.c: 257: PWM.MINOSC=5;
+   690  00C088  0E05               	movlw	5
+   691  00C08A  CFE8 F27A          	movff	wreg,_PWM+12
+   692                           ;pwm.c: 258: PWM.MAD_MOD=0x14;
+   693  00C08E  0E14               	movlw	20
+   694  00C090  CFE8 F27B          	movff	wreg,_PWM+13
+   695                           ;pwm.c: 259: PWM.MAG_MOD=0xF7;
+   696  00C094  0EF7               	movlw	-9
+   697  00C096  CFE8 F27C          	movff	wreg,_PWM+14
+   698                           ;pwm.c: 260: PWM.GWMSTART=99;
+   699  00C09A  0E63               	movlw	99
+   700  00C09C  CFE8 F27D          	movff	wreg,_PWM+15
+   701                           ;pwm.c: 261: PWM.MDSTART=0x40;
+   702  00C0A0  0E40               	movlw	64
+   703  00C0A2  CFE8 F27E          	movff	wreg,_PWM+16
+   704                           ;pwm.c: 262: PWM.MGSTART=0xE0+10;
+   705  00C0A6  0EEA               	movlw	-22
+   706  00C0A8  CFE8 F27F          	movff	wreg,_PWM+17
+   707                           ;pwm.c: 263: PWM.GWMMAXCO=99;
+   708  00C0AC  0E63               	movlw	99
+   709  00C0AE  CFE8 F280          	movff	wreg,_PWM+18
+   710                           ;pwm.c: 264: PWM.MDMAXCO=0x40;
+   711  00C0B2  0E40               	movlw	64
+   712  00C0B4  CFE8 F281          	movff	wreg,_PWM+19
+   713                           ;pwm.c: 265: PWM.MGMAXCO=0xE0+10;
+   714  00C0B8  0EEA               	movlw	-22
+   715  00C0BA  CFE8 F282          	movff	wreg,_PWM+20
+   716                           ;pwm.c: 266: PWM.GWMMAXCW=99;
+   717  00C0BE  0E63               	movlw	99
+   718  00C0C0  CFE8 F283          	movff	wreg,_PWM+21
+   719                           ;pwm.c: 267: PWM.MDMAXCW=0x40;
+   720  00C0C4  0E40               	movlw	64
+   721  00C0C6  CFE8 F284          	movff	wreg,_PWM+22
+   722                           ;pwm.c: 268: PWM.MGMAXCW=0xE0+10;
+   723  00C0CA  0EEA               	movlw	-22
+   724  00C0CC  CFE8 F285          	movff	wreg,_PWM+23
+   725                           ;pwm.c: 269: PWM.FIRSTPB=0xA3;
+   726  00C0D0  0EA3               	movlw	-93
+   727  00C0D2  CFE8 F286          	movff	wreg,_PWM+24
+   728                           ;pwm.c: 270: PWM.PROP1=0xE0-1*((0xE0-0x40)/7);
+   729  00C0D6  0ECA               	movlw	-54
+   730  00C0D8  CFE8 F287          	movff	wreg,_PWM+25
+   731                           ;pwm.c: 271: PWM.PROP2=0xE0-2*((0xE0-0x40)/7);
+   732  00C0DC  0EB4               	movlw	-76
+   733  00C0DE  CFE8 F288          	movff	wreg,_PWM+26
+   734                           ;pwm.c: 272: PWM.PROP3=0xE0-3*((0xE0-0x40)/7);
+   735  00C0E2  0E9E               	movlw	-98
+   736  00C0E4  CFE8 F289          	movff	wreg,_PWM+27
+   737                           ;pwm.c: 273: break;
+   738  00C0E8  0C9E               	retlw	158
+   739  00C0EA                     l18:
+   740                           ;pwm.c: 274: }
+   741                           ;pwm.c: 303: {
+   742  00C0EA  0102               	movlb	_PWM shr (0+8)
+   743  00C0EC  836E               	bsf	_PWM& (0+255),1,b
+   744                           ;pwm.c: 305: PWM.MDMOD=0x5A;
+   745  00C0EE  0E5A               	movlw	90
+   746  00C0F0  CFE8 F277          	movff	wreg,_PWM+9
+   747                           ;pwm.c: 306: PWM.MGMOD=0xCD;
+   748  00C0F4  0ECD               	movlw	-51
+   749  00C0F6  CFE8 F278          	movff	wreg,_PWM+10
+   750                           ;pwm.c: 307: PWM.MAXOSC=25;
+   751  00C0FA  0E19               	movlw	25
+   752  00C0FC  CFE8 F279          	movff	wreg,_PWM+11
+   753                           ;pwm.c: 308: PWM.MINOSC=5;
+   754  00C100  0E05               	movlw	5
+   755  00C102  CFE8 F27A          	movff	wreg,_PWM+12
+   756                           ;pwm.c: 309: PWM.MAD_MOD=0x14;
+   757  00C106  0E14               	movlw	20
+   758  00C108  CFE8 F27B          	movff	wreg,_PWM+13
+   759                           ;pwm.c: 310: PWM.MAG_MOD=0xF7;
+   760  00C10C  0EF7               	movlw	-9
+   761  00C10E  CFE8 F27C          	movff	wreg,_PWM+14
+   762                           ;pwm.c: 311: PWM.GWMSTART=99;
+   763  00C112  0E63               	movlw	99
+   764  00C114  CFE8 F27D          	movff	wreg,_PWM+15
+   765                           ;pwm.c: 312: PWM.MDSTART=0x5A;
+   766  00C118  0E5A               	movlw	90
+   767  00C11A  CFE8 F27E          	movff	wreg,_PWM+16
+   768                           ;pwm.c: 313: PWM.MGSTART=0xCD+10;
+   769  00C11E  0ED7               	movlw	-41
+   770  00C120  CFE8 F27F          	movff	wreg,_PWM+17
+   771                           ;pwm.c: 314: PWM.GWMMAXCO=99;
+   772  00C124  0E63               	movlw	99
+   773  00C126  CFE8 F280          	movff	wreg,_PWM+18
+   774                           ;pwm.c: 315: PWM.MDMAXCO=0x5A;
+   775  00C12A  0E5A               	movlw	90
+   776  00C12C  CFE8 F281          	movff	wreg,_PWM+19
+   777                           ;pwm.c: 316: PWM.MGMAXCO=0xCD+10;
+   778  00C130  0ED7               	movlw	-41
+   779  00C132  CFE8 F282          	movff	wreg,_PWM+20
+   780                           ;pwm.c: 317: PWM.GWMMAXCW=99;
+   781  00C136  0E63               	movlw	99
+   782  00C138  CFE8 F283          	movff	wreg,_PWM+21
+   783                           ;pwm.c: 318: PWM.MDMAXCW=0x5A;
+   784  00C13C  0E5A               	movlw	90
+   785  00C13E  CFE8 F284          	movff	wreg,_PWM+22
+   786                           ;pwm.c: 319: PWM.MGMAXCW=0xCD+10;
+   787  00C142  0ED7               	movlw	-41
+   788  00C144  CFE8 F285          	movff	wreg,_PWM+23
+   789                           ;pwm.c: 320: PWM.FIRSTPB=0x9B;
+   790  00C148  0E9B               	movlw	-101
+   791  00C14A  CFE8 F286          	movff	wreg,_PWM+24
+   792                           ;pwm.c: 321: PWM.PROP1=0xCD-1*((0xCD-0x5A)/7);
+   793  00C14E  0EBD               	movlw	-67
+   794  00C150  CFE8 F287          	movff	wreg,_PWM+25
+   795                           ;pwm.c: 322: PWM.PROP2=0xCD-2*((0xCD-0x5A)/7);
+   796  00C154  0EAD               	movlw	-83
+   797  00C156  CFE8 F288          	movff	wreg,_PWM+26
+   798                           ;pwm.c: 323: PWM.PROP3=0xCD-3*((0xCD-0x5A)/7);
+   799  00C15A  0E9D               	movlw	-99
+   800  00C15C  CFE8 F289          	movff	wreg,_PWM+27
+   801                           ;pwm.c: 324: break;
+   802  00C160  0C9D               	retlw	157
+   803  00C162                     l19:
+   804                           ;pwm.c: 325: }
+   805                           ;pwm.c: 327: {
+   806  00C162  0102               	movlb	_PWM shr (0+8)
+   807  00C164  836E               	bsf	_PWM& (0+255),1,b
+   808                           ;pwm.c: 329: PWM.MDMOD=0x35;
+   809  00C166  0E35               	movlw	53
+   810  00C168  CFE8 F277          	movff	wreg,_PWM+9
+   811                           ;pwm.c: 330: PWM.MGMOD=0xF0;
+   812  00C16C  0EF0               	movlw	-16
+   813  00C16E  CFE8 F278          	movff	wreg,_PWM+10
+   814                           ;pwm.c: 331: PWM.MAXOSC=15;
+   815  00C172  0E0F               	movlw	15
+   816  00C174  CFE8 F279          	movff	wreg,_PWM+11
+   817                           ;pwm.c: 332: PWM.MINOSC=5;
+   818  00C178  0E05               	movlw	5
+   819  00C17A  CFE8 F27A          	movff	wreg,_PWM+12
+   820                           ;pwm.c: 333: PWM.MAD_MOD=0x14;
+   821  00C17E  0E14               	movlw	20
+   822  00C180  CFE8 F27B          	movff	wreg,_PWM+13
+   823                           ;pwm.c: 334: PWM.MAG_MOD=0xF7;
+   824  00C184  0EF7               	movlw	-9
+   825  00C186  CFE8 F27C          	movff	wreg,_PWM+14
+   826                           ;pwm.c: 335: PWM.GWMSTART=99;
+   827  00C18A  0E63               	movlw	99
+   828  00C18C  CFE8 F27D          	movff	wreg,_PWM+15
+   829                           ;pwm.c: 336: PWM.MDSTART=0x35;
+   830  00C190  0E35               	movlw	53
+   831  00C192  CFE8 F27E          	movff	wreg,_PWM+16
+   832                           ;pwm.c: 337: PWM.MGSTART=0xF0+10;
+   833  00C196  0EFA               	movlw	-6
+   834  00C198  CFE8 F27F          	movff	wreg,_PWM+17
+   835                           ;pwm.c: 338: PWM.GWMMAXCO=99;
+   836  00C19C  0E63               	movlw	99
+   837  00C19E  CFE8 F280          	movff	wreg,_PWM+18
+   838                           ;pwm.c: 339: PWM.MDMAXCO=0x35;
+   839  00C1A2  0E35               	movlw	53
+   840  00C1A4  CFE8 F281          	movff	wreg,_PWM+19
+   841                           ;pwm.c: 340: PWM.MGMAXCO=0xF0+10;
+   842  00C1A8  0EFA               	movlw	-6
+   843  00C1AA  CFE8 F282          	movff	wreg,_PWM+20
+   844                           ;pwm.c: 341: PWM.GWMMAXCW=99;
+   845  00C1AE  0E63               	movlw	99
+   846  00C1B0  CFE8 F283          	movff	wreg,_PWM+21
+   847                           ;pwm.c: 342: PWM.MDMAXCW=0x35;
+   848  00C1B4  0E35               	movlw	53
+   849  00C1B6  CFE8 F284          	movff	wreg,_PWM+22
+   850                           ;pwm.c: 343: PWM.MGMAXCW=0xF0+10;
+   851  00C1BA  0EFA               	movlw	-6
+   852  00C1BC  CFE8 F285          	movff	wreg,_PWM+23
+   853                           ;pwm.c: 344: PWM.FIRSTPB=0xA5;
+   854  00C1C0  0EA5               	movlw	-91
+   855  00C1C2  CFE8 F286          	movff	wreg,_PWM+24
+   856                           ;pwm.c: 345: PWM.PROP1=0xF0-1*((0xF0-0x35)/7);
+   857  00C1C6  0ED6               	movlw	-42
+   858  00C1C8  CFE8 F287          	movff	wreg,_PWM+25
+   859                           ;pwm.c: 346: PWM.PROP2=0xF0-2*((0xF0-0x35)/7);
+   860  00C1CC  0EBC               	movlw	-68
+   861  00C1CE  CFE8 F288          	movff	wreg,_PWM+26
+   862                           ;pwm.c: 347: PWM.PROP3=0xF0-3*((0xF0-0x35)/7);
+   863  00C1D2  0EA2               	movlw	-94
+   864  00C1D4  CFE8 F289          	movff	wreg,_PWM+27
+   865                           ;pwm.c: 348: break;
+   866  00C1D8  0CA2               	retlw	162
+   867  00C1DA                     l20:
+   868                           ;pwm.c: 349: }
+   869                           ;pwm.c: 351: {
+   870  00C1DA  0102               	movlb	_PWM shr (0+8)
+   871  00C1DC  836E               	bsf	_PWM& (0+255),1,b
+   872                           ;pwm.c: 353: PWM.MDMOD=0x35;
+   873  00C1DE  0E35               	movlw	53
+   874  00C1E0  CFE8 F277          	movff	wreg,_PWM+9
+   875                           ;pwm.c: 354: PWM.MGMOD=0xF0;
+   876  00C1E4  0EF0               	movlw	-16
+   877  00C1E6  CFE8 F278          	movff	wreg,_PWM+10
+   878                           ;pwm.c: 355: PWM.MAXOSC=15;
+   879  00C1EA  0E0F               	movlw	15
+   880  00C1EC  CFE8 F279          	movff	wreg,_PWM+11
+   881                           ;pwm.c: 356: PWM.MINOSC=5;
+   882  00C1F0  0E05               	movlw	5
+   883  00C1F2  CFE8 F27A          	movff	wreg,_PWM+12
+   884                           ;pwm.c: 357: PWM.MAD_MOD=0x14;
+   885  00C1F6  0E14               	movlw	20
+   886  00C1F8  CFE8 F27B          	movff	wreg,_PWM+13
+   887                           ;pwm.c: 358: PWM.MAG_MOD=0xF7;
+   888  00C1FC  0EF7               	movlw	-9
+   889  00C1FE  CFE8 F27C          	movff	wreg,_PWM+14
+   890                           ;pwm.c: 359: PWM.GWMSTART=99;
+   891  00C202  0E63               	movlw	99
+   892  00C204  CFE8 F27D          	movff	wreg,_PWM+15
+   893                           ;pwm.c: 360: PWM.MDSTART=0x35;
+   894  00C208  0E35               	movlw	53
+   895  00C20A  CFE8 F27E          	movff	wreg,_PWM+16
+   896                           ;pwm.c: 361: PWM.MGSTART=0xF0+10;
+   897  00C20E  0EFA               	movlw	-6
+   898  00C210  CFE8 F27F          	movff	wreg,_PWM+17
+   899                           ;pwm.c: 362: PWM.GWMMAXCO=99;
+   900  00C214  0E63               	movlw	99
+   901  00C216  CFE8 F280          	movff	wreg,_PWM+18
+   902                           ;pwm.c: 363: PWM.MDMAXCO=0x35;
+   903  00C21A  0E35               	movlw	53
+   904  00C21C  CFE8 F281          	movff	wreg,_PWM+19
+   905                           ;pwm.c: 364: PWM.MGMAXCO=0xF0+10;
+   906  00C220  0EFA               	movlw	-6
+   907  00C222  CFE8 F282          	movff	wreg,_PWM+20
+   908                           ;pwm.c: 365: PWM.GWMMAXCW=99;
+   909  00C226  0E63               	movlw	99
+   910  00C228  CFE8 F283          	movff	wreg,_PWM+21
+   911                           ;pwm.c: 366: PWM.MDMAXCW=0x35;
+   912  00C22C  0E35               	movlw	53
+   913  00C22E  CFE8 F284          	movff	wreg,_PWM+22
+   914                           ;pwm.c: 367: PWM.MGMAXCW=0xF0+10;
+   915  00C232  0EFA               	movlw	-6
+   916  00C234  CFE8 F285          	movff	wreg,_PWM+23
+   917                           ;pwm.c: 368: PWM.FIRSTPB=0xA5;
+   918  00C238  0EA5               	movlw	-91
+   919  00C23A  CFE8 F286          	movff	wreg,_PWM+24
+   920                           ;pwm.c: 369: PWM.PROP1=0xF0-1*((0xF0-0x35)/7);
+   921  00C23E  0ED6               	movlw	-42
+   922  00C240  CFE8 F287          	movff	wreg,_PWM+25
+   923                           ;pwm.c: 370: PWM.PROP2=0xF0-2*((0xF0-0x35)/7);
+   924  00C244  0EBC               	movlw	-68
+   925  00C246  CFE8 F288          	movff	wreg,_PWM+26
+   926                           ;pwm.c: 371: PWM.PROP3=0xF0-3*((0xF0-0x35)/7);
+   927  00C24A  0EA2               	movlw	-94
+   928  00C24C  CFE8 F289          	movff	wreg,_PWM+27
+   929                           ;pwm.c: 372: break;
+   930  00C250  0CA2               	retlw	162
+   931  00C252                     l15:
+   932  00C252  50D9               	movf	fsr2l,w,c
+   933  00C254  E101 D6D1          	bz	l16
+   934  00C258  0A01               	xorlw	1
+   935  00C25A  E101 D70A          	bz	l17
+   936  00C25E  0A03               	xorlw	3
+   937  00C260  E101 D743          	bz	l18
+   938  00C264  0A01               	xorlw	1
+   939  00C266  E101 D77C          	bz	l19
+   940  00C26A  D7B7               	goto	l20
+   941                           ;pwm.c: 375: }
+   942  00C26C                     __end_of_ModParam:
+   943                           ;pwm.c: 380: void WritePWM(const unsigned char t
+      +                          pwm)
+   944                           ;pwm.c: 381: {
+   945  00C26C                     _WritePWM:
+   946  000000                     
+   947                           ;pwm.c: 382: PWM._ENPWM=0;
+   948  00C26C  0102               	movlb	_PWM shr (0+8)
+   949  00C26E  916E               	bcf	_PWM& (0+255),0,b
+   950                           ;pwm.c: 383: PWM.BufPWM=tpwm;
+   951  00C270  EE02  F06F         	lfsr	0,_PWM+1
+   952  00C274  CFE8 FFEF          	movff	wreg,indf0
+   953                           ;pwm.c: 384: PWM.BufOSC=0;
+   954  00C278  6B70               	clrf	(_PWM+2)& (0+255),b
+   955                           ;pwm.c: 385: PWM._ENPWM=1;
+   956  00C27A  816E               	bsf	_PWM& (0+255),0,b
+   957                           ;pwm.c: 386: }
+   958  00C27C  0012               	return	
+   959  00C27E                     __end_of_WritePWM:
+   960                           ;pwm.c: 390: void WritePWM2(const unsigned char 
+      +                          tpwm)
+   961                           ;pwm.c: 391: {
+   962  00C27E                     _WritePWM2:
+   963  000000                     
+   964                           ;pwm.c: 392: PWM._ENPWM2=0;
+   965  00C27E  0102               	movlb	(_PWM+5) shr (0+8)
+   966  00C280  9173               	bcf	(_PWM+5)& (0+255),0,b
+   967                           ;pwm.c: 393: PWM.BufPWM2=tpwm;
+   968  00C282  EE02  F074         	lfsr	0,_PWM+6
+   969  00C286  CFE8 FFEF          	movff	wreg,indf0
+   970                           ;pwm.c: 394: PWM._ENPWM2=1;
+   971  00C28A  8173               	bsf	(_PWM+5)& (0+255),0,b
+   972                           ;pwm.c: 395: }
+   973  00C28C  0012               	return	
+   974  00C28E                     __end_of_WritePWM2:
+   975                           ;pwm.c: 399: void WriteOPWM(unsigned char tpwm)
+   976                           ;pwm.c: 400: {
+   977  00C28E                     _WriteOPWM:
+   978  000000                     
+   979                           ; _tpwm loaded to fsr2l
+   980  00C28E  6ED9               	movwf	fsr2l,c
+   981                           ;pwm.c: 401: unsigned char aosc;
+   982  00C290  C277  FFE8         	movff	_PWM+9,wreg
+   983  00C294  60D9               	cpfslt	fsr2l,c
+   984  00C296  D002               	goto	l24
+   985  00C298  C277  FFD9         	movff	_PWM+9,fsr2l
+   986  00C29C                     l24:
+   987                           ;pwm.c: 413: if(tpwm>0xF0) tpwm=0xF0;
+   988  00C29C  0EF0               	movlw	-16
+   989  00C29E  64D9               	cpfsgt	fsr2l,c
+   990  00C2A0  D002               	goto	l25
+   991  00C2A2  0EF0               	movlw	240
+   992  00C2A4  6ED9               	movwf	fsr2l,c
+   993  00C2A6                     l25:
+   994                           ;pwm.c: 414: if(PWM._ENOSC)
+   995  00C2A6  0102               	movlb	_PWM shr (0+8)
+   996  00C2A8  A36E               	btfss	_PWM& (0+255),1,b
+   997  00C2AA  D087               	goto	l26
+   998                           ;pwm.c: 415: {
+   999  00C2AC  C278  FFE8         	movff	_PWM+10,wreg
+  1000  00C2B0  5CD9               	subwf	fsr2l,w,c
+  1001  00C2B2  E24B               	bc	u60
+  1002                           ;pwm.c: 418: else
+  1003  00C2B4  0E64               	movlw	100
+  1004  00C2B6  6E02               	movwf	btemp+2,c
+  1005  00C2B8  6A03               	clrf	btemp+3,c
+  1006  00C2BA  C277  FFE8         	movff	_PWM+9,wreg
+  1007  00C2BE  CFD9 F000          	movff	fsr2l,btemp
+  1008  00C2C2  6A01               	clrf	btemp+1,c
+  1009  00C2C4  5E00               	subwf	btemp,f,c
+  1010  00C2C6  0E00               	movlw	0
+  1011  00C2C8  5A01               	subwfb	btemp+1,f,c
+  1012  00C2CA  EC03  F073         	call	lwmul
+  1013  00C2CE  C004  FFF6         	movff	btemp+4,tblptrl
+  1014  00C2D2  C005  FFF7         	movff	btemp+5,tblptrh
+  1015                           ;pwm.c: 421: tmp/=(PWM.MGMOD-PWM.MDMOD);
+  1016  00C2D6  C277  FFE8         	movff	_PWM+9,wreg
+  1017  00C2DA  C278  F002         	movff	_PWM+10,btemp+2
+  1018  00C2DE  6A03               	clrf	btemp+3,c
+  1019  00C2E0  5E02               	subwf	btemp+2,f,c
+  1020  00C2E2  0E00               	movlw	0
+  1021  00C2E4  5A03               	subwfb	btemp+3,f,c
+  1022  00C2E6  CFF6 F000          	movff	tblptrl,btemp
+  1023  00C2EA  CFF7 F001          	movff	tblptrh,btemp+1
+  1024  00C2EE  EC32  F072         	call	lwdiv
+  1025  00C2F2  C004  FFF6         	movff	btemp+4,tblptrl
+  1026  00C2F6  C005  FFF7         	movff	btemp+5,tblptrh
+  1027                           ;pwm.c: 422: tmp*=(PWM.MAXOSC-PWM.MINOSC);
+  1028  00C2FA  C27A  FFE8         	movff	_PWM+12,wreg
+  1029  00C2FE  C279  F002         	movff	_PWM+11,btemp+2
+  1030  00C302  6A03               	clrf	btemp+3,c
+  1031  00C304  5E02               	subwf	btemp+2,f,c
+  1032  00C306  0E00               	movlw	0
+  1033  00C308  5A03               	subwfb	btemp+3,f,c
+  1034  00C30A  CFF6 F000          	movff	tblptrl,btemp
+  1035  00C30E  CFF7 F001          	movff	tblptrh,btemp+1
+  1036  00C312  EC03  F073         	call	lwmul
+  1037  00C316  C004  FFF6         	movff	btemp+4,tblptrl
+  1038  00C31A  C005  FFF7         	movff	btemp+5,tblptrh
+  1039                           ;pwm.c: 423: tmp/=100;
+  1040  00C31E  0E64               	movlw	100
+  1041  00C320  6E02               	movwf	btemp+2,c
+  1042  00C322  6A03               	clrf	btemp+3,c
+  1043  00C324  CFF6 F000          	movff	tblptrl,btemp
+  1044  00C328  CFF7 F001          	movff	tblptrh,btemp+1
+  1045  00C32C  EC32  F072         	call	lwdiv
+  1046  00C330  C004  FFF6         	movff	btemp+4,tblptrl
+  1047  00C334  C005  FFF7         	movff	btemp+5,tblptrh
+  1048                           ;pwm.c: 424: if(tmp>PWM.MAXOSC) aosc=PWM.MINOSC;
+  1049  00C338  C279  F000         	movff	_PWM+11,btemp
+  1050  00C33C  6A01               	clrf	btemp+1,c
+  1051  00C33E  50F7               	movf	tblptrh,w,c
+  1052  00C340  5C01               	subwf	btemp+1,w,c
+  1053  00C342  E102               	bnz	u65
+  1054  00C344  50F6               	movf	tblptrl,w,c
+  1055  00C346  5C00               	subwf	btemp,w,c
+  1056  00C348                     u65:
+  1057  00C348  E203               	bc	l29
+  1058  00C34A                     u60:
+  1059  00C34A  C27A  FFE1         	movff	_PWM+12,fsr1l
+  1060  00C34E  D004               	goto	l28
+  1061  00C350                     l29:
+  1062                           ;pwm.c: 425: else aosc=PWM.MAXOSC-(unsigned char
+      +                          )tmp;
+  1063  00C350  50F6               	movf	tblptrl,w,c
+  1064  00C352  0102               	movlb	(_PWM+11) shr (0+8)
+  1065  00C354  5D79               	subwf	(_PWM+11)& (0+255),w,b
+  1066  00C356  6EE1               	movwf	fsr1l,c
+  1067  00C358                     l28:
+  1068                           ;pwm.c: 426: }
+  1069  00C358  CFE1 F000          	movff	fsr1l,btemp
+  1070  00C35C  6A01               	clrf	btemp+1,c
+  1071  00C35E  50D9               	movf	fsr2l,w,c
+  1072  00C360  C27C  F002         	movff	_PWM+14,btemp+2
+  1073  00C364  6A03               	clrf	btemp+3,c
+  1074  00C366  5E02               	subwf	btemp+2,f,c
+  1075  00C368  0E00               	movlw	0
+  1076  00C36A  5A03               	subwfb	btemp+3,f,c
+  1077  00C36C  5003               	movf	btemp+3,w,c
+  1078  00C36E  0A80               	xorlw	128
+  1079  00C370  6E04               	movwf	btemp+4,c
+  1080  00C372  5001               	movf	btemp+1,w,c
+  1081  00C374  0A80               	xorlw	128
+  1082  00C376  5C04               	subwf	btemp+4,w,c
+  1083  00C378  E102               	bnz	u75
+  1084  00C37A  5000               	movf	btemp,w,c
+  1085  00C37C  5C02               	subwf	btemp+2,w,c
+  1086  00C37E                     u75:
+  1087  00C37E  E204               	bc	l31
+  1088  00C380  50D9               	movf	fsr2l,w,c
+  1089  00C382  0102               	movlb	(_PWM+14) shr (0+8)
+  1090  00C384  5D7C               	subwf	(_PWM+14)& (0+255),w,b
+  1091  00C386  D018               	goto	L1
+  1092  00C388                     l31:
+  1093                           ;pwm.c: 429: else
+  1094  00C388  CFE1 F000          	movff	fsr1l,btemp
+  1095  00C38C  6A01               	clrf	btemp+1,c
+  1096  00C38E  C27B  FFE8         	movff	_PWM+13,wreg
+  1097  00C392  CFD9 F002          	movff	fsr2l,btemp+2
+  1098  00C396  6A03               	clrf	btemp+3,c
+  1099  00C398  5E02               	subwf	btemp+2,f,c
+  1100  00C39A  0E00               	movlw	0
+  1101  00C39C  5A03               	subwfb	btemp+3,f,c
+  1102  00C39E  5003               	movf	btemp+3,w,c
+  1103  00C3A0  0A80               	xorlw	128
+  1104  00C3A2  6E04               	movwf	btemp+4,c
+  1105  00C3A4  5001               	movf	btemp+1,w,c
+  1106  00C3A6  0A80               	xorlw	128
+  1107  00C3A8  5C04               	subwf	btemp+4,w,c
+  1108  00C3AA  E102               	bnz	u85
+  1109  00C3AC  5000               	movf	btemp,w,c
+  1110  00C3AE  5C02               	subwf	btemp+2,w,c
+  1111  00C3B0                     u85:
+  1112  00C3B0  E204               	bc	l26
+  1113  00C3B2  C27B  FFE8         	movff	_PWM+13,wreg
+  1114  00C3B6  5CD9               	subwf	fsr2l,w,c
+  1115  00C3B8                     L1:
+  1116  00C3B8  6EE1               	movwf	fsr1l,c
+  1117  00C3BA                     l26:
+  1118                           ;pwm.c: 431: }
+  1119  00C3BA  0102               	movlb	_PWM shr (0+8)
+  1120  00C3BC  916E               	bcf	_PWM& (0+255),0,b
+  1121                           ;pwm.c: 435: PWM.BufPWM=tpwm;
+  1122  00C3BE  EE02  F06F         	lfsr	0,_PWM+1
+  1123  00C3C2  CFD9 FFEF          	movff	fsr2l,indf0
+  1124                           ;pwm.c: 436: if(PWM._ENOSC) PWM.BufOSC=aosc;
+  1125  00C3C6  A36E               	btfss	_PWM& (0+255),1,b
+  1126  00C3C8  D005               	goto	l34
+  1127  00C3CA  EE02  F070         	lfsr	0,_PWM+2
+  1128  00C3CE  CFE1 FFEF          	movff	fsr1l,indf0
+  1129  00C3D2  D002               	goto	l35
+  1130  00C3D4                     l34:
+  1131                           ;pwm.c: 437: else PWM.BufOSC=0;
+  1132  00C3D4  0102               	movlb	(_PWM+2) shr (0+8)
+  1133  00C3D6  6B70               	clrf	(_PWM+2)& (0+255),b
+  1134  00C3D8                     l35:
+  1135                           ;pwm.c: 438: PWM._ENPWM=1;
+  1136  00C3D8  0102               	movlb	_PWM shr (0+8)
+  1137  00C3DA  816E               	bsf	_PWM& (0+255),0,b
+  1138                           ;pwm.c: 439: }
+  1139  00C3DC  0012               	return	
+  1140  00C3DE                     __end_of_WriteOPWM:
+  1141                           ;pwm.c: 445: void MocStart(unsigned char nst)
+  1142                           ;pwm.c: 446: {
+  1143  00C3DE                     _MocStart:
+  1144  000000                     
+  1145                           ; _nst loaded to fsr2l
+  1146  00C3DE  6ED9               	movwf	fsr2l,c
+  1147                           ;pwm.c: 447: unsigned int tmp;
+  1148  00C3E0  50D9               	movf	fsr2l,w,c
+  1149  00C3E2  0102               	movlb	(_PWM+15) shr (0+8)
+  1150  00C3E4  617D               	cpfslt	(_PWM+15)& (0+255),b
+  1151  00C3E6  D002               	goto	l37
+  1152  00C3E8  C27D  FFD9         	movff	_PWM+15,fsr2l
+  1153  00C3EC                     l37:
+  1154                           ;pwm.c: 450: tmp=((PWM.MGSTART-PWM.MDSTART)*10)/
+      +                          PWM.GWMSTART;
+  1155  00C3EC  0E0A               	movlw	10
+  1156  00C3EE  6E02               	movwf	btemp+2,c
+  1157  00C3F0  6A03               	clrf	btemp+3,c
+  1158  00C3F2  C27E  FFE8         	movff	_PWM+16,wreg
+  1159  00C3F6  C27F  F000         	movff	_PWM+17,btemp
+  1160  00C3FA  6A01               	clrf	btemp+1,c
+  1161  00C3FC  5E00               	subwf	btemp,f,c
+  1162  00C3FE  0E00               	movlw	0
+  1163  00C400  5A01               	subwfb	btemp+1,f,c
+  1164  00C402  EC03  F073         	call	awmul
+  1165  00C406  C004  F000         	movff	btemp+4,btemp
+  1166  00C40A  C005  F001         	movff	btemp+5,btemp+1
+  1167  00C40E  C27D  F002         	movff	_PWM+15,btemp+2
+  1168  00C412  6A03               	clrf	btemp+3,c
+  1169  00C414  ECCC  F072         	call	awdiv
+  1170  00C418  C004  FFF6         	movff	btemp+4,tblptrl
+  1171  00C41C  C005  FFF7         	movff	btemp+5,tblptrh
+  1172                           ;pwm.c: 451: PWM.MSTART=PWM.MDSTART+(unsigned ch
+      +                          ar)((nst*tmp)/10);
+  1173  00C420  CFF6 F002          	movff	tblptrl,btemp+2
+  1174  00C424  CFF7 F003          	movff	tblptrh,btemp+3
+  1175  00C428  CFD9 F000          	movff	fsr2l,btemp
+  1176  00C42C  6A01               	clrf	btemp+1,c
+  1177  00C42E  EC03  F073         	call	lwmul
+  1178  00C432  C004  F000         	movff	btemp+4,btemp
+  1179  00C436  C005  F001         	movff	btemp+5,btemp+1
+  1180  00C43A  0E0A               	movlw	10
+  1181  00C43C  6E02               	movwf	btemp+2,c
+  1182  00C43E  6A03               	clrf	btemp+3,c
+  1183  00C440  EC32  F072         	call	lwdiv
+  1184  00C444  C27E  F000         	movff	_PWM+16,btemp
+  1185  00C448  5000               	movf	btemp,w,c
+  1186  00C44A  2404               	addwf	btemp+4,w,c
+  1187  00C44C  CFE8 F28A          	movff	wreg,_PWM+28
+  1188                           ;pwm.c: 452: }
+  1189  00C450  0012               	return	
+  1190  00C452                     __end_of_MocStart:
+  1191                           ;pwm.c: 457: void MocMaksCO(unsigned char nst)
+  1192                           ;pwm.c: 458: {
+  1193  00C452                     _MocMaksCO:
+  1194  000000                     
+  1195                           ; _nst loaded to fsr2l
+  1196  00C452  6ED9               	movwf	fsr2l,c
+  1197                           ;pwm.c: 459: unsigned int tmp;
+  1198  00C454  50D9               	movf	fsr2l,w,c
+  1199  00C456  0102               	movlb	(_PWM+18) shr (0+8)
+  1200  00C458  6180               	cpfslt	(_PWM+18)& (0+255),b
+  1201  00C45A  D002               	goto	l39
+  1202  00C45C  C280  FFD9         	movff	_PWM+18,fsr2l
+  1203  00C460                     l39:
+  1204                           ;pwm.c: 462: tmp=((PWM.MGMAXCO-PWM.MDMAXCO)*10)/
+      +                          PWM.GWMMAXCO;
+  1205  00C460  0E0A               	movlw	10
+  1206  00C462  6E02               	movwf	btemp+2,c
+  1207  00C464  6A03               	clrf	btemp+3,c
+  1208  00C466  C281  FFE8         	movff	_PWM+19,wreg
+  1209  00C46A  C282  F000         	movff	_PWM+20,btemp
+  1210  00C46E  6A01               	clrf	btemp+1,c
+  1211  00C470  5E00               	subwf	btemp,f,c
+  1212  00C472  0E00               	movlw	0
+  1213  00C474  5A01               	subwfb	btemp+1,f,c
+  1214  00C476  EC03  F073         	call	awmul
+  1215  00C47A  C004  F000         	movff	btemp+4,btemp
+  1216  00C47E  C005  F001         	movff	btemp+5,btemp+1
+  1217  00C482  C280  F002         	movff	_PWM+18,btemp+2
+  1218  00C486  6A03               	clrf	btemp+3,c
+  1219  00C488  ECCC  F072         	call	awdiv
+  1220  00C48C  C004  FFF6         	movff	btemp+4,tblptrl
+  1221  00C490  C005  FFF7         	movff	btemp+5,tblptrh
+  1222                           ;pwm.c: 463: PWM.MMAXCO=PWM.MDMAXCO+(unsigned ch
+      +                          ar)((nst*tmp)/10);
+  1223  00C494  CFF6 F002          	movff	tblptrl,btemp+2
+  1224  00C498  CFF7 F003          	movff	tblptrh,btemp+3
+  1225  00C49C  CFD9 F000          	movff	fsr2l,btemp
+  1226  00C4A0  6A01               	clrf	btemp+1,c
+  1227  00C4A2  EC03  F073         	call	lwmul
+  1228  00C4A6  C004  F000         	movff	btemp+4,btemp
+  1229  00C4AA  C005  F001         	movff	btemp+5,btemp+1
+  1230  00C4AE  0E0A               	movlw	10
+  1231  00C4B0  6E02               	movwf	btemp+2,c
+  1232  00C4B2  6A03               	clrf	btemp+3,c
+  1233  00C4B4  EC32  F072         	call	lwdiv
+  1234  00C4B8  C281  F000         	movff	_PWM+19,btemp
+  1235  00C4BC  5000               	movf	btemp,w,c
+  1236  00C4BE  2404               	addwf	btemp+4,w,c
+  1237  00C4C0  CFE8 F28B          	movff	wreg,_PWM+29
+  1238                           ;pwm.c: 464: }
+  1239  00C4C4  0012               	return	
+  1240  00C4C6                     __end_of_MocMaksCO:
+  1241                           ;pwm.c: 469: void MocMaksCW(unsigned char nst)
+  1242                           ;pwm.c: 470: {
+  1243  00C4C6                     _MocMaksCW:
+  1244  000000                     
+  1245                           ; _nst loaded to fsr2l
+  1246  00C4C6  6ED9               	movwf	fsr2l,c
+  1247                           ;pwm.c: 471: unsigned int tmp;
+  1248  00C4C8  50D9               	movf	fsr2l,w,c
+  1249  00C4CA  0102               	movlb	(_PWM+21) shr (0+8)
+  1250  00C4CC  6183               	cpfslt	(_PWM+21)& (0+255),b
+  1251  00C4CE  D002               	goto	l41
+  1252  00C4D0  C283  FFD9         	movff	_PWM+21,fsr2l
+  1253  00C4D4                     l41:
+  1254                           ;pwm.c: 474: tmp=((PWM.MGMAXCW-PWM.MDMAXCW)*10)/
+      +                          PWM.GWMMAXCW;
+  1255  00C4D4  0E0A               	movlw	10
+  1256  00C4D6  6E02               	movwf	btemp+2,c
+  1257  00C4D8  6A03               	clrf	btemp+3,c
+  1258  00C4DA  C284  FFE8         	movff	_PWM+22,wreg
+  1259  00C4DE  C285  F000         	movff	_PWM+23,btemp
+  1260  00C4E2  6A01               	clrf	btemp+1,c
+  1261  00C4E4  5E00               	subwf	btemp,f,c
+  1262  00C4E6  0E00               	movlw	0
+  1263  00C4E8  5A01               	subwfb	btemp+1,f,c
+  1264  00C4EA  EC03  F073         	call	awmul
+  1265  00C4EE  C004  F000         	movff	btemp+4,btemp
+  1266  00C4F2  C005  F001         	movff	btemp+5,btemp+1
+  1267  00C4F6  C283  F002         	movff	_PWM+21,btemp+2
+  1268  00C4FA  6A03               	clrf	btemp+3,c
+  1269  00C4FC  ECCC  F072         	call	awdiv
+  1270  00C500  C004  FFF6         	movff	btemp+4,tblptrl
+  1271  00C504  C005  FFF7         	movff	btemp+5,tblptrh
+  1272                           ;pwm.c: 475: PWM.MMAXCW=PWM.MDMAXCW+(unsigned ch
+      +                          ar)((nst*tmp)/10);
+  1273  00C508  CFF6 F002          	movff	tblptrl,btemp+2
+  1274  00C50C  CFF7 F003          	movff	tblptrh,btemp+3
+  1275  00C510  CFD9 F000          	movff	fsr2l,btemp
+  1276  00C514  6A01               	clrf	btemp+1,c
+  1277  00C516  EC03  F073         	call	lwmul
+  1278  00C51A  C004  F000         	movff	btemp+4,btemp
+  1279  00C51E  C005  F001         	movff	btemp+5,btemp+1
+  1280  00C522  0E0A               	movlw	10
+  1281  00C524  6E02               	movwf	btemp+2,c
+  1282  00C526  6A03               	clrf	btemp+3,c
+  1283  00C528  EC32  F072         	call	lwdiv
+  1284  00C52C  C284  F000         	movff	_PWM+22,btemp
+  1285  00C530  5000               	movf	btemp,w,c
+  1286  00C532  2404               	addwf	btemp+4,w,c
+  1287  00C534  CFE8 F28C          	movff	wreg,_PWM+30
+  1288                           ;pwm.c: 476: }
+  1289  00C538  0012               	return	
+  1290  00C53A                     __end_of_MocMaksCW:
+  1291                           ;pwm.c: 487: void IntPWM(void)
+  1292                           ;pwm.c: 488: {
+  1293  00C53A                     _IntPWM:
+  1294  000000                     
+  1295                           ;pwm.c: 489: static bit btOsc=0;
+  1296  00C53A  0102               	movlb	_PWM shr (0+8)
+  1297  00C53C  A16E               	btfss	_PWM& (0+255),0,b
+  1298  00C53E  D004               	goto	l43
+  1299                           ;pwm.c: 492: {
+  1300  00C540  C26F  F272         	movff	_PWM+1,_PWM+4
+  1301                           ;pwm.c: 494: PWM.NewOSC=PWM.BufOSC;
+  1302  00C544  C270  F271         	movff	_PWM+2,_PWM+3
+  1303  00C548                     l43:
+  1304                           ;pwm.c: 495: }
+  1305  00C548  0102               	movlb	_PWM shr (0+8)
+  1306  00C54A  A36E               	btfss	_PWM& (0+255),1,b
+  1307  00C54C  D00C               	goto	l44
+  1308                           ;pwm.c: 497: {
+  1309  00C54E  B05E               	btfsc	F1203/(0+8),F1203& (0+7),c
+  1310  00C550  D005               	goto	l45
+  1311                           ;pwm.c: 500: {
+  1312  00C552  805E               	bsf	F1203/(0+8),F1203& (0+7),c
+  1313                           ;pwm.c: 502: PWM.NewPWM-=PWM.NewOSC;
+  1314  00C554  C271  FFE8         	movff	_PWM+3,wreg
+  1315  00C558  5F72               	subwf	(_PWM+4)& (0+255),f,b
+  1316                           ;pwm.c: 503: }
+  1317  00C55A  D005               	goto	l44
+  1318  00C55C                     l45:
+  1319                           ;pwm.c: 504: else
+  1320  00C55C  905E               	bcf	F1203/(0+8),F1203& (0+7),c
+  1321                           ;pwm.c: 507: PWM.NewPWM+=PWM.NewOSC;
+  1322  00C55E  C271  FFE8         	movff	_PWM+3,wreg
+  1323  00C562  0102               	movlb	(_PWM+4) shr (0+8)
+  1324  00C564  2772               	addwf	(_PWM+4)& (0+255),f,b
+  1325  00C566                     l44:
+  1326                           ;pwm.c: 508: }
+  1327  00C566  C272  FFE8         	movff	_PWM+4,wreg
+  1328  00C56A  0102               	movlb	(_PWM+8) shr (0+8)
+  1329  00C56C  6176               	cpfslt	(_PWM+8)& (0+255),b
+  1330  00C56E  D002               	goto	l47
+  1331  00C570  C276  F272         	movff	_PWM+8,_PWM+4
+  1332  00C574                     l47:
+  1333                           ;pwm.c: 519: DC1B1=((PWM.NewPWM&0b00000001)>0)?1
+      +                          :0;
+  1334  00C574  0102               	movlb	(_PWM+4) shr (0+8)
+  1335  00C576  8ABD               	bsf	4029,5,c
+  1336  00C578  A172               	btfss	(_PWM+4)& (0+255),0,b
+  1337  00C57A  9ABD               	bcf	4029,5,c
+  1338                           ;pwm.c: 520: DC1B0=0;
+  1339  00C57C  98BD               	bcf	4029,4,c
+  1340                           ;pwm.c: 521: CCPR1L=PWM.NewPWM>>1;
+  1341  00C57E  C272  F000         	movff	_PWM+4,btemp
+  1342  00C582  90D8               	bcf	status,0,c
+  1343  00C584  3000               	rrcf	btemp,w,c
+  1344  00C586  6EBE               	movwf	4030,c	;volatile
+  1345                           ;pwm.c: 528: }
+  1346  00C588  0012               	return	
+  1347  00C58A                     __end_of_IntPWM:
+  1348                           ;pwm.c: 531: void IntPWM2(void)
+  1349                           ;pwm.c: 532: {
+  1350  00C58A                     _IntPWM2:
+  1351  000000                     
+  1352                           ;pwm.c: 533: static bit btOsc=0;
+  1353  00C58A  0102               	movlb	(_PWM+5) shr (0+8)
+  1354  00C58C  B173               	btfsc	(_PWM+5)& (0+255),0,b
+  1355                           ;pwm.c: 536: {
+  1356  00C58E  C274  F275         	movff	_PWM+6,_PWM+7
+  1357                           ;pwm.c: 538: }
+  1358  00C592  C275  FFE8         	movff	_PWM+7,wreg
+  1359  00C596  0102               	movlb	(_PWM+8) shr (0+8)
+  1360  00C598  6176               	cpfslt	(_PWM+8)& (0+255),b
+  1361  00C59A  D002               	goto	l50
+  1362  00C59C  C276  F275         	movff	_PWM+8,_PWM+7
+  1363  00C5A0                     l50:
+  1364                           ;pwm.c: 549: DC2B1=((PWM.NewPWM2&0b00000001)>0)?
+      +                          1:0;
+  1365  00C5A0  0102               	movlb	(_PWM+7) shr (0+8)
+  1366  00C5A2  8ABA               	bsf	4026,5,c
+  1367  00C5A4  A175               	btfss	(_PWM+7)& (0+255),0,b
+  1368  00C5A6  9ABA               	bcf	4026,5,c
+  1369                           ;pwm.c: 550: DC2B0=0;
+  1370  00C5A8  98BA               	bcf	4026,4,c
+  1371                           ;pwm.c: 551: CCPR2L=PWM.NewPWM2>>1;
+  1372  00C5AA  C275  F000         	movff	_PWM+7,btemp
+  1373  00C5AE  90D8               	bcf	status,0,c
+  1374  00C5B0  3000               	rrcf	btemp,w,c
+  1375  00C5B2  6EBB               	movwf	4027,c	;volatile
+  1376                           ;pwm.c: 558: }
+  1377  00C5B4  0012               	return	
+  1378  00C5B6                     __end_of_IntPWM2:
+  1379                           
+  1380                           	psect	rbit
+  1381  0002F0                     F1203:
+  1382  0002F0                     	ds	1
+  1383  000000                     
+  1384  000000                     
+  1385  000000                     
+  1386  000000                     
+  1387  000000                     
+  1388  000000                     
+  1389  000000                     
+  1390  000000                     
+  1391  000000                     
+  1392  000000                     
+  1393  000000                     
+  1394  000000                     
+  1395  000000                     
+  1396  000000                     
+  1397  000000                     
+  1398  000000                     
+  1399  000000                     
+  1400  000000                     
+  1401  000000                     
+  1402  000000                     
+  1403  000000                     
+  1404  000000                     
+  1405  000000                     
+  1406  000000                     
+  1407  000000                     
+  1408  000000                     
+  1409  000000                     
+  1410  000000                     
+  1411  000000                     
+  1412  000000                     
+  1413  000000                     
+  1414  000000                     
+  1415  000000                     
+  1416  000000                     
+  1417  000000                     
+  1418  000000                     
+  1419  000000                     
+  1420  000000                     
+  1421  000000                     
+  1422  000000                     
+  1423  000000                     
+  1424  000000                     
+  1425  000000                     
+  1426  000000                     
+  1427  000000                     
+  1428  000000                     
+  1429  000000                     
+  1430  000000                     
+  1431  000000                     
+  1432  000000                     
+  1433  000000                     
+  1434  000000                     
+  1435  000000                     
+  1436  000000                     
+  1437  000000                     
+  1438  000000                     
+  1439  000000                     
+  1440  000000                     
+  1441  000000                     
+  1442  000000                     
+  1443  000000                     
+  1444  000000                     
+  1445  000000                     
+  1446  000000                     
+  1447  000000                     
+  1448  000000                     
+  1449  000000                     
+  1450  000000                     
+  1451  000000                     
+  1452  000000                     
+  1453  000000                     
+  1454  000000                     
+  1455  000000                     
+  1456  000000                     
+  1457  000000                     
+  1458  000000                     
+  1459  000000                     
+  1460  000000                     
+  1461  000000                     
+  1462  000000                     
+  1463  000000                     
+  1464  000000                     
+  1465  000000                     
+  1466  000000                     
+  1467  000000                     
+  1468  000000                     
+  1469  000000                     
+  1470  000000                     
+  1471  000000                     
+  1472  000000                     
+  1473  000000                     
+  1474  000000                     
+  1475  000000                     
+  1476  000000                     
+  1477  000000                     
+  1478  000000                     
+  1479  000000                     
+  1480  000000                     
+  1481  000000                     
+  1482  000000                     
+  1483  000000                     
+  1484  000000                     
+  1485  000000                     
+  1486  000000                     
+  1487  000000                     
+  1488  000000                     
+  1489  000000                     
+  1490  000000                     
+  1491  000000                     
+  1492  000000                     
+  1493  000000                     
+  1494  000000                     
+  1495  000000                     
+  1496  000000                     
+  1497  000000                     
+  1498  000000                     
+  1499  000000                     
+  1500  000000                     
+  1501  000000                     
+  1502  000000                     
+  1503  000000                     
+  1504  000000                     
+  1505  000000                     
+  1506  000000                     
+  1507  000000                     
+  1508  000000                     
+  1509  000000                     
+  1510  000000                     
+  1511  000000                     
+  1512  000000                     
+  1513  000000                     
+  1514  000000                     
+  1515  000000                     
+  1516  000000                     
+  1517  000000                     
+  1518  000000                     
+  1519  000000                     
+  1520  000000                     
+  1521  000000                     
+  1522  000000                     
+  1523  000000                     
+  1524  000000                     
+  1525  000000                     
+  1526  000000                     
+  1527  000000                     
+  1528  000000                     
+  1529  000000                     
+  1530  000000                     
+  1531  000000                     
+  1532  000000                     
+  1533  000000                     
+  1534  000000                     
+  1535  000000                     
+  1536  000000                     
+  1537  000000                     
+  1538  000000                     
+  1539  000000                     
+  1540  000000                     
+  1541  000000                     
+  1542  000000                     
+  1543  000000                     
+  1544  000000                     
+  1545  000000                     
+  1546  000000                     
+  1547  000000                     
+  1548  000000                     
+  1549  000000                     
+  1550  000000                     
+  1551  000000                     
+  1552  000000                     
+  1553  000000                     
+  1554  000000                     
+  1555  000000                     
+  1556  000000                     
+  1557  000000                     
+  1558  000000                     
+  1559  000000                     
+  1560  000000                     
+  1561  000000                     
+  1562  000000                     
+  1563  000000                     
+  1564  000000                     
+  1565  000000                     
+  1566  000000                     
+  1567  000000                     
+  1568  000000                     
+  1569  000000                     
+  1570  000000                     
+  1571  000000                     
+  1572  000000                     
+  1573  000000                     
+  1574  000000                     
+  1575  000000                     
+  1576  000000                     
+  1577  000000                     
+  1578  000000                     
+  1579  000000                     
+  1580  000000                     
+  1581  000000                     
+  1582  000000                     
+  1583  000000                     
+  1584  000000                     
+  1585  000000                     
+  1586  000000                     
+  1587  000000                     
+  1588  000000                     
+  1589  000000                     
+  1590  000000                     
+  1591  000000                     
+  1592  000000                     
+  1593  000000                     
+  1594  000000                     
+  1595  000000                     
+  1596  000000                     
+  1597  000000                     
+  1598  000000                     
+  1599  000000                     
+  1600  000000                     
+  1601  000000                     
+  1602  000000                     
+  1603  000000                     
+  1604  000000                     
+  1605  000000                     
+  1606  000000                     
+  1607  000000                     
+  1608  000000                     
+  1609  000000                     
+  1610  000000                     
+  1611  000000                     
+  1612  000000                     
+  1613  000000                     
+  1614  000000                     
+  1615  000000                     
+  1616  000000                     
+  1617  000000                     
+  1618  000000                     
+  1619  000000                     
+  1620  000000                     
+  1621  000000                     
+  1622  000000                     
+  1623  000000                     
+  1624  000000                     
+  1625  000000                     
+  1626  000000                     
+  1627  000000                     
+  1628  000000                     
+  1629  000000                     
+  1630  000000                     
+  1631  000000                     
+  1632  000000                     
+  1633  000000                     
+  1634  000000                     
+  1635  000000                     
+  1636  000000                     
+  1637  000000                     
+  1638  000000                     
+  1639  000000                     
+  1640  000000                     
+  1641  000000                     
+  1642  000000                     
+  1643  000000                     
+  1644  000000                     
+  1645  000000                     
+  1646  000000                     
+  1647  000000                     
+  1648  000000                     
+  1649  000000                     
+  1650  000000                     
+  1651  000000                     
+  1652  000000                     
+  1653  000000                     
+  1654  000000                     
+  1655  000000                     
+  1656  000000                     
+  1657  000000                     
+  1658  000000                     
+  1659  000000                     
+  1660  000000                     
+  1661  000000                     
+  1662  000000                     
+  1663  000000                     
+  1664  000000                     
+  1665  000000                     
+  1666  000000                     
+  1667  000000                     
+  1668  000000                     
+  1669  000000                     
+  1670  000000                     
+  1671  000000                     
+  1672  000000                     
+  1673  000000                     
+  1674  000000                     
+  1675  000000                     
+  1676  000000                     
+  1677  000000                     
+  1678  000000                     
+  1679  000000                     
+  1680  000000                     
+  1681  000000                     
+  1682  000000                     
+  1683  000000                     
+  1684  000000                     
+  1685  000000                     
+  1686  000000                     
+  1687  000000                     
+  1688  000000                     
+  1689  000000                     
+  1690  000000                     
+  1691  000000                     
+  1692  000000                     
+  1693  000000                     
+  1694  000000                     
+  1695  000000                     
+  1696  000000                     
+  1697  000000                     
+  1698  000000                     
+  1699  000000                     
+  1700  000000                     
+  1701  000000                     
+  1702  000000                     
+  1703  000000                     
+  1704  000000                     
+  1705  000000                     
+  1706  000000                     
+  1707  000000                     
+  1708  000000                     
+  1709  000000                     
+  1710  000000                     
+  1711  000000                     
+  1712  000000                     
+  1713  000000                     
+  1714  000000                     
+  1715  000000                     
+  1716  000000                     
+  1717  000000                     
+  1718  000000                     
+  1719  000000                     
+  1720  000000                     
+  1721  000000                     
+  1722  000000                     
+  1723  000000                     
+  1724  000000                     
+  1725  000000                     
+  1726  000000                     
+  1727  000000                     
+  1728  000000                     
+  1729  000000                     
+  1730  000000                     
+  1731  000000                     
+  1732  000000                     
+  1733  000000                     
+  1734  000000                     
+  1735  000000                     
+  1736  000000                     
+  1737  000000                     
+  1738  000000                     
+  1739  000000                     
+  1740  000000                     
+  1741  000000                     
+  1742  000000                     
+  1743  000000                     
+  1744  000000                     
+  1745  000000                     
+  1746  000000                     
+  1747  000000                     
+  1748  000000                     
+  1749  000000                     
+  1750  000000                     
+  1751  000000                     
+  1752  000000                     
+  1753  000000                     
+  1754  000000                     
+  1755  000000                     
+  1756  000000                     
+  1757  000000                     
+  1758  000000                     
+  1759  000000                     
+  1760  000000                     
+  1761  000000                     
+  1762  000000                     
+  1763  000000                     
+  1764  000000                     
+  1765  000000                     
+  1766  000000                     
+  1767  000000                     
+  1768  000000                     
+  1769  000000                     
+  1770  000000                     
+  1771  000000                     
+  1772  000000                     
+  1773  000000                     
+  1774  000000                     
+  1775  000000                     
+  1776  000000                     
+  1777  000000                     
+  1778  000000                     
+  1779  000000                     
+  1780  000000                     
+  1781  000000                     
+  1782  000000                     
+  1783  000000                     
+  1784  000000                     
+  1785  000000                     
+  1786  000000                     
+  1787  000000                     
+  1788  000000                     
+  1789  000000                     
+  1790  000000                     
+  1791  000000                     
+  1792  000000                     
+  1793  000000                     
+  1794  000000                     
+  1795  000000                     
+  1796  000000                     
+  1797  000000                     
+  1798  000000                     
+  1799  000000                     
+  1800  000000                     
+  1801  000000                     
+  1802  000000                     
+  1803  000000                     
+  1804  000000                     
+  1805  000000                     
+  1806  000000                     
+  1807  000000                     
+  1808  000000                     
+  1809  000000                     
+  1810  000000                     
+  1811  000000                     
+  1812  000000                     
+  1813  000000                     
+  1814  000000                     
+  1815  000000                     
+  1816  000000                     
+  1817  000000                     
+  1818  000000                     
+  1819  000000                     
+  1820  000000                     
+  1821  000000                     
+  1822  000000                     
+  1823  000000                     
+  1824  000000                     
+  1825  000000                     
+  1826  000000                     
+  1827  000000                     
+  1828  000000                     
+  1829  000000                     
+  1830  000000                     
+  1831  000000                     
+  1832  000000                     
+  1833  000000                     
+  1834  000000                     
+  1835  000000                     
+  1836  000000                     
+  1837  000000                     
+  1838  000000                     
+  1839  000000                     
+  1840  000000                     
+  1841  000000                     
+  1842  000000                     
+  1843  000000                     
+  1844  000000                     
+  1845  000000                     
+  1846  000000                     
+  1847  000000                     
+  1848  000000                     
+  1849  000000                     
+  1850  000000                     
+  1851  000000                     
+  1852  000000                     
+  1853  000000                     
+  1854  000000                     
+  1855  000000                     
+  1856  000000                     
+  1857  000000                     
+  1858  000000                     
+  1859  000000                     
+  1860  000000                     
+  1861  000000                     
+  1862  000000                     
+  1863  000000                     
+  1864  000000                     
+  1865  000000                     
+  1866  000000                     
+  1867  000000                     
+  1868  000000                     
+  1869  000000                     
+  1870  000000                     
+  1871  000000                     
+  1872  000000                     
+  1873  000000                     
+  1874  000000                     
+  1875  000000                     
+  1876  000000                     
+  1877  000000                     
+  1878  000000                     
+  1879  000000                     
+  1880  000000                     
+  1881  000000                     
+  1882  000000                     
+  1883  000000                     
+  1884  000000                     
+  1885  000000                     
+  1886  000000                     
+  1887  000000                     
+  1888  000000                     
+  1889  000000                     
+  1890  000000                     
+  1891  000000                     
+  1892  000000                     
+  1893  000000                     
+  1894  000000                     
+  1895  000000                     
+  1896  000000                     
+  1897  000000                     
+  1898  000000                     
+  1899  000000                     
+  1900  000000                     
+  1901  000000                     
+  1902  000000                     
+  1903  000000                     
+  1904  000000                     
+  1905  000000                     
+  1906  000000                     
+  1907  000000                     
+  1908  000000                     
+  1909  000000                     
+  1910  000000                     
+  1911  000000                     
+  1912  000000                     
+  1913  000000                     
+  1914  000000                     
+  1915  000000                     
+  1916  000000                     
+  1917  000000                     
+  1918  000000                     
+  1919  000000                     
+  1920  000000                     
+  1921  000000                     
+  1922  000000                     
+  1923  000000                     
+  1924  000000                     
+  1925  000000                     
+  1926  000000                     
+  1927  000000                     
+  1928  000000                     
+  1929  000000                     
+  1930  000000                     
+  1931  000000                     
+  1932  000000                     
+  1933  000000                     
+  1934  000000                     
+  1935  000000                     
+  1936  000000                     
+  1937  000000                     
+  1938  000000                     
+  1939  000000                     
+  1940  000000                     
+  1941  000000                     
+  1942  000000                     
+  1943  000000                     
+  1944  000000                     
+  1945  000000                     
+  1946  000000                     
+  1947  000000                     
+  1948  000000                     
+  1949  000000                     
+  1950  000000                     
+  1951                           
+  1952                           	psect	bss
+  1953  00026E                     _PWM:
+  1954  00026E                     	ds	34
+  1955                           
+  1956                           	psect	temp
+  1957  000000                     btemp:
+  1958  000000                     	ds	6
+  1959                           tblptrh	equ	0xFF7
+  1960                           tblptrl	equ	0xFF6
+  1961                           indf0	equ	0xFEF
+  1962                           wreg	equ	0xFE8
+  1963                           fsr1l	equ	0xFE1
+  1964                           fsr2l	equ	0xFD9
+  1965                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Wed Mar 20 08:54:39 2013
+
+                l7 BFE0                  l8 BD88                  l9 BE00  
+               l10 BE78                 l11 BEF0                 l20 C1DA  
+               l12 BF68                 l31 C388                 l15 C252  
+               l24 C29C                 l16 BFFA                 l41 C4D4  
+               l25 C2A6                 l17 C072                 l50 C5A0  
+               l34 C3D4                 l26 C3BA                 l18 C0EA  
+               l43 C548                 l35 C3D8                 l19 C162  
+               l44 C566                 l28 C358                 l45 C55C  
+               l37 C3EC                 l29 C350                 l47 C574  
+               l39 C460                 u60 C34A                 u65 C348  
+               u75 C37E                 u85 C3B0                _PWM 026E  
+         _WritePWM C26C                wreg 000FE8               F1203 02F0  
+        _WritePWM2 C27E          _WriteOPWM C28E  __end_of_WritePWM2 C28E  
+__end_of_WriteOPWM C3DE               indf0 000FEF               fsr1l 000FE1  
+             fsr2l 000FD9               btemp 0000               awdiv E598  
+             awmul E606               lwdiv E464    __end_of_IntPWM2 C5B6  
+             lwmul E606    __end_of_InitPWM BD60         used_btemp0 0001  
+       used_btemp1 0001         used_btemp2 0001         used_btemp3 0001  
+       used_btemp4 0001         used_btemp5 0001              status 000FD8  
+ __end_of_ModParam C26C            _IntPWM2 C58A   __end_of_MocStart C452  
+          _InitPWM BD28            __Lparam 00D7            __ramtop 1000  
+ __end_of_WritePWM C27E     __end_of_IntPWM C58A             _IntPWM C53A  
+           tblptrl 000FF6          _MocMaksCO C452          _MocMaksCW C4C6  
+__end_of_MocMaksCO C4C6  __end_of_MocMaksCW C53A           _ModParam BD62  
+         _MocStart C3DE          ?_ModParam 00D7  

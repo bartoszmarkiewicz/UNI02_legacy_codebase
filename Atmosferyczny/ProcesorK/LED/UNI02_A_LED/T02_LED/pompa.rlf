@@ -1,0 +1,2954 @@
+˝
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Mar 20 08:54:41 2013
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     5                           	psect	bss,global,class=RAM,space=1,delta=1
+     ˝6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000˝000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000  ˝                   
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000       ˝              
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000            ˝         
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                 ˝    
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+˝    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97                           
+    98                           	psect	text
+    99                           ;˝pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   100                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   101                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   102                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFF˝C;
+   103                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   104                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   105                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   106                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +      ˝                     char * TBLPTR @ 0xFF6;
+   107                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   108                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   109                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   110                           ;pic18f45k20.h:˝ 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   111                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   112                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   113                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   114 ˝                          ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   115                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   116                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   117                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                     ˝     d char POSTINC0 @ 0xFEE;
+   118                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   119                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   120                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   121                           ;pic18f45k20.h: 42: static vo˝latile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   122                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   123                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   124                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   125                  ˝         ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   126                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   127                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   128                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                         ˝ d char PLUSW1 @ 0xFE3;
+   129                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   130                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   131                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   132                           ;pic18f45k20.h: 53: static volatile near unsigne
+   ˝   +                          d char INDF2 @ 0xFDF;
+   133                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   134                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   135                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   136                           ;pic1˝8f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   137                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   138                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   139                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD˝8;
+   140                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   141                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   142                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   143                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +        ˝                  CON @ 0xFD5;
+   144                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   145                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   146                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   147                           ;pic18f45k20.h: 69: static vol˝atile near unsigne
+      +                          d char RCON @ 0xFD0;
+   148                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   149                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   150                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   151                     ˝      ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   152                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   153                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   154                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   155            ˝               ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   156                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   157                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   158                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char˝ SSPCON1 @ 0xFC6;
+   159                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   160                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   161                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   162                           ;pic18f45k20.h: 86: static volatile near un˝signe
+      +                          d int ADRES @ 0xFC3;
+   163                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   164                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   165                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   166                           ;pic18f45k20.h: 90: ˝static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   167                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   168                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   169                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   170     ˝                      ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   171                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   172                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   173                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                   ˝       d char CCP2CON @ 0xFBA;
+   174                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   175                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   176                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+   177                           ;pic18f45k20.h: 103: static volati˝le near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   178                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   179                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   180                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   181             ˝              ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   182                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   183                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   184                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0x˝FB0;
+   185                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   186                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   187                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   188                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                  ˝        ed char RCREG1 @ 0xFAE;
+   189                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   190                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   191                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   192                           ;pic18f45k20.h: 123: static v˝olatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   193                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   194                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   195                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   196                   Ü        ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   197                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   198                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   199        4text  ˝                     _ProcToPmpPwm:
+   200                           ;	_ppwm assigned to ?a_ModPmp2+4
+   201  000000                     _ModPmp2$ppwm	set	?a_ModPmp2+4
+   202                           ;	_tim assigned to ?a_ModPmp2+3
+   203  000000                     _ModPmp2$tim	set	?a_ModPmp2+3
+   204                           ;	_pup assigned to ?a_ModPmp2+2
+   205  000000                     _ModPmp2$pup	set	?a_ModPmp2+2
+   206                           ;	_pdw assigned to ?a_ModPmp2+1
+   207  000000  ˝                   _ModPmp2$pdw	set	?a_ModPmp2+1
+   208                           ;	_p assigned to ?a_ModPmp2+0
+   209  000000                     _ModPmp2$p	set	?a_ModPmp2
+   210                           ;	_k assigned to ?a_RetDelta+1
+   211  000000                     _RetDelta$k	set	?a_RetDelta+1
+   212                           ;	_pco assigned to ?a_RetDelta+0
+   213  000000                     _RetDelta$pco	set	?a_RetDelta
+   214                           ;       param _eco assigned to ?_RetDelta+0˝
+   215  000000                     _RetDelta$eco	set	?_RetDelta
+   216                           ;	_i assigned to ?a_RetKrkDelta+4
+   217  000000                     _RetKrkDelta$i	set	?a_RetKrkDelta+4
+   218                           ;	_pco assigned to ?a_RetKrkDelta+3
+   219  000000                     _RetKrkDelta$pco	set	?a_RetKrkDelta+3
+   220                           ;	_min assigned to ?a_RetKrkDelta+2
+   221  000000                     _RetKrkDelta$min	set	?a_RetKrkDelta+2
+   222                ˝           ;	_max assigned to ?a_RetKrkDelta+1
+   223  000000                     _RetKrkDelta$max	set	?a_RetKrkDelta+1
+   224                           ;	_d assigned to ?a_RetKrkDelta+0
+   225  000000                     _RetKrkDelta$d	set	?a_RetKrkDelta
+   226                           ;       param _lo assigned to ?_RetDelta4+2
+   227  000000                     _RetDelta4$lo	set	?_RetDelta4+2
+   228                           ;       param _hi assigned to ?_RetDelta4+1
+   229  000000                  ˝   _RetDelta4$hi	set	?_RetDelta4+1
+   230                           ;       param _eco assigned to ?_RetDelta4+0
+   231  000000                     _RetDelta4$eco	set	?_RetDelta4
+   232                           ;       param _lo assigned to ?_RetDelta3+0
+   233  000000                     _RetDelta3$lo	set	?_RetDelta3
+   234                           ;       param _ddlt assigned to ?_RetDelta2+0
+   235  000000                     _RetDelta2$ddlt	set	?_RetDelta2
+   236                           ;       p˝aram _hi assigned to ?_RetDelta1+0
+   237  000000                     _RetDelta1$hi	set	?_RetDelta1
+   238                           ;       param _min assigned to ?_RetLO+1
+   239  000000                     _RetLO$min	set	?_RetLO+1
+   240                           ;       param _eco assigned to ?_RetLO+0
+   241  000000                     _RetLO$eco	set	?_RetLO
+   242                           ;       param _max assigned to ?_RetHI+1
+   243  000000                     _RetHI$max	set	?_RetHI+1
+   244   ˝                        ;       param _eco assigned to ?_RetHI+0
+   245  000000                     _RetHI$eco	set	?_RetHI
+   246                           ;       param _b assigned to ?_RetMax+0
+   247  000000                     _RetMax$b	set	?_RetMax
+   248                           ;       param _b assigned to ?_RetMin+0
+   249  000000                     _RetMin$b	set	?_RetMin
+   250                           ;	_ppwm assigned to ?a_ModPmp1+3
+   251  000000                     _ModPmp1$ppwm	set	?a_MopdPmp1+3
+   252                           ;	_tim assigned to ?a_ModPmp1+2
+   253  000000                     _ModPmp1$tim	set	?a_ModPmp1+2
+   254                           ;	_pup assigned to ?a_ModPmp1+1
+   255  000000                     _ModPmp1$pup	set	?a_ModPmp1+1
+   256  000000                     
+   257                           ; _prc loaded to fsr2l
+   258        4text  k   6ED9               	movwf	fsr2l,c
+   259                           ;pompa.c: 27: unsigned int p;
+   260        4text     (   0E64               	movlw	100
+   261        4text     -   64D9               	cpfsgt	fsr2l,c
+   262        4text     '   D001               	goto	l14
+   263        4text     ,   6ED9               	movwf	fsr2l,c
+   264        4text 
+    ^                      l14:
+   265                           ;pompa.c: 30: p=PWM.HIPWM;
+   266        4text 
+         ¿   ¸ _PWM     *   FFE8         	movff	_PWM+8,wreg
+   267        4text     .   6EF6               	movwf	tblptrl,c
+   268        4text     k   6AF7               	clrf	tblptrh,c
+   269                           ;pompa.c: 31: p=(prc*p)/100;
+   270        4text        CFF6      ¸temp     )           	movff	tblptrl,btemp+2
+   271        4text        CFF7      ¸temp     )           	movff	tblptrh,btemp+3
+   272        4text        CFD9      ¸temp  %           	movff	fsr2l,btemp
+   273        4text          j   1temp     '                	clrf	btemp+1,c
+   274        4text           Ï   1ˇ       lwmul 	
+         ¸	    lwmul 	           	call	lwmul
+   275        4text $         ¿   ¸temp             ¸temp  &          	movff	btemp+4,btemp
+   276        4text (         ¿   ¸temp             ¸temp     (          	movff	btemp+5,btemp+1
+   277        4text ,    (   0E64               	movlw	100
+   278        4text .         n   1temp     (                	movwf	btemp+2,c
+   279        4text 0         j   1temp     '                	clrf	btemp+3,c
+   280        4text 2         Ï   1ˇ       lwdiv 	
+         ¸	    lwdiv 	           	call	lwdiv
+   281        4text 6         ¿   ¸temp     .   FFF6         	movff	btemp+4,tblptrl
+   282        4text :         ¿   ¸temp     v   FFF7         	movff	btemp+5,tblptrh
+   283                           ;pompa.c: 32: return (unsigned char)p;
+   284        4text >    /   50F6               	movf	tblptrl,w,c
+   285        4text @    W   0012               	return	
+   286                           ;pompa.c: 33: }
+   287        4text B    ›                      __end_of_ProcToPmpPwm:
+   288                           ;pompa.c: 38: unsigned char ModPmp1(unsigned cha
+      +                          r p)
+   289                           ;pompa.c: 39: {
+   290        4text B                         _ModPmp1:
+   291  000000                     
+   292                           ;	_pdw assigned to ?a_ModPmp1+0
+   293  000000                     _ModPmp1$pdw	set	?a_ModPmp1
+   294                           ;pompa.c: 40: unsigned char ppwm, tim, pup, pdw;
+   295        4text B            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   296        4text D       +  o   1 ˇ   __Lparam 
+ ?a_ModPmp1     ë                	movwf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),b
+   297                           ;pompa.c: 44: if(rgl.fz||ppwm!=PMP.MGPROC)
+   298        4text F            1    _rgl 	 -                	movlb	_rgl shr (0+8)
+   299        4text H         µ   1ˇ    _rgl 
+ 0                	btfsc	_rgl& (0+255),2,b
+   300        4text J    '   D006               	goto	u40
+   301        4text L            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   302        4text N       +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp1     D                	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   303        4text P            1   bss 	 -                	movlb	_PMP shr (0+8)
+   304        4text R            1ˇ   bss 
+ 0                	xorwf	_PMP& (0+255),w,b
+   305        4text T    %   E101 D139          	bz	l16
+   306        4text X    S                      u40:
+   307                           ;pompa.c: 45: {
+   308        4text X         ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+4,wreg
+   309        4text \            1    _DtIN    	 2                	movlb	(_DtIN+5) shr (0+8)
+   310        4text ^         a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+5)& (0+255),b
+   311        4text `    X   D01E               	goto	l17
+   312                           ;pompa.c: 48: {
+   313        4text b    (   0E64               	movlw	100
+   314        4text d            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   315        4text f       +  o   1 ˇ   __Lparam 
+ ?a_ModPmp1     ∫                	movwf	(?a_ModPmp1+2)^(__Lparam& (0+65280)),b
+   316                           ;pompa.c: 51: if(DtIN.DIN2-DtIN.DDLT==2) tim=120
+      +                          ;
+   317        4text h         ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+5,wreg
+   318        4text l         ¿   ¸ _DtIN             ¸temp  &          	movff	_DtIN+4,btemp
+   319        4text p         j   1temp     '                	clrf	btemp+1,c
+   320        4text r         ^   1temp  (                	subwf	btemp,f,c
+   321        4text t    &   0E00               	movlw	0
+   322        4text v         Z   1temp     +                	subwfb	btemp+1,f,c
+   323        4text x         P   1temp  '                	movf	btemp,w,c
+   324        4text z    &   0A02               	xorlw	2
+   325        4text |            1temp     *                	iorwf	btemp+1,w,c
+   326        4text ~    &   E102               	bnz	l18
+   327        4text Ä    (   0E78               	movlw	120
+   328        4text Ç    &   D02B               	goto	L4
+   329        4text Ñ    V                      l18:
+   330                           ;pompa.c: 52: else
+   331        4text Ñ         ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+5,wreg
+   332        4text à         ¿   ¸ _DtIN             ¸temp  &          	movff	_DtIN+4,btemp
+   333        4text å         j   1temp     '                	clrf	btemp+1,c
+   334        4text é         ^   1temp  (                	subwf	btemp,f,c
+   335        4text ê    &   0E00               	movlw	0
+   336        4text í         Z   1temp     +                	subwfb	btemp+1,f,c
+   337        4text î            1temp  '                	decf	btemp,w,c
+   338        4text ñ            1temp     *                	iorwf	btemp+1,w,c
+   339        4text ò    &   E121               	bnz	l21
+   340        4text ö    (   0E96               	movlw	150
+   341        4text ú    W   D01D               	goto	L6
+   342                           ;pompa.c: 54: }
+   343        4text û    V                      l17:
+   344                           ;pompa.c: 55: else
+   345        4text û    (   0E78               	movlw	120
+   346        4text †            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   347        4text ¢       +  o   1 ˇ   __Lparam 
+ ?a_ModPmp1     ∫                	movwf	(?a_ModPmp1+2)^(__Lparam& (0+65280)),b
+   348                           ;pompa.c: 59: if(DtIN.DDLT-DtIN.DIN2==2) tim=150
+      +                          ;
+   349        4text §         ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+4,wreg
+   350        4text ®         ¿   ¸ _DtIN             ¸temp  &          	movff	_DtIN+5,btemp
+   351        4text ¨         j   1temp     '                	clrf	btemp+1,c
+   352        4text Æ         ^   1temp  (                	subwf	btemp,f,c
+   353        4text ∞    &   0E00               	movlw	0
+   354        4text ≤         Z   1temp     +                	subwfb	btemp+1,f,c
+   355        4text ¥         P   1temp  '                	movf	btemp,w,c
+   356        4text ∂    &   0A02               	xorlw	2
+   357        4text ∏            1temp     *                	iorwf	btemp+1,w,c
+   358        4text ∫    &   E102               	bnz	l22
+   359        4text º    (   0E96               	movlw	150
+   360        4text æ    &   D00D               	goto	L4
+   361        4text ¿    V                      l22:
+   362                           ;pompa.c: 60: else
+   363        4text ¿         ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+4,wreg
+   364        4text ƒ         ¿   ¸ _DtIN             ¸temp  &          	movff	_DtIN+5,btemp
+   365        4text »         j   1temp     '                	clrf	btemp+1,c
+   366        4text           ^   1temp  (                	subwf	btemp,f,c
+   367        4text Ã    &   0E00               	movlw	0
+   368        4text Œ         Z   1temp     +                	subwfb	btemp+1,f,c
+   369        4text –            1temp  '                	decf	btemp,w,c
+   370        4text “            1temp     *                	iorwf	btemp+1,w,c
+   371        4text ‘    &   E103               	bnz	l21
+   372        4text ÷    (   0EB4               	movlw	180
+   373        4text ÿ    !                      L6:
+   374        4text ÿ            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   375        4text ⁄    !                      L4:
+   376        4text ⁄       +  o   1 ˇ   __Lparam 
+ ?a_ModPmp1     E                	movwf	(?a_ModPmp1+2)^(__Lparam& (0+65280)),b
+   377        4text ‹    S                      l21:
+   378                           ;pompa.c: 62: }
+   379        4text ‹            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   380        4text ﬁ       +  k   1 ˇ   __Lparam 
+ ?a_ModPmp1     z                	clrf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),b
+   381                           ;pompa.c: 64: pdw=0;
+   382        4text ‡       %  k   1 ˇ   __Lparam 
+ ?a_ModPmp1  À                	clrf	?a_ModPmp1^(__Lparam& (0+65280)),b
+   383                           ;pompa.c: 65: if((RTdS(8)>tim)||(ppwm<=PMP.MDPRO
+      +                          C)||(ppwm>=PMP.MGPROC))
+   384        4text ‚    &   0E08               	movlw	8
+   385        4text ‰         Ï   1ˇ       _RTdS 	
+         ¸	    _RTdS 	           	call	_RTdS
+   386        4text Ë            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   387        4text Í       +  a   1 ˇ   __Lparam 
+ ?a_ModPmp1     F                	cpfslt	(?a_ModPmp1+2)^(__Lparam& (0+65280)),b
+   388        4text Ï    (   D001               	goto	u101
+   389        4text Ó    (   D00A               	goto	u130
+   390        4text     #                      u101:
+   391        4text        +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp1     D                	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   392        4text Ú            1   bss    	 1                	movlb	(_PMP+1) shr (0+8)
+   393        4text Ù         ]   1ˇ   bss    
+ 4                	subwf	(_PMP+1)& (0+255),w,b
+   394        4text ˆ    &   E206               	bc	u130
+   395        4text ¯            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   396        4text ˙         ¿   ¸bss  (   FFE8         	movff	_PMP,wreg
+   397        4text ˛       +  ]   1 ˇ   __Lparam 
+ ?a_ModPmp1     E                	subwf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   398        4text     &   E201 D0E8          	bnc	l54
+   399        4text    T                      u130:
+   400                           ;pompa.c: 66: {
+   401        4text    &   0E08               	movlw	8
+   402        4text          Ï   1ˇ       _StartRTdS 	
+         ¸	    _StartRTdS 	 •          	call	_StartRTdS
+   403                           ;pompa.c: 69: if(!pup)
+   404                           ;pompa.c: 70: if(rgl.tmp_pwm<=PWM.MINPWM)
+   405        4text 
+        ¿   ¸ _rgl 	    *   FFE8         	movff	_rgl+9,wreg
+   406        4text            1    _PWM     	 2                	movlb	(_PWM+32) shr (0+8)
+   407        4text         ]   1ˇ    _PWM     
+ 5                	subwf	(_PWM+32)& (0+255),w,b
+   408        4text    W   E327               	bnc	l26
+   409                           ;pompa.c: 71: {
+   410        4text    &   0E02               	movlw	2
+   411        4text         Ï   1ˇ       _Twyzsza 	
+         ¸	    _Twyzsza 	            	call	_Twyzsza
+   412        4text    &   E204               	bc	u180
+   413        4text    &   0E02               	movlw	2
+   414        4text         Ï   1ˇ       _Tnizsza 	
+         ¸	    _Tnizsza 	            	call	_Tnizsza
+   415        4text "   &   E31F               	bnc	l26
+   416        4text $   T                      u180:
+   417                           ;pompa.c: 73: {
+   418        4text $        ¿   ¸bss  (   FFE8         	movff	_PMP,wreg
+   419        4text (           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   420        4text *      +  a   1 ˇ   __Lparam 
+ ?a_ModPmp1     F                	cpfslt	(?a_ModPmp1+3)^(__Lparam& (0+65280)),b
+   421        4text ,   X   D01A               	goto	l26
+   422                           ;pompa.c: 75: {
+   423        4text .        ¿   ¸bss          ¸temp  #          	movff	_PMP,btemp
+   424        4text 2        j   1temp     '                	clrf	btemp+1,c
+   425        4text 4   &   0E01               	movlw	1
+   426        4text 6        ¿   ¸ ?a_ModPmp1             ¸temp     -          	movff	?a_ModPmp1+3,btemp+2
+   427        4text :        j   1temp     '                	clrf	btemp+3,c
+   428        4text <        &   1temp     *                	addwf	btemp+2,f,c
+   429        4text >   &   0E00               	movlw	0
+   430        4text @        "   1temp     +                	addwfc	btemp+3,f,c
+   431        4text B        P   1temp     )                	movf	btemp+3,w,c
+   432        4text D   (   0A80               	xorlw	128
+   433        4text F        n   1temp     (                	movwf	btemp+4,c
+   434        4text H        P   1temp     )                	movf	btemp+1,w,c
+   435        4text J   (   0A80               	xorlw	128
+   436        4text L        \   1temp     *                	subwf	btemp+4,w,c
+   437        4text N   '   E102               	bnz	u205
+   438        4text P        P   1temp  '                	movf	btemp,w,c
+   439        4text R        \   1temp     *                	subwf	btemp+2,w,c
+   440        4text T   #                      u205:
+   441        4text T   V   E204               	bc	l30
+   442                           ;pompa.c: 77: {
+   443        4text V      +  +   1 ˇ   __Lparam 
+ ?a_ModPmp1     |                	incf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   444                           ;pompa.c: 79: pup=1;
+   445        4text X   &   0E01               	movlw	1
+   446        4text Z      +  o   1 ˇ   __Lparam 
+ ?a_ModPmp1     v                	movwf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),b
+   447                           ;pompa.c: 80: }
+   448        4text \   '   D002               	goto	l26
+   449        4text ^   g                      l30:
+   450                           ;pompa.c: 81: else ppwm=PMP.MGPROC;
+   451        4text ^        ¿   ¸bss          ¸ ?a_ModPmp1     *          	movff	_PMP,?a_ModPmp1+3
+   452        4text b   S                      l26:
+   453                           ;pompa.c: 82: }
+   454        4text b        ¿   ¸ _rgl 	    *   FFE8         	movff	_rgl+9,wreg
+   455        4text f           1    _PWM     	 2                	movlb	(_PWM+32) shr (0+8)
+   456        4text h        a   1ˇ    _PWM     
+ 4                	cpfslt	(_PWM+32)& (0+255),b
+   457        4text j   (   D001               	goto	u211
+   458        4text l   (   D009               	goto	u250
+   459        4text n   #                      u211:
+   460        4text n        ¿   ¸ _rgl 	    *   FFE8         	movff	_rgl+9,wreg
+   461        4text r           1    _PWM     	 2                	movlb	(_PWM+32) shr (0+8)
+   462        4text t        ]   1ˇ    _PWM     
+ 5                	subwf	(_PWM+32)& (0+255),w,b
+   463        4text v   &   E34F               	bnc	l32
+   464        4text x   &   0E01               	movlw	1
+   465        4text z        Ï   1ˇ       _Twyzsza 	
+         ¸	    _Twyzsza 	            	call	_Twyzsza
+   466        4text ~   %   E24B               	bc	l32
+   467        4text Ä   T                      u250:
+   468                           ;pompa.c: 87: {
+   469        4text Ä        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+5,wreg
+   470        4text Ñ           1    _DtIN    	 2                	movlb	(_DtIN+3) shr (0+8)
+   471        4text Ü        a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+3)& (0+255),b
+   472        4text à   õ   D046               	goto	l32
+   473                           ;pompa.c: 89: {
+   474                           ;pompa.c: 91: if(ppwm>PMP.MDPROC)
+   475        4text ä           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   476        4text å      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp1     D                	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   477        4text é           1   bss    	 1                	movlb	(_PMP+1) shr (0+8)
+   478        4text ê        a   1ˇ   bss    
+ 3                	cpfslt	(_PMP+1)& (0+255),b
+   479        4text í   X   D01A               	goto	l34
+   480                           ;pompa.c: 92: {
+   481        4text î           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   482        4text ñ   (   0FFE               	addlw	254
+   483        4text ò        n   1temp  &                	movwf	btemp,c
+   484        4text ö        j   1temp     '                	clrf	btemp+1,c
+   485        4text ú   (   0EFF               	movlw	255
+   486        4text û        "   1temp     +                	addwfc	btemp+1,f,c
+   487        4text †        ¿   ¸bss             ¸temp     '          	movff	_PMP+1,btemp+2
+   488        4text §        j   1temp     '                	clrf	btemp+3,c
+   489        4text ¶        P   1temp     )                	movf	btemp+3,w,c
+   490        4text ®   (   0A80               	xorlw	128
+   491        4text ™        n   1temp     (                	movwf	btemp+4,c
+   492        4text ¨        P   1temp     )                	movf	btemp+1,w,c
+   493        4text Æ   (   0A80               	xorlw	128
+   494        4text ∞        \   1temp     *                	subwf	btemp+4,w,c
+   495        4text ≤   '   E102               	bnz	u285
+   496        4text ¥        P   1temp  '                	movf	btemp,w,c
+   497        4text ∂        \   1temp     *                	subwf	btemp+2,w,c
+   498        4text ∏   #                      u285:
+   499        4text ∏   V   E205               	bc	l36
+   500                           ;pompa.c: 94: {
+   501        4text ∫   (   0EFE               	movlw	254
+   502        4text º      +  '   1 ˇ   __Lparam 
+ ?a_ModPmp1     }                	addwf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   503                           ;pompa.c: 96: pdw=1;
+   504        4text æ   &   0E01               	movlw	1
+   505        4text ¿      %  o   1 ˇ   __Lparam 
+ ?a_ModPmp1  r                	movwf	?a_ModPmp1^(__Lparam& (0+65280)),b
+   506                           ;pompa.c: 97: }
+   507        4text ¬   '   D002               	goto	l34
+   508        4text ƒ   g                      l36:
+   509                           ;pompa.c: 98: else ppwm=PMP.MDPROC;
+   510        4text ƒ        ¿   ¸bss             ¸ ?a_ModPmp1     ,          	movff	_PMP+1,?a_ModPmp1+3
+   511        4text »   S                      l34:
+   512                           ;pompa.c: 99: }
+   513        4text »           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   514        4text        %  Q   1 ˇ   __Lparam 
+ ?a_ModPmp1  @                	movf	?a_ModPmp1^(__Lparam& (0+65280)),w
+   515        4text Ã   m   E124               	bnz	l32
+   516                           ;pompa.c: 101: if(DtIN.DIN<DtIN.DIN2)
+   517        4text Œ        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+4,wreg
+   518        4text “           1    _DtIN    	 2                	movlb	(_DtIN+3) shr (0+8)
+   519        4text ‘        a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+3)& (0+255),b
+   520        4text ÷   Y   D01F               	goto	l32
+   521                           ;pompa.c: 102: {
+   522        4text ÿ           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   523        4text ⁄      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp1     D                	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   524        4text ‹           1   bss    	 1                	movlb	(_PMP+1) shr (0+8)
+   525        4text ﬁ        a   1ˇ   bss    
+ 3                	cpfslt	(_PMP+1)& (0+255),b
+   526        4text ‡   Y   D01A               	goto	l32
+   527                           ;pompa.c: 104: {
+   528        4text ‚           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   529        4text ‰   (   0FFE               	addlw	254
+   530        4text Ê        n   1temp  &                	movwf	btemp,c
+   531        4text Ë        j   1temp     '                	clrf	btemp+1,c
+   532        4text Í   (   0EFF               	movlw	255
+   533        4text Ï        "   1temp     +                	addwfc	btemp+1,f,c
+   534        4text Ó        ¿   ¸bss             ¸temp     '          	movff	_PMP+1,btemp+2
+   535        4text Ú        j   1temp     '                	clrf	btemp+3,c
+   536        4text Ù        P   1temp     )                	movf	btemp+3,w,c
+   537        4text ˆ   (   0A80               	xorlw	128
+   538        4text ¯        n   1temp     (                	movwf	btemp+4,c
+   539        4text ˙        P   1temp     )                	movf	btemp+1,w,c
+   540        4text ¸   (   0A80               	xorlw	128
+   541        4text ˛        \   1temp     *                	subwf	btemp+4,w,c
+   542        4text     '   E102               	bnz	u325
+   543        4text         P   1temp  '                	movf	btemp,w,c
+   544        4text         \   1temp     *                	subwf	btemp+2,w,c
+   545        4text    #                      u325:
+   546        4text    W   E205               	bc	l41
+   547                           ;pompa.c: 106: {
+   548        4text    (   0EFE               	movlw	254
+   549        4text 
+      +  '   1 ˇ   __Lparam 
+ ?a_ModPmp1     ~                	addwf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   550                           ;pompa.c: 108: pdw=1;
+   551        4text    &   0E01               	movlw	1
+   552        4text    ^   6ED9               	movwf	fsr2l,c
+   553                           ;pompa.c: 109: }
+   554        4text    '   D002               	goto	l32
+   555        4text    h                      l41:
+   556                           ;pompa.c: 110: else ppwm=PMP.MDPROC;
+   557        4text         ¿   ¸bss             ¸ ?a_ModPmp1     ,          	movff	_PMP+1,?a_ModPmp1+3
+   558        4text    T                      l32:
+   559                           ;pompa.c: 111: }
+   560        4text         ¿   ¸ _PWM !    +   FFE8         	movff	_PWM+33,wreg
+   561        4text            1    _rgl 	   	 1                	movlb	(_rgl+9) shr (0+8)
+   562        4text         a   1ˇ    _rgl 	   
+ 3                	cpfslt	(_rgl+9)& (0+255),b
+   563        4text    (   D001               	goto	u331
+   564        4text     (   D009               	goto	u370
+   565        4text "   #                      u331:
+   566        4text "        ¿   ¸ _PWM !    +   FFE8         	movff	_PWM+33,wreg
+   567        4text &           1    _rgl 	   	 1                	movlb	(_rgl+9) shr (0+8)
+   568        4text (        ]   1ˇ    _rgl 	   
+ 4                	subwf	(_rgl+9)& (0+255),w,b
+   569        4text *   &   E354               	bnc	l54
+   570        4text ,   &   0E01               	movlw	1
+   571        4text .        Ï   1ˇ       _Tnizsza 	
+         ¸	    _Tnizsza 	            	call	_Tnizsza
+   572        4text 2   %   E250               	bc	l54
+   573        4text 4   U                      u370:
+   574                           ;pompa.c: 117: {
+   575        4text 4        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+3,wreg
+   576        4text 8           1    _DtIN    	 2                	movlb	(_DtIN+5) shr (0+8)
+   577        4text :        a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+5)& (0+255),b
+   578        4text <   Y   D04B               	goto	l54
+   579                           ;pompa.c: 119: {
+   580        4text >           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   581        4text @      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp1     D                	movf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),w
+   582        4text B   j   E11E               	bnz	l45
+   583                           ;pompa.c: 121: if(ppwm<PMP.MGPROC)
+   584        4text D        ¿   ¸bss  (   FFE8         	movff	_PMP,wreg
+   585        4text H      +  a   1 ˇ   __Lparam 
+ ?a_ModPmp1     F                	cpfslt	(?a_ModPmp1+3)^(__Lparam& (0+65280)),b
+   586        4text J   Y   D01A               	goto	l45
+   587                           ;pompa.c: 122: {
+   588        4text L        ¿   ¸bss          ¸temp  #          	movff	_PMP,btemp
+   589        4text P        j   1temp     '                	clrf	btemp+1,c
+   590        4text R   &   0E01               	movlw	1
+   591        4text T        ¿   ¸ ?a_ModPmp1             ¸temp     -          	movff	?a_ModPmp1+3,btemp+2
+   592        4text X        j   1temp     '                	clrf	btemp+3,c
+   593        4text Z        &   1temp     *                	addwf	btemp+2,f,c
+   594        4text \   &   0E00               	movlw	0
+   595        4text ^        "   1temp     +                	addwfc	btemp+3,f,c
+   596        4text `        P   1temp     )                	movf	btemp+3,w,c
+   597        4text b   (   0A80               	xorlw	128
+   598        4text d        n   1temp     (                	movwf	btemp+4,c
+   599        4text f        P   1temp     )                	movf	btemp+1,w,c
+   600        4text h   (   0A80               	xorlw	128
+   601        4text j        \   1temp     *                	subwf	btemp+4,w,c
+   602        4text l   '   E102               	bnz	u415
+   603        4text n        P   1temp  '                	movf	btemp,w,c
+   604        4text p        \   1temp     *                	subwf	btemp+2,w,c
+   605        4text r   #                      u415:
+   606        4text r   W   E204               	bc	l47
+   607                           ;pompa.c: 124: {
+   608        4text t      +  +   1 ˇ   __Lparam 
+ ?a_ModPmp1     }                	incf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   609                           ;pompa.c: 126: pup=1;
+   610        4text v   &   0E01               	movlw	1
+   611        4text x      +  o   1 ˇ   __Lparam 
+ ?a_ModPmp1     w                	movwf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),b
+   612                           ;pompa.c: 127: }
+   613        4text z   '   D002               	goto	l45
+   614        4text |   h                      l47:
+   615                           ;pompa.c: 128: else ppwm=PMP.MGPROC;
+   616        4text |        ¿   ¸bss          ¸ ?a_ModPmp1     *          	movff	_PMP,?a_ModPmp1+3
+   617        4text Ä   T                      l45:
+   618                           ;pompa.c: 129: }
+   619        4text Ä           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   620        4text Ç      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp1     D                	movf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),w
+   621        4text Ñ   m   E127               	bnz	l54
+   622                           ;pompa.c: 131: if(DtIN.DIN>DtIN.DIN2)
+   623        4text Ü        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+3,wreg
+   624        4text ä           1    _DtIN    	 2                	movlb	(_DtIN+4) shr (0+8)
+   625        4text å        a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+4)& (0+255),b
+   626        4text é   Y   D022               	goto	l54
+   627                           ;pompa.c: 132: {
+   628        4text ê        ¿   ¸bss  (   FFE8         	movff	_PMP,wreg
+   629        4text î           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   630        4text ñ      +  a   1 ˇ   __Lparam 
+ ?a_ModPmp1     F                	cpfslt	(?a_ModPmp1+3)^(__Lparam& (0+65280)),b
+   631        4text ò   Y   D01D               	goto	l54
+   632                           ;pompa.c: 134: {
+   633        4text ö        ¿   ¸bss          ¸temp  #          	movff	_PMP,btemp
+   634        4text û        j   1temp     '                	clrf	btemp+1,c
+   635        4text †   &   0E01               	movlw	1
+   636        4text ¢        ¿   ¸ ?a_ModPmp1             ¸temp     -          	movff	?a_ModPmp1+3,btemp+2
+   637        4text ¶        j   1temp     '                	clrf	btemp+3,c
+   638        4text ®        &   1temp     *                	addwf	btemp+2,f,c
+   639        4text ™   &   0E00               	movlw	0
+   640        4text ¨        "   1temp     +                	addwfc	btemp+3,f,c
+   641        4text Æ        P   1temp     )                	movf	btemp+3,w,c
+   642        4text ∞   (   0A80               	xorlw	128
+   643        4text ≤        n   1temp     (                	movwf	btemp+4,c
+   644        4text ¥        P   1temp     )                	movf	btemp+1,w,c
+   645        4text ∂   (   0A80               	xorlw	128
+   646        4text ∏        \   1temp     *                	subwf	btemp+4,w,c
+   647        4text ∫   '   E102               	bnz	u455
+   648        4text º        P   1temp  '                	movf	btemp,w,c
+   649        4text æ        \   1temp     *                	subwf	btemp+2,w,c
+   650        4text ¿   #                      u455:
+   651        4text ¿   V   E207               	bc	L7
+   652                           ;pompa.c: 136: {
+   653        4text ¬      +  +   1 ˇ   __Lparam 
+ ?a_ModPmp1     }                	incf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   654                           ;pompa.c: 138: pup=1;
+   655        4text ƒ   &   0E01               	movlw	1
+   656        4text ∆   ^   6ED9               	movwf	fsr2l,c
+   657                           ;pompa.c: 139: }
+   658        4text »   ü   D005               	goto	l54
+   659                           ;pompa.c: 140: else ppwm=PMP.MGPROC;
+   660                           ;pompa.c: 141: }
+   661        4text     W                      l16:
+   662                           ;pompa.c: 148: else
+   663        4text     &   0E08               	movlw	8
+   664        4text Ã         Ï   1ˇ       _StartRTdS 	
+         ¸	    _StartRTdS 	 "          	call	_StartRTdS
+   665        4text –   b                      L7:
+   666                           ;pompa.c: 151: ppwm=PMP.MGPROC;
+   667        4text –        ¿   ¸bss          ¸ ?a_ModPmp1     *          	movff	_PMP,?a_ModPmp1+3
+   668        4text ‘   T                      l54:
+   669                           ;pompa.c: 152: }
+   670        4text ‘           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   671        4text ÷      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp1     D                	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   672        4text ÿ   X   0012               	return	
+   673                           ;pompa.c: 154: }
+   674        4text ⁄   §                      __end_of_ModPmp1:
+   675                           ;pompa.c: 158: void RglPmp1(void)
+   676                           ;pompa.c: 159: {
+   677        4text ⁄   ã                      _RglPmp1:
+   678  000000                     
+   679                           ;pompa.c: 160: PMP.MGPROC=100;
+   680        4text ⁄   (   0E64               	movlw	100
+   681        4text ‹      CFE8      ¸bss  j           	movff	wreg,_PMP
+   682                           ;pompa.c: 161: PMP.MDPROC=DtKNF.mdpm;
+   683        4text ‡        ¿   ¸ _DtKNF             ¸bss     o          	movff	_DtKNF+11,_PMP+1
+   684                           ;pompa.c: 162: DtIN.DDLT=DtKNF.dtpm;
+   685        4text ‰        ¿   ¸ _DtKNF 
+            ¸ _DtIN     h          	movff	_DtKNF+10,_DtIN+5
+   686                           ;pompa.c: 163: if(!M._PRACA)
+   687        4text Ë           1    _M    	 0                	movlb	(_M+27) shr (0+8)
+   688        4text Í        µ   1ˇ    _M    
+ 3                	btfsc	(_M+27)& (0+255),2,b
+   689        4text Ï   Y   D011               	goto	l56
+   690                           ;pompa.c: 164: {
+   691        4text Ó           1    _DtIN    	 3                	movlb	(_DtIN+19) shr (0+8)
+   692        4text         k   1ˇ    _DtIN    
+ q                	clrf	(_DtIN+19)& (0+255),b
+   693                           ;pompa.c: 166: StartRTS(15);
+   694        4text Ú   '   0E0F               	movlw	15
+   695        4text Ù        Ï   1ˇ       _StartRTS 	
+         ¸	    _StartRTS 	 Y          	call	_StartRTS
+   696                           ;pompa.c: 167: if(RD2)
+   697        4text ¯   7   A483               	btfss	3971,2,c	;volatile
+   698        4text ˙   Y   D003               	goto	l57
+   699                           ;pompa.c: 168: {
+   700        4text ¸        ¿   ¸bss          ¸bss     V          	movff	_PMP,_PMP+2
+   701                           ;pompa.c: 170: }
+   702        4text     '   D002               	goto	l58
+   703        4text    W                      l57:
+   704                           ;pompa.c: 171: else
+   705        4text            1   bss    	 1                	movlb	(_PMP+2) shr (0+8)
+   706        4text         k   1ˇ   bss    
+ 1                	clrf	(_PMP+2)& (0+255),b
+   707        4text    T                      l58:
+   708                           ;pompa.c: 174: }
+   709        4text         ¿   ¸bss     *   FFE8         	movff	_PMP+2,wreg
+   710        4text 
+   1   DE7A               	call	_ProcToPmpPwm
+   711        4text          Ô   1ˇ       _WritePWM2 	
+         ¸	    _WritePWM2 	 T          	goto	_WritePWM2
+   712                           ;pompa.c: 176: }
+   713        4text    W                      l56:
+   714                           ;pompa.c: 177: else
+   715        4text            1    _M    	 0                	movlb	(_M+17) shr (0+8)
+   716        4text         ´   1ˇ    _M    
+ 3                	btfss	(_M+17)& (0+255),5,b
+   717        4text    '   D013               	goto	l60
+   718        4text            1    _DtIN 	 .                	movlb	_DtIN shr (0+8)
+   719        4text         ±   1ˇ    _DtIN 
+ 1                	btfsc	_DtIN& (0+255),0,b
+   720        4text    '   D010               	goto	l60
+   721        4text            1    _M    	 0                	movlb	(_M+27) shr (0+8)
+   722        4text         ø   1ˇ    _M    
+ 3                	btfsc	(_M+27)& (0+255),7,b
+   723        4text     '   D00D               	goto	l60
+   724        4text "   '   0E0F               	movlw	15
+   725        4text $        Ï   1ˇ       _RTS 	
+         ¸	    _RTS 	           	call	_RTS
+   726        4text (        n   1temp  &                	movwf	btemp,c
+   727        4text *   '   0E0B               	movlw	11
+   728        4text ,        \   1temp  (                	subwf	btemp,w,c
+   729        4text .   X   E306               	bnc	l60
+   730                           ;pompa.c: 180: {
+   731        4text 0        ¿   ¸bss     *   FFE8         	movff	_PMP+2,wreg
+   732        4text 4   ,   DE86               	call	_ModPmp1
+   733        4text 6      CFE8      ¸bss     W           	movff	wreg,_PMP+2
+   734                           ;pompa.c: 182: }
+   735        4text :   '   D002               	goto	l61
+   736        4text <   W                      l60:
+   737                           ;pompa.c: 183: else
+   738        4text <        ¿   ¸bss          ¸bss     $          	movff	_PMP,_PMP+2
+   739        4text @   T                      l61:
+   740                           ;pompa.c: 186: }
+   741        4text @        ¿   ¸bss     *   FFE8         	movff	_PMP+2,wreg
+   742        4text D   1   DE5D               	call	_ProcToPmpPwm
+   743        4text F         Ô   1ˇ       _WritePWM2 	
+         ¸	    _WritePWM2 	 T          	goto	_WritePWM2
+   744                           ;pompa.c: 188: }
+   745        4text J   ‰                      __end_of_RglPmp1:
+   746                           ;pompa.c: 196: signed char RetMin(signed char a,
+      +                           signed char b)
+   747                           ;pompa.c: 197: {
+   748        4text J            2 ?_RetMin  $                	dw	?_RetMin
+   749        4text L   Ä                      _RetMin:
+   750  000000                     
+   751                           ; _a loaded to fsr2l
+   752        4text L   o   6ED9               	movwf	fsr2l,c
+   753                           ;pompa.c: 198: if(a<=b) return a;
+   754        4text N           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   755        4text P      #  Q   1 ˇ   __Lparam 
+ ?_RetMin  >                	movf	?_RetMin^(__Lparam& (0+65280)),w
+   756        4text R   (   0A80               	xorlw	128
+   757        4text T        n   1temp  &                	movwf	btemp,c
+   758        4text V   -   50D9               	movf	fsr2l,w,c
+   759        4text X   (   0A80               	xorlw	128
+   760        4text Z        \   1temp  (                	subwf	btemp,w,c
+   761        4text \   &   E302               	bnc	l63
+   762        4text ^   -   50D9               	movf	fsr2l,w,c
+   763        4text `   &   0012               	return	
+   764        4text b   \                      l63:
+   765                           ;pompa.c: 199: return b;
+   766        4text b           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   767        4text d      #  Q   1 ˇ   __Lparam 
+ ?_RetMin  >                	movf	?_RetMin^(__Lparam& (0+65280)),w
+   768        4text f   X   0012               	return	
+   769                           ;pompa.c: 200: }
+   770        4text h   „                      __end_of_RetMin:
+   771                           ;pompa.c: 203: signed char RetMax(signed char a,
+      +                           signed char b)
+   772                           ;pompa.c: 204: {
+   773        4text h            2 ?_RetMax  $                	dw	?_RetMax
+   774        4text j   Ä                      _RetMax:
+   775  000000                     
+   776                           ; _a loaded to fsr2l
+   777        4text j   o   6ED9               	movwf	fsr2l,c
+   778                           ;pompa.c: 205: if(a>=b) return a;
+   779        4text l   -   50D9               	movf	fsr2l,w,c
+   780        4text n   (   0A80               	xorlw	128
+   781        4text p        n   1temp  &                	movwf	btemp,c
+   782        4text r           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   783        4text t      #  Q   1 ˇ   __Lparam 
+ ?_RetMax  >                	movf	?_RetMax^(__Lparam& (0+65280)),w
+   784        4text v   (   0A80               	xorlw	128
+   785        4text x        \   1temp  (                	subwf	btemp,w,c
+   786        4text z   &   E302               	bnc	l65
+   787        4text |   -   50D9               	movf	fsr2l,w,c
+   788        4text ~   &   0012               	return	
+   789        4text Ä   \                      l65:
+   790                           ;pompa.c: 206: return b;
+   791        4text Ä           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   792        4text Ç      #  Q   1 ˇ   __Lparam 
+ ?_RetMax  >                	movf	?_RetMax^(__Lparam& (0+65280)),w
+   793        4text Ñ   X   0012               	return	
+   794                           ;pompa.c: 207: }
+   795        4text Ü   ˇ                      __end_of_RetMax:
+   796                           ;pompa.c: 211: unsigned char RetHI(unsigned char
+      +                           pco, unsigned char eco, unsigned char max)
+   797                           ;pompa.c: 212: {
+   798        4text Ü            2 ?_RetHI  #                	dw	?_RetHI
+   799        4text à   Å                      _RetHI:
+   800  000000                     
+   801                           ; _pco loaded to fsr1l
+   802        4text à   k   6EE1               	movwf	fsr1l,c
+   803                           ;pompa.c: 213: signed char w;
+   804        4text ä   -   50E1               	movf	fsr1l,w,c
+   805        4text å           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   806        4text é      (  a   1 ˇ   __Lparam 
+ ?_RetHI     C                	cpfslt	(?_RetHI+1)^(__Lparam& (0+65280)),b
+   807        4text ê   '   D002               	goto	l67
+   808        4text í   -   50E1               	movf	fsr1l,w,c
+   809        4text î   &   D002               	goto	L2
+   810        4text ñ   a                      l67:
+   811                           ;pompa.c: 217: else emax=max;
+   812        4text ñ           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   813        4text ò      (  Q   1 ˇ   __Lparam 
+ ?_RetHI     A                	movf	(?_RetHI+1)^(__Lparam& (0+65280)),w
+   814        4text ö   !                      L2:
+   815        4text ö   t   6ED9               	movwf	fsr2l,c
+   816                           ;pompa.c: 219: k=(emax-DtIN.Eco5HI)/4;
+   817        4text ú   &   0E04               	movlw	4
+   818        4text û        n   1temp     (                	movwf	btemp+2,c
+   819        4text †        j   1temp     '                	clrf	btemp+3,c
+   820        4text ¢        ¿   ¸ _DtIN     ,   FFE8         	movff	_DtIN+11,wreg
+   821        4text ¶      CFD9      ¸temp  %           	movff	fsr2l,btemp
+   822        4text ™        j   1temp     '                	clrf	btemp+1,c
+   823        4text ¨        ^   1temp  (                	subwf	btemp,f,c
+   824        4text Æ   &   0E00               	movlw	0
+   825        4text ∞        Z   1temp     +                	subwfb	btemp+1,f,c
+   826        4text ≤        Ï   1ˇ       awdiv 	
+         ¸	    awdiv 	           	call	awdiv
+   827        4text ∂        P   1temp     )                	movf	btemp+4,w,c
+   828        4text ∏   y   6EE9               	movwf	fsr0l,c
+   829                           ;pompa.c: 220: w=(DtIN.Eco5HI+((5-eco)*k));
+   830        4text ∫           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   831        4text º      "  Q   1 ˇ   __Lparam 
+ ?_RetHI  =                	movf	?_RetHI^(__Lparam& (0+65280)),w
+   832        4text æ   &   0805               	sublw	5
+   833        4text ¿   ,   02E9               	mulwf	fsr0l,c
+   834        4text ¬        ¿   ¸ _DtIN     ,   FFE8         	movff	_DtIN+11,wreg
+   835        4text ∆   .   24F3               	addwf	prodl,w,c
+   836        4text »   §   6EE1               	movwf	fsr1l,c
+   837                           ;pompa.c: 221: if(w<=emax&&w>=DtIN.Eco5LO) retur
+      +                          n w;
+   838        4text     -   50D9               	movf	fsr2l,w,c
+   839        4text Ã   .   BEE1               	btfsc	fsr1l,7,c
+   840        4text Œ   (   D003               	goto	u580
+   841        4text –   (   0AFF               	xorlw	255
+   842        4text “   .   24E1               	addwf	fsr1l,w,c
+   843        4text ‘   %   E214               	bc	l69
+   844        4text ÷   #                      u580:
+   845        4text ÷        ¿   ¸ _DtIN             ¸temp     )          	movff	_DtIN+12,btemp+2
+   846        4text ⁄        j   1temp     '                	clrf	btemp+3,c
+   847        4text ‹      CFE1      ¸temp  %           	movff	fsr1l,btemp
+   848        4text ‡        j   1temp     '                	clrf	btemp+1,c
+   849        4text ‚        æ   1temp  (                	btfsc	btemp,7,c
+   850        4text ‰           1temp     )                	decf	btemp+1,f,c
+   851        4text Ê        P   1temp     )                	movf	btemp+1,w,c
+   852        4text Ë   (   0A80               	xorlw	128
+   853        4text Í        n   1temp     (                	movwf	btemp+4,c
+   854        4text Ï        P   1temp     )                	movf	btemp+3,w,c
+   855        4text Ó   (   0A80               	xorlw	128
+   856        4text         \   1temp     *                	subwf	btemp+4,w,c
+   857        4text Ú   '   E102               	bnz	u595
+   858        4text Ù        P   1temp     )                	movf	btemp+2,w,c
+   859        4text ˆ        \   1temp  (                	subwf	btemp,w,c
+   860        4text ¯   #                      u595:
+   861        4text ¯   &   E302               	bnc	l69
+   862        4text ˙   -   50E1               	movf	fsr1l,w,c
+   863        4text ¸   &   0012               	return	
+   864        4text ˛   W                      l69:
+   865                           ;pompa.c: 222: else
+   866        4text ˛   -   50D9               	movf	fsr2l,w,c
+   867        4text     -   94D8               	bcf	status,2,c
+   868        4text    -   90D8               	bcf	status,0,c
+   869        4text    .   AEE1               	btfss	fsr1l,7,c
+   870        4text    .   5CE1               	subwf	fsr1l,w,c
+   871        4text    /   B4D8               	btfsc	status,2,c
+   872        4text 
+   -   90D8               	bcf	status,0,c
+   873        4text    &   E302               	bnc	l71
+   874        4text    -   50D9               	movf	fsr2l,w,c
+   875        4text    &   0012               	return	
+   876        4text    k                      l71:
+   877                           ;pompa.c: 224: else return DtIN.Eco5LO;
+   878        4text         ¿   ¸ _DtIN     ,   FFE8         	movff	_DtIN+12,wreg
+   879        4text    X   0012               	return	
+   880                           ;pompa.c: 225: }
+   881        4text    ˛                      __end_of_RetHI:
+   882                           ;pompa.c: 229: unsigned char RetLO(unsigned char
+      +                           pco, unsigned char eco, unsigned char min)
+   883                           ;pompa.c: 230: {
+   884        4text             2 ?_RetLO  #                	dw	?_RetLO
+   885        4text    Å                      _RetLO:
+   886  000000                     
+   887                           ; _pco loaded to fsr1l
+   888        4text    k   6EE1               	movwf	fsr1l,c
+   889                           ;pompa.c: 231: signed char w;
+   890        4text         ¿   ¸ _DtIN     ,   FFE8         	movff	_DtIN+11,wreg
+   891        4text     -   60E1               	cpfslt	fsr1l,c
+   892        4text "   '   D003               	goto	l74
+   893        4text $   -   50E1               	movf	fsr1l,w,c
+   894        4text &   ,   6ED9               	movwf	fsr2l,c
+   895        4text (   '   D002               	goto	l75
+   896        4text *   h                      l74:
+   897                           ;pompa.c: 235: else ehi=DtIN.Eco5HI;
+   898        4text *        ¿   ¸ _DtIN     -   FFD9         	movff	_DtIN+11,fsr2l
+   899        4text .   i                      l75:
+   900                           ;pompa.c: 237: k=(ehi-DtIN.Eco5LO)/4;
+   901        4text .   &   0E04               	movlw	4
+   902        4text 0        n   1temp     (                	movwf	btemp+2,c
+   903        4text 2        j   1temp     '                	clrf	btemp+3,c
+   904        4text 4        ¿   ¸ _DtIN     ,   FFE8         	movff	_DtIN+12,wreg
+   905        4text 8      CFD9      ¸temp  %           	movff	fsr2l,btemp
+   906        4text <        j   1temp     '                	clrf	btemp+1,c
+   907        4text >        ^   1temp  (                	subwf	btemp,f,c
+   908        4text @   &   0E00               	movlw	0
+   909        4text B        Z   1temp     +                	subwfb	btemp+1,f,c
+   910        4text D        Ï   1ˇ       awdiv 	
+         ¸	    awdiv 	           	call	awdiv
+   911        4text H        P   1temp     )                	movf	btemp+4,w,c
+   912        4text J   y   6EE9               	movwf	fsr0l,c
+   913                           ;pompa.c: 238: w=(DtIN.Eco5LO+((5-eco)*k));
+   914        4text L           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   915        4text N      "  Q   1 ˇ   __Lparam 
+ ?_RetLO  =                	movf	?_RetLO^(__Lparam& (0+65280)),w
+   916        4text P   &   0805               	sublw	5
+   917        4text R   ,   02E9               	mulwf	fsr0l,c
+   918        4text T        ¿   ¸ _DtIN     ,   FFE8         	movff	_DtIN+12,wreg
+   919        4text X   .   24F3               	addwf	prodl,w,c
+   920        4text Z   y   6EE1               	movwf	fsr1l,c
+   921                           ;pompa.c: 240: if(w<=ehi&&w>=min) return w;
+   922        4text \   -   50D9               	movf	fsr2l,w,c
+   923        4text ^   .   BEE1               	btfsc	fsr1l,7,c
+   924        4text `   (   D003               	goto	u630
+   925        4text b   (   0AFF               	xorlw	255
+   926        4text d   .   24E1               	addwf	fsr1l,w,c
+   927        4text f   %   E214               	bc	l76
+   928        4text h   #                      u630:
+   929        4text h        ¿   ¸ ?_RetLO             ¸temp     *          	movff	?_RetLO+1,btemp+2
+   930        4text l        j   1temp     '                	clrf	btemp+3,c
+   931        4text n      CFE1      ¸temp  %           	movff	fsr1l,btemp
+   932        4text r        j   1temp     '                	clrf	btemp+1,c
+   933        4text t        æ   1temp  (                	btfsc	btemp,7,c
+   934        4text v           1temp     )                	decf	btemp+1,f,c
+   935        4text x        P   1temp     )                	movf	btemp+1,w,c
+   936        4text z   (   0A80               	xorlw	128
+   937        4text |        n   1temp     (                	movwf	btemp+4,c
+   938        4text ~        P   1temp     )                	movf	btemp+3,w,c
+   939        4text Ä   (   0A80               	xorlw	128
+   940        4text Ç        \   1temp     *                	subwf	btemp+4,w,c
+   941        4text Ñ   '   E102               	bnz	u645
+   942        4text Ü        P   1temp     )                	movf	btemp+2,w,c
+   943        4text à        \   1temp  (                	subwf	btemp,w,c
+   944        4text ä   #                      u645:
+   945        4text ä   &   E302               	bnc	l76
+   946        4text å   -   50E1               	movf	fsr1l,w,c
+   947        4text é   &   0012               	return	
+   948        4text ê   W                      l76:
+   949                           ;pompa.c: 241: else
+   950        4text ê   -   50D9               	movf	fsr2l,w,c
+   951        4text í   -   94D8               	bcf	status,2,c
+   952        4text î   -   90D8               	bcf	status,0,c
+   953        4text ñ   .   AEE1               	btfss	fsr1l,7,c
+   954        4text ò   .   5CE1               	subwf	fsr1l,w,c
+   955        4text ö   /   B4D8               	btfsc	status,2,c
+   956        4text ú   -   90D8               	bcf	status,0,c
+   957        4text û   &   E302               	bnc	l78
+   958        4text †   -   50D9               	movf	fsr2l,w,c
+   959        4text ¢   &   0012               	return	
+   960        4text §   c                      l78:
+   961                           ;pompa.c: 243: else return min;
+   962        4text §           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   963        4text ¶      (  Q   1 ˇ   __Lparam 
+ ?_RetLO     A                	movf	(?_RetLO+1)^(__Lparam& (0+65280)),w
+   964        4text ®   X   0012               	return	
+   965                           ;pompa.c: 244: }
+   966        4text ™   Î                      __end_of_RetLO:
+   967                           ;pompa.c: 247: signed char RetDelta1(unsigned ch
+      +                          ar pco,unsigned char hi)
+   968                           ;pompa.c: 248: {
+   969        4text ™            2 ?_RetDelta1  '                	dw	?_RetDelta1
+   970        4text ¨   Ö                      _RetDelta1:
+   971  000000                     
+   972                           ; _pco loaded to fsr2l
+   973        4text ¨   m   6ED9               	movwf	fsr2l,c
+   974                           ;pompa.c: 249: return (pco-hi);
+   975        4text Æ           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   976        4text ∞      &  Q   1 ˇ   __Lparam 
+ ?_RetDelta1  A                	movf	?_RetDelta1^(__Lparam& (0+65280)),w
+   977        4text ≤   .   5CD9               	subwf	fsr2l,w,c
+   978        4text ¥   X   0012               	return	
+   979                           ;pompa.c: 250: }
+   980        4text ∂   Ò                      __end_of_RetDelta1:
+   981                           ;pompa.c: 254: signed char RetDelta2(unsigned ch
+      +                          ar eco,unsigned char ddlt)
+   982                           ;pompa.c: 255: {
+   983        4text ∂            2 ?_RetDelta2  '                	dw	?_RetDelta2
+   984        4text ∏   Ö                      _RetDelta2:
+   985  000000                     
+   986                           ; _eco loaded to fsr1l
+   987        4text ∏   n   6EE1               	movwf	fsr1l,c
+   988                           ;pompa.c: 256: unsigned char kD;
+   989        4text ∫           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   990        4text º      &  A   1 ˇ   __Lparam 
+ ?_RetDelta2  B                	rrncf	?_RetDelta2^(__Lparam& (0+65280)),w
+   991        4text æ   -   42E8               	rrncf	wreg,f,c
+   992        4text ¿   '   0B3F               	andlw	63
+   993        4text ¬   x   6ED9               	movwf	fsr2l,c
+   994                           ;pompa.c: 259: return (ddlt+(kD*(eco-5)));
+   995        4text ƒ   -   50E1               	movf	fsr1l,w,c
+   996        4text ∆   '   0FFB               	addlw	-5
+   997        4text »   ,   02D9               	mulwf	fsr2l,c
+   998        4text        &  Q   1 ˇ   __Lparam 
+ ?_RetDelta2  A                	movf	?_RetDelta2^(__Lparam& (0+65280)),w
+   999        4text Ã   .   24F3               	addwf	prodl,w,c
+  1000        4text Œ   X   0012               	return	
+  1001                           ;pompa.c: 260: }
+  1002        4text –   Ô                      __end_of_RetDelta2:
+  1003                           ;pompa.c: 263: signed char RetDelta3(unsigned ch
+      +                          ar pco,unsigned char lo)
+  1004                           ;pompa.c: 264: {
+  1005        4text –            2 ?_RetDelta3  '                	dw	?_RetDelta3
+  1006        4text “   Ö                      _RetDelta3:
+  1007  000000                     
+  1008                           ; _pco loaded to fsr2l
+  1009        4text “   m   6ED9               	movwf	fsr2l,c
+  1010                           ;pompa.c: 265: return (pco-lo);
+  1011        4text ‘           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1012        4text ÷      &  Q   1 ˇ   __Lparam 
+ ?_RetDelta3  A                	movf	?_RetDelta3^(__Lparam& (0+65280)),w
+  1013        4text ÿ   .   5CD9               	subwf	fsr2l,w,c
+  1014        4text ⁄   X   0012               	return	
+  1015                           ;pompa.c: 266: }
+  1016        4text ‹   6                     __end_of_RetDelta3:
+  1017                           ;pompa.c: 269: unsigned char RetDelta4(unsigned 
+      +                          char pco,unsigned char eco,unsigned char hi,unsi
+      +                          gned char lo)
+  1018                           ;pompa.c: 270: {
+  1019        4text ‹            2 ?_RetDelta4  '                	dw	?_RetDelta4
+  1020        4text ﬁ   Ö                      _RetDelta4:
+  1021  000000                     
+  1022                           ; _pco loaded to fsr0l
+  1023        4text ﬁ   k   6EE9               	movwf	fsr0l,c
+  1024                           ;pompa.c: 271: signed char d;
+  1025        4text ‡           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1026        4text ‚      ,  Q   1 ˇ   __Lparam 
+ ?_RetDelta4     E                	movf	(?_RetDelta4+1)^(__Lparam& (0+65280)),w
+  1027        4text ‰      &  o   1 ˇ   __Lparam 
+ ?_RetDelta1  B                	movwf	?_RetDelta1^(__Lparam& (0+65280)),b
+  1028        4text Ê   -   50E9               	movf	fsr0l,w,c
+  1029        4text Ë   .   DFE1               	call	_RetDelta1
+  1030        4text Í      CFE8      ¸ _DtIN     v           	movff	wreg,_DtIN+15
+  1031                           ;pompa.c: 274: DtIN.delta2=RetDelta2(eco,20);
+  1032        4text Ó   '   0E14               	movlw	20
+  1033        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1034        4text Ú      &  o   1 ˇ   __Lparam 
+ ?_RetDelta2  B                	movwf	?_RetDelta2^(__Lparam& (0+65280)),b
+  1035        4text Ù      &  Q   1 ˇ   __Lparam 
+ ?_RetDelta4  A                	movf	?_RetDelta4^(__Lparam& (0+65280)),w
+  1036        4text ˆ   .   DFE0               	call	_RetDelta2
+  1037        4text ¯      CFE8      ¸ _DtIN     v           	movff	wreg,_DtIN+16
+  1038                           ;pompa.c: 275: DtIN.delta3=RetDelta3(pco,lo);
+  1039        4text ¸           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1040        4text ˛      ,  Q   1 ˇ   __Lparam 
+ ?_RetDelta4     E                	movf	(?_RetDelta4+2)^(__Lparam& (0+65280)),w
+  1041        4text        &  o   1 ˇ   __Lparam 
+ ?_RetDelta3  B                	movwf	?_RetDelta3^(__Lparam& (0+65280)),b
+  1042        4text    -   50E9               	movf	fsr0l,w,c
+  1043        4text    .   DFE6               	call	_RetDelta3
+  1044        4text       CFE8      ¸ _DtIN     ∞           	movff	wreg,_DtIN+17
+  1045                           ;pompa.c: 276: d=RetMin(DtIN.delta3,RetMax(DtIN.
+      +                          delta1,DtIN.delta2));
+  1046        4text 
+        ¿   ¸ _DtIN             ¸ ?_RetMax  *          	movff	_DtIN+16,?_RetMax
+  1047        4text         ¿   ¸ _DtIN     ,   FFE8         	movff	_DtIN+15,wreg
+  1048        4text    +   DF2B               	call	_RetMax
+  1049        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1050        4text       #  o   1 ˇ   __Lparam 
+ ?_RetMin  ?                	movwf	?_RetMin^(__Lparam& (0+65280)),b
+  1051        4text         ¿   ¸ _DtIN     ,   FFE8         	movff	_DtIN+17,wreg
+  1052        4text    +   DF17               	call	_RetMin
+  1053        4text    n   6EE9               	movwf	fsr0l,c
+  1054                           ;pompa.c: 277: if(d>0) return d;
+  1055        4text     -   50E9               	movf	fsr0l,w,c
+  1056        4text "   (   0A80               	xorlw	128
+  1057        4text $   )   0F7F               	addlw	-129
+  1058        4text &   &   E302               	bnc	l84
+  1059        4text (   -   50E9               	movf	fsr0l,w,c
+  1060        4text *   &   0012               	return	
+  1061        4text ,   \                      l84:
+  1062                           ;pompa.c: 278: return 0;
+  1063        4text ,   X   0C00               	retlw	0
+  1064                           ;pompa.c: 279: }
+  1065        4text .   ‚                      __end_of_RetDelta4:
+  1066                           ;pompa.c: 282: unsigned char RetKrkDelta(unsigne
+      +                          d char pco)
+  1067                           ;pompa.c: 283: {
+  1068        4text .   á                      _RetKrkDelta:
+  1069  000000                     
+  1070                           ;_pco stored from wreg
+  1071        4text .           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1072        4text 0      /  o   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     ∂                	movwf	(?a_RetKrkDelta+3)^(__Lparam& (0+65280)),
+      +                          b
+  1073                           ;pompa.c: 284: unsigned char i,d,min,max;
+  1074        4text 2      /  k   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     Å                	clrf	(?a_RetKrkDelta+1)^(__Lparam& (0+65280)),b
+  1075                           ;pompa.c: 287: min=100;
+  1076        4text 4   (   0E64               	movlw	100
+  1077        4text 6      /  o   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     ≠                	movwf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),
+      +                          b
+  1078                           ;pompa.c: 288: for(i=1;i<10;i++)
+  1079        4text 8   &   0E01               	movlw	1
+  1080        4text :      /  o   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     k                	movwf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),
+      +                          b
+  1081        4text <   T                      l86:
+  1082                           ;pompa.c: 289: {
+  1083        4text <           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1084        4text >      /  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     H                	movf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),w
+  1085        4text @      &  o   1 ˇ   __Lparam 
+ ?_RetDelta4  B                	movwf	?_RetDelta4^(__Lparam& (0+65280)),b
+  1086        4text B      /  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     H                	movf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),w
+  1087        4text D      "  o   1 ˇ   __Lparam 
+ ?_RetHI  >                	movwf	?_RetHI^(__Lparam& (0+65280)),b
+  1088        4text F   '   0E50               	movlw	80
+  1089        4text H      (  o   1 ˇ   __Lparam 
+ ?_RetHI     B                	movwf	(?_RetHI+1)^(__Lparam& (0+65280)),b
+  1090        4text J      /  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     H                	movf	(?a_RetKrkDelta+3)^(__Lparam& (0+65280)),w
+  1091        4text L   *   DF1D               	call	_RetHI
+  1092        4text N           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1093        4text P      ,  o   1 ˇ   __Lparam 
+ ?_RetDelta4     F                	movwf	(?_RetDelta4+1)^(__Lparam& (0+65280)),b
+  1094        4text R      /  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     H                	movf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),w
+  1095        4text T      "  o   1 ˇ   __Lparam 
+ ?_RetLO  >                	movwf	?_RetLO^(__Lparam& (0+65280)),b
+  1096        4text V   '   0E0A               	movlw	10
+  1097        4text X      (  o   1 ˇ   __Lparam 
+ ?_RetLO     B                	movwf	(?_RetLO+1)^(__Lparam& (0+65280)),b
+  1098        4text Z      /  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     H                	movf	(?a_RetKrkDelta+3)^(__Lparam& (0+65280)),w
+  1099        4text \   *   DF5E               	call	_RetLO
+  1100        4text ^           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1101        4text `      ,  o   1 ˇ   __Lparam 
+ ?_RetDelta4     F                	movwf	(?_RetDelta4+2)^(__Lparam& (0+65280)),b
+  1102        4text b      /  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     H                	movf	(?a_RetKrkDelta+3)^(__Lparam& (0+65280)),w
+  1103        4text d   .   DFBC               	call	_RetDelta4
+  1104        4text f           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1105        4text h      )  o   1 ˇ   __Lparam 
+ ?a_RetKrkDelta  Ü                	movwf	?a_RetKrkDelta^(__Lparam& (0+65280)),b
+  1106                           ;pompa.c: 291: if(d>max) max=d;
+  1107        4text j      )  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta  D                	movf	?a_RetKrkDelta^(__Lparam& (0+65280)),w
+  1108        4text l      /  a   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     l                	cpfslt	(?a_RetKrkDelta+1)^(__Lparam& (0+65280))
+      +                          ,b
+  1109        4text n   '   D002               	goto	l89
+  1110        4text p      )  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta  D                	movf	?a_RetKrkDelta^(__Lparam& (0+65280)),w
+  1111        4text r      /  o   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     k                	movwf	(?a_RetKrkDelta+1)^(__Lparam& (0+65280)),
+      +                          b
+  1112        4text t   c                      l89:
+  1113                           ;pompa.c: 292: if(d<min) min=d;
+  1114        4text t           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1115        4text v      /  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     H                	movf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),w
+  1116        4text x      )  a   1 ˇ   __Lparam 
+ ?a_RetKrkDelta  F                	cpfslt	?a_RetKrkDelta^(__Lparam& (0+65280)),b
+  1117        4text z   '   D002               	goto	l90
+  1118        4text |      )  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta  D                	movf	?a_RetKrkDelta^(__Lparam& (0+65280)),w
+  1119        4text ~      /  o   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     k                	movwf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),
+      +                          b
+  1120        4text Ä   "                      l90:
+  1121        4text Ä           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1122        4text Ç      /  +   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     l                	incf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),f
+      +                          ,b
+  1123        4text Ñ   &   0E09               	movlw	9
+  1124        4text Ü      /  e   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     l                	cpfsgt	(?a_RetKrkDelta+4)^(__Lparam& (0+65280))
+      +                          ,b
+  1125        4text à   Y   D7D9               	goto	l86
+  1126                           ;pompa.c: 293: }
+  1127        4text ä      /  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     H                	movf	(?a_RetKrkDelta+1)^(__Lparam& (0+65280)),w
+  1128        4text å      /  ]   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     k                	subwf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),
+      +                          w
+  1129        4text é   &   E301               	bnc	l91
+  1130        4text ê   &   0C00               	retlw	0
+  1131        4text í   k                      l91:
+  1132                           ;pompa.c: 295: return ((max-min)*10)/9;
+  1133        4text í   '   0E0A               	movlw	10
+  1134        4text î        n   1temp     (                	movwf	btemp+2,c
+  1135        4text ñ        j   1temp     '                	clrf	btemp+3,c
+  1136        4text ò           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1137        4text ö      /  Q   1 ˇ   __Lparam 
+ ?a_RetKrkDelta     H                	movf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),w
+  1138        4text ú        ¿   ¸ ?a_RetKrkDelta             ¸temp  /          	movff	?a_RetKrkDelta+1,btemp
+  1139        4text †        j   1temp     '                	clrf	btemp+1,c
+  1140        4text ¢        ^   1temp  (                	subwf	btemp,f,c
+  1141        4text §   &   0E00               	movlw	0
+  1142        4text ¶        Z   1temp     +                	subwfb	btemp+1,f,c
+  1143        4text ®        Ï   1ˇ       awmul 	
+         ¸	    awmul 	           	call	awmul
+  1144        4text ¨        ¿   ¸temp             ¸temp  &          	movff	btemp+4,btemp
+  1145        4text ∞        ¿   ¸temp             ¸temp     (          	movff	btemp+5,btemp+1
+  1146        4text ¥   &   0E09               	movlw	9
+  1147        4text ∂        n   1temp     (                	movwf	btemp+2,c
+  1148        4text ∏        j   1temp     '                	clrf	btemp+3,c
+  1149        4text ∫        Ï   1ˇ       awdiv 	
+         ¸	    awdiv 	           	call	awdiv
+  1150        4text æ        P   1temp     )                	movf	btemp+4,w,c
+  1151        4text ¿   X   0012               	return	
+  1152                           ;pompa.c: 296: }
+  1153        4text ¬   Û                      __end_of_RetKrkDelta:
+  1154                           ;pompa.c: 299: unsigned char RetDelta(unsigned c
+      +                          har pco,unsigned char eco)
+  1155                           ;pompa.c: 300: {
+  1156        4text ¬            2 ?_RetDelta  &                	dw	?_RetDelta
+  1157        4text ƒ   Ñ                      _RetDelta:
+  1158  000000                     
+  1159                           ;_pco stored from wreg
+  1160        4text ƒ           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1161        4text ∆      &  o   1 ˇ   __Lparam 
+ ?a_RetDelta  É                	movwf	?a_RetDelta^(__Lparam& (0+65280)),b
+  1162                           ;pompa.c: 301: unsigned char k;
+  1163        4text »      &  Q   1 ˇ   __Lparam 
+ ?a_RetDelta  A                	movf	?a_RetDelta^(__Lparam& (0+65280)),w
+  1164        4text     0   DFB1               	call	_RetKrkDelta
+  1165        4text Ã           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1166        4text Œ      ,  o   1 ˇ   __Lparam 
+ ?a_RetDelta     ñ                	movwf	(?a_RetDelta+1)^(__Lparam& (0+65280)),b
+  1167                           ;pompa.c: 304: if(eco&&k) return (k*(eco))/10;
+  1168        4text –      %  Q   1 ˇ   __Lparam 
+ ?_RetDelta  @                	movf	?_RetDelta^(__Lparam& (0+65280)),w
+  1169        4text “   %   E00F               	bz	l93
+  1170        4text ‘      ,  Q   1 ˇ   __Lparam 
+ ?a_RetDelta     E                	movf	(?a_RetDelta+1)^(__Lparam& (0+65280)),w
+  1171        4text ÷   %   E00D               	bz	l93
+  1172        4text ÿ   '   0E0A               	movlw	10
+  1173        4text ⁄        n   1temp     (                	movwf	btemp+2,c
+  1174        4text ‹        j   1temp     '                	clrf	btemp+3,c
+  1175        4text ﬁ      ,  Q   1 ˇ   __Lparam 
+ ?a_RetDelta     E                	movf	(?a_RetDelta+1)^(__Lparam& (0+65280)),w
+  1176        4text ‡      %     1 ˇ   __Lparam 
+ ?_RetDelta  A                	mulwf	?_RetDelta^(__Lparam& (0+65280)),b
+  1177        4text ‚      CFF3      ¸temp  %           	movff	prodl,btemp
+  1178        4text Ê      CFF4      ¸temp     '           	movff	prodh,btemp+1
+  1179        4text Í        Ï   1ˇ       awdiv 	
+         ¸	    awdiv 	           	call	awdiv
+  1180        4text Ó        P   1temp     )                	movf	btemp+4,w,c
+  1181        4text    &   0012               	return	
+  1182        4text Ú   a                      l93:
+  1183                           ;pompa.c: 305: else return 0;
+  1184        4text Ú   X   0C00               	retlw	0
+  1185                           ;pompa.c: 306: }
+  1186        4text Ù   €                      __end_of_RetDelta:
+  1187                           ;pompa.c: 310: unsigned char ModPmp2(unsigned ch
+      +                          ar p)
+  1188                           ;pompa.c: 311: {
+  1189        4text Ù   Å                      _ModPmp2:
+  1190  000000                     
+  1191                           ;_p stored from wreg
+  1192        4text Ù           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1193        4text ˆ      %  o   1 ˇ   __Lparam 
+ ?a_ModPmp2  ∂                	movwf	?a_ModPmp2^(__Lparam& (0+65280)),b
+  1194                           ;pompa.c: 312: unsigned char ppwm, tim, pup, pdw
+      +                          ;
+  1195        4text ¯   '   0E19               	movlw	25
+  1196        4text ˙      CFE8      ¸ _DtIN     g           	movff	wreg,_DtIN+12
+  1197                           ;pompa.c: 316: DtIN.Eco5HI=55;
+  1198        4text ˛   '   0E37               	movlw	55
+  1199        4text        CFE8      ¸ _DtIN     f           	movff	wreg,_DtIN+11
+  1200                           ;pompa.c: 317: if(DtIN.PPEco)
+  1201        4text       !  Ó   ˆ    _DtIN 
+   	   
+         1 _DtIN 
+   ˇ   
+ "          	lfsr	0,_DtIN+10
+  1202        4text    -   50EF               	movf	indf0,w,c
+  1203        4text 
+   W   E020               	bz	l96
+  1204                           ;pompa.c: 318: {
+  1205        4text            1    _DtIN 
+   	 3                	movlb	(_DtIN+10) shr (0+8)
+  1206        4text            1ˇ    _DtIN 
+   
+ 5                	decf	(_DtIN+10)& (0+255),w,b
+  1207        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1208        4text       "  o   1 ˇ   __Lparam 
+ ?_RetHI  >                	movwf	?_RetHI^(__Lparam& (0+65280)),b
+  1209        4text    '   0E50               	movlw	80
+  1210        4text       (  o   1 ˇ   __Lparam 
+ ?_RetHI     B                	movwf	(?_RetHI+1)^(__Lparam& (0+65280)),b
+  1211        4text         ¿   ¸ _DtCO     +   FFE8         	movff	_DtCO+4,wreg
+  1212        4text    *   DEB5               	call	_RetHI
+  1213        4text       CFE8      ¸ _DtIN     £           	movff	wreg,_DtIN+13
+  1214                           ;pompa.c: 320: DtIN.LO=RetLO(DtCO.PPCO,DtIN.PPEc
+      +                          o-1,10);
+  1215        4text "           1    _DtIN 
+   	 3                	movlb	(_DtIN+10) shr (0+8)
+  1216        4text $           1ˇ    _DtIN 
+   
+ 5                	decf	(_DtIN+10)& (0+255),w,b
+  1217        4text &           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1218        4text (      "  o   1 ˇ   __Lparam 
+ ?_RetLO  >                	movwf	?_RetLO^(__Lparam& (0+65280)),b
+  1219        4text *   '   0E0A               	movlw	10
+  1220        4text ,      (  o   1 ˇ   __Lparam 
+ ?_RetLO     B                	movwf	(?_RetLO+1)^(__Lparam& (0+65280)),b
+  1221        4text .        ¿   ¸ _DtCO     +   FFE8         	movff	_DtCO+4,wreg
+  1222        4text 2   *   DEF3               	call	_RetLO
+  1223        4text 4      CFE8      ¸ _DtIN     ¶           	movff	wreg,_DtIN+14
+  1224                           ;pompa.c: 321: DtIN.delta=RetDelta(DtCO.PPCO,DtI
+      +                          N.PPEco-1);
+  1225        4text 8           1    _DtIN 
+   	 3                	movlb	(_DtIN+10) shr (0+8)
+  1226        4text :           1ˇ    _DtIN 
+   
+ 5                	decf	(_DtIN+10)& (0+255),w,b
+  1227        4text <           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1228        4text >      %  o   1 ˇ   __Lparam 
+ ?_RetDelta  A                	movwf	?_RetDelta^(__Lparam& (0+65280)),b
+  1229        4text @        ¿   ¸ _DtCO     +   FFE8         	movff	_DtCO+4,wreg
+  1230        4text D   -   DFBF               	call	_RetDelta
+  1231        4text F      CFE8      ¸ _DtIN     Y           	movff	wreg,_DtIN+18
+  1232                           ;pompa.c: 322: }
+  1233        4text J   '   D004               	goto	l97
+  1234        4text L   W                      l96:
+  1235                           ;pompa.c: 323: else
+  1236        4text L           1    _DtIN    	 3                	movlb	(_DtIN+13) shr (0+8)
+  1237        4text N        k   1ˇ    _DtIN    
+ o                	clrf	(_DtIN+13)& (0+255),b
+  1238                           ;pompa.c: 326: DtIN.LO==0;
+  1239        4text P           1    _DtIN    	 3                	movlb	(_DtIN+18) shr (0+8)
+  1240        4text R        k   1ˇ    _DtIN    
+ 3                	clrf	(_DtIN+18)& (0+255),b
+  1241        4text T   T                      l97:
+  1242                           ;pompa.c: 328: }
+  1243        4text T      !  Ó   ˆ    _DtIN    	   
+         1 _DtIN    ˇ   
+ "          	lfsr	0,_DtIN+18
+  1244        4text X   -   50EF               	movf	indf0,w,c
+  1245        4text Z   X   E106               	bnz	l98
+  1246                           ;pompa.c: 330: {
+  1247        4text \   &   0E08               	movlw	8
+  1248        4text ^         Ï   1ˇ       _StartRTdS 	
+         ¸	    _StartRTdS 	 e          	call	_StartRTdS
+  1249                           ;pompa.c: 332: return PMP.MGPROC;
+  1250        4text b        ¿   ¸bss  (   FFE8         	movff	_PMP,wreg
+  1251        4text f   &   0012               	return	
+  1252        4text h   T                      l98:
+  1253                           ;pompa.c: 333: }
+  1254        4text h           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1255        4text j      %  Q   1 ˇ   __Lparam 
+ ?a_ModPmp2  @                	movf	?a_ModPmp2^(__Lparam& (0+65280)),w
+  1256        4text l      +  o   1 ˇ   __Lparam 
+ ?a_ModPmp2     í                	movwf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),b
+  1257                           ;pompa.c: 338: if(rgl.fz||ppwm!=PMP.MGPROC)
+  1258        4text n           1    _rgl 	 -                	movlb	_rgl shr (0+8)
+  1259        4text p        µ   1ˇ    _rgl 
+ 0                	btfsc	_rgl& (0+255),2,b
+  1260        4text r   (   D006               	goto	u790
+  1261        4text t           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1262        4text v      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp2     D                	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1263        4text x           1   bss 	 -                	movlb	_PMP shr (0+8)
+  1264        4text z           1ˇ   bss 
+ 0                	xorwf	_PMP& (0+255),w,b
+  1265        4text |   %   E101 D131          	bz	l99
+  1266        4text Ä   U                      u790:
+  1267                           ;pompa.c: 339: {
+  1268        4text Ä        ¿   ¸ _DtIN             ¸ _DtIN     q          	movff	_DtIN+18,_DtIN+6
+  1269                           ;pompa.c: 344: if(DtIN.DIN2>DtIN.cDLT)
+  1270        4text Ñ        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+4,wreg
+  1271        4text à           1    _DtIN    	 2                	movlb	(_DtIN+6) shr (0+8)
+  1272        4text ä        a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+6)& (0+255),b
+  1273        4text å   Z   D016               	goto	l100
+  1274                           ;pompa.c: 345: {
+  1275        4text é   '   0E32               	movlw	50
+  1276        4text ê           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1277        4text í      +  o   1 ˇ   __Lparam 
+ ?a_ModPmp2     ª                	movwf	(?a_ModPmp2+3)^(__Lparam& (0+65280)),b
+  1278                           ;pompa.c: 347: if(DtIN.DIN2-DtIN.cDLT==2) tim=10
+      +                          0;
+  1279        4text î        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+6,wreg
+  1280        4text ò        ¿   ¸ _DtIN             ¸temp  &          	movff	_DtIN+4,btemp
+  1281        4text ú        j   1temp     '                	clrf	btemp+1,c
+  1282        4text û        ^   1temp  (                	subwf	btemp,f,c
+  1283        4text †   &   0E00               	movlw	0
+  1284        4text ¢        Z   1temp     +                	subwfb	btemp+1,f,c
+  1285        4text §        P   1temp  '                	movf	btemp,w,c
+  1286        4text ¶   &   0A02               	xorlw	2
+  1287        4text ®           1temp     *                	iorwf	btemp+1,w,c
+  1288        4text ™   '   E102               	bnz	l101
+  1289        4text ¨   #                      u810:
+  1290        4text ¨   (   0E64               	movlw	100
+  1291        4text Æ   &   D021               	goto	L5
+  1292        4text ∞   X                      l101:
+  1293                           ;pompa.c: 348: else
+  1294        4text ∞        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+6,wreg
+  1295        4text ¥        ¿   ¸ _DtIN             ¸temp  &          	movff	_DtIN+4,btemp
+  1296        4text ∏   X   D013               	goto	L8
+  1297                           ;pompa.c: 350: }
+  1298        4text ∫   X                      l100:
+  1299                           ;pompa.c: 351: else
+  1300        4text ∫   '   0E50               	movlw	80
+  1301        4text º           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1302        4text æ      +  o   1 ˇ   __Lparam 
+ ?a_ModPmp2     ª                	movwf	(?a_ModPmp2+3)^(__Lparam& (0+65280)),b
+  1303                           ;pompa.c: 354: if(DtIN.cDLT-DtIN.DIN2==2) tim=10
+      +                          0;
+  1304        4text ¿        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+4,wreg
+  1305        4text ƒ        ¿   ¸ _DtIN             ¸temp  &          	movff	_DtIN+6,btemp
+  1306        4text »        j   1temp     '                	clrf	btemp+1,c
+  1307        4text          ^   1temp  (                	subwf	btemp,f,c
+  1308        4text Ã   &   0E00               	movlw	0
+  1309        4text Œ        Z   1temp     +                	subwfb	btemp+1,f,c
+  1310        4text –        P   1temp  '                	movf	btemp,w,c
+  1311        4text “   &   0A02               	xorlw	2
+  1312        4text ‘           1temp     *                	iorwf	btemp+1,w,c
+  1313        4text ÷   [   E0EA               	bz	u810
+  1314                           ;pompa.c: 355: else
+  1315        4text ÿ        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+4,wreg
+  1316        4text ‹        ¿   ¸ _DtIN             ¸temp  &          	movff	_DtIN+6,btemp
+  1317        4text ‡   !                      L8:
+  1318        4text ‡        j   1temp     '                	clrf	btemp+1,c
+  1319        4text ‚        ^   1temp  (                	subwf	btemp,f,c
+  1320        4text ‰   &   0E00               	movlw	0
+  1321        4text Ê        Z   1temp     +                	subwfb	btemp+1,f,c
+  1322        4text Ë           1temp  '                	decf	btemp,w,c
+  1323        4text Í           1temp     *                	iorwf	btemp+1,w,c
+  1324        4text Ï   '   E103               	bnz	l104
+  1325        4text Ó   (   0E96               	movlw	150
+  1326        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1327        4text Ú   !                      L5:
+  1328        4text Ú      +  o   1 ˇ   __Lparam 
+ ?a_ModPmp2     E                	movwf	(?a_ModPmp2+3)^(__Lparam& (0+65280)),b
+  1329        4text Ù   U                      l104:
+  1330                           ;pompa.c: 357: }
+  1331        4text Ù           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1332        4text ˆ      +  k   1 ˇ   __Lparam 
+ ?a_ModPmp2     {                	clrf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),b
+  1333                           ;pompa.c: 361: pdw=0;
+  1334        4text ¯      +  k   1 ˇ   __Lparam 
+ ?a_ModPmp2     –                	clrf	(?a_ModPmp2+1)^(__Lparam& (0+65280)),b
+  1335                           ;pompa.c: 362: if((RTdS(8)>tim)||(ppwm<=PMP.MDPR
+      +                          OC)||(ppwm>=PMP.MGPROC))
+  1336        4text ˙   &   0E08               	movlw	8
+  1337        4text ¸        Ï   1ˇ       _RTdS 	
+         ¸	    _RTdS 	           	call	_RTdS
+  1338        4text             1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1339        4text       +  a   1 ˇ   __Lparam 
+ ?a_ModPmp2     F                	cpfslt	(?a_ModPmp2+3)^(__Lparam& (0+65280)),b
+  1340        4text    (   D001               	goto	u851
+  1341        4text    (   D00A               	goto	u880
+  1342        4text    #                      u851:
+  1343        4text       +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp2     D                	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1344        4text 
+           1   bss    	 1                	movlb	(_PMP+1) shr (0+8)
+  1345        4text         ]   1ˇ   bss    
+ 4                	subwf	(_PMP+1)& (0+255),w,b
+  1346        4text    &   E206               	bc	u880
+  1347        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1348        4text         ¿   ¸bss  (   FFE8         	movff	_PMP,wreg
+  1349        4text       +  ]   1 ˇ   __Lparam 
+ ?a_ModPmp2     E                	subwf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1350        4text    '   E201 D0E8          	bnc	l137
+  1351        4text    U                      u880:
+  1352                           ;pompa.c: 363: {
+  1353        4text    &   0E08               	movlw	8
+  1354        4text          Ï   1ˇ       _StartRTdS 	
+         ¸	    _StartRTdS 	 ß          	call	_StartRTdS
+  1355                           ;pompa.c: 366: if(!pup)
+  1356                           ;pompa.c: 367: if(rgl.tmp_pwm<=PWM.MINPWM)
+  1357        4text "        ¿   ¸ _rgl 	    *   FFE8         	movff	_rgl+9,wreg
+  1358        4text &           1    _PWM     	 2                	movlb	(_PWM+32) shr (0+8)
+  1359        4text (        ]   1ˇ    _PWM     
+ 5                	subwf	(_PWM+32)& (0+255),w,b
+  1360        4text *   Y   E327               	bnc	l109
+  1361                           ;pompa.c: 368: {
+  1362        4text ,   &   0E02               	movlw	2
+  1363        4text .        Ï   1ˇ       _Twyzsza 	
+         ¸	    _Twyzsza 	            	call	_Twyzsza
+  1364        4text 2   &   E204               	bc	u930
+  1365        4text 4   &   0E02               	movlw	2
+  1366        4text 6        Ï   1ˇ       _Tnizsza 	
+         ¸	    _Tnizsza 	            	call	_Tnizsza
+  1367        4text :   '   E31F               	bnc	l109
+  1368        4text <   U                      u930:
+  1369                           ;pompa.c: 370: {
+  1370        4text <        ¿   ¸bss  (   FFE8         	movff	_PMP,wreg
+  1371        4text @           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1372        4text B      +  a   1 ˇ   __Lparam 
+ ?a_ModPmp2     F                	cpfslt	(?a_ModPmp2+4)^(__Lparam& (0+65280)),b
+  1373        4text D   Z   D01A               	goto	l109
+  1374                           ;pompa.c: 372: {
+  1375        4text F        ¿   ¸bss          ¸temp  #          	movff	_PMP,btemp
+  1376        4text J        j   1temp     '                	clrf	btemp+1,c
+  1377        4text L   &   0E01               	movlw	1
+  1378        4text N        ¿   ¸ ?a_ModPmp2             ¸temp     -          	movff	?a_ModPmp2+4,btemp+2
+  1379        4text R        j   1temp     '                	clrf	btemp+3,c
+  1380        4text T        &   1temp     *                	addwf	btemp+2,f,c
+  1381        4text V   &   0E00               	movlw	0
+  1382        4text X        "   1temp     +                	addwfc	btemp+3,f,c
+  1383        4text Z        P   1temp     )                	movf	btemp+3,w,c
+  1384        4text \   (   0A80               	xorlw	128
+  1385        4text ^        n   1temp     (                	movwf	btemp+4,c
+  1386        4text `        P   1temp     )                	movf	btemp+1,w,c
+  1387        4text b   (   0A80               	xorlw	128
+  1388        4text d        \   1temp     *                	subwf	btemp+4,w,c
+  1389        4text f   '   E102               	bnz	u955
+  1390        4text h        P   1temp  '                	movf	btemp,w,c
+  1391        4text j        \   1temp     *                	subwf	btemp+2,w,c
+  1392        4text l   #                      u955:
+  1393        4text l   X   E204               	bc	l113
+  1394                           ;pompa.c: 374: {
+  1395        4text n      +  +   1 ˇ   __Lparam 
+ ?a_ModPmp2     }                	incf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1396                           ;pompa.c: 376: pup=1;
+  1397        4text p   &   0E01               	movlw	1
+  1398        4text r      +  o   1 ˇ   __Lparam 
+ ?a_ModPmp2     w                	movwf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),b
+  1399                           ;pompa.c: 377: }
+  1400        4text t   (   D002               	goto	l109
+  1401        4text v   i                      l113:
+  1402                           ;pompa.c: 378: else ppwm=PMP.MGPROC;
+  1403        4text v        ¿   ¸bss          ¸ ?a_ModPmp2     *          	movff	_PMP,?a_ModPmp2+4
+  1404        4text z   U                      l109:
+  1405                           ;pompa.c: 379: }
+  1406        4text z        ¿   ¸ _rgl 	    *   FFE8         	movff	_rgl+9,wreg
+  1407        4text ~           1    _PWM     	 2                	movlb	(_PWM+32) shr (0+8)
+  1408        4text Ä        a   1ˇ    _PWM     
+ 4                	cpfslt	(_PWM+32)& (0+255),b
+  1409        4text Ç   (   D001               	goto	u961
+  1410        4text Ñ   )   D009               	goto	u1000
+  1411        4text Ü   #                      u961:
+  1412        4text Ü        ¿   ¸ _rgl 	    *   FFE8         	movff	_rgl+9,wreg
+  1413        4text ä           1    _PWM     	 2                	movlb	(_PWM+32) shr (0+8)
+  1414        4text å        ]   1ˇ    _PWM     
+ 5                	subwf	(_PWM+32)& (0+255),w,b
+  1415        4text é   '   E34F               	bnc	l115
+  1416        4text ê   &   0E01               	movlw	1
+  1417        4text í        Ï   1ˇ       _Twyzsza 	
+         ¸	    _Twyzsza 	            	call	_Twyzsza
+  1418        4text ñ   &   E24B               	bc	l115
+  1419        4text ò   V                      u1000:
+  1420                           ;pompa.c: 384: {
+  1421        4text ò        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+6,wreg
+  1422        4text ú           1    _DtIN    	 2                	movlb	(_DtIN+3) shr (0+8)
+  1423        4text û        a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+3)& (0+255),b
+  1424        4text †   û   D046               	goto	l115
+  1425                           ;pompa.c: 386: {
+  1426                           ;pompa.c: 388: if(ppwm>PMP.MDPROC)
+  1427        4text ¢           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1428        4text §      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp2     D                	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1429        4text ¶           1   bss    	 1                	movlb	(_PMP+1) shr (0+8)
+  1430        4text ®        a   1ˇ   bss    
+ 3                	cpfslt	(_PMP+1)& (0+255),b
+  1431        4text ™   Z   D01A               	goto	l117
+  1432                           ;pompa.c: 389: {
+  1433        4text ¨           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1434        4text Æ   (   0FFE               	addlw	254
+  1435        4text ∞        n   1temp  &                	movwf	btemp,c
+  1436        4text ≤        j   1temp     '                	clrf	btemp+1,c
+  1437        4text ¥   (   0EFF               	movlw	255
+  1438        4text ∂        "   1temp     +                	addwfc	btemp+1,f,c
+  1439        4text ∏        ¿   ¸bss             ¸temp     '          	movff	_PMP+1,btemp+2
+  1440        4text º        j   1temp     '                	clrf	btemp+3,c
+  1441        4text æ        P   1temp     )                	movf	btemp+3,w,c
+  1442        4text ¿   (   0A80               	xorlw	128
+  1443        4text ¬        n   1temp     (                	movwf	btemp+4,c
+  1444        4text ƒ        P   1temp     )                	movf	btemp+1,w,c
+  1445        4text ∆   (   0A80               	xorlw	128
+  1446        4text »        \   1temp     *                	subwf	btemp+4,w,c
+  1447        4text     (   E102               	bnz	u1035
+  1448        4text Ã        P   1temp  '                	movf	btemp,w,c
+  1449        4text Œ        \   1temp     *                	subwf	btemp+2,w,c
+  1450        4text –   $                      u1035:
+  1451        4text –   X   E205               	bc	l119
+  1452                           ;pompa.c: 391: {
+  1453        4text “   (   0EFE               	movlw	254
+  1454        4text ‘      +  '   1 ˇ   __Lparam 
+ ?a_ModPmp2     ~                	addwf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1455                           ;pompa.c: 393: pdw=1;
+  1456        4text ÷   &   0E01               	movlw	1
+  1457        4text ÿ      +  o   1 ˇ   __Lparam 
+ ?a_ModPmp2     w                	movwf	(?a_ModPmp2+1)^(__Lparam& (0+65280)),b
+  1458                           ;pompa.c: 394: }
+  1459        4text ⁄   (   D002               	goto	l117
+  1460        4text ‹   i                      l119:
+  1461                           ;pompa.c: 395: else ppwm=PMP.MDPROC;
+  1462        4text ‹        ¿   ¸bss             ¸ ?a_ModPmp2     ,          	movff	_PMP+1,?a_ModPmp2+4
+  1463        4text ‡   U                      l117:
+  1464                           ;pompa.c: 396: }
+  1465        4text ‡           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1466        4text ‚      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp2     D                	movf	(?a_ModPmp2+1)^(__Lparam& (0+65280)),w
+  1467        4text ‰   n   E124               	bnz	l115
+  1468                           ;pompa.c: 398: if(DtIN.DIN<DtIN.DIN2)
+  1469        4text Ê        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+4,wreg
+  1470        4text Í           1    _DtIN    	 2                	movlb	(_DtIN+3) shr (0+8)
+  1471        4text Ï        a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+3)& (0+255),b
+  1472        4text Ó   Z   D01F               	goto	l115
+  1473                           ;pompa.c: 399: {
+  1474        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1475        4text Ú      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp2     D                	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1476        4text Ù           1   bss    	 1                	movlb	(_PMP+1) shr (0+8)
+  1477        4text ˆ        a   1ˇ   bss    
+ 3                	cpfslt	(_PMP+1)& (0+255),b
+  1478        4text ¯   Z   D01A               	goto	l115
+  1479                           ;pompa.c: 401: {
+  1480        4text ˙           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1481        4text ¸   (   0FFE               	addlw	254
+  1482        4text ˛        n   1temp  &                	movwf	btemp,c
+  1483        4text          j   1temp     '                	clrf	btemp+1,c
+  1484        4text    (   0EFF               	movlw	255
+  1485        4text         "   1temp     +                	addwfc	btemp+1,f,c
+  1486        4text         ¿   ¸bss             ¸temp     '          	movff	_PMP+1,btemp+2
+  1487        4text 
+        j   1temp     '                	clrf	btemp+3,c
+  1488        4text         P   1temp     )                	movf	btemp+3,w,c
+  1489        4text    (   0A80               	xorlw	128
+  1490        4text         n   1temp     (                	movwf	btemp+4,c
+  1491        4text         P   1temp     )                	movf	btemp+1,w,c
+  1492        4text    (   0A80               	xorlw	128
+  1493        4text         \   1temp     *                	subwf	btemp+4,w,c
+  1494        4text    (   E102               	bnz	u1075
+  1495        4text         P   1temp  '                	movf	btemp,w,c
+  1496        4text         \   1temp     *                	subwf	btemp+2,w,c
+  1497        4text    $                      u1075:
+  1498        4text    X   E205               	bc	l124
+  1499                           ;pompa.c: 403: {
+  1500        4text     (   0EFE               	movlw	254
+  1501        4text "      +  '   1 ˇ   __Lparam 
+ ?a_ModPmp2     ~                	addwf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1502                           ;pompa.c: 405: pdw=1;
+  1503        4text $   &   0E01               	movlw	1
+  1504        4text &   ^   6ED9               	movwf	fsr2l,c
+  1505                           ;pompa.c: 406: }
+  1506        4text (   (   D002               	goto	l115
+  1507        4text *   i                      l124:
+  1508                           ;pompa.c: 407: else ppwm=PMP.MDPROC;
+  1509        4text *        ¿   ¸bss             ¸ ?a_ModPmp2     ,          	movff	_PMP+1,?a_ModPmp2+4
+  1510        4text .   U                      l115:
+  1511                           ;pompa.c: 408: }
+  1512        4text .        ¿   ¸ _PWM !    +   FFE8         	movff	_PWM+33,wreg
+  1513        4text 2           1    _rgl 	   	 1                	movlb	(_rgl+9) shr (0+8)
+  1514        4text 4        a   1ˇ    _rgl 	   
+ 3                	cpfslt	(_rgl+9)& (0+255),b
+  1515        4text 6   )   D001               	goto	u1081
+  1516        4text 8   )   D009               	goto	u1120
+  1517        4text :   $                      u1081:
+  1518        4text :        ¿   ¸ _PWM !    +   FFE8         	movff	_PWM+33,wreg
+  1519        4text >           1    _rgl 	   	 1                	movlb	(_rgl+9) shr (0+8)
+  1520        4text @        ]   1ˇ    _rgl 	   
+ 4                	subwf	(_rgl+9)& (0+255),w,b
+  1521        4text B   '   E354               	bnc	l137
+  1522        4text D   &   0E01               	movlw	1
+  1523        4text F        Ï   1ˇ       _Tnizsza 	
+         ¸	    _Tnizsza 	            	call	_Tnizsza
+  1524        4text J   &   E250               	bc	l137
+  1525        4text L   V                      u1120:
+  1526                           ;pompa.c: 414: {
+  1527        4text L        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+3,wreg
+  1528        4text P           1    _DtIN    	 2                	movlb	(_DtIN+6) shr (0+8)
+  1529        4text R        a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+6)& (0+255),b
+  1530        4text T   Z   D04B               	goto	l137
+  1531                           ;pompa.c: 416: {
+  1532        4text V           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1533        4text X      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp2     D                	movf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),w
+  1534        4text Z   k   E11E               	bnz	l128
+  1535                           ;pompa.c: 418: if(ppwm<PMP.MGPROC)
+  1536        4text \        ¿   ¸bss  (   FFE8         	movff	_PMP,wreg
+  1537        4text `      +  a   1 ˇ   __Lparam 
+ ?a_ModPmp2     F                	cpfslt	(?a_ModPmp2+4)^(__Lparam& (0+65280)),b
+  1538        4text b   Z   D01A               	goto	l128
+  1539                           ;pompa.c: 419: {
+  1540        4text d        ¿   ¸bss          ¸temp  #          	movff	_PMP,btemp
+  1541        4text h        j   1temp     '                	clrf	btemp+1,c
+  1542        4text j   &   0E01               	movlw	1
+  1543        4text l        ¿   ¸ ?a_ModPmp2             ¸temp     -          	movff	?a_ModPmp2+4,btemp+2
+  1544        4text p        j   1temp     '                	clrf	btemp+3,c
+  1545        4text r        &   1temp     *                	addwf	btemp+2,f,c
+  1546        4text t   &   0E00               	movlw	0
+  1547        4text v        "   1temp     +                	addwfc	btemp+3,f,c
+  1548        4text x        P   1temp     )                	movf	btemp+3,w,c
+  1549        4text z   (   0A80               	xorlw	128
+  1550        4text |        n   1temp     (                	movwf	btemp+4,c
+  1551        4text ~        P   1temp     )                	movf	btemp+1,w,c
+  1552        4text Ä   (   0A80               	xorlw	128
+  1553        4text Ç        \   1temp     *                	subwf	btemp+4,w,c
+  1554        4text Ñ   (   E102               	bnz	u1165
+  1555        4text Ü        P   1temp  '                	movf	btemp,w,c
+  1556        4text à        \   1temp     *                	subwf	btemp+2,w,c
+  1557        4text ä   $                      u1165:
+  1558        4text ä   X   E204               	bc	l130
+  1559                           ;pompa.c: 421: {
+  1560        4text å      +  +   1 ˇ   __Lparam 
+ ?a_ModPmp2     }                	incf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1561                           ;pompa.c: 423: pup=1;
+  1562        4text é   &   0E01               	movlw	1
+  1563        4text ê      +  o   1 ˇ   __Lparam 
+ ?a_ModPmp2     w                	movwf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),b
+  1564                           ;pompa.c: 424: }
+  1565        4text í   (   D002               	goto	l128
+  1566        4text î   i                      l130:
+  1567                           ;pompa.c: 425: else ppwm=PMP.MGPROC;
+  1568        4text î        ¿   ¸bss          ¸ ?a_ModPmp2     *          	movff	_PMP,?a_ModPmp2+4
+  1569        4text ò   U                      l128:
+  1570                           ;pompa.c: 426: }
+  1571        4text ò           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1572        4text ö      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp2     D                	movf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),w
+  1573        4text ú   n   E127               	bnz	l137
+  1574                           ;pompa.c: 428: if(DtIN.DIN>DtIN.DIN2)
+  1575        4text û        ¿   ¸ _DtIN     +   FFE8         	movff	_DtIN+3,wreg
+  1576        4text ¢           1    _DtIN    	 2                	movlb	(_DtIN+4) shr (0+8)
+  1577        4text §        a   1ˇ    _DtIN    
+ 4                	cpfslt	(_DtIN+4)& (0+255),b
+  1578        4text ¶   Z   D022               	goto	l137
+  1579                           ;pompa.c: 429: {
+  1580        4text ®        ¿   ¸bss  (   FFE8         	movff	_PMP,wreg
+  1581        4text ¨           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1582        4text Æ      +  a   1 ˇ   __Lparam 
+ ?a_ModPmp2     F                	cpfslt	(?a_ModPmp2+4)^(__Lparam& (0+65280)),b
+  1583        4text ∞   Z   D01D               	goto	l137
+  1584                           ;pompa.c: 431: {
+  1585        4text ≤        ¿   ¸bss          ¸temp  #          	movff	_PMP,btemp
+  1586        4text ∂        j   1temp     '                	clrf	btemp+1,c
+  1587        4text ∏   &   0E01               	movlw	1
+  1588        4text ∫        ¿   ¸ ?a_ModPmp2             ¸temp     -          	movff	?a_ModPmp2+4,btemp+2
+  1589        4text æ        j   1temp     '                	clrf	btemp+3,c
+  1590        4text ¿        &   1temp     *                	addwf	btemp+2,f,c
+  1591        4text ¬   &   0E00               	movlw	0
+  1592        4text ƒ        "   1temp     +                	addwfc	btemp+3,f,c
+  1593        4text ∆        P   1temp     )                	movf	btemp+3,w,c
+  1594        4text »   (   0A80               	xorlw	128
+  1595        4text          n   1temp     (                	movwf	btemp+4,c
+  1596        4text Ã        P   1temp     )                	movf	btemp+1,w,c
+  1597        4text Œ   (   0A80               	xorlw	128
+  1598        4text –        \   1temp     *                	subwf	btemp+4,w,c
+  1599        4text “   (   E102               	bnz	u1205
+  1600        4text ‘        P   1temp  '                	movf	btemp,w,c
+  1601        4text ÷        \   1temp     *                	subwf	btemp+2,w,c
+  1602        4text ÿ   $                      u1205:
+  1603        4text ÿ   V   E207               	bc	L9
+  1604                           ;pompa.c: 433: {
+  1605        4text ⁄      +  +   1 ˇ   __Lparam 
+ ?a_ModPmp2     }                	incf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1606                           ;pompa.c: 435: pup=1;
+  1607        4text ‹   &   0E01               	movlw	1
+  1608        4text ﬁ   ^   6ED9               	movwf	fsr2l,c
+  1609                           ;pompa.c: 436: }
+  1610        4text ‡   †   D005               	goto	l137
+  1611                           ;pompa.c: 437: else ppwm=PMP.MGPROC;
+  1612                           ;pompa.c: 438: }
+  1613        4text ‚   W                      l99:
+  1614                           ;pompa.c: 445: else
+  1615        4text ‚   &   0E08               	movlw	8
+  1616        4text ‰         Ï   1ˇ       _StartRTdS 	
+         ¸	    _StartRTdS 	 "          	call	_StartRTdS
+  1617        4text Ë   b                      L9:
+  1618                           ;pompa.c: 448: ppwm=PMP.MGPROC;
+  1619        4text Ë        ¿   ¸bss          ¸ ?a_ModPmp2     *          	movff	_PMP,?a_ModPmp2+4
+  1620        4text Ï   U                      l137:
+  1621                           ;pompa.c: 449: }
+  1622        4text Ï           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+  1623        4text Ó      +  Q   1 ˇ   __Lparam 
+ ?a_ModPmp2     D                	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1624        4text    X   0012               	return	
+  1625                           ;pompa.c: 451: }
+  1626        4text Ú   §                      __end_of_ModPmp2:
+  1627                           ;pompa.c: 455: void RglPmp2(void)
+  1628                           ;pompa.c: 456: {
+  1629        4text Ú   ã                      _RglPmp2:
+  1630  000000                     
+  1631                           ;pompa.c: 457: PMP.MGPROC=100;
+  1632        4text Ú   (   0E64               	movlw	100
+  1633        4text Ù      CFE8      ¸bss  j           	movff	wreg,_PMP
+  1634                           ;pompa.c: 458: PMP.MDPROC=DtKNF.mdpm;
+  1635        4text ¯        ¿   ¸ _DtKNF             ¸bss     g          	movff	_DtKNF+11,_PMP+1
+  1636                           ;pompa.c: 461: if(!M._PRACA)
+  1637        4text ¸           1    _M    	 0                	movlb	(_M+27) shr (0+8)
+  1638        4text ˛        µ   1ˇ    _M    
+ 3                	btfsc	(_M+27)& (0+255),2,b
+  1639        4text  	   Z   D012               	goto	l139
+  1640                           ;pompa.c: 462: {
+  1641        4text 	           1    _DtIN    	 3                	movlb	(_DtIN+19) shr (0+8)
+  1642        4text 	        k   1ˇ    _DtIN    
+ q                	clrf	(_DtIN+19)& (0+255),b
+  1643                           ;pompa.c: 464: StartRTS(15);
+  1644        4text 	   '   0E0F               	movlw	15
+  1645        4text 	        Ï   1ˇ       _StartRTS 	
+         ¸	    _StartRTS 	 Y          	call	_StartRTS
+  1646                           ;pompa.c: 465: if(RD2)
+  1647        4text 	   7   A483               	btfss	3971,2,c	;volatile
+  1648        4text 	   Z   D003               	goto	l140
+  1649                           ;pompa.c: 466: {
+  1650        4text 	        ¿   ¸bss          ¸bss     V          	movff	_PMP,_PMP+2
+  1651                           ;pompa.c: 468: }
+  1652        4text 	   (   D002               	goto	l141
+  1653        4text 	   X                      l140:
+  1654                           ;pompa.c: 469: else
+  1655        4text 	           1   bss    	 1                	movlb	(_PMP+2) shr (0+8)
+  1656        4text 	        k   1ˇ   bss    
+ 1                	clrf	(_PMP+2)& (0+255),b
+  1657        4text 	   U                      l141:
+  1658                           ;pompa.c: 472: }
+  1659        4text 	        ¿   ¸bss     *   FFE8         	movff	_PMP+2,wreg
+  1660        4text 	        Ï   1ˇ      text 	
+         ¸	   text 	 %          	call	_ProcToPmpPwm
+  1661        4text "	         Ô   1ˇ       _WritePWM2 	
+         ¸	    _WritePWM2 	 T          	goto	_WritePWM2
+  1662                           ;pompa.c: 474: }
+  1663        4text &	   X                      l139:
+  1664                           ;pompa.c: 475: else
+  1665        4text &	           1    _M    	 0                	movlb	(_M+17) shr (0+8)
+  1666        4text (	        ´   1ˇ    _M    
+ 3                	btfss	(_M+17)& (0+255),5,b
+  1667        4text *	   (   D016               	goto	l143
+  1668        4text ,	           1    _DtIN 	 .                	movlb	_DtIN shr (0+8)
+  1669        4text .	        ±   1ˇ    _DtIN 
+ 1                	btfsc	_DtIN& (0+255),0,b
+  1670        4text 0	   (   D013               	goto	l143
+  1671        4text 2	           1    _M    	 0                	movlb	(_M+27) shr (0+8)
+  1672        4text 4	        ø   1ˇ    _M    
+ 3                	btfsc	(_M+27)& (0+255),7,b
+  1673        4text 6	   (   D010               	goto	l143
+  1674        4text 8	   '   0E0F               	movlw	15
+  1675        4text :	        Ï   1ˇ       _RTS 	
+         ¸	    _RTS 	           	call	_RTS
+  1676        4text >	        n   1temp  &                	movwf	btemp,c
+  1677        4text @	   '   0E0B               	movlw	11
+  1678        4text B	        \   1temp  (                	subwf	btemp,w,c
+  1679        4text D	   Y   E309               	bnc	l143
+  1680                           ;pompa.c: 478: {
+  1681        4text F	           1    _rgl 	 _                	movlb	_rgl shr (0+8)
+  1682                           ;pompa.c: 480: {
+  1683        4text H	        ¿   ¸bss     *   FFE8         	movff	_PMP+2,wreg
+  1684        4text L	        •   1ˇ    _rgl 
+ 0                	btfss	_rgl& (0+255),2,b
+  1685        4text N	   '   D008               	goto	L10
+  1686        4text P	   ,   DE51               	call	_ModPmp2
+  1687        4text R	      CFE8      ¸bss     W           	movff	wreg,_PMP+2
+  1688                           ;pompa.c: 482: }
+  1689        4text V	   (   D002               	goto	l145
+  1690        4text X	   X                      l143:
+  1691                           ;pompa.c: 484: else
+  1692        4text X	        ¿   ¸bss          ¸bss     $          	movff	_PMP,_PMP+2
+  1693        4text \	   U                      l145:
+  1694                           ;pompa.c: 487: }
+  1695        4text \	        ¿   ¸bss     *   FFE8         	movff	_PMP+2,wreg
+  1696        4text `	   "                      L10:
+  1697        4text `	        Ï   1ˇ      text 	
+         ¸	   text 	 %          	call	_ProcToPmpPwm
+  1698        4text d	         Ô   1ˇ       _WritePWM2 	
+         ¸	    _WritePWM2 	 T          	goto	_WritePWM2
+  1699                           ;pompa.c: 489: }
+  1700        4text h	   §                      __end_of_RglPmp2:
+  1701                           ;pompa.c: 492: void PmpToUP(void)
+  1702                           ;pompa.c: 493: {
+  1703        4text h	   î                      _PmpToUP:
+  1704  000000                     
+  1705                           ;pompa.c: 494: static unsigned char tm;
+  1706        4text h	      "  Ó   ˆ    _DtKNF 	   	   
+         1 _DtKNF 	   ˇ   
+ "          	lfsr	0,_DtKNF+9
+  1707        4text l	   -   50EF               	movf	indf0,w,c
+  1708        4text n	   X   E020               	bz	l147
+  1709                           ;pompa.c: 497: {
+  1710        4text p	           1   bigbss 	 .                	movlb	F1541 shr (0+8)
+  1711        4text r	        +   1ˇ   bigbss 
+ j                	incf	F1541& (0+255),f,b
+  1712                           ;pompa.c: 499: if(tm>30)
+  1713        4text t	   '   0E1E               	movlw	30
+  1714        4text v	        e   1ˇ   bigbss 
+ 0                	cpfsgt	F1541& (0+255),b
+  1715        4text x	   Y   0C1E               	retlw	30
+  1716                           ;pompa.c: 500: {
+  1717        4text z	        k   1ˇ   bigbss 
+ ≤                	clrf	F1541& (0+255),b
+  1718                           ;pompa.c: 502: if(PMP.APROC+1<PMP.MGPROC) PMP.AP
+      +                          ROC=PMP.APROC+1;
+  1719        4text |	        ¿   ¸bss          ¸temp  #          	movff	_PMP,btemp
+  1720        4text Ä	        j   1temp     '                	clrf	btemp+1,c
+  1721        4text Ç	   &   0E01               	movlw	1
+  1722        4text Ñ	        ¿   ¸bss             ¸temp     '          	movff	_PMP+2,btemp+2
+  1723        4text à	        j   1temp     '                	clrf	btemp+3,c
+  1724        4text ä	        &   1temp     *                	addwf	btemp+2,f,c
+  1725        4text å	   &   0E00               	movlw	0
+  1726        4text é	        "   1temp     +                	addwfc	btemp+3,f,c
+  1727        4text ê	        P   1temp     )                	movf	btemp+3,w,c
+  1728        4text í	   (   0A80               	xorlw	128
+  1729        4text î	        n   1temp     (                	movwf	btemp+4,c
+  1730        4text ñ	        P   1temp     )                	movf	btemp+1,w,c
+  1731        4text ò	   (   0A80               	xorlw	128
+  1732        4text ö	        \   1temp     *                	subwf	btemp+4,w,c
+  1733        4text ú	   (   E102               	bnz	u1335
+  1734        4text û	        P   1temp  '                	movf	btemp,w,c
+  1735        4text †	        \   1temp     *                	subwf	btemp+2,w,c
+  1736        4text ¢	   $                      u1335:
+  1737        4text ¢	   /   B0D8               	btfsc	status,0,c
+  1738        4text §	   &   0012               	return	
+  1739        4text ¶	           1   bss    	 1                	movlb	(_PMP+2) shr (0+8)
+  1740        4text ®	        )   1ˇ   bss    
+ 3                	incf	(_PMP+2)& (0+255),w,b
+  1741        4text ™	      CFE8      ¸bss     W           	movff	wreg,_PMP+2
+  1742                           ;pompa.c: 503: }
+  1743        4text Æ	   &   0012               	return	
+  1744        4text ∞	   n                      l147:
+  1745                           ;pompa.c: 505: else PMP.APROC=PMP.MGPROC;
+  1746        4text ∞	        ¿   ¸bss          ¸bss     V          	movff	_PMP,_PMP+2
+  1747                           ;pompa.c: 506: }
+  1748        4text ¥	   &   0012               	return	
+  1749        4text ∂	   §                      __end_of_PmpToUP:
+  1750                           ;pompa.c: 508: void PmpToDW(void)
+  1751                           ;pompa.c: 509: {
+  1752        4text ∂	   î                      _PmpToDW:
+  1753  000000                     
+  1754                           ;pompa.c: 510: static unsigned char tm;
+  1755        4text ∂	      "  Ó   ˆ    _DtKNF 	   	   
+         1 _DtKNF 	   ˇ   
+ "          	lfsr	0,_DtKNF+9
+  1756        4text ∫	   -   50EF               	movf	indf0,w,c
+  1757        4text º	   X   E01C               	bz	l152
+  1758                           ;pompa.c: 513: {
+  1759        4text æ	           1   bigbss    	 .                	movlb	F1544 shr (0+8)
+  1760        4text ¿	   &   0E01               	movlw	1
+  1761        4text ¬	        +   1ˇ   bigbss    
+ i                	incf	F1544& (0+255),f,b
+  1762                           ;pompa.c: 515: if(tm>0)
+  1763        4text ƒ	        S   1ˇ   bigbss    
+ 0                	movf	F1544& (0+255),f,b
+  1764        4text ∆	   /   B4D8               	btfsc	status,2,c
+  1765        4text »	   X   0C01               	retlw	1
+  1766                           ;pompa.c: 516: {
+  1767        4text  	        k   1ˇ   bigbss    
+ ™                	clrf	F1544& (0+255),b
+  1768                           ;pompa.c: 518: if(PMP.APROC-1>50) PMP.APROC=PMP.
+      +                          APROC-1;
+  1769        4text Ã	        ¿   ¸bss             ¸temp  %          	movff	_PMP+2,btemp
+  1770        4text –	   (   0EFF               	movlw	255
+  1771        4text “	        $   1temp  (                	addwf	btemp,w,c
+  1772        4text ‘	        n   1temp     (                	movwf	btemp+2,c
+  1773        4text ÷	        j   1temp     '                	clrf	btemp+3,c
+  1774        4text ÿ	   (   0EFF               	movlw	255
+  1775        4text ⁄	        "   1temp     +                	addwfc	btemp+3,f,c
+  1776        4text ‹	        P   1temp     )                	movf	btemp+3,w,c
+  1777        4text ﬁ	   (   0A80               	xorlw	128
+  1778        4text ‡	   )   0F80               	addlw	-128
+  1779        4text ‚	   '   0E33               	movlw	51
+  1780        4text ‰	   /   B4D8               	btfsc	status,2,c
+  1781        4text Ê	        \   1temp     *                	subwf	btemp+2,w,c
+  1782        4text Ë	   /   A0D8               	btfss	status,0,c
+  1783        4text Í	   &   0012               	return	
+  1784        4text Ï	           1   bss    	 1                	movlb	(_PMP+2) shr (0+8)
+  1785        4text Ó	           1ˇ   bss    
+ 3                	decf	(_PMP+2)& (0+255),w,b
+  1786        4text 	      CFE8      ¸bss     W           	movff	wreg,_PMP+2
+  1787                           ;pompa.c: 519: }
+  1788        4text Ù	   &   0012               	return	
+  1789        4text ˆ	   n                      l152:
+  1790                           ;pompa.c: 521: else PMP.APROC=PMP.MGPROC;
+  1791        4text ˆ	        ¿   ¸bss          ¸bss     V          	movff	_PMP,_PMP+2
+  1792                           ;pompa.c: 522: }
+  1793        4text ˙	   &   0012               	return	
+  1794        4text ¸	   £                      __end_of_PmpToDW:
+  1795                           ;pompa.c: 527: void RglPmp(void)
+  1796                           ;pompa.c: 528: {
+  1797        4text ¸	   â                      _RglPmp:
+  1798  000000                     
+  1799                           ;pompa.c: 529: if(DtKNF.rdpm)
+  1800        4text ¸	      "  Ó   ˆ    _DtKNF 	   	   
+         1 _DtKNF 	   ˇ   
+ "          	lfsr	0,_DtKNF+9
+  1801        4text  
+   -   50EF               	movf	indf0,w,c
+  1802        4text 
+   X   E006               	bz	l157
+  1803                           ;pompa.c: 530: {
+  1804        4text 
+      "  Ó   ˆ    _DtKNF    	   
+         1 _DtKNF    ˇ   
+ #          	lfsr	0,_DtKNF+12
+  1805        4text 
+   -   50EF               	movf	indf0,w,c
+  1806        4text 
+
+   Y   E101               	bnz	l158
+  1807                           ;pompa.c: 532: {
+  1808        4text 
+   i   D466               	goto	_RglPmp1	;wreg free
+  1809                           ;pompa.c: 534: }
+  1810        4text 
+   X                      l158:
+  1811                           ;pompa.c: 535: else
+  1812        4text 
+   i   D771               	goto	_RglPmp2	;wreg free
+  1813                           ;pompa.c: 538: }
+  1814        4text 
+   X                      l157:
+  1815                           ;pompa.c: 540: else
+  1816        4text 
+           1    _M    	 b                	movlb	(_M+27) shr (0+8)
+  1817                           ;pompa.c: 543: {
+  1818        4text 
+   '   0E0F               	movlw	15
+  1819        4text 
+        µ   1ˇ    _M    
+ 3                	btfsc	(_M+27)& (0+255),2,b
+  1820        4text 
+   '   D008               	goto	L11
+  1821        4text 
+        Ï   1ˇ       _StartRTS 	
+         ¸	    _StartRTS 	 Y          	call	_StartRTS
+  1822                           ;pompa.c: 545: if(RD2)
+  1823        4text 
+   7   B483               	btfsc	3971,2,c	;volatile
+  1824        4text 
+   ¡   D003               	goto	l161
+  1825                           ;pompa.c: 546: {
+  1826                           ;pompa.c: 548: }
+  1827                           ;pompa.c: 549: else
+  1828        4text  
+           1   bss    	 1                	movlb	(_PMP+2) shr (0+8)
+  1829        4text "
+        k   1ˇ   bss    
+ c                	clrf	(_PMP+2)& (0+255),b
+  1830                           ;pompa.c: 552: }
+  1831        4text $
+   (   D003               	goto	l164
+  1832        4text &
+   X                      l161:
+  1833                           ;pompa.c: 554: else
+  1834        4text &
+   '   0E0F               	movlw	15
+  1835        4text (
+   "                      L11:
+  1836        4text (
+      CFE8      ¸bss     %           	movff	wreg,_PMP+2
+  1837        4text ,
+   U                      l164:
+  1838                           ;pompa.c: 557: }
+  1839        4text ,
+        ¿   ¸bss     *   FFE8         	movff	_PMP+2,wreg
+  1840        4text 0
+        Ï   1ˇ      text 	
+         ¸	   text 	 %          	call	_ProcToPmpPwm
+  1841        4text 4
+         Ô   1ˇ       _WritePWM2 	
+         ¸	    _WritePWM2 	 T          	goto	_WritePWM2
+  1842                           ;pompa.c: 559: }
+  1843        4text 8
+   ˝                     __end_of_RglPmp:
+  1844  000000                     
+  1845  000000                     
+  1846  000000                     
+  1847  000000                     
+  1848  000000                     
+  1849  000000                     
+  1850  000000                     
+  1851  000000                     
+  1852  000000                     
+  1853  000000                     
+  1854  000000                     
+  1855  000000                     
+  1856  000000                     
+  1˝857  000000                     
+  1858  000000                     
+  1859  000000                     
+  1860  000000                     
+  1861  000000                     
+  1862  000000                     
+  1863  000000                     
+  1864  000000                     
+  1865  000000                     
+  1866  000000                     
+  1867  000000                     
+  1868  000000                     
+  1869  000000                     
+  1870  000000                     
+  1871  ˝000000                     
+  1872  000000                     
+  1873  000000                     
+  1874  000000                     
+  1875  000000                     
+  1876  000000                     
+  1877  000000                     
+  1878  000000                     
+  1879  000000                     
+  1880  000000                     
+  1881  000000                     
+  1882  000000                     
+  1883  000000                     
+  1884  000000                     
+  1885  00000˝0                     
+  1886  000000                     
+  1887  000000                     
+  1888  000000                     
+  1889  000000                     
+  1890  000000                     
+  1891  000000                     
+  1892  000000                     
+  1893  000000                     
+  1894  000000                     
+  1895  000000                     
+  1896  000000                     
+  1897  000000                     
+  1898  000000                     
+  1899  000000    ˝                 
+  1900  000000                     
+  1901  000000                     
+  1902  000000                     
+  1903  000000                     
+  1904  000000                     
+  1905  000000                     
+  1906  000000                     
+  1907  000000                     
+  1908  000000                     
+  1909  000000                     
+  1910  000000                     
+  1911  000000                     
+  1912  000000                     
+  1913  000000         ˝            
+  1914  000000                     
+  1915  000000                     
+  1916  000000                     
+  1917  000000                     
+  1918  000000                     
+  1919  000000                     
+  1920  000000                     
+  1921  000000                     
+  1922  000000                     
+  1923  000000                     
+  1924  000000                     
+  1925  000000                     
+  1926  000000                     
+  1927  000000              ˝       
+  1928  000000                     
+  1929  000000                     
+  1930  000000                     
+  1931  000000                     
+  1932  000000                     
+  1933  000000                     
+  1934  000000                     
+  1935  000000                     
+  1936  000000                     
+  1937  000000                     
+  1938  000000                     
+  1939  000000                     
+  1940  000000                     
+  1941  000000                   ˝  
+  1942  000000                     
+  1943  000000                     
+  1944  000000                     
+  1945  000000                     
+  1946  000000                     
+  1947  000000                     
+  1948  000000                     
+  1949  000000                     
+  1950  000000                     
+  1951  000000                     
+  1952  000000                     
+  1953  000000                     
+  1954  000000                     
+  1955  000000                     
+  ˝1956  000000                     
+  1957  000000                     
+  1958  000000                     
+  1959  000000                     
+  1960  000000                     
+  1961  000000                     
+  1962  000000                     
+  1963  000000                     
+  1964  000000                     
+  1965  000000                     
+  1966  000000                     
+  1967  000000                     
+  1968  000000                     
+  1969  000000                     
+  1970 ˝ 000000                     
+  1971  000000                     
+  1972  000000                     
+  1973  000000                     
+  1974  000000                     
+  1975  000000                     
+  1976  000000                     
+  1977  000000                     
+  1978  000000                     
+  1979  000000                     
+  1980  000000                     
+  1981  000000                     
+  1982  000000                     
+  1983  000000                     
+  1984  0000˝00                     
+  1985  000000                     
+  1986  000000                     
+  1987  000000                     
+  1988  000000                     
+  1989  000000                     
+  1990  000000                     
+  1991  000000                     
+  1992  000000                     
+  1993  000000                     
+  1994  000000                     
+  1995  000000                     
+  1996  000000                     
+  1997  000000                     
+  1998  000000   ˝                  
+  1999  000000                     
+  2000  000000                     
+  2001  000000                     
+  2002  000000                     
+  2003  000000                     
+  2004  000000                     
+  2005  000000                     
+  2006  000000                     
+  2007  000000                     
+  2008  000000                     
+  2009  000000                     
+  2010  000000                     
+  2011  000000                     
+  2012  000000        ˝             
+  2013  000000                     
+  2014  000000                     
+  2015  000000                     
+  2016  000000                     
+  2017  000000                     
+  2018  000000                     
+  2019  000000                     
+  2020  000000                     
+  2021  000000                     
+  2022  000000                     
+  2023  000000                     
+  2024  000000                     
+  2025  000000                     
+  2026  000000             ˝        
+  2027  000000                     
+  2028  000000                     
+  2029  000000                     
+  2030  000000                     
+  2031  000000                     
+  2032  000000                     
+  2033  000000                     
+  2034  000000                     
+  2035  000000                     
+  2036  000000                     
+  2037  000000                     
+  2038  000000                     
+  2039  000000                     
+  2040  000000                  ˝   
+  2041  000000                     
+  2042  000000                     
+  2043  000000                     
+  2044  000000                     
+  2045  000000                     
+  2046  000000                     
+  2047  000000                     
+  2048  000000                     
+  2049  000000                     
+  2050  000000                     
+  2051  000000                     
+  2052  000000                     
+  2053  000000                     
+  2054  000000                     
+ ˝ 2055  000000                     
+  2056  000000                     
+  2057  000000                     
+  2058  000000                     
+  2059  000000                     
+  2060  000000                     
+  2061  000000                     
+  2062  000000                     
+  2063  000000                     
+  2064  000000                     
+  2065  000000                     
+  2066  000000                     
+  2067  000000                     
+  2068  000000                     
+  2069˝  000000                     
+  2070  000000                     
+  2071  000000                     
+  2072  000000                     
+  2073  000000                     
+  2074  000000                     
+  2075  000000                     
+  2076  000000                     
+  2077  000000                     
+  2078  000000                     
+  2079  000000                     
+  2080  000000                     
+  2081  000000                     
+  2082  000000                     
+  2083  000˝000                     
+  2084  000000                     
+  2085  000000                     
+  2086  000000                     
+  2087  000000                     
+  2088  000000                     
+  2089  000000                     
+  2090  000000                     
+  2091  000000                     
+  2092  000000                     
+  2093  000000                     
+  2094  000000                     
+  2095  000000                     
+  2096  000000                     
+  2097  000000  ˝                   
+  2098  000000                     
+  2099  000000                     
+  2100  000000                     
+  2101  000000                     
+  2102  000000                     
+  2103  000000                     
+  2104  000000                     
+  2105  000000                     
+  2106  000000                     
+  2107  000000                     
+  2108  000000                     
+  2109  000000                     
+  2110  000000                     
+  2111  000000       ˝              
+  2112  000000                     
+  2113  000000                     
+  2114  000000                     
+  2115  000000                     
+  2116  000000                     
+  2117  000000                     
+  2118  000000                     
+  2119  000000                     
+  2120  000000                     
+  2121  000000                     
+  2122  000000                     
+  2123  000000                     
+  2124  000000                     
+  2125  000000            ˝         
+  2126  000000                     
+  2127  000000                     
+  2128  000000                     
+  2129  000000                     
+  2130  000000                     
+  2131  000000                     
+  2132  000000                     
+  2133  000000                     
+  2134  000000                     
+  2135  000000                     
+  2136  000000                     
+  2137  000000                     
+  2138  000000                     
+  2139  000000                 ˝    
+  2140  000000                     
+  2141  000000                     
+  2142  000000                     
+  2143  000000                     
+  2144  000000                     
+  2145  000000                     
+  2146  000000                     
+  2147  000000                     
+  2148  000000                     
+  2149  000000                     
+  2150  000000                     
+  2151  000000                     
+  2152  000000                     
+  2153  000000                     
+˝  2154  000000                     
+  2155  000000                     
+  2156  000000                     
+  2157  000000                     
+  2158  000000                     
+  2159  000000                     
+  2160  000000                     
+  2161  000000                     
+  2162  000000                     
+  2163  000000                     
+  2164  000000                     
+  2165  000000                     
+  2166  000000                     
+  2167  000000                     
+  216˝8  000000                     
+  2169  000000                     
+  2170  000000                     
+  2171  000000                     
+  2172  000000                     
+  2173  000000                     
+  2174  000000                     
+  2175  000000                     
+  2176  000000                     
+  2177  000000                     
+  2178  000000                     
+  2179  000000                     
+  2180  000000                     
+  2181  000000                     
+  2182  00˝0000                     
+  2183  000000                     
+  2184  000000                     
+  2185  000000                     
+  2186  000000                     
+  2187  000000                     
+  2188  000000                     
+  2189  000000                     
+  2190  000000                     
+  2191  000000                     
+  2192  000000                     
+  2193  000000                     
+  2194  000000                     
+  2195  000000                     
+  2196  000000 ˝                    
+  2197  000000                     
+  2198  000000                     
+  2199  000000                     
+  2200  000000                     
+  2201  000000                     
+  2202  000000                     
+  2203  000000                     
+  2204  000000                     
+  2205  000000                     
+  2206  000000                     
+  2207  000000                     
+  2208  000000                     
+  2209  000000                     
+  2210  000000      ˝               
+  2211  000000                     
+  2212  000000                     
+  2213  000000                     
+  2214  000000                     
+  2215  000000                     
+  2216  000000                     
+  2217  000000                     
+  2218  000000                     
+  2219  000000                     
+  2220  000000                     
+  2221  000000                     
+  2222  000000                     
+  2223  000000                     
+  2224  000000           ˝          
+  2225  000000                     
+  2226  000000                     
+  2227  000000                     
+  2228  000000                     
+  2229  000000                     
+  2230  000000                     
+  2231  000000                     
+  2232  000000                     
+  2233  000000                     
+  2234  000000                     
+  2235  000000                     
+  2236  000000                     
+  2237  000000                     
+  2238  000000                ˝     
+  2239  000000                     
+  2240  000000                     
+  2241  000000                     
+  2242  000000                     
+  2243  000000                     
+  2244  000000                     
+  2245  000000                     
+  2246  000000                     
+  2247  000000                     
+  2248  000000                     
+  2249  000000                     
+  2250  000000                     
+  2251  000000                     
+  2252  000000                     ˝
+  2253  000000                     
+  2254  000000                     
+  2255  000000                     
+  2256  000000                     
+  2257  000000                     
+  2258  000000                     
+  2259  000000                     
+  2260  000000                     
+  2261  000000                     
+  2262  000000                     
+  2263  000000                     
+  2264  000000                     
+  2265  000000                     
+  2266  000000                     
+  22˝67  000000                     
+  2268  000000                     
+  2269  000000                     
+  2270  000000                     
+  2271  000000                     
+  2272  000000                     
+  2273  000000                     
+  2274  000000                     
+  2275  000000                     
+  2276  000000                     
+  2277  000000                     
+  2278  000000                     
+  2279  000000                     
+  2280                           
+  2281     ,                       	psect	bigbss
+  2282        4bigbss                        F1541:
+   2283        4bigbss  #                      	ds	1
+  2284        4bigbss                        F1544:
+   2285        4bigbss  ˝                     	ds	1
+  2286  000000                     
+  2287  000000                     
+  2288  000000                     
+  2289  000000                     
+  2290  000000                     
+  2291  000000                     
+  2292  000000                     
+  2293  000000                     
+  2294  000000                     
+  2295  000000                     
+  2296  000000                     
+  2297  000000                     
+  2298  000000                     
+  2299  000000˝                     
+  2300  000000                     
+  2301  000000                     
+  2302  000000                     
+  2303  000000                     
+  2304  000000                     
+  2305  000000                     
+  2306  000000                     
+  2307  000000                     
+  2308  000000                     
+  2309  000000                     
+  2310  000000                     
+  2311  000000                     
+  2312  000000                     
+  2313  000000     ˝                
+  2314  000000                     
+  2315  000000                     
+  2316  000000                     
+  2317  000000                     
+  2318  000000                     
+  2319  000000                     
+  2320  000000                     
+  2321  000000                     
+  2322  000000                     
+  2323  000000                     
+  2324  000000                     
+  2325  000000                     
+  2326  000000                     
+  2327  000000          ˝           
+  2328  000000                     
+  2329  000000                     
+  2330  000000                     
+  2331  000000                     
+  2332  000000                     
+  2333  000000                     
+  2334  000000                     
+  2335  000000                     
+  2336  000000                     
+  2337  000000                     
+  2338  000000                     
+  2339  000000                     
+  2340  000000                     
+  2341  000000               ˝      
+  2342  000000                     
+  2343  000000                     
+  2344  000000                     
+  2345  000000                     
+  2346  000000                     
+  2347  000000                     
+  2348  000000                     
+  2349  000000                     
+  2350  000000                     
+  2351  000000                     
+  2352  000000                     
+  2353  000000                     
+  2354  000000                     
+  2355  000000                    ˝ 
+  2356  000000                     
+  2357  000000                     
+  2358  000000                     
+  2359  000000                     
+  2360  000000                     
+  2361  000000                     
+  2362  000000                     
+  2363  000000                     
+  2364  000000                     
+  2365  000000                     
+  2366  000000                     
+  2367  000000                     
+  2368  000000                     
+  2369  000000                     
+  2˝370  000000                     
+  2371  000000                     
+  2372  000000                     
+  2373  000000                     
+  2374  000000                     
+  2375  000000                     
+  2376  000000                     
+  2377  000000                     
+  2378  000000                     
+  2379  000000                     
+  2380  000000                     
+  2381  000000                     
+  2382  000000                     
+  2383  000000                     
+  2384  ˝000000                     
+  2385  000000                     
+  2386  000000                     
+  2387  000000                     
+  2388  000000                     
+  2389  000000                     
+  2390  000000                     
+  2391  000000                     
+  2392  000000                     
+  2393  000000                     
+  2394  000000                     
+  2395  000000                     
+  2396  000000                     
+  2397  000000                     
+  2398  00000˝0                     
+  2399  000000                     
+  2400  000000                     
+  2401  000000                     
+  2402  000000                     
+  2403  000000                     
+  2404  000000                     
+  2405  000000                     
+  2406  000000                     
+  2407  000000                     
+  2408  000000                     
+  2409  000000                     
+  2410  000000                     
+  2411  000000                     
+  2412  000000                     
+  2413  000000                     
+  2414  000000                     
+  2415  000000                     
+  2416  000000                     
+  2417  000000                     
+  2418                           
+  2419                           	psect	bss
+  2420        4bss                        _PMP:
+   2421        4bss  r                      	ds	3
+  2422                           
+  2423                           	psect	temp
+  2424        4temp                        btemp:
+   2425        4temp  ˝                     	ds	6
+  2426                           tblptrh	equ	0xFF7
+  2427                           tblptrl	equ	0xFF6
+  2428                           prodh	equ	0xFF4
+  2429                           prodl	equ	0xFF3
+  2430                           indf0	equ	0xFEF
+  2431                           fsr0l	equ	0xFE9
+  2432                           wreg	equ	0xFE8
+  2433                           fsr1l	equ	0xFE1
+  2434                           fsr2l	equ	0xFD9
+  2435                           statuß s	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Wed Mar 20 08:54:41 2013
+
+       ?a_RetKrkDelta       4 ?a_RetKrkDelta                        _M       4 _M     
+                  l21       4text ‹                         l30       4text ^      
+                  l22       4text ¿                         l14       4text 
+       
+                  l32       4text                         l16       4text        
+                  l41       4text                         l17       4text û       
+                  l34       4text »                        l26       4text b      
+                  l18       4text Ñ                         l60       4text <      
+                  l36       4text ƒ                        l61       4text @      
+                  l45       4text Ä                        l54       4text ‘      
+                  l71       4text                         l63       4text b      
+                  l47       4text |                        l56       4text       
+                  l65       4text Ä                        l57       4text       
+                  l90       4text Ä                        l74       4text *      
+                  l58       4text                         l91       4text í      
+                  l75       4text .                        l67       4text ñ      
+                  l84       4text ,                        l76       4text ê      
+                  l93       4text Ú                        l69       4text ˛      
+                  l86       4text <                        l78       4text §      
+                  l96       4text L                        l97       4text T      
+                  l89       4text t                        l98       4text h      
+                  l99       4text ‚                        u40       4text X       
+           ?a_ModPmp1       4 ?a_ModPmp1                ?a_ModPmp2       4 ?a_ModPmp2     
+            _StartRTS       4 _StartRTS                      l100       4text ∫      
+                 l101       4text ∞                       l104       4text Ù      
+                 l113       4text v                       l130       4text î      
+                 l115       4text .                       l140       4text 	      
+                 l124       4text *                       l141       4text 	      
+                 l117       4text ‡                       l109       4text z      
+                 l143       4text X	                       l119       4text ‹      
+                 l152       4text ˆ	                       l128       4text ò      
+                 l161       4text &
+                       l145       4text \	      
+                 l137       4text Ï                       l147       4text ∞	      
+                 l139       4text &	                       l164       4text ,
+      
+                 l157       4text 
+                       l158       4text 
+      
+                 u101       4text                         u130       4text       
+                 u211       4text n                       u205       4text T      
+                 u250       4text Ä                       u331       4text "      
+                 u180       4text $                       u325       4text       
+                 u415       4text r                       u370       4text 4      
+                 u285       4text ∏                       u630       4text h      
+                 u455       4text ¿                       u810       4text ¨      
+                 u580       4text ÷                       u645       4text ä      
+                 u930       4text <                       _PMP       4bss     
+                 u851       4text                        u595       4text ¯      
+                 u790       4text Ä                       u880       4text       
+                 u961       4text Ü                       u955       4text l      
+                 _PWM       4 _PWM                      _RTS       4 _RTS     
+                 _rgl       4 _rgl  7                    wreg 000FE8  
+           _StartRTdS       4 _StartRTdS               ?a_RetDelta       4 ?a_RetDelta     
+                F1541       4bigbss                     F1544       4bigbss        
+                u1000       4text ò                      u1120       4text L      
+                u1035       4text –                      u1205       4text ÿ      
+                u1081       4text :                      u1075       4text       
+                u1165       4text ä                      u1335       4text ¢	      
+           _WritePWM2       4 _WritePWM2                     _DtCO       4 _DtCO     
+                _DtIN       4 _DtIN                     _RTdS       4 _RTdS  ì   
+                indf0 000FEF                  fsr0l 000FE9  
+                fsr1l 000FE1                  fsr2l 000FD9  
+                btemp       4temp                     awdiv       4 awdiv     
+                awmul       4 awmul                     lwdiv       4 lwdiv  V   
+                prodh 000FF4                  prodl 000FF3  
+                lwmul       4 lwmul          __end_of_ModPmp1       4text ⁄      
+     __end_of_ModPmp2       4text Ú           __end_of_RglPmp1       4text J      
+     __end_of_RglPmp2       4text h	           __end_of_PmpToDW       4text ¸	      
+             ?_RetMax       4 ?_RetMax                  ?_RetMin       4 ?_RetMin     
+     __end_of_PmpToUP       4text ∂	             __end_of_RetHI       4text       
+       __end_of_RetLO       4text ™                     _DtKNF       4 _DtKNF     
+               _RetHI       4text à                     _RetLO       4text       
+          used_btemp0       4 used_btemp0               used_btemp1       4 used_btemp1     
+          used_btemp2       4 used_btemp2               used_btemp3       4 used_btemp3     
+          used_btemp4       4 used_btemp4               used_btemp5       4 used_btemp5  7   
+               status 000FD8          _ProcToPmpPwm       4text     
+             _ModPmp1       4text B                    _ModPmp2       4text Ù      
+    __end_of_RetDelta       4text Ù                   _RglPmp1       4text ⁄      
+             _RglPmp2       4text Ú                   _PmpToDW       4text ∂	      
+             _PmpToUP       4text h	                   __Lparam       4 __Lparam     
+__end_of_ProcToPmpPwm       4text B                    _Tnizsza       4 _Tnizsza     
+             _Twyzsza       4 _Twyzsza                  __ramtop       4 __ramtop     
+              ?_RetHI       4 ?_RetHI           __end_of_RglPmp       4text 8
+      
+      __end_of_RetMax       4text Ü            __end_of_RetMin       4text h      
+              ?_RetLO       4 ?_RetLO                   _RglPmp       4text ¸	      
+              _RetMax       4text j                    _RetMin       4text L   7   
+              tblptrl 000FF6           _RetKrkDelta       4text .      
+ __end_of_RetKrkDelta       4text ¬                 _RetDelta1       4text ¨      
+           _RetDelta2       4text ∏                 _RetDelta3       4text “      
+           _RetDelta4       4text ﬁ         __end_of_RetDelta1       4text ∂      
+   __end_of_RetDelta2       4text –         __end_of_RetDelta3       4text ‹      
+   __end_of_RetDelta4       4text .                  _RetDelta       4text ƒ      
+          ?_RetDelta1       4 ?_RetDelta1               ?_RetDelta2       4 ?_RetDelta2     
+          ?_RetDelta3       4 ?_RetDelta3               ?_RetDelta4       4 ?_RetDelta4     
+           ?_RetDelta       4 ?_RetDelta     
+   
