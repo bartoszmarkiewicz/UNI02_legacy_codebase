@@ -1,0 +1,108 @@
+     1: /*czcw.c*/
+     2: //Procedury zwiazane z impulsowym czujnikiem przeplywu
+     3: /*---------------------------------------------------------------------------------*/
+     4: #include <pic18.h>
+     5: #include "global.h"                                     //parametry globalne
+     6: #include "czcw.h"                                       //parametry lokalne
+     7: /*---------------------------------------------------------------------------------*/
+     8: 
+     9: DataPrCW PrCW;
+    10: static unsigned char CzCwtim;           
+    11: /*---------------------------------------------------------------------------------*/ 
+    12: void InitCzCw(void)
+    13: {
+    14:         TMR0IE=1;               //enable interrupt timer0
+    15:         T08BIT=1;               //tryb 8 bitowy
+    16:         T0CS=1;                 //taktowany z RA4
+    17:         T0SE=1;                 //zbocze HI\LO
+    18:         PSA=1;                  //preskaler zostaje pominiety
+    19:         TMR0=0;
+    20:         CzCwtim=0;
+    21:         PrCW._ltrDW=0;
+    22:         PrCW._ltrUP=0;
+    23:         PrCW.S_CW=0;
+    24:         PrCW.przCW=0;
+    25: }
+    26: /*---------------------------------------------------------------------------------*/
+    27: /*---------------------------------------------------------------------------------*/
+    28: //Przeplyw W.U. - procedura wykonywana w przerwaniu
+    29: /*
+    30:         if((TMR1IF)&&(TMR1IE))
+    31:         {
+    32:                 TMR1IF=0;
+    33:                 ReloadTimer1();         //obsluga zegara Timer1
+    34:                 IncRTimer();            //obsluga zegarow RT
+    35:                 IntCzCw();                      //pomiar przeplywu W.U.
+    36:                 StabPort();                     //stabilizacja stanu okreslonych sygnalow
+    37:         }
+    38:         if((TMR0IF)&&(TMR0IE))
+    39:         {
+    40:                 TMR0IF=0;
+    41:         }
+    42: */
+    43: void IntCzCw(void)
+    44: {
+    45:         if(CzCwtim<255) CzCwtim++;                                                      //timer czujnika przeplywu
+    46: 
+    47:         //Podstawowe flagi stanu i aktualny przeplyw    
+    48:         if(CzCwtim>=_OKCW)                                                                      //minol czas 1 sek.?
+    49:         {
+    50:                 ProcCW1();
+    51:                 return;
+    52:         }
+    53:         //Szybka reakcja na zanik przeplywu 
+    54:         switch(CzCwtim)
+    55:         {
+    56:                 case 80:
+    57:                 case 70:
+    58:                 case 60:
+    59:                 case 50:
+    60:                 case 40:
+    61:                 case 30:
+    62:                 case 20:
+    63:                 case 10:
+    64:                 ProcCW2();
+    65:         }
+    66: }
+    67: //-------------------------------------------------------------------------------
+    68: //Ustawia podstawowe flagi i zapamietuje aktualny przeplyw
+    69: //proc. wykonywana co 1 sek.
+    70: void ProcCW1(void)
+    71: {
+    72:         static unsigned char tprz_cw;
+    73:         unsigned char btprz;
+    74: 
+    75:         btprz=tprz_cw;
+    76:         tprz_cw=TMR0L;
+    77:         if((btprz-tprz_cw)>0)                                                   //spadek przeplywu?
+    78:         {
+    79:                 if((btprz-tprz_cw)>_NIMP/2) PrCW._ltrDW=1;      //zasygnalizuj spadek przeplywu
+    80:                 else PrCW._ltrDW=0;
+    81:         }
+    82:         else
+    83:         {
+    84:                 if((tprz_cw-btprz)>_NIMP) PrCW._ltrUP=1;        //zasygnalizuj wzrost przeplywu
+    85:                 else PrCW._ltrUP=0;
+    86:         }
+    87:         if(tprz_cw>=_SETCW) PrCW.S_CW=1;                                //ustaw flage pobudzenia od CW
+    88:         if(tprz_cw<=_CLRCW) PrCW.S_CW=0;                                //wyzeruj flage pobudzenia od CW
+    89:         PrCW.przCW=tprz_cw;                                                             //zapamietaj wielkosc przeplywu
+    90:         CzCwtim=0;
+    91: }
+    92: //-------------------------------------------------------------------------------
+    93: //Szybka reakcja na zanik przeplywu
+    94: //proc. wykonywana co 0.1 sek.
+    95: void ProcCW2(void)
+    96: {
+    97:         static unsigned char btpcw;
+    98:         unsigned char tpcw;
+    99: 
+   100:         tpcw=TMR0L;
+   101:         if(((tpcw-btpcw)==0)&&PrCW.S_CW)                                //zanik przeplywu?
+   102:         {
+   103:                 PrCW.S_CW=0;                                                            //wyzeruj flage pobudzenia od CW
+   104:                 ProcCW1();                              
+   105:         }
+   106:         else btpcw=tpcw;
+   107: }
+   108: //-------------------------------------------------------------------------------

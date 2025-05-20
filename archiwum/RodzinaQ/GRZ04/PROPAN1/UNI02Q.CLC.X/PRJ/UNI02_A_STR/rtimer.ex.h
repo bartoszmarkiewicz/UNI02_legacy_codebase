@@ -1,0 +1,12 @@
+void StartRTcS(const unsigned char Index);
+unsigned char RTcS(const unsigned char Index);
+void StartRTdS(const unsigned char Index);
+unsigned char RTdS(const unsigned char Index);
+void StartRTS(const unsigned char Index);
+unsigned char RTS(const unsigned char Index);
+void StartRTM(const unsigned char Index);
+unsigned char RTM(const unsigned char Index);
+unsigned char RTMs(const unsigned char Index);
+void StartRTG(const unsigned char Index);
+unsigned char RTG(const unsigned char Index);
+void inline IncRTimer(void);

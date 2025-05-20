@@ -1,0 +1,1491 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Jun 11 12:30:08 2014
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	const,global,class=CODE,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97                           
+    98                           	psect	const
+    99                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   100                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   101                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   102                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   103                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   104                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   105                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   106                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   107                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   108                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   109                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   110                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   111                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   112                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   113                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   114                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   115                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   116                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   117                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   118                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   119                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   120                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   121                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   122                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   123                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   124                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   125                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   126                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   127                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   128                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   129                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   130                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   131                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   132                           ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   133                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   134                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   135                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   136                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   137                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   138                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   139                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   140                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   141                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   142                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   143                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   144                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   145                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   146                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   147                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   148                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   149                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   150                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   151                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   152                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   153                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   154                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   155                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   156                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   157                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   158                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   159                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   160                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   161                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   162                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   163                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   164                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   165                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   166                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   167                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   168                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   169                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   170                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   171                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   172                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   173                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+   174                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   175                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   176                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+   177                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   178                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   179                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   180                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   181                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   182                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   183                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   184                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+   185                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   186                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   187                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   188                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   189                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   190                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   191                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   192                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   193                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   194                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   195                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   196                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   197                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   198                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   199  001000                     _Nastawa:
+   200  001000  01                 	db	1
+   201  001001  01                 	db	1
+   202  001002  01                 	db	1
+   203  001003  01                 	db	1
+   204  001004  02                 	db	2
+   205  001005  04                 	db	4
+   206  001006  02                 	db	2
+   207  001007  02                 	db	2
+   208  001008  02                 	db	2
+   209  001009  02                 	db	2
+   210  00100A  04                 	db	4
+   211  00100B  08                 	db	8
+   212  00100C  02                 	db	2
+   213  00100D  02                 	db	2
+   214  00100E  05                 	db	5
+   215  00100F  05                 	db	5
+   216  001010  02                 	db	2
+   217  001011  02                 	db	2
+   218  001012  02                 	db	2
+   219  001013  0A                 	db	10
+   220                           
+   221                           	psect	text
+   222                           ;port.c: 26: static const Opoznienie Nastawa[10]
+      +                          ={
+   223                           ;port.c: 27: 1,1,
+   224                           ;port.c: 28: 1,1,
+   225                           ;port.c: 29: 2,4,
+   226                           ;port.c: 30: 2,2,
+   227                           ;port.c: 31: 2,2,
+   228                           ;port.c: 32: 4,8,
+   229                           ;port.c: 33: 2,2,
+   230                           ;port.c: 34: 5,5,
+   231                           ;port.c: 35: 2,2,
+   232                           ;port.c: 36: 2,10
+   233                           ;port.c: 37: };
+   234                           ;port.c: 39: static volatile IOPort SPort[10];
+   235                           ;port.c: 44: void RefStan(void)
+   236                           ;port.c: 45: {
+   237  007FB4                     _RefStan:
+   238  000000                     
+   239                           ;port.c: 47: SPort[0].Input=(RB1) ? 0 : 1;
+   240  007FB4  0E00               	movlw	0
+   241  007FB6  A281               	btfss	3969,1,c	;volatile
+   242  007FB8  0E01               	movlw	1
+   243  007FBA  6E00               	movwf	btemp,c
+   244  007FBC  EE0F  F009         	lfsr	0,_SPort	;volatile
+   245  007FC0  18EF               	xorwf	indf0,w,c
+   246  007FC2  0BFE               	andlw	-2
+   247  007FC4  1800               	xorwf	btemp,w,c
+   248  007FC6  6EEF               	movwf	indf0,c
+   249                           ;port.c: 49: SPort[1].Input=(RB2) ? 0 : 1;
+   250  007FC8  0E00               	movlw	0
+   251  007FCA  A481               	btfss	3969,2,c	;volatile
+   252  007FCC  0E01               	movlw	1
+   253  007FCE  6E00               	movwf	btemp,c
+   254  007FD0  EE0F  F00A         	lfsr	0,_SPort+1
+   255  007FD4  18EF               	xorwf	indf0,w,c
+   256  007FD6  0BFE               	andlw	-2
+   257  007FD8  1800               	xorwf	btemp,w,c
+   258  007FDA  6EEF               	movwf	indf0,c
+   259                           ;port.c: 51: SPort[2].Input=(RC0&&RA7) ? 1 : 0;
+   260  007FDC  B082               	btfsc	3970,0,c	;volatile
+   261  007FDE  AE80               	btfss	3968,7,c	;volatile
+   262  007FE0  D002               	goto	u30
+   263  007FE2  0E01               	movlw	1
+   264  007FE4  D001               	goto	u40
+   265  007FE6                     u30:
+   266  007FE6  0E00               	movlw	0
+   267  007FE8                     u40:
+   268  007FE8  6E00               	movwf	btemp,c
+   269  007FEA  EE0F  F00B         	lfsr	0,_SPort+2
+   270  007FEE  18EF               	xorwf	indf0,w,c
+   271  007FF0  0BFE               	andlw	-2
+   272  007FF2  1800               	xorwf	btemp,w,c
+   273  007FF4  6EEF               	movwf	indf0,c
+   274                           ;port.c: 53: SPort[3].Input=(RA6&&RA7) ? 1 : 0;
+   275  007FF6  BC80               	btfsc	3968,6,c	;volatile
+   276  007FF8  AE80               	btfss	3968,7,c	;volatile
+   277  007FFA  D002               	goto	u70
+   278  007FFC  0E01               	movlw	1
+   279  007FFE  D001               	goto	u80
+   280  008000                     u70:
+   281  008000  0E00               	movlw	0
+   282  008002                     u80:
+   283  008002  6E00               	movwf	btemp,c
+   284  008004  EE0F  F00C         	lfsr	0,_SPort+3
+   285  008008  18EF               	xorwf	indf0,w,c
+   286  00800A  0BFE               	andlw	-2
+   287  00800C  1800               	xorwf	btemp,w,c
+   288  00800E  6EEF               	movwf	indf0,c
+   289                           ;port.c: 55: SPort[4].Input=(RA7) ? 1 : 0;
+   290  008010  010F               	movlb	(_SPort+4) shr (0+8)
+   291  008012  910D               	bcf	(_SPort+4)& (0+255),0,b
+   292  008014  BE80               	btfsc	3968,7,c	;volatile
+   293  008016  810D               	bsf	(_SPort+4)& (0+255),0,b
+   294                           ;port.c: 57: SPort[5].Input=(RD4) ? 0 : 1;
+   295  008018  0E00               	movlw	0
+   296  00801A  A883               	btfss	3971,4,c	;volatile
+   297  00801C  0E01               	movlw	1
+   298  00801E  6E00               	movwf	btemp,c
+   299  008020  EE0F  F00E         	lfsr	0,_SPort+5
+   300  008024  18EF               	xorwf	indf0,w,c
+   301  008026  0BFE               	andlw	-2
+   302  008028  1800               	xorwf	btemp,w,c
+   303  00802A  6EEF               	movwf	indf0,c
+   304                           ;port.c: 59: SPort[6].Input=(RA4) ? 0 : 1;
+   305  00802C  0E00               	movlw	0
+   306  00802E  A880               	btfss	3968,4,c	;volatile
+   307  008030  0E01               	movlw	1
+   308  008032  6E00               	movwf	btemp,c
+   309  008034  EE0F  F00F         	lfsr	0,_SPort+6
+   310  008038  18EF               	xorwf	indf0,w,c
+   311  00803A  0BFE               	andlw	-2
+   312  00803C  1800               	xorwf	btemp,w,c
+   313  00803E  6EEF               	movwf	indf0,c
+   314                           ;port.c: 61: SPort[7].Input=(DtCW._err_CW)? 1 : 
+      +                          0;
+   315  008040  0101               	movlb	_DtCW shr (0+8)
+   316  008042  0E00               	movlw	0
+   317  008044  B14C               	btfsc	_DtCW& (0+255),0,b
+   318  008046  0E01               	movlw	1
+   319  008048  6E00               	movwf	btemp,c
+   320  00804A  EE0F  F010         	lfsr	0,_SPort+7
+   321  00804E  18EF               	xorwf	indf0,w,c
+   322  008050  0BFE               	andlw	-2
+   323  008052  1800               	xorwf	btemp,w,c
+   324  008054  6EEF               	movwf	indf0,c
+   325                           ;port.c: 63: SPort[8].Input=(RC5) ? 0 : 1;
+   326  008056  0E00               	movlw	0
+   327  008058  AA82               	btfss	3970,5,c	;volatile
+   328  00805A  0E01               	movlw	1
+   329  00805C  6E00               	movwf	btemp,c
+   330  00805E  EE0F  F011         	lfsr	0,_SPort+8
+   331  008062  18EF               	xorwf	indf0,w,c
+   332  008064  0BFE               	andlw	-2
+   333  008066  1800               	xorwf	btemp,w,c
+   334  008068  6EEF               	movwf	indf0,c
+   335                           ;port.c: 65: SPort[9].Input=(RA6) ? 1 : 0;
+   336  00806A  010F               	movlb	(_SPort+9) shr (0+8)
+   337  00806C  9112               	bcf	(_SPort+9)& (0+255),0,b
+   338  00806E  BC80               	btfsc	3968,6,c	;volatile
+   339  008070  8112               	bsf	(_SPort+9)& (0+255),0,b
+   340                           ;port.c: 67: }
+   341  008072  0012               	return	
+   342  008074                     __end_of_RefStan:
+   343                           ;port.c: 71: void FrsStan(void)
+   344                           ;port.c: 72: {
+   345  008074                     _FrsStan:
+   346  000000                     
+   347                           ;port.c: 74: SPort[0].Output=SPort[0].Input;
+   348  008074  CF09  F000         	movff	_SPort,btemp	;volatile
+   349  008078  010F               	movlb	_SPort shr (0+8)	;volatile
+   350  00807A  9309               	bcf	_SPort& (0+255),1,b	;volatile
+   351  00807C  B000               	btfsc	btemp,0,c
+   352  00807E  8309               	bsf	_SPort& (0+255),1,b	;volatile
+   353                           ;port.c: 75: SPort[0].Timer=0;
+   354  008080  EE0F  F009         	lfsr	0,_SPort	;volatile
+   355  008084  0E03               	movlw	-253
+   356  008086  16EF               	andwf	indf0,f,c
+   357                           ;port.c: 78: SPort[1].Output=SPort[1].Input;
+   358  008088  CF0A  F000         	movff	_SPort+1,btemp
+   359  00808C  010F               	movlb	(_SPort+1) shr (0+8)
+   360  00808E  930A               	bcf	(_SPort+1)& (0+255),1,b
+   361  008090  B000               	btfsc	btemp,0,c
+   362  008092  830A               	bsf	(_SPort+1)& (0+255),1,b
+   363                           ;port.c: 79: SPort[1].Timer=0;
+   364  008094  EE0F  F00A         	lfsr	0,_SPort+1
+   365  008098  16EF               	andwf	indf0,f,c
+   366                           ;port.c: 82: SPort[2].Output=SPort[2].Input;
+   367  00809A  CF0B  F000         	movff	_SPort+2,btemp
+   368  00809E  010F               	movlb	(_SPort+2) shr (0+8)
+   369  0080A0  930B               	bcf	(_SPort+2)& (0+255),1,b
+   370  0080A2  B000               	btfsc	btemp,0,c
+   371  0080A4  830B               	bsf	(_SPort+2)& (0+255),1,b
+   372                           ;port.c: 83: SPort[2].Timer=0;
+   373  0080A6  EE0F  F00B         	lfsr	0,_SPort+2
+   374  0080AA  16EF               	andwf	indf0,f,c
+   375                           ;port.c: 86: SPort[3].Output=SPort[3].Input;
+   376  0080AC  CF0C  F000         	movff	_SPort+3,btemp
+   377  0080B0  010F               	movlb	(_SPort+3) shr (0+8)
+   378  0080B2  930C               	bcf	(_SPort+3)& (0+255),1,b
+   379  0080B4  B000               	btfsc	btemp,0,c
+   380  0080B6  830C               	bsf	(_SPort+3)& (0+255),1,b
+   381                           ;port.c: 87: SPort[3].Timer=0;
+   382  0080B8  EE0F  F00C         	lfsr	0,_SPort+3
+   383  0080BC  16EF               	andwf	indf0,f,c
+   384                           ;port.c: 90: SPort[4].Output=SPort[4].Input;
+   385  0080BE  CF0D  F000         	movff	_SPort+4,btemp
+   386  0080C2  010F               	movlb	(_SPort+4) shr (0+8)
+   387  0080C4  930D               	bcf	(_SPort+4)& (0+255),1,b
+   388  0080C6  B000               	btfsc	btemp,0,c
+   389  0080C8  830D               	bsf	(_SPort+4)& (0+255),1,b
+   390                           ;port.c: 91: SPort[4].Timer=0;
+   391  0080CA  EE0F  F00D         	lfsr	0,_SPort+4
+   392  0080CE  16EF               	andwf	indf0,f,c
+   393                           ;port.c: 94: SPort[5].Output=SPort[5].Input;
+   394  0080D0  CF0E  F000         	movff	_SPort+5,btemp
+   395  0080D4  010F               	movlb	(_SPort+5) shr (0+8)
+   396  0080D6  930E               	bcf	(_SPort+5)& (0+255),1,b
+   397  0080D8  B000               	btfsc	btemp,0,c
+   398  0080DA  830E               	bsf	(_SPort+5)& (0+255),1,b
+   399                           ;port.c: 95: SPort[5].Timer=0;
+   400  0080DC  EE0F  F00E         	lfsr	0,_SPort+5
+   401  0080E0  16EF               	andwf	indf0,f,c
+   402                           ;port.c: 98: SPort[6].Output=SPort[6].Input;
+   403  0080E2  CF0F  F000         	movff	_SPort+6,btemp
+   404  0080E6  010F               	movlb	(_SPort+6) shr (0+8)
+   405  0080E8  930F               	bcf	(_SPort+6)& (0+255),1,b
+   406  0080EA  B000               	btfsc	btemp,0,c
+   407  0080EC  830F               	bsf	(_SPort+6)& (0+255),1,b
+   408                           ;port.c: 99: SPort[6].Timer=0;
+   409  0080EE  EE0F  F00F         	lfsr	0,_SPort+6
+   410  0080F2  16EF               	andwf	indf0,f,c
+   411                           ;port.c: 102: SPort[7].Output=SPort[7].Input;
+   412  0080F4  CF10  F000         	movff	_SPort+7,btemp
+   413  0080F8  010F               	movlb	(_SPort+7) shr (0+8)
+   414  0080FA  9310               	bcf	(_SPort+7)& (0+255),1,b
+   415  0080FC  B000               	btfsc	btemp,0,c
+   416  0080FE  8310               	bsf	(_SPort+7)& (0+255),1,b
+   417                           ;port.c: 103: SPort[7].Timer=0;
+   418  008100  EE0F  F010         	lfsr	0,_SPort+7
+   419  008104  16EF               	andwf	indf0,f,c
+   420                           ;port.c: 106: SPort[8].Output=SPort[8].Input;
+   421  008106  CF11  F000         	movff	_SPort+8,btemp
+   422  00810A  010F               	movlb	(_SPort+8) shr (0+8)
+   423  00810C  9311               	bcf	(_SPort+8)& (0+255),1,b
+   424  00810E  B000               	btfsc	btemp,0,c
+   425  008110  8311               	bsf	(_SPort+8)& (0+255),1,b
+   426                           ;port.c: 107: SPort[8].Timer=0;
+   427  008112  EE0F  F011         	lfsr	0,_SPort+8
+   428  008116  16EF               	andwf	indf0,f,c
+   429                           ;port.c: 110: SPort[9].Output=SPort[9].Input;
+   430  008118  CF12  F000         	movff	_SPort+9,btemp
+   431  00811C  010F               	movlb	(_SPort+9) shr (0+8)
+   432  00811E  9312               	bcf	(_SPort+9)& (0+255),1,b
+   433  008120  B000               	btfsc	btemp,0,c
+   434  008122  8312               	bsf	(_SPort+9)& (0+255),1,b
+   435                           ;port.c: 111: SPort[9].Timer=0;
+   436  008124  EE0F  F012         	lfsr	0,_SPort+9
+   437  008128  16EF               	andwf	indf0,f,c
+   438                           ;port.c: 113: }
+   439  00812A  0C03               	retlw	3
+   440  00812C                     __end_of_FrsStan:
+   441                           ;port.c: 118: void InitPort(void)
+   442                           ;port.c: 119: {
+   443  00812C                     _InitPort:
+   444  000000                     
+   445                           ;port.c: 132: PORTA=0b00000000;
+   446  00812C  6A80               	clrf	3968,c	;volatile
+   447                           ;port.c: 133: TRISA=0b11111111;
+   448  00812E  6892               	setf	3986,c	;volatile
+   449                           ;port.c: 134: PORTB=0b00000000;
+   450  008130  6A81               	clrf	3969,c	;volatile
+   451                           ;port.c: 135: TRISB=0b11110111;
+   452  008132  0EF7               	movlw	247
+   453  008134  6E93               	movwf	3987,c	;volatile
+   454                           ;port.c: 136: PORTC=0b00000000;
+   455  008136  6A82               	clrf	3970,c	;volatile
+   456                           ;port.c: 137: TRISC=0b11111001;
+   457  008138  0EF9               	movlw	249
+   458  00813A  6E94               	movwf	3988,c	;volatile
+   459                           ;port.c: 138: PORTD=0b00000000;
+   460  00813C  6A83               	clrf	3971,c	;volatile
+   461                           ;port.c: 139: TRISD=0b00110000;
+   462  00813E  0E30               	movlw	48
+   463  008140  6E95               	movwf	3989,c	;volatile
+   464                           ;port.c: 140: PORTE=0b00000000;
+   465  008142  6A84               	clrf	3972,c	;volatile
+   466                           ;port.c: 141: TRISE=(TRISE&0b11111000)|(0b111110
+      +                          00&0b00000111);
+   467  008144  0EF8               	movlw	248
+   468  008146  1696               	andwf	3990,f,c	;volatile
+   469                           ;port.c: 144: RefStan();
+   470  008148  DF35               	call	_RefStan	;wreg free
+   471                           ;port.c: 145: FrsStan();
+   472  00814A  D794               	goto	_FrsStan	;wreg free
+   473                           ;port.c: 147: }
+   474  00814C                     __end_of_InitPort:
+   475                           ;port.c: 150: void StabPort(void)
+   476                           ;port.c: 151: {
+   477  00814C                     _StabPort:
+   478  000000                     
+   479                           ;port.c: 152: static unsigned char tim=0;
+   480  00814C  010F               	movlb	F1177 shr (0+8)
+   481  00814E  2B08               	incf	F1177& (0+255),f,b
+   482  008150  0508               	decf	F1177& (0+255),w,b
+   483  008152  6E00               	movwf	btemp,c
+   484  008154  0E05               	movlw	5
+   485  008156  5C00               	subwf	btemp,w,c
+   486  008158  A0D8               	btfss	status,0,c
+   487  00815A  0012               	return	
+   488                           ;port.c: 157: tim=0;
+   489  00815C  6B08               	clrf	F1177& (0+255),b
+   490                           ;port.c: 160: RefStan();
+   491  00815E  DF2A               	call	_RefStan	;wreg free
+   492                           ;port.c: 163: for(i=0;i<10;i++)
+   493  008160  6AD9               	clrf	fsr2l,c
+   494  008162                     l13:
+   495                           ;port.c: 164: {
+   496  008162  50D9               	movf	fsr2l,w,c
+   497  008164  EE0F  F009         	lfsr	0,_SPort
+   498  008168  26E9               	addwf	fsr0l,f,c
+   499  00816A  0E00               	movlw	0
+   500  00816C  22EA               	addwfc	fsr0h,f,c
+   501  00816E  30EF               	rrcf	indf0,w,c
+   502  008170  6E00               	movwf	btemp,c
+   503  008172  3000               	rrcf	btemp,w,c
+   504  008174  0B3F               	andlw	63
+   505  008176  E114               	bnz	l16
+   506                           ;port.c: 166: {
+   507  008178  50D9               	movf	fsr2l,w,c
+   508  00817A  EE0F  F009         	lfsr	0,_SPort
+   509  00817E  26E9               	addwf	fsr0l,f,c
+   510  008180  0E00               	movlw	0
+   511  008182  22EA               	addwfc	fsr0h,f,c
+   512  008184  50EF               	movf	indf0,w,c
+   513  008186  0B01               	andlw	1
+   514  008188  6E00               	movwf	btemp,c
+   515  00818A  50D9               	movf	fsr2l,w,c
+   516  00818C  EE0F  F009         	lfsr	0,_SPort
+   517  008190  26E9               	addwf	fsr0l,f,c
+   518  008192  0E00               	movlw	0
+   519  008194  22EA               	addwfc	fsr0h,f,c
+   520  008196  30EF               	rrcf	indf0,w,c
+   521  008198  0B01               	andlw	1
+   522  00819A  1800               	xorwf	btemp,w,c
+   523  00819C  E073               	bz	l15
+   524  00819E  D05F               	goto	l24
+   525                           ;port.c: 168: continue;
+   526                           ;port.c: 169: else SPort[i].Timer++;
+   527                           ;port.c: 170: }
+   528  0081A0                     l16:
+   529                           ;port.c: 171: else
+   530  0081A0  50D9               	movf	fsr2l,w,c
+   531  0081A2  EE0F  F009         	lfsr	0,_SPort
+   532  0081A6  26E9               	addwf	fsr0l,f,c
+   533  0081A8  0E00               	movlw	0
+   534  0081AA  22EA               	addwfc	fsr0h,f,c
+   535  0081AC  50EF               	movf	indf0,w,c
+   536  0081AE  6E00               	movwf	btemp,c
+   537  0081B0  50D9               	movf	fsr2l,w,c
+   538  0081B2  0D02               	mullw	2
+   539  0081B4  50F3               	movf	prodl,w,c
+   540  0081B6  0F00               	addlw	low _Nastawa
+   541  0081B8  6EF6               	movwf	tblptrl,c
+   542  0081BA  50F4               	movf	prodh,w,c
+   543  0081BC  6EF7               	movwf	tblptrh,c
+   544  0081BE  0E10               	movlw	high _Nastawa
+   545                           ;port.c: 174: else delay=Nastawa[i].Delay2;
+   546  0081C0  22F7               	addwfc	tblptrh,f,c
+   547  0081C2  A200               	btfss	btemp,1,c
+   548  0081C4  D003               	goto	L5
+   549  0081C6  2AF6               	incf	tblptrl,f,c
+   550  0081C8  0E00               	movlw	0
+   551  0081CA  22F7               	addwfc	tblptrh,f,c
+   552  0081CC                     L5:
+   553  0081CC  0008               	tblrd		*
+   554  0081CE  50F5               	movf	tablat,w,c
+   555  0081D0  6EE1               	movwf	fsr1l,c
+   556                           ;port.c: 176: if(SPort[i].Timer>=delay)
+   557  0081D2  50D9               	movf	fsr2l,w,c
+   558  0081D4  EE0F  F009         	lfsr	0,_SPort
+   559  0081D8  26E9               	addwf	fsr0l,f,c
+   560  0081DA  0E00               	movlw	0
+   561  0081DC  22EA               	addwfc	fsr0h,f,c
+   562  0081DE  30EF               	rrcf	indf0,w,c
+   563  0081E0  6E00               	movwf	btemp,c
+   564  0081E2  3000               	rrcf	btemp,w,c
+   565  0081E4  0B3F               	andlw	63
+   566  0081E6  6E00               	movwf	btemp,c
+   567  0081E8  50E1               	movf	fsr1l,w,c
+   568  0081EA  5C00               	subwf	btemp,w,c
+   569  0081EC  E31C               	bnc	l22
+   570                           ;port.c: 177: {
+   571  0081EE  50D9               	movf	fsr2l,w,c
+   572  0081F0  EE0F  F009         	lfsr	0,_SPort
+   573  0081F4  26E9               	addwf	fsr0l,f,c
+   574  0081F6  0E00               	movlw	0
+   575  0081F8  22EA               	addwfc	fsr0h,f,c
+   576  0081FA  0E03               	movlw	-253
+   577  0081FC  16EF               	andwf	indf0,f,c
+   578                           ;port.c: 179: SPort[i].Output=SPort[i].Input;
+   579  0081FE  50D9               	movf	fsr2l,w,c
+   580  008200  EE0F  F009         	lfsr	0,_SPort
+   581  008204  26E9               	addwf	fsr0l,f,c
+   582  008206  0E00               	movlw	0
+   583  008208  22EA               	addwfc	fsr0h,f,c
+   584  00820A  50EF               	movf	indf0,w,c
+   585  00820C  0B01               	andlw	1
+   586  00820E  6E00               	movwf	btemp,c
+   587  008210  50D9               	movf	fsr2l,w,c
+   588  008212  EE0F  F009         	lfsr	0,_SPort
+   589  008216  26E9               	addwf	fsr0l,f,c
+   590  008218  0E00               	movlw	0
+   591  00821A  22EA               	addwfc	fsr0h,f,c
+   592  00821C  3600               	rlcf	btemp,f,c
+   593  00821E  50EF               	movf	indf0,w,c
+   594  008220  1800               	xorwf	btemp,w,c
+   595  008222  0BFD               	andlw	-3
+   596  008224  D02D               	goto	L3
+   597                           ;port.c: 180: }
+   598  008226                     l22:
+   599                           ;port.c: 181: else
+   600  008226  50D9               	movf	fsr2l,w,c
+   601  008228  EE0F  F009         	lfsr	0,_SPort
+   602  00822C  26E9               	addwf	fsr0l,f,c
+   603  00822E  0E00               	movlw	0
+   604  008230  22EA               	addwfc	fsr0h,f,c
+   605  008232  50EF               	movf	indf0,w,c
+   606  008234  0B01               	andlw	1
+   607  008236  6E00               	movwf	btemp,c
+   608  008238  50D9               	movf	fsr2l,w,c
+   609  00823A  EE0F  F009         	lfsr	0,_SPort
+   610  00823E  26E9               	addwf	fsr0l,f,c
+   611  008240  0E00               	movlw	0
+   612  008242  22EA               	addwfc	fsr0h,f,c
+   613  008244  30EF               	rrcf	indf0,w,c
+   614  008246  0B01               	andlw	1
+   615  008248  1800               	xorwf	btemp,w,c
+   616  00824A  E109               	bnz	l24
+   617                           ;port.c: 184: SPort[i].Timer=0;
+   618  00824C  50D9               	movf	fsr2l,w,c
+   619  00824E  EE0F  F009         	lfsr	0,_SPort
+   620  008252  26E9               	addwf	fsr0l,f,c
+   621  008254  0E00               	movlw	0
+   622  008256  22EA               	addwfc	fsr0h,f,c
+   623  008258  0E03               	movlw	-253
+   624  00825A  16EF               	andwf	indf0,f,c
+   625  00825C  D013               	goto	l15
+   626  00825E                     l24:
+   627                           ;port.c: 185: else SPort[i].Timer++;
+   628  00825E  50D9               	movf	fsr2l,w,c
+   629  008260  EE0F  F009         	lfsr	0,_SPort
+   630  008264  26E9               	addwf	fsr0l,f,c
+   631  008266  0E00               	movlw	0
+   632  008268  22EA               	addwfc	fsr0h,f,c
+   633  00826A  30EF               	rrcf	indf0,w,c
+   634  00826C  6E00               	movwf	btemp,c
+   635  00826E  3000               	rrcf	btemp,w,c
+   636  008270  0B3F               	andlw	63
+   637  008272  6E00               	movwf	btemp,c
+   638  008274  2A00               	incf	btemp,f,c
+   639  008276  3600               	rlcf	btemp,f,c
+   640  008278  3600               	rlcf	btemp,f,c
+   641  00827A  50EF               	movf	indf0,w,c
+   642  00827C  1800               	xorwf	btemp,w,c
+   643  00827E  0B03               	andlw	-253
+   644  008280                     L3:
+   645  008280  1800               	xorwf	btemp,w,c
+   646  008282  6EEF               	movwf	indf0,c
+   647  008284                     l15:
+   648  008284  2AD9               	incf	fsr2l,f,c
+   649  008286  0E09               	movlw	9
+   650  008288  64D9               	cpfsgt	fsr2l,c
+   651  00828A  D76B               	goto	l13
+   652  00828C  0C09               	retlw	9
+   653                           ;port.c: 186: }
+   654  00828E                     __end_of_StabPort:
+   655                           ;port.c: 192: bit RdPrt(const unsigned char Inde
+      +                          x)
+   656                           ;port.c: 193: {
+   657  00828E                     _RdPrt:
+   658  000000                     
+   659                           ; _Index loaded to fsr2l
+   660  00828E  6ED9               	movwf	fsr2l,c
+   661                           ;port.c: 194: if (Index>10-1) asm("RESET");
+   662  008290  0E09               	movlw	9
+   663  008292  64D9               	cpfsgt	fsr2l,c
+   664  008294  D001               	goto	l27
+   665  008296  00FF               	reset		;#
+   666  008298                     l27:
+   667                           ;port.c: 195: return SPort[Index].Output;
+   668  008298  50D9               	movf	fsr2l,w,c
+   669  00829A  EE0F  F009         	lfsr	0,_SPort
+   670  00829E  26E9               	addwf	fsr0l,f,c
+   671  0082A0  0E00               	movlw	0
+   672  0082A2  22EA               	addwfc	fsr0h,f,c
+   673  0082A4  30EF               	rrcf	indf0,w,c
+   674  0082A6  0B01               	andlw	1
+   675  0082A8  6E00               	movwf	btemp,c
+   676  0082AA  3000               	rrcf	btemp,w,c
+   677  0082AC  0012               	return	
+   678                           ;port.c: 196: }
+   679  0082AE                     __end_of_RdPrt:
+   680                           ;       param _nw assigned to ?_SetPrt+0
+   681  000000                     _SetPrt$nw	set	?_SetPrt
+   682                           ;port.c: 199: void SetPrt(const unsigned char In
+      +                          dex, const unsigned char nw)
+   683                           ;port.c: 200: {
+   684  0082AE  00F0               	dw	?_SetPrt
+   685  0082B0                     _SetPrt:
+   686  000000                     
+   687                           ; _Index loaded to fsr2l
+   688  0082B0  6ED9               	movwf	fsr2l,c
+   689                           ;port.c: 201: if (Index>10-1) asm("RESET");
+   690  0082B2  0E09               	movlw	9
+   691  0082B4  64D9               	cpfsgt	fsr2l,c
+   692  0082B6  D001               	goto	l29
+   693  0082B8  00FF               	reset		;#
+   694  0082BA                     l29:
+   695                           ;port.c: 202: SPort[Index].Output=((!nw)?0:1);
+   696  0082BA  0E00               	movlw	0
+   697  0082BC  6A00               	clrf	btemp,c
+   698  0082BE  0100               	movlb	__Lparam shr (0+8)
+   699  0082C0  63F0               	cpfseq	?_SetPrt^(__Lparam& (0+65280)),b
+   700  0082C2  2A00               	incf	btemp,f,c
+   701  0082C4  50D9               	movf	fsr2l,w,c
+   702  0082C6  EE0F  F009         	lfsr	0,_SPort
+   703  0082CA  26E9               	addwf	fsr0l,f,c
+   704  0082CC  0E00               	movlw	0
+   705  0082CE  22EA               	addwfc	fsr0h,f,c
+   706  0082D0  3600               	rlcf	btemp,f,c
+   707  0082D2  50EF               	movf	indf0,w,c
+   708  0082D4  1800               	xorwf	btemp,w,c
+   709  0082D6  0BFD               	andlw	-3
+   710  0082D8  1800               	xorwf	btemp,w,c
+   711  0082DA  6EEF               	movwf	indf0,c
+   712                           ;port.c: 203: SPort[Index].Timer=0;
+   713  0082DC  50D9               	movf	fsr2l,w,c
+   714  0082DE  EE0F  F009         	lfsr	0,_SPort
+   715  0082E2  26E9               	addwf	fsr0l,f,c
+   716  0082E4  0E00               	movlw	0
+   717  0082E6  22EA               	addwfc	fsr0h,f,c
+   718  0082E8  0E03               	movlw	-253
+   719  0082EA  16EF               	andwf	indf0,f,c
+   720                           ;port.c: 204: }
+   721  0082EC  0C03               	retlw	3
+   722  0082EE                     __end_of_SetPrt:
+   723                           ;port.c: 207: void RefPrt(const unsigned char In
+      +                          dex)
+   724                           ;port.c: 208: {
+   725  0082EE                     _RefPrt:
+   726  000000                     
+   727                           ; _Index loaded to fsr2l
+   728  0082EE  6ED9               	movwf	fsr2l,c
+   729                           ;port.c: 209: if (Index>10-1) asm("RESET");
+   730  0082F0  0E09               	movlw	9
+   731  0082F2  64D9               	cpfsgt	fsr2l,c
+   732  0082F4  D001               	goto	l31
+   733  0082F6  00FF               	reset		;#
+   734  0082F8                     l31:
+   735                           ;port.c: 210: SPort[Index].Output=SPort[Index].I
+      +                          nput;
+   736  0082F8  50D9               	movf	fsr2l,w,c
+   737  0082FA  EE0F  F009         	lfsr	0,_SPort
+   738  0082FE  26E9               	addwf	fsr0l,f,c
+   739  008300  0E00               	movlw	0
+   740  008302  22EA               	addwfc	fsr0h,f,c
+   741  008304  50EF               	movf	indf0,w,c
+   742  008306  0B01               	andlw	1
+   743  008308  6E00               	movwf	btemp,c
+   744  00830A  50D9               	movf	fsr2l,w,c
+   745  00830C  EE0F  F009         	lfsr	0,_SPort
+   746  008310  26E9               	addwf	fsr0l,f,c
+   747  008312  0E00               	movlw	0
+   748  008314  22EA               	addwfc	fsr0h,f,c
+   749  008316  3600               	rlcf	btemp,f,c
+   750  008318  50EF               	movf	indf0,w,c
+   751  00831A  1800               	xorwf	btemp,w,c
+   752  00831C  0BFD               	andlw	-3
+   753  00831E  1800               	xorwf	btemp,w,c
+   754  008320  6EEF               	movwf	indf0,c
+   755                           ;port.c: 211: SPort[Index].Timer=0;
+   756  008322  50D9               	movf	fsr2l,w,c
+   757  008324  EE0F  F009         	lfsr	0,_SPort
+   758  008328  26E9               	addwf	fsr0l,f,c
+   759  00832A  0E00               	movlw	0
+   760  00832C  22EA               	addwfc	fsr0h,f,c
+   761  00832E  0E03               	movlw	-253
+   762  008330  16EF               	andwf	indf0,f,c
+   763                           ;port.c: 212: }
+   764  008332  0C03               	retlw	3
+   765  008334                     __end_of_RefPrt:
+   766  000000                     
+   767  000000                     
+   768  000000                     
+   769  000000                     
+   770  000000                     
+   771  000000                     
+   772  000000                     
+   773  000000                     
+   774  000000                     
+   775  000000                     
+   776  000000                     
+   777  000000                     
+   778  000000                     
+   779  000000                     
+   780  000000                     
+   781  000000                     
+   782  000000                     
+   783  000000                     
+   784  000000                     
+   785  000000                     
+   786  000000                     
+   787  000000                     
+   788  000000                     
+   789  000000                     
+   790  000000                     
+   791  000000                     
+   792  000000                     
+   793  000000                     
+   794  000000                     
+   795  000000                     
+   796  000000                     
+   797  000000                     
+   798  000000                     
+   799  000000                     
+   800  000000                     
+   801  000000                     
+   802  000000                     
+   803  000000                     
+   804  000000                     
+   805  000000                     
+   806  000000                     
+   807  000000                     
+   808  000000                     
+   809  000000                     
+   810  000000                     
+   811  000000                     
+   812  000000                     
+   813  000000                     
+   814  000000                     
+   815  000000                     
+   816  000000                     
+   817  000000                     
+   818  000000                     
+   819  000000                     
+   820  000000                     
+   821  000000                     
+   822  000000                     
+   823  000000                     
+   824  000000                     
+   825  000000                     
+   826  000000                     
+   827  000000                     
+   828  000000                     
+   829  000000                     
+   830  000000                     
+   831  000000                     
+   832  000000                     
+   833  000000                     
+   834  000000                     
+   835  000000                     
+   836  000000                     
+   837  000000                     
+   838  000000                     
+   839  000000                     
+   840  000000                     
+   841  000000                     
+   842  000000                     
+   843  000000                     
+   844  000000                     
+   845  000000                     
+   846  000000                     
+   847  000000                     
+   848  000000                     
+   849  000000                     
+   850  000000                     
+   851  000000                     
+   852  000000                     
+   853  000000                     
+   854  000000                     
+   855  000000                     
+   856  000000                     
+   857  000000                     
+   858  000000                     
+   859  000000                     
+   860  000000                     
+   861  000000                     
+   862  000000                     
+   863  000000                     
+   864  000000                     
+   865  000000                     
+   866  000000                     
+   867  000000                     
+   868  000000                     
+   869  000000                     
+   870  000000                     
+   871  000000                     
+   872  000000                     
+   873  000000                     
+   874  000000                     
+   875  000000                     
+   876  000000                     
+   877  000000                     
+   878  000000                     
+   879  000000                     
+   880  000000                     
+   881  000000                     
+   882  000000                     
+   883  000000                     
+   884  000000                     
+   885  000000                     
+   886  000000                     
+   887  000000                     
+   888  000000                     
+   889  000000                     
+   890  000000                     
+   891  000000                     
+   892  000000                     
+   893  000000                     
+   894  000000                     
+   895  000000                     
+   896  000000                     
+   897  000000                     
+   898  000000                     
+   899  000000                     
+   900  000000                     
+   901  000000                     
+   902  000000                     
+   903  000000                     
+   904  000000                     
+   905  000000                     
+   906  000000                     
+   907  000000                     
+   908  000000                     
+   909  000000                     
+   910  000000                     
+   911  000000                     
+   912  000000                     
+   913  000000                     
+   914  000000                     
+   915  000000                     
+   916  000000                     
+   917  000000                     
+   918  000000                     
+   919  000000                     
+   920  000000                     
+   921  000000                     
+   922  000000                     
+   923  000000                     
+   924  000000                     
+   925  000000                     
+   926  000000                     
+   927  000000                     
+   928  000000                     
+   929  000000                     
+   930  000000                     
+   931  000000                     
+   932  000000                     
+   933  000000                     
+   934  000000                     
+   935  000000                     
+   936  000000                     
+   937  000000                     
+   938  000000                     
+   939  000000                     
+   940  000000                     
+   941  000000                     
+   942  000000                     
+   943  000000                     
+   944  000000                     
+   945  000000                     
+   946  000000                     
+   947  000000                     
+   948  000000                     
+   949  000000                     
+   950  000000                     
+   951  000000                     
+   952  000000                     
+   953  000000                     
+   954  000000                     
+   955  000000                     
+   956  000000                     
+   957  000000                     
+   958  000000                     
+   959  000000                     
+   960  000000                     
+   961  000000                     
+   962  000000                     
+   963  000000                     
+   964  000000                     
+   965  000000                     
+   966  000000                     
+   967  000000                     
+   968  000000                     
+   969  000000                     
+   970  000000                     
+   971  000000                     
+   972  000000                     
+   973  000000                     
+   974  000000                     
+   975  000000                     
+   976  000000                     
+   977  000000                     
+   978  000000                     
+   979  000000                     
+   980  000000                     
+   981  000000                     
+   982  000000                     
+   983  000000                     
+   984  000000                     
+   985  000000                     
+   986  000000                     
+   987  000000                     
+   988  000000                     
+   989  000000                     
+   990  000000                     
+   991  000000                     
+   992  000000                     
+   993  000000                     
+   994  000000                     
+   995  000000                     
+   996  000000                     
+   997  000000                     
+   998  000000                     
+   999  000000                     
+  1000  000000                     
+  1001  000000                     
+  1002  000000                     
+  1003  000000                     
+  1004  000000                     
+  1005  000000                     
+  1006  000000                     
+  1007  000000                     
+  1008  000000                     
+  1009  000000                     
+  1010  000000                     
+  1011  000000                     
+  1012  000000                     
+  1013  000000                     
+  1014  000000                     
+  1015  000000                     
+  1016  000000                     
+  1017  000000                     
+  1018  000000                     
+  1019  000000                     
+  1020  000000                     
+  1021  000000                     
+  1022  000000                     
+  1023  000000                     
+  1024  000000                     
+  1025  000000                     
+  1026  000000                     
+  1027  000000                     
+  1028  000000                     
+  1029  000000                     
+  1030  000000                     
+  1031  000000                     
+  1032  000000                     
+  1033  000000                     
+  1034  000000                     
+  1035  000000                     
+  1036  000000                     
+  1037  000000                     
+  1038  000000                     
+  1039  000000                     
+  1040  000000                     
+  1041  000000                     
+  1042  000000                     
+  1043  000000                     
+  1044  000000                     
+  1045  000000                     
+  1046  000000                     
+  1047  000000                     
+  1048  000000                     
+  1049  000000                     
+  1050  000000                     
+  1051  000000                     
+  1052  000000                     
+  1053  000000                     
+  1054  000000                     
+  1055  000000                     
+  1056  000000                     
+  1057  000000                     
+  1058  000000                     
+  1059  000000                     
+  1060  000000                     
+  1061  000000                     
+  1062  000000                     
+  1063  000000                     
+  1064  000000                     
+  1065  000000                     
+  1066  000000                     
+  1067  000000                     
+  1068  000000                     
+  1069  000000                     
+  1070  000000                     
+  1071  000000                     
+  1072  000000                     
+  1073  000000                     
+  1074  000000                     
+  1075  000000                     
+  1076  000000                     
+  1077  000000                     
+  1078  000000                     
+  1079  000000                     
+  1080  000000                     
+  1081  000000                     
+  1082  000000                     
+  1083  000000                     
+  1084  000000                     
+  1085  000000                     
+  1086  000000                     
+  1087  000000                     
+  1088  000000                     
+  1089  000000                     
+  1090  000000                     
+  1091  000000                     
+  1092  000000                     
+  1093  000000                     
+  1094  000000                     
+  1095  000000                     
+  1096  000000                     
+  1097  000000                     
+  1098  000000                     
+  1099  000000                     
+  1100  000000                     
+  1101  000000                     
+  1102  000000                     
+  1103  000000                     
+  1104  000000                     
+  1105  000000                     
+  1106  000000                     
+  1107  000000                     
+  1108  000000                     
+  1109  000000                     
+  1110  000000                     
+  1111  000000                     
+  1112  000000                     
+  1113  000000                     
+  1114  000000                     
+  1115  000000                     
+  1116  000000                     
+  1117  000000                     
+  1118  000000                     
+  1119  000000                     
+  1120  000000                     
+  1121  000000                     
+  1122  000000                     
+  1123  000000                     
+  1124  000000                     
+  1125  000000                     
+  1126  000000                     
+  1127  000000                     
+  1128  000000                     
+  1129  000000                     
+  1130  000000                     
+  1131  000000                     
+  1132  000000                     
+  1133  000000                     
+  1134  000000                     
+  1135  000000                     
+  1136  000000                     
+  1137  000000                     
+  1138  000000                     
+  1139  000000                     
+  1140  000000                     
+  1141  000000                     
+  1142  000000                     
+  1143  000000                     
+  1144  000000                     
+  1145  000000                     
+  1146  000000                     
+  1147  000000                     
+  1148  000000                     
+  1149  000000                     
+  1150  000000                     
+  1151  000000                     
+  1152  000000                     
+  1153  000000                     
+  1154  000000                     
+  1155  000000                     
+  1156  000000                     
+  1157  000000                     
+  1158  000000                     
+  1159  000000                     
+  1160  000000                     
+  1161  000000                     
+  1162  000000                     
+  1163  000000                     
+  1164  000000                     
+  1165  000000                     
+  1166  000000                     
+  1167  000000                     
+  1168  000000                     
+  1169  000000                     
+  1170  000000                     
+  1171  000000                     
+  1172  000000                     
+  1173  000000                     
+  1174  000000                     
+  1175  000000                     
+  1176  000000                     
+  1177  000000                     
+  1178  000000                     
+  1179  000000                     
+  1180  000000                     
+  1181  000000                     
+  1182  000000                     
+  1183  000000                     
+  1184  000000                     
+  1185  000000                     
+  1186  000000                     
+  1187  000000                     
+  1188  000000                     
+  1189  000000                     
+  1190  000000                     
+  1191  000000                     
+  1192  000000                     
+  1193  000000                     
+  1194  000000                     
+  1195  000000                     
+  1196  000000                     
+  1197  000000                     
+  1198  000000                     
+  1199  000000                     
+  1200  000000                     
+  1201  000000                     
+  1202                           
+  1203                           	psect	bigbss
+  1204  000F08                     F1177:
+  1205  000F08                     	ds	1
+  1206  000000                     
+  1207  000000                     
+  1208  000000                     
+  1209  000000                     
+  1210  000000                     
+  1211  000000                     
+  1212  000000                     
+  1213  000000                     
+  1214  000000                     
+  1215  000000                     
+  1216  000000                     
+  1217  000000                     
+  1218  000000                     
+  1219  000000                     
+  1220  000000                     
+  1221  000000                     
+  1222  000000                     
+  1223  000000                     
+  1224  000000                     
+  1225  000000                     
+  1226  000000                     
+  1227  000000                     
+  1228  000000                     
+  1229  000000                     
+  1230  000000                     
+  1231  000000                     
+  1232  000000                     
+  1233  000000                     
+  1234  000000                     
+  1235  000000                     
+  1236  000000                     
+  1237  000000                     
+  1238  000000                     
+  1239  000000                     
+  1240  000000                     
+  1241  000000                     
+  1242  000000                     
+  1243  000000                     
+  1244  000000                     
+  1245  000000                     
+  1246  000000                     
+  1247  000000                     
+  1248  000000                     
+  1249  000000                     
+  1250  000000                     
+  1251  000000                     
+  1252  000000                     
+  1253  000000                     
+  1254  000000                     
+  1255  000000                     
+  1256  000000                     
+  1257  000000                     
+  1258  000000                     
+  1259  000000                     
+  1260  000000                     
+  1261  000000                     
+  1262  000000                     
+  1263  000000                     
+  1264  000000                     
+  1265  000000                     
+  1266  000000                     
+  1267  000000                     
+  1268  000000                     
+  1269  000000                     
+  1270  000000                     
+  1271  000000                     
+  1272  000000                     
+  1273  000000                     
+  1274  000000                     
+  1275  000000                     
+  1276  000000                     
+  1277  000000                     
+  1278  000000                     
+  1279  000000                     
+  1280  000000                     
+  1281  000000                     
+  1282  000000                     
+  1283  000000                     
+  1284  000000                     
+  1285  000000                     
+  1286  000000                     
+  1287  000000                     
+  1288  000000                     
+  1289  000000                     
+  1290  000000                     
+  1291  000000                     
+  1292  000000                     
+  1293  000000                     
+  1294  000000                     
+  1295  000000                     
+  1296  000000                     
+  1297  000000                     
+  1298  000000                     
+  1299  000000                     
+  1300  000000                     
+  1301  000000                     
+  1302  000000                     
+  1303  000000                     
+  1304  000000                     
+  1305  000000                     
+  1306  000000                     
+  1307  000000                     
+  1308  000000                     
+  1309  000000                     
+  1310  000000                     
+  1311  000000                     
+  1312  000000                     
+  1313  000000                     
+  1314  000000                     
+  1315  000000                     
+  1316  000000                     
+  1317  000000                     
+  1318  000000                     
+  1319  000000                     
+  1320  000000                     
+  1321  000000                     
+  1322  000000                     
+  1323  000000                     
+  1324  000000                     
+  1325  000000                     
+  1326  000000                     
+  1327  000000                     
+  1328  000000                     
+  1329  000000                     
+  1330  000000                     
+  1331  000000                     
+  1332  000000                     
+  1333  000000                     
+  1334  000000                     
+  1335  000000                     
+  1336  000000                     
+  1337  000000                     
+  1338  000F08                     _SPort:
+  1339  000F08                     	ds	10
+  1340                           
+  1341                           	psect	temp
+  1342  000000                     btemp:
+  1343  000000                     	ds	1
+  1344                           tblptrh	equ	0xFF7
+  1345                           tblptrl	equ	0xFF6
+  1346                           tablat	equ	0xFF5
+  1347                           prodh	equ	0xFF4
+  1348                           prodl	equ	0xFF3
+  1349                           indf0	equ	0xFEF
+  1350                           fsr0h	equ	0xFEA
+  1351                           fsr0l	equ	0xFE9
+  1352                           fsr1l	equ	0xFE1
+  1353                           fsr2l	equ	0xFD9
+  1354                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Wed Jun 11 12:30:08 2014
+
+        _StabPort 814C                l13 8162                l22 8226  
+              l31 82F8                l15 8284                l24 825E  
+              l16 81A0                l27 8298                l29 82BA  
+              u30 7FE6                u40 7FE8                u70 8000  
+              u80 8002              F1177 0F08              _DtCW 014C  
+            fsr0h 000FEA              indf0 000FEF              fsr0l 000FE9  
+            fsr1l 000FE1              fsr2l 000FD9              btemp 0000  
+            prodh 000FF4              prodl 000FF3   __end_of_FrsStan 812C  
+ __end_of_RefStan 8074           ?_SetPrt 00F0     __end_of_RdPrt 82AE  
+           _SPort 0F09             _RdPrt 828E        used_btemp0 0001  
+           tablat 000FF5             status 000FD8  __end_of_InitPort 814C  
+         _FrsStan 8074           _RefStan 7FB4           _Nastawa 1000  
+         __Lparam 00F0  __end_of_StabPort 828E           __ramtop 1000  
+  __end_of_RefPrt 8334    __end_of_SetPrt 82EE            _RefPrt 82EE  
+          _SetPrt 82B0            tblptrh 000FF7            tblptrl 000FF6  
+        _InitPort 812C  

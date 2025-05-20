@@ -1,0 +1,217 @@
+     1: /*uart9b.c*/
+     2: //Funkcje obslugi RS232 w trybie 9 bit z adresowaniem.
+     3: 
+     4: /*---------------------------------------------------------------------------------*/
+     5: #include <pic18.h>
+     6: #include "global.h"                     //parametry globalne
+     7: #include "uart9b.h"                     //parametry lokalne
+     8: 
+     9: 
+    10: UARTData UADt;
+    11: unsigned char bufTUART[_NRS_TBF];       //bufor roboczy modulu UART
+    12: unsigned char bufRUART[_NRS_RBF];       //bufor roboczy modulu UART
+    13: volatile near unsigned char RSerial;
+    14: /*---------------------------------------------------------------------------------*/
+    15: /*---------------------------------------------------------------------------------*/
+    16: /*-----------------------------PUBLIC DATA-----------------------------------------*/
+    17: void InitUart(void)
+    18: {
+    19:         //6 wyjscie portu C ustawic jako wyjscie (0)
+    20:         //7 wyjscie portu C ustawic jako wejscie (1)
+    21: 
+    22:         CSRC=0;                 //asynch mode
+    23:         RX9=1;                  //odbior 9 bitowy
+    24:         SPBRG=_SPBRG;   //baud rate
+    25:         SYNC=_SYNC;             //tryb asynchroniczny/synchroniczny
+    26:         BRGH=_BRGH;             //predkosc generatora Baud Rate
+    27:         ADDEN=1;                //z adresowaniem
+    28:         TX9=1;                  //nadawanie 9 bitowe
+    29:         RCIP=1;                 //wysoki priorytet przerwania
+    30:         RCIE=1;                 //aktywne przerwanie dla odbioru
+    31:         TXIP=1;                 //wysoki priorytet przerwania
+    32:         TXEN=1;                 //aktywacja modulu transmisji
+    33:         SPEN=1;                 //aktywacja portu szeregowego
+    34:         //CREN=1;                       //aktywacja odbioru
+    35: 
+    36:         //UWAGA: GIEL=1 oraz GIEH=1
+    37:         UADt.RData=0;
+    38:         UADt.RErrREC=0;
+    39:         UADt.RErrBUF=0;
+    40:         
+    41:         UADt.TData=0;
+    42:         UADt.RNData=0;
+    43:         UADt.TNData=0;
+    44: }
+    45: //------------------------------------------------------------------------------------  
+    46: //Procedura odczytu odebranego bajtu danych /wykonaywana w przerwaniu generowanym przy odbiorze danych/
+    47: //W buforze zapisywane sa wszystkie odebrane bajty poczawszy od bajtu adresu.   
+    48: void IntUSARTRC(void)
+    49: {
+    50:         if(!FERR&&!OERR) 
+    51:         {
+    52:                 if(ADDEN&&RX9D)                                                 //RX9D - ustawiony 9 ty bit? (znacznik adresu)
+    53:                 {
+    54:                         RSerial=RCREG;
+    55:                         if(RSerial==_MY_ADDR)                           //parawidlowy adres?
+    56:                         {
+    57:                                 ADDEN=0;                                                //wylacz detekcje adresu
+    58:                                 UADt.indeks=0;                                  //wyzeruj indeks
+    59:                                 bufRUART[UADt.indeks++]=RSerial;//zapisz adres w buforze pod 0 indeksem
+    60:                                 UADt.RData=1;                                   //sygnalizuj aktywny odbior danych
+    61:                         }
+    62:                         return;                                                         //wyjdz z przerwania
+    63:                 }
+    64:                 RSerial=RCREG;
+    65:                 if (UADt.indeks<_NRS_RBF)                               //mozliwe przepelnienienie bufora odbioru?
+    66:                 {
+    67:                         bufRUART[UADt.indeks++]=RSerial;
+    68:                         if (UADt.indeks>=UADt.RNData)           //ostatni bajt?
+    69:                         {       
+    70:                                 CREN=0;                                                 //wylacz odbior (aktywacja w petli glownej po analizie danych)
+    71:                                 ADDEN=1;                                                //zalacz detekcje adresu                                                
+    72:                                 UADt.RData=0;                                   //sygnalizuj deaktywacje odbioru danych
+    73:                                 UADt.REnd=1;                                    //ustaw znacznik odbioru kompletnej paczki danych
+    74:                         }
+    75:                 }
+    76:                 else                                                                    //w przypadku bledu przeplnienia przerwij odbior
+    77:                 {
+    78:                         CREN=0;                                                         //przerwij odbior                                                               
+    79:                         ADDEN=1;                                                        //uaktywnij detekcje adresu
+    80:                         UADt.RData=0;                                           //sygnalizuj deaktywacje odbioru danych
+    81:                         UADt.REnd=0;                                            //usun znacznik odbioru kompletnej paczki danych
+    82:                         UADt.RErrBUF=1;                                         //sygnalizuj blad zbyt duzej ilosci danych
+    83:                 }
+    84:         }
+    85:         else                                                                            //w przypadku bledu przerwij odbior
+    86:         {
+    87:                 RSerial=RCREG;                                                  //wyzeruj bity OERR i FERR
+    88:                 CREN=0;                                                                 //przerwij odbior
+    89:                 ADDEN=1;                                                                //uaktywnij detekcje adresu
+    90:                 UADt.RData=0;                                                   //sygnalizuj deaktywacje odbioru danych
+    91:                 UADt.REnd=0;                                                    //usun znacznik odbioru kompletnej paczki danych
+    92:                 UADt.RErrREC=1;                                                 //sygnalizuj blad transmisji danych
+    93:         }
+    94: }
+    95: //------------------------------------------------------------------------------------
+    96: //Aktywacja modulu odbioru danych
+    97: //Gdzie: nData - ogolna liczba odbieranych bajtow (wlaczywszy adres)
+    98: void StartUSARTRC(const unsigned char nData)
+    99: {
+   100:         if(CREN) return;                        //trwa odbior/transmisja danych?
+   101:         UADt.RNData=nData;      
+   102:         UADt.REnd=0;                            //wyzeruj znacznik konca odbioru
+   103:         ADDEN=1;
+   104:         CREN=1;
+   105: }
+   106: //Deaktywacja modulu odbioru danych
+   107: void StopUSARTRC(void)
+   108: {
+   109:         CREN=0;
+   110:         UADt.REnd=0;                                                    //usun znacznik odbioru kompletnej paczki danych
+   111:         UADt.RData=0;                                                   //sygnalizuj deaktywacje odbioru danych
+   112: }
+   113: //------------------------------------------------------------------------------------
+   114: //------------------------------------------------------------------------------------
+   115: //Transmisja danych /procedura wykonywana w przerwaniu/
+   116: //Wysylane sa wszystkie bajty poczawszy od adresu odbiornika
+   117: void IntUSARTTR(void)
+   118: {
+   119:         if(!UADt.indeks) TX9D=1;                //dla zerowego indeksu ustaw znacznik adresu
+   120:         else TX9D=0;                                    //dla pozostalych danych usun znacznik adresu
+   121:         TXREG=bufTUART[UADt.indeks++];  //rozpoczyna transmisje                 
+   122:         if(UADt.indeks<UADt.TNData)     UADt.TData=1; //ustaw znacznik transmisji danych
+   123:         else
+   124:         {
+   125:                 UADt.TData=0;                           //usun znacznik transmisji danych
+   126:                 UADt.TEnd=1;                            //ustaw znacznik zakonczenia transmisji danych
+   127:                 TXIE=0;                                         //deaktywacja transmisji
+   128:         }
+   129: }       
+   130: //------------------------------------------------------------------------------------
+   131: //Aktywacja modulu odbioru danych
+   132: //Gdzie: nData - ogolna liczba wysylanych bajtow (wlaczywszy adres)
+   133: void StartUSARTTR(const unsigned char nData)
+   134: {
+   135:         if(TXIE) return;                                //trwa transmisja danych?
+   136:         UADt.TNData=nData;                              //liczba wysylanych bajtow
+   137:         UADt.indeks=0;                                  //indeks = 0 - pierwszy bajt oznaczony jako adres
+   138:         UADt.TEnd=0;                                    //wyzeruj znacznik konca odbioru
+   139:         TXIE=1;                                                 //aktywacja transmisji
+   140: }
+   141: //Deaktywacja modulu odbioru danych
+   142: void StopUSARTTR(void)
+   143: {
+   144:         TXIE=0;                                                 //deaktywacja transmisji
+   145:         UADt.TData=0;                                   //usun znacznik transmisji danych
+   146:         UADt.TEnd=0;                                    //wyzeruj znacznik konca odbioru
+   147: }
+   148: //------------------------------------------------------------------------------------
+   149: //------------------------------------------------------------------------------------
+   150: //Wyzerowanie bufora odbiornika
+   151: void ClrRSRBuf(void)
+   152: {
+   153:         unsigned char i;
+   154:         for(i=0;i<_NRS_RBF;i++) bufRUART[i]=0;
+   155: }
+   156: //------------------------------------------------------------------------------------
+   157: //Wyzerowanie bufora nadajnika
+   158: void ClrRSTBuf(void)
+   159: {
+   160:         unsigned char i;
+   161:         for(i=0;i<_NRS_TBF;i++) bufTUART[i]=0;
+   162: }
+   163: //------------------------------------------------------------------------------------
+   164: //Zapis danych do bufora nadajnika
+   165: void SetRSTBuf(const unsigned char indeks,const unsigned char data)
+   166: {
+   167:         bufTUART[indeks]=data;  
+   168: }
+   169: //------------------------------------------------------------------------------------
+   170: //Odczyt danych z bufora odbiornika
+   171: unsigned char GetRSRBuf(const unsigned char indeks)
+   172: {
+   173:         return bufRUART[indeks];        
+   174: }
+   175: //------------------------------------------------------------------------------------
+   176: //Oblicza CHK z nData bajtow bufora bf (bufor danych musi zawierac przynajmniej 2 elementy)
+   177: //Gdzie bf - adres pierwszego bajtu, nData - liczba bajtow z ktorych liczone bedzie CHK 
+   178: unsigned char LiczRSCHK(const unsigned char *bf,const unsigned char nData)
+   179: {
+   180:         unsigned char i,chk;
+   181:         chk=0;
+   182:         for(i=0;i<nData;i++) chk+=(*(bf+i)+i)^0xAA;
+   183:         return chk;
+   184: }
+   185: //------------------------------------------------------------------------------------
+   186: //Oblicza CHK i zapisuje na ostatniej pozycji bufora danych do wysylki
+   187: //nData - ogolna liczba wysylanych bajtow (lacznie z adresem i bajtem CHK)
+   188: void SetRSCHK(const unsigned char nData)
+   189: {
+   190:         UADt.CHK=LiczRSCHK(bufTUART,nData-1);   //liczy CHK z pominieciem ostatniego bajtu (bajt przeznaczony na zapis obliczonego CHK.)
+   191:         bufTUART[nData-1]=UADt.CHK;                             //zapisz w buforze danych do wysylki (na ostatniej pozycji) obliczona wartosc CHK
+   192: }
+   193: //------------------------------------------------------------------------------------
+   194: //Funkcja przeznaczona dla sytuacji gdy po wyslaniu paczki danych spodziewamu sie otrzymac odpowiedz w postaci dwoch bajtow:
+   195: //adresu i bajtu potwierdzenia. 
+   196: //Funkcja zwraca wartosc 1 gdy bajt potwierdzenia = 0xff wynik pozytywny.
+   197: unsigned char VerifyRSACK(void)
+   198: {
+   199:         if(bufRUART[1]==0xff) return 1;         //porownuje drugi odebrany bajt z obliczonym wczesniej CHK dla paczki wysylanych danych
+   200:         return 0;                                                                       
+   201: }
+   202: //------------------------------------------------------------------------------------
+   203: //Oblicza CHK z odebranych danych (pominawszy ostani bajt) i porownuje otrzymany wynik z ostatnim odebranym bajtem
+   204: //nData - ogolna liczba odebranych bajtow (lacznie z adresem i bajtem CHK)
+   205: //Funkcja zwraca wartosc 1 gdy porownanie ma wynik pozytywny.
+   206: unsigned char VerifyRSCHK(const unsigned char nData)
+   207: {
+   208:         if(bufRUART[nData-1]==LiczRSCHK(bufRUART,nData-1)) return 1;    //liczy CHK z pominieciem ostatniego bajtu (bajt przeznaczony na zapis obliczonego CHK.)
+   209:         return 0;                                                                                                               //i porownuje z ostatnim odebranym bajtem.
+   210: }
+   211: //------------------------------------------------------------------------------------
+   212: //Odczyt obliczonej wartosci CHK (rejestracja CHK odbywa sie za pomoca procedury SetRSCHK(nData)
+   213: unsigned char GetRSCHK(void)
+   214: {
+   215:         return UADt.CHK;        
+   216: }
+   217: //------------------------------------------------------------------------------------

@@ -1,0 +1,2806 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Mon Sep 14 17:33:15 2020
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     5                           	psect	bss,global,class=RAM,space=1,delta=1
+     6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97                           
+    98                           	psect	text
+    99                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   100                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   101                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   102                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   103                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   104                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   105                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   106                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   107                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   108                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   109                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   110                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   111                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   112                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   113                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   114                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   115                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   116                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   117                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   118                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   119                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   120                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   121                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   122                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   123                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   124                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   125                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   126                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   127                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   128                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   129                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   130                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   131                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   132                           ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   133                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   134                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   135                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   136                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   137                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   138                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   139                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   140                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   141                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   142                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   143                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   144                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   145                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   146                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   147                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   148                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   149                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   150                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   151                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   152                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   153                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   154                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   155                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   156                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   157                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   158                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   159                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   160                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   161                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   162                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   163                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   164                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   165                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   166                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   167                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   168                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   169                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   170                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   171                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   172                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   173                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+   174                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   175                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   176                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+   177                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   178                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   179                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   180                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   181                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   182                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   183                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   184                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+   185                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   186                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   187                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   188                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   189                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   190                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   191                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   192                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   193                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   194                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   195                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   196                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   197                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   198                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   199  00E44E                     _ProcToPmpPwm:
+   200                           ;	_ppwm assigned to ?a_ModPmp2+4
+   201  000000                     _ModPmp2$ppwm	set	?a_ModPmp2+4
+   202                           ;	_tim assigned to ?a_ModPmp2+3
+   203  000000                     _ModPmp2$tim	set	?a_ModPmp2+3
+   204                           ;	_pup assigned to ?a_ModPmp2+2
+   205  000000                     _ModPmp2$pup	set	?a_ModPmp2+2
+   206                           ;	_pdw assigned to ?a_ModPmp2+1
+   207  000000                     _ModPmp2$pdw	set	?a_ModPmp2+1
+   208                           ;	_p assigned to ?a_ModPmp2+0
+   209  000000                     _ModPmp2$p	set	?a_ModPmp2
+   210                           ;	_k assigned to ?a_RetDelta+1
+   211  000000                     _RetDelta$k	set	?a_RetDelta+1
+   212                           ;	_pco assigned to ?a_RetDelta+0
+   213  000000                     _RetDelta$pco	set	?a_RetDelta
+   214                           ;       param _eco assigned to ?_RetDelta+0
+   215  000000                     _RetDelta$eco	set	?_RetDelta
+   216                           ;	_i assigned to ?a_RetKrkDelta+4
+   217  000000                     _RetKrkDelta$i	set	?a_RetKrkDelta+4
+   218                           ;	_pco assigned to ?a_RetKrkDelta+3
+   219  000000                     _RetKrkDelta$pco	set	?a_RetKrkDelta+3
+   220                           ;	_min assigned to ?a_RetKrkDelta+2
+   221  000000                     _RetKrkDelta$min	set	?a_RetKrkDelta+2
+   222                           ;	_max assigned to ?a_RetKrkDelta+1
+   223  000000                     _RetKrkDelta$max	set	?a_RetKrkDelta+1
+   224                           ;	_d assigned to ?a_RetKrkDelta+0
+   225  000000                     _RetKrkDelta$d	set	?a_RetKrkDelta
+   226                           ;       param _lo assigned to ?_RetDelta4+2
+   227  000000                     _RetDelta4$lo	set	?_RetDelta4+2
+   228                           ;       param _hi assigned to ?_RetDelta4+1
+   229  000000                     _RetDelta4$hi	set	?_RetDelta4+1
+   230                           ;       param _eco assigned to ?_RetDelta4+0
+   231  000000                     _RetDelta4$eco	set	?_RetDelta4
+   232                           ;       param _lo assigned to ?_RetDelta3+0
+   233  000000                     _RetDelta3$lo	set	?_RetDelta3
+   234                           ;       param _ddlt assigned to ?_RetDelta2+0
+   235  000000                     _RetDelta2$ddlt	set	?_RetDelta2
+   236                           ;       param _hi assigned to ?_RetDelta1+0
+   237  000000                     _RetDelta1$hi	set	?_RetDelta1
+   238                           ;       param _min assigned to ?_RetLO+1
+   239  000000                     _RetLO$min	set	?_RetLO+1
+   240                           ;       param _eco assigned to ?_RetLO+0
+   241  000000                     _RetLO$eco	set	?_RetLO
+   242                           ;       param _max assigned to ?_RetHI+1
+   243  000000                     _RetHI$max	set	?_RetHI+1
+   244                           ;       param _eco assigned to ?_RetHI+0
+   245  000000                     _RetHI$eco	set	?_RetHI
+   246                           ;       param _b assigned to ?_RetMax+0
+   247  000000                     _RetMax$b	set	?_RetMax
+   248                           ;       param _b assigned to ?_RetMin+0
+   249  000000                     _RetMin$b	set	?_RetMin
+   250                           ;	_ppwm assigned to ?a_ModPmp1+3
+   251  000000                     _ModPmp1$ppwm	set	?a_ModPmp1+3
+   252                           ;	_tim assigned to ?a_ModPmp1+2
+   253  000000                     _ModPmp1$tim	set	?a_ModPmp1+2
+   254                           ;	_pup assigned to ?a_ModPmp1+1
+   255  000000                     _ModPmp1$pup	set	?a_ModPmp1+1
+   256  000000                     
+   257                           ; _prc loaded to fsr2l
+   258  00E44E  6ED9               	movwf	fsr2l,c
+   259                           ;pompa.c: 27: unsigned int p;
+   260  00E450  0E64               	movlw	100
+   261  00E452  64D9               	cpfsgt	fsr2l,c
+   262  00E454  D001               	goto	l17
+   263  00E456  6ED9               	movwf	fsr2l,c
+   264  00E458                     l17:
+   265                           ;pompa.c: 30: p=PWM.HIPWM;
+   266  00E458  C2DF  FFE8         	movff	_PWM+6,wreg
+   267  00E45C  6EF6               	movwf	tblptrl,c
+   268  00E45E  6AF7               	clrf	tblptrh,c
+   269                           ;pompa.c: 31: p=(prc*p)/100;
+   270  00E460  CFF6 F002          	movff	tblptrl,btemp+2
+   271  00E464  CFF7 F003          	movff	tblptrh,btemp+3
+   272  00E468  CFD9 F000          	movff	fsr2l,btemp
+   273  00E46C  6A01               	clrf	btemp+1,c
+   274  00E46E  EC12  F007         	call	lwmul
+   275  00E472  C004  F000         	movff	btemp+4,btemp
+   276  00E476  C005  F001         	movff	btemp+5,btemp+1
+   277  00E47A  0E64               	movlw	100
+   278  00E47C  6E02               	movwf	btemp+2,c
+   279  00E47E  6A03               	clrf	btemp+3,c
+   280  00E480  ECE3  F005         	call	lwdiv
+   281  00E484  C004  FFF6         	movff	btemp+4,tblptrl
+   282  00E488  C005  FFF7         	movff	btemp+5,tblptrh
+   283                           ;pompa.c: 32: return (unsigned char)p;
+   284  00E48C  50F6               	movf	tblptrl,w,c
+   285  00E48E  0012               	return	
+   286                           ;pompa.c: 33: }
+   287  00E490                     __end_of_ProcToPmpPwm:
+   288                           ;pompa.c: 38: unsigned char ModPmp1(unsigned cha
+      +                          r p)
+   289                           ;pompa.c: 39: {
+   290  00E490                     _ModPmp1:
+   291  000000                     
+   292                           ;	_pdw assigned to ?a_ModPmp1+0
+   293  000000                     _ModPmp1$pdw	set	?a_ModPmp1
+   294                           ;pompa.c: 40: unsigned char ppwm, tim, pup, pdw;
+   295  00E490  0100               	movlb	__Lparam shr (0+8)
+   296  00E492  6FA7               	movwf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),b
+   297                           ;pompa.c: 44: if(rgl.fz||ppwm!=PMP.MGPROC)
+   298  00E494  0103               	movlb	_rgl shr (0+8)
+   299  00E496  B5D7               	btfsc	_rgl& (0+255),2,b
+   300  00E498  D006               	goto	u40
+   301  00E49A  0100               	movlb	__Lparam shr (0+8)
+   302  00E49C  51A7               	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   303  00E49E  0102               	movlb	_PMP shr (0+8)
+   304  00E4A0  19FC               	xorwf	_PMP& (0+255),w,b
+   305  00E4A2  E101 D12F          	bz	l19
+   306  00E4A6                     u40:
+   307                           ;pompa.c: 45: {
+   308  00E4A6  C094  FFE8         	movff	_DtIN+4,wreg
+   309  00E4AA  0100               	movlb	(_DtIN+5) shr (0+8)
+   310  00E4AC  6195               	cpfslt	(_DtIN+5)& (0+255),b
+   311  00E4AE  D016               	goto	l20
+   312                           ;pompa.c: 48: {
+   313  00E4B0  0E32               	movlw	50
+   314  00E4B2  0100               	movlb	__Lparam shr (0+8)
+   315  00E4B4  6FA6               	movwf	(?a_ModPmp1+2)^(__Lparam& (0+65280)),b
+   316                           ;pompa.c: 50: if(DtIN.DIN2-DtIN.DDLT==2) tim=100
+      +                          ;
+   317  00E4B6  C095  FFE8         	movff	_DtIN+5,wreg
+   318  00E4BA  C094  F000         	movff	_DtIN+4,btemp
+   319  00E4BE  6A01               	clrf	btemp+1,c
+   320  00E4C0  5E00               	subwf	btemp,f,c
+   321  00E4C2  0E00               	movlw	0
+   322  00E4C4  5A01               	subwfb	btemp+1,f,c
+   323  00E4C6  5000               	movf	btemp,w,c
+   324  00E4C8  0A02               	xorlw	2
+   325  00E4CA  1001               	iorwf	btemp+1,w,c
+   326  00E4CC  E102               	bnz	l21
+   327  00E4CE                     u60:
+   328  00E4CE  0E64               	movlw	100
+   329  00E4D0  D021               	goto	L4
+   330  00E4D2                     l21:
+   331                           ;pompa.c: 51: else
+   332  00E4D2  C095  FFE8         	movff	_DtIN+5,wreg
+   333  00E4D6  C094  F000         	movff	_DtIN+4,btemp
+   334  00E4DA  D013               	goto	L6
+   335                           ;pompa.c: 53: }
+   336  00E4DC                     l20:
+   337                           ;pompa.c: 54: else
+   338  00E4DC  0E50               	movlw	80
+   339  00E4DE  0100               	movlb	__Lparam shr (0+8)
+   340  00E4E0  6FA6               	movwf	(?a_ModPmp1+2)^(__Lparam& (0+65280)),b
+   341                           ;pompa.c: 57: if(DtIN.DDLT-DtIN.DIN2==2) tim=100
+      +                          ;
+   342  00E4E2  C094  FFE8         	movff	_DtIN+4,wreg
+   343  00E4E6  C095  F000         	movff	_DtIN+5,btemp
+   344  00E4EA  6A01               	clrf	btemp+1,c
+   345  00E4EC  5E00               	subwf	btemp,f,c
+   346  00E4EE  0E00               	movlw	0
+   347  00E4F0  5A01               	subwfb	btemp+1,f,c
+   348  00E4F2  5000               	movf	btemp,w,c
+   349  00E4F4  0A02               	xorlw	2
+   350  00E4F6  1001               	iorwf	btemp+1,w,c
+   351  00E4F8  E0EA               	bz	u60
+   352                           ;pompa.c: 58: else
+   353  00E4FA  C094  FFE8         	movff	_DtIN+4,wreg
+   354  00E4FE  C095  F000         	movff	_DtIN+5,btemp
+   355  00E502                     L6:
+   356  00E502  6A01               	clrf	btemp+1,c
+   357  00E504  5E00               	subwf	btemp,f,c
+   358  00E506  0E00               	movlw	0
+   359  00E508  5A01               	subwfb	btemp+1,f,c
+   360  00E50A  0400               	decf	btemp,w,c
+   361  00E50C  1001               	iorwf	btemp+1,w,c
+   362  00E50E  E103               	bnz	l24
+   363  00E510  0E96               	movlw	150
+   364  00E512  0100               	movlb	__Lparam shr (0+8)
+   365  00E514                     L4:
+   366  00E514  6FA6               	movwf	(?a_ModPmp1+2)^(__Lparam& (0+65280)),b
+   367  00E516                     l24:
+   368                           ;pompa.c: 60: }
+   369  00E516  0100               	movlb	__Lparam shr (0+8)
+   370  00E518  6BA5               	clrf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),b
+   371                           ;pompa.c: 62: pdw=0;
+   372  00E51A  6BA4               	clrf	?a_ModPmp1^(__Lparam& (0+65280)),b
+   373                           ;pompa.c: 63: if((RTdS(13)>tim)||(ppwm<=PMP.MDPR
+      +                          OC)||(ppwm>=PMP.MGPROC))
+   374  00E51C  0E0D               	movlw	13
+   375  00E51E  EC45  F07E         	call	_RTdS
+   376  00E522  0100               	movlb	__Lparam shr (0+8)
+   377  00E524  61A6               	cpfslt	(?a_ModPmp1+2)^(__Lparam& (0+65280)),b
+   378  00E526  D001               	goto	u101
+   379  00E528  D00A               	goto	u130
+   380  00E52A                     u101:
+   381  00E52A  51A7               	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   382  00E52C  0102               	movlb	(_PMP+1) shr (0+8)
+   383  00E52E  5DFD               	subwf	(_PMP+1)& (0+255),w,b
+   384  00E530  E206               	bc	u130
+   385  00E532  0100               	movlb	__Lparam shr (0+8)
+   386  00E534  C2FC  FFE8         	movff	_PMP,wreg
+   387  00E538  5DA7               	subwf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   388  00E53A  E201 D0E8          	bnc	l57
+   389  00E53E                     u130:
+   390                           ;pompa.c: 64: {
+   391  00E53E  0E0D               	movlw	13
+   392  00E540  EC33  F07E         	call	_StartRTdS
+   393                           ;pompa.c: 67: if(!pup)
+   394                           ;pompa.c: 68: if(rgl.tmp_pwm<=PWM.MINPWM)
+   395  00E544  C3E0  FFE8         	movff	_rgl+9,wreg
+   396  00E548  0102               	movlb	(_PWM+28) shr (0+8)
+   397  00E54A  5DF5               	subwf	(_PWM+28)& (0+255),w,b
+   398  00E54C  E327               	bnc	l29
+   399                           ;pompa.c: 69: {
+   400  00E54E  0E02               	movlw	2
+   401  00E550  EC42  F033         	call	_Twyzsza
+   402  00E554  E204               	bc	u180
+   403  00E556  0E02               	movlw	2
+   404  00E558  EC35  F033         	call	_Tnizsza
+   405  00E55C  E31F               	bnc	l29
+   406  00E55E                     u180:
+   407                           ;pompa.c: 71: {
+   408  00E55E  C2FC  FFE8         	movff	_PMP,wreg
+   409  00E562  0100               	movlb	__Lparam shr (0+8)
+   410  00E564  61A7               	cpfslt	(?a_ModPmp1+3)^(__Lparam& (0+65280)),b
+   411  00E566  D01A               	goto	l29
+   412                           ;pompa.c: 73: {
+   413  00E568  C2FC  F000         	movff	_PMP,btemp
+   414  00E56C  6A01               	clrf	btemp+1,c
+   415  00E56E  0E01               	movlw	1
+   416  00E570  C0A7  F002         	movff	?a_ModPmp1+3,btemp+2
+   417  00E574  6A03               	clrf	btemp+3,c
+   418  00E576  2602               	addwf	btemp+2,f,c
+   419  00E578  0E00               	movlw	0
+   420  00E57A  2203               	addwfc	btemp+3,f,c
+   421  00E57C  5003               	movf	btemp+3,w,c
+   422  00E57E  0A80               	xorlw	128
+   423  00E580  6E04               	movwf	btemp+4,c
+   424  00E582  5001               	movf	btemp+1,w,c
+   425  00E584  0A80               	xorlw	128
+   426  00E586  5C04               	subwf	btemp+4,w,c
+   427  00E588  E102               	bnz	u205
+   428  00E58A  5000               	movf	btemp,w,c
+   429  00E58C  5C02               	subwf	btemp+2,w,c
+   430  00E58E                     u205:
+   431  00E58E  E204               	bc	l33
+   432                           ;pompa.c: 75: {
+   433  00E590  2BA7               	incf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   434                           ;pompa.c: 77: pup=1;
+   435  00E592  0E01               	movlw	1
+   436  00E594  6FA5               	movwf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),b
+   437                           ;pompa.c: 78: }
+   438  00E596  D002               	goto	l29
+   439  00E598                     l33:
+   440                           ;pompa.c: 79: else ppwm=PMP.MGPROC;
+   441  00E598  C2FC  F0A7         	movff	_PMP,?a_ModPmp1+3
+   442  00E59C                     l29:
+   443                           ;pompa.c: 80: }
+   444  00E59C  C3E0  FFE8         	movff	_rgl+9,wreg
+   445  00E5A0  0102               	movlb	(_PWM+28) shr (0+8)
+   446  00E5A2  61F5               	cpfslt	(_PWM+28)& (0+255),b
+   447  00E5A4  D001               	goto	u211
+   448  00E5A6  D009               	goto	u250
+   449  00E5A8                     u211:
+   450  00E5A8  C3E0  FFE8         	movff	_rgl+9,wreg
+   451  00E5AC  0102               	movlb	(_PWM+28) shr (0+8)
+   452  00E5AE  5DF5               	subwf	(_PWM+28)& (0+255),w,b
+   453  00E5B0  E34F               	bnc	l35
+   454  00E5B2  0E01               	movlw	1
+   455  00E5B4  EC42  F033         	call	_Twyzsza
+   456  00E5B8  E24B               	bc	l35
+   457  00E5BA                     u250:
+   458                           ;pompa.c: 85: {
+   459  00E5BA  C095  FFE8         	movff	_DtIN+5,wreg
+   460  00E5BE  0100               	movlb	(_DtIN+3) shr (0+8)
+   461  00E5C0  6193               	cpfslt	(_DtIN+3)& (0+255),b
+   462  00E5C2  D046               	goto	l35
+   463                           ;pompa.c: 87: {
+   464                           ;pompa.c: 89: if(ppwm>PMP.MDPROC)
+   465  00E5C4  0100               	movlb	__Lparam shr (0+8)
+   466  00E5C6  51A7               	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   467  00E5C8  0102               	movlb	(_PMP+1) shr (0+8)
+   468  00E5CA  61FD               	cpfslt	(_PMP+1)& (0+255),b
+   469  00E5CC  D01A               	goto	l37
+   470                           ;pompa.c: 90: {
+   471  00E5CE  0100               	movlb	__Lparam shr (0+8)
+   472  00E5D0  0FFE               	addlw	254
+   473  00E5D2  6E00               	movwf	btemp,c
+   474  00E5D4  6A01               	clrf	btemp+1,c
+   475  00E5D6  0EFF               	movlw	255
+   476  00E5D8  2201               	addwfc	btemp+1,f,c
+   477  00E5DA  C2FD  F002         	movff	_PMP+1,btemp+2
+   478  00E5DE  6A03               	clrf	btemp+3,c
+   479  00E5E0  5003               	movf	btemp+3,w,c
+   480  00E5E2  0A80               	xorlw	128
+   481  00E5E4  6E04               	movwf	btemp+4,c
+   482  00E5E6  5001               	movf	btemp+1,w,c
+   483  00E5E8  0A80               	xorlw	128
+   484  00E5EA  5C04               	subwf	btemp+4,w,c
+   485  00E5EC  E102               	bnz	u285
+   486  00E5EE  5000               	movf	btemp,w,c
+   487  00E5F0  5C02               	subwf	btemp+2,w,c
+   488  00E5F2                     u285:
+   489  00E5F2  E205               	bc	l39
+   490                           ;pompa.c: 92: {
+   491  00E5F4  0EFE               	movlw	254
+   492  00E5F6  27A7               	addwf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   493                           ;pompa.c: 94: pdw=1;
+   494  00E5F8  0E01               	movlw	1
+   495  00E5FA  6FA4               	movwf	?a_ModPmp1^(__Lparam& (0+65280)),b
+   496                           ;pompa.c: 95: }
+   497  00E5FC  D002               	goto	l37
+   498  00E5FE                     l39:
+   499                           ;pompa.c: 96: else ppwm=PMP.MDPROC;
+   500  00E5FE  C2FD  F0A7         	movff	_PMP+1,?a_ModPmp1+3
+   501  00E602                     l37:
+   502                           ;pompa.c: 97: }
+   503  00E602  0100               	movlb	__Lparam shr (0+8)
+   504  00E604  51A4               	movf	?a_ModPmp1^(__Lparam& (0+65280)),w
+   505  00E606  E124               	bnz	l35
+   506                           ;pompa.c: 99: if(DtIN.DIN<DtIN.DIN2)
+   507  00E608  C094  FFE8         	movff	_DtIN+4,wreg
+   508  00E60C  0100               	movlb	(_DtIN+3) shr (0+8)
+   509  00E60E  6193               	cpfslt	(_DtIN+3)& (0+255),b
+   510  00E610  D01F               	goto	l35
+   511                           ;pompa.c: 100: {
+   512  00E612  0100               	movlb	__Lparam shr (0+8)
+   513  00E614  51A7               	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   514  00E616  0102               	movlb	(_PMP+1) shr (0+8)
+   515  00E618  61FD               	cpfslt	(_PMP+1)& (0+255),b
+   516  00E61A  D01A               	goto	l35
+   517                           ;pompa.c: 102: {
+   518  00E61C  0100               	movlb	__Lparam shr (0+8)
+   519  00E61E  0FFE               	addlw	254
+   520  00E620  6E00               	movwf	btemp,c
+   521  00E622  6A01               	clrf	btemp+1,c
+   522  00E624  0EFF               	movlw	255
+   523  00E626  2201               	addwfc	btemp+1,f,c
+   524  00E628  C2FD  F002         	movff	_PMP+1,btemp+2
+   525  00E62C  6A03               	clrf	btemp+3,c
+   526  00E62E  5003               	movf	btemp+3,w,c
+   527  00E630  0A80               	xorlw	128
+   528  00E632  6E04               	movwf	btemp+4,c
+   529  00E634  5001               	movf	btemp+1,w,c
+   530  00E636  0A80               	xorlw	128
+   531  00E638  5C04               	subwf	btemp+4,w,c
+   532  00E63A  E102               	bnz	u325
+   533  00E63C  5000               	movf	btemp,w,c
+   534  00E63E  5C02               	subwf	btemp+2,w,c
+   535  00E640                     u325:
+   536  00E640  E205               	bc	l44
+   537                           ;pompa.c: 104: {
+   538  00E642  0EFE               	movlw	254
+   539  00E644  27A7               	addwf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   540                           ;pompa.c: 106: pdw=1;
+   541  00E646  0E01               	movlw	1
+   542  00E648  6ED9               	movwf	fsr2l,c
+   543                           ;pompa.c: 107: }
+   544  00E64A  D002               	goto	l35
+   545  00E64C                     l44:
+   546                           ;pompa.c: 108: else ppwm=PMP.MDPROC;
+   547  00E64C  C2FD  F0A7         	movff	_PMP+1,?a_ModPmp1+3
+   548  00E650                     l35:
+   549                           ;pompa.c: 109: }
+   550  00E650  C2F6  FFE8         	movff	_PWM+29,wreg
+   551  00E654  0103               	movlb	(_rgl+9) shr (0+8)
+   552  00E656  61E0               	cpfslt	(_rgl+9)& (0+255),b
+   553  00E658  D001               	goto	u331
+   554  00E65A  D009               	goto	u370
+   555  00E65C                     u331:
+   556  00E65C  C2F6  FFE8         	movff	_PWM+29,wreg
+   557  00E660  0103               	movlb	(_rgl+9) shr (0+8)
+   558  00E662  5DE0               	subwf	(_rgl+9)& (0+255),w,b
+   559  00E664  E354               	bnc	l57
+   560  00E666  0E01               	movlw	1
+   561  00E668  EC35  F033         	call	_Tnizsza
+   562  00E66C  E250               	bc	l57
+   563  00E66E                     u370:
+   564                           ;pompa.c: 115: {
+   565  00E66E  C093  FFE8         	movff	_DtIN+3,wreg
+   566  00E672  0100               	movlb	(_DtIN+5) shr (0+8)
+   567  00E674  6195               	cpfslt	(_DtIN+5)& (0+255),b
+   568  00E676  D04B               	goto	l57
+   569                           ;pompa.c: 117: {
+   570  00E678  0100               	movlb	__Lparam shr (0+8)
+   571  00E67A  51A5               	movf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),w
+   572  00E67C  E11E               	bnz	l48
+   573                           ;pompa.c: 119: if(ppwm<PMP.MGPROC)
+   574  00E67E  C2FC  FFE8         	movff	_PMP,wreg
+   575  00E682  61A7               	cpfslt	(?a_ModPmp1+3)^(__Lparam& (0+65280)),b
+   576  00E684  D01A               	goto	l48
+   577                           ;pompa.c: 120: {
+   578  00E686  C2FC  F000         	movff	_PMP,btemp
+   579  00E68A  6A01               	clrf	btemp+1,c
+   580  00E68C  0E01               	movlw	1
+   581  00E68E  C0A7  F002         	movff	?a_ModPmp1+3,btemp+2
+   582  00E692  6A03               	clrf	btemp+3,c
+   583  00E694  2602               	addwf	btemp+2,f,c
+   584  00E696  0E00               	movlw	0
+   585  00E698  2203               	addwfc	btemp+3,f,c
+   586  00E69A  5003               	movf	btemp+3,w,c
+   587  00E69C  0A80               	xorlw	128
+   588  00E69E  6E04               	movwf	btemp+4,c
+   589  00E6A0  5001               	movf	btemp+1,w,c
+   590  00E6A2  0A80               	xorlw	128
+   591  00E6A4  5C04               	subwf	btemp+4,w,c
+   592  00E6A6  E102               	bnz	u415
+   593  00E6A8  5000               	movf	btemp,w,c
+   594  00E6AA  5C02               	subwf	btemp+2,w,c
+   595  00E6AC                     u415:
+   596  00E6AC  E204               	bc	l50
+   597                           ;pompa.c: 122: {
+   598  00E6AE  2BA7               	incf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   599                           ;pompa.c: 124: pup=1;
+   600  00E6B0  0E01               	movlw	1
+   601  00E6B2  6FA5               	movwf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),b
+   602                           ;pompa.c: 125: }
+   603  00E6B4  D002               	goto	l48
+   604  00E6B6                     l50:
+   605                           ;pompa.c: 126: else ppwm=PMP.MGPROC;
+   606  00E6B6  C2FC  F0A7         	movff	_PMP,?a_ModPmp1+3
+   607  00E6BA                     l48:
+   608                           ;pompa.c: 127: }
+   609  00E6BA  0100               	movlb	__Lparam shr (0+8)
+   610  00E6BC  51A5               	movf	(?a_ModPmp1+1)^(__Lparam& (0+65280)),w
+   611  00E6BE  E127               	bnz	l57
+   612                           ;pompa.c: 129: if(DtIN.DIN>DtIN.DIN2)
+   613  00E6C0  C093  FFE8         	movff	_DtIN+3,wreg
+   614  00E6C4  0100               	movlb	(_DtIN+4) shr (0+8)
+   615  00E6C6  6194               	cpfslt	(_DtIN+4)& (0+255),b
+   616  00E6C8  D022               	goto	l57
+   617                           ;pompa.c: 130: {
+   618  00E6CA  C2FC  FFE8         	movff	_PMP,wreg
+   619  00E6CE  0100               	movlb	__Lparam shr (0+8)
+   620  00E6D0  61A7               	cpfslt	(?a_ModPmp1+3)^(__Lparam& (0+65280)),b
+   621  00E6D2  D01D               	goto	l57
+   622                           ;pompa.c: 132: {
+   623  00E6D4  C2FC  F000         	movff	_PMP,btemp
+   624  00E6D8  6A01               	clrf	btemp+1,c
+   625  00E6DA  0E01               	movlw	1
+   626  00E6DC  C0A7  F002         	movff	?a_ModPmp1+3,btemp+2
+   627  00E6E0  6A03               	clrf	btemp+3,c
+   628  00E6E2  2602               	addwf	btemp+2,f,c
+   629  00E6E4  0E00               	movlw	0
+   630  00E6E6  2203               	addwfc	btemp+3,f,c
+   631  00E6E8  5003               	movf	btemp+3,w,c
+   632  00E6EA  0A80               	xorlw	128
+   633  00E6EC  6E04               	movwf	btemp+4,c
+   634  00E6EE  5001               	movf	btemp+1,w,c
+   635  00E6F0  0A80               	xorlw	128
+   636  00E6F2  5C04               	subwf	btemp+4,w,c
+   637  00E6F4  E102               	bnz	u455
+   638  00E6F6  5000               	movf	btemp,w,c
+   639  00E6F8  5C02               	subwf	btemp+2,w,c
+   640  00E6FA                     u455:
+   641  00E6FA  E207               	bc	L7
+   642                           ;pompa.c: 134: {
+   643  00E6FC  2BA7               	incf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),f,b
+   644                           ;pompa.c: 136: pup=1;
+   645  00E6FE  0E01               	movlw	1
+   646  00E700  6ED9               	movwf	fsr2l,c
+   647                           ;pompa.c: 137: }
+   648  00E702  D005               	goto	l57
+   649                           ;pompa.c: 138: else ppwm=PMP.MGPROC;
+   650                           ;pompa.c: 139: }
+   651  00E704                     l19:
+   652                           ;pompa.c: 146: else
+   653  00E704  0E0D               	movlw	13
+   654  00E706  EC33  F07E         	call	_StartRTdS
+   655  00E70A                     L7:
+   656                           ;pompa.c: 149: ppwm=PMP.MGPROC;
+   657  00E70A  C2FC  F0A7         	movff	_PMP,?a_ModPmp1+3
+   658  00E70E                     l57:
+   659                           ;pompa.c: 150: }
+   660  00E70E  0100               	movlb	__Lparam shr (0+8)
+   661  00E710  51A7               	movf	(?a_ModPmp1+3)^(__Lparam& (0+65280)),w
+   662  00E712  0012               	return	
+   663                           ;pompa.c: 152: }
+   664  00E714                     __end_of_ModPmp1:
+   665                           ;pompa.c: 156: void RglPmp1(void)
+   666                           ;pompa.c: 157: {
+   667  00E714                     _RglPmp1:
+   668  000000                     
+   669                           ;pompa.c: 158: PMP.MGPROC=DtKNF.mgpm;
+   670  00E714  C2CA  F2FC         	movff	_DtKNF+28,_PMP
+   671                           ;pompa.c: 160: PMP.MDPROC=DtKNF.mdpm;
+   672  00E718  C2C0  F2FD         	movff	_DtKNF+18,_PMP+1
+   673                           ;pompa.c: 162: if(PMP.MDPROC>PMP.MGPROC) PMP.MDP
+      +                          ROC=PMP.MGPROC;
+   674  00E71C  C2FD  FFE8         	movff	_PMP+1,wreg
+   675  00E720  0102               	movlb	_PMP shr (0+8)
+   676  00E722  61FC               	cpfslt	_PMP& (0+255),b
+   677  00E724  D002               	goto	l59
+   678  00E726  C2FC  F2FD         	movff	_PMP,_PMP+1
+   679  00E72A                     l59:
+   680                           ;pompa.c: 164: DtIN.DDLT=DtKNF.dtpm;
+   681  00E72A  C2BF  F095         	movff	_DtKNF+17,_DtIN+5
+   682                           ;pompa.c: 166: if(DtKNF.tpkt==0)
+   683  00E72E  EE02  F0BC         	lfsr	0,_DtKNF+14
+   684  00E732  50EF               	movf	indf0,w,c
+   685  00E734  E103               	bnz	l60
+   686                           ;pompa.c: 167: {
+   687  00E736  C2CB  F2FF         	movff	_DtKNF+29,_PMP+3
+   688                           ;pompa.c: 169: }
+   689  00E73A  D003               	goto	l61
+   690  00E73C                     l60:
+   691                           ;pompa.c: 170: else
+   692  00E73C  0E63               	movlw	99
+   693  00E73E  CFE8 F2FF          	movff	wreg,_PMP+3
+   694  00E742                     l61:
+   695                           ;pompa.c: 173: }
+   696  00E742  0103               	movlb	(_M+4) shr (0+8)
+   697  00E744  B70A               	btfsc	(_M+4)& (0+255),3,b
+   698  00E746  D017               	goto	l62
+   699                           ;pompa.c: 176: {
+   700  00E748  0100               	movlb	(_DtIN+19) shr (0+8)
+   701  00E74A  6BA3               	clrf	(_DtIN+19)& (0+255),b
+   702                           ;pompa.c: 178: StartRTS(12);
+   703  00E74C  0E0C               	movlw	12
+   704  00E74E  EC51  F07E         	call	_StartRTS
+   705                           ;pompa.c: 179: if(RD2)
+   706  00E752  A483               	btfss	3971,2,c	;volatile
+   707  00E754  D009               	goto	l63
+   708                           ;pompa.c: 180: {
+   709  00E756  0103               	movlb	(_M+5) shr (0+8)
+   710  00E758  B10B               	btfsc	(_M+5)& (0+255),0,b
+   711  00E75A  D003               	goto	l64
+   712  00E75C  C2FC  F2FE         	movff	_PMP,_PMP+2
+   713  00E760  D005               	goto	l66
+   714  00E762                     l64:
+   715                           ;pompa.c: 182: else PMP.APROC=PMP.MGPROC2;
+   716  00E762  C2FF  F2FE         	movff	_PMP+3,_PMP+2
+   717                           ;pompa.c: 183: }
+   718  00E766  D002               	goto	l66
+   719  00E768                     l63:
+   720                           ;pompa.c: 184: else
+   721  00E768  0102               	movlb	(_PMP+2) shr (0+8)
+   722  00E76A  6BFE               	clrf	(_PMP+2)& (0+255),b
+   723  00E76C                     l66:
+   724                           ;pompa.c: 187: }
+   725  00E76C  C2FE  FFE8         	movff	_PMP+2,wreg
+   726  00E770  DE6E               	call	_ProcToPmpPwm
+   727  00E772  EF81  F001         	goto	_WritePWM2
+   728                           ;pompa.c: 189: }
+   729  00E776                     l62:
+   730                           ;pompa.c: 190: else
+   731  00E776  0103               	movlb	(_M+2) shr (0+8)
+   732  00E778  AB08               	btfss	(_M+2)& (0+255),5,b
+   733  00E77A  D016               	goto	l68
+   734  00E77C  0100               	movlb	_DtIN shr (0+8)
+   735  00E77E  B190               	btfsc	_DtIN& (0+255),0,b
+   736  00E780  D013               	goto	l68
+   737  00E782  0103               	movlb	(_M+5) shr (0+8)
+   738  00E784  B10B               	btfsc	(_M+5)& (0+255),0,b
+   739  00E786  D010               	goto	l68
+   740  00E788  0E0C               	movlw	12
+   741  00E78A  EC63  F07E         	call	_RTS
+   742  00E78E  6E00               	movwf	btemp,c
+   743  00E790  0E0B               	movlw	11
+   744  00E792  5C00               	subwf	btemp,w,c
+   745  00E794  E309               	bnc	l68
+   746                           ;pompa.c: 193: {
+   747  00E796  0103               	movlb	_rgl shr (0+8)
+   748                           ;pompa.c: 195: {
+   749  00E798  C2FE  FFE8         	movff	_PMP+2,wreg
+   750  00E79C  A5D7               	btfss	_rgl& (0+255),2,b
+   751  00E79E  D00E               	goto	L10
+   752  00E7A0  DE77               	call	_ModPmp1
+   753  00E7A2  CFE8 F2FE          	movff	wreg,_PMP+2
+   754                           ;pompa.c: 197: }
+   755  00E7A6  D008               	goto	l70
+   756  00E7A8                     l68:
+   757                           ;pompa.c: 199: else
+   758  00E7A8  0103               	movlb	(_M+5) shr (0+8)
+   759  00E7AA  B10B               	btfsc	(_M+5)& (0+255),0,b
+   760  00E7AC  D003               	goto	l71
+   761  00E7AE  C2FC  F2FE         	movff	_PMP,_PMP+2
+   762  00E7B2  D002               	goto	l70
+   763  00E7B4                     l71:
+   764                           ;pompa.c: 202: else PMP.APROC=PMP.MGPROC2;
+   765  00E7B4  C2FF  F2FE         	movff	_PMP+3,_PMP+2
+   766  00E7B8                     l70:
+   767                           ;pompa.c: 203: }
+   768  00E7B8  C2FE  FFE8         	movff	_PMP+2,wreg
+   769  00E7BC                     L10:
+   770  00E7BC  DE48               	call	_ProcToPmpPwm
+   771  00E7BE  EF81  F001         	goto	_WritePWM2
+   772                           ;pompa.c: 205: }
+   773  00E7C2                     __end_of_RglPmp1:
+   774                           ;pompa.c: 213: signed char RetMin(signed char a,
+      +                           signed char b)
+   775                           ;pompa.c: 214: {
+   776  00E7C2  00B4               	dw	?_RetMin
+   777  00E7C4                     _RetMin:
+   778  000000                     
+   779                           ; _a loaded to fsr2l
+   780  00E7C4  6ED9               	movwf	fsr2l,c
+   781                           ;pompa.c: 215: if(a<=b) return a;
+   782  00E7C6  0100               	movlb	__Lparam shr (0+8)
+   783  00E7C8  51B4               	movf	?_RetMin^(__Lparam& (0+65280)),w
+   784  00E7CA  0A80               	xorlw	128
+   785  00E7CC  6E00               	movwf	btemp,c
+   786  00E7CE  50D9               	movf	fsr2l,w,c
+   787  00E7D0  0A80               	xorlw	128
+   788  00E7D2  5C00               	subwf	btemp,w,c
+   789  00E7D4  E302               	bnc	l74
+   790  00E7D6  50D9               	movf	fsr2l,w,c
+   791  00E7D8  0012               	return	
+   792  00E7DA                     l74:
+   793                           ;pompa.c: 216: return b;
+   794  00E7DA  0100               	movlb	__Lparam shr (0+8)
+   795  00E7DC  51B4               	movf	?_RetMin^(__Lparam& (0+65280)),w
+   796  00E7DE  0012               	return	
+   797                           ;pompa.c: 217: }
+   798  00E7E0                     __end_of_RetMin:
+   799                           ;pompa.c: 220: signed char RetMax(signed char a,
+      +                           signed char b)
+   800                           ;pompa.c: 221: {
+   801  00E7E0  00B5               	dw	?_RetMax
+   802  00E7E2                     _RetMax:
+   803  000000                     
+   804                           ; _a loaded to fsr2l
+   805  00E7E2  6ED9               	movwf	fsr2l,c
+   806                           ;pompa.c: 222: if(a>=b) return a;
+   807  00E7E4  50D9               	movf	fsr2l,w,c
+   808  00E7E6  0A80               	xorlw	128
+   809  00E7E8  6E00               	movwf	btemp,c
+   810  00E7EA  0100               	movlb	__Lparam shr (0+8)
+   811  00E7EC  51B5               	movf	?_RetMax^(__Lparam& (0+65280)),w
+   812  00E7EE  0A80               	xorlw	128
+   813  00E7F0  5C00               	subwf	btemp,w,c
+   814  00E7F2  E302               	bnc	l76
+   815  00E7F4  50D9               	movf	fsr2l,w,c
+   816  00E7F6  0012               	return	
+   817  00E7F8                     l76:
+   818                           ;pompa.c: 223: return b;
+   819  00E7F8  0100               	movlb	__Lparam shr (0+8)
+   820  00E7FA  51B5               	movf	?_RetMax^(__Lparam& (0+65280)),w
+   821  00E7FC  0012               	return	
+   822                           ;pompa.c: 224: }
+   823  00E7FE                     __end_of_RetMax:
+   824                           ;pompa.c: 228: unsigned char RetHI(unsigned char
+      +                           pco, unsigned char eco, unsigned char max)
+   825                           ;pompa.c: 229: {
+   826  00E7FE  00B4               	dw	?_RetHI
+   827  00E800                     _RetHI:
+   828  000000                     
+   829                           ; _pco loaded to fsr1l
+   830  00E800  6EE1               	movwf	fsr1l,c
+   831                           ;pompa.c: 230: signed char w;
+   832  00E802  50E1               	movf	fsr1l,w,c
+   833  00E804  0100               	movlb	__Lparam shr (0+8)
+   834  00E806  61B5               	cpfslt	(?_RetHI+1)^(__Lparam& (0+65280)),b
+   835  00E808  D002               	goto	l78
+   836  00E80A  50E1               	movf	fsr1l,w,c
+   837  00E80C  D002               	goto	L2
+   838  00E80E                     l78:
+   839                           ;pompa.c: 234: else emax=max;
+   840  00E80E  0100               	movlb	__Lparam shr (0+8)
+   841  00E810  51B5               	movf	(?_RetHI+1)^(__Lparam& (0+65280)),w
+   842  00E812                     L2:
+   843  00E812  6ED9               	movwf	fsr2l,c
+   844                           ;pompa.c: 236: k=(emax-DtIN.Eco5HI)/4;
+   845  00E814  0E04               	movlw	4
+   846  00E816  6E02               	movwf	btemp+2,c
+   847  00E818  6A03               	clrf	btemp+3,c
+   848  00E81A  C09B  FFE8         	movff	_DtIN+11,wreg
+   849  00E81E  CFD9 F000          	movff	fsr2l,btemp
+   850  00E822  6A01               	clrf	btemp+1,c
+   851  00E824  5E00               	subwf	btemp,f,c
+   852  00E826  0E00               	movlw	0
+   853  00E828  5A01               	subwfb	btemp+1,f,c
+   854  00E82A  ECA5  F006         	call	awdiv
+   855  00E82E  5004               	movf	btemp+4,w,c
+   856  00E830  6EE9               	movwf	fsr0l,c
+   857                           ;pompa.c: 237: w=(DtIN.Eco5HI+((5-eco)*k));
+   858  00E832  0100               	movlb	__Lparam shr (0+8)
+   859  00E834  51B4               	movf	?_RetHI^(__Lparam& (0+65280)),w
+   860  00E836  0805               	sublw	5
+   861  00E838  02E9               	mulwf	fsr0l,c
+   862  00E83A  C09B  FFE8         	movff	_DtIN+11,wreg
+   863  00E83E  24F3               	addwf	prodl,w,c
+   864  00E840  6EE1               	movwf	fsr1l,c
+   865                           ;pompa.c: 238: if(w<=emax&&w>=DtIN.Eco5LO) retur
+      +                          n w;
+   866  00E842  50D9               	movf	fsr2l,w,c
+   867  00E844  BEE1               	btfsc	fsr1l,7,c
+   868  00E846  D003               	goto	u630
+   869  00E848  0AFF               	xorlw	255
+   870  00E84A  24E1               	addwf	fsr1l,w,c
+   871  00E84C  E214               	bc	l80
+   872  00E84E                     u630:
+   873  00E84E  C09C  F002         	movff	_DtIN+12,btemp+2
+   874  00E852  6A03               	clrf	btemp+3,c
+   875  00E854  CFE1 F000          	movff	fsr1l,btemp
+   876  00E858  6A01               	clrf	btemp+1,c
+   877  00E85A  BE00               	btfsc	btemp,7,c
+   878  00E85C  0601               	decf	btemp+1,f,c
+   879  00E85E  5001               	movf	btemp+1,w,c
+   880  00E860  0A80               	xorlw	128
+   881  00E862  6E04               	movwf	btemp+4,c
+   882  00E864  5003               	movf	btemp+3,w,c
+   883  00E866  0A80               	xorlw	128
+   884  00E868  5C04               	subwf	btemp+4,w,c
+   885  00E86A  E102               	bnz	u645
+   886  00E86C  5002               	movf	btemp+2,w,c
+   887  00E86E  5C00               	subwf	btemp,w,c
+   888  00E870                     u645:
+   889  00E870  E302               	bnc	l80
+   890  00E872  50E1               	movf	fsr1l,w,c
+   891  00E874  0012               	return	
+   892  00E876                     l80:
+   893                           ;pompa.c: 239: else
+   894  00E876  50D9               	movf	fsr2l,w,c
+   895  00E878  94D8               	bcf	status,2,c
+   896  00E87A  90D8               	bcf	status,0,c
+   897  00E87C  AEE1               	btfss	fsr1l,7,c
+   898  00E87E  5CE1               	subwf	fsr1l,w,c
+   899  00E880  B4D8               	btfsc	status,2,c
+   900  00E882  90D8               	bcf	status,0,c
+   901  00E884  E302               	bnc	l82
+   902  00E886  50D9               	movf	fsr2l,w,c
+   903  00E888  0012               	return	
+   904  00E88A                     l82:
+   905                           ;pompa.c: 241: else return DtIN.Eco5LO;
+   906  00E88A  C09C  FFE8         	movff	_DtIN+12,wreg
+   907  00E88E  0012               	return	
+   908                           ;pompa.c: 242: }
+   909  00E890                     __end_of_RetHI:
+   910                           ;pompa.c: 246: unsigned char RetLO(unsigned char
+      +                           pco, unsigned char eco, unsigned char min)
+   911                           ;pompa.c: 247: {
+   912  00E890  00B4               	dw	?_RetLO
+   913  00E892                     _RetLO:
+   914  000000                     
+   915                           ; _pco loaded to fsr1l
+   916  00E892  6EE1               	movwf	fsr1l,c
+   917                           ;pompa.c: 248: signed char w;
+   918  00E894  C09B  FFE8         	movff	_DtIN+11,wreg
+   919  00E898  60E1               	cpfslt	fsr1l,c
+   920  00E89A  D003               	goto	l85
+   921  00E89C  50E1               	movf	fsr1l,w,c
+   922  00E89E  6ED9               	movwf	fsr2l,c
+   923  00E8A0  D002               	goto	l86
+   924  00E8A2                     l85:
+   925                           ;pompa.c: 252: else ehi=DtIN.Eco5HI;
+   926  00E8A2  C09B  FFD9         	movff	_DtIN+11,fsr2l
+   927  00E8A6                     l86:
+   928                           ;pompa.c: 254: k=(ehi-DtIN.Eco5LO)/4;
+   929  00E8A6  0E04               	movlw	4
+   930  00E8A8  6E02               	movwf	btemp+2,c
+   931  00E8AA  6A03               	clrf	btemp+3,c
+   932  00E8AC  C09C  FFE8         	movff	_DtIN+12,wreg
+   933  00E8B0  CFD9 F000          	movff	fsr2l,btemp
+   934  00E8B4  6A01               	clrf	btemp+1,c
+   935  00E8B6  5E00               	subwf	btemp,f,c
+   936  00E8B8  0E00               	movlw	0
+   937  00E8BA  5A01               	subwfb	btemp+1,f,c
+   938  00E8BC  ECA5  F006         	call	awdiv
+   939  00E8C0  5004               	movf	btemp+4,w,c
+   940  00E8C2  6EE9               	movwf	fsr0l,c
+   941                           ;pompa.c: 255: w=(DtIN.Eco5LO+((5-eco)*k));
+   942  00E8C4  0100               	movlb	__Lparam shr (0+8)
+   943  00E8C6  51B4               	movf	?_RetLO^(__Lparam& (0+65280)),w
+   944  00E8C8  0805               	sublw	5
+   945  00E8CA  02E9               	mulwf	fsr0l,c
+   946  00E8CC  C09C  FFE8         	movff	_DtIN+12,wreg
+   947  00E8D0  24F3               	addwf	prodl,w,c
+   948  00E8D2  6EE1               	movwf	fsr1l,c
+   949                           ;pompa.c: 257: if(w<=ehi&&w>=min) return w;
+   950  00E8D4  50D9               	movf	fsr2l,w,c
+   951  00E8D6  BEE1               	btfsc	fsr1l,7,c
+   952  00E8D8  D003               	goto	u680
+   953  00E8DA  0AFF               	xorlw	255
+   954  00E8DC  24E1               	addwf	fsr1l,w,c
+   955  00E8DE  E214               	bc	l87
+   956  00E8E0                     u680:
+   957  00E8E0  C0B5  F002         	movff	?_RetLO+1,btemp+2
+   958  00E8E4  6A03               	clrf	btemp+3,c
+   959  00E8E6  CFE1 F000          	movff	fsr1l,btemp
+   960  00E8EA  6A01               	clrf	btemp+1,c
+   961  00E8EC  BE00               	btfsc	btemp,7,c
+   962  00E8EE  0601               	decf	btemp+1,f,c
+   963  00E8F0  5001               	movf	btemp+1,w,c
+   964  00E8F2  0A80               	xorlw	128
+   965  00E8F4  6E04               	movwf	btemp+4,c
+   966  00E8F6  5003               	movf	btemp+3,w,c
+   967  00E8F8  0A80               	xorlw	128
+   968  00E8FA  5C04               	subwf	btemp+4,w,c
+   969  00E8FC  E102               	bnz	u695
+   970  00E8FE  5002               	movf	btemp+2,w,c
+   971  00E900  5C00               	subwf	btemp,w,c
+   972  00E902                     u695:
+   973  00E902  E302               	bnc	l87
+   974  00E904  50E1               	movf	fsr1l,w,c
+   975  00E906  0012               	return	
+   976  00E908                     l87:
+   977                           ;pompa.c: 258: else
+   978  00E908  50D9               	movf	fsr2l,w,c
+   979  00E90A  94D8               	bcf	status,2,c
+   980  00E90C  90D8               	bcf	status,0,c
+   981  00E90E  AEE1               	btfss	fsr1l,7,c
+   982  00E910  5CE1               	subwf	fsr1l,w,c
+   983  00E912  B4D8               	btfsc	status,2,c
+   984  00E914  90D8               	bcf	status,0,c
+   985  00E916  E302               	bnc	l89
+   986  00E918  50D9               	movf	fsr2l,w,c
+   987  00E91A  0012               	return	
+   988  00E91C                     l89:
+   989                           ;pompa.c: 260: else return min;
+   990  00E91C  0100               	movlb	__Lparam shr (0+8)
+   991  00E91E  51B5               	movf	(?_RetLO+1)^(__Lparam& (0+65280)),w
+   992  00E920  0012               	return	
+   993                           ;pompa.c: 261: }
+   994  00E922                     __end_of_RetLO:
+   995                           ;pompa.c: 264: signed char RetDelta1(unsigned ch
+      +                          ar pco,unsigned char hi)
+   996                           ;pompa.c: 265: {
+   997  00E922  00B4               	dw	?_RetDelta1
+   998  00E924                     _RetDelta1:
+   999  000000                     
+  1000                           ; _pco loaded to fsr2l
+  1001  00E924  6ED9               	movwf	fsr2l,c
+  1002                           ;pompa.c: 266: return (pco-hi);
+  1003  00E926  0100               	movlb	__Lparam shr (0+8)
+  1004  00E928  51B4               	movf	?_RetDelta1^(__Lparam& (0+65280)),w
+  1005  00E92A  5CD9               	subwf	fsr2l,w,c
+  1006  00E92C  0012               	return	
+  1007                           ;pompa.c: 267: }
+  1008  00E92E                     __end_of_RetDelta1:
+  1009                           ;pompa.c: 271: signed char RetDelta2(unsigned ch
+      +                          ar eco,unsigned char ddlt)
+  1010                           ;pompa.c: 272: {
+  1011  00E92E  00B4               	dw	?_RetDelta2
+  1012  00E930                     _RetDelta2:
+  1013  000000                     
+  1014                           ; _eco loaded to fsr1l
+  1015  00E930  6EE1               	movwf	fsr1l,c
+  1016                           ;pompa.c: 273: unsigned char kD;
+  1017  00E932  0100               	movlb	__Lparam shr (0+8)
+  1018  00E934  41B4               	rrncf	?_RetDelta2^(__Lparam& (0+65280)),w
+  1019  00E936  42E8               	rrncf	wreg,f,c
+  1020  00E938  0B3F               	andlw	63
+  1021  00E93A  6ED9               	movwf	fsr2l,c
+  1022                           ;pompa.c: 276: return (ddlt+(kD*(eco-5)));
+  1023  00E93C  50E1               	movf	fsr1l,w,c
+  1024  00E93E  0FFB               	addlw	-5
+  1025  00E940  02D9               	mulwf	fsr2l,c
+  1026  00E942  51B4               	movf	?_RetDelta2^(__Lparam& (0+65280)),w
+  1027  00E944  24F3               	addwf	prodl,w,c
+  1028  00E946  0012               	return	
+  1029                           ;pompa.c: 277: }
+  1030  00E948                     __end_of_RetDelta2:
+  1031                           ;pompa.c: 280: signed char RetDelta3(unsigned ch
+      +                          ar pco,unsigned char lo)
+  1032                           ;pompa.c: 281: {
+  1033  00E948  00B4               	dw	?_RetDelta3
+  1034  00E94A                     _RetDelta3:
+  1035  000000                     
+  1036                           ; _pco loaded to fsr2l
+  1037  00E94A  6ED9               	movwf	fsr2l,c
+  1038                           ;pompa.c: 282: return (pco-lo);
+  1039  00E94C  0100               	movlb	__Lparam shr (0+8)
+  1040  00E94E  51B4               	movf	?_RetDelta3^(__Lparam& (0+65280)),w
+  1041  00E950  5CD9               	subwf	fsr2l,w,c
+  1042  00E952  0012               	return	
+  1043                           ;pompa.c: 283: }
+  1044  00E954                     __end_of_RetDelta3:
+  1045                           ;pompa.c: 286: unsigned char RetDelta4(unsigned 
+      +                          char pco,unsigned char eco,unsigned char hi,unsi
+      +                          gned char lo)
+  1046                           ;pompa.c: 287: {
+  1047  00E954  00B1               	dw	?_RetDelta4
+  1048  00E956                     _RetDelta4:
+  1049  000000                     
+  1050                           ; _pco loaded to fsr0l
+  1051  00E956  6EE9               	movwf	fsr0l,c
+  1052                           ;pompa.c: 288: signed char d;
+  1053  00E958  0100               	movlb	__Lparam shr (0+8)
+  1054  00E95A  51B2               	movf	(?_RetDelta4+1)^(__Lparam& (0+65280)),w
+  1055  00E95C  6FB4               	movwf	?_RetDelta1^(__Lparam& (0+65280)),b
+  1056  00E95E  50E9               	movf	fsr0l,w,c
+  1057  00E960  DFE1               	call	_RetDelta1
+  1058  00E962  CFE8 F09F          	movff	wreg,_DtIN+15
+  1059                           ;pompa.c: 291: DtIN.delta2=RetDelta2(eco,20);
+  1060  00E966  0E14               	movlw	20
+  1061  00E968  0100               	movlb	__Lparam shr (0+8)
+  1062  00E96A  6FB4               	movwf	?_RetDelta2^(__Lparam& (0+65280)),b
+  1063  00E96C  51B1               	movf	?_RetDelta4^(__Lparam& (0+65280)),w
+  1064  00E96E  DFE0               	call	_RetDelta2
+  1065  00E970  CFE8 F0A0          	movff	wreg,_DtIN+16
+  1066                           ;pompa.c: 292: DtIN.delta3=RetDelta3(pco,lo);
+  1067  00E974  0100               	movlb	__Lparam shr (0+8)
+  1068  00E976  51B3               	movf	(?_RetDelta4+2)^(__Lparam& (0+65280)),w
+  1069  00E978  6FB4               	movwf	?_RetDelta3^(__Lparam& (0+65280)),b
+  1070  00E97A  50E9               	movf	fsr0l,w,c
+  1071  00E97C  DFE6               	call	_RetDelta3
+  1072  00E97E  CFE8 F0A1          	movff	wreg,_DtIN+17
+  1073                           ;pompa.c: 293: d=RetMin(DtIN.delta3,RetMax(DtIN.
+      +                          delta1,DtIN.delta2));
+  1074  00E982  C0A0  F0B5         	movff	_DtIN+16,?_RetMax
+  1075  00E986  C09F  FFE8         	movff	_DtIN+15,wreg
+  1076  00E98A  DF2B               	call	_RetMax
+  1077  00E98C  0100               	movlb	__Lparam shr (0+8)
+  1078  00E98E  6FB4               	movwf	?_RetMin^(__Lparam& (0+65280)),b
+  1079  00E990  C0A1  FFE8         	movff	_DtIN+17,wreg
+  1080  00E994  DF17               	call	_RetMin
+  1081  00E996  6EE9               	movwf	fsr0l,c
+  1082                           ;pompa.c: 294: if(d>0) return d;
+  1083  00E998  50E9               	movf	fsr0l,w,c
+  1084  00E99A  0A80               	xorlw	128
+  1085  00E99C  0F7F               	addlw	-129
+  1086  00E99E  E302               	bnc	l95
+  1087  00E9A0  50E9               	movf	fsr0l,w,c
+  1088  00E9A2  0012               	return	
+  1089  00E9A4                     l95:
+  1090                           ;pompa.c: 295: return 0;
+  1091  00E9A4  0C00               	retlw	0
+  1092                           ;pompa.c: 296: }
+  1093  00E9A6                     __end_of_RetDelta4:
+  1094                           ;pompa.c: 299: unsigned char RetKrkDelta(unsigne
+      +                          d char pco)
+  1095                           ;pompa.c: 300: {
+  1096  00E9A6                     _RetKrkDelta:
+  1097  000000                     
+  1098                           ;_pco stored from wreg
+  1099  00E9A6  0100               	movlb	__Lparam shr (0+8)
+  1100  00E9A8  6FAF               	movwf	(?a_RetKrkDelta+3)^(__Lparam& (0+65280)),
+      +                          b
+  1101                           ;pompa.c: 301: unsigned char i,d,min,max;
+  1102  00E9AA  6BAD               	clrf	(?a_RetKrkDelta+1)^(__Lparam& (0+65280)),b
+  1103                           ;pompa.c: 304: min=100;
+  1104  00E9AC  0E64               	movlw	100
+  1105  00E9AE  6FAE               	movwf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),
+      +                          b
+  1106                           ;pompa.c: 305: for(i=1;i<10;i++)
+  1107  00E9B0  0E01               	movlw	1
+  1108  00E9B2  6FB0               	movwf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),
+      +                          b
+  1109  00E9B4                     l97:
+  1110                           ;pompa.c: 306: {
+  1111  00E9B4  0100               	movlb	__Lparam shr (0+8)
+  1112  00E9B6  51B0               	movf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),w
+  1113  00E9B8  6FB1               	movwf	?_RetDelta4^(__Lparam& (0+65280)),b
+  1114  00E9BA  51B0               	movf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),w
+  1115  00E9BC  6FB4               	movwf	?_RetHI^(__Lparam& (0+65280)),b
+  1116  00E9BE  0E50               	movlw	80
+  1117  00E9C0  6FB5               	movwf	(?_RetHI+1)^(__Lparam& (0+65280)),b
+  1118  00E9C2  51AF               	movf	(?a_RetKrkDelta+3)^(__Lparam& (0+65280)),w
+  1119  00E9C4  DF1D               	call	_RetHI
+  1120  00E9C6  0100               	movlb	__Lparam shr (0+8)
+  1121  00E9C8  6FB2               	movwf	(?_RetDelta4+1)^(__Lparam& (0+65280)),b
+  1122  00E9CA  51B0               	movf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),w
+  1123  00E9CC  6FB4               	movwf	?_RetLO^(__Lparam& (0+65280)),b
+  1124  00E9CE  0E0A               	movlw	10
+  1125  00E9D0  6FB5               	movwf	(?_RetLO+1)^(__Lparam& (0+65280)),b
+  1126  00E9D2  51AF               	movf	(?a_RetKrkDelta+3)^(__Lparam& (0+65280)),w
+  1127  00E9D4  DF5E               	call	_RetLO
+  1128  00E9D6  0100               	movlb	__Lparam shr (0+8)
+  1129  00E9D8  6FB3               	movwf	(?_RetDelta4+2)^(__Lparam& (0+65280)),b
+  1130  00E9DA  51AF               	movf	(?a_RetKrkDelta+3)^(__Lparam& (0+65280)),w
+  1131  00E9DC  DFBC               	call	_RetDelta4
+  1132  00E9DE  0100               	movlb	__Lparam shr (0+8)
+  1133  00E9E0  6FAC               	movwf	?a_RetKrkDelta^(__Lparam& (0+65280)),b
+  1134                           ;pompa.c: 308: if(d>max) max=d;
+  1135  00E9E2  51AC               	movf	?a_RetKrkDelta^(__Lparam& (0+65280)),w
+  1136  00E9E4  61AD               	cpfslt	(?a_RetKrkDelta+1)^(__Lparam& (0+65280))
+      +                          ,b
+  1137  00E9E6  D002               	goto	l100
+  1138  00E9E8  51AC               	movf	?a_RetKrkDelta^(__Lparam& (0+65280)),w
+  1139  00E9EA  6FAD               	movwf	(?a_RetKrkDelta+1)^(__Lparam& (0+65280)),
+      +                          b
+  1140  00E9EC                     l100:
+  1141                           ;pompa.c: 309: if(d<min) min=d;
+  1142  00E9EC  0100               	movlb	__Lparam shr (0+8)
+  1143  00E9EE  51AE               	movf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),w
+  1144  00E9F0  61AC               	cpfslt	?a_RetKrkDelta^(__Lparam& (0+65280)),b
+  1145  00E9F2  D002               	goto	l101
+  1146  00E9F4  51AC               	movf	?a_RetKrkDelta^(__Lparam& (0+65280)),w
+  1147  00E9F6  6FAE               	movwf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),
+      +                          b
+  1148  00E9F8                     l101:
+  1149  00E9F8  0100               	movlb	__Lparam shr (0+8)
+  1150  00E9FA  2BB0               	incf	(?a_RetKrkDelta+4)^(__Lparam& (0+65280)),f
+      +                          ,b
+  1151  00E9FC  0E09               	movlw	9
+  1152  00E9FE  65B0               	cpfsgt	(?a_RetKrkDelta+4)^(__Lparam& (0+65280))
+      +                          ,b
+  1153  00EA00  D7D9               	goto	l97
+  1154                           ;pompa.c: 310: }
+  1155  00EA02  51AD               	movf	(?a_RetKrkDelta+1)^(__Lparam& (0+65280)),w
+  1156  00EA04  5DAE               	subwf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),
+      +                          w
+  1157  00EA06  E301               	bnc	l102
+  1158  00EA08  0C00               	retlw	0
+  1159  00EA0A                     l102:
+  1160                           ;pompa.c: 312: return ((max-min)*10)/9;
+  1161  00EA0A  0E0A               	movlw	10
+  1162  00EA0C  6E02               	movwf	btemp+2,c
+  1163  00EA0E  6A03               	clrf	btemp+3,c
+  1164  00EA10  0100               	movlb	__Lparam shr (0+8)
+  1165  00EA12  51AE               	movf	(?a_RetKrkDelta+2)^(__Lparam& (0+65280)),w
+  1166  00EA14  C0AD  F000         	movff	?a_RetKrkDelta+1,btemp
+  1167  00EA18  6A01               	clrf	btemp+1,c
+  1168  00EA1A  5E00               	subwf	btemp,f,c
+  1169  00EA1C  0E00               	movlw	0
+  1170  00EA1E  5A01               	subwfb	btemp+1,f,c
+  1171  00EA20  EC12  F007         	call	awmul
+  1172  00EA24  C004  F000         	movff	btemp+4,btemp
+  1173  00EA28  C005  F001         	movff	btemp+5,btemp+1
+  1174  00EA2C  0E09               	movlw	9
+  1175  00EA2E  6E02               	movwf	btemp+2,c
+  1176  00EA30  6A03               	clrf	btemp+3,c
+  1177  00EA32  ECA5  F006         	call	awdiv
+  1178  00EA36  5004               	movf	btemp+4,w,c
+  1179  00EA38  0012               	return	
+  1180                           ;pompa.c: 313: }
+  1181  00EA3A                     __end_of_RetKrkDelta:
+  1182                           ;pompa.c: 316: unsigned char RetDelta(unsigned c
+      +                          har pco,unsigned char eco)
+  1183                           ;pompa.c: 317: {
+  1184  00EA3A  00A9               	dw	?_RetDelta
+  1185  00EA3C                     _RetDelta:
+  1186  000000                     
+  1187                           ;_pco stored from wreg
+  1188  00EA3C  0100               	movlb	__Lparam shr (0+8)
+  1189  00EA3E  6FAA               	movwf	?a_RetDelta^(__Lparam& (0+65280)),b
+  1190                           ;pompa.c: 318: unsigned char k;
+  1191  00EA40  51AA               	movf	?a_RetDelta^(__Lparam& (0+65280)),w
+  1192  00EA42  DFB1               	call	_RetKrkDelta
+  1193  00EA44  0100               	movlb	__Lparam shr (0+8)
+  1194  00EA46  6FAB               	movwf	(?a_RetDelta+1)^(__Lparam& (0+65280)),b
+  1195                           ;pompa.c: 321: if(eco&&k) return (k*(eco))/10;
+  1196  00EA48  51A9               	movf	?_RetDelta^(__Lparam& (0+65280)),w
+  1197  00EA4A  E00F               	bz	l104
+  1198  00EA4C  51AB               	movf	(?a_RetDelta+1)^(__Lparam& (0+65280)),w
+  1199  00EA4E  E00D               	bz	l104
+  1200  00EA50  0E0A               	movlw	10
+  1201  00EA52  6E02               	movwf	btemp+2,c
+  1202  00EA54  6A03               	clrf	btemp+3,c
+  1203  00EA56  51AB               	movf	(?a_RetDelta+1)^(__Lparam& (0+65280)),w
+  1204  00EA58  03A9               	mulwf	?_RetDelta^(__Lparam& (0+65280)),b
+  1205  00EA5A  CFF3 F000          	movff	prodl,btemp
+  1206  00EA5E  CFF4 F001          	movff	prodh,btemp+1
+  1207  00EA62  ECA5  F006         	call	awdiv
+  1208  00EA66  5004               	movf	btemp+4,w,c
+  1209  00EA68  0012               	return	
+  1210  00EA6A                     l104:
+  1211                           ;pompa.c: 322: else return 0;
+  1212  00EA6A  0C00               	retlw	0
+  1213                           ;pompa.c: 323: }
+  1214  00EA6C                     __end_of_RetDelta:
+  1215                           ;pompa.c: 327: unsigned char ModPmp2(unsigned ch
+      +                          ar p)
+  1216                           ;pompa.c: 328: {
+  1217  00EA6C                     _ModPmp2:
+  1218  000000                     
+  1219                           ;_p stored from wreg
+  1220  00EA6C  0100               	movlb	__Lparam shr (0+8)
+  1221  00EA6E  6FA4               	movwf	?a_ModPmp2^(__Lparam& (0+65280)),b
+  1222                           ;pompa.c: 329: unsigned char ppwm, tim, pup, pdw
+      +                          ;
+  1223  00EA70  0E19               	movlw	25
+  1224  00EA72  CFE8 F09C          	movff	wreg,_DtIN+12
+  1225                           ;pompa.c: 333: DtIN.Eco5HI=55;
+  1226  00EA76  0E37               	movlw	55
+  1227  00EA78  CFE8 F09B          	movff	wreg,_DtIN+11
+  1228                           ;pompa.c: 334: if(DtIN.PPEco)
+  1229  00EA7C  EE00  F09A         	lfsr	0,_DtIN+10
+  1230  00EA80  50EF               	movf	indf0,w,c
+  1231  00EA82  E020               	bz	l107
+  1232                           ;pompa.c: 335: {
+  1233  00EA84  0100               	movlb	(_DtIN+10) shr (0+8)
+  1234  00EA86  059A               	decf	(_DtIN+10)& (0+255),w,b
+  1235  00EA88  0100               	movlb	__Lparam shr (0+8)
+  1236  00EA8A  6FB4               	movwf	?_RetHI^(__Lparam& (0+65280)),b
+  1237  00EA8C  0E50               	movlw	80
+  1238  00EA8E  6FB5               	movwf	(?_RetHI+1)^(__Lparam& (0+65280)),b
+  1239  00EA90  C329  FFE8         	movff	_M+35,wreg
+  1240  00EA94  DEB5               	call	_RetHI
+  1241  00EA96  CFE8 F09D          	movff	wreg,_DtIN+13
+  1242                           ;pompa.c: 337: DtIN.LO=RetLO(M.CONTSETP,DtIN.PPE
+      +                          co-1,10);
+  1243  00EA9A  0100               	movlb	(_DtIN+10) shr (0+8)
+  1244  00EA9C  059A               	decf	(_DtIN+10)& (0+255),w,b
+  1245  00EA9E  0100               	movlb	__Lparam shr (0+8)
+  1246  00EAA0  6FB4               	movwf	?_RetLO^(__Lparam& (0+65280)),b
+  1247  00EAA2  0E0A               	movlw	10
+  1248  00EAA4  6FB5               	movwf	(?_RetLO+1)^(__Lparam& (0+65280)),b
+  1249  00EAA6  C329  FFE8         	movff	_M+35,wreg
+  1250  00EAAA  DEF3               	call	_RetLO
+  1251  00EAAC  CFE8 F09E          	movff	wreg,_DtIN+14
+  1252                           ;pompa.c: 338: DtIN.delta=RetDelta(M.CONTSETP,Dt
+      +                          IN.PPEco-1);
+  1253  00EAB0  0100               	movlb	(_DtIN+10) shr (0+8)
+  1254  00EAB2  059A               	decf	(_DtIN+10)& (0+255),w,b
+  1255  00EAB4  0100               	movlb	__Lparam shr (0+8)
+  1256  00EAB6  6FA9               	movwf	?_RetDelta^(__Lparam& (0+65280)),b
+  1257  00EAB8  C329  FFE8         	movff	_M+35,wreg
+  1258  00EABC  DFBF               	call	_RetDelta
+  1259  00EABE  CFE8 F0A2          	movff	wreg,_DtIN+18
+  1260                           ;pompa.c: 339: }
+  1261  00EAC2  D004               	goto	l108
+  1262  00EAC4                     l107:
+  1263                           ;pompa.c: 340: else
+  1264  00EAC4  0100               	movlb	(_DtIN+13) shr (0+8)
+  1265  00EAC6  6B9D               	clrf	(_DtIN+13)& (0+255),b
+  1266                           ;pompa.c: 343: DtIN.LO==0;
+  1267  00EAC8  0100               	movlb	(_DtIN+18) shr (0+8)
+  1268  00EACA  6BA2               	clrf	(_DtIN+18)& (0+255),b
+  1269  00EACC                     l108:
+  1270                           ;pompa.c: 345: }
+  1271  00EACC  EE00  F0A2         	lfsr	0,_DtIN+18
+  1272  00EAD0  50EF               	movf	indf0,w,c
+  1273  00EAD2  E106               	bnz	l109
+  1274                           ;pompa.c: 347: {
+  1275  00EAD4  0E0D               	movlw	13
+  1276  00EAD6  EC33  F07E         	call	_StartRTdS
+  1277                           ;pompa.c: 349: return PMP.MGPROC;
+  1278  00EADA  C2FC  FFE8         	movff	_PMP,wreg
+  1279  00EADE  0012               	return	
+  1280  00EAE0                     l109:
+  1281                           ;pompa.c: 350: }
+  1282  00EAE0  0100               	movlb	__Lparam shr (0+8)
+  1283  00EAE2  51A4               	movf	?a_ModPmp2^(__Lparam& (0+65280)),w
+  1284  00EAE4  6FA8               	movwf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),b
+  1285                           ;pompa.c: 355: if(rgl.fz||ppwm!=PMP.MGPROC)
+  1286  00EAE6  0103               	movlb	_rgl shr (0+8)
+  1287  00EAE8  B5D7               	btfsc	_rgl& (0+255),2,b
+  1288  00EAEA  D006               	goto	u840
+  1289  00EAEC  0100               	movlb	__Lparam shr (0+8)
+  1290  00EAEE  51A8               	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1291  00EAF0  0102               	movlb	_PMP shr (0+8)
+  1292  00EAF2  19FC               	xorwf	_PMP& (0+255),w,b
+  1293  00EAF4  E101 D131          	bz	l110
+  1294  00EAF8                     u840:
+  1295                           ;pompa.c: 356: {
+  1296  00EAF8  C0A2  F096         	movff	_DtIN+18,_DtIN+6
+  1297                           ;pompa.c: 361: if(DtIN.DIN2>DtIN.cDLT)
+  1298  00EAFC  C094  FFE8         	movff	_DtIN+4,wreg
+  1299  00EB00  0100               	movlb	(_DtIN+6) shr (0+8)
+  1300  00EB02  6196               	cpfslt	(_DtIN+6)& (0+255),b
+  1301  00EB04  D016               	goto	l111
+  1302                           ;pompa.c: 362: {
+  1303  00EB06  0E32               	movlw	50
+  1304  00EB08  0100               	movlb	__Lparam shr (0+8)
+  1305  00EB0A  6FA7               	movwf	(?a_ModPmp2+3)^(__Lparam& (0+65280)),b
+  1306                           ;pompa.c: 364: if(DtIN.DIN2-DtIN.cDLT==2) tim=10
+      +                          0;
+  1307  00EB0C  C096  FFE8         	movff	_DtIN+6,wreg
+  1308  00EB10  C094  F000         	movff	_DtIN+4,btemp
+  1309  00EB14  6A01               	clrf	btemp+1,c
+  1310  00EB16  5E00               	subwf	btemp,f,c
+  1311  00EB18  0E00               	movlw	0
+  1312  00EB1A  5A01               	subwfb	btemp+1,f,c
+  1313  00EB1C  5000               	movf	btemp,w,c
+  1314  00EB1E  0A02               	xorlw	2
+  1315  00EB20  1001               	iorwf	btemp+1,w,c
+  1316  00EB22  E102               	bnz	l112
+  1317  00EB24                     u860:
+  1318  00EB24  0E64               	movlw	100
+  1319  00EB26  D021               	goto	L5
+  1320  00EB28                     l112:
+  1321                           ;pompa.c: 365: else
+  1322  00EB28  C096  FFE8         	movff	_DtIN+6,wreg
+  1323  00EB2C  C094  F000         	movff	_DtIN+4,btemp
+  1324  00EB30  D013               	goto	L8
+  1325                           ;pompa.c: 367: }
+  1326  00EB32                     l111:
+  1327                           ;pompa.c: 368: else
+  1328  00EB32  0E50               	movlw	80
+  1329  00EB34  0100               	movlb	__Lparam shr (0+8)
+  1330  00EB36  6FA7               	movwf	(?a_ModPmp2+3)^(__Lparam& (0+65280)),b
+  1331                           ;pompa.c: 371: if(DtIN.cDLT-DtIN.DIN2==2) tim=10
+      +                          0;
+  1332  00EB38  C094  FFE8         	movff	_DtIN+4,wreg
+  1333  00EB3C  C096  F000         	movff	_DtIN+6,btemp
+  1334  00EB40  6A01               	clrf	btemp+1,c
+  1335  00EB42  5E00               	subwf	btemp,f,c
+  1336  00EB44  0E00               	movlw	0
+  1337  00EB46  5A01               	subwfb	btemp+1,f,c
+  1338  00EB48  5000               	movf	btemp,w,c
+  1339  00EB4A  0A02               	xorlw	2
+  1340  00EB4C  1001               	iorwf	btemp+1,w,c
+  1341  00EB4E  E0EA               	bz	u860
+  1342                           ;pompa.c: 372: else
+  1343  00EB50  C094  FFE8         	movff	_DtIN+4,wreg
+  1344  00EB54  C096  F000         	movff	_DtIN+6,btemp
+  1345  00EB58                     L8:
+  1346  00EB58  6A01               	clrf	btemp+1,c
+  1347  00EB5A  5E00               	subwf	btemp,f,c
+  1348  00EB5C  0E00               	movlw	0
+  1349  00EB5E  5A01               	subwfb	btemp+1,f,c
+  1350  00EB60  0400               	decf	btemp,w,c
+  1351  00EB62  1001               	iorwf	btemp+1,w,c
+  1352  00EB64  E103               	bnz	l115
+  1353  00EB66  0E96               	movlw	150
+  1354  00EB68  0100               	movlb	__Lparam shr (0+8)
+  1355  00EB6A                     L5:
+  1356  00EB6A  6FA7               	movwf	(?a_ModPmp2+3)^(__Lparam& (0+65280)),b
+  1357  00EB6C                     l115:
+  1358                           ;pompa.c: 374: }
+  1359  00EB6C  0100               	movlb	__Lparam shr (0+8)
+  1360  00EB6E  6BA6               	clrf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),b
+  1361                           ;pompa.c: 378: pdw=0;
+  1362  00EB70  6BA5               	clrf	(?a_ModPmp2+1)^(__Lparam& (0+65280)),b
+  1363                           ;pompa.c: 379: if((RTdS(13)>tim)||(ppwm<=PMP.MDP
+      +                          ROC)||(ppwm>=PMP.MGPROC))
+  1364  00EB72  0E0D               	movlw	13
+  1365  00EB74  EC45  F07E         	call	_RTdS
+  1366  00EB78  0100               	movlb	__Lparam shr (0+8)
+  1367  00EB7A  61A7               	cpfslt	(?a_ModPmp2+3)^(__Lparam& (0+65280)),b
+  1368  00EB7C  D001               	goto	u901
+  1369  00EB7E  D00A               	goto	u930
+  1370  00EB80                     u901:
+  1371  00EB80  51A8               	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1372  00EB82  0102               	movlb	(_PMP+1) shr (0+8)
+  1373  00EB84  5DFD               	subwf	(_PMP+1)& (0+255),w,b
+  1374  00EB86  E206               	bc	u930
+  1375  00EB88  0100               	movlb	__Lparam shr (0+8)
+  1376  00EB8A  C2FC  FFE8         	movff	_PMP,wreg
+  1377  00EB8E  5DA8               	subwf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1378  00EB90  E201 D0E8          	bnc	l148
+  1379  00EB94                     u930:
+  1380                           ;pompa.c: 380: {
+  1381  00EB94  0E0D               	movlw	13
+  1382  00EB96  EC33  F07E         	call	_StartRTdS
+  1383                           ;pompa.c: 383: if(!pup)
+  1384                           ;pompa.c: 384: if(rgl.tmp_pwm<=PWM.MINPWM)
+  1385  00EB9A  C3E0  FFE8         	movff	_rgl+9,wreg
+  1386  00EB9E  0102               	movlb	(_PWM+28) shr (0+8)
+  1387  00EBA0  5DF5               	subwf	(_PWM+28)& (0+255),w,b
+  1388  00EBA2  E327               	bnc	l120
+  1389                           ;pompa.c: 385: {
+  1390  00EBA4  0E02               	movlw	2
+  1391  00EBA6  EC42  F033         	call	_Twyzsza
+  1392  00EBAA  E204               	bc	u980
+  1393  00EBAC  0E02               	movlw	2
+  1394  00EBAE  EC35  F033         	call	_Tnizsza
+  1395  00EBB2  E31F               	bnc	l120
+  1396  00EBB4                     u980:
+  1397                           ;pompa.c: 387: {
+  1398  00EBB4  C2FC  FFE8         	movff	_PMP,wreg
+  1399  00EBB8  0100               	movlb	__Lparam shr (0+8)
+  1400  00EBBA  61A8               	cpfslt	(?a_ModPmp2+4)^(__Lparam& (0+65280)),b
+  1401  00EBBC  D01A               	goto	l120
+  1402                           ;pompa.c: 389: {
+  1403  00EBBE  C2FC  F000         	movff	_PMP,btemp
+  1404  00EBC2  6A01               	clrf	btemp+1,c
+  1405  00EBC4  0E01               	movlw	1
+  1406  00EBC6  C0A8  F002         	movff	?a_ModPmp2+4,btemp+2
+  1407  00EBCA  6A03               	clrf	btemp+3,c
+  1408  00EBCC  2602               	addwf	btemp+2,f,c
+  1409  00EBCE  0E00               	movlw	0
+  1410  00EBD0  2203               	addwfc	btemp+3,f,c
+  1411  00EBD2  5003               	movf	btemp+3,w,c
+  1412  00EBD4  0A80               	xorlw	128
+  1413  00EBD6  6E04               	movwf	btemp+4,c
+  1414  00EBD8  5001               	movf	btemp+1,w,c
+  1415  00EBDA  0A80               	xorlw	128
+  1416  00EBDC  5C04               	subwf	btemp+4,w,c
+  1417  00EBDE  E102               	bnz	u1005
+  1418  00EBE0  5000               	movf	btemp,w,c
+  1419  00EBE2  5C02               	subwf	btemp+2,w,c
+  1420  00EBE4                     u1005:
+  1421  00EBE4  E204               	bc	l124
+  1422                           ;pompa.c: 391: {
+  1423  00EBE6  2BA8               	incf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1424                           ;pompa.c: 393: pup=1;
+  1425  00EBE8  0E01               	movlw	1
+  1426  00EBEA  6FA6               	movwf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),b
+  1427                           ;pompa.c: 394: }
+  1428  00EBEC  D002               	goto	l120
+  1429  00EBEE                     l124:
+  1430                           ;pompa.c: 395: else ppwm=PMP.MGPROC;
+  1431  00EBEE  C2FC  F0A8         	movff	_PMP,?a_ModPmp2+4
+  1432  00EBF2                     l120:
+  1433                           ;pompa.c: 396: }
+  1434  00EBF2  C3E0  FFE8         	movff	_rgl+9,wreg
+  1435  00EBF6  0102               	movlb	(_PWM+28) shr (0+8)
+  1436  00EBF8  61F5               	cpfslt	(_PWM+28)& (0+255),b
+  1437  00EBFA  D001               	goto	u1011
+  1438  00EBFC  D009               	goto	u1050
+  1439  00EBFE                     u1011:
+  1440  00EBFE  C3E0  FFE8         	movff	_rgl+9,wreg
+  1441  00EC02  0102               	movlb	(_PWM+28) shr (0+8)
+  1442  00EC04  5DF5               	subwf	(_PWM+28)& (0+255),w,b
+  1443  00EC06  E34F               	bnc	l126
+  1444  00EC08  0E01               	movlw	1
+  1445  00EC0A  EC42  F033         	call	_Twyzsza
+  1446  00EC0E  E24B               	bc	l126
+  1447  00EC10                     u1050:
+  1448                           ;pompa.c: 401: {
+  1449  00EC10  C096  FFE8         	movff	_DtIN+6,wreg
+  1450  00EC14  0100               	movlb	(_DtIN+3) shr (0+8)
+  1451  00EC16  6193               	cpfslt	(_DtIN+3)& (0+255),b
+  1452  00EC18  D046               	goto	l126
+  1453                           ;pompa.c: 403: {
+  1454                           ;pompa.c: 405: if(ppwm>PMP.MDPROC)
+  1455  00EC1A  0100               	movlb	__Lparam shr (0+8)
+  1456  00EC1C  51A8               	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1457  00EC1E  0102               	movlb	(_PMP+1) shr (0+8)
+  1458  00EC20  61FD               	cpfslt	(_PMP+1)& (0+255),b
+  1459  00EC22  D01A               	goto	l128
+  1460                           ;pompa.c: 406: {
+  1461  00EC24  0100               	movlb	__Lparam shr (0+8)
+  1462  00EC26  0FFE               	addlw	254
+  1463  00EC28  6E00               	movwf	btemp,c
+  1464  00EC2A  6A01               	clrf	btemp+1,c
+  1465  00EC2C  0EFF               	movlw	255
+  1466  00EC2E  2201               	addwfc	btemp+1,f,c
+  1467  00EC30  C2FD  F002         	movff	_PMP+1,btemp+2
+  1468  00EC34  6A03               	clrf	btemp+3,c
+  1469  00EC36  5003               	movf	btemp+3,w,c
+  1470  00EC38  0A80               	xorlw	128
+  1471  00EC3A  6E04               	movwf	btemp+4,c
+  1472  00EC3C  5001               	movf	btemp+1,w,c
+  1473  00EC3E  0A80               	xorlw	128
+  1474  00EC40  5C04               	subwf	btemp+4,w,c
+  1475  00EC42  E102               	bnz	u1085
+  1476  00EC44  5000               	movf	btemp,w,c
+  1477  00EC46  5C02               	subwf	btemp+2,w,c
+  1478  00EC48                     u1085:
+  1479  00EC48  E205               	bc	l130
+  1480                           ;pompa.c: 408: {
+  1481  00EC4A  0EFE               	movlw	254
+  1482  00EC4C  27A8               	addwf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1483                           ;pompa.c: 410: pdw=1;
+  1484  00EC4E  0E01               	movlw	1
+  1485  00EC50  6FA5               	movwf	(?a_ModPmp2+1)^(__Lparam& (0+65280)),b
+  1486                           ;pompa.c: 411: }
+  1487  00EC52  D002               	goto	l128
+  1488  00EC54                     l130:
+  1489                           ;pompa.c: 412: else ppwm=PMP.MDPROC;
+  1490  00EC54  C2FD  F0A8         	movff	_PMP+1,?a_ModPmp2+4
+  1491  00EC58                     l128:
+  1492                           ;pompa.c: 413: }
+  1493  00EC58  0100               	movlb	__Lparam shr (0+8)
+  1494  00EC5A  51A5               	movf	(?a_ModPmp2+1)^(__Lparam& (0+65280)),w
+  1495  00EC5C  E124               	bnz	l126
+  1496                           ;pompa.c: 415: if(DtIN.DIN<DtIN.DIN2)
+  1497  00EC5E  C094  FFE8         	movff	_DtIN+4,wreg
+  1498  00EC62  0100               	movlb	(_DtIN+3) shr (0+8)
+  1499  00EC64  6193               	cpfslt	(_DtIN+3)& (0+255),b
+  1500  00EC66  D01F               	goto	l126
+  1501                           ;pompa.c: 416: {
+  1502  00EC68  0100               	movlb	__Lparam shr (0+8)
+  1503  00EC6A  51A8               	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1504  00EC6C  0102               	movlb	(_PMP+1) shr (0+8)
+  1505  00EC6E  61FD               	cpfslt	(_PMP+1)& (0+255),b
+  1506  00EC70  D01A               	goto	l126
+  1507                           ;pompa.c: 418: {
+  1508  00EC72  0100               	movlb	__Lparam shr (0+8)
+  1509  00EC74  0FFE               	addlw	254
+  1510  00EC76  6E00               	movwf	btemp,c
+  1511  00EC78  6A01               	clrf	btemp+1,c
+  1512  00EC7A  0EFF               	movlw	255
+  1513  00EC7C  2201               	addwfc	btemp+1,f,c
+  1514  00EC7E  C2FD  F002         	movff	_PMP+1,btemp+2
+  1515  00EC82  6A03               	clrf	btemp+3,c
+  1516  00EC84  5003               	movf	btemp+3,w,c
+  1517  00EC86  0A80               	xorlw	128
+  1518  00EC88  6E04               	movwf	btemp+4,c
+  1519  00EC8A  5001               	movf	btemp+1,w,c
+  1520  00EC8C  0A80               	xorlw	128
+  1521  00EC8E  5C04               	subwf	btemp+4,w,c
+  1522  00EC90  E102               	bnz	u1125
+  1523  00EC92  5000               	movf	btemp,w,c
+  1524  00EC94  5C02               	subwf	btemp+2,w,c
+  1525  00EC96                     u1125:
+  1526  00EC96  E205               	bc	l135
+  1527                           ;pompa.c: 420: {
+  1528  00EC98  0EFE               	movlw	254
+  1529  00EC9A  27A8               	addwf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1530                           ;pompa.c: 422: pdw=1;
+  1531  00EC9C  0E01               	movlw	1
+  1532  00EC9E  6ED9               	movwf	fsr2l,c
+  1533                           ;pompa.c: 423: }
+  1534  00ECA0  D002               	goto	l126
+  1535  00ECA2                     l135:
+  1536                           ;pompa.c: 424: else ppwm=PMP.MDPROC;
+  1537  00ECA2  C2FD  F0A8         	movff	_PMP+1,?a_ModPmp2+4
+  1538  00ECA6                     l126:
+  1539                           ;pompa.c: 425: }
+  1540  00ECA6  C2F6  FFE8         	movff	_PWM+29,wreg
+  1541  00ECAA  0103               	movlb	(_rgl+9) shr (0+8)
+  1542  00ECAC  61E0               	cpfslt	(_rgl+9)& (0+255),b
+  1543  00ECAE  D001               	goto	u1131
+  1544  00ECB0  D009               	goto	u1170
+  1545  00ECB2                     u1131:
+  1546  00ECB2  C2F6  FFE8         	movff	_PWM+29,wreg
+  1547  00ECB6  0103               	movlb	(_rgl+9) shr (0+8)
+  1548  00ECB8  5DE0               	subwf	(_rgl+9)& (0+255),w,b
+  1549  00ECBA  E354               	bnc	l148
+  1550  00ECBC  0E01               	movlw	1
+  1551  00ECBE  EC35  F033         	call	_Tnizsza
+  1552  00ECC2  E250               	bc	l148
+  1553  00ECC4                     u1170:
+  1554                           ;pompa.c: 431: {
+  1555  00ECC4  C093  FFE8         	movff	_DtIN+3,wreg
+  1556  00ECC8  0100               	movlb	(_DtIN+6) shr (0+8)
+  1557  00ECCA  6196               	cpfslt	(_DtIN+6)& (0+255),b
+  1558  00ECCC  D04B               	goto	l148
+  1559                           ;pompa.c: 433: {
+  1560  00ECCE  0100               	movlb	__Lparam shr (0+8)
+  1561  00ECD0  51A6               	movf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),w
+  1562  00ECD2  E11E               	bnz	l139
+  1563                           ;pompa.c: 435: if(ppwm<PMP.MGPROC)
+  1564  00ECD4  C2FC  FFE8         	movff	_PMP,wreg
+  1565  00ECD8  61A8               	cpfslt	(?a_ModPmp2+4)^(__Lparam& (0+65280)),b
+  1566  00ECDA  D01A               	goto	l139
+  1567                           ;pompa.c: 436: {
+  1568  00ECDC  C2FC  F000         	movff	_PMP,btemp
+  1569  00ECE0  6A01               	clrf	btemp+1,c
+  1570  00ECE2  0E01               	movlw	1
+  1571  00ECE4  C0A8  F002         	movff	?a_ModPmp2+4,btemp+2
+  1572  00ECE8  6A03               	clrf	btemp+3,c
+  1573  00ECEA  2602               	addwf	btemp+2,f,c
+  1574  00ECEC  0E00               	movlw	0
+  1575  00ECEE  2203               	addwfc	btemp+3,f,c
+  1576  00ECF0  5003               	movf	btemp+3,w,c
+  1577  00ECF2  0A80               	xorlw	128
+  1578  00ECF4  6E04               	movwf	btemp+4,c
+  1579  00ECF6  5001               	movf	btemp+1,w,c
+  1580  00ECF8  0A80               	xorlw	128
+  1581  00ECFA  5C04               	subwf	btemp+4,w,c
+  1582  00ECFC  E102               	bnz	u1215
+  1583  00ECFE  5000               	movf	btemp,w,c
+  1584  00ED00  5C02               	subwf	btemp+2,w,c
+  1585  00ED02                     u1215:
+  1586  00ED02  E204               	bc	l141
+  1587                           ;pompa.c: 438: {
+  1588  00ED04  2BA8               	incf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1589                           ;pompa.c: 440: pup=1;
+  1590  00ED06  0E01               	movlw	1
+  1591  00ED08  6FA6               	movwf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),b
+  1592                           ;pompa.c: 441: }
+  1593  00ED0A  D002               	goto	l139
+  1594  00ED0C                     l141:
+  1595                           ;pompa.c: 442: else ppwm=PMP.MGPROC;
+  1596  00ED0C  C2FC  F0A8         	movff	_PMP,?a_ModPmp2+4
+  1597  00ED10                     l139:
+  1598                           ;pompa.c: 443: }
+  1599  00ED10  0100               	movlb	__Lparam shr (0+8)
+  1600  00ED12  51A6               	movf	(?a_ModPmp2+2)^(__Lparam& (0+65280)),w
+  1601  00ED14  E127               	bnz	l148
+  1602                           ;pompa.c: 445: if(DtIN.DIN>DtIN.DIN2)
+  1603  00ED16  C093  FFE8         	movff	_DtIN+3,wreg
+  1604  00ED1A  0100               	movlb	(_DtIN+4) shr (0+8)
+  1605  00ED1C  6194               	cpfslt	(_DtIN+4)& (0+255),b
+  1606  00ED1E  D022               	goto	l148
+  1607                           ;pompa.c: 446: {
+  1608  00ED20  C2FC  FFE8         	movff	_PMP,wreg
+  1609  00ED24  0100               	movlb	__Lparam shr (0+8)
+  1610  00ED26  61A8               	cpfslt	(?a_ModPmp2+4)^(__Lparam& (0+65280)),b
+  1611  00ED28  D01D               	goto	l148
+  1612                           ;pompa.c: 448: {
+  1613  00ED2A  C2FC  F000         	movff	_PMP,btemp
+  1614  00ED2E  6A01               	clrf	btemp+1,c
+  1615  00ED30  0E01               	movlw	1
+  1616  00ED32  C0A8  F002         	movff	?a_ModPmp2+4,btemp+2
+  1617  00ED36  6A03               	clrf	btemp+3,c
+  1618  00ED38  2602               	addwf	btemp+2,f,c
+  1619  00ED3A  0E00               	movlw	0
+  1620  00ED3C  2203               	addwfc	btemp+3,f,c
+  1621  00ED3E  5003               	movf	btemp+3,w,c
+  1622  00ED40  0A80               	xorlw	128
+  1623  00ED42  6E04               	movwf	btemp+4,c
+  1624  00ED44  5001               	movf	btemp+1,w,c
+  1625  00ED46  0A80               	xorlw	128
+  1626  00ED48  5C04               	subwf	btemp+4,w,c
+  1627  00ED4A  E102               	bnz	u1255
+  1628  00ED4C  5000               	movf	btemp,w,c
+  1629  00ED4E  5C02               	subwf	btemp+2,w,c
+  1630  00ED50                     u1255:
+  1631  00ED50  E207               	bc	L9
+  1632                           ;pompa.c: 450: {
+  1633  00ED52  2BA8               	incf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),f,b
+  1634                           ;pompa.c: 452: pup=1;
+  1635  00ED54  0E01               	movlw	1
+  1636  00ED56  6ED9               	movwf	fsr2l,c
+  1637                           ;pompa.c: 453: }
+  1638  00ED58  D005               	goto	l148
+  1639                           ;pompa.c: 454: else ppwm=PMP.MGPROC;
+  1640                           ;pompa.c: 455: }
+  1641  00ED5A                     l110:
+  1642                           ;pompa.c: 462: else
+  1643  00ED5A  0E0D               	movlw	13
+  1644  00ED5C  EC33  F07E         	call	_StartRTdS
+  1645  00ED60                     L9:
+  1646                           ;pompa.c: 465: ppwm=PMP.MGPROC;
+  1647  00ED60  C2FC  F0A8         	movff	_PMP,?a_ModPmp2+4
+  1648  00ED64                     l148:
+  1649                           ;pompa.c: 466: }
+  1650  00ED64  0100               	movlb	__Lparam shr (0+8)
+  1651  00ED66  51A8               	movf	(?a_ModPmp2+4)^(__Lparam& (0+65280)),w
+  1652  00ED68  0012               	return	
+  1653                           ;pompa.c: 468: }
+  1654  00ED6A                     __end_of_ModPmp2:
+  1655                           ;pompa.c: 472: void RglPmp2(void)
+  1656                           ;pompa.c: 473: {
+  1657  00ED6A                     _RglPmp2:
+  1658  000000                     
+  1659                           ;pompa.c: 474: PMP.MGPROC=DtKNF.mgpm;
+  1660  00ED6A  C2CA  F2FC         	movff	_DtKNF+28,_PMP
+  1661                           ;pompa.c: 475: PMP.MDPROC=DtKNF.mdpm;
+  1662  00ED6E  C2C0  F2FD         	movff	_DtKNF+18,_PMP+1
+  1663                           ;pompa.c: 477: if(PMP.MDPROC>PMP.MGPROC) PMP.MDP
+      +                          ROC=PMP.MGPROC;
+  1664  00ED72  C2FD  FFE8         	movff	_PMP+1,wreg
+  1665  00ED76  0102               	movlb	_PMP shr (0+8)
+  1666  00ED78  61FC               	cpfslt	_PMP& (0+255),b
+  1667  00ED7A  D002               	goto	l150
+  1668  00ED7C  C2FC  F2FD         	movff	_PMP,_PMP+1
+  1669  00ED80                     l150:
+  1670                           ;pompa.c: 479: if(DtKNF.tpkt==0)
+  1671  00ED80  EE02  F0BC         	lfsr	0,_DtKNF+14
+  1672  00ED84  50EF               	movf	indf0,w,c
+  1673  00ED86  E103               	bnz	l151
+  1674                           ;pompa.c: 480: {
+  1675  00ED88  C2CB  F2FF         	movff	_DtKNF+29,_PMP+3
+  1676                           ;pompa.c: 482: }
+  1677  00ED8C  D003               	goto	l152
+  1678  00ED8E                     l151:
+  1679                           ;pompa.c: 483: else
+  1680  00ED8E  0E63               	movlw	99
+  1681  00ED90  CFE8 F2FF          	movff	wreg,_PMP+3
+  1682  00ED94                     l152:
+  1683                           ;pompa.c: 486: }
+  1684  00ED94  0103               	movlb	(_M+4) shr (0+8)
+  1685  00ED96  B70A               	btfsc	(_M+4)& (0+255),3,b
+  1686  00ED98  D018               	goto	l153
+  1687                           ;pompa.c: 489: {
+  1688  00ED9A  0100               	movlb	(_DtIN+19) shr (0+8)
+  1689  00ED9C  6BA3               	clrf	(_DtIN+19)& (0+255),b
+  1690                           ;pompa.c: 491: StartRTS(12);
+  1691  00ED9E  0E0C               	movlw	12
+  1692  00EDA0  EC51  F07E         	call	_StartRTS
+  1693                           ;pompa.c: 492: if(RD2)
+  1694  00EDA4  A483               	btfss	3971,2,c	;volatile
+  1695  00EDA6  D009               	goto	l154
+  1696                           ;pompa.c: 493: {
+  1697  00EDA8  0103               	movlb	(_M+5) shr (0+8)
+  1698  00EDAA  B10B               	btfsc	(_M+5)& (0+255),0,b
+  1699  00EDAC  D003               	goto	l155
+  1700  00EDAE  C2FC  F2FE         	movff	_PMP,_PMP+2
+  1701  00EDB2  D005               	goto	l157
+  1702  00EDB4                     l155:
+  1703                           ;pompa.c: 495: else PMP.APROC=PMP.MGPROC2;
+  1704  00EDB4  C2FF  F2FE         	movff	_PMP+3,_PMP+2
+  1705                           ;pompa.c: 496: }
+  1706  00EDB8  D002               	goto	l157
+  1707  00EDBA                     l154:
+  1708                           ;pompa.c: 497: else
+  1709  00EDBA  0102               	movlb	(_PMP+2) shr (0+8)
+  1710  00EDBC  6BFE               	clrf	(_PMP+2)& (0+255),b
+  1711  00EDBE                     l157:
+  1712                           ;pompa.c: 500: }
+  1713  00EDBE  C2FE  FFE8         	movff	_PMP+2,wreg
+  1714  00EDC2  EC27  F072         	call	_ProcToPmpPwm
+  1715  00EDC6  EF81  F001         	goto	_WritePWM2
+  1716                           ;pompa.c: 502: }
+  1717  00EDCA                     l153:
+  1718                           ;pompa.c: 503: else
+  1719  00EDCA  0103               	movlb	(_M+2) shr (0+8)
+  1720  00EDCC  AB08               	btfss	(_M+2)& (0+255),5,b
+  1721  00EDCE  D016               	goto	l159
+  1722  00EDD0  0100               	movlb	_DtIN shr (0+8)
+  1723  00EDD2  B190               	btfsc	_DtIN& (0+255),0,b
+  1724  00EDD4  D013               	goto	l159
+  1725  00EDD6  0103               	movlb	(_M+5) shr (0+8)
+  1726  00EDD8  B10B               	btfsc	(_M+5)& (0+255),0,b
+  1727  00EDDA  D010               	goto	l159
+  1728  00EDDC  0E0C               	movlw	12
+  1729  00EDDE  EC63  F07E         	call	_RTS
+  1730  00EDE2  6E00               	movwf	btemp,c
+  1731  00EDE4  0E0B               	movlw	11
+  1732  00EDE6  5C00               	subwf	btemp,w,c
+  1733  00EDE8  E309               	bnc	l159
+  1734                           ;pompa.c: 506: {
+  1735  00EDEA  0103               	movlb	_rgl shr (0+8)
+  1736                           ;pompa.c: 508: {
+  1737  00EDEC  C2FE  FFE8         	movff	_PMP+2,wreg
+  1738  00EDF0  A5D7               	btfss	_rgl& (0+255),2,b
+  1739  00EDF2  D00E               	goto	L11
+  1740  00EDF4  DE3B               	call	_ModPmp2
+  1741  00EDF6  CFE8 F2FE          	movff	wreg,_PMP+2
+  1742                           ;pompa.c: 510: }
+  1743  00EDFA  D008               	goto	l161
+  1744  00EDFC                     l159:
+  1745                           ;pompa.c: 512: else
+  1746  00EDFC  0103               	movlb	(_M+5) shr (0+8)
+  1747  00EDFE  B10B               	btfsc	(_M+5)& (0+255),0,b
+  1748  00EE00  D003               	goto	l162
+  1749  00EE02  C2FC  F2FE         	movff	_PMP,_PMP+2
+  1750  00EE06  D002               	goto	l161
+  1751  00EE08                     l162:
+  1752                           ;pompa.c: 515: else PMP.APROC=PMP.MGPROC2;
+  1753  00EE08  C2FF  F2FE         	movff	_PMP+3,_PMP+2
+  1754  00EE0C                     l161:
+  1755                           ;pompa.c: 516: }
+  1756  00EE0C  C2FE  FFE8         	movff	_PMP+2,wreg
+  1757  00EE10                     L11:
+  1758  00EE10  EC27  F072         	call	_ProcToPmpPwm
+  1759  00EE14  EF81  F001         	goto	_WritePWM2
+  1760                           ;pompa.c: 518: }
+  1761  00EE18                     __end_of_RglPmp2:
+  1762                           ;pompa.c: 524: void PmpToUP(void)
+  1763                           ;pompa.c: 525: {
+  1764  00EE18                     _PmpToUP:
+  1765  000000                     
+  1766                           ;pompa.c: 526: static unsigned char tm;
+  1767  00EE18  EE02  F0BE         	lfsr	0,_DtKNF+16
+  1768  00EE1C  50EF               	movf	indf0,w,c
+  1769  00EE1E  B4D8               	btfsc	status,2,c
+  1770  00EE20  0012               	return	
+  1771                           ;pompa.c: 529: {
+  1772  00EE22  010F               	movlb	F1745 shr (0+8)
+  1773  00EE24  2B3E               	incf	F1745& (0+255),f,b
+  1774                           ;pompa.c: 531: if(tm>30)
+  1775  00EE26  0E1E               	movlw	30
+  1776  00EE28  653E               	cpfsgt	F1745& (0+255),b
+  1777  00EE2A  0C1E               	retlw	30
+  1778                           ;pompa.c: 532: {
+  1779  00EE2C  6B3E               	clrf	F1745& (0+255),b
+  1780                           ;pompa.c: 534: if(!M._RPM_CW)
+  1781  00EE2E  0103               	movlb	(_M+5) shr (0+8)
+  1782  00EE30  B10B               	btfsc	(_M+5)& (0+255),0,b
+  1783  00EE32  0012               	return	
+  1784                           ;pompa.c: 535: {
+  1785  00EE34  C2FC  F000         	movff	_PMP,btemp
+  1786  00EE38  6A01               	clrf	btemp+1,c
+  1787  00EE3A  0E01               	movlw	1
+  1788  00EE3C  C2FE  F002         	movff	_PMP+2,btemp+2
+  1789  00EE40  6A03               	clrf	btemp+3,c
+  1790  00EE42  2602               	addwf	btemp+2,f,c
+  1791  00EE44  0E00               	movlw	0
+  1792  00EE46  2203               	addwfc	btemp+3,f,c
+  1793  00EE48  5003               	movf	btemp+3,w,c
+  1794  00EE4A  0A80               	xorlw	128
+  1795  00EE4C  6E04               	movwf	btemp+4,c
+  1796  00EE4E  5001               	movf	btemp+1,w,c
+  1797  00EE50  0A80               	xorlw	128
+  1798  00EE52  5C04               	subwf	btemp+4,w,c
+  1799  00EE54  E102               	bnz	u1435
+  1800  00EE56  5000               	movf	btemp,w,c
+  1801  00EE58  5C02               	subwf	btemp+2,w,c
+  1802  00EE5A                     u1435:
+  1803  00EE5A  B0D8               	btfsc	status,0,c
+  1804  00EE5C  0012               	return	
+  1805  00EE5E  0102               	movlb	(_PMP+2) shr (0+8)
+  1806  00EE60  29FE               	incf	(_PMP+2)& (0+255),w,b
+  1807  00EE62  CFE8 F2FE          	movff	wreg,_PMP+2
+  1808                           ;pompa.c: 537: }
+  1809  00EE66  0012               	return	
+  1810  00EE68                     __end_of_PmpToUP:
+  1811                           ;pompa.c: 542: void PmpToDW(void)
+  1812                           ;pompa.c: 543: {
+  1813  00EE68                     _PmpToDW:
+  1814  000000                     
+  1815                           ;pompa.c: 544: static unsigned char tm;
+  1816  00EE68  EE02  F0BE         	lfsr	0,_DtKNF+16
+  1817  00EE6C  50EF               	movf	indf0,w,c
+  1818  00EE6E  B4D8               	btfsc	status,2,c
+  1819  00EE70  0012               	return	
+  1820                           ;pompa.c: 547: {
+  1821  00EE72  010F               	movlb	F1748 shr (0+8)
+  1822  00EE74  0E01               	movlw	1
+  1823  00EE76  2B3F               	incf	F1748& (0+255),f,b
+  1824                           ;pompa.c: 549: if(tm>0)
+  1825  00EE78  533F               	movf	F1748& (0+255),f,b
+  1826  00EE7A  B4D8               	btfsc	status,2,c
+  1827  00EE7C  0C01               	retlw	1
+  1828                           ;pompa.c: 550: {
+  1829  00EE7E  6B3F               	clrf	F1748& (0+255),b
+  1830                           ;pompa.c: 552: if(!M._RPM_CW)
+  1831  00EE80  0103               	movlb	(_M+5) shr (0+8)
+  1832  00EE82  B10B               	btfsc	(_M+5)& (0+255),0,b
+  1833  00EE84  0012               	return	
+  1834                           ;pompa.c: 553: {
+  1835  00EE86  C2FE  F000         	movff	_PMP+2,btemp
+  1836  00EE8A  0EFF               	movlw	255
+  1837  00EE8C  2400               	addwf	btemp,w,c
+  1838  00EE8E  6E02               	movwf	btemp+2,c
+  1839  00EE90  6A03               	clrf	btemp+3,c
+  1840  00EE92  0EFF               	movlw	255
+  1841  00EE94  2203               	addwfc	btemp+3,f,c
+  1842  00EE96  5003               	movf	btemp+3,w,c
+  1843  00EE98  0A80               	xorlw	128
+  1844  00EE9A  0F80               	addlw	-128
+  1845  00EE9C  0E33               	movlw	51
+  1846  00EE9E  B4D8               	btfsc	status,2,c
+  1847  00EEA0  5C02               	subwf	btemp+2,w,c
+  1848  00EEA2  A0D8               	btfss	status,0,c
+  1849  00EEA4  0012               	return	
+  1850  00EEA6  0102               	movlb	(_PMP+2) shr (0+8)
+  1851  00EEA8  05FE               	decf	(_PMP+2)& (0+255),w,b
+  1852  00EEAA  CFE8 F2FE          	movff	wreg,_PMP+2
+  1853                           ;pompa.c: 555: }
+  1854  00EEAE  0012               	return	
+  1855  00EEB0                     __end_of_PmpToDW:
+  1856                           ;pompa.c: 563: void RglPmp(void)
+  1857                           ;pompa.c: 564: {
+  1858  00EEB0                     _RglPmp:
+  1859  000000                     
+  1860                           ;pompa.c: 565: if(DtKNF.rdpm)
+  1861  00EEB0  EE02  F0BE         	lfsr	0,_DtKNF+16
+  1862  00EEB4  50EF               	movf	indf0,w,c
+  1863  00EEB6  E030               	bz	l175
+  1864                           ;pompa.c: 566: {
+  1865  00EEB8  0103               	movlb	(_M+8) shr (0+8)
+  1866  00EEBA  B90E               	btfsc	(_M+8)& (0+255),4,b
+  1867  00EEBC  D024               	goto	l176
+  1868                           ;pompa.c: 568: {
+  1869  00EEBE  EE02  F0C3         	lfsr	0,_DtKNF+21
+  1870  00EEC2  50EF               	movf	indf0,w,c
+  1871  00EEC4  E006               	bz	l177
+  1872                           ;pompa.c: 570: {
+  1873  00EEC6  EE02  F0C1         	lfsr	0,_DtKNF+19
+  1874  00EECA  50EF               	movf	indf0,w,c
+  1875  00EECC  E101               	bnz	l178
+  1876                           ;pompa.c: 572: {
+  1877  00EECE  D422               	goto	_RglPmp1	;wreg free
+  1878                           ;pompa.c: 574: }
+  1879  00EED0                     l178:
+  1880                           ;pompa.c: 575: else
+  1881  00EED0  D74C               	goto	_RglPmp2	;wreg free
+  1882                           ;pompa.c: 578: }
+  1883  00EED2                     l177:
+  1884                           ;pompa.c: 580: else
+  1885  00EED2  C2CA  F2FC         	movff	_DtKNF+28,_PMP
+  1886                           ;pompa.c: 583: if(DtKNF.tpkt==0)
+  1887  00EED6  EE02  F0BC         	lfsr	0,_DtKNF+14
+  1888  00EEDA  50EF               	movf	indf0,w,c
+  1889  00EEDC  E103               	bnz	l181
+  1890                           ;pompa.c: 584: {
+  1891  00EEDE  C2CB  F2FF         	movff	_DtKNF+29,_PMP+3
+  1892                           ;pompa.c: 586: }
+  1893  00EEE2  D003               	goto	l182
+  1894  00EEE4                     l181:
+  1895                           ;pompa.c: 587: else
+  1896  00EEE4  0E63               	movlw	99
+  1897  00EEE6  CFE8 F2FF          	movff	wreg,_PMP+3
+  1898  00EEEA                     l182:
+  1899                           ;pompa.c: 590: }
+  1900  00EEEA  0103               	movlb	(_M+5) shr (0+8)
+  1901  00EEEC  B10B               	btfsc	(_M+5)& (0+255),0,b
+  1902  00EEEE  D003               	goto	l183
+  1903  00EEF0  C2FC  F2FE         	movff	_PMP,_PMP+2
+  1904  00EEF4  D002               	goto	l184
+  1905  00EEF6                     l183:
+  1906                           ;pompa.c: 592: else PMP.APROC=PMP.MGPROC2;
+  1907  00EEF6  C2FF  F2FE         	movff	_PMP+3,_PMP+2
+  1908  00EEFA                     l184:
+  1909                           ;pompa.c: 593: WritePWM2(ProcToPmpPwm(PMP.APROC)
+      +                          );
+  1910  00EEFA  C2FE  FFE8         	movff	_PMP+2,wreg
+  1911  00EEFE  EC27  F072         	call	_ProcToPmpPwm
+  1912  00EF02  EF81  F001         	goto	_WritePWM2
+  1913                           ;pompa.c: 594: }
+  1914  00EF06                     l176:
+  1915                           ;pompa.c: 596: else
+  1916  00EF06  0E1E               	movlw	30
+  1917  00EF08  CFE8 F2FE          	movff	wreg,_PMP+2
+  1918                           ;pompa.c: 599: WritePWM2(ProcToPmpPwm(PMP.APROC)
+      +                          );
+  1919  00EF0C  C2FE  FFE8         	movff	_PMP+2,wreg
+  1920  00EF10  EC27  F072         	call	_ProcToPmpPwm
+  1921  00EF14  EF81  F001         	goto	_WritePWM2
+  1922                           ;pompa.c: 600: }
+  1923  00EF18                     l175:
+  1924                           ;pompa.c: 602: else
+  1925  00EF18  0103               	movlb	(_M+8) shr (0+8)
+  1926  00EF1A  B90E               	btfsc	(_M+8)& (0+255),4,b
+  1927  00EF1C  D014               	goto	l187
+  1928                           ;pompa.c: 605: {
+  1929  00EF1E  0103               	movlb	(_M+4) shr (0+8)
+  1930  00EF20  B70A               	btfsc	(_M+4)& (0+255),3,b
+  1931  00EF22  D008               	goto	l188
+  1932                           ;pompa.c: 607: {
+  1933  00EF24  0E0C               	movlw	12
+  1934  00EF26  EC51  F07E         	call	_StartRTS
+  1935                           ;pompa.c: 609: if(RD2)
+  1936  00EF2A  B483               	btfsc	3971,2,c	;volatile
+  1937  00EF2C  D003               	goto	l188
+  1938                           ;pompa.c: 610: {
+  1939                           ;pompa.c: 612: }
+  1940                           ;pompa.c: 613: else
+  1941  00EF2E  0102               	movlb	(_PMP+2) shr (0+8)
+  1942  00EF30  6BFE               	clrf	(_PMP+2)& (0+255),b
+  1943                           ;pompa.c: 616: }
+  1944  00EF32  D003               	goto	l191
+  1945  00EF34                     l188:
+  1946                           ;pompa.c: 618: else
+  1947  00EF34  0E63               	movlw	99
+  1948  00EF36  CFE8 F2FE          	movff	wreg,_PMP+2
+  1949  00EF3A                     l191:
+  1950                           ;pompa.c: 621: }
+  1951  00EF3A  C2FE  FFE8         	movff	_PMP+2,wreg
+  1952  00EF3E  EC27  F072         	call	_ProcToPmpPwm
+  1953  00EF42  EF81  F001         	goto	_WritePWM2
+  1954                           ;pompa.c: 623: }
+  1955  00EF46                     l187:
+  1956                           ;pompa.c: 624: else
+  1957  00EF46  0E1E               	movlw	30
+  1958  00EF48  CFE8 F2FE          	movff	wreg,_PMP+2
+  1959                           ;pompa.c: 627: WritePWM2(ProcToPmpPwm(PMP.APROC)
+      +                          );
+  1960  00EF4C  C2FE  FFE8         	movff	_PMP+2,wreg
+  1961  00EF50  EC27  F072         	call	_ProcToPmpPwm
+  1962  00EF54  EF81  F001         	goto	_WritePWM2
+  1963                           ;pompa.c: 628: }
+  1964  00EF58                     __end_of_RglPmp:
+  1965  000000                     
+  1966  000000                     
+  1967  000000                     
+  1968  000000                     
+  1969  000000                     
+  1970  000000                     
+  1971  000000                     
+  1972  000000                     
+  1973  000000                     
+  1974  000000                     
+  1975  000000                     
+  1976  000000                     
+  1977  000000                     
+  1978  000000                     
+  1979  000000                     
+  1980  000000                     
+  1981  000000                     
+  1982  000000                     
+  1983  000000                     
+  1984  000000                     
+  1985  000000                     
+  1986  000000                     
+  1987  000000                     
+  1988  000000                     
+  1989  000000                     
+  1990  000000                     
+  1991  000000                     
+  1992  000000                     
+  1993  000000                     
+  1994  000000                     
+  1995  000000                     
+  1996  000000                     
+  1997  000000                     
+  1998  000000                     
+  1999  000000                     
+  2000  000000                     
+  2001  000000                     
+  2002  000000                     
+  2003  000000                     
+  2004  000000                     
+  2005  000000                     
+  2006  000000                     
+  2007  000000                     
+  2008  000000                     
+  2009  000000                     
+  2010  000000                     
+  2011  000000                     
+  2012  000000                     
+  2013  000000                     
+  2014  000000                     
+  2015  000000                     
+  2016  000000                     
+  2017  000000                     
+  2018  000000                     
+  2019  000000                     
+  2020  000000                     
+  2021  000000                     
+  2022  000000                     
+  2023  000000                     
+  2024  000000                     
+  2025  000000                     
+  2026  000000                     
+  2027  000000                     
+  2028  000000                     
+  2029  000000                     
+  2030  000000                     
+  2031  000000                     
+  2032  000000                     
+  2033  000000                     
+  2034  000000                     
+  2035  000000                     
+  2036  000000                     
+  2037  000000                     
+  2038  000000                     
+  2039  000000                     
+  2040  000000                     
+  2041  000000                     
+  2042  000000                     
+  2043  000000                     
+  2044  000000                     
+  2045  000000                     
+  2046  000000                     
+  2047  000000                     
+  2048  000000                     
+  2049  000000                     
+  2050  000000                     
+  2051  000000                     
+  2052  000000                     
+  2053  000000                     
+  2054  000000                     
+  2055  000000                     
+  2056  000000                     
+  2057  000000                     
+  2058  000000                     
+  2059  000000                     
+  2060  000000                     
+  2061  000000                     
+  2062  000000                     
+  2063  000000                     
+  2064  000000                     
+  2065  000000                     
+  2066  000000                     
+  2067  000000                     
+  2068  000000                     
+  2069  000000                     
+  2070  000000                     
+  2071  000000                     
+  2072  000000                     
+  2073  000000                     
+  2074  000000                     
+  2075  000000                     
+  2076  000000                     
+  2077  000000                     
+  2078  000000                     
+  2079  000000                     
+  2080  000000                     
+  2081  000000                     
+  2082  000000                     
+  2083  000000                     
+  2084  000000                     
+  2085  000000                     
+  2086  000000                     
+  2087  000000                     
+  2088  000000                     
+  2089  000000                     
+  2090  000000                     
+  2091  000000                     
+  2092  000000                     
+  2093  000000                     
+  2094  000000                     
+  2095  000000                     
+  2096  000000                     
+  2097  000000                     
+  2098  000000                     
+  2099  000000                     
+  2100  000000                     
+  2101  000000                     
+  2102  000000                     
+  2103  000000                     
+  2104  000000                     
+  2105  000000                     
+  2106  000000                     
+  2107  000000                     
+  2108  000000                     
+  2109  000000                     
+  2110  000000                     
+  2111  000000                     
+  2112  000000                     
+  2113  000000                     
+  2114  000000                     
+  2115  000000                     
+  2116  000000                     
+  2117  000000                     
+  2118  000000                     
+  2119  000000                     
+  2120  000000                     
+  2121  000000                     
+  2122  000000                     
+  2123  000000                     
+  2124  000000                     
+  2125  000000                     
+  2126  000000                     
+  2127  000000                     
+  2128  000000                     
+  2129  000000                     
+  2130  000000                     
+  2131  000000                     
+  2132  000000                     
+  2133  000000                     
+  2134  000000                     
+  2135  000000                     
+  2136  000000                     
+  2137  000000                     
+  2138  000000                     
+  2139  000000                     
+  2140  000000                     
+  2141  000000                     
+  2142  000000                     
+  2143  000000                     
+  2144  000000                     
+  2145  000000                     
+  2146  000000                     
+  2147  000000                     
+  2148  000000                     
+  2149  000000                     
+  2150  000000                     
+  2151  000000                     
+  2152  000000                     
+  2153  000000                     
+  2154  000000                     
+  2155  000000                     
+  2156  000000                     
+  2157  000000                     
+  2158  000000                     
+  2159  000000                     
+  2160  000000                     
+  2161  000000                     
+  2162  000000                     
+  2163  000000                     
+  2164  000000                     
+  2165  000000                     
+  2166  000000                     
+  2167  000000                     
+  2168  000000                     
+  2169  000000                     
+  2170  000000                     
+  2171  000000                     
+  2172  000000                     
+  2173  000000                     
+  2174  000000                     
+  2175  000000                     
+  2176  000000                     
+  2177  000000                     
+  2178  000000                     
+  2179  000000                     
+  2180  000000                     
+  2181  000000                     
+  2182  000000                     
+  2183  000000                     
+  2184  000000                     
+  2185  000000                     
+  2186  000000                     
+  2187  000000                     
+  2188  000000                     
+  2189  000000                     
+  2190  000000                     
+  2191  000000                     
+  2192  000000                     
+  2193  000000                     
+  2194  000000                     
+  2195  000000                     
+  2196  000000                     
+  2197  000000                     
+  2198  000000                     
+  2199  000000                     
+  2200  000000                     
+  2201  000000                     
+  2202  000000                     
+  2203  000000                     
+  2204  000000                     
+  2205  000000                     
+  2206  000000                     
+  2207  000000                     
+  2208  000000                     
+  2209  000000                     
+  2210  000000                     
+  2211  000000                     
+  2212  000000                     
+  2213  000000                     
+  2214  000000                     
+  2215  000000                     
+  2216  000000                     
+  2217  000000                     
+  2218  000000                     
+  2219  000000                     
+  2220  000000                     
+  2221  000000                     
+  2222  000000                     
+  2223  000000                     
+  2224  000000                     
+  2225  000000                     
+  2226  000000                     
+  2227  000000                     
+  2228  000000                     
+  2229  000000                     
+  2230  000000                     
+  2231  000000                     
+  2232  000000                     
+  2233  000000                     
+  2234  000000                     
+  2235  000000                     
+  2236  000000                     
+  2237  000000                     
+  2238  000000                     
+  2239  000000                     
+  2240  000000                     
+  2241  000000                     
+  2242  000000                     
+  2243  000000                     
+  2244  000000                     
+  2245  000000                     
+  2246  000000                     
+  2247  000000                     
+  2248  000000                     
+  2249  000000                     
+  2250  000000                     
+  2251  000000                     
+  2252  000000                     
+  2253  000000                     
+  2254  000000                     
+  2255  000000                     
+  2256  000000                     
+  2257  000000                     
+  2258  000000                     
+  2259  000000                     
+  2260  000000                     
+  2261  000000                     
+  2262  000000                     
+  2263  000000                     
+  2264  000000                     
+  2265  000000                     
+  2266  000000                     
+  2267  000000                     
+  2268  000000                     
+  2269  000000                     
+  2270  000000                     
+  2271  000000                     
+  2272  000000                     
+  2273  000000                     
+  2274  000000                     
+  2275  000000                     
+  2276  000000                     
+  2277  000000                     
+  2278  000000                     
+  2279  000000                     
+  2280  000000                     
+  2281  000000                     
+  2282  000000                     
+  2283  000000                     
+  2284  000000                     
+  2285  000000                     
+  2286  000000                     
+  2287  000000                     
+  2288  000000                     
+  2289  000000                     
+  2290  000000                     
+  2291  000000                     
+  2292  000000                     
+  2293  000000                     
+  2294  000000                     
+  2295  000000                     
+  2296  000000                     
+  2297  000000                     
+  2298  000000                     
+  2299  000000                     
+  2300  000000                     
+  2301  000000                     
+  2302  000000                     
+  2303  000000                     
+  2304  000000                     
+  2305  000000                     
+  2306  000000                     
+  2307  000000                     
+  2308  000000                     
+  2309  000000                     
+  2310  000000                     
+  2311  000000                     
+  2312  000000                     
+  2313  000000                     
+  2314  000000                     
+  2315  000000                     
+  2316  000000                     
+  2317  000000                     
+  2318  000000                     
+  2319  000000                     
+  2320  000000                     
+  2321  000000                     
+  2322  000000                     
+  2323  000000                     
+  2324  000000                     
+  2325  000000                     
+  2326  000000                     
+  2327  000000                     
+  2328  000000                     
+  2329  000000                     
+  2330  000000                     
+  2331  000000                     
+  2332  000000                     
+  2333  000000                     
+  2334  000000                     
+  2335  000000                     
+  2336  000000                     
+  2337  000000                     
+  2338  000000                     
+  2339  000000                     
+  2340  000000                     
+  2341  000000                     
+  2342  000000                     
+  2343  000000                     
+  2344  000000                     
+  2345  000000                     
+  2346  000000                     
+  2347  000000                     
+  2348  000000                     
+  2349  000000                     
+  2350  000000                     
+  2351  000000                     
+  2352  000000                     
+  2353  000000                     
+  2354  000000                     
+  2355  000000                     
+  2356  000000                     
+  2357  000000                     
+  2358  000000                     
+  2359  000000                     
+  2360  000000                     
+  2361  000000                     
+  2362  000000                     
+  2363  000000                     
+  2364  000000                     
+  2365  000000                     
+  2366  000000                     
+  2367  000000                     
+  2368  000000                     
+  2369  000000                     
+  2370  000000                     
+  2371  000000                     
+  2372  000000                     
+  2373  000000                     
+  2374  000000                     
+  2375  000000                     
+  2376  000000                     
+  2377  000000                     
+  2378  000000                     
+  2379  000000                     
+  2380  000000                     
+  2381  000000                     
+  2382  000000                     
+  2383  000000                     
+  2384  000000                     
+  2385  000000                     
+  2386  000000                     
+  2387  000000                     
+  2388  000000                     
+  2389  000000                     
+  2390  000000                     
+  2391  000000                     
+  2392  000000                     
+  2393  000000                     
+  2394  000000                     
+  2395  000000                     
+  2396  000000                     
+  2397  000000                     
+  2398  000000                     
+  2399  000000                     
+  2400  000000                     
+  2401                           
+  2402                           	psect	bigbss
+  2403  000F3E                     F1745:
+  2404  000F3E                     	ds	1
+  2405  000F3E                     F1748:
+  2406  000F3E                     	ds	1
+  2407  000000                     
+  2408  000000                     
+  2409  000000                     
+  2410  000000                     
+  2411  000000                     
+  2412  000000                     
+  2413  000000                     
+  2414  000000                     
+  2415  000000                     
+  2416  000000                     
+  2417  000000                     
+  2418  000000                     
+  2419  000000                     
+  2420  000000                     
+  2421  000000                     
+  2422  000000                     
+  2423  000000                     
+  2424  000000                     
+  2425  000000                     
+  2426  000000                     
+  2427  000000                     
+  2428  000000                     
+  2429  000000                     
+  2430  000000                     
+  2431  000000                     
+  2432  000000                     
+  2433  000000                     
+  2434  000000                     
+  2435  000000                     
+  2436  000000                     
+  2437  000000                     
+  2438  000000                     
+  2439  000000                     
+  2440  000000                     
+  2441  000000                     
+  2442  000000                     
+  2443  000000                     
+  2444  000000                     
+  2445  000000                     
+  2446  000000                     
+  2447  000000                     
+  2448  000000                     
+  2449  000000                     
+  2450  000000                     
+  2451  000000                     
+  2452  000000                     
+  2453  000000                     
+  2454  000000                     
+  2455  000000                     
+  2456  000000                     
+  2457  000000                     
+  2458  000000                     
+  2459  000000                     
+  2460  000000                     
+  2461  000000                     
+  2462  000000                     
+  2463  000000                     
+  2464  000000                     
+  2465  000000                     
+  2466  000000                     
+  2467  000000                     
+  2468  000000                     
+  2469  000000                     
+  2470  000000                     
+  2471  000000                     
+  2472  000000                     
+  2473  000000                     
+  2474  000000                     
+  2475  000000                     
+  2476  000000                     
+  2477  000000                     
+  2478  000000                     
+  2479  000000                     
+  2480  000000                     
+  2481  000000                     
+  2482  000000                     
+  2483  000000                     
+  2484  000000                     
+  2485  000000                     
+  2486  000000                     
+  2487  000000                     
+  2488  000000                     
+  2489  000000                     
+  2490  000000                     
+  2491  000000                     
+  2492  000000                     
+  2493  000000                     
+  2494  000000                     
+  2495  000000                     
+  2496  000000                     
+  2497  000000                     
+  2498  000000                     
+  2499  000000                     
+  2500  000000                     
+  2501  000000                     
+  2502  000000                     
+  2503  000000                     
+  2504  000000                     
+  2505  000000                     
+  2506  000000                     
+  2507  000000                     
+  2508  000000                     
+  2509  000000                     
+  2510  000000                     
+  2511  000000                     
+  2512  000000                     
+  2513  000000                     
+  2514  000000                     
+  2515  000000                     
+  2516  000000                     
+  2517  000000                     
+  2518  000000                     
+  2519  000000                     
+  2520  000000                     
+  2521  000000                     
+  2522  000000                     
+  2523  000000                     
+  2524  000000                     
+  2525  000000                     
+  2526  000000                     
+  2527  000000                     
+  2528  000000                     
+  2529  000000                     
+  2530  000000                     
+  2531  000000                     
+  2532  000000                     
+  2533  000000                     
+  2534  000000                     
+  2535  000000                     
+  2536  000000                     
+  2537  000000                     
+  2538  000000                     
+  2539                           
+  2540                           	psect	bss
+  2541  0002FC                     _PMP:
+  2542  0002FC                     	ds	4
+  2543                           
+  2544                           	psect	temp
+  2545  000000                     btemp:
+  2546  000000                     	ds	6
+  2547                           tblptrh	equ	0xFF7
+  2548                           tblptrl	equ	0xFF6
+  2549                           prodh	equ	0xFF4
+  2550                           prodl	equ	0xFF3
+  2551                           indf0	equ	0xFEF
+  2552                           fsr0l	equ	0xFE9
+  2553                           wreg	equ	0xFE8
+  2554                           fsr1l	equ	0xFE1
+  2555                           fsr2l	equ	0xFD9
+  2556                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Mon Sep 14 17:33:15 2020
+
+       ?a_RetKrkDelta 00AC                     _M 0306  
+                  l20 E4DC                    l21 E4D2  
+                  l24 E516                    l33 E598  
+                  l17 E458                    l50 E6B6  
+                  l35 E650                    l19 E704  
+                  l60 E73C                    l44 E64C  
+                  l61 E742                    l37 E602  
+                  l29 E59C                    l70 E7B8  
+                  l62 E776                    l71 E7B4  
+                  l63 E768                    l39 E5FE  
+                  l80 E876                    l64 E762  
+                  l48 E6BA                    l57 E70E  
+                  l82 E88A                    l74 E7DA  
+                  l66 E76C                    l59 E72A  
+                  l76 E7F8                    l68 E7A8  
+                  l85 E8A2                    l86 E8A6  
+                  l78 E80E                    l95 E9A4  
+                  l87 E908                    l97 E9B4  
+                  l89 E91C                    u40 E4A6  
+                  u60 E4CE             ?a_ModPmp1 00A4  
+           ?a_ModPmp2 00A4              _StartRTS FCA2  
+                 l100 E9EC                   l101 E9F8  
+                 l110 ED5A                   l102 EA0A  
+                 l111 EB32                   l120 EBF2  
+                 l112 EB28                   l104 EA6A  
+                 l130 EC54                   l115 EB6C  
+                 l107 EAC4                   l124 EBEE  
+                 l108 EACC                   l141 ED0C  
+                 l109 EAE0                   l150 ED80  
+                 l126 ECA6                   l151 ED8E  
+                 l135 ECA2                   l152 ED94  
+                 l128 EC58                   l161 EE0C  
+                 l153 EDCA                   l162 EE08  
+                 l154 EDBA                   l155 EDB4  
+                 l139 ED10                   l148 ED64  
+                 l181 EEE4                   l157 EDBE  
+                 l182 EEEA                   l191 EF3A  
+                 l183 EEF6                   l175 EF18  
+                 l159 EDFC                   l184 EEFA  
+                 l176 EF06                   l177 EED2  
+                 l178 EED0                   l187 EF46  
+                 l188 EF34                   u101 E52A  
+                 u130 E53E                   u211 E5A8  
+                 u205 E58E                   u250 E5BA  
+                 u331 E65C                   u180 E55E  
+                 u325 E640                   u415 E6AC  
+                 u370 E66E                   u285 E5F2  
+                 u630 E84E                   u455 E6FA  
+                 u901 EB80                   u645 E870  
+                 u840 EAF8                   u680 E8E0  
+                 u930 EB94                   _PMP 02FC  
+                 u860 EB24                   u695 E902  
+                 u980 EBB4                   _PWM 02D9  
+                 _RTS FCC6                   _rgl 03D7  
+                 wreg 000FE8             _StartRTdS FC66  
+          ?a_RetDelta 00AA                  F1745 0F3E  
+                F1748 0F3F                  u1011 EBFE  
+                u1005 EBE4                  u1050 EC10  
+                u1131 ECB2                  u1125 EC96  
+                u1215 ED02                  u1170 ECC4  
+                u1085 EC48                  u1255 ED50  
+                u1435 EE5A             _WritePWM2 0302  
+                _DtIN 0090                  _RTdS FC8A  
+                indf0 000FEF                  fsr0l 000FE9  
+                fsr1l 000FE1                  fsr2l 000FD9  
+                btemp 0000                  awdiv 0D4A  
+                awmul 0E24                  lwdiv 0BC6  
+                prodh 000FF4                  prodl 000FF3  
+                lwmul 0E24       __end_of_ModPmp1 E714  
+     __end_of_ModPmp2 ED6A       __end_of_RglPmp1 E7C2  
+     __end_of_RglPmp2 EE18       __end_of_PmpToDW EEB0  
+             ?_RetMax 00B5               ?_RetMin 00B4  
+     __end_of_PmpToUP EE68         __end_of_RetHI E890  
+       __end_of_RetLO E922                 _DtKNF 02AE  
+               _RetHI E800                 _RetLO E892  
+          used_btemp0 0001            used_btemp1 0001  
+          used_btemp2 0001            used_btemp3 0001  
+          used_btemp4 0001            used_btemp5 0001  
+               status 000FD8          _ProcToPmpPwm E44E  
+             _ModPmp1 E490               _ModPmp2 EA6C  
+    __end_of_RetDelta EA6C               _RglPmp1 E714  
+             _RglPmp2 ED6A               _PmpToDW EE68  
+             _PmpToUP EE18               __Lparam 00A4  
+__end_of_ProcToPmpPwm E490               _Tnizsza 666A  
+             _Twyzsza 6684               __ramtop 1000  
+              ?_RetHI 00B4        __end_of_RglPmp EF58  
+      __end_of_RetMax E7FE        __end_of_RetMin E7E0  
+              ?_RetLO 00B4                _RglPmp EEB0  
+              _RetMax E7E2                _RetMin E7C4  
+              tblptrl 000FF6           _RetKrkDelta E9A6  
+ __end_of_RetKrkDelta EA3A             _RetDelta1 E924  
+           _RetDelta2 E930             _RetDelta3 E94A  
+           _RetDelta4 E956     __end_of_RetDelta1 E92E  
+   __end_of_RetDelta2 E948     __end_of_RetDelta3 E954  
+   __end_of_RetDelta4 E9A6              _RetDelta EA3C  
+          ?_RetDelta1 00B4            ?_RetDelta2 00B4  
+          ?_RetDelta3 00B4            ?_RetDelta4 00B1  
+           ?_RetDelta 00A9  

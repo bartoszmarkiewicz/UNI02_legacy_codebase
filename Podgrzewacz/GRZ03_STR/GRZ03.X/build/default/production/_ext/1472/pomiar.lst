@@ -1,0 +1,1847 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Thu Jul 12 08:02:17 2018
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     5                           	psect	bss,global,class=RAM,space=1,delta=1
+     6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97                           
+    98                           	psect	text
+    99                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   100                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   101                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   102                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   103                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   104                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   105                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   106                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   107                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   108                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   109                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   110                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   111                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   112                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   113                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   114                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   115                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   116                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   117                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   118                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   119                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   120                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   121                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   122                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   123                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   124                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   125                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   126                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   127                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   128                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   129                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   130                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   131                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   132                           ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   133                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   134                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   135                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   136                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   137                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   138                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   139                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   140                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   141                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   142                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   143                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   144                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   145                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   146                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   147                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   148                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   149                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   150                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   151                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   152                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   153                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   154                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   155                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   156                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   157                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   158                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   159                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   160                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   161                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   162                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   163                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   164                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   165                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   166                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   167                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   168                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   169                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   170                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   171                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   172                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   173                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+   174                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   175                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   176                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+   177                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   178                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   179                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   180                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   181                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   182                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   183                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   184                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+   185                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   186                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   187                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   188                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   189                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   190                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   191                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   192                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   193                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   194                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   195                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   196                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   197                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   198                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   199  007588                     _InitDataPmr:
+   200                           ;       param _tm assigned to ?_PmrTim3+0
+   201  000000                     _PmrTim3$tm	set	?_PmrTim3
+   202  000000                     
+   203                           ;pomiar.c: 37: DtCW._err_CW=0;
+   204  007588  0102               	movlb	_DtCW shr (0+8)
+   205  00758A  914E               	bcf	_DtCW& (0+255),0,b
+   206                           ;pomiar.c: 38: DtCW._su_CW=0;
+   207  00758C  934E               	bcf	_DtCW& (0+255),1,b
+   208                           ;pomiar.c: 39: DtCW._ad_CW=0;
+   209  00758E  954E               	bcf	_DtCW& (0+255),2,b
+   210                           ;pomiar.c: 40: DtCW.indCW=0;
+   211  007590  6B58               	clrf	(_DtCW+10)& (0+255),b
+   212                           ;pomiar.c: 41: }
+   213  007592  0012               	return	
+   214  007594                     __end_of_InitDataPmr:
+   215                           ;pomiar.c: 44: void IncPmrTimer(void)
+   216                           ;pomiar.c: 45: {
+   217  007594                     _IncPmrTimer:
+   218  000000                     
+   219                           ;pomiar.c: 46: if(PmrtimFlt1<0xff) PmrtimFlt1++;
+   220  007594  CEF1  F000         	movff	_PmrtimFlt1,btemp
+   221  007598  2800               	incf	btemp,w,c
+   222  00759A  E002               	bz	l11
+   223  00759C  010E               	movlb	_PmrtimFlt1 shr (0+8)
+   224  00759E  2BF1               	incf	_PmrtimFlt1& (0+255),f,b
+   225  0075A0                     l11:
+   226                           ;pomiar.c: 47: if(PmrtimFlt2<0xff) PmrtimFlt2++;
+   227  0075A0  CEF2  F000         	movff	_PmrtimFlt2,btemp
+   228  0075A4  2800               	incf	btemp,w,c
+   229  0075A6  E002               	bz	l12
+   230  0075A8  010E               	movlb	_PmrtimFlt2 shr (0+8)
+   231  0075AA  2BF2               	incf	_PmrtimFlt2& (0+255),f,b
+   232  0075AC                     l12:
+   233                           ;pomiar.c: 48: if(PmrtimFlt3<0xffff) PmrtimFlt3+
+      +                          +;
+   234  0075AC  0102               	movlb	_PmrtimFlt3 shr (0+8)
+   235  0075AE  1D33               	comf	(_PmrtimFlt3+1)& (0+255),w,b
+   236  0075B0  0EFF               	movlw	255
+   237  0075B2  B4D8               	btfsc	status,2,c
+   238  0075B4  1932               	xorwf	_PmrtimFlt3& (0+255),w,b
+   239  0075B6  B4D8               	btfsc	status,2,c
+   240  0075B8  0012               	return	
+   241  0075BA  4B32               	infsnz	_PmrtimFlt3& (0+255),f,b
+   242  0075BC  2B33               	incf	(_PmrtimFlt3+1)& (0+255),f,b
+   243                           ;pomiar.c: 49: }
+   244  0075BE  0012               	return	
+   245  0075C0                     __end_of_IncPmrTimer:
+   246                           ;pomiar.c: 52: void StartTim1(void)
+   247                           ;pomiar.c: 53: {
+   248  0075C0                     _StartTim1:
+   249  000000                     
+   250                           ;pomiar.c: 54: PmrtimFlt1=0;
+   251  0075C0  010E               	movlb	_PmrtimFlt1 shr (0+8)
+   252  0075C2  6BF1               	clrf	_PmrtimFlt1& (0+255),b
+   253                           ;pomiar.c: 55: }
+   254  0075C4  0012               	return	
+   255  0075C6                     __end_of_StartTim1:
+   256                           ;pomiar.c: 56: bit PmrTim1(unsigned char tm)
+   257                           ;pomiar.c: 57: {
+   258  0075C6                     _PmrTim1:
+   259  000000                     
+   260                           ; _tm loaded to fsr2l
+   261  0075C6  6ED9               	movwf	fsr2l,c
+   262                           ;pomiar.c: 58: if(PmrtimFlt1<tm) return 0;
+   263  0075C8  50D9               	movf	fsr2l,w,c
+   264  0075CA  010E               	movlb	_PmrtimFlt1 shr (0+8)
+   265  0075CC  61F1               	cpfslt	_PmrtimFlt1& (0+255),b
+   266  0075CE  D002               	goto	l16
+   267  0075D0  90D8               	bcf	status,0,c
+   268  0075D2  0012               	return	
+   269  0075D4                     l16:
+   270                           ;pomiar.c: 59: return 1;
+   271  0075D4  80D8               	bsf	status,0,c
+   272  0075D6  0012               	return	
+   273                           ;pomiar.c: 60: }
+   274  0075D8                     __end_of_PmrTim1:
+   275                           ;pomiar.c: 63: void StartTim2(void)
+   276                           ;pomiar.c: 64: {
+   277  0075D8                     _StartTim2:
+   278  000000                     
+   279                           ;pomiar.c: 65: PmrtimFlt2=0;
+   280  0075D8  010E               	movlb	_PmrtimFlt2 shr (0+8)
+   281  0075DA  6BF2               	clrf	_PmrtimFlt2& (0+255),b
+   282                           ;pomiar.c: 66: }
+   283  0075DC  0012               	return	
+   284  0075DE                     __end_of_StartTim2:
+   285                           ;pomiar.c: 67: bit PmrTim2(unsigned char tm)
+   286                           ;pomiar.c: 68: {
+   287  0075DE                     _PmrTim2:
+   288  000000                     
+   289                           ; _tm loaded to fsr2l
+   290  0075DE  6ED9               	movwf	fsr2l,c
+   291                           ;pomiar.c: 69: if(PmrtimFlt2<tm) return 0;
+   292  0075E0  50D9               	movf	fsr2l,w,c
+   293  0075E2  010E               	movlb	_PmrtimFlt2 shr (0+8)
+   294  0075E4  61F2               	cpfslt	_PmrtimFlt2& (0+255),b
+   295  0075E6  D002               	goto	l19
+   296  0075E8  90D8               	bcf	status,0,c
+   297  0075EA  0012               	return	
+   298  0075EC                     l19:
+   299                           ;pomiar.c: 70: return 1;
+   300  0075EC  80D8               	bsf	status,0,c
+   301  0075EE  0012               	return	
+   302                           ;pomiar.c: 71: }
+   303  0075F0                     __end_of_PmrTim2:
+   304                           ;pomiar.c: 74: void StartTim3(void)
+   305                           ;pomiar.c: 75: {
+   306  0075F0                     _StartTim3:
+   307  000000                     
+   308                           ;pomiar.c: 76: PmrtimFlt3=0;
+   309  0075F0  EE02  F032         	lfsr	0,_PmrtimFlt3
+   310  0075F4  6AEE               	clrf	postinc0,c
+   311  0075F6  6AEE               	clrf	postinc0,c
+   312                           ;pomiar.c: 77: }
+   313  0075F8  0012               	return	
+   314  0075FA                     __end_of_StartTim3:
+   315                           ;pomiar.c: 78: bit PmrTim3(unsigned int tm)
+   316                           ;pomiar.c: 79: {
+   317  0075FA  00A8               	dw	?_PmrTim3
+   318  0075FC                     _PmrTim3:
+   319  000000                     
+   320                           ;pomiar.c: 80: if(PmrtimFlt3<tm) return 0;
+   321  0075FC  C232  F000         	movff	_PmrtimFlt3,btemp
+   322  007600  C233  F001         	movff	_PmrtimFlt3+1,btemp+1
+   323  007604  0100               	movlb	__Lparam shr (0+8)
+   324  007606  51A9               	movf	(?_PmrTim3+1)^(__Lparam& (0+65280)),w
+   325  007608  5C01               	subwf	btemp+1,w,c
+   326  00760A  E102               	bnz	u65
+   327  00760C  51A8               	movf	?_PmrTim3^(__Lparam& (0+65280)),w
+   328  00760E  5C00               	subwf	btemp,w,c
+   329  007610                     u65:
+   330  007610  E202               	bc	l22
+   331  007612  90D8               	bcf	status,0,c
+   332  007614  0012               	return	
+   333  007616                     l22:
+   334                           ;pomiar.c: 81: return 1;
+   335  007616  80D8               	bsf	status,0,c
+   336  007618  0012               	return	
+   337                           ;pomiar.c: 82: }
+   338  00761A                     __end_of_PmrTim3:
+   339                           ;pomiar.c: 85: void GoldenEye(void)
+   340                           ;pomiar.c: 86: {
+   341  00761A                     _GoldenEye:
+   342  000000                     
+   343                           ;pomiar.c: 87: signed char dt;
+   344  00761A  C250  FFE8         	movff	_DtCW+2,wreg
+   345  00761E  0102               	movlb	(_DtCW+4) shr (0+8)
+   346  007620  5D52               	subwf	(_DtCW+4)& (0+255),w,b
+   347  007622  6ED9               	movwf	fsr2l,c
+   348                           ;pomiar.c: 92: if((DtCW.CW>=(DtCW.PPCW+11))||(Dt
+      +                          CW.CW<=(DtCW.PPCW-11))) DtCW.SCW=DtCW.CW;
+   349  007624  0E0B               	movlw	11
+   350  007626  C252  F002         	movff	_DtCW+4,btemp+2
+   351  00762A  6A03               	clrf	btemp+3,c
+   352  00762C  2602               	addwf	btemp+2,f,c
+   353  00762E  0E00               	movlw	0
+   354  007630  2203               	addwfc	btemp+3,f,c
+   355  007632  C250  F000         	movff	_DtCW+2,btemp
+   356  007636  6A01               	clrf	btemp+1,c
+   357  007638  5001               	movf	btemp+1,w,c
+   358  00763A  0A80               	xorlw	128
+   359  00763C  6E04               	movwf	btemp+4,c
+   360  00763E  5003               	movf	btemp+3,w,c
+   361  007640  0A80               	xorlw	128
+   362  007642  5C04               	subwf	btemp+4,w,c
+   363  007644  E102               	bnz	u75
+   364  007646  5002               	movf	btemp+2,w,c
+   365  007648  5C00               	subwf	btemp,w,c
+   366  00764A                     u75:
+   367  00764A  E215               	bc	u90
+   368  00764C  C250  F000         	movff	_DtCW+2,btemp
+   369  007650  6A01               	clrf	btemp+1,c
+   370  007652  C252  F002         	movff	_DtCW+4,btemp+2
+   371  007656  0EF5               	movlw	245
+   372  007658  2402               	addwf	btemp+2,w,c
+   373  00765A  6EF6               	movwf	tblptrl,c
+   374  00765C  6AF7               	clrf	tblptrh,c
+   375  00765E  0EFF               	movlw	255
+   376  007660  22F7               	addwfc	tblptrh,f,c
+   377  007662  50F7               	movf	tblptrh,w,c
+   378  007664  0A80               	xorlw	128
+   379  007666  6E02               	movwf	btemp+2,c
+   380  007668  5001               	movf	btemp+1,w,c
+   381  00766A  0A80               	xorlw	128
+   382  00766C  5C02               	subwf	btemp+2,w,c
+   383  00766E  E102               	bnz	u85
+   384  007670  5000               	movf	btemp,w,c
+   385  007672  5CF6               	subwf	tblptrl,w,c
+   386  007674                     u85:
+   387  007674  E303               	bnc	l24
+   388  007676                     u90:
+   389  007676  C250  F259         	movff	_DtCW+2,_DtCW+11
+   390  00767A  0012               	return	
+   391  00767C                     l24:
+   392                           ;pomiar.c: 93: else
+   393  00767C  BED9               	btfsc	fsr2l,7,c
+   394  00767E  D01C               	goto	l26
+   395                           ;pomiar.c: 96: {
+   396  007680  50D9               	movf	fsr2l,w,c
+   397  007682  0A80               	xorlw	128
+   398  007684  0F7D               	addlw	-131
+   399  007686  50D9               	movf	fsr2l,w,c
+   400  007688  E201               	bc	L6
+   401  00768A  D00F               	goto	L4
+   402                           ;pomiar.c: 98: else
+   403  00768C                     L6:
+   404  00768C  0A80               	xorlw	128
+   405  00768E  0F7D               	addlw	-131
+   406  007690  E306               	bnc	l29
+   407  007692  50D9               	movf	fsr2l,w,c
+   408  007694  0A80               	xorlw	128
+   409  007696  0F77               	addlw	-137
+   410  007698  E202               	bc	l29
+   411  00769A  0E03               	movlw	3
+   412  00769C  D006               	goto	L4
+   413  00769E                     l29:
+   414                           ;pomiar.c: 100: else
+   415  00769E  50D9               	movf	fsr2l,w,c
+   416  0076A0  0A80               	xorlw	128
+   417  0076A2  0F77               	addlw	-137
+   418  0076A4  E303               	bnc	l28
+   419  0076A6  50D9               	movf	fsr2l,w,c
+   420  0076A8  080B               	sublw	11
+   421  0076AA                     L4:
+   422  0076AA  6EE1               	movwf	fsr1l,c
+   423  0076AC                     l28:
+   424                           ;pomiar.c: 102: DtCW.SCW=DtCW.CW+pop;
+   425  0076AC  50E1               	movf	fsr1l,w,c
+   426  0076AE  0102               	movlb	(_DtCW+2) shr (0+8)
+   427  0076B0  2550               	addwf	(_DtCW+2)& (0+255),w,b
+   428  0076B2  CFE8 F259          	movff	wreg,_DtCW+11
+   429                           ;pomiar.c: 103: }
+   430  0076B6  0012               	return	
+   431  0076B8                     l26:
+   432                           ;pomiar.c: 104: else
+   433  0076B8  CFD9 F000          	movff	fsr2l,btemp
+   434  0076BC  6A01               	clrf	btemp+1,c
+   435  0076BE  BE00               	btfsc	btemp,7,c
+   436  0076C0  0601               	decf	btemp+1,f,c
+   437  0076C2  1E00               	comf	btemp,f,c
+   438  0076C4  1E01               	comf	btemp+1,f,c
+   439  0076C6  4A00               	infsnz	btemp,f,c
+   440  0076C8  2A01               	incf	btemp+1,f,c
+   441  0076CA  5001               	movf	btemp+1,w,c
+   442  0076CC  0A80               	xorlw	128
+   443  0076CE  0F80               	addlw	-128
+   444  0076D0  0E03               	movlw	3
+   445  0076D2  B4D8               	btfsc	status,2,c
+   446  0076D4  5C00               	subwf	btemp,w,c
+   447  0076D6  E203               	bc	l33
+   448  0076D8  50D9               	movf	fsr2l,w,c
+   449  0076DA  0800               	sublw	0
+   450  0076DC  D034               	goto	L5
+   451  0076DE                     l33:
+   452                           ;pomiar.c: 107: else
+   453  0076DE  CFD9 F000          	movff	fsr2l,btemp
+   454  0076E2  6A01               	clrf	btemp+1,c
+   455  0076E4  BE00               	btfsc	btemp,7,c
+   456  0076E6  0601               	decf	btemp+1,f,c
+   457  0076E8  1E00               	comf	btemp,f,c
+   458  0076EA  1E01               	comf	btemp+1,f,c
+   459  0076EC  4A00               	infsnz	btemp,f,c
+   460  0076EE  2A01               	incf	btemp+1,f,c
+   461  0076F0  5001               	movf	btemp+1,w,c
+   462  0076F2  0A80               	xorlw	128
+   463  0076F4  0F80               	addlw	-128
+   464  0076F6  0E03               	movlw	3
+   465  0076F8  B4D8               	btfsc	status,2,c
+   466  0076FA  5C00               	subwf	btemp,w,c
+   467  0076FC  E312               	bnc	l35
+   468  0076FE  CFD9 F000          	movff	fsr2l,btemp
+   469  007702  6A01               	clrf	btemp+1,c
+   470  007704  BE00               	btfsc	btemp,7,c
+   471  007706  0601               	decf	btemp+1,f,c
+   472  007708  1E00               	comf	btemp,f,c
+   473  00770A  1E01               	comf	btemp+1,f,c
+   474  00770C  4A00               	infsnz	btemp,f,c
+   475  00770E  2A01               	incf	btemp+1,f,c
+   476  007710  5001               	movf	btemp+1,w,c
+   477  007712  0A80               	xorlw	128
+   478  007714  0F80               	addlw	-128
+   479  007716  0E09               	movlw	9
+   480  007718  B4D8               	btfsc	status,2,c
+   481  00771A  5C00               	subwf	btemp,w,c
+   482  00771C  E202               	bc	l35
+   483  00771E  0E03               	movlw	3
+   484  007720  D012               	goto	L5
+   485  007722                     l35:
+   486                           ;pomiar.c: 109: else
+   487  007722  CFD9 F000          	movff	fsr2l,btemp
+   488  007726  6A01               	clrf	btemp+1,c
+   489  007728  BE00               	btfsc	btemp,7,c
+   490  00772A  0601               	decf	btemp+1,f,c
+   491  00772C  1E00               	comf	btemp,f,c
+   492  00772E  1E01               	comf	btemp+1,f,c
+   493  007730  4A00               	infsnz	btemp,f,c
+   494  007732  2A01               	incf	btemp+1,f,c
+   495  007734  5001               	movf	btemp+1,w,c
+   496  007736  0A80               	xorlw	128
+   497  007738  0F80               	addlw	-128
+   498  00773A  0E09               	movlw	9
+   499  00773C  B4D8               	btfsc	status,2,c
+   500  00773E  5C00               	subwf	btemp,w,c
+   501  007740  E303               	bnc	l34
+   502  007742  50D9               	movf	fsr2l,w,c
+   503  007744  0F0B               	addlw	11
+   504  007746                     L5:
+   505  007746  6EE1               	movwf	fsr1l,c
+   506  007748                     l34:
+   507                           ;pomiar.c: 111: DtCW.SCW=DtCW.CW-pop;
+   508  007748  50E1               	movf	fsr1l,w,c
+   509  00774A  0102               	movlb	(_DtCW+2) shr (0+8)
+   510  00774C  5D50               	subwf	(_DtCW+2)& (0+255),w,b
+   511  00774E  CFE8 F259          	movff	wreg,_DtCW+11
+   512                           ;pomiar.c: 112: }
+   513  007752  0012               	return	
+   514  007754                     __end_of_GoldenEye:
+   515                           ;pomiar.c: 117: void PredkoscZmianCW(void)
+   516                           ;pomiar.c: 118: {
+   517  007754                     _PredkoscZmianCW:
+   518  000000                     
+   519                           ;pomiar.c: 119: static unsigned char ffcw,indff;
+   520  007754  0100               	movlb	(_M+25) shr (0+8)
+   521  007756  B36E               	btfsc	(_M+25)& (0+255),1,b
+   522  007758  D005               	goto	l39
+   523                           ;pomiar.c: 123: {
+   524  00775A  010E               	movlb	F1390 shr (0+8)
+   525  00775C  6BEC               	clrf	F1390& (0+255),b
+   526                           ;pomiar.c: 125: indff=0;
+   527  00775E  010E               	movlb	F1391 shr (0+8)
+   528  007760  6BED               	clrf	F1391& (0+255),b
+   529                           ;pomiar.c: 126: }
+   530  007762  D036               	goto	l40
+   531  007764                     l39:
+   532                           ;pomiar.c: 127: else
+   533  007764  010E               	movlb	F1391 shr (0+8)
+   534  007766  53ED               	movf	F1391& (0+255),f,b
+   535  007768  E10C               	bnz	l41
+   536                           ;pomiar.c: 130: {
+   537  00776A  6AD9               	clrf	fsr2l,c
+   538  00776C                     l42:
+   539  00776C  50D9               	movf	fsr2l,w,c
+   540  00776E  EE0E  F0F4         	lfsr	0,_wff
+   541  007772  26E9               	addwf	fsr0l,f,c
+   542  007774  0E00               	movlw	0
+   543  007776  22EA               	addwfc	fsr0h,f,c
+   544  007778  6AEF               	clrf	indf0,c
+   545  00777A  2AD9               	incf	fsr2l,f,c
+   546  00777C  0E09               	movlw	9
+   547  00777E  64D9               	cpfsgt	fsr2l,c
+   548  007780  D7F5               	goto	l42
+   549  007782                     l41:
+   550                           ;pomiar.c: 132: }
+   551  007782  010E               	movlb	F1391 shr (0+8)
+   552  007784  2BED               	incf	F1391& (0+255),f,b
+   553                           ;pomiar.c: 134: if(indff>=9)
+   554  007786  0E08               	movlw	8
+   555  007788  65ED               	cpfsgt	F1391& (0+255),b
+   556  00778A  D016               	goto	l45
+   557                           ;pomiar.c: 135: {
+   558  00778C  0E09               	movlw	9
+   559  00778E  CFE8 FEED          	movff	wreg,F1391
+   560                           ;pomiar.c: 137: for(i=0;i<9;i++) wff[i]=wff[i+1]
+      +                          ;
+   561  007792  6AD9               	clrf	fsr2l,c
+   562  007794                     l46:
+   563  007794  50D9               	movf	fsr2l,w,c
+   564  007796  EE1E  F0F5         	lfsr	1,_wff+1
+   565  00779A  26E1               	addwf	fsr1l,f,c
+   566  00779C  0E00               	movlw	0
+   567  00779E  22E2               	addwfc	fsr1h,f,c
+   568  0077A0  50D9               	movf	fsr2l,w,c
+   569  0077A2  EE0E  F0F4         	lfsr	0,_wff
+   570  0077A6  26E9               	addwf	fsr0l,f,c
+   571  0077A8  0E00               	movlw	0
+   572  0077AA  22EA               	addwfc	fsr0h,f,c
+   573  0077AC  CFE7 FFEF          	movff	indf1,indf0
+   574  0077B0  2AD9               	incf	fsr2l,f,c
+   575  0077B2  0E08               	movlw	8
+   576  0077B4  64D9               	cpfsgt	fsr2l,c
+   577  0077B6  D7EE               	goto	l46
+   578  0077B8                     l45:
+   579                           ;pomiar.c: 138: }
+   580  0077B8  CEED  FFE8         	movff	F1391,wreg
+   581  0077BC  EE0E  F0F4         	lfsr	0,_wff
+   582  0077C0  26E9               	addwf	fsr0l,f,c
+   583  0077C2  0E00               	movlw	0
+   584  0077C4  22EA               	addwfc	fsr0h,f,c
+   585  0077C6  CEEC  FFE8         	movff	F1390,wreg
+   586  0077CA  0102               	movlb	(_DtCW+2) shr (0+8)
+   587  0077CC  5D50               	subwf	(_DtCW+2)& (0+255),w,b
+   588  0077CE  6EEF               	movwf	indf0,c
+   589  0077D0                     l40:
+   590                           ;pomiar.c: 140: }
+   591  0077D0  C250  FEEC         	movff	_DtCW+2,F1390
+   592                           ;pomiar.c: 142: w=0;
+   593  0077D4  6AE1               	clrf	fsr1l,c
+   594                           ;pomiar.c: 143: for(i=0;i<10;i++) w+=wff[i];
+   595  0077D6  6AD9               	clrf	fsr2l,c
+   596  0077D8                     l49:
+   597  0077D8  50D9               	movf	fsr2l,w,c
+   598  0077DA  EE0E  F0F4         	lfsr	0,_wff
+   599  0077DE  26E9               	addwf	fsr0l,f,c
+   600  0077E0  0E00               	movlw	0
+   601  0077E2  22EA               	addwfc	fsr0h,f,c
+   602  0077E4  50EF               	movf	indf0,w,c
+   603  0077E6  26E1               	addwf	fsr1l,f,c
+   604  0077E8  2AD9               	incf	fsr2l,f,c
+   605  0077EA  0E09               	movlw	9
+   606  0077EC  64D9               	cpfsgt	fsr2l,c
+   607  0077EE  D7F4               	goto	l49
+   608                           ;pomiar.c: 144: DtCW.ddDCW=w;
+   609  0077F0  CFE1 F257          	movff	fsr1l,_DtCW+9
+   610                           ;pomiar.c: 145: }
+   611  0077F4  0C09               	retlw	9
+   612  0077F6                     __end_of_PredkoscZmianCW:
+   613                           ;pomiar.c: 148: void FltParMod(void)
+   614                           ;pomiar.c: 149: {
+   615  0077F6                     _FltParMod:
+   616  000000                     
+   617                           ;pomiar.c: 150: static unsigned char indtm,fcw;
+   618  0077F6  C250  FFE8         	movff	_DtCW+2,wreg
+   619  0077FA  010E               	movlb	F1397 shr (0+8)
+   620  0077FC  61EF               	cpfslt	F1397& (0+255),b
+   621  0077FE  D005               	goto	l53
+   622  007800  CEEF  FFE8         	movff	F1397,wreg
+   623  007804  0102               	movlb	(_DtCW+2) shr (0+8)
+   624  007806  5D50               	subwf	(_DtCW+2)& (0+255),w,b
+   625  007808  D004               	goto	L3
+   626  00780A                     l53:
+   627                           ;pomiar.c: 157: else wr=fcw-DtCW.CW;
+   628  00780A  C250  FFE8         	movff	_DtCW+2,wreg
+   629  00780E  010E               	movlb	F1397 shr (0+8)
+   630  007810  5DEF               	subwf	F1397& (0+255),w,b
+   631  007812                     L3:
+   632  007812  6ED9               	movwf	fsr2l,c
+   633                           ;pomiar.c: 158: if(wr) DtCW.indCW++;
+   634  007814  50D9               	movf	fsr2l,w,c
+   635  007816  E002               	bz	l55
+   636  007818  0102               	movlb	(_DtCW+10) shr (0+8)
+   637  00781A  2B58               	incf	(_DtCW+10)& (0+255),f,b
+   638  00781C                     l55:
+   639                           ;pomiar.c: 159: if(wr>=2) DtCW.indCW=10;
+   640  00781C  0E01               	movlw	1
+   641  00781E  64D9               	cpfsgt	fsr2l,c
+   642  007820  D003               	goto	l56
+   643  007822  0E0A               	movlw	10
+   644  007824  CFE8 F258          	movff	wreg,_DtCW+10
+   645  007828                     l56:
+   646                           ;pomiar.c: 161: PredkoscZmianCW();
+   647  007828  DF95               	call	_PredkoscZmianCW	;wreg free
+   648                           ;pomiar.c: 164: indtm++;
+   649  00782A  010E               	movlb	F1396 shr (0+8)
+   650  00782C  2BEE               	incf	F1396& (0+255),f,b
+   651                           ;pomiar.c: 165: if(indtm>9)
+   652  00782E  0E09               	movlw	9
+   653  007830  65EE               	cpfsgt	F1396& (0+255),b
+   654  007832  0C09               	retlw	9
+   655                           ;pomiar.c: 166: {
+   656  007834  6BEE               	clrf	F1396& (0+255),b
+   657                           ;pomiar.c: 170: if(DtCW.indCW<=7)
+   658  007836  0E08               	movlw	8
+   659  007838  0102               	movlb	(_DtCW+10) shr (0+8)
+   660  00783A  6158               	cpfslt	(_DtCW+10)& (0+255),b
+   661  00783C  D003               	goto	l58
+   662                           ;pomiar.c: 171: {
+   663  00783E  6B56               	clrf	(_DtCW+8)& (0+255),b
+   664                           ;pomiar.c: 173: DtCW._fpCW=1;
+   665  007840  854F               	bsf	(_DtCW+1)& (0+255),2,b
+   666                           ;pomiar.c: 174: }
+   667  007842  D009               	goto	l59
+   668  007844                     l58:
+   669                           ;pomiar.c: 175: else
+   670  007844  CEEF  FFE8         	movff	F1397,wreg
+   671  007848  0102               	movlb	(_DtCW+2) shr (0+8)
+   672  00784A  5D50               	subwf	(_DtCW+2)& (0+255),w,b
+   673  00784C  CFE8 F256          	movff	wreg,_DtCW+8
+   674                           ;pomiar.c: 178: DtCW._fpCW=1;
+   675  007850  854F               	bsf	(_DtCW+1)& (0+255),2,b
+   676                           ;pomiar.c: 179: fcw=DtCW.CW;
+   677  007852  C250  FEEF         	movff	_DtCW+2,F1397
+   678  007856                     l59:
+   679                           ;pomiar.c: 180: }
+   680  007856  0102               	movlb	(_DtCW+10) shr (0+8)
+   681  007858  6B58               	clrf	(_DtCW+10)& (0+255),b
+   682                           ;pomiar.c: 182: }
+   683  00785A  0012               	return	
+   684  00785C                     __end_of_FltParMod:
+   685                           ;pomiar.c: 187: void FiltrPomiarowyCW(void)
+   686                           ;pomiar.c: 188: {
+   687  00785C                     _FiltrPomiarowyCW:
+   688  000000                     
+   689                           ;pomiar.c: 191: if(PmrTim1(20))
+   690  00785C  0E14               	movlw	20
+   691  00785E  DEB3               	call	_PmrTim1
+   692  007860  E302               	bnc	l61
+   693                           ;pomiar.c: 192: {
+   694  007862  DEAE               	call	_StartTim1	;wreg free
+   695                           ;pomiar.c: 194: GoldenEye();
+   696  007864  DEDA               	call	_GoldenEye	;wreg free
+   697  007866                     l61:
+   698                           ;pomiar.c: 195: }
+   699  007866  C250  F000         	movff	_DtCW+2,btemp
+   700  00786A  C252  F001         	movff	_DtCW+4,btemp+1
+   701  00786E  0EFE               	movlw	-2
+   702  007870  2601               	addwf	btemp+1,f,c
+   703  007872  5000               	movf	btemp,w,c
+   704  007874  5C01               	subwf	btemp+1,w,c
+   705  007876  CFE8 F255          	movff	wreg,_DtCW+7
+   706                           ;pomiar.c: 199: if(PmrTim2(10))
+   707  00787A  0E0A               	movlw	10
+   708  00787C  DEB0               	call	_PmrTim2
+   709  00787E  A0D8               	btfss	status,0,c
+   710  007880  0012               	return	
+   711                           ;pomiar.c: 200: {
+   712  007882  DEAA               	call	_StartTim2	;wreg free
+   713                           ;pomiar.c: 202: FltParMod();
+   714  007884  D7B8               	goto	_FltParMod	;wreg free
+   715                           ;pomiar.c: 203: }
+   716  007886                     __end_of_FiltrPomiarowyCW:
+   717                           ;pomiar.c: 207: void PomiarCW(void)
+   718                           ;pomiar.c: 208: {
+   719  007886                     _PomiarCW:
+   720  000000                     
+   721                           ;pomiar.c: 209: DtCW.AC_CW=ReadAC(1);
+   722  007886  0E01               	movlw	1
+   723  007888  ECF9  F046         	call	_ReadAC
+   724  00788C  CFE8 F25A          	movff	wreg,_DtCW+12
+   725                           ;pomiar.c: 210: DtCW.CW=ReadTabNTC(DtCW.AC_CW);
+   726  007890  C25A  FFE8         	movff	_DtCW+12,wreg
+   727  007894  EC2F  F047         	call	_ReadTabNTC
+   728  007898  CFE8 F250          	movff	wreg,_DtCW+2
+   729                           ;pomiar.c: 212: if(DtCW.AC_CW<=0x28||DtCW.AC_CW>
+      +                          =0xF5)
+   730  00789C  0E29               	movlw	41
+   731  00789E  0102               	movlb	(_DtCW+12) shr (0+8)
+   732  0078A0  615A               	cpfslt	(_DtCW+12)& (0+255),b
+   733  0078A2  D001               	goto	u341
+   734  0078A4  D003               	goto	u360
+   735  0078A6                     u341:
+   736  0078A6  0EF4               	movlw	-12
+   737  0078A8  655A               	cpfsgt	(_DtCW+12)& (0+255),b
+   738  0078AA  D005               	goto	l64
+   739  0078AC                     u360:
+   740                           ;pomiar.c: 213: {
+   741  0078AC  0102               	movlb	_DtCW shr (0+8)
+   742  0078AE  814E               	bsf	_DtCW& (0+255),0,b
+   743                           ;pomiar.c: 215: DtCW._su_CW=0;
+   744  0078B0  934E               	bcf	_DtCW& (0+255),1,b
+   745                           ;pomiar.c: 216: DtCW._ad_CW=0;
+   746  0078B2  954E               	bcf	_DtCW& (0+255),2,b
+   747                           ;pomiar.c: 217: return;
+   748  0078B4  0012               	return	
+   749  0078B6                     l64:
+   750                           ;pomiar.c: 219: else DtCW._err_CW=0;
+   751  0078B6  0102               	movlb	_DtCW shr (0+8)
+   752  0078B8  914E               	bcf	_DtCW& (0+255),0,b
+   753                           ;pomiar.c: 220: if(DtCW.PCW<55)
+   754  0078BA  0E37               	movlw	55
+   755  0078BC  0102               	movlb	(_DtCW+3) shr (0+8)
+   756  0078BE  6151               	cpfslt	(_DtCW+3)& (0+255),b
+   757  0078C0  D010               	goto	l66
+   758                           ;pomiar.c: 221: {
+   759  0078C2  0E41               	movlw	65
+   760  0078C4  6550               	cpfsgt	(_DtCW+2)& (0+255),b
+   761  0078C6  D002               	goto	l67
+   762  0078C8  854E               	bsf	_DtCW& (0+255),2,b
+   763  0078CA  D002               	goto	l68
+   764  0078CC                     l67:
+   765                           ;pomiar.c: 223: else DtCW._ad_CW=0;
+   766  0078CC  0102               	movlb	_DtCW shr (0+8)
+   767  0078CE  954E               	bcf	_DtCW& (0+255),2,b
+   768  0078D0                     l68:
+   769                           ;pomiar.c: 224: if(DtCW.CW<=65-2) DtCW._su_CW=1;
+   770  0078D0  0E40               	movlw	64
+   771  0078D2  0102               	movlb	(_DtCW+2) shr (0+8)
+   772  0078D4  6150               	cpfslt	(_DtCW+2)& (0+255),b
+   773  0078D6  D002               	goto	l69
+   774  0078D8  834E               	bsf	_DtCW& (0+255),1,b
+   775  0078DA  0C40               	retlw	64
+   776  0078DC                     l69:
+   777                           ;pomiar.c: 225: else DtCW._su_CW=0;
+   778  0078DC  0102               	movlb	_DtCW shr (0+8)
+   779  0078DE  934E               	bcf	_DtCW& (0+255),1,b
+   780                           ;pomiar.c: 226: }
+   781  0078E0  0012               	return	
+   782  0078E2                     l66:
+   783                           ;pomiar.c: 227: else
+   784  0078E2  0E46               	movlw	70
+   785  0078E4  0102               	movlb	(_DtCW+2) shr (0+8)
+   786  0078E6  6550               	cpfsgt	(_DtCW+2)& (0+255),b
+   787  0078E8  D002               	goto	l72
+   788  0078EA  854E               	bsf	_DtCW& (0+255),2,b
+   789  0078EC  D002               	goto	l73
+   790  0078EE                     l72:
+   791                           ;pomiar.c: 230: else DtCW._ad_CW=0;
+   792  0078EE  0102               	movlb	_DtCW shr (0+8)
+   793  0078F0  954E               	bcf	_DtCW& (0+255),2,b
+   794  0078F2                     l73:
+   795                           ;pomiar.c: 231: if(DtCW.CW<=70-2) DtCW._su_CW=1;
+   796  0078F2  0E45               	movlw	69
+   797  0078F4  0102               	movlb	(_DtCW+2) shr (0+8)
+   798  0078F6  6150               	cpfslt	(_DtCW+2)& (0+255),b
+   799  0078F8  D002               	goto	l74
+   800  0078FA  834E               	bsf	_DtCW& (0+255),1,b
+   801  0078FC  0C45               	retlw	69
+   802  0078FE                     l74:
+   803                           ;pomiar.c: 232: else DtCW._su_CW=0;
+   804  0078FE  0102               	movlb	_DtCW shr (0+8)
+   805  007900  934E               	bcf	_DtCW& (0+255),1,b
+   806                           ;pomiar.c: 233: }
+   807  007902  0012               	return	
+   808  007904                     __end_of_PomiarCW:
+   809                           ;pomiar.c: 237: void SetModPCW(void)
+   810                           ;pomiar.c: 238: {
+   811  007904                     _SetModPCW:
+   812  000000                     
+   813                           ;pomiar.c: 239: if(M._AKTYWNE_KNF)
+   814  007904  0100               	movlb	(_M+22) shr (0+8)
+   815  007906  516B               	movf	(_M+22)& (0+255),w,b
+   816  007908  116C               	iorwf	(_M+23)& (0+255),w,b
+   817  00790A  E004               	bz	l77
+   818                           ;pomiar.c: 240: {
+   819  00790C  0E3C               	movlw	60
+   820  00790E  CFE8 F252          	movff	wreg,_DtCW+4
+   821                           ;pomiar.c: 242: }
+   822  007912  0C3C               	retlw	60
+   823  007914                     l77:
+   824                           ;pomiar.c: 243: else DtCW.PPCW=DtCW.PCW;
+   825  007914  C251  F252         	movff	_DtCW+3,_DtCW+4
+   826                           ;pomiar.c: 244: }
+   827  007918  0012               	return	
+   828  00791A                     __end_of_SetModPCW:
+   829                           ;pomiar.c: 246: void WritePCW(void)
+   830                           ;pomiar.c: 247: {
+   831  00791A                     _WritePCW:
+   832  000000                     
+   833                           ;pomiar.c: 248: if(!M._AKTYWNE_KNF)
+   834  00791A  0100               	movlb	(_M+22) shr (0+8)
+   835  00791C  516B               	movf	(_M+22)& (0+255),w,b
+   836  00791E  116C               	iorwf	(_M+23)& (0+255),w,b
+   837  007920  A4D8               	btfss	status,2,c
+   838  007922  0012               	return	
+   839                           ;pomiar.c: 249: {
+   840  007924  0102               	movlb	(_DtCW+1) shr (0+8)
+   841  007926  A34F               	btfss	(_DtCW+1)& (0+255),1,b
+   842  007928  0012               	return	
+   843  00792A  0E06               	movlw	6
+   844  00792C  EC04  F046         	call	_RTdS
+   845  007930  6E00               	movwf	btemp,c
+   846  007932  0E14               	movlw	20
+   847  007934  5C00               	subwf	btemp,w,c
+   848  007936  A0D8               	btfss	status,0,c
+   849  007938  0012               	return	
+   850                           ;pomiar.c: 251: {
+   851  00793A  0102               	movlb	(_DtCW+1) shr (0+8)
+   852  00793C  934F               	bcf	(_DtCW+1)& (0+255),1,b
+   853                           ;pomiar.c: 253: StartRTdS(6);
+   854  00793E  0E06               	movlw	6
+   855  007940  ECF2  F045         	call	_StartRTdS
+   856                           ;pomiar.c: 254: WriteEEPCW();
+   857  007944  EF2E  F035         	goto	_WriteEEPCW	;wreg free
+   858                           ;pomiar.c: 255: }
+   859  007948                     __end_of_WritePCW:
+   860                           ;pomiar.c: 259: void PomiarPCW(void)
+   861                           ;pomiar.c: 260: {
+   862  007948                     _PomiarPCW:
+   863  000000                     
+   864                           ;pomiar.c: 261: static unsigned char pnst;
+   865  007948  0E23               	movlw	35
+   866  00794A  CFE8 F253          	movff	wreg,_DtCW+5
+   867                           ;pomiar.c: 264: DtCW.maxPCW=60;
+   868  00794E  0E3C               	movlw	60
+   869  007950  CFE8 F254          	movff	wreg,_DtCW+6
+   870                           ;pomiar.c: 287: if(!(RD0&&!RdPrt(5)))
+   871  007954  A083               	btfss	3971,0,c	;volatile
+   872  007956  D005               	goto	u490
+   873  007958  0E05               	movlw	5
+   874  00795A  EC6F  F042         	call	_RdPrt
+   875  00795E  E201 D084          	bnc	l83
+   876  007962                     u490:
+   877                           ;pomiar.c: 288: {
+   878  007962  0E00               	movlw	0
+   879  007964  EC6F  F042         	call	_RdPrt
+   880  007968  E304               	bnc	u520
+   881  00796A  0E01               	movlw	1
+   882  00796C  EC6F  F042         	call	_RdPrt
+   883  007970  E27C               	bc	l83
+   884  007972                     u520:
+   885                           ;pomiar.c: 290: {
+   886  007972  0100               	movlb	(_M+16) shr (0+8)
+   887  007974  BF65               	btfsc	(_M+16)& (0+255),7,b
+   888  007976  D079               	goto	l83
+   889  007978  0100               	movlb	(_M+24) shr (0+8)
+   890  00797A  B56D               	btfsc	(_M+24)& (0+255),2,b
+   891  00797C  D076               	goto	l83
+   892  00797E  0100               	movlb	(_M+16) shr (0+8)
+   893  007980  BD65               	btfsc	(_M+16)& (0+255),6,b
+   894  007982  D073               	goto	l83
+   895  007984  0100               	movlb	(_M+24) shr (0+8)
+   896  007986  B36D               	btfsc	(_M+24)& (0+255),1,b
+   897  007988  D070               	goto	l83
+   898                           ;pomiar.c: 292: {
+   899  00798A  0100               	movlb	(_M+22) shr (0+8)
+   900  00798C  516B               	movf	(_M+22)& (0+255),w,b
+   901  00798E  116C               	iorwf	(_M+23)& (0+255),w,b
+   902  007990  E16C               	bnz	l83
+   903  007992  0100               	movlb	(_M+18) shr (0+8)
+   904  007994  5167               	movf	(_M+18)& (0+255),w,b
+   905  007996  1168               	iorwf	(_M+19)& (0+255),w,b
+   906  007998  E168               	bnz	l83
+   907                           ;pomiar.c: 294: {
+   908  00799A  0E00               	movlw	0
+   909  00799C  EC6F  F042         	call	_RdPrt
+   910  0079A0  E21C               	bc	l87
+   911                           ;pomiar.c: 296: {
+   912  0079A2  0100               	movlb	__Lparam shr (0+8)
+   913  0079A4  0E51               	movlw	low (_DtCW+3)
+   914  0079A6  6FA9               	movwf	?_ReadDataXONLI^(__Lparam& (0+65280)),b
+   915  0079A8  0E02               	movlw	high (_DtCW+3)
+   916  0079AA  6FAA               	movwf	(?_ReadDataXONLI+1)^(__Lparam& (0+65280))
+      +                          ,b
+   917  0079AC  C254  F0AB         	movff	_DtCW+6,?_ReadDataXONLI+2
+   918  0079B0  0E01               	movlw	1
+   919  0079B2  6FAC               	movwf	(?_ReadDataXONLI+3)^(__Lparam& (0+65280))
+      +                          ,b
+   920  0079B4  6FAD               	movwf	(?_ReadDataXONLI+4)^(__Lparam& (0+65280))
+      +                          ,b
+   921  0079B6  EC6F  F042         	call	_RdPrt
+   922  0079BA  0E00               	movlw	0
+   923  0079BC  B0D8               	btfsc	status,0,c
+   924  0079BE  0E01               	movlw	1
+   925  0079C0  EC40  F03E         	call	_ReadDataXONLI
+   926                           ;pomiar.c: 298: if(RdPrt(1)&&(DtCW.PCW==DtCW.max
+      +                          PCW)) DtCW._newPCW=1;
+   927  0079C4  0E01               	movlw	1
+   928  0079C6  EC6F  F042         	call	_RdPrt
+   929  0079CA  E307               	bnc	l87
+   930  0079CC  C254  FFE8         	movff	_DtCW+6,wreg
+   931  0079D0  0102               	movlb	(_DtCW+3) shr (0+8)
+   932  0079D2  6351               	cpfseq	(_DtCW+3)& (0+255),b
+   933  0079D4  D002               	goto	l87
+   934  0079D6  0102               	movlb	(_DtCW+1) shr (0+8)
+   935  0079D8  814F               	bsf	(_DtCW+1)& (0+255),0,b
+   936  0079DA                     l87:
+   937                           ;pomiar.c: 299: }
+   938  0079DA  0E01               	movlw	1
+   939  0079DC  EC6F  F042         	call	_RdPrt
+   940  0079E0  E21D               	bc	l89
+   941                           ;pomiar.c: 301: {
+   942  0079E2  0100               	movlb	__Lparam shr (0+8)
+   943  0079E4  0E51               	movlw	low (_DtCW+3)
+   944  0079E6  6FA9               	movwf	?_ReadDataXONLD^(__Lparam& (0+65280)),b
+   945  0079E8  0E02               	movlw	high (_DtCW+3)
+   946  0079EA  6FAA               	movwf	(?_ReadDataXONLD+1)^(__Lparam& (0+65280))
+      +                          ,b
+   947  0079EC  C253  F0AB         	movff	_DtCW+5,?_ReadDataXONLD+2
+   948  0079F0  0E01               	movlw	1
+   949  0079F2  6FAC               	movwf	(?_ReadDataXONLD+3)^(__Lparam& (0+65280))
+      +                          ,b
+   950  0079F4  6FAD               	movwf	(?_ReadDataXONLD+4)^(__Lparam& (0+65280))
+      +                          ,b
+   951  0079F6  0E00               	movlw	0
+   952  0079F8  EC6F  F042         	call	_RdPrt
+   953  0079FC  0E00               	movlw	0
+   954  0079FE  B0D8               	btfsc	status,0,c
+   955  007A00  0E01               	movlw	1
+   956  007A02  ECB9  F03E         	call	_ReadDataXONLD
+   957                           ;pomiar.c: 303: if(RdPrt(0)&&(DtCW.PCW==DtCW.min
+      +                          PCW)) DtCW._newPCW=1;
+   958  007A06  0E00               	movlw	0
+   959  007A08  EC6F  F042         	call	_RdPrt
+   960  007A0C  E307               	bnc	l89
+   961  007A0E  C253  FFE8         	movff	_DtCW+5,wreg
+   962  007A12  0102               	movlb	(_DtCW+3) shr (0+8)
+   963  007A14  6351               	cpfseq	(_DtCW+3)& (0+255),b
+   964  007A16  D002               	goto	l89
+   965  007A18  0102               	movlb	(_DtCW+1) shr (0+8)
+   966  007A1A  814F               	bsf	(_DtCW+1)& (0+255),0,b
+   967  007A1C                     l89:
+   968                           ;pomiar.c: 304: }
+   969  007A1C  0E00               	movlw	0
+   970  007A1E  EC6F  F042         	call	_RdPrt
+   971  007A22  E210               	bc	l91
+   972  007A24  0E01               	movlw	1
+   973  007A26  EC6F  F042         	call	_RdPrt
+   974  007A2A  E20C               	bc	l91
+   975                           ;pomiar.c: 306: {
+   976  007A2C  0102               	movlb	(_DtCW+1) shr (0+8)
+   977  007A2E  A34F               	btfss	(_DtCW+1)& (0+255),1,b
+   978  007A30  D007               	goto	l92
+   979                           ;pomiar.c: 308: {
+   980  007A32  0E06               	movlw	6
+   981  007A34  EC04  F046         	call	_RTdS
+   982  007A38  6E00               	movwf	btemp,c
+   983  007A3A  0E06               	movlw	6
+   984  007A3C  5C00               	subwf	btemp,w,c
+   985  007A3E  E302               	bnc	l91
+   986                           ;pomiar.c: 310: }
+   987  007A40                     l92:
+   988                           ;pomiar.c: 311: else DtCW._newPCW=0;
+   989  007A40  0102               	movlb	(_DtCW+1) shr (0+8)
+   990  007A42  914F               	bcf	(_DtCW+1)& (0+255),0,b
+   991  007A44                     l91:
+   992                           ;pomiar.c: 312: }
+   993  007A44  C251  FFE8         	movff	_DtCW+3,wreg
+   994  007A48  010E               	movlb	F1408 shr (0+8)
+   995  007A4A  19F0               	xorwf	F1408& (0+255),w,b
+   996  007A4C  E010               	bz	l99
+   997                           ;pomiar.c: 314: {
+   998  007A4E  C251  FEF0         	movff	_DtCW+3,F1408
+   999                           ;pomiar.c: 317: DtCW._newPCW=1;
+  1000  007A52  0102               	movlb	(_DtCW+1) shr (0+8)
+  1001  007A54  814F               	bsf	(_DtCW+1)& (0+255),0,b
+  1002                           ;pomiar.c: 318: RNst(DtCW.PCW);
+  1003  007A56  C251  FFE8         	movff	_DtCW+3,wreg
+  1004  007A5A  EC01  F040         	call	_RNst
+  1005                           ;pomiar.c: 320: DtCW._wrtPCW=1;
+  1006  007A5E  0102               	movlb	(_DtCW+1) shr (0+8)
+  1007  007A60  834F               	bsf	(_DtCW+1)& (0+255),1,b
+  1008                           ;pomiar.c: 321: StartRTdS(6);
+  1009  007A62  0E06               	movlw	6
+  1010  007A64  ECF2  F045         	call	_StartRTdS
+  1011                           ;pomiar.c: 322: }
+  1012  007A68  D002               	goto	l99
+  1013                           ;pomiar.c: 324: }else DtCW._newPCW=0;
+  1014                           ;pomiar.c: 325: }else DtCW._newPCW=0;
+  1015                           ;pomiar.c: 326: }else DtCW._newPCW=0;
+  1016  007A6A                     l83:
+  1017  007A6A  0102               	movlb	(_DtCW+1) shr (0+8)
+  1018  007A6C  914F               	bcf	(_DtCW+1)& (0+255),0,b
+  1019  007A6E                     l99:
+  1020                           ;pomiar.c: 328: SetModPCW();
+  1021  007A6E  DF4A               	call	_SetModPCW	;wreg free
+  1022                           ;pomiar.c: 329: DtCW.DAD_CW=ReturnACfromNTC(DtCW
+      +                          .PPCW-(3-1));
+  1023  007A70  C252  FFE8         	movff	_DtCW+4,wreg
+  1024  007A74  0FFE               	addlw	-2
+  1025  007A76  EC62  F047         	call	_ReturnACfromNTC
+  1026  007A7A  CFE8 F25C          	movff	wreg,_DtCW+14
+  1027                           ;pomiar.c: 330: DtCW.MAD_CW=ReturnACfromNTC(DtCW
+      +                          .PPCW-(3-1)-9);
+  1028  007A7E  C252  FFE8         	movff	_DtCW+4,wreg
+  1029  007A82  0FF5               	addlw	-11
+  1030  007A84  EC62  F047         	call	_ReturnACfromNTC
+  1031  007A88  CFE8 F25B          	movff	wreg,_DtCW+13
+  1032                           ;pomiar.c: 331: }
+  1033  007A8C  0012               	return	
+  1034  007A8E                     __end_of_PomiarPCW:
+  1035  000000                     
+  1036  000000                     
+  1037  000000                     
+  1038  000000                     
+  1039  000000                     
+  1040  000000                     
+  1041  000000                     
+  1042  000000                     
+  1043  000000                     
+  1044  000000                     
+  1045  000000                     
+  1046  000000                     
+  1047  000000                     
+  1048  000000                     
+  1049  000000                     
+  1050  000000                     
+  1051  000000                     
+  1052  000000                     
+  1053  000000                     
+  1054  000000                     
+  1055  000000                     
+  1056  000000                     
+  1057  000000                     
+  1058  000000                     
+  1059  000000                     
+  1060  000000                     
+  1061  000000                     
+  1062  000000                     
+  1063  000000                     
+  1064  000000                     
+  1065  000000                     
+  1066  000000                     
+  1067  000000                     
+  1068  000000                     
+  1069  000000                     
+  1070  000000                     
+  1071  000000                     
+  1072  000000                     
+  1073  000000                     
+  1074  000000                     
+  1075  000000                     
+  1076  000000                     
+  1077  000000                     
+  1078  000000                     
+  1079  000000                     
+  1080  000000                     
+  1081  000000                     
+  1082  000000                     
+  1083  000000                     
+  1084  000000                     
+  1085  000000                     
+  1086  000000                     
+  1087  000000                     
+  1088  000000                     
+  1089  000000                     
+  1090  000000                     
+  1091  000000                     
+  1092  000000                     
+  1093  000000                     
+  1094  000000                     
+  1095  000000                     
+  1096  000000                     
+  1097  000000                     
+  1098  000000                     
+  1099  000000                     
+  1100  000000                     
+  1101  000000                     
+  1102  000000                     
+  1103  000000                     
+  1104  000000                     
+  1105  000000                     
+  1106  000000                     
+  1107  000000                     
+  1108  000000                     
+  1109  000000                     
+  1110  000000                     
+  1111  000000                     
+  1112  000000                     
+  1113  000000                     
+  1114  000000                     
+  1115  000000                     
+  1116  000000                     
+  1117  000000                     
+  1118  000000                     
+  1119  000000                     
+  1120  000000                     
+  1121  000000                     
+  1122  000000                     
+  1123  000000                     
+  1124  000000                     
+  1125  000000                     
+  1126  000000                     
+  1127  000000                     
+  1128  000000                     
+  1129  000000                     
+  1130  000000                     
+  1131  000000                     
+  1132  000000                     
+  1133  000000                     
+  1134  000000                     
+  1135  000000                     
+  1136  000000                     
+  1137  000000                     
+  1138  000000                     
+  1139  000000                     
+  1140  000000                     
+  1141  000000                     
+  1142  000000                     
+  1143  000000                     
+  1144  000000                     
+  1145  000000                     
+  1146  000000                     
+  1147  000000                     
+  1148  000000                     
+  1149  000000                     
+  1150  000000                     
+  1151  000000                     
+  1152  000000                     
+  1153  000000                     
+  1154  000000                     
+  1155  000000                     
+  1156  000000                     
+  1157  000000                     
+  1158  000000                     
+  1159  000000                     
+  1160  000000                     
+  1161  000000                     
+  1162  000000                     
+  1163  000000                     
+  1164  000000                     
+  1165  000000                     
+  1166  000000                     
+  1167  000000                     
+  1168  000000                     
+  1169  000000                     
+  1170  000000                     
+  1171  000000                     
+  1172  000000                     
+  1173  000000                     
+  1174  000000                     
+  1175  000000                     
+  1176  000000                     
+  1177  000000                     
+  1178  000000                     
+  1179  000000                     
+  1180  000000                     
+  1181  000000                     
+  1182  000000                     
+  1183  000000                     
+  1184  000000                     
+  1185  000000                     
+  1186  000000                     
+  1187  000000                     
+  1188  000000                     
+  1189  000000                     
+  1190  000000                     
+  1191  000000                     
+  1192  000000                     
+  1193  000000                     
+  1194  000000                     
+  1195  000000                     
+  1196  000000                     
+  1197  000000                     
+  1198  000000                     
+  1199  000000                     
+  1200  000000                     
+  1201  000000                     
+  1202  000000                     
+  1203  000000                     
+  1204  000000                     
+  1205  000000                     
+  1206  000000                     
+  1207  000000                     
+  1208  000000                     
+  1209  000000                     
+  1210  000000                     
+  1211  000000                     
+  1212  000000                     
+  1213  000000                     
+  1214  000000                     
+  1215  000000                     
+  1216  000000                     
+  1217  000000                     
+  1218  000000                     
+  1219  000000                     
+  1220  000000                     
+  1221  000000                     
+  1222  000000                     
+  1223  000000                     
+  1224  000000                     
+  1225  000000                     
+  1226  000000                     
+  1227  000000                     
+  1228  000000                     
+  1229  000000                     
+  1230  000000                     
+  1231  000000                     
+  1232  000000                     
+  1233  000000                     
+  1234  000000                     
+  1235  000000                     
+  1236  000000                     
+  1237  000000                     
+  1238  000000                     
+  1239  000000                     
+  1240  000000                     
+  1241  000000                     
+  1242  000000                     
+  1243  000000                     
+  1244  000000                     
+  1245  000000                     
+  1246  000000                     
+  1247  000000                     
+  1248  000000                     
+  1249  000000                     
+  1250  000000                     
+  1251  000000                     
+  1252  000000                     
+  1253  000000                     
+  1254  000000                     
+  1255  000000                     
+  1256  000000                     
+  1257  000000                     
+  1258  000000                     
+  1259  000000                     
+  1260  000000                     
+  1261  000000                     
+  1262  000000                     
+  1263  000000                     
+  1264  000000                     
+  1265  000000                     
+  1266  000000                     
+  1267  000000                     
+  1268  000000                     
+  1269  000000                     
+  1270  000000                     
+  1271  000000                     
+  1272  000000                     
+  1273  000000                     
+  1274  000000                     
+  1275  000000                     
+  1276  000000                     
+  1277  000000                     
+  1278  000000                     
+  1279  000000                     
+  1280  000000                     
+  1281  000000                     
+  1282  000000                     
+  1283  000000                     
+  1284  000000                     
+  1285  000000                     
+  1286  000000                     
+  1287  000000                     
+  1288  000000                     
+  1289  000000                     
+  1290  000000                     
+  1291  000000                     
+  1292  000000                     
+  1293  000000                     
+  1294  000000                     
+  1295  000000                     
+  1296  000000                     
+  1297  000000                     
+  1298  000000                     
+  1299  000000                     
+  1300  000000                     
+  1301  000000                     
+  1302  000000                     
+  1303  000000                     
+  1304  000000                     
+  1305  000000                     
+  1306  000000                     
+  1307  000000                     
+  1308  000000                     
+  1309  000000                     
+  1310  000000                     
+  1311  000000                     
+  1312  000000                     
+  1313  000000                     
+  1314  000000                     
+  1315  000000                     
+  1316  000000                     
+  1317  000000                     
+  1318  000000                     
+  1319  000000                     
+  1320  000000                     
+  1321  000000                     
+  1322  000000                     
+  1323  000000                     
+  1324  000000                     
+  1325  000000                     
+  1326  000000                     
+  1327  000000                     
+  1328  000000                     
+  1329  000000                     
+  1330  000000                     
+  1331  000000                     
+  1332  000000                     
+  1333  000000                     
+  1334  000000                     
+  1335  000000                     
+  1336  000000                     
+  1337  000000                     
+  1338  000000                     
+  1339  000000                     
+  1340  000000                     
+  1341  000000                     
+  1342  000000                     
+  1343  000000                     
+  1344  000000                     
+  1345  000000                     
+  1346  000000                     
+  1347  000000                     
+  1348  000000                     
+  1349  000000                     
+  1350  000000                     
+  1351  000000                     
+  1352  000000                     
+  1353  000000                     
+  1354  000000                     
+  1355  000000                     
+  1356  000000                     
+  1357  000000                     
+  1358  000000                     
+  1359  000000                     
+  1360  000000                     
+  1361  000000                     
+  1362  000000                     
+  1363  000000                     
+  1364  000000                     
+  1365  000000                     
+  1366  000000                     
+  1367  000000                     
+  1368  000000                     
+  1369  000000                     
+  1370  000000                     
+  1371  000000                     
+  1372  000000                     
+  1373  000000                     
+  1374  000000                     
+  1375  000000                     
+  1376  000000                     
+  1377  000000                     
+  1378  000000                     
+  1379  000000                     
+  1380  000000                     
+  1381  000000                     
+  1382  000000                     
+  1383  000000                     
+  1384  000000                     
+  1385  000000                     
+  1386  000000                     
+  1387  000000                     
+  1388  000000                     
+  1389  000000                     
+  1390  000000                     
+  1391  000000                     
+  1392  000000                     
+  1393  000000                     
+  1394  000000                     
+  1395  000000                     
+  1396  000000                     
+  1397  000000                     
+  1398  000000                     
+  1399  000000                     
+  1400  000000                     
+  1401  000000                     
+  1402  000000                     
+  1403  000000                     
+  1404  000000                     
+  1405  000000                     
+  1406  000000                     
+  1407  000000                     
+  1408  000000                     
+  1409  000000                     
+  1410  000000                     
+  1411  000000                     
+  1412  000000                     
+  1413  000000                     
+  1414  000000                     
+  1415  000000                     
+  1416  000000                     
+  1417  000000                     
+  1418  000000                     
+  1419  000000                     
+  1420  000000                     
+  1421  000000                     
+  1422  000000                     
+  1423  000000                     
+  1424  000000                     
+  1425  000000                     
+  1426  000000                     
+  1427  000000                     
+  1428  000000                     
+  1429  000000                     
+  1430  000000                     
+  1431  000000                     
+  1432  000000                     
+  1433  000000                     
+  1434  000000                     
+  1435  000000                     
+  1436  000000                     
+  1437  000000                     
+  1438  000000                     
+  1439  000000                     
+  1440  000000                     
+  1441  000000                     
+  1442  000000                     
+  1443  000000                     
+  1444  000000                     
+  1445  000000                     
+  1446  000000                     
+  1447  000000                     
+  1448  000000                     
+  1449  000000                     
+  1450  000000                     
+  1451  000000                     
+  1452  000000                     
+  1453  000000                     
+  1454  000000                     
+  1455  000000                     
+  1456  000000                     
+  1457  000000                     
+  1458  000000                     
+  1459  000000                     
+  1460  000000                     
+  1461  000000                     
+  1462  000000                     
+  1463  000000                     
+  1464  000000                     
+  1465  000000                     
+  1466  000000                     
+  1467  000000                     
+  1468  000000                     
+  1469  000000                     
+  1470  000000                     
+  1471                           
+  1472                           	psect	bigbss
+  1473  000EEC                     F1390:
+  1474  000EEC                     	ds	1
+  1475  000EEC                     F1391:
+  1476  000EEC                     	ds	1
+  1477  000EEC                     F1396:
+  1478  000EEC                     	ds	1
+  1479  000EEC                     F1397:
+  1480  000EEC                     	ds	1
+  1481  000EEC                     F1408:
+  1482  000EEC                     	ds	1
+  1483  000000                     
+  1484  000000                     
+  1485  000000                     
+  1486  000000                     
+  1487  000000                     
+  1488  000000                     
+  1489  000000                     
+  1490  000000                     
+  1491  000000                     
+  1492  000000                     
+  1493  000000                     
+  1494  000000                     
+  1495  000000                     
+  1496  000000                     
+  1497  000000                     
+  1498  000000                     
+  1499  000000                     
+  1500  000000                     
+  1501  000000                     
+  1502  000000                     
+  1503  000000                     
+  1504  000000                     
+  1505  000000                     
+  1506  000000                     
+  1507  000000                     
+  1508  000000                     
+  1509  000000                     
+  1510  000000                     
+  1511  000000                     
+  1512  000000                     
+  1513  000000                     
+  1514  000000                     
+  1515  000000                     
+  1516  000000                     
+  1517  000000                     
+  1518  000000                     
+  1519  000000                     
+  1520  000000                     
+  1521  000000                     
+  1522  000000                     
+  1523  000000                     
+  1524  000000                     
+  1525  000000                     
+  1526  000000                     
+  1527  000000                     
+  1528  000000                     
+  1529  000000                     
+  1530  000000                     
+  1531  000000                     
+  1532  000000                     
+  1533  000000                     
+  1534  000000                     
+  1535  000000                     
+  1536  000000                     
+  1537  000000                     
+  1538  000000                     
+  1539  000000                     
+  1540  000000                     
+  1541  000000                     
+  1542  000000                     
+  1543  000000                     
+  1544  000000                     
+  1545  000000                     
+  1546  000000                     
+  1547  000000                     
+  1548  000000                     
+  1549  000000                     
+  1550  000000                     
+  1551  000000                     
+  1552  000000                     
+  1553  000000                     
+  1554  000000                     
+  1555  000000                     
+  1556  000000                     
+  1557  000000                     
+  1558  000000                     
+  1559  000000                     
+  1560  000000                     
+  1561  000EEC                     _PmrtimFlt1:
+  1562  000EEC                     	ds	1
+  1563  000EEC                     _PmrtimFlt2:
+  1564  000EEC                     	ds	1
+  1565  000000                     
+  1566  000000                     
+  1567  000000                     
+  1568  000000                     
+  1569  000000                     
+  1570  000000                     
+  1571  000000                     
+  1572  000000                     
+  1573  000000                     
+  1574  000000                     
+  1575  000000                     
+  1576  000000                     
+  1577  000000                     
+  1578  000000                     
+  1579  000000                     
+  1580  000000                     
+  1581  000000                     
+  1582  000000                     
+  1583  000000                     
+  1584  000000                     
+  1585  000000                     
+  1586  000000                     
+  1587  000000                     
+  1588  000000                     
+  1589  000000                     
+  1590  000000                     
+  1591  000000                     
+  1592  000000                     
+  1593  000000                     
+  1594  000000                     
+  1595  000000                     
+  1596  000000                     
+  1597  000000                     
+  1598  000000                     
+  1599  000000                     
+  1600  000000                     
+  1601  000000                     
+  1602  000000                     
+  1603  000000                     
+  1604  000000                     
+  1605  000000                     
+  1606  000000                     
+  1607  000000                     
+  1608  000000                     
+  1609  000000                     
+  1610  000000                     
+  1611  000000                     
+  1612  000EEC                     _pnst:
+  1613  000EEC                     	ds	1
+  1614  000000                     
+  1615  000000                     
+  1616  000000                     
+  1617  000EEC                     _wff:
+  1618  000EEC                     	ds	12
+  1619                           
+  1620                           	psect	bss
+  1621  000230                     _DtCS:
+  1622  000230                     	ds	2
+  1623  000230                     _PmrtimFlt3:
+  1624  000230                     	ds	2
+  1625  000000                     
+  1626  000000                     
+  1627  000000                     
+  1628  000000                     
+  1629  000230                     _pbf:
+  1630  000230                     	ds	2
+  1631  000230                     _DtZW:
+  1632  000230                     	ds	4
+  1633  000230                     _PFN:
+  1634  000230                     	ds	5
+  1635  000230                     _DtCO:
+  1636  000230                     	ds	15
+  1637  000230                     _DtCW:
+  1638  000230                     	ds	15
+  1639                           
+  1640                           	psect	temp
+  1641  000000                     btemp:
+  1642  000000                     	ds	5
+  1643                           tblptrh	equ	0xFF7
+  1644                           tblptrl	equ	0xFF6
+  1645                           indf0	equ	0xFEF
+  1646                           postinc0	equ	0xFEE
+  1647                           fsr0h	equ	0xFEA
+  1648                           fsr0l	equ	0xFE9
+  1649                           wreg	equ	0xFE8
+  1650                           indf1	equ	0xFE7
+  1651                           fsr1h	equ	0xFE2
+  1652                           fsr1l	equ	0xFE1
+  1653                           fsr2l	equ	0xFD9
+  1654                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Thu Jul 12 08:02:17 2018
+
+                       _M 0055                  _PomiarCW 7886  
+                      l11 75A0                        l12 75AC  
+                      l22 7616                        l40 77D0  
+                      l24 767C                        l16 75D4  
+                      l41 7782                        l33 76DE  
+                      l42 776C                        l34 7748  
+                      l26 76B8                        l35 7722  
+                      l19 75EC                        l28 76AC  
+                      l61 7866                        l53 780A  
+                      l45 77B8                        l29 769E  
+                      l46 7794                        l55 781C  
+                      l39 7764                        l72 78EE  
+                      l64 78B6                        l56 7828  
+                      l73 78F2                        l49 77D8  
+                      l74 78FE                        l66 78E2  
+                      l58 7844                        l91 7A44  
+                      l83 7A6A                        l67 78CC  
+                      l59 7856                        l92 7A40  
+                      l68 78D0                        l77 7914  
+                      l69 78DC                        l87 79DA  
+                      l89 7A1C                        l99 7A6E  
+                      u65 7610                        u90 7676  
+                      u75 764A                        u85 7674  
+               _PomiarPCW 7948         __end_of_PomiarPCW 7A8E  
+                     u341 78A6                       u520 7972  
+                     u360 78AC                       _PFN 023A  
+                     u490 7962                  _WritePCW 791A  
+                     _pbf 0234                       _wff 0EF4  
+                     wreg 000FE8                 _StartRTdS 8BE4  
+               _StartTim1 75C0                 _StartTim2 75D8  
+               _StartTim3 75F0           _ReturnACfromNTC 8EC4  
+                    F1408 0EF0                      F1390 0EEC  
+                    F1391 0EED         __end_of_StartTim1 75C6  
+       __end_of_StartTim2 75DE                      F1396 0EEE  
+       __end_of_StartTim3 75FA                      F1397 0EEF  
+          ?_ReadDataXONLD 00A9            ?_ReadDataXONLI 00A9  
+              _PmrtimFlt1 0EF1                _PmrtimFlt2 0EF2  
+              _PmrtimFlt3 0232                      _DtCO 023F  
+                    _DtCS 0230                      _DtCW 024E  
+                    _DtZW 0236                      _RTdS 8C08  
+                    _RNst 8002                      _pnst 0EF3  
+                    fsr0h 000FEA                      fsr1h 000FE2  
+                    indf0 000FEF                      fsr0l 000FE9  
+                    indf1 000FE7                      fsr1l 000FE1  
+                    fsr2l 000FD9                      btemp 0000  
+         __end_of_PmrTim1 75D8           __end_of_PmrTim2 75F0  
+         __end_of_PmrTim3 761A  __end_of_FiltrPomiarowyCW 7886  
+         _PredkoscZmianCW 7754                _WriteEEPCW 6A5C  
+                   _RdPrt 84DE                used_btemp0 0001  
+              used_btemp1 0001                used_btemp2 0001  
+              used_btemp3 0001                used_btemp4 0001  
+             _IncPmrTimer 7594       __end_of_IncPmrTimer 75C0  
+                   status 000FD8                   _PmrTim1 75C6  
+                 _PmrTim2 75DE                   _PmrTim3 75FC  
+                 __Lparam 00A8                  ?_PmrTim3 00A8  
+        __end_of_PomiarCW 7904                   __ramtop 1000  
+        __end_of_WritePCW 7948   __end_of_PredkoscZmianCW 77F6  
+        _FiltrPomiarowyCW 785C               _InitDataPmr 7588  
+           _ReadDataXONLD 7D72             _ReadDataXONLI 7C80  
+     __end_of_InitDataPmr 7594                    _ReadAC 8DF2  
+                 postinc0 000FEE                 _FltParMod 77F6  
+              _ReadTabNTC 8E5E         __end_of_FltParMod 785C  
+                  tblptrh 000FF7                    tblptrl 000FF6  
+               _GoldenEye 761A         __end_of_GoldenEye 7754  
+               _SetModPCW 7904         __end_of_SetModPCW 791A  

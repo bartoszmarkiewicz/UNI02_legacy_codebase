@@ -1,0 +1,1546 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Fri Nov 21 09:58:02 2014
+
+
+     1                           	processor	18F65J90
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	rbss,global,common,class=COMRAM,space=1,d
+      +                          elta=1
+     5                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     6                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     7  000000                     
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96                           
+    97                           	psect	text
+    98                           ;pic18f85j90.h: 18: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+    99                           ;pic18f85j90.h: 19: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   100                           ;pic18f85j90.h: 20: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   101                           ;pic18f85j90.h: 21: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   102                           ;pic18f85j90.h: 22: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   103                           ;pic18f85j90.h: 23: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   104                           ;pic18f85j90.h: 24: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   105                           ;pic18f85j90.h: 25: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   106                           ;pic18f85j90.h: 26: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   107                           ;pic18f85j90.h: 27: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   108                           ;pic18f85j90.h: 28: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   109                           ;pic18f85j90.h: 29: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   110                           ;pic18f85j90.h: 30: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   111                           ;pic18f85j90.h: 31: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   112                           ;pic18f85j90.h: 32: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   113                           ;pic18f85j90.h: 33: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   114                           ;pic18f85j90.h: 34: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   115                           ;pic18f85j90.h: 35: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   116                           ;pic18f85j90.h: 36: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   117                           ;pic18f85j90.h: 37: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   118                           ;pic18f85j90.h: 38: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   119                           ;pic18f85j90.h: 39: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   120                           ;pic18f85j90.h: 40: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   121                           ;pic18f85j90.h: 41: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   122                           ;pic18f85j90.h: 42: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   123                           ;pic18f85j90.h: 43: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   124                           ;pic18f85j90.h: 44: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   125                           ;pic18f85j90.h: 45: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   126                           ;pic18f85j90.h: 46: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   127                           ;pic18f85j90.h: 47: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   128                           ;pic18f85j90.h: 48: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   129                           ;pic18f85j90.h: 49: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   130                           ;pic18f85j90.h: 50: static near unsigned char BS
+      +                          R @ 0xFE0;
+   131                           ;pic18f85j90.h: 51: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   132                           ;pic18f85j90.h: 52: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   133                           ;pic18f85j90.h: 53: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   134                           ;pic18f85j90.h: 54: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   135                           ;pic18f85j90.h: 55: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   136                           ;pic18f85j90.h: 56: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   137                           ;pic18f85j90.h: 57: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   138                           ;pic18f85j90.h: 58: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   139                           ;pic18f85j90.h: 59: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   140                           ;pic18f85j90.h: 60: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   141                           ;pic18f85j90.h: 62: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   142                           ;pic18f85j90.h: 63: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   143                           ;pic18f85j90.h: 64: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   144                           ;pic18f85j90.h: 65: static near unsigned char LC
+      +                          DREG @ 0xFD2;
+   145                           ;pic18f85j90.h: 66: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   146                           ;pic18f85j90.h: 67: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   147                           ;pic18f85j90.h: 68: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   148                           ;pic18f85j90.h: 69: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   149                           ;pic18f85j90.h: 71: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   150                           ;pic18f85j90.h: 72: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   151                           ;pic18f85j90.h: 73: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   152                           ;pic18f85j90.h: 74: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   153                           ;pic18f85j90.h: 75: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   154                           ;pic18f85j90.h: 76: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   155                           ;pic18f85j90.h: 77: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   156                           ;pic18f85j90.h: 78: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   157                           ;pic18f85j90.h: 79: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   158                           ;pic18f85j90.h: 80: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   159                           ;pic18f85j90.h: 81: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   160                           ;pic18f85j90.h: 82: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   161                           ;pic18f85j90.h: 84: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   162                           ;pic18f85j90.h: 85: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   163                           ;pic18f85j90.h: 86: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   164                           ;pic18f85j90.h: 87: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   165                           ;pic18f85j90.h: 88: static near unsigned char LC
+      +                          DDATA4 @ 0xFBF;
+   166                           ;pic18f85j90.h: 89: static near unsigned char LC
+      +                          DDATA3 @ 0xFBE;
+   167                           ;pic18f85j90.h: 90: static near unsigned char LC
+      +                          DDATA2 @ 0xFBD;
+   168                           ;pic18f85j90.h: 91: static near unsigned char LC
+      +                          DDATA1 @ 0xFBC;
+   169                           ;pic18f85j90.h: 92: static near unsigned char LC
+      +                          DDATA0 @ 0xFBB;
+   170                           ;pic18f85j90.h: 93: static near unsigned char LC
+      +                          DSE5 @ 0xFBA;
+   171                           ;pic18f85j90.h: 94: static near unsigned char LC
+      +                          DSE4 @ 0xFB9;
+   172                           ;pic18f85j90.h: 95: static near unsigned char LC
+      +                          DSE3 @ 0xFB8;
+   173                           ;pic18f85j90.h: 96: static near unsigned char LC
+      +                          DSE2 @ 0xFB7;
+   174                           ;pic18f85j90.h: 97: static near unsigned char LC
+      +                          DSE1 @ 0xFB6;
+   175                           ;pic18f85j90.h: 98: static volatile near unsigne
+      +                          d char CVRCON @ 0xFB5;
+   176                           ;pic18f85j90.h: 99: static volatile near unsigne
+      +                          d char CMCON @ 0xFB4;
+   177                           ;pic18f85j90.h: 100: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   178                           ;pic18f85j90.h: 101: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   179                           ;pic18f85j90.h: 103: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   180                           ;pic18f85j90.h: 104: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   181                           ;pic18f85j90.h: 105: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   182                           ;pic18f85j90.h: 107: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   183                           ;pic18f85j90.h: 108: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   184                           ;pic18f85j90.h: 110: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   185                           ;pic18f85j90.h: 111: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   186                           ;pic18f85j90.h: 113: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   187                           ;pic18f85j90.h: 114: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   188                           ;pic18f85j90.h: 116: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   189                           ;pic18f85j90.h: 117: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   190                           ;pic18f85j90.h: 119: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   191                           ;pic18f85j90.h: 120: static volatile near unsign
+      +                          ed char LCDPS @ 0xFAA;
+   192                           ;pic18f85j90.h: 121: static near unsigned char L
+      +                          CDSE0 @ 0xFA9;
+   193                           ;pic18f85j90.h: 122: static volatile near unsign
+      +                          ed char LCDCON @ 0xFA8;
+   194                           ;pic18f85j90.h: 123: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   195                           ;pic18f85j90.h: 124: static volatile near unsign
+      +                          ed char EECON1 @ 0xFA6;
+   196                           ;pic18f85j90.h: 125: static near unsigned char I
+      +                          PR3 @ 0xFA5;
+   197                           ;pic18f85j90.h: 126: static volatile near unsign
+      +                          ed char PIR3 @ 0xFA4;
+   198  007604                     _StartRTcS:
+   199  000000                     
+   200                           ; _Index loaded to fsr2l
+   201  007604  6ED9               	movwf	fsr2l,c
+   202                           ;rtimer.c: 42: if (Index>1-1) asm("RESET");
+   203  007606  50D9               	movf	fsr2l,w,c
+   204  007608  A4D8               	btfss	status,2,c
+   205  00760A  00FF               	reset		;#
+   206                           ;rtimer.c: 43: cSk[Index]=0;
+   207  00760C  50D9               	movf	fsr2l,w,c
+   208  00760E  0F0F               	addlw	_cSk
+   209  007610  6EE9               	movwf	fsr0l,c
+   210  007612  6AEA               	clrf	fsr0h,c
+   211  007614  6AEF               	clrf	indf0,c
+   212                           ;rtimer.c: 44: }
+   213  007616  0C00               	retlw	0
+   214  007618                     __end_of_StartRTcS:
+   215                           ;rtimer.c: 45: unsigned char RTcS(const unsigned
+      +                           char Index)
+   216                           ;rtimer.c: 46: {
+   217  007618                     _RTcS:
+   218  000000                     
+   219                           ; _Index loaded to fsr2l
+   220  007618  6ED9               	movwf	fsr2l,c
+   221                           ;rtimer.c: 47: if (Index>1-1) asm("RESET");
+   222  00761A  50D9               	movf	fsr2l,w,c
+   223  00761C  A4D8               	btfss	status,2,c
+   224  00761E  00FF               	reset		;#
+   225                           ;rtimer.c: 48: return cSk[Index];
+   226  007620  50D9               	movf	fsr2l,w,c
+   227  007622  0F0F               	addlw	_cSk
+   228  007624  6EE9               	movwf	fsr0l,c
+   229  007626  6AEA               	clrf	fsr0h,c
+   230  007628  50EF               	movf	indf0,w,c
+   231  00762A  0012               	return	
+   232                           ;rtimer.c: 49: }
+   233  00762C                     __end_of_RTcS:
+   234                           ;rtimer.c: 54: void StartRTdS(const unsigned cha
+      +                          r Index)
+   235                           ;rtimer.c: 55: {
+   236  00762C                     _StartRTdS:
+   237  000000                     
+   238                           ; _Index loaded to fsr2l
+   239  00762C  6ED9               	movwf	fsr2l,c
+   240                           ;rtimer.c: 56: if (Index>9-1) asm("RESET");
+   241  00762E  0E08               	movlw	8
+   242  007630  64D9               	cpfsgt	fsr2l,c
+   243  007632  D001               	goto	l11
+   244  007634  00FF               	reset		;#
+   245  007636                     l11:
+   246                           ;rtimer.c: 57: dSk[Index].cS=0;
+   247  007636  50D9               	movf	fsr2l,w,c
+   248  007638  24D9               	addwf	fsr2l,w,c
+   249  00763A  0F21               	addlw	_dSk
+   250  00763C  6EE9               	movwf	fsr0l,c
+   251  00763E  6AEA               	clrf	fsr0h,c
+   252  007640  6AEF               	clrf	indf0,c
+   253                           ;rtimer.c: 58: dSk[Index].dS=0;
+   254  007642  50D9               	movf	fsr2l,w,c
+   255  007644  24D9               	addwf	fsr2l,w,c
+   256  007646  0F22               	addlw	_dSk+1
+   257  007648  6EE9               	movwf	fsr0l,c
+   258  00764A  6AEA               	clrf	fsr0h,c
+   259  00764C  6AEF               	clrf	indf0,c
+   260                           ;rtimer.c: 59: }
+   261  00764E  0C00               	retlw	0
+   262  007650                     __end_of_StartRTdS:
+   263                           ;rtimer.c: 60: unsigned char RTdS(const unsigned
+      +                           char Index)
+   264                           ;rtimer.c: 61: {
+   265  007650                     _RTdS:
+   266  000000                     
+   267                           ; _Index loaded to fsr2l
+   268  007650  6ED9               	movwf	fsr2l,c
+   269                           ;rtimer.c: 62: if (Index>9-1) asm("RESET");
+   270  007652  0E08               	movlw	8
+   271  007654  64D9               	cpfsgt	fsr2l,c
+   272  007656  D001               	goto	l13
+   273  007658  00FF               	reset		;#
+   274  00765A                     l13:
+   275                           ;rtimer.c: 63: return dSk[Index].dS;
+   276  00765A  50D9               	movf	fsr2l,w,c
+   277  00765C  24D9               	addwf	fsr2l,w,c
+   278  00765E  0F22               	addlw	_dSk+1
+   279  007660  6EE9               	movwf	fsr0l,c
+   280  007662  6AEA               	clrf	fsr0h,c
+   281  007664  50EF               	movf	indf0,w,c
+   282  007666  0012               	return	
+   283                           ;rtimer.c: 64: }
+   284  007668                     __end_of_RTdS:
+   285                           ;rtimer.c: 69: void StartRTS(const unsigned char
+      +                           Index)
+   286                           ;rtimer.c: 70: {
+   287  007668                     _StartRTS:
+   288  000000                     
+   289                           ; _Index loaded to fsr2l
+   290  007668  6ED9               	movwf	fsr2l,c
+   291                           ;rtimer.c: 71: if (Index>3-1) asm("RESET");
+   292  00766A  0E02               	movlw	2
+   293  00766C  64D9               	cpfsgt	fsr2l,c
+   294  00766E  D001               	goto	l15
+   295  007670  00FF               	reset		;#
+   296  007672                     l15:
+   297                           ;rtimer.c: 72: Sk[Index].dS=0;
+   298  007672  50D9               	movf	fsr2l,w,c
+   299  007674  24D9               	addwf	fsr2l,w,c
+   300  007676  0F13               	addlw	_Sk
+   301  007678  6EE9               	movwf	fsr0l,c
+   302  00767A  6AEA               	clrf	fsr0h,c
+   303  00767C  6AEF               	clrf	indf0,c
+   304                           ;rtimer.c: 73: Sk[Index].S=0;
+   305  00767E  50D9               	movf	fsr2l,w,c
+   306  007680  24D9               	addwf	fsr2l,w,c
+   307  007682  0F14               	addlw	_Sk+1
+   308  007684  6EE9               	movwf	fsr0l,c
+   309  007686  6AEA               	clrf	fsr0h,c
+   310  007688  6AEF               	clrf	indf0,c
+   311                           ;rtimer.c: 74: }
+   312  00768A  0C00               	retlw	0
+   313  00768C                     __end_of_StartRTS:
+   314                           ;rtimer.c: 75: unsigned char RTS(const unsigned 
+      +                          char Index)
+   315                           ;rtimer.c: 76: {
+   316  00768C                     _RTS:
+   317  000000                     
+   318                           ; _Index loaded to fsr2l
+   319  00768C  6ED9               	movwf	fsr2l,c
+   320                           ;rtimer.c: 77: if (Index>3-1) asm("RESET");
+   321  00768E  0E02               	movlw	2
+   322  007690  64D9               	cpfsgt	fsr2l,c
+   323  007692  D001               	goto	l17
+   324  007694  00FF               	reset		;#
+   325  007696                     l17:
+   326                           ;rtimer.c: 78: return Sk[Index].S;
+   327  007696  50D9               	movf	fsr2l,w,c
+   328  007698  24D9               	addwf	fsr2l,w,c
+   329  00769A  0F14               	addlw	_Sk+1
+   330  00769C  6EE9               	movwf	fsr0l,c
+   331  00769E  6AEA               	clrf	fsr0h,c
+   332  0076A0  50EF               	movf	indf0,w,c
+   333  0076A2  0012               	return	
+   334                           ;rtimer.c: 79: }
+   335  0076A4                     __end_of_RTS:
+   336                           ;rtimer.c: 84: void StartRTM(const unsigned char
+      +                           Index)
+   337                           ;rtimer.c: 85: {
+   338  0076A4                     _StartRTM:
+   339  000000                     
+   340                           ; _Index loaded to fsr2l
+   341  0076A4  6ED9               	movwf	fsr2l,c
+   342                           ;rtimer.c: 86: if (Index>4-1) asm("RESET");
+   343  0076A6  0E03               	movlw	3
+   344  0076A8  64D9               	cpfsgt	fsr2l,c
+   345  0076AA  D001               	goto	l19
+   346  0076AC  00FF               	reset		;#
+   347  0076AE                     l19:
+   348                           ;rtimer.c: 87: Mn[Index].S=0;
+   349  0076AE  50D9               	movf	fsr2l,w,c
+   350  0076B0  24D9               	addwf	fsr2l,w,c
+   351  0076B2  0F19               	addlw	_Mn
+   352  0076B4  6EE9               	movwf	fsr0l,c
+   353  0076B6  6AEA               	clrf	fsr0h,c
+   354  0076B8  6AEF               	clrf	indf0,c
+   355                           ;rtimer.c: 88: Mn[Index].M=0;
+   356  0076BA  50D9               	movf	fsr2l,w,c
+   357  0076BC  24D9               	addwf	fsr2l,w,c
+   358  0076BE  0F1A               	addlw	_Mn+1
+   359  0076C0  6EE9               	movwf	fsr0l,c
+   360  0076C2  6AEA               	clrf	fsr0h,c
+   361  0076C4  6AEF               	clrf	indf0,c
+   362                           ;rtimer.c: 89: }
+   363  0076C6  0C00               	retlw	0
+   364  0076C8                     __end_of_StartRTM:
+   365                           ;rtimer.c: 90: unsigned char RTM(const unsigned 
+      +                          char Index)
+   366                           ;rtimer.c: 91: {
+   367  0076C8                     _RTM:
+   368  000000                     
+   369                           ; _Index loaded to fsr2l
+   370  0076C8  6ED9               	movwf	fsr2l,c
+   371                           ;rtimer.c: 92: if (Index>4-1) asm("RESET");
+   372  0076CA  0E03               	movlw	3
+   373  0076CC  64D9               	cpfsgt	fsr2l,c
+   374  0076CE  D001               	goto	l21
+   375  0076D0  00FF               	reset		;#
+   376  0076D2                     l21:
+   377                           ;rtimer.c: 93: return Mn[Index].M;
+   378  0076D2  50D9               	movf	fsr2l,w,c
+   379  0076D4  24D9               	addwf	fsr2l,w,c
+   380  0076D6  0F1A               	addlw	_Mn+1
+   381  0076D8  6EE9               	movwf	fsr0l,c
+   382  0076DA  6AEA               	clrf	fsr0h,c
+   383  0076DC  50EF               	movf	indf0,w,c
+   384  0076DE  0012               	return	
+   385                           ;rtimer.c: 94: }
+   386  0076E0                     __end_of_RTM:
+   387                           ;rtimer.c: 95: unsigned char RTMs(const unsigned
+      +                           char Index)
+   388                           ;rtimer.c: 96: {
+   389  0076E0                     _RTMs:
+   390  000000                     
+   391                           ; _Index loaded to fsr2l
+   392  0076E0  6ED9               	movwf	fsr2l,c
+   393                           ;rtimer.c: 97: if (Index>4-1) asm("RESET");
+   394  0076E2  0E03               	movlw	3
+   395  0076E4  64D9               	cpfsgt	fsr2l,c
+   396  0076E6  D001               	goto	l23
+   397  0076E8  00FF               	reset		;#
+   398  0076EA                     l23:
+   399                           ;rtimer.c: 98: return Mn[Index].S;
+   400  0076EA  50D9               	movf	fsr2l,w,c
+   401  0076EC  24D9               	addwf	fsr2l,w,c
+   402  0076EE  0F19               	addlw	_Mn
+   403  0076F0  6EE9               	movwf	fsr0l,c
+   404  0076F2  6AEA               	clrf	fsr0h,c
+   405  0076F4  50EF               	movf	indf0,w,c
+   406  0076F6  0012               	return	
+   407                           ;rtimer.c: 99: }
+   408  0076F8                     __end_of_RTMs:
+   409                           ;rtimer.c: 119: void IncRTimer(void)
+   410                           ;rtimer.c: 120: {
+   411  0076F8                     _IncRTimer:
+   412  000000                     
+   413                           ;rtimer.c: 122: unsigned char i;
+   414  0076F8  6AD9               	clrf	fsr2l,c
+   415  0076FA                     l25:
+   416                           ;rtimer.c: 129: if(cSk[i]<255) cSk[i]++;
+   417  0076FA  50D9               	movf	fsr2l,w,c
+   418  0076FC  0F0F               	addlw	_cSk
+   419  0076FE  6EE9               	movwf	fsr0l,c
+   420  007700  6AEA               	clrf	fsr0h,c
+   421  007702  50EF               	movf	indf0,w,c
+   422  007704  6E00               	movwf	btemp,c
+   423  007706  2800               	incf	btemp,w,c
+   424  007708  E005               	bz	l28
+   425  00770A  50D9               	movf	fsr2l,w,c
+   426  00770C  0F0F               	addlw	_cSk
+   427  00770E  6EE9               	movwf	fsr0l,c
+   428  007710  6AEA               	clrf	fsr0h,c
+   429  007712  2AEF               	incf	indf0,f,c
+   430  007714                     l28:
+   431  007714  2AD9               	incf	fsr2l,f,c
+   432  007716  0E00               	movlw	0
+   433  007718  64D9               	cpfsgt	fsr2l,c
+   434  00771A  D7EF               	goto	l25
+   435                           ;rtimer.c: 135: for(i=0;i<9;i++)
+   436  00771C  6AD9               	clrf	fsr2l,c
+   437  00771E                     l29:
+   438                           ;rtimer.c: 136: {
+   439  00771E  50D9               	movf	fsr2l,w,c
+   440  007720  24D9               	addwf	fsr2l,w,c
+   441  007722  0F21               	addlw	_dSk
+   442  007724  6EE9               	movwf	fsr0l,c
+   443  007726  6AEA               	clrf	fsr0h,c
+   444  007728  2AEF               	incf	indf0,f,c
+   445                           ;rtimer.c: 138: if(dSk[i].cS>9)
+   446  00772A  50D9               	movf	fsr2l,w,c
+   447  00772C  24D9               	addwf	fsr2l,w,c
+   448  00772E  0F21               	addlw	_dSk
+   449  007730  6EE9               	movwf	fsr0l,c
+   450  007732  6AEA               	clrf	fsr0h,c
+   451  007734  50EF               	movf	indf0,w,c
+   452  007736  6E00               	movwf	btemp,c
+   453  007738  0E0A               	movlw	10
+   454  00773A  5C00               	subwf	btemp,w,c
+   455  00773C  E315               	bnc	l32
+   456                           ;rtimer.c: 139: {
+   457  00773E  50D9               	movf	fsr2l,w,c
+   458  007740  24D9               	addwf	fsr2l,w,c
+   459  007742  0F21               	addlw	_dSk
+   460  007744  6EE9               	movwf	fsr0l,c
+   461  007746  6AEA               	clrf	fsr0h,c
+   462  007748  6AEF               	clrf	indf0,c
+   463                           ;rtimer.c: 141: if(dSk[i].dS<255) dSk[i].dS++;
+   464  00774A  50D9               	movf	fsr2l,w,c
+   465  00774C  24D9               	addwf	fsr2l,w,c
+   466  00774E  0F22               	addlw	_dSk+1
+   467  007750  6EE9               	movwf	fsr0l,c
+   468  007752  6AEA               	clrf	fsr0h,c
+   469  007754  50EF               	movf	indf0,w,c
+   470  007756  6E00               	movwf	btemp,c
+   471  007758  2800               	incf	btemp,w,c
+   472  00775A  E006               	bz	l32
+   473  00775C  50D9               	movf	fsr2l,w,c
+   474  00775E  24D9               	addwf	fsr2l,w,c
+   475  007760  0F22               	addlw	_dSk+1
+   476  007762  6EE9               	movwf	fsr0l,c
+   477  007764  6AEA               	clrf	fsr0h,c
+   478  007766  2AEF               	incf	indf0,f,c
+   479  007768                     l32:
+   480  007768  2AD9               	incf	fsr2l,f,c
+   481  00776A  0E08               	movlw	8
+   482  00776C  64D9               	cpfsgt	fsr2l,c
+   483  00776E  D7D7               	goto	l29
+   484                           ;rtimer.c: 142: }
+   485  007770  2A10               	incf	_CommRT,f,c	;volatile
+   486                           ;rtimer.c: 149: if(CommRT.cS>9)
+   487  007772  0E09               	movlw	9
+   488  007774  6410               	cpfsgt	_CommRT,c	;volatile
+   489  007776  0C09               	retlw	9
+   490                           ;rtimer.c: 150: {
+   491  007778  6A10               	clrf	_CommRT,c	;volatile
+   492                           ;rtimer.c: 152: CommRT.dS++;
+   493  00777A  2A11               	incf	_CommRT+1,f,c	;volatile
+   494                           ;rtimer.c: 157: for(i=0;i<3;i++)
+   495  00777C  6AD9               	clrf	fsr2l,c
+   496  00777E                     l35:
+   497                           ;rtimer.c: 158: {
+   498  00777E  50D9               	movf	fsr2l,w,c
+   499  007780  24D9               	addwf	fsr2l,w,c
+   500  007782  0F13               	addlw	_Sk
+   501  007784  6EE9               	movwf	fsr0l,c
+   502  007786  6AEA               	clrf	fsr0h,c
+   503  007788  2AEF               	incf	indf0,f,c
+   504                           ;rtimer.c: 160: if(Sk[i].dS>9)
+   505  00778A  50D9               	movf	fsr2l,w,c
+   506  00778C  24D9               	addwf	fsr2l,w,c
+   507  00778E  0F13               	addlw	_Sk
+   508  007790  6EE9               	movwf	fsr0l,c
+   509  007792  6AEA               	clrf	fsr0h,c
+   510  007794  50EF               	movf	indf0,w,c
+   511  007796  6E00               	movwf	btemp,c
+   512  007798  0E0A               	movlw	10
+   513  00779A  5C00               	subwf	btemp,w,c
+   514  00779C  E315               	bnc	l38
+   515                           ;rtimer.c: 161: {
+   516  00779E  50D9               	movf	fsr2l,w,c
+   517  0077A0  24D9               	addwf	fsr2l,w,c
+   518  0077A2  0F13               	addlw	_Sk
+   519  0077A4  6EE9               	movwf	fsr0l,c
+   520  0077A6  6AEA               	clrf	fsr0h,c
+   521  0077A8  6AEF               	clrf	indf0,c
+   522                           ;rtimer.c: 163: if(Sk[i].S<255) Sk[i].S++;
+   523  0077AA  50D9               	movf	fsr2l,w,c
+   524  0077AC  24D9               	addwf	fsr2l,w,c
+   525  0077AE  0F14               	addlw	_Sk+1
+   526  0077B0  6EE9               	movwf	fsr0l,c
+   527  0077B2  6AEA               	clrf	fsr0h,c
+   528  0077B4  50EF               	movf	indf0,w,c
+   529  0077B6  6E00               	movwf	btemp,c
+   530  0077B8  2800               	incf	btemp,w,c
+   531  0077BA  E006               	bz	l38
+   532  0077BC  50D9               	movf	fsr2l,w,c
+   533  0077BE  24D9               	addwf	fsr2l,w,c
+   534  0077C0  0F14               	addlw	_Sk+1
+   535  0077C2  6EE9               	movwf	fsr0l,c
+   536  0077C4  6AEA               	clrf	fsr0h,c
+   537  0077C6  2AEF               	incf	indf0,f,c
+   538  0077C8                     l38:
+   539  0077C8  2AD9               	incf	fsr2l,f,c
+   540  0077CA  0E02               	movlw	2
+   541  0077CC  64D9               	cpfsgt	fsr2l,c
+   542  0077CE  D7D7               	goto	l35
+   543                           ;rtimer.c: 164: }
+   544  0077D0  0E09               	movlw	9
+   545  0077D2  6411               	cpfsgt	_CommRT+1,c	;volatile
+   546  0077D4  0C09               	retlw	9
+   547                           ;rtimer.c: 169: {
+   548  0077D6  6A11               	clrf	_CommRT+1,c	;volatile
+   549                           ;rtimer.c: 171: CommRT.S++;
+   550  0077D8  2A12               	incf	_CommRT+2,f,c	;volatile
+   551                           ;rtimer.c: 176: for(i=0;i<4;i++)
+   552  0077DA  6AD9               	clrf	fsr2l,c
+   553  0077DC                     l41:
+   554                           ;rtimer.c: 177: {
+   555  0077DC  50D9               	movf	fsr2l,w,c
+   556  0077DE  24D9               	addwf	fsr2l,w,c
+   557  0077E0  0F19               	addlw	_Mn
+   558  0077E2  6EE9               	movwf	fsr0l,c
+   559  0077E4  6AEA               	clrf	fsr0h,c
+   560  0077E6  2AEF               	incf	indf0,f,c
+   561                           ;rtimer.c: 179: if(Mn[i].S>59)
+   562  0077E8  50D9               	movf	fsr2l,w,c
+   563  0077EA  24D9               	addwf	fsr2l,w,c
+   564  0077EC  0F19               	addlw	_Mn
+   565  0077EE  6EE9               	movwf	fsr0l,c
+   566  0077F0  6AEA               	clrf	fsr0h,c
+   567  0077F2  50EF               	movf	indf0,w,c
+   568  0077F4  6E00               	movwf	btemp,c
+   569  0077F6  0E3C               	movlw	60
+   570  0077F8  5C00               	subwf	btemp,w,c
+   571  0077FA  E315               	bnc	l44
+   572                           ;rtimer.c: 180: {
+   573  0077FC  50D9               	movf	fsr2l,w,c
+   574  0077FE  24D9               	addwf	fsr2l,w,c
+   575  007800  0F19               	addlw	_Mn
+   576  007802  6EE9               	movwf	fsr0l,c
+   577  007804  6AEA               	clrf	fsr0h,c
+   578  007806  6AEF               	clrf	indf0,c
+   579                           ;rtimer.c: 182: if(Mn[i].M<255) Mn[i].M++;
+   580  007808  50D9               	movf	fsr2l,w,c
+   581  00780A  24D9               	addwf	fsr2l,w,c
+   582  00780C  0F1A               	addlw	_Mn+1
+   583  00780E  6EE9               	movwf	fsr0l,c
+   584  007810  6AEA               	clrf	fsr0h,c
+   585  007812  50EF               	movf	indf0,w,c
+   586  007814  6E00               	movwf	btemp,c
+   587  007816  2800               	incf	btemp,w,c
+   588  007818  E006               	bz	l44
+   589  00781A  50D9               	movf	fsr2l,w,c
+   590  00781C  24D9               	addwf	fsr2l,w,c
+   591  00781E  0F1A               	addlw	_Mn+1
+   592  007820  6EE9               	movwf	fsr0l,c
+   593  007822  6AEA               	clrf	fsr0h,c
+   594  007824  2AEF               	incf	indf0,f,c
+   595  007826                     l44:
+   596  007826  2AD9               	incf	fsr2l,f,c
+   597  007828  0E03               	movlw	3
+   598  00782A  64D9               	cpfsgt	fsr2l,c
+   599  00782C  D7D7               	goto	l41
+   600                           ;rtimer.c: 183: }
+   601  00782E  0E3B               	movlw	59
+   602  007830  6412               	cpfsgt	_CommRT+2,c	;volatile
+   603  007832  0C3B               	retlw	59
+   604                           ;rtimer.c: 188: {
+   605  007834  6A12               	clrf	_CommRT+2,c	;volatile
+   606                           ;rtimer.c: 204: }
+   607  007836  0012               	return	
+   608  007838                     __end_of_IncRTimer:
+   609  000000                     
+   610  000000                     
+   611  000000                     
+   612  000000                     
+   613  000000                     
+   614  000000                     
+   615  000000                     
+   616  000000                     
+   617  000000                     
+   618  000000                     
+   619  000000                     
+   620  000000                     
+   621  000000                     
+   622  000000                     
+   623  000000                     
+   624  000000                     
+   625  000000                     
+   626  000000                     
+   627  000000                     
+   628  000000                     
+   629  000000                     
+   630  000000                     
+   631  000000                     
+   632  000000                     
+   633  000000                     
+   634  000000                     
+   635  000000                     
+   636  000000                     
+   637  000000                     
+   638  000000                     
+   639  000000                     
+   640  000000                     
+   641  000000                     
+   642  000000                     
+   643  000000                     
+   644  000000                     
+   645  000000                     
+   646  000000                     
+   647  000000                     
+   648  000000                     
+   649  000000                     
+   650  000000                     
+   651  000000                     
+   652  000000                     
+   653  000000                     
+   654  000000                     
+   655  000000                     
+   656  000000                     
+   657  000000                     
+   658  000000                     
+   659  000000                     
+   660  000000                     
+   661  000000                     
+   662  000000                     
+   663  000000                     
+   664  000000                     
+   665  000000                     
+   666  000000                     
+   667  000000                     
+   668  000000                     
+   669  000000                     
+   670  000000                     
+   671  000000                     
+   672  000000                     
+   673  000000                     
+   674  000000                     
+   675  000000                     
+   676  000000                     
+   677  000000                     
+   678  000000                     
+   679  000000                     
+   680  000000                     
+   681  000000                     
+   682  000000                     
+   683  000000                     
+   684  000000                     
+   685  000000                     
+   686  000000                     
+   687  000000                     
+   688  000000                     
+   689  000000                     
+   690  000000                     
+   691  000000                     
+   692  000000                     
+   693  000000                     
+   694  000000                     
+   695  000000                     
+   696  000000                     
+   697  000000                     
+   698  000000                     
+   699  000000                     
+   700  000000                     
+   701  000000                     
+   702  000000                     
+   703  000000                     
+   704  000000                     
+   705  000000                     
+   706  000000                     
+   707  000000                     
+   708  000000                     
+   709  000000                     
+   710  000000                     
+   711  000000                     
+   712  000000                     
+   713  000000                     
+   714  000000                     
+   715  000000                     
+   716  000000                     
+   717  000000                     
+   718  000000                     
+   719  000000                     
+   720  000000                     
+   721  000000                     
+   722  000000                     
+   723  000000                     
+   724  000000                     
+   725  000000                     
+   726  000000                     
+   727  000000                     
+   728  000000                     
+   729  000000                     
+   730  000000                     
+   731  000000                     
+   732  000000                     
+   733  000000                     
+   734  000000                     
+   735  000000                     
+   736  000000                     
+   737  000000                     
+   738  000000                     
+   739  000000                     
+   740  000000                     
+   741  000000                     
+   742  000000                     
+   743  000000                     
+   744  000000                     
+   745  000000                     
+   746  000000                     
+   747  000000                     
+   748  000000                     
+   749  000000                     
+   750  000000                     
+   751  000000                     
+   752  000000                     
+   753  000000                     
+   754  000000                     
+   755  000000                     
+   756  000000                     
+   757  000000                     
+   758  000000                     
+   759  000000                     
+   760  000000                     
+   761  000000                     
+   762  000000                     
+   763  000000                     
+   764  000000                     
+   765  000000                     
+   766  000000                     
+   767  000000                     
+   768  000000                     
+   769  000000                     
+   770  000000                     
+   771  000000                     
+   772  000000                     
+   773  000000                     
+   774  000000                     
+   775  000000                     
+   776  000000                     
+   777  000000                     
+   778  000000                     
+   779  000000                     
+   780  000000                     
+   781  000000                     
+   782  000000                     
+   783  000000                     
+   784  000000                     
+   785  000000                     
+   786  000000                     
+   787  000000                     
+   788  000000                     
+   789  000000                     
+   790  000000                     
+   791  000000                     
+   792  000000                     
+   793  000000                     
+   794  000000                     
+   795  000000                     
+   796  000000                     
+   797  000000                     
+   798  000000                     
+   799  000000                     
+   800  000000                     
+   801  000000                     
+   802  000000                     
+   803  000000                     
+   804  000000                     
+   805  000000                     
+   806  000000                     
+   807  000000                     
+   808  000000                     
+   809  000000                     
+   810  000000                     
+   811  000000                     
+   812  000000                     
+   813  000000                     
+   814  000000                     
+   815  000000                     
+   816  000000                     
+   817  000000                     
+   818  000000                     
+   819  000000                     
+   820  000000                     
+   821  000000                     
+   822  000000                     
+   823  000000                     
+   824  000000                     
+   825  000000                     
+   826  000000                     
+   827  000000                     
+   828  000000                     
+   829  000000                     
+   830  000000                     
+   831  000000                     
+   832  000000                     
+   833  000000                     
+   834  000000                     
+   835  000000                     
+   836  000000                     
+   837  000000                     
+   838  000000                     
+   839  000000                     
+   840  000000                     
+   841  000000                     
+   842  000000                     
+   843  000000                     
+   844  000000                     
+   845  000000                     
+   846  000000                     
+   847  000000                     
+   848  000000                     
+   849  000000                     
+   850  000000                     
+   851  000000                     
+   852  000000                     
+   853  000000                     
+   854  000000                     
+   855  000000                     
+   856  000000                     
+   857  000000                     
+   858  000000                     
+   859  000000                     
+   860  000000                     
+   861  000000                     
+   862  000000                     
+   863  000000                     
+   864  000000                     
+   865  000000                     
+   866  000000                     
+   867  000000                     
+   868  000000                     
+   869  000000                     
+   870  000000                     
+   871  000000                     
+   872  000000                     
+   873  000000                     
+   874  000000                     
+   875  000000                     
+   876  000000                     
+   877  000000                     
+   878  000000                     
+   879  000000                     
+   880  000000                     
+   881  000000                     
+   882  000000                     
+   883  000000                     
+   884  000000                     
+   885  000000                     
+   886  000000                     
+   887  000000                     
+   888  000000                     
+   889  000000                     
+   890  000000                     
+   891  000000                     
+   892  000000                     
+   893  000000                     
+   894  000000                     
+   895  000000                     
+   896  000000                     
+   897  000000                     
+   898  000000                     
+   899  000000                     
+   900  000000                     
+   901  000000                     
+   902  000000                     
+   903  000000                     
+   904  000000                     
+   905  000000                     
+   906  000000                     
+   907  000000                     
+   908  000000                     
+   909  000000                     
+   910  000000                     
+   911  000000                     
+   912  000000                     
+   913  000000                     
+   914  000000                     
+   915  000000                     
+   916  000000                     
+   917  000000                     
+   918  000000                     
+   919  000000                     
+   920  000000                     
+   921  000000                     
+   922  000000                     
+   923  000000                     
+   924  000000                     
+   925  000000                     
+   926  000000                     
+   927  000000                     
+   928  000000                     
+   929  000000                     
+   930  000000                     
+   931  000000                     
+   932  000000                     
+   933  000000                     
+   934  000000                     
+   935  000000                     
+   936  000000                     
+   937  000000                     
+   938  000000                     
+   939  000000                     
+   940  000000                     
+   941  000000                     
+   942  000000                     
+   943  000000                     
+   944  000000                     
+   945  000000                     
+   946  000000                     
+   947  000000                     
+   948  000000                     
+   949  000000                     
+   950  000000                     
+   951  000000                     
+   952  000000                     
+   953  000000                     
+   954  000000                     
+   955  000000                     
+   956  000000                     
+   957  000000                     
+   958  000000                     
+   959  000000                     
+   960  000000                     
+   961  000000                     
+   962  000000                     
+   963  000000                     
+   964  000000                     
+   965  000000                     
+   966  000000                     
+   967  000000                     
+   968  000000                     
+   969  000000                     
+   970  000000                     
+   971  000000                     
+   972  000000                     
+   973  000000                     
+   974  000000                     
+   975  000000                     
+   976  000000                     
+   977  000000                     
+   978  000000                     
+   979  000000                     
+   980  000000                     
+   981  000000                     
+   982  000000                     
+   983  000000                     
+   984  000000                     
+   985  000000                     
+   986  000000                     
+   987  000000                     
+   988  000000                     
+   989  000000                     
+   990  000000                     
+   991  000000                     
+   992  000000                     
+   993  000000                     
+   994  000000                     
+   995  000000                     
+   996  000000                     
+   997  000000                     
+   998  000000                     
+   999  000000                     
+  1000  000000                     
+  1001  000000                     
+  1002  000000                     
+  1003  000000                     
+  1004  000000                     
+  1005  000000                     
+  1006  000000                     
+  1007  000000                     
+  1008  000000                     
+  1009  000000                     
+  1010  000000                     
+  1011  000000                     
+  1012  000000                     
+  1013  000000                     
+  1014  000000                     
+  1015  000000                     
+  1016  000000                     
+  1017  000000                     
+  1018  000000                     
+  1019  000000                     
+  1020  000000                     
+  1021  000000                     
+  1022  000000                     
+  1023  000000                     
+  1024  000000                     
+  1025  000000                     
+  1026  000000                     
+  1027  000000                     
+  1028  000000                     
+  1029  000000                     
+  1030  000000                     
+  1031  000000                     
+  1032  000000                     
+  1033  000000                     
+  1034  000000                     
+  1035  000000                     
+  1036  000000                     
+  1037  000000                     
+  1038  000000                     
+  1039  000000                     
+  1040  000000                     
+  1041  000000                     
+  1042  000000                     
+  1043  000000                     
+  1044  000000                     
+  1045  000000                     
+  1046  000000                     
+  1047  000000                     
+  1048  000000                     
+  1049  000000                     
+  1050  000000                     
+  1051  000000                     
+  1052  000000                     
+  1053  000000                     
+  1054  000000                     
+  1055  000000                     
+  1056  000000                     
+  1057  000000                     
+  1058  000000                     
+  1059  000000                     
+  1060  000000                     
+  1061  000000                     
+  1062  000000                     
+  1063  000000                     
+  1064  000000                     
+  1065  000000                     
+  1066  000000                     
+  1067  000000                     
+  1068  000000                     
+  1069  000000                     
+  1070  000000                     
+  1071  000000                     
+  1072  000000                     
+  1073  000000                     
+  1074  000000                     
+  1075  000000                     
+  1076  000000                     
+  1077  000000                     
+  1078  000000                     
+  1079  000000                     
+  1080  000000                     
+  1081  000000                     
+  1082  000000                     
+  1083  000000                     
+  1084  000000                     
+  1085  000000                     
+  1086  000000                     
+  1087  000000                     
+  1088  000000                     
+  1089  000000                     
+  1090  000000                     
+  1091  000000                     
+  1092  000000                     
+  1093  000000                     
+  1094  000000                     
+  1095  000000                     
+  1096  000000                     
+  1097  000000                     
+  1098  000000                     
+  1099  000000                     
+  1100  000000                     
+  1101  000000                     
+  1102  000000                     
+  1103  000000                     
+  1104  000000                     
+  1105  000000                     
+  1106  000000                     
+  1107  000000                     
+  1108  000000                     
+  1109  000000                     
+  1110  000000                     
+  1111  000000                     
+  1112  000000                     
+  1113  000000                     
+  1114  000000                     
+  1115  000000                     
+  1116  000000                     
+  1117  000000                     
+  1118  000000                     
+  1119  000000                     
+  1120  000000                     
+  1121  000000                     
+  1122  000000                     
+  1123  000000                     
+  1124  000000                     
+  1125  000000                     
+  1126  000000                     
+  1127  000000                     
+  1128  000000                     
+  1129  000000                     
+  1130  000000                     
+  1131  000000                     
+  1132  000000                     
+  1133  000000                     
+  1134  000000                     
+  1135  000000                     
+  1136  000000                     
+  1137  000000                     
+  1138  000000                     
+  1139  000000                     
+  1140  000000                     
+  1141  000000                     
+  1142  000000                     
+  1143  000000                     
+  1144  000000                     
+  1145  000000                     
+  1146  000000                     
+  1147  000000                     
+  1148  000000                     
+  1149  000000                     
+  1150  000000                     
+  1151  000000                     
+  1152  000000                     
+  1153  000000                     
+  1154  000000                     
+  1155  000000                     
+  1156  000000                     
+  1157  000000                     
+  1158  000000                     
+  1159  000000                     
+  1160  000000                     
+  1161  000000                     
+  1162  000000                     
+  1163  000000                     
+  1164  000000                     
+  1165  000000                     
+  1166  000000                     
+  1167  000000                     
+  1168  000000                     
+  1169  000000                     
+  1170  000000                     
+  1171  000000                     
+  1172  000000                     
+  1173  000000                     
+  1174  000000                     
+  1175  000000                     
+  1176  000000                     
+  1177  000000                     
+  1178  000000                     
+  1179  000000                     
+  1180  000000                     
+  1181  000000                     
+  1182  000000                     
+  1183  000000                     
+  1184  000000                     
+  1185  000000                     
+  1186  000000                     
+  1187  000000                     
+  1188  000000                     
+  1189  000000                     
+  1190  000000                     
+  1191  000000                     
+  1192  000000                     
+  1193  000000                     
+  1194  000000                     
+  1195  000000                     
+  1196  000000                     
+  1197  000000                     
+  1198  000000                     
+  1199  000000                     
+  1200  000000                     
+  1201  000000                     
+  1202  000000                     
+  1203  000000                     
+  1204  000000                     
+  1205  000000                     
+  1206  000000                     
+  1207  000000                     
+  1208  000000                     
+  1209  000000                     
+  1210  000000                     
+  1211  000000                     
+  1212  000000                     
+  1213  000000                     
+  1214  000000                     
+  1215  000000                     
+  1216  000000                     
+  1217  000000                     
+  1218  000000                     
+  1219  000000                     
+  1220  000000                     
+  1221  000000                     
+  1222  000000                     
+  1223  000000                     
+  1224  000000                     
+  1225  000000                     
+  1226  000000                     
+  1227  000000                     
+  1228  000000                     
+  1229  000000                     
+  1230  000000                     
+  1231  000000                     
+  1232  000000                     
+  1233  000000                     
+  1234  000000                     
+  1235  000000                     
+  1236  000000                     
+  1237  000000                     
+  1238  000000                     
+  1239  000000                     
+  1240  000000                     
+  1241  000000                     
+  1242  000000                     
+  1243  000000                     
+  1244  000000                     
+  1245  000000                     
+  1246  000000                     
+  1247  000000                     
+  1248  000000                     
+  1249  000000                     
+  1250  000000                     
+  1251  000000                     
+  1252  000000                     
+  1253  000000                     
+  1254  000000                     
+  1255  000000                     
+  1256  000000                     
+  1257  000000                     
+  1258  000000                     
+  1259  000000                     
+  1260  000000                     
+  1261  000000                     
+  1262  000000                     
+  1263  000000                     
+  1264  000000                     
+  1265  000000                     
+  1266  000000                     
+  1267  000000                     
+  1268  000000                     
+  1269  000000                     
+  1270  000000                     
+  1271  000000                     
+  1272  000000                     
+  1273  000000                     
+  1274  000000                     
+  1275  000000                     
+  1276  000000                     
+  1277  000000                     
+  1278  000000                     
+  1279  000000                     
+  1280  000000                     
+  1281  000000                     
+  1282  000000                     
+  1283  000000                     
+  1284  000000                     
+  1285  000000                     
+  1286  000000                     
+  1287  000000                     
+  1288  000000                     
+  1289  000000                     
+  1290  000000                     
+  1291  000000                     
+  1292  000000                     
+  1293  000000                     
+  1294  000000                     
+  1295  000000                     
+  1296  000000                     
+  1297  000000                     
+  1298  000000                     
+  1299  000000                     
+  1300  000000                     
+  1301  000000                     
+  1302  000000                     
+  1303  000000                     
+  1304  000000                     
+  1305  000000                     
+  1306  000000                     
+  1307  000000                     
+  1308  000000                     
+  1309  000000                     
+  1310  000000                     
+  1311  000000                     
+  1312  000000                     
+  1313  000000                     
+  1314  000000                     
+  1315  000000                     
+  1316  000000                     
+  1317  000000                     
+  1318  000000                     
+  1319  000000                     
+  1320  000000                     
+  1321  000000                     
+  1322  000000                     
+  1323  000000                     
+  1324  000000                     
+  1325  000000                     
+  1326  000000                     
+  1327  000000                     
+  1328  000000                     
+  1329  000000                     
+  1330  000000                     
+  1331  000000                     
+  1332  000000                     
+  1333  000000                     
+  1334  000000                     
+  1335  000000                     
+  1336  000000                     
+  1337  000000                     
+  1338  000000                     
+  1339  000000                     
+  1340  000000                     
+  1341  000000                     
+  1342  000000                     
+  1343  000000                     
+  1344  000000                     
+  1345  000000                     
+  1346  000000                     
+  1347  000000                     
+  1348  000000                     
+  1349  000000                     
+  1350  000000                     
+  1351  000000                     
+  1352  000000                     
+  1353  000000                     
+  1354  000000                     
+  1355  000000                     
+  1356  000000                     
+  1357  000000                     
+  1358  000000                     
+  1359  000000                     
+  1360  000000                     
+  1361  000000                     
+  1362  000000                     
+  1363  000000                     
+  1364  000000                     
+  1365  000000                     
+  1366  000000                     
+  1367  000000                     
+  1368  000000                     
+  1369  000000                     
+  1370  000000                     
+  1371  000000                     
+  1372  000000                     
+  1373  000000                     
+  1374  000000                     
+  1375  000000                     
+  1376  000000                     
+  1377  000000                     
+  1378  000000                     
+  1379  000000                     
+  1380                           
+  1381                           	psect	rbss
+  1382  00000F                     _cSk:
+  1383  00000F                     	ds	1
+  1384  000000                     
+  1385  000000                     
+  1386  000000                     
+  1387  000000                     
+  1388  000000                     
+  1389  000000                     
+  1390  000000                     
+  1391  00000F                     _CommRT:
+  1392  00000F                     	ds	3
+  1393  00000F                     _Sk:
+  1394  00000F                     	ds	6
+  1395  00000F                     _Mn:
+  1396  00000F                     	ds	8
+  1397  00000F                     _dSk:
+  1398  00000F                     	ds	18
+  1399                           
+  1400                           	psect	temp
+  1401  000000                     btemp:
+  1402  000000                     	ds	1
+  1403                           indf0	equ	0xFEF
+  1404                           fsr0h	equ	0xFEA
+  1405                           fsr0l	equ	0xFE9
+  1406                           fsr2l	equ	0xFD9
+  1407                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Fri Nov 21 09:58:02 2014
+
+               l11 7636                 l21 76D2                 l13 765A  
+               l23 76EA                 l15 7672                 l32 7768  
+               l41 77DC                 l25 76FA                 l17 7696  
+               l35 777E                 l19 76AE                 l44 7826  
+               l28 7714                 l29 771E                 l38 77C8  
+               _Mn 0019                 _Sk 0013           _StartRTM 76A4  
+         _StartRTS 7668                _RTM 76C8                _RTS 768C  
+              _cSk 000F                _dSk 0021          _StartRTcS 7604  
+        _StartRTdS 762C  __end_of_StartRTcS 7618  __end_of_StartRTdS 7650  
+             _RTMs 76E0               _RTcS 7618               _RTdS 7650  
+             fsr0h 000FEA               indf0 000FEF               fsr0l 000FE9  
+             fsr2l 000FD9               btemp 0000         used_btemp0 0001  
+            status 000FD8            __Lparam 00CF   __end_of_StartRTM 76C8  
+ __end_of_StartRTS 768C            __ramtop 0800       __end_of_RTMs 76F8  
+     __end_of_RTcS 762C       __end_of_RTdS 7668             _CommRT 0010  
+      __end_of_RTM 76E0        __end_of_RTS 76A4          _IncRTimer 76F8  
+__end_of_IncRTimer 7838  

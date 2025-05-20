@@ -1,0 +1,237 @@
+     1: /*modulator.c*/
+     2: //Algorytm modulacji
+     3: /*---------------------------------------------------------------------------------*/
+     4: /*---------------------------------------------------------------------------------*/
+     5: #include <pic18.h>
+     6: #include "global.h"                     //parametry globalne
+     7: #include "modulator.h"          //parametry lokalne
+     8: TWarunek Warunek[5];            //warunki temperaturowe
+     9: TkWarunek kWarunek[5];          //warunki temperaturowe z wynikowymi wartosciami parametru k
+    10: 
+    11: //--------------------------------------------------------------
+    12: //--------------------------------------------------------------
+    13: //Tabela wartosci wypelnien PWM odpowiadajacych wartosciom procentowym (co 5%)
+    14: //Wartosci podane dla gazu ziemnego i plynnego
+    15: unsigned char PobProcToPWM[2][21]={
+    16:                                                                 0,0,0,0,0x38,0,0x48,0,0x58,0,0,0,0x6D,0,0x78,0,0,0x84,0,0,0xFF,
+    17:                                                                 0,0,0,0,0x64,0,0x78,0,0x88,0,0,0,0xA0,0,0xB0,0,0,0xC0,0,0,0xFF
+    18:                                                                 };
+    19: //--------------------------------------------------------------
+    20: //--------------------------------------------------------------
+    21: //(DANE JAK DLA KOTLA INWESTERM)
+    22: //Zakres aktywnych nastaw i przeplywow w tabeli pobudzen
+    23: //Pierwsze pozycje wierszy tabeli zawieraja slowa aktywacji pol tabeli
+    24: //Zawartosc wierszy powinna byc poukladana rosnaco poczynajac od 3 pozycji wiersza
+    25: //Drugie pozycje wierszy tabeli (wart. 0) oznaczaja < pozycja 3 wiersza 
+    26: unsigned char CWPobNstPrz[2][NG_PNSPR]={        0b00011111,0,40,45,50,55,0,0,0,
+    27:                                                                         0b00111111,0,4*7,5*7,6*7,7*7,8*7,0,0};
+    28: //Tabela pobudzen z wartosciami procentowymi wypelnienia modulatora
+    29: unsigned char CWPobNstPrzToProc[NG_NSPR][NG_NSPR]={     0,0,0,30,30,30,0,0,
+    30:                                                                                                 0,0,0,20,60,60,0,0,
+    31:                                                                                                 0,0,30,60,85,85,0,0,
+    32:                                                                                                 0,20,60,80,100,100,0,0,
+    33:                                                                                                 20,60,60,80,100,100,0,0,
+    34:                                                                                                 0,0,0,0,0,0,0,0,
+    35:                                                                                                 0,0,0,0,0,0,0,0,
+    36:                                                                                                 0,0,0,0,0,0,0,0
+    37:                                                                                                 };
+    38: //--------------------------------------------------------------
+    39: //--------------------------------------------------------------
+    40: //Zakres aktywnych nastaw w tabeli pobudzen
+    41: //Pierwsze pozycje wierszy tabeli zawieraja slowa aktywacji pol tabeli
+    42: //Zawartosc wierszy powinna byc poukladana rosnaco poczynajac od 3 pozycji wiersza
+    43: //Drugie pozycje wierszy tabeli (wart. 0) oznaczaja < pozycja 3 wiersza 
+    44: unsigned char COPobNst[NG_PNSPR]={0b00011111,0,40,45,50,55,0,0,0};
+    45: //Tabela pobudzen z wartosciami procentowymi wypelnienia modulatora
+    46: unsigned char COPobNstToProc[NG_NSPR]={0,20,60,80,100,100,0,0};
+    47: //--------------------------------------------------------------
+    48: //--------------------------------------------------------------
+    49: //Rozpoczecie pracy modulatora w obiegu CO
+    50: //Dobor wartosci poczatkowych, okreslenie amplitudy pierwszego pobudzenia
+    51: void MCOStart(void)
+    52: {
+    53: 
+    54: }
+    55: //Dobor amplitudy pobudzenia po uruchomieniu modulatora
+    56: void MCOPPobudzenie(void)
+    57: {
+    58: 
+    59: }
+    60: //Obsluga przejscia modulatora do trybu grzania w obiegu CO
+    61: void MCOPowrotDoMCO(void)
+    62: {
+    63: 
+    64: }
+    65: //Decyzja o zmianie trybu pracy modulatora (przejscie miedzy FAZA1/FAZA2)
+    66: void MCOManger(void)
+    67: {
+    68: 
+    69: }
+    70: //Wplyw wartosci OpenTerm na maksimum modulacji
+    71: void MCOOpenTerm(void)
+    72: {
+    73: 
+    74: }
+    75: //-------------------------------------------------------------
+    76: //Sprawdza realizacje warunku w zespole warunkow
+    77: //wr - bajt zawierajacy informacje o warunku
+    78: //xxt - wielkosc roznicy temperatur
+    79: //xxdt - predkosc i kierunek zmian temperatury
+    80: unsigned char nWar(const unsigned char wr,const signed char xxt, const signed char xxdt)
+    81: {       
+    82:         unsigned char wrt=wr&_PARMASK;
+    83: 
+    84:         switch(wr&_CHRMASK)
+    85:         {
+    86:                 case _MNIEJSZE:                 //mniejszy
+    87:                 if(xxt<wrt) return 1;
+    88:                 else return 0;
+    89: 
+    90:                 case _ROWNE:                    //rowny
+    91:                 if(xxt==wrt) return 1;
+    92:                 else return 0;
+    93: 
+    94:                 case _WIEKSZE:                  //wiekszy
+    95:                 if(xxt>wrt) return 1;
+    96:                 else return 0;
+    97: 
+    98:                 case _MALEJE:                   //maleje /K/sek./
+    99:                 if(xxdt<wrt) return 1;
+   100:                 else return 0;
+   101: 
+   102:                 case _STOI:                             //stoi /ile sekund/
+   103:                 if(xxdt==0) return 1;
+   104:                 else return 0;
+   105: 
+   106:                 case _ROSNIE:                   //rosnie /K/sek./
+   107:                 if(xxdt>wrt) return 1;
+   108:                 else return 0;          
+   109:         }
+   110:         return 2;       //pomin warunek
+   111: }
+   112: //-------------------------------------------------------------
+   113: //Sprawdza realizacje zespolu warunkow
+   114: //nr - numer zespolu warunkow
+   115: //xxxt - wielkosc roznicy temperatur
+   116: //xxxdt - predkosc i kierunek zmian temperatury
+   117: bit SprawdzWarunek(const unsigned char nr,const signed char xxxt,const signed char xxxdt)
+   118: {
+   119:         unsigned char i,rtw;
+   120:         unsigned char wynik=1;          //domyslnie warunek spelniony
+   121:         for(i=0;i<_ONEWAR;i++)
+   122:         {
+   123:                 if((rtw=nWar(Warunek[nr].wr[i],xxxt,xxxdt))>1) break;                    //dla wyniku ujemnego przerwanie procedury
+   124:                 switch(i)
+   125:                 {
+   126:                         case 0:
+   127:                                 if(Warunek[nr].rwr&_NEG0) (rtw)?0:1;                                            //negacja na aktualnym warunku?
+   128:                                 wynik=wynik&&rtw;
+   129:                         break;
+   130:                         case 1:
+   131:                                 if(Warunek[nr].rwr&_NEG1) (rtw)?0:1;                                            //negacja na aktualnym warunku?
+   132:                                 if(Warunek[nr].rwr&_AND0) wynik=wynik&&rtw;     //operacja AND z poprzednim warunkiem? 
+   133:                                 else wynik=wynik||rtw;                                                                  //operacja OR z poprzednim warunkiem 
+   134:                         break;
+   135:                         case 2:
+   136:                                 if(Warunek[nr].rwr&_NEG2) (rtw)?0:1;                                            //negacja na aktualnym warunku?
+   137:                                 if(Warunek[nr].rwr&_AND1) wynik=wynik&&rtw;     //operacja AND z poprzednim warunkiem? 
+   138:                                 else wynik=wynik||rtw;
+   139:                         break;
+   140:                         case 3:
+   141:                                 if(Warunek[nr].rwr&_NEG3) (rtw)?0:1;;                                           //negacja na aktualnym warunku?
+   142:                                 if(Warunek[nr].rwr&_AND2) wynik=wynik&&rtw;     //operacja AND z poprzednim warunkiem? 
+   143:                                 else wynik=wynik||rtw;
+   144:                         break;
+   145:                 }
+   146:         } 
+   147:         return wynik!=0;
+   148: }
+   149: //-------------------------------------------------------------
+   150: //Sprawdza realizacje zespolu warunkow i zwraca w zmiennej kp wartosc parametru.
+   151: //jezeli zaden warunek nie zostal spelniony zmienna kp nie jest modyfikowana.
+   152: //Funkcja zwaraca wartosc 1 jezeli przynajmniej jeden warunek zostal spelniony (kp ulegl modyfikacji)
+   153: //nr - numer zespolu par warunkek + zwracana wartosc
+   154: //kp - adres zmiennej do ktorej zapisywana jest wartosc parametru przy spelnieniu warunku.
+   155: //xxxt - wielkosc roznicy temperatur
+   156: //xxxdt - predkosc i kierunek zmian temperatury
+   157: bit WybierzWartosc(const unsigned char nr,signed char *kp,const signed char xxxt,const signed char xxxdt)
+   158: {
+   159:         unsigned char i;
+   160:         unsigned char wynik=0;                                                  //domyslnie warunek niespelniony
+   161:         for(i=0;i<_ONEkWAR;i++)
+   162:         {
+   163:                 if (nWar(kWarunek[nr].wr[i],xxxt,xxxdt)<2)      //warunek spelniony?
+   164:                 {
+   165:                         *kp=kWarunek[nr].kw[i];                                 //nowa wartosc parametru kp
+   166:                         wynik=1;                                                                //znacznik ze parametr kp ulegl modyfikacji
+   167:                 }
+   168:         }
+   169:         return wynik!=0;
+   170: }
+   171: /*---------------------------------------------------------------------------------*/
+   172: /*---------------------------------------------------------------------------------*/
+   173: //Funkcja zwraca wartosc pierwszego pobudzenia dla okreslonej nastawy i przeplywu
+   174: //nst - aktualna nastawa
+   175: //prz - aktualny przeplyw
+   176: //tpgz - rodzaj gazu (0-ziemny, 1-plynny)
+   177: unsigned char PierwszePobudzenieCW(const unsigned char nst,const unsigned char prz,const unsigned char tpgz)
+   178: {
+   179:         unsigned char i,ind,inst,iprz;
+   180:         ind=0b10000000;
+   181:         inst=0;
+   182:         if(CWPobNstPrz[wNASTAWA][pMASKA])                                       //aktywna minimum jedna pozycja?
+   183:                 for(i=NG_PNSPR-1;i>0;i--)                                       //poszukiwanie wiersza tabeli           
+   184:                 {
+   185:                         if(CWPobNstPrz[wNASTAWA][pMASKA]&ind)           //pozycja aktywna?
+   186:                                 if(nst>=CWPobNstPrz[wNASTAWA][i])
+   187:                                 {               
+   188:                                         inst=i;
+   189:                                         break;          
+   190:                                 }
+   191:                         ind=ind>>1;
+   192:                 }
+   193:         if(inst) inst--;
+   194:         ind=0b10000000;
+   195:         iprz=0;
+   196:         if(CWPobNstPrz[wPRZEPLYW][pMASKA])                                      //aktywna minimum jedna pozycja?
+   197:                 for(i=NG_PNSPR-1;i>0;i--)                                       //poszukiwanie kolumny tabeli
+   198:                 {
+   199:                         if(CWPobNstPrz[wPRZEPLYW][pMASKA]&ind)          //pozycja aktywna?
+   200:                                 if(prz>=CWPobNstPrz[wPRZEPLYW][i])
+   201:                                 {               
+   202:                                         iprz=i;
+   203:                                         break;          
+   204:                                 }
+   205:                         ind=ind>>1;
+   206:                 }
+   207:         if(iprz) iprz--;
+   208:         //zwraca wartosc PWM pierwszego pobudzenia dla danego typu gazu
+   209:         return PobProcToPWM[(tpgz<2)?tpgz:wPLYNNY][CWPobNstPrzToProc[inst][iprz]/5]; 
+   210: }
+   211: /*---------------------------------------------------------------------------------*/
+   212: /*---------------------------------------------------------------------------------*/
+   213: //Funkcja zwraca wartosc pierwszego pobudzenia dla okreslonej nastawy i przeplywu
+   214: //nst - aktualna nastawa
+   215: //tpgz - rodzaj gazu (0-ziemny, 1-plynny)
+   216: unsigned char PierwszePobudzenieCO(const unsigned char nst,const unsigned char tpgz)
+   217: {
+   218:         unsigned char i,ind,inst;
+   219:         ind=0b10000000;
+   220:         inst=0;
+   221:         if(COPobNst[pMASKA])                                    //aktywna minimum jedna pozycja?
+   222:                 for(i=NG_PNSPR-1;i>0;i--)                                       //poszukiwanie wiersza tabeli           
+   223:                 {
+   224:                         if(COPobNst[pMASKA]&ind)                //pozycja aktywna?
+   225:                                 if(nst>=COPobNst[i])
+   226:                                 {               
+   227:                                         inst=i;
+   228:                                         break;          
+   229:                                 }
+   230:                         ind=ind>>1;
+   231:                 }
+   232:         if(inst) inst--;
+   233:         //zwraca wartosc PWM pierwszego pobudzenia dla danego typu gazu
+   234:         return PobProcToPWM[(tpgz<2)?tpgz:wPLYNNY][COPobNstToProc[inst]/5]; 
+   235: }
+   236: /*---------------------------------------------------------------------------------*/
+   237: /*---------------------------------------------------------------------------------*/

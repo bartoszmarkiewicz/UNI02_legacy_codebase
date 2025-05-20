@@ -1,0 +1,108 @@
+     1: /*rgl.c*/
+     2: /*---------------------------------------------------------------------------------*/
+     3: #include <pic18.h>
+     4: #include "global.h"                             //parametry globalne
+     5: #include "nrgl.h"                               //parametry lokalne
+     6: #include "pomiar.tp.h"                          //parametry lokalne
+     7: #include "pwm.h"                                //parametry lokalne
+     8: #include "main.h"                               //parametry lokalne
+     9: 
+    10: extern tpMAIN M;
+    11: extern DataCO DtCO;
+    12: extern DataCW DtCW;
+    13: extern DataOPT DtOPT;
+    14: extern DtPWM PWM;
+    15: DtRgl rgl;
+    16: 
+    17: //wartosci PWM dla roznych rodzajow gazu, przy odpowiednich stopniach 
+    18: //otwarcia zaworu gazowego
+    19: const unsigned char pbd1[2][6]={        
+    20:                                                                 //gaz ziemny
+    21:                                                                 MS_1200,        //85%
+    22:                                                                 MS_1000,        //70%
+    23:                                                                 MS_800,         //60%
+    24:                                                                 MS_600,         //40%
+    25:                                                                 MS_400,         //30%
+    26:                                                                 MS_250,         //20%
+    27:                                                                 //gaz plynny
+    28:                                                                 MS_P2500,       //85%
+    29:                                                                 MS_P2100,       //70%
+    30:                                                                 MS_P1700,       //60%
+    31:                                                                 MS_P1200,       //40%
+    32:                                                                 MS_P900,        //30%
+    33:                                                                 MS_P600         //20%
+    34:                                                                 };
+    35: //wartosci PWM dla roznych rodzajow gazu, przy modulacji prop od 
+    36: //temp. CO przy grzaniu CW                                                              
+    37: const unsigned char prm1[2][3]={
+    38:                                                                 //gaz ziemny
+    39:                                                                 _MG_MOD-1*((_MG_MOD-_MD_MOD)/7),
+    40:                                                                 _MG_MOD-2*((_MG_MOD-_MD_MOD)/7),
+    41:                                                                 _MG_MOD-3*((_MG_MOD-_MD_MOD)/7),
+    42:                                                                 //gaz plynny
+    43:                                                                 _MG_PMOD-1*((_MG_PMOD-_MD_PMOD)/7),
+    44:                                                                 _MG_PMOD-2*((_MG_PMOD-_MD_PMOD)/7),
+    45:                                                                 _MG_PMOD-3*((_MG_PMOD-_MD_PMOD)/7)
+    46:                                                                 };
+    47: //------------------------------------------------------------
+    48: //------------------------------------------------------------
+    49: //rozpoczêcie pracy w obiegu CO
+    50: void RozpoczeciePracyCO(void)
+    51: {
+    52:         switch(M.TPSTR)
+    53:         {
+    54:                 case _INWEST:
+    55:                         StartCO();
+    56:                         break;  
+    57:                 case _MMAXP:
+    58:                         StartCO2();
+    59:                         break;
+    60:                 case _UNICO:
+    61:                         StartCO1F();
+    62:                         break   
+    63:         }
+    64: }
+    65: void OdczytDanychCO(void)
+    66: {
+    67:         rgl.x_t=DtCO.DCO;
+    68:         rgl.x_dt=DtCO.dDCO;     
+    69: }
+    70: void DecyzjaMiedzyfazowaCO()
+    71: {
+    72:         //warunek przejscia do FAZA2
+    73:         if(!rgl.fz)                                             //aktualnie faza 1?
+    74:         if((!Tnizsza(5)&&Tmaleje(0))||(!Tnizsza(2)&&Tstoi()))           //warunek przejscia do fazy 2
+    75:         {
+    76:                 rgl.fz=1;                                       //ustaw znacznik FAZA2
+    77:                 rgl.srp=PWM.BufPWM;
+    78:                 rgl.xmod=PWM.BufPWM;
+    79:                 if(rgl.xmod>PWM.MGMOD)
+    80:                 {
+    81:                         rgl.srp=PWM.MGMOD;
+    82:                         rgl.xmod=PWM.MGMOD;
+    83:                 }
+    84:                 return;
+    85:         }
+    86:         //warunek przejscia do FAZA1
+    87:         if(rgl.fz)                                              //aktualnie faza 2?
+    88:         {
+    89:                 if(Tnizsza(10))                         //warunek przejscia do fazy 1                           
+    90:                 {
+    91:                         rgl.fz=0;                               //ustaw znacznik FAZA1
+    92:                         rgl.xmod=PWM.BufPWM;
+    93:                         rgl.srp=0;
+    94:                         rgl.ytmp=0;     
+    95:                 }
+    96:         }       
+    97: }
+    98: void ObiegCO(void)
+    99: {
+   100:         RozpoczeciePracyCO();
+   101:         OdczytDanychCO();
+   102:         DecyzjaMiedzyfazowaCO();
+   103:         if(!rgl.fz) FazaDochodzeniaCO();
+   104:         else FazaStabilizacjiCO();
+   105:         ReakcjaSuperwizyjnaCO();
+   106:         KontrolaOpenT();
+   107: }
+   108: 

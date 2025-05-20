@@ -1,0 +1,1724 @@
+˝
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Jun 11 12:30:10 2014
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	rbit,global,bit,common,class=COMRAM,space
+      +                          =1,delta=1
+     5                           	psect	bigbss,global,class=BIGRAM,space=˝1,delta=
+      +                          1
+     6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9                           ;       param _wrn assigned to ?_ReadDataONL+5
+    10  000000                     _ReadDataONL$wrn	set	?_ReadDataONL+5
+    11                    ˝       ;       param _step assigned to ?_ReadDataONL+4
+    12  000000                     _ReadDataONL$step	set	?_ReadDataONL+4
+    13                           ;       param _max assigned to ?_ReadDataONL+3
+    14  000000                     _ReadDataONL$max	set	?_ReadDataONL+3
+    15                           ;       param _min assigned to ?_ReadDataONL+2
+    16  000000                     _ReadDataONL$min	set	?_ReadDataONL+2
+    17  000000                     
+    18  000000                     
+    1˝9  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  00˝0000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000 ˝                    
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000      ˝               
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000           ˝          
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                ˝     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98  000000                     
+    99  000000                     
+   100  000000                     
+   101  000000                     
+   102  000000                     
+   103  000000                     ˝
+   104  000000                     
+   105                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   106                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   107                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   108                           ;pic18f45k20.h: 23: static vola˝tile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   109                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   110                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   111                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   112                  ˝         ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   113                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   114                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   115                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d˝ char TBLPTRL @ 0xFF6;
+   116                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   117                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   118                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   119                           ;pic18f45k20.h: 34: static volatile near ˝unsigne
+      +                          d char INTCON @ 0xFF2;
+   120                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   121                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   122                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   123                           ;pic18˝f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   124                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   125                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   126                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 ˝@ 0xFEB;
+   127                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   128                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   129                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   130                           ;pic18f45k20.h: 45: static volatile near unsigne
+      + ˝                         d char INDF1 @ 0xFE7;
+   131                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   132                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   133                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   134                           ;pic18f45k˝20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   135                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   136                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   137                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   138        ˝                   ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   139                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   140                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   141                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                 ˝         d char PREINC2 @ 0xFDC;
+   142                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   143                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   144                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   145                           ;pic18f45k20.h: 60: static vola˝tile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   146                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   147                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   148                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   149                    ˝       ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   150                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   151                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   152                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @˝ 0xFD1;
+   153                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   154                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   155                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   156                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +  ˝                        d int TMR1 @ 0xFCE;
+   157                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   158                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   159                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   160                           ;pic18f45k20.h: 77: static near unsigned c˝har T2
+      +                          CON @ 0xFCA;
+   161                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   162                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   163                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   164                           ;pic18f45k20.h: 8˝1: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   165                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   166                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   167                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   16˝8                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   169                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   170                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   171                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                      ˝    CON2 @ 0xFC0;
+   172                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   173                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   174                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   175                           ;pic18f45k20.h: 94: static volatile near unsig˝ne
+      +                          d char CCP1CON @ 0xFBD;
+   176                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   177                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   178                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   179                           ;pic˝18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+   180                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   181                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   182                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xF˝B7;
+   183                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   184                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   185                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   186                           ;pic18f45k20.h: 106: static volatile near unsign
+    ˝  +                          ed char TMR3H @ 0xFB3;
+   187                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   188                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   189                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   190                           ;pic18f45k20.h: 111: ˝static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+   191                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   192                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   193                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   194                           ;pi˝c18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   195                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   196                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   197                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA ˝@ 0xFAC;
+   198                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   199                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   200                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   201                           ;pic18f45k20.h: 128: static near unsigned char E
+  ˝    +                          EADRH @ 0xFAA;
+   202                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   203                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   204                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   205  000000                     _ReadDataONL$dt	set	?æ_ReadDataONL
+   206                           
+   207                           	psect	text
+   208                           ;readdtal.c: 121: unsigned char ReadDataONL(unsi
+      +                          gned char k,unsigned char *dt,unsigned char min,
+      +                          unsigned char max,const unsigned char step,unsig
+      +                          ned char wrn)
+   209                           ;readdtal.c: 122: {
+   210        4text           2 ?_ReadDataONL  ˝               	dw	?_ReadDataONL
+   211                           ;	_key assigned to ?a_ReadDataXONLD+1
+   212  000000                     _ReadDataXONLD$key	set	?a_ReadDataXONLD+1
+   213                           ;	_k assigned to ?a_ReadDataXONLD+0
+   214  000000                     _ReadDataXONLD$k	set	?a_ReadDataXONLD
+   215                           ;       param _step2 assigned to ?_ReadDataXONLD
+      +                          +4
+   216  000000                     _ReadDataXONLD$step2	set	?_ReadDa˝taXONLD+4
+   217                           ;       param _step assigned to ?_ReadDataXONLD+
+      +                          3
+   218  000000                     _ReadDataXONLD$step	set	?_ReadDataXONLD+3
+   219                           ;       param _min assigned to ?_ReadDataXONLD+2
+   220  000000                     _ReadDataXONLD$min	set	?_ReadDataXONLD+2
+   221                           ;       param _dt assigned to ?_ReadDataXONLD+0
+   222  000000                     _ReadDataXONLD$dt	set	?_ReadDat˝aXONLD
+   223                           ;	_key assigned to ?a_ReadDataXONLI+1
+   224  000000                     _ReadDataXONLI$key	set	?a_ReadDataXONLI+1
+   225                           ;	_k assigned to ?a_ReadDataXONLI+0
+   226  000000                     _ReadDataXONLI$k	set	?a_ReadDataXONLI
+   227                           ;       param _step2 assigned to ?_ReadDataXONLI
+      +                          +4
+   228  000000                     _ReadDataXONLI$step2	set	?_ReadDataXONLI+4
+   229          ˝                 ;       param _step assigned to ?_ReadDataXONLI+
+      +                          3
+   230  000000                     _ReadDataXONLI$step	set	?_ReadDataXONLI+3
+   231                           ;       param _max assigned to ?_ReadDataXONLI+2
+   232  000000                     _ReadDataXONLI$max	set	?_ReadDataXONLI+2
+   233                           ;       param _dt assigned to ?_ReadDataXONLI+0
+   234  000000                     _ReadDataXONLI$dt	set	?_ReadDataXONLI
+   235             ˝              ;	_key assigned to ?a_ReadDataXONL+1
+   236  000000                     _ReadDataXONL$key	set	?a_ReadDataXONL+1
+   237                           ;	_k assigned to ?a_ReadDataXONL+0
+   238  000000                     _ReadDataXONL$k	set	?a_ReadDataXONL
+   239                           ;       param _wrn assigned to ?_ReadDataXONL+6
+   240  000000                     _ReadDataXONL$wrn	set	?_ReadDataXONL+6
+   241                           ;       param _step2 assigned to ?_ReadDataXONL+
+      +˝                          5
+   242  000000                     _ReadDataXONL$step2	set	?_ReadDataXONL+5
+   243                           ;       param _step assigned to ?_ReadDataXONL+4
+   244  000000                     _ReadDataXONL$step	set	?_ReadDataXONL+4
+   245                           ;       param _max assigned to ?_ReadDataXONL+3
+   246  000000                     _ReadDataXONL$max	set	?_ReadDataXONL+3
+   247                           ;       param _min assigned to ?_ReadDataXONL+2
+   248  0000e00                     _ReadDataXONL$min	set	?_ReadDataXONL+2
+   249                           ;       param _dt assigned to ?_ReadDataXONL+0
+   250  000000                     _ReadDataXONL$dt	set	?_ReadDataXONL
+   251                           ;	_k assigned to ?a_ReadDataONL+0
+   252  000000                     _ReadDataONL$k	set	?a_ReadDataONL
+   253        4text     Ö                      _ReadDataONL:
+   254  000000                     
+   255                           ;_k stored from wreg
+   256        4text             1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   257        4text        )  o   1 ˇ   __Lparam 
+ ?a_ReadDataONL  ç                	movwf	?a_ReadDataONL^(__Lparam& (0+65280)),b
+   258                           ;readdtal.c: 123: if(*dt<min) *dt=min;
+   259        4text          ¿   ¸ ?_ReadDataONL  2   FFE9         	movff	?_ReadDataONL,fsr0l
+   260        4text 
+         ¿   ¸ ?_ReadDataONL     4   FFEA         	movff	?_ReadDataONL+1,fsr0h
+   261        4text     -   50EF               	movf	indf0,w,c
+   262        4text          n   1temp  &                	movwf	btemp,c
+   263        4text        .  Q   1 ˇ   __Lparam 
+ ?_ReadDataONL     G                	movf	(?_ReadDataONL+2)^(__Lparam& (0+65280)),w
+   264        4text          \   1temp  (                	subwf	btemp,w,c
+   265        4text     $   E206               	bc	l3
+   266        4text          ¿   ¸ ?_ReadDataONL  2   FFE9         	movff	?_ReadDataONL,fsr0l
+   267        4text          ¿   ¸ ?_ReadDataONL     4   FFEA         	movff	?_ReadDataONL+1,fsr0h
+   268        4text           ¿   ¸ ?_ReadDataONL     4   FFEF         	movff	?_ReadDataONL+2,indf0
+   269        4text $    j                      l3:
+   270                           ;readdtal.c: 124: if(ExPresKey(k,10,6))
+   271        4text $    '   0E0A               	movlw	10
+   272        4text &            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   273        4text (       &  o   1 ˇ   __Lparam 
+ ?_ExPresKey  B                	movwf	?_ExPresKey^(__Lparam& (0+65280)),b
+   274        4text *    &   0E06               	movlw	6
+   275        4text ,       ,  o   1 ˇ   __Lparam 
+ ?_ExPresKey     F                	movwf	(?_ExPresKey+1)^(__Lparam& (0+65280)),b
+   276        4text .       )  Q   1 ˇ   __Lparam 
+ ?a_ReadDataONL  D                	movf	?a_ReadDataONL^(__Lparam& (0+65280)),w
+   277        4text 0          Ï   1ˇ       _ExPresKey 	
+         ¸	    _ExPresKey 	 "          	call	_ExPresKey
+   278        4text 4    ë   0A00               	xorlw	0
+   279                           ;readdtal.c: 125: {
+   280                           ; _dt loaded to fsr1
+   281        4text 6         ¿   ¸ ?_ReadDataONL  2   FFE1         	movff	?_ReadDataONL,fsr1l
+   282        4text :    $   E029               	bz	L1
+   283        4text <         ¿   ¸ ?_ReadDataONL     4   FFE2         	movff	?_ReadDataONL+1,fsr1h
+   284        4text @    -   50E7               	movf	indf1,w,c
+   285        4text B         n   1temp  &                	movwf	btemp,c
+   286        4text D            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   287        4text F       .  Q   1 ˇ   __Lparam 
+ ?_ReadDataONL     G                	movf	(?_ReadDataONL+3)^(__Lparam& (0+65280)),w
+   288        4text H         \   1temp  (                	subwf	btemp,w,c
+   289        4text J    %   E303               	bnc	l5
+   290        4text L         ¿   ¸ ?_ReadDataONL     4   FFE7         	movff	?_ReadDataONL+2,indf1
+   291        4text P    &   D01C               	goto	l4
+   292        4text R    Y                      l5:
+   293                           ;readdtal.c: 127: else
+   294        4text R    -   50E7               	movf	indf1,w,c
+   295        4text T         n   1temp  &                	movwf	btemp,c
+   296        4text V         ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   297        4text Z         j   1temp     '                	clrf	btemp+3,c
+   298        4text \            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   299        4text ^       .  Q   1 ˇ   __Lparam 
+ ?_ReadDataONL     G                	movf	(?_ReadDataONL+4)^(__Lparam& (0+65280)),w
+   300        4text `         &   1temp     *                	addwf	btemp+2,f,c
+   301        4text b    &   0E00               	movlw	0
+   302        4text d         "   1temp     +                	addwfc	btemp+3,f,c
+   303        4text f         ¿   ¸ ?_ReadDataONL             ¸temp  .          	movff	?_ReadDataONL+3,btemp
+   304        4text j         j   1temp     '                	clrf	btemp+1,c
+   305        4text l         P   1temp     )                	movf	btemp+1,w,c
+   306        4text n    (   0A80               	xorlw	128
+   307        4text p         n   1temp     (                	movwf	btemp+4,c
+   308        4text r         P   1temp     )                	movf	btemp+3,w,c
+   309        4text t    (   0A80               	xorlw	128
+   310        4text v         \   1temp     *                	subwf	btemp+4,w,c
+   311        4text x    &   E102               	bnz	u45
+   312        4text z         P   1temp     )                	movf	btemp+2,w,c
+   313        4text |         \   1temp  (                	subwf	btemp,w,c
+   314        4text ~    "                      u45:
+   315        4text ~    %   E305               	bnc	l4
+   316        4text Ä    -   50E7               	movf	indf1,w,c
+   317        4text Ç         n   1temp  &                	movwf	btemp,c
+   318        4text Ñ       .  Q   1 ˇ   __Lparam 
+ ?_ReadDataONL     G                	movf	(?_ReadDataONL+4)^(__Lparam& (0+65280)),w
+   319        4text Ü         $   1temp  (                	addwf	btemp,w,c
+   320        4text à    ,   6EE7               	movwf	indf1,c
+   321        4text ä    å                      l4:
+   322                           ;readdtal.c: 129: }
+   323                           ; _dt loaded to fsr1
+   324        4text ä         ¿   ¸ ?_ReadDataONL  2   FFE1         	movff	?_ReadDataONL,fsr1l
+   325        4text é    !                      L1:
+   326        4text é         ¿   ¸ ?_ReadDataONL     4   FFE2         	movff	?_ReadDataONL+1,fsr1h
+   327        4text í    -   50E7               	movf	indf1,w,c
+   328        4text î            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   329        4text ñ       .  a   1 ˇ   __Lparam 
+ ?_ReadDataONL     k                	cpfslt	(?_ReadDataONL+3)^(__Lparam& (0+65280)),
+      +                          b
+   330        4text ò    &   D002               	goto	l8
+   331        4text ö         ¿   ¸ ?_ReadDataONL     4   FFE7         	movff	?_ReadDataONL+2,indf1
+   332        4text û    f                      l8:
+   333                           ;readdtal.c: 131: if(wrn) return 1;
+   334        4text û            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   335        4text †       .  Q   1 ˇ   __Lparam 
+ ?_ReadDataONL     G                	movf	(?_ReadDataONL+5)^(__Lparam& (0+65280)),w
+   336        4text ¢    $   E001               	bz	l9
+   337        4text §    &   0C01               	retlw	1
+   338        4text ¶    a                      l9:
+   339                           ;readdtal.c: 132: return 0x00;
+   340        4text ¶    [   0C00               	retlw	0
+   341                           ;readdtal.c: 133: }
+   342        4text ®    ®                     __end_of_ReadDataONL:
+   343                           ;readdtal.c: 144: unsigned char ReadDataXONL(uns
+      +                          igned char k,unsigned char *dt,unsigned char min
+      +                          ,unsigned char max,const unsigned char step,cons
+      +                          t unsigned char step2,unsigned char wrn)
+   344                           ;readdtal.c: 145: {
+   345        4text ®             2 ?_ReadDataXONL  *                	dw	?_ReadDataXONL
+   346        4text ™    Ü                      _ReadDataXONL:
+   347  000000                     
+   348                           ;_k stored from wreg
+   349        4text ™            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   350        4text ¨       *  o   1 ˇ   __Lparam 
+ ?a_ReadDataXONL  å                	movwf	?a_ReadDataXONL^(__Lparam& (0+65280)),b
+   351                           ;readdtal.c: 146: static bit dtmo=0;
+   352        4text Æ    h   6AE1               	clrf	fsr1l,c
+   353                           ;readdtal.c: 150: if(!dtmo)
+   354        4text ∞       3  ∞   ¸   rbit ˇ   
+	      rbit 
+   
+ 9                	btfsc	F1140/(0+8),F1140& (0+7),c
+   355        4text ≤    \   D005               	goto	l11
+   356                           ;readdtal.c: 151: {
+   357        4text ¥       3  Ä   ¸   rbit ˇ   
+	      rbit 
+   
+ q                	bsf	F1140/(0+8),F1140& (0+7),c
+   358                           ;readdtal.c: 153: ktu=0;
+   359        4text ∂            1   bigbss 	 .                	movlb	F1141 shr (0+8)
+   360        4text ∏         k   1ˇ   bigbss 
+ g                	clrf	F1141& (0+255),b
+   361                           ;readdtal.c: 154: iu=0;
+   362        4text ∫            1   bigbss    	 .                	movlb	F1142 shr (0+8)
+   363        4text º         k   1ˇ   bigbss    
+ .                	clrf	F1142& (0+255),b
+   364        4text æ    W                      l11:
+   365                           ;readdtal.c: 155: }
+   366        4text æ         ¿   ¸ ?_ReadDataXONL  3   FFE9         	movff	?_ReadDataXONL,fsr0l
+   367        4text ¬         ¿   ¸ ?_ReadDataXONL     5   FFEA         	movff	?_ReadDataXONL+1,fsr0h
+   368        4text ∆    -   50EF               	movf	indf0,w,c
+   369        4text »         n   1temp  &                	movwf	btemp,c
+   370        4text              1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   371        4text Ã       /  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONL     H                	movf	(?_ReadDataXONL+2)^(__Lparam& (0+65280)),w
+   372        4text Œ         \   1temp  (                	subwf	btemp,w,c
+   373        4text –    %   E206               	bc	l12
+   374        4text “         ¿   ¸ ?_ReadDataXONL  3   FFE9         	movff	?_ReadDataXONL,fsr0l
+   375        4text ÷         ¿   ¸ ?_ReadDataXONL     5   FFEA         	movff	?_ReadDataXONL+1,fsr0h
+   376        4text ⁄         ¿   ¸ ?_ReadDataXONL     5   FFEF         	movff	?_ReadDataXONL+2,indf0
+   377        4text ﬁ    q                      l12:
+   378                           ;readdtal.c: 157: if(key=ExPresKey2(k,5,ktu))
+   379        4text ﬁ    &   0E05               	movlw	5
+   380        4text ‡            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   381        4text ‚       '  o   1 ˇ   __Lparam 
+ ?_ExPresKey2  C                	movwf	?_ExPresKey2^(__Lparam& (0+65280)),b
+   382        4text ‰         ¿   ¸bigbss          ¸ ?_ExPresKey2     -          	movff	F1141,?_ExPresKey2+1
+   383        4text Ë       *  Q   1 ˇ   __Lparam 
+ ?a_ReadDataXONL  E                	movf	?a_ReadDataXONL^(__Lparam& (0+65280)),w
+   384        4text Í       !  Ï   1ˇ       _ExPresKey2 	
+         ¸	    _ExPresKey2 	 #          	call	_ExPresKey2
+   385        4text Ó            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   386        4text        0  o   1 ˇ   __Lparam 
+ ?a_ReadDataXONL     l                	movwf	(?a_ReadDataXONL+1)^(__Lparam& (0+65280))
+      +                          ,b
+   387        4text Ú       0  Q   1 ˇ   __Lparam 
+ ?a_ReadDataXONL     k                	movf	(?a_ReadDataXONL+1)^(__Lparam& (0+65280)),
+      +                          w
+   388        4text Ù    [   E068               	bz	l13
+   389                           ; _dt loaded to fsr1
+   390        4text ˆ         ¿   ¸ ?_ReadDataXONL  3   FFE1         	movff	?_ReadDataXONL,fsr1l
+   391        4text ˙         ¿   ¸ ?_ReadDataXONL     j   FFE2         	movff	?_ReadDataXONL+1,fsr1h
+   392                           ;readdtal.c: 158: {
+   393        4text ˛       0     1 ˇ   __Lparam 
+ ?a_ReadDataXONL     k                	decf	(?a_ReadDataXONL+1)^(__Lparam& (0+65280)),
+      +                          w
+   394        4text     [   E12A               	bnz	l14
+   395                           ;readdtal.c: 160: {
+   396        4text            1   bigbss    	 .                	movlb	F1142 shr (0+8)
+   397        4text         k   1ˇ   bigbss    
+ h                	clrf	F1142& (0+255),b
+   398                           ;readdtal.c: 162: ktu=5;
+   399        4text    &   0E05               	movlw	5
+   400        4text       CFE8      ¸bigbss  m           	movff	wreg,F1141
+   401                           ;readdtal.c: 163: if(*dt>=max) *dt=min;
+   402        4text    -   50E7               	movf	indf1,w,c
+   403        4text         n   1temp  &                	movwf	btemp,c
+   404        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   405        4text       /  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONL     H                	movf	(?_ReadDataXONL+3)^(__Lparam& (0+65280)),w
+   406        4text         \   1temp  (                	subwf	btemp,w,c
+   407        4text    &   E303               	bnc	l15
+   408        4text         ¿   ¸ ?_ReadDataXONL     5   FFE7         	movff	?_ReadDataXONL+2,indf1
+   409        4text    '   D01C               	goto	l14
+   410        4text    Z                      l15:
+   411                           ;readdtal.c: 164: else
+   412        4text    -   50E7               	movf	indf1,w,c
+   413        4text          n   1temp  &                	movwf	btemp,c
+   414        4text "        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   415        4text &        j   1temp     '                	clrf	btemp+3,c
+   416        4text (           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   417        4text *      /  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONL     H                	movf	(?_ReadDataXONL+4)^(__Lparam& (0+65280)),w
+   418        4text ,        &   1temp     *                	addwf	btemp+2,f,c
+   419        4text .   &   0E00               	movlw	0
+   420        4text 0        "   1temp     +                	addwfc	btemp+3,f,c
+   421        4text 2        ¿   ¸ ?_ReadDataXONL             ¸temp  /          	movff	?_ReadDataXONL+3,btemp
+   422        4text 6        j   1temp     '                	clrf	btemp+1,c
+   423        4text 8        P   1temp     )                	movf	btemp+1,w,c
+   424        4text :   (   0A80               	xorlw	128
+   425        4text <        n   1temp     (                	movwf	btemp+4,c
+   426        4text >        P   1temp     )                	movf	btemp+3,w,c
+   427        4text @   (   0A80               	xorlw	128
+   428        4text B        \   1temp     *                	subwf	btemp+4,w,c
+   429        4text D   '   E102               	bnz	u125
+   430        4text F        P   1temp     )                	movf	btemp+2,w,c
+   431        4text H        \   1temp  (                	subwf	btemp,w,c
+   432        4text J   #                      u125:
+   433        4text J   &   E305               	bnc	l14
+   434        4text L   -   50E7               	movf	indf1,w,c
+   435        4text N        n   1temp  &                	movwf	btemp,c
+   436        4text P      /  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONL     H                	movf	(?_ReadDataXONL+4)^(__Lparam& (0+65280)),w
+   437        4text R        $   1temp  (                	addwf	btemp,w,c
+   438        4text T   ,   6EE7               	movwf	indf1,c
+   439        4text V   W                      l14:
+   440                           ;readdtal.c: 166: }
+   441        4text V           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   442        4text X      0  Q   1 ˇ   __Lparam 
+ ?a_ReadDataXONL     k                	movf	(?a_ReadDataXONL+1)^(__Lparam& (0+65280)),
+      +                          w
+   443        4text Z   &   0A02               	xorlw	2
+   444        4text \   [   E139               	bnz	l23
+   445                           ;readdtal.c: 168: {
+   446        4text ^   '   0E0D               	movlw	13
+   447        4text `           1   bigbss    	 .                	movlb	F1142 shr (0+8)
+   448        4text b        a   1ˇ   bigbss    
+ 0                	cpfslt	F1142& (0+255),b
+   449        4text d   '   D001               	goto	l19
+   450        4text f        +   1ˇ   bigbss    
+ 0                	incf	F1142& (0+255),f,b
+   451        4text h   a                      l19:
+   452                           ;readdtal.c: 170: ktu=5-iu/3;
+   453        4text h   &   0E03               	movlw	3
+   454        4text j        n   1temp     (                	movwf	btemp+1,c
+   455        4text l        ¿   ¸bigbss     )   FFE8         	movff	F1142,wreg
+   456        4text p        Ï   1ˇ       lbdiv 	
+         ¸	    lbdiv 	           	call	lbdiv
+   457        4text t   &   0805               	sublw	5
+   458        4text v      CFE8      ¸bigbss  m           	movff	wreg,F1141
+   459                           ;readdtal.c: 171: if(*dt>=max) *dt=min;
+   460        4text z   -   50E7               	movf	indf1,w,c
+   461        4text |        n   1temp  &                	movwf	btemp,c
+   462        4text ~           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   463        4text Ä      /  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONL     H                	movf	(?_ReadDataXONL+3)^(__Lparam& (0+65280)),w
+   464        4text Ç        \   1temp  (                	subwf	btemp,w,c
+   465        4text Ñ   &   E303               	bnc	l20
+   466        4text Ü        ¿   ¸ ?_ReadDataXONL     5   FFE7         	movff	?_ReadDataXONL+2,indf1
+   467        4text ä   '   D022               	goto	l23
+   468        4text å   Z                      l20:
+   469                           ;readdtal.c: 172: else
+   470        4text å   -   50E7               	movf	indf1,w,c
+   471        4text é        n   1temp  &                	movwf	btemp,c
+   472        4text ê        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   473        4text î        j   1temp     '                	clrf	btemp+3,c
+   474        4text ñ           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   475        4text ò      /  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONL     H                	movf	(?_ReadDataXONL+5)^(__Lparam& (0+65280)),w
+   476        4text ö        &   1temp     *                	addwf	btemp+2,f,c
+   477        4text ú   &   0E00               	movlw	0
+   478        4text û        "   1temp     +                	addwfc	btemp+3,f,c
+   479        4text †        ¿   ¸ ?_ReadDataXONL             ¸temp  /          	movff	?_ReadDataXONL+3,btemp
+   480        4text §        j   1temp     '                	clrf	btemp+1,c
+   481        4text ¶        P   1temp     )                	movf	btemp+1,w,c
+   482        4text ®   (   0A80               	xorlw	128
+   483        4text ™        n   1temp     (                	movwf	btemp+4,c
+   484        4text ¨        P   1temp     )                	movf	btemp+3,w,c
+   485        4text Æ   (   0A80               	xorlw	128
+   486        4text ∞        \   1temp     *                	subwf	btemp+4,w,c
+   487        4text ≤   '   E102               	bnz	u165
+   488        4text ¥        P   1temp     )                	movf	btemp+2,w,c
+   489        4text ∂        \   1temp  (                	subwf	btemp,w,c
+   490        4text ∏   #                      u165:
+   491        4text ∏   &   E30B               	bnc	l23
+   492        4text ∫   -   50E7               	movf	indf1,w,c
+   493        4text º        n   1temp  &                	movwf	btemp,c
+   494        4text æ      /  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONL     H                	movf	(?_ReadDataXONL+5)^(__Lparam& (0+65280)),w
+   495        4text ¿        $   1temp  (                	addwf	btemp,w,c
+   496        4text ¬   a   6EE7               	movwf	indf1,c
+   497                           ;readdtal.c: 174: }
+   498        4text ƒ   '   D005               	goto	l23
+   499        4text ∆   Z                      l13:
+   500                           ;readdtal.c: 176: else
+   501        4text ∆           1   bigbss    	 .                	movlb	F1142 shr (0+8)
+   502        4text »        k   1ˇ   bigbss    
+ h                	clrf	F1142& (0+255),b
+   503                           ;readdtal.c: 179: ktu=5;
+   504        4text     &   0E05               	movlw	5
+   505        4text Ã      CFE8      ¸bigbss  $           	movff	wreg,F1141
+   506        4text –   ç                      l23:
+   507                           ;readdtal.c: 180: }
+   508                           ; _dt loaded to fsr1
+   509        4text –        ¿   ¸ ?_ReadDataXONL  3   FFE1         	movff	?_ReadDataXONL,fsr1l
+   510        4text ‘        ¿   ¸ ?_ReadDataXONL     5   FFE2         	movff	?_ReadDataXONL+1,fsr1h
+   511        4text ÿ   -   50E7               	movf	indf1,w,c
+   512        4text ⁄           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   513        4text ‹      /  a   1 ˇ   __Lparam 
+ ?_ReadDataXONL     l                	cpfslt	(?_ReadDataXONL+3)^(__Lparam& (0+65280))
+      +                          ,b
+   514        4text ﬁ   '   D002               	goto	l24
+   515        4text ‡        ¿   ¸ ?_ReadDataXONL     5   FFE7         	movff	?_ReadDataXONL+2,indf1
+   516        4text ‰   ]                      l24:
+   517                           ;readdtal.c: 182: if(wrn)
+   518        4text ‰           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   519        4text Ê      /  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONL     H                	movf	(?_ReadDataXONL+6)^(__Lparam& (0+65280)),w
+   520        4text Ë   Z   E002               	bz	l25
+   521                           ;readdtal.c: 183: {
+   522        4text Í      3  ê   ¸   rbit ˇ   
+	      rbit 
+   
+ t                	bcf	F1140/(0+8),F1140& (0+7),c
+   523                           ;readdtal.c: 185: return 1;
+   524        4text Ï   &   0C01               	retlw	1
+   525        4text Ó   W                      l25:
+   526                           ;readdtal.c: 186: }
+   527        4text Ó   [   0C00               	retlw	0
+   528                           ;readdtal.c: 188: }
+   529        4text    Ü                     __end_of_ReadDataXONL:
+   530                           ;readdtal.c: 200: unsigned char ReadDataXONLI(un
+      +                          signed char k,unsigned char *dt,unsigned char ma
+      +                          x,const unsigned char step,const unsigned char s
+      +                          tep2)
+   531                           ;readdtal.c: 201: {
+   532        4text             2 ?_ReadDataXONLI  +                	dw	?_ReadDataXONLI
+   533        4text Ú   á                      _ReadDataXONLI:
+   534  000000                     
+   535                           ;_k stored from wreg
+   536        4text Ú           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   537        4text Ù      +  o   1 ˇ   __Lparam 
+ ?a_ReadDataXONLI  ç                	movwf	?a_ReadDataXONLI^(__Lparam& (0+65280)),b
+   538                           ;readdtal.c: 202: static bit dtmo=0;
+   539        4text ˆ   h   6AE1               	clrf	fsr1l,c
+   540                           ;readdtal.c: 206: if(!dtmo)
+   541        4text ¯      ?  ∞   ¸   rbit    ˇ   
+	      rbit    
+   
+ 9                	btfsc	F1150/(0+8),F1150& (0+7),c
+   542        4text ˙   \   D005               	goto	l27
+   543                           ;readdtal.c: 207: {
+   544        4text ¸      ?  Ä   ¸   rbit    ˇ   
+	      rbit    
+   
+ q                	bsf	F1150/(0+8),F1150& (0+7),c
+   545                           ;readdtal.c: 209: ktu=0;
+   546        4text ˛           1   bigbss    	 .                	movlb	F1151 shr (0+8)
+   547        4text          k   1ˇ   bigbss    
+ g                	clrf	F1151& (0+255),b
+   548                           ;readdtal.c: 210: iu=0;
+   549        4text            1   bigbss    	 .                	movlb	F1152 shr (0+8)
+   550        4text         k   1ˇ   bigbss    
+ .                	clrf	F1152& (0+255),b
+   551        4text    W                      l27:
+   552                           ;readdtal.c: 211: }
+   553        4text    &   0E05               	movlw	5
+   554        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   555        4text 
+      '  o   1 ˇ   __Lparam 
+ ?_ExPresKey2  C                	movwf	?_ExPresKey2^(__Lparam& (0+65280)),b
+   556        4text         ¿   ¸bigbss             ¸ ?_ExPresKey2     -          	movff	F1151,?_ExPresKey2+1
+   557        4text       +  Q   1 ˇ   __Lparam 
+ ?a_ReadDataXONLI  F                	movf	?a_ReadDataXONLI^(__Lparam& (0+65280)),w
+   558        4text       !  Ï   1ˇ       _ExPresKey2 	
+         ¸	    _ExPresKey2 	 #          	call	_ExPresKey2
+   559        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   560        4text       1  o   1 ˇ   __Lparam 
+ ?a_ReadDataXONLI     m                	movwf	(?a_ReadDataXONLI+1)^(__Lparam& (0+65280)
+      +                          ),b
+   561        4text       1  Q   1 ˇ   __Lparam 
+ ?a_ReadDataXONLI     l                	movf	(?a_ReadDataXONLI+1)^(__Lparam& (0+65280))
+      +                          ,w
+   562        4text    [   E05C               	bz	l28
+   563                           ; _dt loaded to fsr1
+   564        4text         ¿   ¸ ?_ReadDataXONLI  4   FFE1         	movff	?_ReadDataXONLI,fsr1l
+   565        4text "        ¿   ¸ ?_ReadDataXONLI     k   FFE2         	movff	?_ReadDataXONLI+1,fsr1h
+   566                           ;readdtal.c: 214: {
+   567        4text &      1     1 ˇ   __Lparam 
+ ?a_ReadDataXONLI     l                	decf	(?a_ReadDataXONLI+1)^(__Lparam& (0+65280))
+      +                          ,w
+   568        4text (   [   E124               	bnz	l29
+   569                           ;readdtal.c: 216: {
+   570        4text *           1   bigbss    	 .                	movlb	F1152 shr (0+8)
+   571        4text ,        k   1ˇ   bigbss    
+ h                	clrf	F1152& (0+255),b
+   572                           ;readdtal.c: 218: ktu=5;
+   573        4text .   &   0E05               	movlw	5
+   574        4text 0      CFE8      ¸bigbss     ô           	movff	wreg,F1151
+   575                           ;readdtal.c: 219: if(*dt+step<=max) *dt=*dt+step
+      +                          ;
+   576        4text 4   -   50E7               	movf	indf1,w,c
+   577        4text 6        n   1temp  &                	movwf	btemp,c
+   578        4text 8        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   579        4text <        j   1temp     '                	clrf	btemp+3,c
+   580        4text >           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   581        4text @      0  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONLI     k                	movf	(?_ReadDataXONLI+3)^(__Lparam& (0+65280)),
+      +                          w
+   582        4text B        &   1temp     *                	addwf	btemp+2,f,c
+   583        4text D   &   0E00               	movlw	0
+   584        4text F        "   1temp     +                	addwfc	btemp+3,f,c
+   585        4text H        ¿   ¸ ?_ReadDataXONLI             ¸temp  0          	movff	?_ReadDataXONLI+2,btemp
+   586        4text L        j   1temp     '                	clrf	btemp+1,c
+   587        4text N        P   1temp     )                	movf	btemp+1,w,c
+   588        4text P   (   0A80               	xorlw	128
+   589        4text R        n   1temp     (                	movwf	btemp+4,c
+   590        4text T        P   1temp     )                	movf	btemp+3,w,c
+   591        4text V   (   0A80               	xorlw	128
+   592        4text X        \   1temp     *                	subwf	btemp+4,w,c
+   593        4text Z   '   E102               	bnz	u225
+   594        4text \        P   1temp     )                	movf	btemp+2,w,c
+   595        4text ^        \   1temp  (                	subwf	btemp,w,c
+   596        4text `   #                      u225:
+   597        4text `   &   E306               	bnc	l30
+   598        4text b   -   50E7               	movf	indf1,w,c
+   599        4text d        n   1temp  &                	movwf	btemp,c
+   600        4text f      0  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONLI     k                	movf	(?_ReadDataXONLI+3)^(__Lparam& (0+65280)),
+      +                          w
+   601        4text h        $   1temp  (                	addwf	btemp,w,c
+   602        4text j   ,   6EE7               	movwf	indf1,c
+   603        4text l   '   D002               	goto	l29
+   604        4text n   c                      l30:
+   605                           ;readdtal.c: 220: else *dt=max;
+   606        4text n        ¿   ¸ ?_ReadDataXONLI     6   FFE7         	movff	?_ReadDataXONLI+2,indf1
+   607        4text r   W                      l29:
+   608                           ;readdtal.c: 221: }
+   609        4text r           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   610        4text t      1  Q   1 ˇ   __Lparam 
+ ?a_ReadDataXONLI     l                	movf	(?a_ReadDataXONLI+1)^(__Lparam& (0+65280))
+      +                          ,w
+   611        4text v   &   0A02               	xorlw	2
+   612        4text x   [   E12D               	bnz	l32
+   613                           ;readdtal.c: 223: {
+   614        4text z   '   0E0D               	movlw	13
+   615        4text |           1   bigbss    	 .                	movlb	F1152 shr (0+8)
+   616        4text ~        a   1ˇ   bigbss    
+ 0                	cpfslt	F1152& (0+255),b
+   617        4text Ä   '   D001               	goto	l33
+   618        4text Ç        +   1ˇ   bigbss    
+ 0                	incf	F1152& (0+255),f,b
+   619        4text Ñ   a                      l33:
+   620                           ;readdtal.c: 225: ktu=5-iu/3;
+   621        4text Ñ   &   0E03               	movlw	3
+   622        4text Ü        n   1temp     (                	movwf	btemp+1,c
+   623        4text à        ¿   ¸bigbss     )   FFE8         	movff	F1152,wreg
+   624        4text å        Ï   1ˇ       lbdiv 	
+         ¸	    lbdiv 	           	call	lbdiv
+   625        4text ê   &   0805               	sublw	5
+   626        4text í      CFE8      ¸bigbss     õ           	movff	wreg,F1151
+   627                           ;readdtal.c: 226: if(*dt+step2<=max) *dt=*dt+ste
+      +                          p2;
+   628        4text ñ   -   50E7               	movf	indf1,w,c
+   629        4text ò        n   1temp  &                	movwf	btemp,c
+   630        4text ö        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   631        4text û        j   1temp     '                	clrf	btemp+3,c
+   632        4text †           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   633        4text ¢      0  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONLI     k                	movf	(?_ReadDataXONLI+4)^(__Lparam& (0+65280)),
+      +                          w
+   634        4text §        &   1temp     *                	addwf	btemp+2,f,c
+   635        4text ¶   &   0E00               	movlw	0
+   636        4text ®        "   1temp     +                	addwfc	btemp+3,f,c
+   637        4text ™        ¿   ¸ ?_ReadDataXONLI             ¸temp  0          	movff	?_ReadDataXONLI+2,btemp
+   638        4text Æ        j   1temp     '                	clrf	btemp+1,c
+   639        4text ∞        P   1temp     )                	movf	btemp+1,w,c
+   640        4text ≤   (   0A80               	xorlw	128
+   641        4text ¥        n   1temp     (                	movwf	btemp+4,c
+   642        4text ∂        P   1temp     )                	movf	btemp+3,w,c
+   643        4text ∏   (   0A80               	xorlw	128
+   644        4text ∫        \   1temp     *                	subwf	btemp+4,w,c
+   645        4text º   '   E102               	bnz	u255
+   646        4text æ        P   1temp     )                	movf	btemp+2,w,c
+   647        4text ¿        \   1temp  (                	subwf	btemp,w,c
+   648        4text ¬   #                      u255:
+   649        4text ¬   &   E306               	bnc	l34
+   650        4text ƒ   -   50E7               	movf	indf1,w,c
+   651        4text ∆        n   1temp  &                	movwf	btemp,c
+   652        4text »      0  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONLI     k                	movf	(?_ReadDataXONLI+4)^(__Lparam& (0+65280)),
+      +                          w
+   653        4text          $   1temp  (                	addwf	btemp,w,c
+   654        4text Ã   ,   6EE7               	movwf	indf1,c
+   655        4text Œ   &   0C01               	retlw	1
+   656        4text –   c                      l34:
+   657                           ;readdtal.c: 227: else *dt=max;
+   658        4text –        ¿   ¸ ?_ReadDataXONLI     6   FFE7         	movff	?_ReadDataXONLI+2,indf1
+   659        4text ‘   W                      l32:
+   660                           ;readdtal.c: 228: }
+   661        4text ‘   &   0C01               	retlw	1
+   662        4text ÷   Z                      l28:
+   663                           ;readdtal.c: 231: else
+   664        4text ÷           1   bigbss    	 .                	movlb	F1152 shr (0+8)
+   665        4text ÿ        k   1ˇ   bigbss    
+ h                	clrf	F1152& (0+255),b
+   666                           ;readdtal.c: 234: ktu=5;
+   667        4text ⁄   &   0E05               	movlw	5
+   668        4text ‹      CFE8      ¸bigbss     Y           	movff	wreg,F1151
+   669                           ;readdtal.c: 235: }
+   670        4text ‡   [   0C00               	retlw	0
+   671                           ;readdtal.c: 237: }
+   672        4text ‚   á                     __end_of_ReadDataXONLI:
+   673                           ;readdtal.c: 239: unsigned char ReadDataXONLD(un
+      +                          signed char k,unsigned char *dt,unsigned char mi
+      +                          n,const unsigned char step,const unsigned char s
+      +                          tep2)
+   674                           ;readdtal.c: 240: {
+   675        4text ‚            2 ?_ReadDataXONLD  +                	dw	?_ReadDataXONLD
+   676        4text ‰   á                      _ReadDataXONLD:
+   677  000000                     
+   678                           ;_k stored from wreg
+   679        4text ‰           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   680        4text Ê      +  o   1 ˇ   __Lparam 
+ ?a_ReadDataXONLD  ç                	movwf	?a_ReadDataXONLD^(__Lparam& (0+65280)),b
+   681                           ;readdtal.c: 241: static bit dtmo=0;
+   682        4text Ë   h   6AE1               	clrf	fsr1l,c
+   683                           ;readdtal.c: 245: if(!dtmo)
+   684        4text Í      ?  ∞   ¸   rbit    ˇ   
+	      rbit    
+   
+ 9                	btfsc	F1160/(0+8),F1160& (0+7),c
+   685        4text Ï   \   D005               	goto	l38
+   686                           ;readdtal.c: 246: {
+   687        4text Ó      ?  Ä   ¸   rbit    ˇ   
+	      rbit    
+   
+ q                	bsf	F1160/(0+8),F1160& (0+7),c
+   688                           ;readdtal.c: 248: ktu=0;
+   689        4text            1   bigbss    	 .                	movlb	F1161 shr (0+8)
+   690        4text Ú        k   1ˇ   bigbss    
+ g                	clrf	F1161& (0+255),b
+   691                           ;readdtal.c: 249: iu=0;
+   692        4text Ù           1   bigbss    	 .                	movlb	F1162 shr (0+8)
+   693        4text ˆ        k   1ˇ   bigbss    
+ .                	clrf	F1162& (0+255),b
+   694        4text ¯   W                      l38:
+   695                           ;readdtal.c: 250: }
+   696        4text ¯   &   0E05               	movlw	5
+   697        4text ˙           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   698        4text ¸      (  o   1 ˇ   __Lparam 
+ ?_ExPresKey2B  D                	movwf	?_ExPresKey2B^(__Lparam& (0+65280)),b
+   699        4text ˛        ¿   ¸bigbss             ¸ ?_ExPresKey2B     .          	movff	F1161,?_ExPresKey2B+1
+   700        4text       +  Q   1 ˇ   __Lparam 
+ ?a_ReadDataXONLD  F                	movf	?a_ReadDataXONLD^(__Lparam& (0+65280)),w
+   701        4text       "  Ï   1ˇ       _ExPresKey2B 	
+         ¸	    _ExPresKey2B 	 $          	call	_ExPresKey2B
+   702        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   703        4text 
+      1  o   1 ˇ   __Lparam 
+ ?a_ReadDataXONLD     m                	movwf	(?a_ReadDataXONLD+1)^(__Lparam& (0+65280)
+      +                          ),b
+   704        4text       1  Q   1 ˇ   __Lparam 
+ ?a_ReadDataXONLD     l                	movf	(?a_ReadDataXONLD+1)^(__Lparam& (0+65280))
+      +                          ,w
+   705        4text    [   E064               	bz	l39
+   706                           ; _dt loaded to fsr1
+   707        4text         ¿   ¸ ?_ReadDataXONLD  4   FFE1         	movff	?_ReadDataXONLD,fsr1l
+   708        4text         ¿   ¸ ?_ReadDataXONLD     k   FFE2         	movff	?_ReadDataXONLD+1,fsr1h
+   709                           ;readdtal.c: 253: {
+   710        4text       1     1 ˇ   __Lparam 
+ ?a_ReadDataXONLD     l                	decf	(?a_ReadDataXONLD+1)^(__Lparam& (0+65280))
+      +                          ,w
+   711        4text    [   E124               	bnz	l40
+   712                           ;readdtal.c: 255: {
+   713        4text            1   bigbss    	 .                	movlb	F1162 shr (0+8)
+   714        4text         k   1ˇ   bigbss    
+ h                	clrf	F1162& (0+255),b
+   715                           ;readdtal.c: 257: ktu=5;
+   716        4text     &   0E05               	movlw	5
+   717        4text "      CFE8      ¸bigbss     v           	movff	wreg,F1161
+   718                           ;readdtal.c: 258: if(*dt-step>min) *dt=*dt-step;
+   719        4text &   -   50E7               	movf	indf1,w,c
+   720        4text (        n   1temp  &                	movwf	btemp,c
+   721        4text *        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   722        4text .        j   1temp     '                	clrf	btemp+3,c
+   723        4text 0           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   724        4text 2      0  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONLD     k                	movf	(?_ReadDataXONLD+3)^(__Lparam& (0+65280)),
+      +                          w
+   725        4text 4        ^   1temp     *                	subwf	btemp+2,f,c
+   726        4text 6   &   0E00               	movlw	0
+   727        4text 8        Z   1temp     +                	subwfb	btemp+3,f,c
+   728        4text :        ¿   ¸ ?_ReadDataXONLD             ¸temp  0          	movff	?_ReadDataXONLD+2,btemp
+   729        4text >        j   1temp     '                	clrf	btemp+1,c
+   730        4text @        P   1temp     )                	movf	btemp+1,w,c
+   731        4text B   (   0A80               	xorlw	128
+   732        4text D        n   1temp     (                	movwf	btemp+4,c
+   733        4text F        P   1temp     )                	movf	btemp+3,w,c
+   734        4text H   (   0A80               	xorlw	128
+   735        4text J        \   1temp     *                	subwf	btemp+4,w,c
+   736        4text L   '   E102               	bnz	u295
+   737        4text N        P   1temp     )                	movf	btemp+2,w,c
+   738        4text P        \   1temp  (                	subwf	btemp,w,c
+   739        4text R   #                      u295:
+   740        4text R   %   E206               	bc	l41
+   741        4text T   -   50E7               	movf	indf1,w,c
+   742        4text V        n   1temp  &                	movwf	btemp,c
+   743        4text X      0  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONLD     k                	movf	(?_ReadDataXONLD+3)^(__Lparam& (0+65280)),
+      +                          w
+   744        4text Z        \   1temp  (                	subwf	btemp,w,c
+   745        4text \   ,   6EE7               	movwf	indf1,c
+   746        4text ^   '   D002               	goto	l40
+   747        4text `   c                      l41:
+   748                           ;readdtal.c: 259: else *dt=min;
+   749        4text `        ¿   ¸ ?_ReadDataXONLD     6   FFE7         	movff	?_ReadDataXONLD+2,indf1
+   750        4text d   W                      l40:
+   751                           ;readdtal.c: 260: }
+   752        4text d           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   753        4text f      1  Q   1 ˇ   __Lparam 
+ ?a_ReadDataXONLD     l                	movf	(?a_ReadDataXONLD+1)^(__Lparam& (0+65280))
+      +                          ,w
+   754        4text h   &   0A02               	xorlw	2
+   755        4text j   [   E12D               	bnz	l43
+   756                           ;readdtal.c: 262: {
+   757        4text l   '   0E0D               	movlw	13
+   758        4text n           1   bigbss    	 .                	movlb	F1162 shr (0+8)
+   759        4text p        a   1ˇ   bigbss    
+ 0                	cpfslt	F1162& (0+255),b
+   760        4text r   '   D001               	goto	l44
+   761        4text t        +   1ˇ   bigbss    
+ 0                	incf	F1162& (0+255),f,b
+   762        4text v   a                      l44:
+   763                           ;readdtal.c: 264: ktu=5-iu/3;
+   764        4text v   &   0E03               	movlw	3
+   765        4text x        n   1temp     (                	movwf	btemp+1,c
+   766        4text z        ¿   ¸bigbss     )   FFE8         	movff	F1162,wreg
+   767        4text ~        Ï   1ˇ       lbdiv 	
+         ¸	    lbdiv 	           	call	lbdiv
+   768        4text Ç   &   0805               	sublw	5
+   769        4text Ñ      CFE8      ¸bigbss     ö           	movff	wreg,F1161
+   770                           ;readdtal.c: 265: if(*dt-step2>min) *dt=*dt-step
+      +                          2;
+   771        4text à   -   50E7               	movf	indf1,w,c
+   772        4text ä        n   1temp  &                	movwf	btemp,c
+   773        4text å        ¿   ¸temp          ¸temp     &          	movff	btemp,btemp+2
+   774        4text ê        j   1temp     '                	clrf	btemp+3,c
+   775        4text í           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   776        4text î      0  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONLD     k                	movf	(?_ReadDataXONLD+4)^(__Lparam& (0+65280)),
+      +                          w
+   777        4text ñ        ^   1temp     *                	subwf	btemp+2,f,c
+   778        4text ò   &   0E00               	movlw	0
+   779        4text ö        Z   1temp     +                	subwfb	btemp+3,f,c
+   780        4text ú        ¿   ¸ ?_ReadDataXONLD             ¸temp  0          	movff	?_ReadDataXONLD+2,btemp
+   781        4text †        j   1temp     '                	clrf	btemp+1,c
+   782        4text ¢        P   1temp     )                	movf	btemp+1,w,c
+   783        4text §   (   0A80               	xorlw	128
+   784        4text ¶        n   1temp     (                	movwf	btemp+4,c
+   785        4text ®        P   1temp     )                	movf	btemp+3,w,c
+   786        4text ™   (   0A80               	xorlw	128
+   787        4text ¨        \   1temp     *                	subwf	btemp+4,w,c
+   788        4text Æ   '   E102               	bnz	u325
+   789        4text ∞        P   1temp     )                	movf	btemp+2,w,c
+   790        4text ≤        \   1temp  (                	subwf	btemp,w,c
+   791        4text ¥   #                      u325:
+   792        4text ¥   %   E206               	bc	l45
+   793        4text ∂   -   50E7               	movf	indf1,w,c
+   794        4text ∏        n   1temp  &                	movwf	btemp,c
+   795        4text ∫      0  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONLD     k                	movf	(?_ReadDataXONLD+4)^(__Lparam& (0+65280)),
+      +                          w
+   796        4text º        \   1temp  (                	subwf	btemp,w,c
+   797        4text æ   ,   6EE7               	movwf	indf1,c
+   798        4text ¿   '   D002               	goto	l43
+   799        4text ¬   c                      l45:
+   800                           ;readdtal.c: 266: else *dt=min;
+   801        4text ¬        ¿   ¸ ?_ReadDataXONLD     6   FFE7         	movff	?_ReadDataXONLD+2,indf1
+   802        4text ∆   W                      l43:
+   803                           ;readdtal.c: 267: }
+   804        4text ∆   -   50E7               	movf	indf1,w,c
+   805        4text »        n   1temp  &                	movwf	btemp,c
+   806        4text             1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   807        4text Ã      0  Q   1 ˇ   __Lparam 
+ ?_ReadDataXONLD     k                	movf	(?_ReadDataXONLD+2)^(__Lparam& (0+65280)),
+      +                          w
+   808        4text Œ        \   1temp  (                	subwf	btemp,w,c
+   809        4text –   /   A0D8               	btfss	status,0,c
+   810        4text “        ¿   ¸ ?_ReadDataXONLD     s   FFE7         	movff	?_ReadDataXONLD+2,indf1
+   811                           ;readdtal.c: 269: return 1;
+   812        4text ÷   &   0C01               	retlw	1
+   813        4text ÿ   Z                      l39:
+   814                           ;readdtal.c: 271: else
+   815        4text ÿ           1   bigbss    	 .                	movlb	F1162 shr (0+8)
+   816        4text ⁄        k   1ˇ   bigbss    
+ h                	clrf	F1162& (0+255),b
+   817                           ;readdtal.c: 274: ktu=5;
+   818        4text ‹   &   0E05               	movlw	5
+   819        4text ﬁ      CFE8      ¸bigbss     Y           	movff	wreg,F1161
+   820                           ;readdtal.c: 275: }
+   821        4text ‚   [   0C00               	retlw	0
+   822                           ;readdtal.c: 277: }
+   823        4text ‰   Ñ                      __end_of_ReadDataXONLD:
+   824                           
+   825                           	psect	rbit
+   826        4rbit                        F1140:
+    827        4rbit  #                      	ds	1
+   828        4rbit                        F1150:
+    829        4rbit  #                      	ds	1
+   830        4rbit                        F1160:
+    831        4rbit  ˝                     	ds	1
+   832  000000                     
+   833  000000                     
+   834  000000                     
+   835  000000                     
+   836  000000                     
+   837  000000                     
+   838  000000                     
+   839  000000                     
+   840  000000                     
+   841  000000                     
+   842  000000                     
+   843  000000                     
+   844  000000                     
+   845  000000˝                     
+   846  000000                     
+   847  000000                     
+   848  000000                     
+   849  000000                     
+   850  000000                     
+   851  000000                     
+   852  000000                     
+   853  000000                     
+   854  000000                     
+   855  000000                     
+   856  000000                     
+   857  000000                     
+   858  000000                     
+   859  000000     ˝                
+   860  000000                     
+   861  000000                     
+   862  000000                     
+   863  000000                     
+   864  000000                     
+   865  000000                     
+   866  000000                     
+   867  000000                     
+   868  000000                     
+   869  000000                     
+   870  000000                     
+   871  000000                     
+   872  000000                     
+   873  000000          ˝           
+   874  000000                     
+   875  000000                     
+   876  000000                     
+   877  000000                     
+   878  000000                     
+   879  000000                     
+   880  000000                     
+   881  000000                     
+   882  000000                     
+   883  000000                     
+   884  000000                     
+   885  000000                     
+   886  000000                     
+   887  000000               ˝      
+   888  000000                     
+   889  000000                     
+   890  000000                     
+   891  000000                     
+   892  000000                     
+   893  000000                     
+   894  000000                     
+   895  000000                     
+   896  000000                     
+   897  000000                     
+   898  000000                     
+   899  000000                     
+   900  000000                     
+   901  000000                    ˝ 
+   902  000000                     
+   903  000000                     
+   904  000000                     
+   905  000000                     
+   906  000000                     
+   907  000000                     
+   908  000000                     
+   909  000000                     
+   910  000000                     
+   911  000000                     
+   912  000000                     
+   913  000000                     
+   914  000000                     
+   915  000000                     
+   ˝916  000000                     
+   917  000000                     
+   918  000000                     
+   919  000000                     
+   920  000000                     
+   921  000000                     
+   922  000000                     
+   923  000000                     
+   924  000000                     
+   925  000000                     
+   926  000000                     
+   927  000000                     
+   928  000000                     
+   929  000000                     
+   930  ˝000000                     
+   931  000000                     
+   932  000000                     
+   933  000000                     
+   934  000000                     
+   935  000000                     
+   936  000000                     
+   937  000000                     
+   938  000000                     
+   939  000000                     
+   940  000000                     
+   941  000000                     
+   942  000000                     
+   943  000000                     
+   944  00000˝0                     
+   945  000000                     
+   946  000000                     
+   947  000000                     
+   948  000000                     
+   949  000000                     
+   950  000000                     
+   951  000000                     
+   952  000000                     
+   953  000000                     
+   954  000000                     
+   955  000000                     
+   956  000000                     
+   957  000000                     
+   958  000000    ˝                 
+   959  000000                     
+   960  000000                     
+   961  000000                     
+   962  000000                     
+   963  000000                     
+   964  000000                     
+   965  000000                     
+   966  000000                     
+   967  000000                     
+   968  000000                     
+   969  000000                     
+   970  000000                     
+   971  000000                     
+   972  000000         ˝            
+   973  000000                     
+   974  000000                     
+   975  000000                     
+   976  000000                     
+   977  000000                     
+   978  000000                     
+   979  000000                     
+   980  000000                     
+   981  000000                     
+   982  000000                     
+   983  000000                     
+   984  000000                     
+   985  000000                     
+   986  000000              ˝       
+   987  000000                     
+   988  000000                     
+   989  000000                     
+   990  000000                     
+   991  000000                     
+   992  000000                     
+   993  000000                     
+   994  000000                     
+   995  000000                     
+   996  000000                     
+   997  000000                     
+   998  000000                     
+   999  000000                     
+  1000  000000                   ˝  
+  1001  000000                     
+  1002  000000                     
+  1003  000000                     
+  1004  000000                     
+  1005  000000                     
+  1006  000000                     
+  1007  000000                     
+  1008  000000                     
+  1009  000000                     
+  1010  000000                     
+  1011  000000                     
+  1012  000000                     
+  1013  000000                     
+  1014  000000                     
+  ˝1015  000000                     
+  1016  000000                     
+  1017  000000                     
+  1018  000000                     
+  1019  000000                     
+  1020  000000                     
+  1021  000000                     
+  1022  000000                     
+  1023  000000                     
+  1024  000000                     
+  1025  000000                     
+  1026  000000                     
+  1027  000000                     
+  1028  000000                     
+  1029 ˝ 000000                     
+  1030  000000                     
+  1031  000000                     
+  1032  000000                     
+  1033  000000                     
+  1034  000000                     
+  1035  000000                     
+  1036  000000                     
+  1037  000000                     
+  1038  000000                     
+  1039  000000                     
+  1040  000000                     
+  1041  000000                     
+  1042  000000                     
+  1043  0000˝00                     
+  1044  000000                     
+  1045  000000                     
+  1046  000000                     
+  1047  000000                     
+  1048  000000                     
+  1049  000000                     
+  1050  000000                     
+  1051  000000                     
+  1052  000000                     
+  1053  000000                     
+  1054  000000                     
+  1055  000000                     
+  1056  000000                     
+  1057  000000   ˝                  
+  1058  000000                     
+  1059  000000                     
+  1060  000000                     
+  1061  000000                     
+  1062  000000                     
+  1063  000000                     
+  1064  000000                     
+  1065  000000                     
+  1066  000000                     
+  1067  000000                     
+  1068  000000                     
+  1069  000000                     
+  1070  000000                     
+  1071  000000        ˝             
+  1072  000000                     
+  1073  000000                     
+  1074  000000                     
+  1075  000000                     
+  1076  000000                     
+  1077  000000                     
+  1078  000000                     
+  1079  000000                     
+  1080  000000                     
+  1081  000000                     
+  1082  000000                     
+  1083  000000                     
+  1084  000000                     
+  1085  000000             ˝        
+  1086  000000                     
+  1087  000000                     
+  1088  000000                     
+  1089  000000                     
+  1090  000000                     
+  1091  000000                     
+  1092  000000                     
+  1093  000000                     
+  1094  000000                     
+  1095  000000                     
+  1096  000000                     
+  1097  000000                     
+  1098  000000                     
+  1099  000000                  ˝   
+  1100  000000                     
+  1101  000000                     
+  1102  000000                     
+  1103  000000                     
+  1104  000000                     
+  1105  000000                     
+  1106  000000                     
+  1107  000000                     
+  1108  000000                     
+  1109  000000                     
+  1110  000000                     
+  1111  000000                     
+  1112  000000                     
+  1113  000000                     
+ ˝ 1114  000000                     
+  1115  000000                     
+  1116  000000                     
+  1117  000000                     
+  1118  000000                     
+  1119  000000                     
+  1120  000000                     
+  1121  000000                     
+  1122  000000                     
+  1123  000000                     
+  1124  000000                     
+  1125  000000                     
+  1126  000000                     
+  1127  000000                     
+  1128˝  000000                     
+  1129  000000                     
+  1130  000000                     
+  1131  000000                     
+  1132  000000                     
+  1133  000000                     
+  1134  000000                     
+  1135  000000                     
+  1136  000000                     
+  1137  000000                     
+  1138  000000                     
+  1139  000000                     
+  1140  000000                     
+  1141  000000                     
+  1142  000˝000                     
+  1143  000000                     
+  1144  000000                     
+  1145  000000                     
+  1146  000000                     
+  1147  000000                     
+  1148  000000                     
+  1149  000000                     
+  1150  000000                     
+  1151  000000                     
+  1152  000000                     
+  1153  000000                     
+  1154  000000                     
+  1155  000000                     
+  1156  000000  ˝                   
+  1157  000000                     
+  1158  000000                     
+  1159  000000                     
+  1160  000000                     
+  1161  000000                     
+  1162  000000                     
+  1163  000000                     
+  1164  000000                     
+  1165  000000                     
+  1166  000000                     
+  1167  000000                     
+  1168  000000                     
+  1169  000000                     
+  1170  000000       ˝              
+  1171  000000                     
+  1172  000000                     
+  1173  000000                     
+  1174  000000                     
+  1175  000000                     
+  1176  000000                     
+  1177  000000                     
+  1178  000000                     
+  1179  000000                     
+  1180  000000                     
+  1181  000000                     
+  1182  000000                     
+  1183  000000                     
+  1184  000000            ˝         
+  1185  000000                     
+  1186  000000                     
+  1187  000000                     
+  1188  000000                     
+  1189  000000                     
+  1190  000000                     
+  1191  000000                     
+  1192  000000                     
+  1193  000000                     
+  1194  000000                     
+  1195  000000                     
+  1196  000000                     
+  1197  000000                     
+  1198  000000                 ˝    
+  1199  000000                     
+  1200  000000                     
+  1201  000000                     
+  1202  000000                     
+  1203  000000                     
+  1204  000000                     
+  1205  000000                     
+  1206  000000                     
+  1207  000000                     
+  1208  000000                     
+  1209  000000                     
+  1210  000000                     
+  1211  000000                     
+  1212  000000                     
+˝  1213  000000                     
+  1214  000000                     
+  1215  000000                     
+  1216  000000                     
+  1217  000000                     
+  1218  000000                     
+  1219  000000                     
+  1220  000000                     
+  1221  000000                     
+  1222  000000                     
+  1223  000000                     
+  1224  000000                     
+  1225  000000                     
+  1226  000000                     
+  122˝7  000000                     
+  1228  000000                     
+  1229  000000                     
+  1230  000000                     
+  1231  000000                     
+  1232  000000                     
+  1233  000000                     
+  1234  000000                     
+  1235  000000                     
+  1236  000000                     
+  1237  000000                     
+  1238  000000                     
+  1239  000000                     
+  1240  000000                     
+  1241  00˝0000                     
+  1242  000000                     
+  1243  000000                     
+  1244  000000                     
+  1245  000000                     
+  1246  000000                     
+  1247  000000                     
+  1248  000000                     
+  1249  000000                     
+  1250  000000                     
+  1251  000000                     
+  1252  000000                     
+  1253  000000                     
+  1254  000000                     
+  1255  000000 ˝                    
+  1256  000000                     
+  1257  000000                     
+  1258  000000                     
+  1259  000000                     
+  1260  000000                     
+  1261  000000                     
+  1262  000000                     
+  1263  000000                     
+  1264  000000                     
+  1265  000000                     
+  1266  000000                     
+  1267  000000                     
+  1268                           
+  1269                !            	psect	bigbss
+  1270        4bigbss                        F1141:
+   1271        4bigbss  #                      	ds	1
+  1272        4bigbss                        F1142:
+   1273        4bigbss  #                      	ds	1
+  1274        4bigbss                        F1151:
+   1275        4bigbss  #                      	ds	1
+  1276        4bigbss                        F1152:
+   1277        4bigbss  #                      	ds	1
+  1278        4bigbss                        F1161:
+   1279        4bigbss  #                      	ds	1
+  1280        4bigbss                        F1162:
+   1281        4bigbss  ˝                     	ds	1
+  1282  000000                     
+  1283  000000                     
+  1284  000000                     
+  1285  000000                     
+  1286  000000                     
+  1287  000000                     
+  1288  000000                     
+  1289  000000                     
+  1290  000000                     
+  1291  000000                     
+  1292  000000                     
+  1293  000000                     
+  1294  000000                     
+  1295  000000˝                     
+  1296  000000                     
+  1297  000000                     
+  1298  000000                     
+  1299  000000                     
+  1300  000000                     
+  1301  000000                     
+  1302  000000                     
+  1303  000000                     
+  1304  000000                     
+  1305  000000                     
+  1306  000000                     
+  1307  000000                     
+  1308  000000                     
+  1309  000000     ˝                
+  1310  000000                     
+  1311  000000                     
+  1312  000000                     
+  1313  000000                     
+  1314  000000                     
+  1315  000000                     
+  1316  000000                     
+  1317  000000                     
+  1318  000000                     
+  1319  000000                     
+  1320  000000                     
+  1321  000000                     
+  1322  000000                     
+  1323  000000          ˝           
+  1324  000000                     
+  1325  000000                     
+  1326  000000                     
+  1327  000000                     
+  1328  000000                     
+  1329  000000                     
+  1330  000000                     
+  1331  000000                     
+  1332  000000                     
+  1333  000000                     
+  1334  000000                     
+  1335  000000                     
+  1336  000000                     
+  1337  000000               ˝      
+  1338  000000                     
+  1339  000000                     
+  1340  000000                     
+  1341  000000                     
+  1342  000000                     
+  1343  000000                     
+  1344  000000                     
+  1345  000000                     
+  1346  000000                     
+  1347  000000                     
+  1348  000000                     
+  1349  000000                     
+  1350  000000                     
+  1351  000000                    ˝ 
+  1352  000000                     
+  1353  000000                     
+  1354  000000                     
+  1355  000000                     
+  1356  000000                     
+  1357  000000                     
+  1358  000000                     
+  1359  000000                     
+  1360  000000                     
+  1361  000000                     
+  1362  000000                     
+  1363  000000                     
+  1364  000000                     
+  1365  000000                     
+  1˝366  000000                     
+  1367  000000                     
+  1368  000000                     
+  1369  000000                     
+  1370  000000                     
+  1371  000000                     
+  1372  000000                     
+  1373  000000                     
+  1374  000000                     
+  1375  000000                     
+  1376  000000                     
+  1377  000000                     
+  1378  000000                     
+  1379  000000                     
+  1380  ˝000000                     
+  1381  000000                     
+  1382  000000                     
+  1383  000000                     
+  1384  000000                     
+  1385  000000                     
+  1386  000000                     
+  1387  000000                     
+  1388  000000                     
+  1389  000000                     
+  1390  000000                     
+  1391  000000                     
+  1392  000000                     
+  1393  000000                     
+  1394  00000˝0                     
+  1395  000000                     
+  1396  000000                     
+  1397  000000                     
+  1398  000000                     
+  1399  000000                     
+  1400  000000                     
+  1401  000000                     
+  1402  000000                     
+  1403  000000                     
+  1404  000000                     
+  1405  000000                     
+  1406  000000                     
+  1407  000000                     
+  1408  000000                     
+  1409  000000                     
+  1410  000000                     
+  1411  000000                     
+  1412  000000                     
+  1413  000000                     
+  1414                           
+  1415                           	psect	temp
+  1416        4temp                        btemp:
+   1417        4temp  ˝                     	ds	5
+  1418                           indf0	equ	0xFEF
+  1419                           fsr0h	equ	0xFEA
+  1420                           fsr0l	equ	0xFE9
+  1421                           wreg	equ	0xFE8
+  1422                           indf1	equ	0xFE7
+  1423                           fsr1h	equ	0xFE2
+  1424                           fsr1l	equ	0xFE1
+  1425                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                          B                  Wed Jun 11 12:30:10 2014
+
+                    l3       4text $                           l4       4text ä       
+                    l5       4text R                           l8       4text û       
+                    l9       4text ¶                          l11       4text æ       
+                   l20       4text å                         l12       4text ﬁ       
+                   l13       4text ∆                         l30       4text n      
+                   l14       4text V                         l23       4text –      
+                   l15       4text                          l40       4text d      
+                   l32       4text ‘                         l24       4text ‰      
+                   l41       4text `                         l33       4text Ñ      
+                   l25       4text Ó                         l34       4text –      
+                   l43       4text ∆                         l27       4text       
+                   l19       4text h                         l44       4text v      
+                   l28       4text ÷                         l45       4text ¬      
+                   l29       4text r                         l38       4text ¯      
+                   l39       4text ÿ                         u45       4text ~       
+                  u125       4text J                        u225       4text `      
+                  u325       4text ¥                        u165       4text ∏      
+                  u255       4text ¬                        u295       4text R   9   
+                  wreg 000FE8                   F1140       4rbit     
+                 F1141       4bigbss                      F1150       4rbit        
+                 F1142       4bigbss                         F1151       4bigbss        
+                 F1160       4rbit                         F1152       4bigbss        
+                 F1161       4bigbss                         F1162       4bigbss        
+       ?_ReadDataXONLD       4 ?_ReadDataXONLD            ?_ReadDataXONLI       4 ?_ReadDataXONLI  ∑   
+                 fsr0h 000FEA                   indf0 000FEF  
+                 fsr0l 000FE9                   indf1 000FE7  
+                 fsr1l 000FE1                   btemp       4temp     
+                 lbdiv       4 lbdiv              _ReadDataXONL       4text ™       
+ __end_of_ReadDataXONL       4text                  used_btemp0       4 used_btemp0     
+           used_btemp1       4 used_btemp1                used_btemp2       4 used_btemp2     
+           used_btemp3       4 used_btemp3                used_btemp4       4 used_btemp4     
+          _ExPresKey2B       4 _ExPresKey2B  9                   status 000FD8  
+       ?a_ReadDataXONL       4 ?a_ReadDataXONL                   __Lparam       4 __Lparam     
+         ?_ExPresKey2B       4 ?_ExPresKey2B                   __ramtop       4 __ramtop     
+        ?_ReadDataXONL       4 ?_ReadDataXONL             _ReadDataXONLD       4text ‰      
+        _ReadDataXONLI       4text Ú                _ReadDataONL       4text        
+  __end_of_ReadDataONL       4text ®                  _ExPresKey2       4 _ExPresKey2     
+__end_of_ReadDataXONLD       4text ‰      __end_of_ReadDataXONLI       4text ‚      
+        ?a_ReadDataONL       4 ?a_ReadDataONL               ?_ExPresKey2       4 ?_ExPresKey2     
+         ?_ReadDataONL       4 ?_ReadDataONL                 _ExPresKey       4 _ExPresKey     
+           ?_ExPresKey       4 ?_ExPresKey           ?a_ReadDataXONLD       4 ?a_ReadDataXONLD     
+      ?a_ReadDataXONLI       4 ?a_ReadDataXONLI     
+   

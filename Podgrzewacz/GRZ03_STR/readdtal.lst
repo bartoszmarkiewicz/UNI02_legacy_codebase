@@ -1,0 +1,1625 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Jun 11 12:30:10 2014
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	rbit,global,bit,common,class=COMRAM,space
+      +                          =1,delta=1
+     5                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9                           ;       param _wrn assigned to ?_ReadDataONL+5
+    10  000000                     _ReadDataONL$wrn	set	?_ReadDataONL+5
+    11                           ;       param _step assigned to ?_ReadDataONL+4
+    12  000000                     _ReadDataONL$step	set	?_ReadDataONL+4
+    13                           ;       param _max assigned to ?_ReadDataONL+3
+    14  000000                     _ReadDataONL$max	set	?_ReadDataONL+3
+    15                           ;       param _min assigned to ?_ReadDataONL+2
+    16  000000                     _ReadDataONL$min	set	?_ReadDataONL+2
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98  000000                     
+    99  000000                     
+   100  000000                     
+   101  000000                     
+   102  000000                     
+   103  000000                     
+   104  000000                     
+   105                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   106                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   107                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   108                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   109                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   110                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   111                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   112                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   113                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   114                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   115                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   116                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   117                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   118                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   119                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   120                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   121                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   122                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   123                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   124                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   125                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   126                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   127                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   128                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   129                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   130                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   131                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   132                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   133                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   134                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   135                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   136                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   137                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   138                           ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   139                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   140                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   141                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   142                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   143                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   144                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   145                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   146                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   147                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   148                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   149                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   150                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   151                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   152                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   153                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   154                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   155                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   156                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   157                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   158                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   159                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   160                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   161                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   162                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   163                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   164                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   165                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   166                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   167                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   168                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   169                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   170                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   171                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   172                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   173                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   174                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   175                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   176                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   177                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   178                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   179                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+   180                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   181                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   182                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+   183                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   184                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   185                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   186                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   187                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   188                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   189                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   190                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+   191                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   192                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   193                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   194                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   195                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   196                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   197                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   198                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   199                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   200                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   201                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   202                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   203                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   204                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   205  000000                     _ReadDataONL$dt	set	?_ReadDataONL
+   206                           
+   207                           	psect	text
+   208                           ;readdtal.c: 121: unsigned char ReadDataONL(unsi
+      +                          gned char k,unsigned char *dt,unsigned char min,
+      +                          unsigned char max,const unsigned char step,unsig
+      +                          ned char wrn)
+   209                           ;readdtal.c: 122: {
+   210  00742E  00F0               	dw	?_ReadDataONL
+   211                           ;	_key assigned to ?a_ReadDataXONLD+1
+   212  000000                     _ReadDataXONLD$key	set	?a_ReadDataXONLD+1
+   213                           ;	_k assigned to ?a_ReadDataXONLD+0
+   214  000000                     _ReadDataXONLD$k	set	?a_ReadDataXONLD
+   215                           ;       param _step2 assigned to ?_ReadDataXONLD
+      +                          +4
+   216  000000                     _ReadDataXONLD$step2	set	?_ReadDataXONLD+4
+   217                           ;       param _step assigned to ?_ReadDataXONLD+
+      +                          3
+   218  000000                     _ReadDataXONLD$step	set	?_ReadDataXONLD+3
+   219                           ;       param _min assigned to ?_ReadDataXONLD+2
+   220  000000                     _ReadDataXONLD$min	set	?_ReadDataXONLD+2
+   221                           ;       param _dt assigned to ?_ReadDataXONLD+0
+   222  000000                     _ReadDataXONLD$dt	set	?_ReadDataXONLD
+   223                           ;	_key assigned to ?a_ReadDataXONLI+1
+   224  000000                     _ReadDataXONLI$key	set	?a_ReadDataXONLI+1
+   225                           ;	_k assigned to ?a_ReadDataXONLI+0
+   226  000000                     _ReadDataXONLI$k	set	?a_ReadDataXONLI
+   227                           ;       param _step2 assigned to ?_ReadDataXONLI
+      +                          +4
+   228  000000                     _ReadDataXONLI$step2	set	?_ReadDataXONLI+4
+   229                           ;       param _step assigned to ?_ReadDataXONLI+
+      +                          3
+   230  000000                     _ReadDataXONLI$step	set	?_ReadDataXONLI+3
+   231                           ;       param _max assigned to ?_ReadDataXONLI+2
+   232  000000                     _ReadDataXONLI$max	set	?_ReadDataXONLI+2
+   233                           ;       param _dt assigned to ?_ReadDataXONLI+0
+   234  000000                     _ReadDataXONLI$dt	set	?_ReadDataXONLI
+   235                           ;	_key assigned to ?a_ReadDataXONL+1
+   236  000000                     _ReadDataXONL$key	set	?a_ReadDataXONL+1
+   237                           ;	_k assigned to ?a_ReadDataXONL+0
+   238  000000                     _ReadDataXONL$k	set	?a_ReadDataXONL
+   239                           ;       param _wrn assigned to ?_ReadDataXONL+6
+   240  000000                     _ReadDataXONL$wrn	set	?_ReadDataXONL+6
+   241                           ;       param _step2 assigned to ?_ReadDataXONL+
+      +                          5
+   242  000000                     _ReadDataXONL$step2	set	?_ReadDataXONL+5
+   243                           ;       param _step assigned to ?_ReadDataXONL+4
+   244  000000                     _ReadDataXONL$step	set	?_ReadDataXONL+4
+   245                           ;       param _max assigned to ?_ReadDataXONL+3
+   246  000000                     _ReadDataXONL$max	set	?_ReadDataXONL+3
+   247                           ;       param _min assigned to ?_ReadDataXONL+2
+   248  000000                     _ReadDataXONL$min	set	?_ReadDataXONL+2
+   249                           ;       param _dt assigned to ?_ReadDataXONL+0
+   250  000000                     _ReadDataXONL$dt	set	?_ReadDataXONL
+   251                           ;	_k assigned to ?a_ReadDataONL+0
+   252  000000                     _ReadDataONL$k	set	?a_ReadDataONL
+   253  007430                     _ReadDataONL:
+   254  000000                     
+   255                           ;_k stored from wreg
+   256  007430  0100               	movlb	__Lparam shr (0+8)
+   257  007432  6FF6               	movwf	?a_ReadDataONL^(__Lparam& (0+65280)),b
+   258                           ;readdtal.c: 123: if(*dt<min) *dt=min;
+   259  007434  C0F0  FFE9         	movff	?_ReadDataONL,fsr0l
+   260  007438  C0F1  FFEA         	movff	?_ReadDataONL+1,fsr0h
+   261  00743C  50EF               	movf	indf0,w,c
+   262  00743E  6E00               	movwf	btemp,c
+   263  007440  51F2               	movf	(?_ReadDataONL+2)^(__Lparam& (0+65280)),w
+   264  007442  5C00               	subwf	btemp,w,c
+   265  007444  E206               	bc	l3
+   266  007446  C0F0  FFE9         	movff	?_ReadDataONL,fsr0l
+   267  00744A  C0F1  FFEA         	movff	?_ReadDataONL+1,fsr0h
+   268  00744E  C0F2  FFEF         	movff	?_ReadDataONL+2,indf0
+   269  007452                     l3:
+   270                           ;readdtal.c: 124: if(ExPresKey(k,10,6))
+   271  007452  0E0A               	movlw	10
+   272  007454  0100               	movlb	__Lparam shr (0+8)
+   273  007456  6FF7               	movwf	?_ExPresKey^(__Lparam& (0+65280)),b
+   274  007458  0E06               	movlw	6
+   275  00745A  6FF8               	movwf	(?_ExPresKey+1)^(__Lparam& (0+65280)),b
+   276  00745C  51F6               	movf	?a_ReadDataONL^(__Lparam& (0+65280)),w
+   277  00745E  ECC7  F043         	call	_ExPresKey
+   278  007462  0A00               	xorlw	0
+   279                           ;readdtal.c: 125: {
+   280                           ; _dt loaded to fsr1
+   281  007464  C0F0  FFE1         	movff	?_ReadDataONL,fsr1l
+   282  007468  E029               	bz	L1
+   283  00746A  C0F1  FFE2         	movff	?_ReadDataONL+1,fsr1h
+   284  00746E  50E7               	movf	indf1,w,c
+   285  007470  6E00               	movwf	btemp,c
+   286  007472  0100               	movlb	__Lparam shr (0+8)
+   287  007474  51F3               	movf	(?_ReadDataONL+3)^(__Lparam& (0+65280)),w
+   288  007476  5C00               	subwf	btemp,w,c
+   289  007478  E303               	bnc	l5
+   290  00747A  C0F2  FFE7         	movff	?_ReadDataONL+2,indf1
+   291  00747E  D01C               	goto	l4
+   292  007480                     l5:
+   293                           ;readdtal.c: 127: else
+   294  007480  50E7               	movf	indf1,w,c
+   295  007482  6E00               	movwf	btemp,c
+   296  007484  C000  F002         	movff	btemp,btemp+2
+   297  007488  6A03               	clrf	btemp+3,c
+   298  00748A  0100               	movlb	__Lparam shr (0+8)
+   299  00748C  51F4               	movf	(?_ReadDataONL+4)^(__Lparam& (0+65280)),w
+   300  00748E  2602               	addwf	btemp+2,f,c
+   301  007490  0E00               	movlw	0
+   302  007492  2203               	addwfc	btemp+3,f,c
+   303  007494  C0F3  F000         	movff	?_ReadDataONL+3,btemp
+   304  007498  6A01               	clrf	btemp+1,c
+   305  00749A  5001               	movf	btemp+1,w,c
+   306  00749C  0A80               	xorlw	128
+   307  00749E  6E04               	movwf	btemp+4,c
+   308  0074A0  5003               	movf	btemp+3,w,c
+   309  0074A2  0A80               	xorlw	128
+   310  0074A4  5C04               	subwf	btemp+4,w,c
+   311  0074A6  E102               	bnz	u45
+   312  0074A8  5002               	movf	btemp+2,w,c
+   313  0074AA  5C00               	subwf	btemp,w,c
+   314  0074AC                     u45:
+   315  0074AC  E305               	bnc	l4
+   316  0074AE  50E7               	movf	indf1,w,c
+   317  0074B0  6E00               	movwf	btemp,c
+   318  0074B2  51F4               	movf	(?_ReadDataONL+4)^(__Lparam& (0+65280)),w
+   319  0074B4  2400               	addwf	btemp,w,c
+   320  0074B6  6EE7               	movwf	indf1,c
+   321  0074B8                     l4:
+   322                           ;readdtal.c: 129: }
+   323                           ; _dt loaded to fsr1
+   324  0074B8  C0F0  FFE1         	movff	?_ReadDataONL,fsr1l
+   325  0074BC                     L1:
+   326  0074BC  C0F1  FFE2         	movff	?_ReadDataONL+1,fsr1h
+   327  0074C0  50E7               	movf	indf1,w,c
+   328  0074C2  0100               	movlb	__Lparam shr (0+8)
+   329  0074C4  61F3               	cpfslt	(?_ReadDataONL+3)^(__Lparam& (0+65280)),
+      +                          b
+   330  0074C6  D002               	goto	l8
+   331  0074C8  C0F2  FFE7         	movff	?_ReadDataONL+2,indf1
+   332  0074CC                     l8:
+   333                           ;readdtal.c: 131: if(wrn) return 1;
+   334  0074CC  0100               	movlb	__Lparam shr (0+8)
+   335  0074CE  51F5               	movf	(?_ReadDataONL+5)^(__Lparam& (0+65280)),w
+   336  0074D0  E001               	bz	l9
+   337  0074D2  0C01               	retlw	1
+   338  0074D4                     l9:
+   339                           ;readdtal.c: 132: return 0x00;
+   340  0074D4  0C00               	retlw	0
+   341                           ;readdtal.c: 133: }
+   342  0074D6                     __end_of_ReadDataONL:
+   343                           ;readdtal.c: 144: unsigned char ReadDataXONL(uns
+      +                          igned char k,unsigned char *dt,unsigned char min
+      +                          ,unsigned char max,const unsigned char step,cons
+      +                          t unsigned char step2,unsigned char wrn)
+   344                           ;readdtal.c: 145: {
+   345  0074D6  00F0               	dw	?_ReadDataXONL
+   346  0074D8                     _ReadDataXONL:
+   347  000000                     
+   348                           ;_k stored from wreg
+   349  0074D8  0100               	movlb	__Lparam shr (0+8)
+   350  0074DA  6FF7               	movwf	?a_ReadDataXONL^(__Lparam& (0+65280)),b
+   351                           ;readdtal.c: 146: static bit dtmo=0;
+   352  0074DC  6AE1               	clrf	fsr1l,c
+   353                           ;readdtal.c: 150: if(!dtmo)
+   354  0074DE  B24F               	btfsc	F1140/(0+8),F1140& (0+7),c
+   355  0074E0  D005               	goto	l11
+   356                           ;readdtal.c: 151: {
+   357  0074E2  824F               	bsf	F1140/(0+8),F1140& (0+7),c
+   358                           ;readdtal.c: 153: ktu=0;
+   359  0074E4  010F               	movlb	F1141 shr (0+8)
+   360  0074E6  6B35               	clrf	F1141& (0+255),b
+   361                           ;readdtal.c: 154: iu=0;
+   362  0074E8  010F               	movlb	F1142 shr (0+8)
+   363  0074EA  6B36               	clrf	F1142& (0+255),b
+   364  0074EC                     l11:
+   365                           ;readdtal.c: 155: }
+   366  0074EC  C0F0  FFE9         	movff	?_ReadDataXONL,fsr0l
+   367  0074F0  C0F1  FFEA         	movff	?_ReadDataXONL+1,fsr0h
+   368  0074F4  50EF               	movf	indf0,w,c
+   369  0074F6  6E00               	movwf	btemp,c
+   370  0074F8  0100               	movlb	__Lparam shr (0+8)
+   371  0074FA  51F2               	movf	(?_ReadDataXONL+2)^(__Lparam& (0+65280)),w
+   372  0074FC  5C00               	subwf	btemp,w,c
+   373  0074FE  E206               	bc	l12
+   374  007500  C0F0  FFE9         	movff	?_ReadDataXONL,fsr0l
+   375  007504  C0F1  FFEA         	movff	?_ReadDataXONL+1,fsr0h
+   376  007508  C0F2  FFEF         	movff	?_ReadDataXONL+2,indf0
+   377  00750C                     l12:
+   378                           ;readdtal.c: 157: if(key=ExPresKey2(k,5,ktu))
+   379  00750C  0E05               	movlw	5
+   380  00750E  0100               	movlb	__Lparam shr (0+8)
+   381  007510  6FF9               	movwf	?_ExPresKey2^(__Lparam& (0+65280)),b
+   382  007512  CF35  F0FA         	movff	F1141,?_ExPresKey2+1
+   383  007516  51F7               	movf	?a_ReadDataXONL^(__Lparam& (0+65280)),w
+   384  007518  EC1F  F044         	call	_ExPresKey2
+   385  00751C  0100               	movlb	__Lparam shr (0+8)
+   386  00751E  6FF8               	movwf	(?a_ReadDataXONL+1)^(__Lparam& (0+65280))
+      +                          ,b
+   387  007520  51F8               	movf	(?a_ReadDataXONL+1)^(__Lparam& (0+65280)),
+      +                          w
+   388  007522  E068               	bz	l13
+   389                           ; _dt loaded to fsr1
+   390  007524  C0F0  FFE1         	movff	?_ReadDataXONL,fsr1l
+   391  007528  C0F1  FFE2         	movff	?_ReadDataXONL+1,fsr1h
+   392                           ;readdtal.c: 158: {
+   393  00752C  05F8               	decf	(?a_ReadDataXONL+1)^(__Lparam& (0+65280)),
+      +                          w
+   394  00752E  E12A               	bnz	l14
+   395                           ;readdtal.c: 160: {
+   396  007530  010F               	movlb	F1142 shr (0+8)
+   397  007532  6B36               	clrf	F1142& (0+255),b
+   398                           ;readdtal.c: 162: ktu=5;
+   399  007534  0E05               	movlw	5
+   400  007536  CFE8 FF35          	movff	wreg,F1141
+   401                           ;readdtal.c: 163: if(*dt>=max) *dt=min;
+   402  00753A  50E7               	movf	indf1,w,c
+   403  00753C  6E00               	movwf	btemp,c
+   404  00753E  0100               	movlb	__Lparam shr (0+8)
+   405  007540  51F3               	movf	(?_ReadDataXONL+3)^(__Lparam& (0+65280)),w
+   406  007542  5C00               	subwf	btemp,w,c
+   407  007544  E303               	bnc	l15
+   408  007546  C0F2  FFE7         	movff	?_ReadDataXONL+2,indf1
+   409  00754A  D01C               	goto	l14
+   410  00754C                     l15:
+   411                           ;readdtal.c: 164: else
+   412  00754C  50E7               	movf	indf1,w,c
+   413  00754E  6E00               	movwf	btemp,c
+   414  007550  C000  F002         	movff	btemp,btemp+2
+   415  007554  6A03               	clrf	btemp+3,c
+   416  007556  0100               	movlb	__Lparam shr (0+8)
+   417  007558  51F4               	movf	(?_ReadDataXONL+4)^(__Lparam& (0+65280)),w
+   418  00755A  2602               	addwf	btemp+2,f,c
+   419  00755C  0E00               	movlw	0
+   420  00755E  2203               	addwfc	btemp+3,f,c
+   421  007560  C0F3  F000         	movff	?_ReadDataXONL+3,btemp
+   422  007564  6A01               	clrf	btemp+1,c
+   423  007566  5001               	movf	btemp+1,w,c
+   424  007568  0A80               	xorlw	128
+   425  00756A  6E04               	movwf	btemp+4,c
+   426  00756C  5003               	movf	btemp+3,w,c
+   427  00756E  0A80               	xorlw	128
+   428  007570  5C04               	subwf	btemp+4,w,c
+   429  007572  E102               	bnz	u125
+   430  007574  5002               	movf	btemp+2,w,c
+   431  007576  5C00               	subwf	btemp,w,c
+   432  007578                     u125:
+   433  007578  E305               	bnc	l14
+   434  00757A  50E7               	movf	indf1,w,c
+   435  00757C  6E00               	movwf	btemp,c
+   436  00757E  51F4               	movf	(?_ReadDataXONL+4)^(__Lparam& (0+65280)),w
+   437  007580  2400               	addwf	btemp,w,c
+   438  007582  6EE7               	movwf	indf1,c
+   439  007584                     l14:
+   440                           ;readdtal.c: 166: }
+   441  007584  0100               	movlb	__Lparam shr (0+8)
+   442  007586  51F8               	movf	(?a_ReadDataXONL+1)^(__Lparam& (0+65280)),
+      +                          w
+   443  007588  0A02               	xorlw	2
+   444  00758A  E139               	bnz	l23
+   445                           ;readdtal.c: 168: {
+   446  00758C  0E0D               	movlw	13
+   447  00758E  010F               	movlb	F1142 shr (0+8)
+   448  007590  6136               	cpfslt	F1142& (0+255),b
+   449  007592  D001               	goto	l19
+   450  007594  2B36               	incf	F1142& (0+255),f,b
+   451  007596                     l19:
+   452                           ;readdtal.c: 170: ktu=5-iu/3;
+   453  007596  0E03               	movlw	3
+   454  007598  6E01               	movwf	btemp+1,c
+   455  00759A  CF36  FFE8         	movff	F1142,wreg
+   456  00759E  EC8D  F049         	call	lbdiv
+   457  0075A2  0805               	sublw	5
+   458  0075A4  CFE8 FF35          	movff	wreg,F1141
+   459                           ;readdtal.c: 171: if(*dt>=max) *dt=min;
+   460  0075A8  50E7               	movf	indf1,w,c
+   461  0075AA  6E00               	movwf	btemp,c
+   462  0075AC  0100               	movlb	__Lparam shr (0+8)
+   463  0075AE  51F3               	movf	(?_ReadDataXONL+3)^(__Lparam& (0+65280)),w
+   464  0075B0  5C00               	subwf	btemp,w,c
+   465  0075B2  E303               	bnc	l20
+   466  0075B4  C0F2  FFE7         	movff	?_ReadDataXONL+2,indf1
+   467  0075B8  D022               	goto	l23
+   468  0075BA                     l20:
+   469                           ;readdtal.c: 172: else
+   470  0075BA  50E7               	movf	indf1,w,c
+   471  0075BC  6E00               	movwf	btemp,c
+   472  0075BE  C000  F002         	movff	btemp,btemp+2
+   473  0075C2  6A03               	clrf	btemp+3,c
+   474  0075C4  0100               	movlb	__Lparam shr (0+8)
+   475  0075C6  51F5               	movf	(?_ReadDataXONL+5)^(__Lparam& (0+65280)),w
+   476  0075C8  2602               	addwf	btemp+2,f,c
+   477  0075CA  0E00               	movlw	0
+   478  0075CC  2203               	addwfc	btemp+3,f,c
+   479  0075CE  C0F3  F000         	movff	?_ReadDataXONL+3,btemp
+   480  0075D2  6A01               	clrf	btemp+1,c
+   481  0075D4  5001               	movf	btemp+1,w,c
+   482  0075D6  0A80               	xorlw	128
+   483  0075D8  6E04               	movwf	btemp+4,c
+   484  0075DA  5003               	movf	btemp+3,w,c
+   485  0075DC  0A80               	xorlw	128
+   486  0075DE  5C04               	subwf	btemp+4,w,c
+   487  0075E0  E102               	bnz	u165
+   488  0075E2  5002               	movf	btemp+2,w,c
+   489  0075E4  5C00               	subwf	btemp,w,c
+   490  0075E6                     u165:
+   491  0075E6  E30B               	bnc	l23
+   492  0075E8  50E7               	movf	indf1,w,c
+   493  0075EA  6E00               	movwf	btemp,c
+   494  0075EC  51F5               	movf	(?_ReadDataXONL+5)^(__Lparam& (0+65280)),w
+   495  0075EE  2400               	addwf	btemp,w,c
+   496  0075F0  6EE7               	movwf	indf1,c
+   497                           ;readdtal.c: 174: }
+   498  0075F2  D005               	goto	l23
+   499  0075F4                     l13:
+   500                           ;readdtal.c: 176: else
+   501  0075F4  010F               	movlb	F1142 shr (0+8)
+   502  0075F6  6B36               	clrf	F1142& (0+255),b
+   503                           ;readdtal.c: 179: ktu=5;
+   504  0075F8  0E05               	movlw	5
+   505  0075FA  CFE8 FF35          	movff	wreg,F1141
+   506  0075FE                     l23:
+   507                           ;readdtal.c: 180: }
+   508                           ; _dt loaded to fsr1
+   509  0075FE  C0F0  FFE1         	movff	?_ReadDataXONL,fsr1l
+   510  007602  C0F1  FFE2         	movff	?_ReadDataXONL+1,fsr1h
+   511  007606  50E7               	movf	indf1,w,c
+   512  007608  0100               	movlb	__Lparam shr (0+8)
+   513  00760A  61F3               	cpfslt	(?_ReadDataXONL+3)^(__Lparam& (0+65280))
+      +                          ,b
+   514  00760C  D002               	goto	l24
+   515  00760E  C0F2  FFE7         	movff	?_ReadDataXONL+2,indf1
+   516  007612                     l24:
+   517                           ;readdtal.c: 182: if(wrn)
+   518  007612  0100               	movlb	__Lparam shr (0+8)
+   519  007614  51F6               	movf	(?_ReadDataXONL+6)^(__Lparam& (0+65280)),w
+   520  007616  E002               	bz	l25
+   521                           ;readdtal.c: 183: {
+   522  007618  924F               	bcf	F1140/(0+8),F1140& (0+7),c
+   523                           ;readdtal.c: 185: return 1;
+   524  00761A  0C01               	retlw	1
+   525  00761C                     l25:
+   526                           ;readdtal.c: 186: }
+   527  00761C  0C00               	retlw	0
+   528                           ;readdtal.c: 188: }
+   529  00761E                     __end_of_ReadDataXONL:
+   530                           ;readdtal.c: 200: unsigned char ReadDataXONLI(un
+      +                          signed char k,unsigned char *dt,unsigned char ma
+      +                          x,const unsigned char step,const unsigned char s
+      +                          tep2)
+   531                           ;readdtal.c: 201: {
+   532  00761E  00F1               	dw	?_ReadDataXONLI
+   533  007620                     _ReadDataXONLI:
+   534  000000                     
+   535                           ;_k stored from wreg
+   536  007620  0100               	movlb	__Lparam shr (0+8)
+   537  007622  6FF6               	movwf	?a_ReadDataXONLI^(__Lparam& (0+65280)),b
+   538                           ;readdtal.c: 202: static bit dtmo=0;
+   539  007624  6AE1               	clrf	fsr1l,c
+   540                           ;readdtal.c: 206: if(!dtmo)
+   541  007626  B44F               	btfsc	F1150/(0+8),F1150& (0+7),c
+   542  007628  D005               	goto	l27
+   543                           ;readdtal.c: 207: {
+   544  00762A  844F               	bsf	F1150/(0+8),F1150& (0+7),c
+   545                           ;readdtal.c: 209: ktu=0;
+   546  00762C  010F               	movlb	F1151 shr (0+8)
+   547  00762E  6B37               	clrf	F1151& (0+255),b
+   548                           ;readdtal.c: 210: iu=0;
+   549  007630  010F               	movlb	F1152 shr (0+8)
+   550  007632  6B38               	clrf	F1152& (0+255),b
+   551  007634                     l27:
+   552                           ;readdtal.c: 211: }
+   553  007634  0E05               	movlw	5
+   554  007636  0100               	movlb	__Lparam shr (0+8)
+   555  007638  6FF9               	movwf	?_ExPresKey2^(__Lparam& (0+65280)),b
+   556  00763A  CF37  F0FA         	movff	F1151,?_ExPresKey2+1
+   557  00763E  51F6               	movf	?a_ReadDataXONLI^(__Lparam& (0+65280)),w
+   558  007640  EC1F  F044         	call	_ExPresKey2
+   559  007644  0100               	movlb	__Lparam shr (0+8)
+   560  007646  6FF7               	movwf	(?a_ReadDataXONLI+1)^(__Lparam& (0+65280)
+      +                          ),b
+   561  007648  51F7               	movf	(?a_ReadDataXONLI+1)^(__Lparam& (0+65280))
+      +                          ,w
+   562  00764A  E05C               	bz	l28
+   563                           ; _dt loaded to fsr1
+   564  00764C  C0F1  FFE1         	movff	?_ReadDataXONLI,fsr1l
+   565  007650  C0F2  FFE2         	movff	?_ReadDataXONLI+1,fsr1h
+   566                           ;readdtal.c: 214: {
+   567  007654  05F7               	decf	(?a_ReadDataXONLI+1)^(__Lparam& (0+65280))
+      +                          ,w
+   568  007656  E124               	bnz	l29
+   569                           ;readdtal.c: 216: {
+   570  007658  010F               	movlb	F1152 shr (0+8)
+   571  00765A  6B38               	clrf	F1152& (0+255),b
+   572                           ;readdtal.c: 218: ktu=5;
+   573  00765C  0E05               	movlw	5
+   574  00765E  CFE8 FF37          	movff	wreg,F1151
+   575                           ;readdtal.c: 219: if(*dt+step<=max) *dt=*dt+step
+      +                          ;
+   576  007662  50E7               	movf	indf1,w,c
+   577  007664  6E00               	movwf	btemp,c
+   578  007666  C000  F002         	movff	btemp,btemp+2
+   579  00766A  6A03               	clrf	btemp+3,c
+   580  00766C  0100               	movlb	__Lparam shr (0+8)
+   581  00766E  51F4               	movf	(?_ReadDataXONLI+3)^(__Lparam& (0+65280)),
+      +                          w
+   582  007670  2602               	addwf	btemp+2,f,c
+   583  007672  0E00               	movlw	0
+   584  007674  2203               	addwfc	btemp+3,f,c
+   585  007676  C0F3  F000         	movff	?_ReadDataXONLI+2,btemp
+   586  00767A  6A01               	clrf	btemp+1,c
+   587  00767C  5001               	movf	btemp+1,w,c
+   588  00767E  0A80               	xorlw	128
+   589  007680  6E04               	movwf	btemp+4,c
+   590  007682  5003               	movf	btemp+3,w,c
+   591  007684  0A80               	xorlw	128
+   592  007686  5C04               	subwf	btemp+4,w,c
+   593  007688  E102               	bnz	u225
+   594  00768A  5002               	movf	btemp+2,w,c
+   595  00768C  5C00               	subwf	btemp,w,c
+   596  00768E                     u225:
+   597  00768E  E306               	bnc	l30
+   598  007690  50E7               	movf	indf1,w,c
+   599  007692  6E00               	movwf	btemp,c
+   600  007694  51F4               	movf	(?_ReadDataXONLI+3)^(__Lparam& (0+65280)),
+      +                          w
+   601  007696  2400               	addwf	btemp,w,c
+   602  007698  6EE7               	movwf	indf1,c
+   603  00769A  D002               	goto	l29
+   604  00769C                     l30:
+   605                           ;readdtal.c: 220: else *dt=max;
+   606  00769C  C0F3  FFE7         	movff	?_ReadDataXONLI+2,indf1
+   607  0076A0                     l29:
+   608                           ;readdtal.c: 221: }
+   609  0076A0  0100               	movlb	__Lparam shr (0+8)
+   610  0076A2  51F7               	movf	(?a_ReadDataXONLI+1)^(__Lparam& (0+65280))
+      +                          ,w
+   611  0076A4  0A02               	xorlw	2
+   612  0076A6  E12D               	bnz	l32
+   613                           ;readdtal.c: 223: {
+   614  0076A8  0E0D               	movlw	13
+   615  0076AA  010F               	movlb	F1152 shr (0+8)
+   616  0076AC  6138               	cpfslt	F1152& (0+255),b
+   617  0076AE  D001               	goto	l33
+   618  0076B0  2B38               	incf	F1152& (0+255),f,b
+   619  0076B2                     l33:
+   620                           ;readdtal.c: 225: ktu=5-iu/3;
+   621  0076B2  0E03               	movlw	3
+   622  0076B4  6E01               	movwf	btemp+1,c
+   623  0076B6  CF38  FFE8         	movff	F1152,wreg
+   624  0076BA  EC8D  F049         	call	lbdiv
+   625  0076BE  0805               	sublw	5
+   626  0076C0  CFE8 FF37          	movff	wreg,F1151
+   627                           ;readdtal.c: 226: if(*dt+step2<=max) *dt=*dt+ste
+      +                          p2;
+   628  0076C4  50E7               	movf	indf1,w,c
+   629  0076C6  6E00               	movwf	btemp,c
+   630  0076C8  C000  F002         	movff	btemp,btemp+2
+   631  0076CC  6A03               	clrf	btemp+3,c
+   632  0076CE  0100               	movlb	__Lparam shr (0+8)
+   633  0076D0  51F5               	movf	(?_ReadDataXONLI+4)^(__Lparam& (0+65280)),
+      +                          w
+   634  0076D2  2602               	addwf	btemp+2,f,c
+   635  0076D4  0E00               	movlw	0
+   636  0076D6  2203               	addwfc	btemp+3,f,c
+   637  0076D8  C0F3  F000         	movff	?_ReadDataXONLI+2,btemp
+   638  0076DC  6A01               	clrf	btemp+1,c
+   639  0076DE  5001               	movf	btemp+1,w,c
+   640  0076E0  0A80               	xorlw	128
+   641  0076E2  6E04               	movwf	btemp+4,c
+   642  0076E4  5003               	movf	btemp+3,w,c
+   643  0076E6  0A80               	xorlw	128
+   644  0076E8  5C04               	subwf	btemp+4,w,c
+   645  0076EA  E102               	bnz	u255
+   646  0076EC  5002               	movf	btemp+2,w,c
+   647  0076EE  5C00               	subwf	btemp,w,c
+   648  0076F0                     u255:
+   649  0076F0  E306               	bnc	l34
+   650  0076F2  50E7               	movf	indf1,w,c
+   651  0076F4  6E00               	movwf	btemp,c
+   652  0076F6  51F5               	movf	(?_ReadDataXONLI+4)^(__Lparam& (0+65280)),
+      +                          w
+   653  0076F8  2400               	addwf	btemp,w,c
+   654  0076FA  6EE7               	movwf	indf1,c
+   655  0076FC  0C01               	retlw	1
+   656  0076FE                     l34:
+   657                           ;readdtal.c: 227: else *dt=max;
+   658  0076FE  C0F3  FFE7         	movff	?_ReadDataXONLI+2,indf1
+   659  007702                     l32:
+   660                           ;readdtal.c: 228: }
+   661  007702  0C01               	retlw	1
+   662  007704                     l28:
+   663                           ;readdtal.c: 231: else
+   664  007704  010F               	movlb	F1152 shr (0+8)
+   665  007706  6B38               	clrf	F1152& (0+255),b
+   666                           ;readdtal.c: 234: ktu=5;
+   667  007708  0E05               	movlw	5
+   668  00770A  CFE8 FF37          	movff	wreg,F1151
+   669                           ;readdtal.c: 235: }
+   670  00770E  0C00               	retlw	0
+   671                           ;readdtal.c: 237: }
+   672  007710                     __end_of_ReadDataXONLI:
+   673                           ;readdtal.c: 239: unsigned char ReadDataXONLD(un
+      +                          signed char k,unsigned char *dt,unsigned char mi
+      +                          n,const unsigned char step,const unsigned char s
+      +                          tep2)
+   674                           ;readdtal.c: 240: {
+   675  007710  00F1               	dw	?_ReadDataXONLD
+   676  007712                     _ReadDataXONLD:
+   677  000000                     
+   678                           ;_k stored from wreg
+   679  007712  0100               	movlb	__Lparam shr (0+8)
+   680  007714  6FF6               	movwf	?a_ReadDataXONLD^(__Lparam& (0+65280)),b
+   681                           ;readdtal.c: 241: static bit dtmo=0;
+   682  007716  6AE1               	clrf	fsr1l,c
+   683                           ;readdtal.c: 245: if(!dtmo)
+   684  007718  B64F               	btfsc	F1160/(0+8),F1160& (0+7),c
+   685  00771A  D005               	goto	l38
+   686                           ;readdtal.c: 246: {
+   687  00771C  864F               	bsf	F1160/(0+8),F1160& (0+7),c
+   688                           ;readdtal.c: 248: ktu=0;
+   689  00771E  010F               	movlb	F1161 shr (0+8)
+   690  007720  6B39               	clrf	F1161& (0+255),b
+   691                           ;readdtal.c: 249: iu=0;
+   692  007722  010F               	movlb	F1162 shr (0+8)
+   693  007724  6B3A               	clrf	F1162& (0+255),b
+   694  007726                     l38:
+   695                           ;readdtal.c: 250: }
+   696  007726  0E05               	movlw	5
+   697  007728  0100               	movlb	__Lparam shr (0+8)
+   698  00772A  6FF8               	movwf	?_ExPresKey2B^(__Lparam& (0+65280)),b
+   699  00772C  CF39  F0F9         	movff	F1161,?_ExPresKey2B+1
+   700  007730  51F6               	movf	?a_ReadDataXONLD^(__Lparam& (0+65280)),w
+   701  007732  EC9B  F044         	call	_ExPresKey2B
+   702  007736  0100               	movlb	__Lparam shr (0+8)
+   703  007738  6FF7               	movwf	(?a_ReadDataXONLD+1)^(__Lparam& (0+65280)
+      +                          ),b
+   704  00773A  51F7               	movf	(?a_ReadDataXONLD+1)^(__Lparam& (0+65280))
+      +                          ,w
+   705  00773C  E064               	bz	l39
+   706                           ; _dt loaded to fsr1
+   707  00773E  C0F1  FFE1         	movff	?_ReadDataXONLD,fsr1l
+   708  007742  C0F2  FFE2         	movff	?_ReadDataXONLD+1,fsr1h
+   709                           ;readdtal.c: 253: {
+   710  007746  05F7               	decf	(?a_ReadDataXONLD+1)^(__Lparam& (0+65280))
+      +                          ,w
+   711  007748  E124               	bnz	l40
+   712                           ;readdtal.c: 255: {
+   713  00774A  010F               	movlb	F1162 shr (0+8)
+   714  00774C  6B3A               	clrf	F1162& (0+255),b
+   715                           ;readdtal.c: 257: ktu=5;
+   716  00774E  0E05               	movlw	5
+   717  007750  CFE8 FF39          	movff	wreg,F1161
+   718                           ;readdtal.c: 258: if(*dt-step>min) *dt=*dt-step;
+   719  007754  50E7               	movf	indf1,w,c
+   720  007756  6E00               	movwf	btemp,c
+   721  007758  C000  F002         	movff	btemp,btemp+2
+   722  00775C  6A03               	clrf	btemp+3,c
+   723  00775E  0100               	movlb	__Lparam shr (0+8)
+   724  007760  51F4               	movf	(?_ReadDataXONLD+3)^(__Lparam& (0+65280)),
+      +                          w
+   725  007762  5E02               	subwf	btemp+2,f,c
+   726  007764  0E00               	movlw	0
+   727  007766  5A03               	subwfb	btemp+3,f,c
+   728  007768  C0F3  F000         	movff	?_ReadDataXONLD+2,btemp
+   729  00776C  6A01               	clrf	btemp+1,c
+   730  00776E  5001               	movf	btemp+1,w,c
+   731  007770  0A80               	xorlw	128
+   732  007772  6E04               	movwf	btemp+4,c
+   733  007774  5003               	movf	btemp+3,w,c
+   734  007776  0A80               	xorlw	128
+   735  007778  5C04               	subwf	btemp+4,w,c
+   736  00777A  E102               	bnz	u295
+   737  00777C  5002               	movf	btemp+2,w,c
+   738  00777E  5C00               	subwf	btemp,w,c
+   739  007780                     u295:
+   740  007780  E206               	bc	l41
+   741  007782  50E7               	movf	indf1,w,c
+   742  007784  6E00               	movwf	btemp,c
+   743  007786  51F4               	movf	(?_ReadDataXONLD+3)^(__Lparam& (0+65280)),
+      +                          w
+   744  007788  5C00               	subwf	btemp,w,c
+   745  00778A  6EE7               	movwf	indf1,c
+   746  00778C  D002               	goto	l40
+   747  00778E                     l41:
+   748                           ;readdtal.c: 259: else *dt=min;
+   749  00778E  C0F3  FFE7         	movff	?_ReadDataXONLD+2,indf1
+   750  007792                     l40:
+   751                           ;readdtal.c: 260: }
+   752  007792  0100               	movlb	__Lparam shr (0+8)
+   753  007794  51F7               	movf	(?a_ReadDataXONLD+1)^(__Lparam& (0+65280))
+      +                          ,w
+   754  007796  0A02               	xorlw	2
+   755  007798  E12D               	bnz	l43
+   756                           ;readdtal.c: 262: {
+   757  00779A  0E0D               	movlw	13
+   758  00779C  010F               	movlb	F1162 shr (0+8)
+   759  00779E  613A               	cpfslt	F1162& (0+255),b
+   760  0077A0  D001               	goto	l44
+   761  0077A2  2B3A               	incf	F1162& (0+255),f,b
+   762  0077A4                     l44:
+   763                           ;readdtal.c: 264: ktu=5-iu/3;
+   764  0077A4  0E03               	movlw	3
+   765  0077A6  6E01               	movwf	btemp+1,c
+   766  0077A8  CF3A  FFE8         	movff	F1162,wreg
+   767  0077AC  EC8D  F049         	call	lbdiv
+   768  0077B0  0805               	sublw	5
+   769  0077B2  CFE8 FF39          	movff	wreg,F1161
+   770                           ;readdtal.c: 265: if(*dt-step2>min) *dt=*dt-step
+      +                          2;
+   771  0077B6  50E7               	movf	indf1,w,c
+   772  0077B8  6E00               	movwf	btemp,c
+   773  0077BA  C000  F002         	movff	btemp,btemp+2
+   774  0077BE  6A03               	clrf	btemp+3,c
+   775  0077C0  0100               	movlb	__Lparam shr (0+8)
+   776  0077C2  51F5               	movf	(?_ReadDataXONLD+4)^(__Lparam& (0+65280)),
+      +                          w
+   777  0077C4  5E02               	subwf	btemp+2,f,c
+   778  0077C6  0E00               	movlw	0
+   779  0077C8  5A03               	subwfb	btemp+3,f,c
+   780  0077CA  C0F3  F000         	movff	?_ReadDataXONLD+2,btemp
+   781  0077CE  6A01               	clrf	btemp+1,c
+   782  0077D0  5001               	movf	btemp+1,w,c
+   783  0077D2  0A80               	xorlw	128
+   784  0077D4  6E04               	movwf	btemp+4,c
+   785  0077D6  5003               	movf	btemp+3,w,c
+   786  0077D8  0A80               	xorlw	128
+   787  0077DA  5C04               	subwf	btemp+4,w,c
+   788  0077DC  E102               	bnz	u325
+   789  0077DE  5002               	movf	btemp+2,w,c
+   790  0077E0  5C00               	subwf	btemp,w,c
+   791  0077E2                     u325:
+   792  0077E2  E206               	bc	l45
+   793  0077E4  50E7               	movf	indf1,w,c
+   794  0077E6  6E00               	movwf	btemp,c
+   795  0077E8  51F5               	movf	(?_ReadDataXONLD+4)^(__Lparam& (0+65280)),
+      +                          w
+   796  0077EA  5C00               	subwf	btemp,w,c
+   797  0077EC  6EE7               	movwf	indf1,c
+   798  0077EE  D002               	goto	l43
+   799  0077F0                     l45:
+   800                           ;readdtal.c: 266: else *dt=min;
+   801  0077F0  C0F3  FFE7         	movff	?_ReadDataXONLD+2,indf1
+   802  0077F4                     l43:
+   803                           ;readdtal.c: 267: }
+   804  0077F4  50E7               	movf	indf1,w,c
+   805  0077F6  6E00               	movwf	btemp,c
+   806  0077F8  0100               	movlb	__Lparam shr (0+8)
+   807  0077FA  51F3               	movf	(?_ReadDataXONLD+2)^(__Lparam& (0+65280)),
+      +                          w
+   808  0077FC  5C00               	subwf	btemp,w,c
+   809  0077FE  A0D8               	btfss	status,0,c
+   810  007800  C0F3  FFE7         	movff	?_ReadDataXONLD+2,indf1
+   811                           ;readdtal.c: 269: return 1;
+   812  007804  0C01               	retlw	1
+   813  007806                     l39:
+   814                           ;readdtal.c: 271: else
+   815  007806  010F               	movlb	F1162 shr (0+8)
+   816  007808  6B3A               	clrf	F1162& (0+255),b
+   817                           ;readdtal.c: 274: ktu=5;
+   818  00780A  0E05               	movlw	5
+   819  00780C  CFE8 FF39          	movff	wreg,F1161
+   820                           ;readdtal.c: 275: }
+   821  007810  0C00               	retlw	0
+   822                           ;readdtal.c: 277: }
+   823  007812                     __end_of_ReadDataXONLD:
+   824                           
+   825                           	psect	rbit
+   826  000279                     F1140:
+   827  000279                     	ds	1
+   828  000279                     F1150:
+   829  000279                     	ds	1
+   830  000279                     F1160:
+   831  000279                     	ds	1
+   832  000000                     
+   833  000000                     
+   834  000000                     
+   835  000000                     
+   836  000000                     
+   837  000000                     
+   838  000000                     
+   839  000000                     
+   840  000000                     
+   841  000000                     
+   842  000000                     
+   843  000000                     
+   844  000000                     
+   845  000000                     
+   846  000000                     
+   847  000000                     
+   848  000000                     
+   849  000000                     
+   850  000000                     
+   851  000000                     
+   852  000000                     
+   853  000000                     
+   854  000000                     
+   855  000000                     
+   856  000000                     
+   857  000000                     
+   858  000000                     
+   859  000000                     
+   860  000000                     
+   861  000000                     
+   862  000000                     
+   863  000000                     
+   864  000000                     
+   865  000000                     
+   866  000000                     
+   867  000000                     
+   868  000000                     
+   869  000000                     
+   870  000000                     
+   871  000000                     
+   872  000000                     
+   873  000000                     
+   874  000000                     
+   875  000000                     
+   876  000000                     
+   877  000000                     
+   878  000000                     
+   879  000000                     
+   880  000000                     
+   881  000000                     
+   882  000000                     
+   883  000000                     
+   884  000000                     
+   885  000000                     
+   886  000000                     
+   887  000000                     
+   888  000000                     
+   889  000000                     
+   890  000000                     
+   891  000000                     
+   892  000000                     
+   893  000000                     
+   894  000000                     
+   895  000000                     
+   896  000000                     
+   897  000000                     
+   898  000000                     
+   899  000000                     
+   900  000000                     
+   901  000000                     
+   902  000000                     
+   903  000000                     
+   904  000000                     
+   905  000000                     
+   906  000000                     
+   907  000000                     
+   908  000000                     
+   909  000000                     
+   910  000000                     
+   911  000000                     
+   912  000000                     
+   913  000000                     
+   914  000000                     
+   915  000000                     
+   916  000000                     
+   917  000000                     
+   918  000000                     
+   919  000000                     
+   920  000000                     
+   921  000000                     
+   922  000000                     
+   923  000000                     
+   924  000000                     
+   925  000000                     
+   926  000000                     
+   927  000000                     
+   928  000000                     
+   929  000000                     
+   930  000000                     
+   931  000000                     
+   932  000000                     
+   933  000000                     
+   934  000000                     
+   935  000000                     
+   936  000000                     
+   937  000000                     
+   938  000000                     
+   939  000000                     
+   940  000000                     
+   941  000000                     
+   942  000000                     
+   943  000000                     
+   944  000000                     
+   945  000000                     
+   946  000000                     
+   947  000000                     
+   948  000000                     
+   949  000000                     
+   950  000000                     
+   951  000000                     
+   952  000000                     
+   953  000000                     
+   954  000000                     
+   955  000000                     
+   956  000000                     
+   957  000000                     
+   958  000000                     
+   959  000000                     
+   960  000000                     
+   961  000000                     
+   962  000000                     
+   963  000000                     
+   964  000000                     
+   965  000000                     
+   966  000000                     
+   967  000000                     
+   968  000000                     
+   969  000000                     
+   970  000000                     
+   971  000000                     
+   972  000000                     
+   973  000000                     
+   974  000000                     
+   975  000000                     
+   976  000000                     
+   977  000000                     
+   978  000000                     
+   979  000000                     
+   980  000000                     
+   981  000000                     
+   982  000000                     
+   983  000000                     
+   984  000000                     
+   985  000000                     
+   986  000000                     
+   987  000000                     
+   988  000000                     
+   989  000000                     
+   990  000000                     
+   991  000000                     
+   992  000000                     
+   993  000000                     
+   994  000000                     
+   995  000000                     
+   996  000000                     
+   997  000000                     
+   998  000000                     
+   999  000000                     
+  1000  000000                     
+  1001  000000                     
+  1002  000000                     
+  1003  000000                     
+  1004  000000                     
+  1005  000000                     
+  1006  000000                     
+  1007  000000                     
+  1008  000000                     
+  1009  000000                     
+  1010  000000                     
+  1011  000000                     
+  1012  000000                     
+  1013  000000                     
+  1014  000000                     
+  1015  000000                     
+  1016  000000                     
+  1017  000000                     
+  1018  000000                     
+  1019  000000                     
+  1020  000000                     
+  1021  000000                     
+  1022  000000                     
+  1023  000000                     
+  1024  000000                     
+  1025  000000                     
+  1026  000000                     
+  1027  000000                     
+  1028  000000                     
+  1029  000000                     
+  1030  000000                     
+  1031  000000                     
+  1032  000000                     
+  1033  000000                     
+  1034  000000                     
+  1035  000000                     
+  1036  000000                     
+  1037  000000                     
+  1038  000000                     
+  1039  000000                     
+  1040  000000                     
+  1041  000000                     
+  1042  000000                     
+  1043  000000                     
+  1044  000000                     
+  1045  000000                     
+  1046  000000                     
+  1047  000000                     
+  1048  000000                     
+  1049  000000                     
+  1050  000000                     
+  1051  000000                     
+  1052  000000                     
+  1053  000000                     
+  1054  000000                     
+  1055  000000                     
+  1056  000000                     
+  1057  000000                     
+  1058  000000                     
+  1059  000000                     
+  1060  000000                     
+  1061  000000                     
+  1062  000000                     
+  1063  000000                     
+  1064  000000                     
+  1065  000000                     
+  1066  000000                     
+  1067  000000                     
+  1068  000000                     
+  1069  000000                     
+  1070  000000                     
+  1071  000000                     
+  1072  000000                     
+  1073  000000                     
+  1074  000000                     
+  1075  000000                     
+  1076  000000                     
+  1077  000000                     
+  1078  000000                     
+  1079  000000                     
+  1080  000000                     
+  1081  000000                     
+  1082  000000                     
+  1083  000000                     
+  1084  000000                     
+  1085  000000                     
+  1086  000000                     
+  1087  000000                     
+  1088  000000                     
+  1089  000000                     
+  1090  000000                     
+  1091  000000                     
+  1092  000000                     
+  1093  000000                     
+  1094  000000                     
+  1095  000000                     
+  1096  000000                     
+  1097  000000                     
+  1098  000000                     
+  1099  000000                     
+  1100  000000                     
+  1101  000000                     
+  1102  000000                     
+  1103  000000                     
+  1104  000000                     
+  1105  000000                     
+  1106  000000                     
+  1107  000000                     
+  1108  000000                     
+  1109  000000                     
+  1110  000000                     
+  1111  000000                     
+  1112  000000                     
+  1113  000000                     
+  1114  000000                     
+  1115  000000                     
+  1116  000000                     
+  1117  000000                     
+  1118  000000                     
+  1119  000000                     
+  1120  000000                     
+  1121  000000                     
+  1122  000000                     
+  1123  000000                     
+  1124  000000                     
+  1125  000000                     
+  1126  000000                     
+  1127  000000                     
+  1128  000000                     
+  1129  000000                     
+  1130  000000                     
+  1131  000000                     
+  1132  000000                     
+  1133  000000                     
+  1134  000000                     
+  1135  000000                     
+  1136  000000                     
+  1137  000000                     
+  1138  000000                     
+  1139  000000                     
+  1140  000000                     
+  1141  000000                     
+  1142  000000                     
+  1143  000000                     
+  1144  000000                     
+  1145  000000                     
+  1146  000000                     
+  1147  000000                     
+  1148  000000                     
+  1149  000000                     
+  1150  000000                     
+  1151  000000                     
+  1152  000000                     
+  1153  000000                     
+  1154  000000                     
+  1155  000000                     
+  1156  000000                     
+  1157  000000                     
+  1158  000000                     
+  1159  000000                     
+  1160  000000                     
+  1161  000000                     
+  1162  000000                     
+  1163  000000                     
+  1164  000000                     
+  1165  000000                     
+  1166  000000                     
+  1167  000000                     
+  1168  000000                     
+  1169  000000                     
+  1170  000000                     
+  1171  000000                     
+  1172  000000                     
+  1173  000000                     
+  1174  000000                     
+  1175  000000                     
+  1176  000000                     
+  1177  000000                     
+  1178  000000                     
+  1179  000000                     
+  1180  000000                     
+  1181  000000                     
+  1182  000000                     
+  1183  000000                     
+  1184  000000                     
+  1185  000000                     
+  1186  000000                     
+  1187  000000                     
+  1188  000000                     
+  1189  000000                     
+  1190  000000                     
+  1191  000000                     
+  1192  000000                     
+  1193  000000                     
+  1194  000000                     
+  1195  000000                     
+  1196  000000                     
+  1197  000000                     
+  1198  000000                     
+  1199  000000                     
+  1200  000000                     
+  1201  000000                     
+  1202  000000                     
+  1203  000000                     
+  1204  000000                     
+  1205  000000                     
+  1206  000000                     
+  1207  000000                     
+  1208  000000                     
+  1209  000000                     
+  1210  000000                     
+  1211  000000                     
+  1212  000000                     
+  1213  000000                     
+  1214  000000                     
+  1215  000000                     
+  1216  000000                     
+  1217  000000                     
+  1218  000000                     
+  1219  000000                     
+  1220  000000                     
+  1221  000000                     
+  1222  000000                     
+  1223  000000                     
+  1224  000000                     
+  1225  000000                     
+  1226  000000                     
+  1227  000000                     
+  1228  000000                     
+  1229  000000                     
+  1230  000000                     
+  1231  000000                     
+  1232  000000                     
+  1233  000000                     
+  1234  000000                     
+  1235  000000                     
+  1236  000000                     
+  1237  000000                     
+  1238  000000                     
+  1239  000000                     
+  1240  000000                     
+  1241  000000                     
+  1242  000000                     
+  1243  000000                     
+  1244  000000                     
+  1245  000000                     
+  1246  000000                     
+  1247  000000                     
+  1248  000000                     
+  1249  000000                     
+  1250  000000                     
+  1251  000000                     
+  1252  000000                     
+  1253  000000                     
+  1254  000000                     
+  1255  000000                     
+  1256  000000                     
+  1257  000000                     
+  1258  000000                     
+  1259  000000                     
+  1260  000000                     
+  1261  000000                     
+  1262  000000                     
+  1263  000000                     
+  1264  000000                     
+  1265  000000                     
+  1266  000000                     
+  1267  000000                     
+  1268                           
+  1269                           	psect	bigbss
+  1270  000F35                     F1141:
+  1271  000F35                     	ds	1
+  1272  000F35                     F1142:
+  1273  000F35                     	ds	1
+  1274  000F35                     F1151:
+  1275  000F35                     	ds	1
+  1276  000F35                     F1152:
+  1277  000F35                     	ds	1
+  1278  000F35                     F1161:
+  1279  000F35                     	ds	1
+  1280  000F35                     F1162:
+  1281  000F35                     	ds	1
+  1282  000000                     
+  1283  000000                     
+  1284  000000                     
+  1285  000000                     
+  1286  000000                     
+  1287  000000                     
+  1288  000000                     
+  1289  000000                     
+  1290  000000                     
+  1291  000000                     
+  1292  000000                     
+  1293  000000                     
+  1294  000000                     
+  1295  000000                     
+  1296  000000                     
+  1297  000000                     
+  1298  000000                     
+  1299  000000                     
+  1300  000000                     
+  1301  000000                     
+  1302  000000                     
+  1303  000000                     
+  1304  000000                     
+  1305  000000                     
+  1306  000000                     
+  1307  000000                     
+  1308  000000                     
+  1309  000000                     
+  1310  000000                     
+  1311  000000                     
+  1312  000000                     
+  1313  000000                     
+  1314  000000                     
+  1315  000000                     
+  1316  000000                     
+  1317  000000                     
+  1318  000000                     
+  1319  000000                     
+  1320  000000                     
+  1321  000000                     
+  1322  000000                     
+  1323  000000                     
+  1324  000000                     
+  1325  000000                     
+  1326  000000                     
+  1327  000000                     
+  1328  000000                     
+  1329  000000                     
+  1330  000000                     
+  1331  000000                     
+  1332  000000                     
+  1333  000000                     
+  1334  000000                     
+  1335  000000                     
+  1336  000000                     
+  1337  000000                     
+  1338  000000                     
+  1339  000000                     
+  1340  000000                     
+  1341  000000                     
+  1342  000000                     
+  1343  000000                     
+  1344  000000                     
+  1345  000000                     
+  1346  000000                     
+  1347  000000                     
+  1348  000000                     
+  1349  000000                     
+  1350  000000                     
+  1351  000000                     
+  1352  000000                     
+  1353  000000                     
+  1354  000000                     
+  1355  000000                     
+  1356  000000                     
+  1357  000000                     
+  1358  000000                     
+  1359  000000                     
+  1360  000000                     
+  1361  000000                     
+  1362  000000                     
+  1363  000000                     
+  1364  000000                     
+  1365  000000                     
+  1366  000000                     
+  1367  000000                     
+  1368  000000                     
+  1369  000000                     
+  1370  000000                     
+  1371  000000                     
+  1372  000000                     
+  1373  000000                     
+  1374  000000                     
+  1375  000000                     
+  1376  000000                     
+  1377  000000                     
+  1378  000000                     
+  1379  000000                     
+  1380  000000                     
+  1381  000000                     
+  1382  000000                     
+  1383  000000                     
+  1384  000000                     
+  1385  000000                     
+  1386  000000                     
+  1387  000000                     
+  1388  000000                     
+  1389  000000                     
+  1390  000000                     
+  1391  000000                     
+  1392  000000                     
+  1393  000000                     
+  1394  000000                     
+  1395  000000                     
+  1396  000000                     
+  1397  000000                     
+  1398  000000                     
+  1399  000000                     
+  1400  000000                     
+  1401  000000                     
+  1402  000000                     
+  1403  000000                     
+  1404  000000                     
+  1405  000000                     
+  1406  000000                     
+  1407  000000                     
+  1408  000000                     
+  1409  000000                     
+  1410  000000                     
+  1411  000000                     
+  1412  000000                     
+  1413  000000                     
+  1414                           
+  1415                           	psect	temp
+  1416  000000                     btemp:
+  1417  000000                     	ds	5
+  1418                           indf0	equ	0xFEF
+  1419                           fsr0h	equ	0xFEA
+  1420                           fsr0l	equ	0xFE9
+  1421                           wreg	equ	0xFE8
+  1422                           indf1	equ	0xFE7
+  1423                           fsr1h	equ	0xFE2
+  1424                           fsr1l	equ	0xFE1
+  1425                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Wed Jun 11 12:30:10 2014
+
+                    l3 7452                      l4 74B8  
+                    l5 7480                      l8 74CC  
+                    l9 74D4                     l11 74EC  
+                   l20 75BA                     l12 750C  
+                   l13 75F4                     l30 769C  
+                   l14 7584                     l23 75FE  
+                   l15 754C                     l40 7792  
+                   l32 7702                     l24 7612  
+                   l41 778E                     l33 76B2  
+                   l25 761C                     l34 76FE  
+                   l43 77F4                     l27 7634  
+                   l19 7596                     l44 77A4  
+                   l28 7704                     l45 77F0  
+                   l29 76A0                     l38 7726  
+                   l39 7806                     u45 74AC  
+                  u125 7578                    u225 768E  
+                  u325 77E2                    u165 75E6  
+                  u255 76F0                    u295 7780  
+                  wreg 000FE8                   F1140 0279  
+                 F1141 0F35                   F1150 027A  
+                 F1142 0F36                   F1151 0F37  
+                 F1160 027B                   F1152 0F38  
+                 F1161 0F39                   F1162 0F3A  
+       ?_ReadDataXONLD 00F1         ?_ReadDataXONLI 00F1  
+                 fsr0h 000FEA                   indf0 000FEF  
+                 fsr0l 000FE9                   indf1 000FE7  
+                 fsr1l 000FE1                   btemp 0000  
+                 lbdiv 931A           _ReadDataXONL 74D8  
+ __end_of_ReadDataXONL 761E             used_btemp0 0001  
+           used_btemp1 0001             used_btemp2 0001  
+           used_btemp3 0001             used_btemp4 0001  
+          _ExPresKey2B 8936                  status 000FD8  
+       ?a_ReadDataXONL 00F7                __Lparam 00F0  
+         ?_ExPresKey2B 00F8                __ramtop 1000  
+        ?_ReadDataXONL 00F0          _ReadDataXONLD 7712  
+        _ReadDataXONLI 7620            _ReadDataONL 7430  
+  __end_of_ReadDataONL 74D6             _ExPresKey2 883E  
+__end_of_ReadDataXONLD 7812  __end_of_ReadDataXONLI 7710  
+        ?a_ReadDataONL 00F6            ?_ExPresKey2 00F9  
+         ?_ReadDataONL 00F0              _ExPresKey 878E  
+           ?_ExPresKey 00F7        ?a_ReadDataXONLD 00F6  
+      ?a_ReadDataXONLI 00F6  

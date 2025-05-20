@@ -1,0 +1,2712 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Thu Jul 28 10:43:08 2016
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     5                           	psect	bss,global,class=RAM,space=1,delta=1
+     6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97                           
+    98                           	psect	text
+    99                           ;pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   100                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   101                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   102                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFFC;
+   103                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   104                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   105                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   106                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +                           char * TBLPTR @ 0xFF6;
+   107                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   108                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   109                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   110                           ;pic18f45k20.h: 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   111                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   112                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   113                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   114                           ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   115                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   116                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   117                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                          d char POSTINC0 @ 0xFEE;
+   118                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   119                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   120                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   121                           ;pic18f45k20.h: 42: static volatile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   122                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   123                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   124                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   125                           ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   126                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   127                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   128                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                          d char PLUSW1 @ 0xFE3;
+   129                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   130                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   131                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   132                           ;pic18f45k20.h: 53: static volatile near unsigne
+      +                          d char INDF2 @ 0xFDF;
+   133                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   134                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   135                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   136                           ;pic18f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   137                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   138                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   139                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD8;
+   140                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   141                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   142                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   143                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +                          CON @ 0xFD5;
+   144                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   145                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   146                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   147                           ;pic18f45k20.h: 69: static volatile near unsigne
+      +                          d char RCON @ 0xFD0;
+   148                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   149                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   150                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   151                           ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   152                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   153                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   154                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   155                           ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   156                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   157                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   158                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char SSPCON1 @ 0xFC6;
+   159                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   160                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   161                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   162                           ;pic18f45k20.h: 86: static volatile near unsigne
+      +                          d int ADRES @ 0xFC3;
+   163                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   164                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   165                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   166                           ;pic18f45k20.h: 90: static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   167                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   168                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   169                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   170                           ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   171                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   172                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   173                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                          d char CCP2CON @ 0xFBA;
+   174                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   175                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   176                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+   177                           ;pic18f45k20.h: 103: static volatile near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   178                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   179                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   180                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   181                           ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   182                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   183                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   184                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0xFB0;
+   185                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   186                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   187                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   188                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                          ed char RCREG1 @ 0xFAE;
+   189                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   190                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   191                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   192                           ;pic18f45k20.h: 123: static volatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   193                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   194                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   195                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   196                           ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   197                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   198                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   199  0098D8                     _InitI2C:
+   200  000000                     
+   201                           ;i2c_s.c: 46: TRISC3=1;
+   202  0098D8  8694               	bsf	3988,3,c	;volatile
+   203                           ;i2c_s.c: 47: TRISC4=1;
+   204  0098DA  8894               	bsf	3988,4,c	;volatile
+   205                           ;i2c_s.c: 50: SSPADD=0b11001100;
+   206  0098DC  0ECC               	movlw	204
+   207  0098DE  6EC8               	movwf	4040,c
+   208                           ;i2c_s.c: 53: SSPM0=0;
+   209  0098E0  90C6               	bcf	4038,0,c
+   210                           ;i2c_s.c: 54: SSPM1=1;
+   211  0098E2  82C6               	bsf	4038,1,c
+   212                           ;i2c_s.c: 55: SSPM2=1;
+   213  0098E4  84C6               	bsf	4038,2,c
+   214                           ;i2c_s.c: 56: SSPM3=0;
+   215  0098E6  96C6               	bcf	4038,3,c
+   216                           ;i2c_s.c: 58: SEN=1;
+   217  0098E8  80C5               	bsf	4037,0,c
+   218                           ;i2c_s.c: 59: CKP=1;
+   219  0098EA  88C6               	bsf	4038,4,c
+   220                           ;i2c_s.c: 62: SMP=1;
+   221  0098EC  8EC7               	bsf	4039,7,c
+   222                           ;i2c_s.c: 63: CKE=0;
+   223  0098EE  9CC7               	bcf	4039,6,c
+   224                           ;i2c_s.c: 66: SSPIE=1;
+   225  0098F0  869D               	bsf	3997,3,c
+   226                           ;i2c_s.c: 71: SSPIP=1;
+   227  0098F2  869F               	bsf	3999,3,c
+   228                           ;i2c_s.c: 73: BufI2C.indeks=0;
+   229  0098F4  0101               	movlb	_BufI2C shr (0+8)
+   230  0098F6  6B9B               	clrf	_BufI2C& (0+255),b
+   231                           ;i2c_s.c: 74: DtI2C.error=0;
+   232  0098F8  6B85               	clrf	(_DtI2C+1)& (0+255),b
+   233                           ;i2c_s.c: 75: DtI2C.krok=0;
+   234  0098FA  9184               	bcf	_DtI2C& (0+255),0,b
+   235                           ;i2c_s.c: 76: SSPEN=1;
+   236  0098FC  8AC6               	bsf	4038,5,c
+   237                           ;i2c_s.c: 77: }
+   238  0098FE  0012               	return	
+   239  009900                     __end_of_InitI2C:
+   240                           ;i2c_s.c: 84: volatile static unsigned char dt;
+   241                           ;i2c_s.c: 85: void I2CSlaveTR(void)
+   242                           ;i2c_s.c: 86: {
+   243  009900                     _I2CSlaveTR:
+   244  000000                     
+   245                           ;i2c_s.c: 87: if(WCOL)
+   246  009900  AEC6               	btfss	4038,7,c	;volatile
+   247  009902  D005               	goto	l22
+   248                           ;i2c_s.c: 88: {
+   249  009904  9EC6               	bcf	4038,7,c	;volatile
+   250                           ;i2c_s.c: 90: DtI2C.error=7;
+   251  009906  0E07               	movlw	7
+   252  009908  CFE8 F185          	movff	wreg,_DtI2C+1
+   253                           ;i2c_s.c: 91: }
+   254  00990C  D02B               	goto	l23
+   255  00990E                     l22:
+   256                           ;i2c_s.c: 92: else
+   257  00990E  ACC6               	btfss	4038,6,c	;volatile
+   258  009910  D007               	goto	l24
+   259                           ;i2c_s.c: 94: {
+   260  009912  9CC6               	bcf	4038,6,c	;volatile
+   261                           ;i2c_s.c: 96: DtI2C.error=8;
+   262  009914  0E08               	movlw	8
+   263  009916  CFE8 F185          	movff	wreg,_DtI2C+1
+   264                           ;i2c_s.c: 97: dt = SSPBUF;
+   265  00991A  CFC9 FE72          	movff	4041,_dt	;volatile
+   266                           ;i2c_s.c: 98: }
+   267  00991E  D022               	goto	l23
+   268  009920                     l24:
+   269                           ;i2c_s.c: 99: else
+   270  009920  BAC7               	btfsc	4039,5,c	;volatile
+   271  009922  D014               	goto	l26
+   272                           ;i2c_s.c: 105: {
+   273  009924  0101               	movlb	_DtI2C shr (0+8)
+   274                           ;i2c_s.c: 102: {
+   275  009926  A4C7               	btfss	4039,2,c	;volatile
+   276  009928  D00B               	goto	L3
+   277  00992A  8184               	bsf	_DtI2C& (0+255),0,b
+   278                           ;i2c_s.c: 108: dt=SSPBUF;
+   279  00992C  CFC9 FE72          	movff	4041,_dt	;volatile
+   280                           ;i2c_s.c: 109: SetTData();
+   281  009930  D87E               	call	_SetTData	;wreg free
+   282                           ;i2c_s.c: 110: BufI2C.Bf[22-1]=LiczCHK(22);
+   283  009932  0E16               	movlw	22
+   284  009934  D81E               	call	_LiczCHK
+   285  009936  CFE8 F1B1          	movff	wreg,_BufI2C+22
+   286                           ;i2c_s.c: 111: BufI2C.indeks=0;
+   287  00993A  0101               	movlb	_BufI2C shr (0+8)
+   288  00993C  6B9B               	clrf	_BufI2C& (0+255),b
+   289                           ;i2c_s.c: 112: }
+   290  00993E  D006               	goto	l26
+   291                           ;i2c_s.c: 113: else
+   292  009940                     L3:
+   293  009940  9184               	bcf	_DtI2C& (0+255),0,b
+   294                           ;i2c_s.c: 117: dt=SSPBUF;
+   295  009942  CFC9 FE72          	movff	4041,_dt	;volatile
+   296                           ;i2c_s.c: 118: SetRData();
+   297  009946  D8E3               	call	_SetRData	;wreg free
+   298                           ;i2c_s.c: 119: CKP = 1;
+   299  009948  88C6               	bsf	4038,4,c
+   300                           ;i2c_s.c: 120: return;
+   301  00994A  0012               	return	
+   302  00994C                     l26:
+   303                           ;i2c_s.c: 121: }
+   304  00994C  0101               	movlb	_DtI2C shr (0+8)
+   305  00994E  B184               	btfsc	_DtI2C& (0+255),0,b
+   306  009950  D003               	goto	l29
+   307                           ;i2c_s.c: 126: {
+   308  009952  D850               	call	_ReceptDataI2C	;wreg free
+   309                           ;i2c_s.c: 128: CKP = 1;
+   310  009954  88C6               	bsf	4038,4,c
+   311                           ;i2c_s.c: 129: return;
+   312  009956  0012               	return	
+   313  009958                     l29:
+   314                           ;i2c_s.c: 130: }
+   315  009958  0101               	movlb	_DtI2C shr (0+8)
+   316  00995A  A184               	btfss	_DtI2C& (0+255),0,b
+   317  00995C  D003               	goto	l23
+   318                           ;i2c_s.c: 133: {
+   319  00995E  D82F               	call	_TransmitDataI2C	;wreg free
+   320                           ;i2c_s.c: 135: CKP = 1;
+   321  009960  88C6               	bsf	4038,4,c
+   322                           ;i2c_s.c: 136: return;
+   323  009962  0012               	return	
+   324  009964                     l23:
+   325                           ;i2c_s.c: 137: }
+   326  009964  CFC9 FE72          	movff	4041,_dt	;volatile
+   327                           ;i2c_s.c: 141: DtI2C.krok=0;
+   328  009968  0101               	movlb	_DtI2C shr (0+8)
+   329  00996A  9184               	bcf	_DtI2C& (0+255),0,b
+   330                           ;i2c_s.c: 142: BufI2C.indeks=0;
+   331  00996C  6B9B               	clrf	_BufI2C& (0+255),b
+   332                           ;i2c_s.c: 143: CKP = 1;
+   333  00996E  88C6               	bsf	4038,4,c
+   334                           ;i2c_s.c: 144: }
+   335  009970  0012               	return	
+   336  009972                     __end_of_I2CSlaveTR:
+   337                           ;i2c_s.c: 148: unsigned char LiczCHK(const unsig
+      +                          ned char NBTI2C)
+   338                           ;i2c_s.c: 149: {
+   339  009972                     _LiczCHK:
+   340  000000                     
+   341                           ; _NBTI2C loaded to prodl
+   342  009972  6EF3               	movwf	prodl,c
+   343                           ;i2c_s.c: 150: unsigned char i;
+   344  009974  6AE1               	clrf	fsr1l,c
+   345                           ;i2c_s.c: 153: for(i=0;i<NBTI2C-1;i++) chk+=(Buf
+      +                          I2C.Bf[i]+i)^0xAA;
+   346  009976  6AD9               	clrf	fsr2l,c
+   347  009978                     l35:
+   348  009978  0EFF               	movlw	255
+   349  00997A  24F3               	addwf	prodl,w,c
+   350  00997C  6E02               	movwf	btemp+2,c
+   351  00997E  6A03               	clrf	btemp+3,c
+   352  009980  0EFF               	movlw	255
+   353  009982  2203               	addwfc	btemp+3,f,c
+   354  009984  CFD9 F000          	movff	fsr2l,btemp
+   355  009988  6A01               	clrf	btemp+1,c
+   356  00998A  5001               	movf	btemp+1,w,c
+   357  00998C  0A80               	xorlw	128
+   358  00998E  6E04               	movwf	btemp+4,c
+   359  009990  5003               	movf	btemp+3,w,c
+   360  009992  0A80               	xorlw	128
+   361  009994  5C04               	subwf	btemp+4,w,c
+   362  009996  E102               	bnz	u75
+   363  009998  5002               	movf	btemp+2,w,c
+   364  00999A  5C00               	subwf	btemp,w,c
+   365  00999C                     u75:
+   366  00999C  E20E               	bc	u70
+   367  00999E  50D9               	movf	fsr2l,w,c
+   368  0099A0  EE01  F09C         	lfsr	0,_BufI2C+1
+   369  0099A4  26E9               	addwf	fsr0l,f,c
+   370  0099A6  0E00               	movlw	0
+   371  0099A8  22EA               	addwfc	fsr0h,f,c
+   372  0099AA  50EF               	movf	indf0,w,c
+   373  0099AC  6E00               	movwf	btemp,c
+   374  0099AE  50D9               	movf	fsr2l,w,c
+   375  0099B0  2400               	addwf	btemp,w,c
+   376  0099B2  0AAA               	xorlw	-86
+   377  0099B4  26E1               	addwf	fsr1l,f,c
+   378  0099B6  2AD9               	incf	fsr2l,f,c
+   379  0099B8  D7DF               	goto	l35
+   380  0099BA                     u70:
+   381                           ;i2c_s.c: 154: return chk;
+   382  0099BA  50E1               	movf	fsr1l,w,c
+   383  0099BC  0012               	return	
+   384                           ;i2c_s.c: 155: }
+   385  0099BE                     __end_of_LiczCHK:
+   386                           ;i2c_s.c: 158: void TransmitDataI2C(void)
+   387                           ;i2c_s.c: 159: {
+   388  0099BE                     _TransmitDataI2C:
+   389  000000                     
+   390                           ;i2c_s.c: 160: if(RW)
+   391  0099BE  A4C7               	btfss	4039,2,c	;volatile
+   392  0099C0  D016               	goto	l37
+   393                           ;i2c_s.c: 161: {
+   394  0099C2  0E18               	movlw	24
+   395  0099C4  0101               	movlb	_BufI2C shr (0+8)
+   396  0099C6  619B               	cpfslt	_BufI2C& (0+255),b
+   397  0099C8  D00A               	goto	l38
+   398  0099CA  C19B  FFE8         	movff	_BufI2C,wreg
+   399  0099CE  EE01  F09C         	lfsr	0,_BufI2C+1
+   400  0099D2  26E9               	addwf	fsr0l,f,c
+   401  0099D4  0E00               	movlw	0
+   402  0099D6  22EA               	addwfc	fsr0h,f,c
+   403  0099D8  50EF               	movf	indf0,w,c
+   404  0099DA  6EC9               	movwf	4041,c	;volatile
+   405  0099DC  D002               	goto	l39
+   406  0099DE                     l38:
+   407                           ;i2c_s.c: 163: else SSPBUF=BufI2C.Bf[24-1];
+   408  0099DE  C1B3  FFC9         	movff	_BufI2C+24,4041	;volatile
+   409  0099E2                     l39:
+   410                           ;i2c_s.c: 164: if(BufI2C.indeks<22-1) BufI2C.ind
+      +                          eks++;
+   411  0099E2  0E15               	movlw	21
+   412  0099E4  0101               	movlb	_BufI2C shr (0+8)
+   413  0099E6  619B               	cpfslt	_BufI2C& (0+255),b
+   414  0099E8  0C15               	retlw	21
+   415  0099EA  2B9B               	incf	_BufI2C& (0+255),f,b
+   416                           ;i2c_s.c: 165: }
+   417  0099EC  0C01               	retlw	1
+   418  0099EE                     l37:
+   419                           ;i2c_s.c: 166: else
+   420  0099EE  0101               	movlb	_BufI2C shr (0+8)
+   421  0099F0  6B9B               	clrf	_BufI2C& (0+255),b
+   422                           ;i2c_s.c: 169: }
+   423  0099F2  0012               	return	
+   424  0099F4                     __end_of_TransmitDataI2C:
+   425                           ;i2c_s.c: 173: void ReceptDataI2C(void)
+   426                           ;i2c_s.c: 174: {
+   427  0099F4                     _ReceptDataI2C:
+   428  000000                     
+   429                           ;i2c_s.c: 175: dt = SSPBUF;
+   430  0099F4  CFC9 FE72          	movff	4041,_dt	;volatile
+   431                           ;i2c_s.c: 176: if(BufI2C.indeks<3)
+   432  0099F8  0E03               	movlw	3
+   433  0099FA  0101               	movlb	_BufI2C shr (0+8)
+   434  0099FC  619B               	cpfslt	_BufI2C& (0+255),b
+   435  0099FE  0C03               	retlw	3
+   436                           ;i2c_s.c: 177: {
+   437  009A00  C19B  FFE8         	movff	_BufI2C,wreg
+   438  009A04  EE01  F09C         	lfsr	0,_BufI2C+1
+   439  009A08  26E9               	addwf	fsr0l,f,c
+   440  009A0A  0E00               	movlw	0
+   441  009A0C  22EA               	addwfc	fsr0h,f,c
+   442  009A0E  CE72  FFEF         	movff	_dt,indf0	;volatile
+   443                           ;i2c_s.c: 179: BufI2C.indeks++;
+   444  009A12  2B9B               	incf	_BufI2C& (0+255),f,b
+   445                           ;i2c_s.c: 180: if(BufI2C.indeks==3-1)
+   446  009A14  C19B  FFE8         	movff	_BufI2C,wreg
+   447  009A18  0A02               	xorlw	2
+   448  009A1A  A4D8               	btfss	status,2,c
+   449  009A1C  0012               	return	
+   450                           ;i2c_s.c: 181: if(LiczCHK(3)==BufI2C.Bf[3-1]) To
+      +                          Work();
+   451  009A1E  0E03               	movlw	3
+   452  009A20  DFA8               	call	_LiczCHK
+   453  009A22  0101               	movlb	(_BufI2C+3) shr (0+8)
+   454  009A24  199E               	xorwf	(_BufI2C+3)& (0+255),w,b
+   455  009A26  B4D8               	btfsc	status,2,c
+   456  009A28  D801               	call	_ToWork	;wreg free
+   457                           ;i2c_s.c: 182: }
+   458  009A2A  0012               	return	
+   459  009A2C                     __end_of_ReceptDataI2C:
+   460                           ;i2c_s.c: 186: void ToWork(void)
+   461                           ;i2c_s.c: 187: {
+   462  009A2C                     _ToWork:
+   463  000000                     
+   464                           ;i2c_s.c: 189: }
+   465  009A2C  0012               	return	
+   466  009A2E                     __end_of_ToWork:
+   467                           ;i2c_s.c: 194: void SetTData(void)
+   468                           ;i2c_s.c: 195: {
+   469  009A2E                     _SetTData:
+   470  000000                     
+   471                           ;	_vprz assigned to ?a_SetTData+0
+   472  000000                     _SetTData$vprz	set	?a_SetTData
+   473                           ;i2c_s.c: 197: unsigned char d;
+   474  009A2E  6AD9               	clrf	fsr2l,c
+   475                           ;i2c_s.c: 201: BufI2C.Bf[0]=DtI2C.kod;
+   476  009A30  C186  F19C         	movff	_DtI2C+2,_BufI2C+1
+   477                           ;i2c_s.c: 202: BufI2C.Bf[1]=DtI2C.PCO;
+   478  009A34  C187  F19D         	movff	_DtI2C+3,_BufI2C+2
+   479                           ;i2c_s.c: 203: BufI2C.Bf[2]=DtI2C.CO;
+   480  009A38  C188  F19E         	movff	_DtI2C+4,_BufI2C+3
+   481                           ;i2c_s.c: 204: BufI2C.Bf[3]=DtI2C.PCW;
+   482  009A3C  C189  F19F         	movff	_DtI2C+5,_BufI2C+4
+   483                           ;i2c_s.c: 205: BufI2C.Bf[4]=DtI2C.CW;
+   484  009A40  C18A  F1A0         	movff	_DtI2C+6,_BufI2C+5
+   485                           ;i2c_s.c: 206: BufI2C.Bf[5]=DtI2C.CS;
+   486  009A44  C18B  F1A1         	movff	_DtI2C+7,_BufI2C+6
+   487                           ;i2c_s.c: 207: BufI2C.Bf[6]=DtIN.IN;
+   488  009A48  C094  F1A2         	movff	_DtIN+2,_BufI2C+7
+   489                           ;i2c_s.c: 208: BufI2C.Bf[7]=PMP.APROC;
+   490  009A4C  C2F3  F1A3         	movff	_PMP+2,_BufI2C+8
+   491                           ;i2c_s.c: 209: BufI2C.Bf[8]=DtI2C.BUF_PWM;
+   492  009A50  C18E  F1A4         	movff	_DtI2C+10,_BufI2C+9
+   493                           ;i2c_s.c: 210: BufI2C.Bf[9]=DtI2C.ST_AD1;
+   494  009A54  C18F  F1A5         	movff	_DtI2C+11,_BufI2C+10
+   495                           ;i2c_s.c: 211: BufI2C.Bf[10]=DtI2C.ST_AD2;
+   496  009A58  C190  F1A6         	movff	_DtI2C+12,_BufI2C+11
+   497                           ;i2c_s.c: 212: BufI2C.Bf[11]=DtI2C.ST_AD3;
+   498  009A5C  C191  F1A7         	movff	_DtI2C+13,_BufI2C+12
+   499                           ;i2c_s.c: 213: BufI2C.Bf[12]=DtI2C.PORTC;
+   500  009A60  C192  F1A8         	movff	_DtI2C+14,_BufI2C+13
+   501                           ;i2c_s.c: 214: BufI2C.Bf[13]=DtI2C.PORTD;
+   502  009A64  C193  F1A9         	movff	_DtI2C+15,_BufI2C+14
+   503                           ;i2c_s.c: 215: BufI2C.Bf[14]=DtI2C.ST_GLOBAL0;
+   504  009A68  C194  F1AA         	movff	_DtI2C+16,_BufI2C+15
+   505                           ;i2c_s.c: 216: BufI2C.Bf[15]=DtI2C.ST_GLOBAL2;
+   506  009A6C  C195  F1AB         	movff	_DtI2C+17,_BufI2C+16
+   507                           ;i2c_s.c: 217: BufI2C.Bf[16]=DtI2C.ST_GLOBAL3;
+   508  009A70  C196  F1AC         	movff	_DtI2C+18,_BufI2C+17
+   509                           ;i2c_s.c: 218: BufI2C.Bf[17]=DtI2C.ST_GLOBAL4;
+   510  009A74  C197  F1AD         	movff	_DtI2C+19,_BufI2C+18
+   511                           ;i2c_s.c: 219: if(M.VVNT) vprz=(float)M.VVNT*0.7
+      +                          +5.0/7;
+   512  009A78  EE03  F022         	lfsr	0,_M+28
+   513  009A7C  50EF               	movf	indf0,w,c
+   514  009A7E  E032               	bz	l48
+   515  009A80  0EDB               	movlw	219
+   516  009A82  6E00               	movwf	btemp,c
+   517  009A84  0E36               	movlw	54
+   518  009A86  6E01               	movwf	btemp+1,c
+   519  009A88  0E3F               	movlw	63
+   520  009A8A  6E02               	movwf	btemp+2,c
+   521  009A8C  C000  F0FA         	movff	btemp,?a_SetTData+3
+   522  009A90  C001  F0FB         	movff	btemp+1,?a_SetTData+4
+   523  009A94  C002  F0FC         	movff	btemp+2,?a_SetTData+5
+   524  009A98  0E33               	movlw	51
+   525  009A9A  6E00               	movwf	btemp,c
+   526  009A9C  6E01               	movwf	btemp+1,c
+   527  009A9E  0E3F               	movlw	63
+   528  009AA0  6E02               	movwf	btemp+2,c
+   529  009AA2  C000  F0FD         	movff	btemp,?a_SetTData+6
+   530  009AA6  C001  F0FE         	movff	btemp+1,?a_SetTData+7
+   531  009AAA  C002  F0FF         	movff	btemp+2,?a_SetTData+8
+   532  009AAE  C322  F000         	movff	_M+28,btemp
+   533  009AB2  ECA2  F06D         	call	lbtoft
+   534  009AB6  C0FD  F003         	movff	?a_SetTData+6,btemp+3
+   535  009ABA  C0FE  F004         	movff	?a_SetTData+7,btemp+4
+   536  009ABE  C0FF  F005         	movff	?a_SetTData+8,btemp+5
+   537  009AC2  ECD1  F06A         	call	ftmul
+   538  009AC6  C0FA  F003         	movff	?a_SetTData+3,btemp+3
+   539  009ACA  C0FB  F004         	movff	?a_SetTData+4,btemp+4
+   540  009ACE  C0FC  F005         	movff	?a_SetTData+5,btemp+5
+   541  009AD2  EC07  F06C         	call	ftadd
+   542  009AD6  C000  F0F7         	movff	btemp,?a_SetTData
+   543  009ADA  C001  F0F8         	movff	btemp+1,?a_SetTData+1
+   544  009ADE  C002  F0F9         	movff	btemp+2,?a_SetTData+2
+   545  009AE2  D005               	goto	l49
+   546  009AE4                     l48:
+   547                           ;i2c_s.c: 220: else vprz=0;
+   548  009AE4  0100               	movlb	__Lparam shr (0+8)
+   549  009AE6  0E00               	movlw	0
+   550  009AE8  6BF7               	clrf	?a_SetTData^(__Lparam& (0+65280)),b
+   551  009AEA  6BF8               	clrf	(?a_SetTData+1)^(__Lparam& (0+65280)),b
+   552  009AEC  6BF9               	clrf	(?a_SetTData+2)^(__Lparam& (0+65280)),b
+   553  009AEE                     l49:
+   554                           ;i2c_s.c: 221: BufI2C.Bf[18]=(unsigned char)vprz
+      +                          ;
+   555  009AEE  C0F7  F000         	movff	?a_SetTData,btemp
+   556  009AF2  C0F8  F001         	movff	?a_SetTData+1,btemp+1
+   557  009AF6  C0F9  F002         	movff	?a_SetTData+2,btemp+2
+   558  009AFA  ECCD  F06C         	call	fttol
+   559  009AFE  5000               	movf	btemp,w,c
+   560  009B00  CFE8 F1AE          	movff	wreg,_BufI2C+19
+   561                           ;i2c_s.c: 222: BufI2C.Bf[19]=DtI2C.ST0_WSW;
+   562  009B04  C199  F1AF         	movff	_DtI2C+21,_BufI2C+20
+   563                           ;i2c_s.c: 223: BufI2C.Bf[20]=DtI2C.ERR_BTY;
+   564  009B08  C19A  F1B0         	movff	_DtI2C+22,_BufI2C+21
+   565                           ;i2c_s.c: 224: }
+   566  009B0C  0012               	return	
+   567  009B0E                     __end_of_SetTData:
+   568                           ;i2c_s.c: 227: void SetRData(void)
+   569                           ;i2c_s.c: 228: {
+   570  009B0E                     _SetRData:
+   571  000000                     
+   572                           ;i2c_s.c: 229: BufI2C.indeks=0;
+   573  009B0E  0101               	movlb	_BufI2C shr (0+8)
+   574  009B10  6B9B               	clrf	_BufI2C& (0+255),b
+   575                           ;i2c_s.c: 230: }
+   576  009B12  0012               	return	
+   577  009B14                     __end_of_SetRData:
+   578                           ;i2c_s.c: 233: void FormatDataIMY(void)
+   579                           ;i2c_s.c: 234: {
+   580  009B14                     _FormatDataIMY:
+   581  000000                     
+   582                           ;i2c_s.c: 237: switch(DtKNF.tpkt)
+   583  009B14  D003               	goto	l53
+   584  009B16                     l54:
+   585                           ;i2c_s.c: 238: {
+   586                           ;i2c_s.c: 240: DtI2C.kod=0x95;
+   587  009B16  0E95               	movlw	-107
+   588  009B18  D008               	goto	L1
+   589                           ;i2c_s.c: 241: break;
+   590  009B1A                     l55:
+   591  009B1A  D006               	goto	l56
+   592                           ;i2c_s.c: 244: break;
+   593                           ;i2c_s.c: 247: }
+   594  009B1C                     l53:
+   595  009B1C  C1C2  FFE8         	movff	_DtKNF+14,wreg
+   596  009B20  0A00               	xorlw	0
+   597  009B22  E0F9               	bz	l54
+   598  009B24  0A03               	xorlw	3
+   599  009B26  E0F9               	bz	l55
+   600  009B28                     l56:
+   601                           ;i2c_s.c: 245: default:
+   602                           ;i2c_s.c: 246: DtI2C.kod=0x9B;
+   603  009B28  0E9B               	movlw	-101
+   604                           ;i2c_s.c: 242: case 3:
+   605                           ;i2c_s.c: 243: DtI2C.kod=0x9B;
+   606  009B2A                     L1:
+   607  009B2A  CFE8 F186          	movff	wreg,_DtI2C+2
+   608                           ;i2c_s.c: 249: if(M._AKTYWNE_KNF) DtI2C.PCO=DtCO
+      +                          .PPCO;
+   609  009B2E  0103               	movlb	(_M+3) shr (0+8)
+   610  009B30  A109               	btfss	(_M+3)& (0+255),0,b
+   611                           ;i2c_s.c: 250: else
+   612  009B32  0103               	movlb	(_M+2) shr (0+8)
+   613                           ;i2c_s.c: 253: else DtI2C.PCO=DtCO.PPCO;
+   614  009B34  C084  F187         	movff	_DtCO+5,_DtI2C+3
+   615                           ;i2c_s.c: 255: DtI2C.CO=DtCO.CO;
+   616  009B38  C082  F188         	movff	_DtCO+3,_DtI2C+4
+   617                           ;i2c_s.c: 257: if(M._AKTYWNE_KNF) DtI2C.PCW=DtCW
+      +                          .PPCW;
+   618  009B3C  0103               	movlb	(_M+3) shr (0+8)
+   619  009B3E  B109               	btfsc	(_M+3)& (0+255),0,b
+   620  009B40  D00F               	goto	u210
+   621                           ;i2c_s.c: 258: else
+   622  009B42  0103               	movlb	_M shr (0+8)
+   623  009B44  B706               	btfsc	_M& (0+255),3,b
+   624  009B46  D00C               	goto	u210
+   625                           ;i2c_s.c: 260: else
+   626  009B48  EE01  F0C2         	lfsr	0,_DtKNF+14
+   627  009B4C  50EF               	movf	indf0,w,c
+   628  009B4E  E108               	bnz	u210
+   629                           ;i2c_s.c: 263: {
+   630                           ;i2c_s.c: 265: }
+   631                           ;i2c_s.c: 266: else
+   632  009B50  C075  FFE8         	movff	_DtCW+5,wreg
+   633  009B54  0100               	movlb	(_DtCW+3) shr (0+8)
+   634  009B56  5D73               	subwf	(_DtCW+3)& (0+255),w,b
+   635  009B58  E203               	bc	u210
+   636                           ;i2c_s.c: 269: {
+   637                           ;i2c_s.c: 271: }
+   638                           ;i2c_s.c: 272: else
+   639  009B5A  0103               	movlb	_M shr (0+8)
+   640  009B5C  AF06               	btfss	_M& (0+255),7,b
+   641  009B5E  D003               	goto	l69
+   642  009B60                     u210:
+   643  009B60  C074  F189         	movff	_DtCW+4,_DtI2C+5
+   644  009B64  D002               	goto	l62
+   645  009B66                     l69:
+   646                           ;i2c_s.c: 275: else DtI2C.PCW=0;
+   647  009B66  0101               	movlb	(_DtI2C+5) shr (0+8)
+   648  009B68  6B89               	clrf	(_DtI2C+5)& (0+255),b
+   649  009B6A                     l62:
+   650                           ;i2c_s.c: 276: }
+   651  009B6A  C072  F18A         	movff	_DtCW+2,_DtI2C+6
+   652                           ;i2c_s.c: 282: DtI2C.CS=DtCS.CS;
+   653  009B6E  C066  F18B         	movff	_DtCS+3,_DtI2C+7
+   654                           ;i2c_s.c: 284: DtI2C.STR_PWM=PWM.MSTART;
+   655  009B72  C1ED  F18C         	movff	_PWM+23,_DtI2C+8
+   656                           ;i2c_s.c: 286: DtI2C.MAX_PWM=PWM.MMAXCO;
+   657  009B76  C1EE  F18D         	movff	_PWM+24,_DtI2C+9
+   658                           ;i2c_s.c: 288: DtI2C.BUF_PWM=PWM.BufPWM;
+   659  009B7A  C1D7  F18E         	movff	_PWM+1,_DtI2C+10
+   660                           ;i2c_s.c: 290: BitSet(&DtI2C.ST_AD1,0,RdPrt(18))
+      +                          ;
+   661  009B7E  0100               	movlb	__Lparam shr (0+8)
+   662  009B80  0E8F               	movlw	low (_DtI2C+11)
+   663  009B82  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   664  009B84  0E01               	movlw	high (_DtI2C+11)
+   665  009B86  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   666  009B88  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   667  009B8A  0E12               	movlw	18
+   668  009B8C  EC50  F063         	call	_RdPrt
+   669  009B90  0E00               	movlw	0
+   670  009B92  B0D8               	btfsc	status,0,c
+   671  009B94  0E01               	movlw	1
+   672  009B96  0100               	movlb	__Lparam shr (0+8)
+   673  009B98  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   674  009B9A  EC37  F06A         	call	_BitSet	;wreg free
+   675                           ;i2c_s.c: 291: BitSet(&DtI2C.ST_AD1,1,DtCW._err_
+      +                          CW);
+   676  009B9E  0100               	movlb	__Lparam shr (0+8)
+   677  009BA0  0E8F               	movlw	low (_DtI2C+11)
+   678  009BA2  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   679  009BA4  0E01               	movlw	high (_DtI2C+11)
+   680  009BA6  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   681  009BA8  0E01               	movlw	1
+   682  009BAA  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   683  009BAC  EE00  F070         	lfsr	0,_DtCW
+   684  009BB0  50EF               	movf	indf0,w,c
+   685  009BB2  0B01               	andlw	1
+   686  009BB4  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   687  009BB6  EC37  F06A         	call	_BitSet	;wreg free
+   688                           ;i2c_s.c: 292: BitSet(&DtI2C.ST_AD1,2,DtCO._newP
+      +                          CO);
+   689  009BBA  0100               	movlb	__Lparam shr (0+8)
+   690  009BBC  0E8F               	movlw	low (_DtI2C+11)
+   691  009BBE  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   692  009BC0  0E01               	movlw	high (_DtI2C+11)
+   693  009BC2  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   694  009BC4  0E02               	movlw	2
+   695  009BC6  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   696  009BC8  EE00  F080         	lfsr	0,_DtCO+1
+   697  009BCC  34EF               	rlcf	indf0,w,c
+   698  009BCE  34EF               	rlcf	indf0,w,c
+   699  009BD0  0B01               	andlw	1
+   700  009BD2  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   701  009BD4  EC37  F06A         	call	_BitSet	;wreg free
+   702                           ;i2c_s.c: 293: BitSet(&DtI2C.ST_AD1,3,DtCW._newP
+      +                          CW);
+   703  009BD8  0100               	movlb	__Lparam shr (0+8)
+   704  009BDA  0E8F               	movlw	low (_DtI2C+11)
+   705  009BDC  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   706  009BDE  0E01               	movlw	high (_DtI2C+11)
+   707  009BE0  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   708  009BE2  0E03               	movlw	3
+   709  009BE4  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   710  009BE6  EE00  F071         	lfsr	0,_DtCW+1
+   711  009BEA  50EF               	movf	indf0,w,c
+   712  009BEC  0B01               	andlw	1
+   713  009BEE  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   714  009BF0  EC37  F06A         	call	_BitSet	;wreg free
+   715                           ;i2c_s.c: 294: BitSet(&DtI2C.ST_AD1,4,RdPrt(14))
+      +                          ;
+   716  009BF4  0100               	movlb	__Lparam shr (0+8)
+   717  009BF6  0E8F               	movlw	low (_DtI2C+11)
+   718  009BF8  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   719  009BFA  0E01               	movlw	high (_DtI2C+11)
+   720  009BFC  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   721  009BFE  0E04               	movlw	4
+   722  009C00  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   723  009C02  0E0E               	movlw	14
+   724  009C04  EC50  F063         	call	_RdPrt
+   725  009C08  0E00               	movlw	0
+   726  009C0A  B0D8               	btfsc	status,0,c
+   727  009C0C  0E01               	movlw	1
+   728  009C0E  0100               	movlb	__Lparam shr (0+8)
+   729  009C10  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   730  009C12  EC37  F06A         	call	_BitSet	;wreg free
+   731                           ;i2c_s.c: 295: BitSet(&DtI2C.ST_AD1,5,DtCS._lo);
+   732  009C16  0100               	movlb	__Lparam shr (0+8)
+   733  009C18  0E8F               	movlw	low (_DtI2C+11)
+   734  009C1A  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   735  009C1C  0E01               	movlw	high (_DtI2C+11)
+   736  009C1E  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   737  009C20  0E05               	movlw	5
+   738  009C22  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   739  009C24  EE00  F063         	lfsr	0,_DtCS
+   740  009C28  30EF               	rrcf	indf0,w,c
+   741  009C2A  0B01               	andlw	1
+   742  009C2C  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   743  009C2E  EC37  F06A         	call	_BitSet	;wreg free
+   744                           ;i2c_s.c: 296: BitSet(&DtI2C.ST_AD1,6,DtCS._hi);
+   745  009C32  0100               	movlb	__Lparam shr (0+8)
+   746  009C34  0E8F               	movlw	low (_DtI2C+11)
+   747  009C36  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   748  009C38  0E01               	movlw	high (_DtI2C+11)
+   749  009C3A  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   750  009C3C  0E06               	movlw	6
+   751  009C3E  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   752  009C40  EE00  F063         	lfsr	0,_DtCS
+   753  009C44  50EF               	movf	indf0,w,c
+   754  009C46  0B01               	andlw	1
+   755  009C48  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   756  009C4A  EC37  F06A         	call	_BitSet	;wreg free
+   757                           ;i2c_s.c: 297: BitSet(&DtI2C.ST_AD1,7,RdPrt(15))
+      +                          ;
+   758  009C4E  0100               	movlb	__Lparam shr (0+8)
+   759  009C50  0E8F               	movlw	low (_DtI2C+11)
+   760  009C52  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   761  009C54  0E01               	movlw	high (_DtI2C+11)
+   762  009C56  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   763  009C58  0E07               	movlw	7
+   764  009C5A  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   765  009C5C  0E0F               	movlw	15
+   766  009C5E  EC50  F063         	call	_RdPrt
+   767  009C62  0E00               	movlw	0
+   768  009C64  B0D8               	btfsc	status,0,c
+   769  009C66  0E01               	movlw	1
+   770  009C68  0100               	movlb	__Lparam shr (0+8)
+   771  009C6A  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   772  009C6C  EC37  F06A         	call	_BitSet	;wreg free
+   773                           ;i2c_s.c: 299: BitSet(&DtI2C.ST_AD2,0,DtCO._su_C
+      +                          O);
+   774  009C70  0100               	movlb	__Lparam shr (0+8)
+   775  009C72  0E90               	movlw	low (_DtI2C+12)
+   776  009C74  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   777  009C76  0E01               	movlw	high (_DtI2C+12)
+   778  009C78  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   779  009C7A  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   780  009C7C  EE00  F07F         	lfsr	0,_DtCO
+   781  009C80  30EF               	rrcf	indf0,w,c
+   782  009C82  0B01               	andlw	1
+   783  009C84  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   784  009C86  EC37  F06A         	call	_BitSet	;wreg free
+   785                           ;i2c_s.c: 300: BitSet(&DtI2C.ST_AD2,1,RdPrt(19))
+      +                          ;
+   786  009C8A  0100               	movlb	__Lparam shr (0+8)
+   787  009C8C  0E90               	movlw	low (_DtI2C+12)
+   788  009C8E  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   789  009C90  0E01               	movlw	high (_DtI2C+12)
+   790  009C92  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   791  009C94  0E01               	movlw	1
+   792  009C96  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   793  009C98  0E13               	movlw	19
+   794  009C9A  EC50  F063         	call	_RdPrt
+   795  009C9E  0E00               	movlw	0
+   796  009CA0  B0D8               	btfsc	status,0,c
+   797  009CA2  0E01               	movlw	1
+   798  009CA4  0100               	movlb	__Lparam shr (0+8)
+   799  009CA6  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   800  009CA8  EC37  F06A         	call	_BitSet	;wreg free
+   801                           ;i2c_s.c: 301: BitSet(&DtI2C.ST_AD2,2,DtCO._on_D
+      +                          Z_CO);
+   802  009CAC  0100               	movlb	__Lparam shr (0+8)
+   803  009CAE  0E90               	movlw	low (_DtI2C+12)
+   804  009CB0  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   805  009CB2  0E01               	movlw	high (_DtI2C+12)
+   806  009CB4  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   807  009CB6  0E02               	movlw	2
+   808  009CB8  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   809  009CBA  EE00  F07F         	lfsr	0,_DtCO
+   810  009CBE  38EF               	swapf	indf0,w,c
+   811  009CC0  6E00               	movwf	btemp,c
+   812  009CC2  3000               	rrcf	btemp,w,c
+   813  009CC4  0B01               	andlw	1
+   814  009CC6  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   815  009CC8  EC37  F06A         	call	_BitSet	;wreg free
+   816                           ;i2c_s.c: 302: BitSet(&DtI2C.ST_AD2,3,DtCO._cold
+      +                          _CO||DtCO._hot_CO);
+   817  009CCC  0100               	movlb	__Lparam shr (0+8)
+   818  009CCE  0E90               	movlw	low (_DtI2C+12)
+   819  009CD0  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   820  009CD2  0E01               	movlw	high (_DtI2C+12)
+   821  009CD4  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   822  009CD6  0E03               	movlw	3
+   823  009CD8  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   824  009CDA  0100               	movlb	(_DtCO+1) shr (0+8)
+   825  009CDC  B580               	btfsc	(_DtCO+1)& (0+255),2,b
+   826  009CDE  D003               	goto	u241
+   827  009CE0  0100               	movlb	(_DtCO+1) shr (0+8)
+   828  009CE2  A780               	btfss	(_DtCO+1)& (0+255),3,b
+   829  009CE4  D002               	goto	u240
+   830  009CE6                     u241:
+   831  009CE6  0E01               	movlw	1
+   832  009CE8  D001               	goto	u250
+   833  009CEA                     u240:
+   834  009CEA  0E00               	movlw	0
+   835  009CEC                     u250:
+   836  009CEC  0100               	movlb	__Lparam shr (0+8)
+   837  009CEE  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   838  009CF0  EC37  F06A         	call	_BitSet	;wreg free
+   839                           ;i2c_s.c: 303: BitSet(&DtI2C.ST_AD2,4,DtCW._su_C
+      +                          W);
+   840  009CF4  0100               	movlb	__Lparam shr (0+8)
+   841  009CF6  0E90               	movlw	low (_DtI2C+12)
+   842  009CF8  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   843  009CFA  0E01               	movlw	high (_DtI2C+12)
+   844  009CFC  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   845  009CFE  0E04               	movlw	4
+   846  009D00  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   847  009D02  EE00  F070         	lfsr	0,_DtCW
+   848  009D06  30EF               	rrcf	indf0,w,c
+   849  009D08  0B01               	andlw	1
+   850  009D0A  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   851  009D0C  EC37  F06A         	call	_BitSet	;wreg free
+   852                           ;i2c_s.c: 304: BitSet(&DtI2C.ST_AD2,5,DtCW._ad_C
+      +                          W);
+   853  009D10  0100               	movlb	__Lparam shr (0+8)
+   854  009D12  0E90               	movlw	low (_DtI2C+12)
+   855  009D14  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   856  009D16  0E01               	movlw	high (_DtI2C+12)
+   857  009D18  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   858  009D1A  0E05               	movlw	5
+   859  009D1C  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   860  009D1E  EE00  F070         	lfsr	0,_DtCW
+   861  009D22  30EF               	rrcf	indf0,w,c
+   862  009D24  6E00               	movwf	btemp,c
+   863  009D26  3000               	rrcf	btemp,w,c
+   864  009D28  0B01               	andlw	1
+   865  009D2A  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   866  009D2C  EC37  F06A         	call	_BitSet	;wreg free
+   867                           ;i2c_s.c: 307: if(GetBit(RSDT1.outSTAT2,7))
+   868  009D30  0E07               	movlw	7
+   869  009D32  0100               	movlb	__Lparam shr (0+8)
+   870  009D34  6FF7               	movwf	?_GetBit^(__Lparam& (0+65280)),b
+   871  009D36  C33E  FFE8         	movff	_RSDT1+24,wreg
+   872  009D3A  EC11  F06A         	call	_GetBit
+   873                           ;i2c_s.c: 308: {
+   874  009D3E  0100               	movlb	__Lparam shr (0+8)
+   875  009D40  0E90               	movlw	low (_DtI2C+12)
+   876  009D42  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   877  009D44  0E01               	movlw	high (_DtI2C+12)
+   878  009D46  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   879  009D48  0E06               	movlw	6
+   880  009D4A  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   881  009D4C  E310               	bnc	L4
+   882  009D4E  0E01               	movlw	1
+   883  009D50  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   884  009D52  EC37  F06A         	call	_BitSet	;wreg free
+   885                           ;i2c_s.c: 310: BitSet(&DtI2C.ST_AD2,7,1);
+   886  009D56  0100               	movlb	__Lparam shr (0+8)
+   887  009D58  0E90               	movlw	low (_DtI2C+12)
+   888  009D5A  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   889  009D5C  0E01               	movlw	high (_DtI2C+12)
+   890  009D5E  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   891  009D60  0E07               	movlw	7
+   892  009D62  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   893  009D64  0E01               	movlw	1
+   894  009D66  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   895  009D68  EC37  F06A         	call	_BitSet	;wreg free
+   896                           ;i2c_s.c: 311: }
+   897  009D6C  D00D               	goto	l72
+   898                           ;i2c_s.c: 312: else
+   899  009D6E                     L4:
+   900  009D6E  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   901  009D70  EC37  F06A         	call	_BitSet	;wreg free
+   902                           ;i2c_s.c: 315: BitSet(&DtI2C.ST_AD2,7,0);
+   903  009D74  0100               	movlb	__Lparam shr (0+8)
+   904  009D76  0E90               	movlw	low (_DtI2C+12)
+   905  009D78  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   906  009D7A  0E01               	movlw	high (_DtI2C+12)
+   907  009D7C  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   908  009D7E  0E07               	movlw	7
+   909  009D80  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   910  009D82  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   911  009D84  EC37  F06A         	call	_BitSet	;wreg free
+   912  009D88                     l72:
+   913                           ;i2c_s.c: 316: }
+   914  009D88  0100               	movlb	__Lparam shr (0+8)
+   915  009D8A  0E91               	movlw	low (_DtI2C+13)
+   916  009D8C  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   917  009D8E  0E01               	movlw	high (_DtI2C+13)
+   918  009D90  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   919  009D92  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   920  009D94  EE00  F080         	lfsr	0,_DtCO+1
+   921  009D98  30EF               	rrcf	indf0,w,c
+   922  009D9A  6E00               	movwf	btemp,c
+   923  009D9C  3200               	rrcf	btemp,f,c
+   924  009D9E  3000               	rrcf	btemp,w,c
+   925  009DA0  0B01               	andlw	1
+   926  009DA2  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   927  009DA4  EC37  F06A         	call	_BitSet	;wreg free
+   928                           ;i2c_s.c: 319: BitSet(&DtI2C.ST_AD3,1,DtCS._no);
+   929  009DA8  0100               	movlb	__Lparam shr (0+8)
+   930  009DAA  0E91               	movlw	low (_DtI2C+13)
+   931  009DAC  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   932  009DAE  0E01               	movlw	high (_DtI2C+13)
+   933  009DB0  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   934  009DB2  0E01               	movlw	1
+   935  009DB4  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   936  009DB6  EE00  F063         	lfsr	0,_DtCS
+   937  009DBA  30EF               	rrcf	indf0,w,c
+   938  009DBC  6E00               	movwf	btemp,c
+   939  009DBE  3000               	rrcf	btemp,w,c
+   940  009DC0  0B01               	andlw	1
+   941  009DC2  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   942  009DC4  EC37  F06A         	call	_BitSet	;wreg free
+   943                           ;i2c_s.c: 320: BitSet(&DtI2C.ST_AD3,2,RdPrt(16))
+      +                          ;
+   944  009DC8  0100               	movlb	__Lparam shr (0+8)
+   945  009DCA  0E91               	movlw	low (_DtI2C+13)
+   946  009DCC  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   947  009DCE  0E01               	movlw	high (_DtI2C+13)
+   948  009DD0  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   949  009DD2  0E02               	movlw	2
+   950  009DD4  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   951  009DD6  0E10               	movlw	16
+   952  009DD8  EC50  F063         	call	_RdPrt
+   953  009DDC  0E00               	movlw	0
+   954  009DDE  B0D8               	btfsc	status,0,c
+   955  009DE0  0E01               	movlw	1
+   956  009DE2  0100               	movlb	__Lparam shr (0+8)
+   957  009DE4  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   958  009DE6  EC37  F06A         	call	_BitSet	;wreg free
+   959                           ;i2c_s.c: 321: BitSet(&DtI2C.ST_AD3,3,RdPrt(16))
+      +                          ;
+   960  009DEA  0100               	movlb	__Lparam shr (0+8)
+   961  009DEC  0E91               	movlw	low (_DtI2C+13)
+   962  009DEE  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   963  009DF0  0E01               	movlw	high (_DtI2C+13)
+   964  009DF2  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   965  009DF4  0E03               	movlw	3
+   966  009DF6  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   967  009DF8  0E10               	movlw	16
+   968  009DFA  EC50  F063         	call	_RdPrt
+   969  009DFE  0E00               	movlw	0
+   970  009E00  B0D8               	btfsc	status,0,c
+   971  009E02  0E01               	movlw	1
+   972  009E04  0100               	movlb	__Lparam shr (0+8)
+   973  009E06  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   974  009E08  EC37  F06A         	call	_BitSet	;wreg free
+   975                           ;i2c_s.c: 322: BitSet(&DtI2C.ST_AD3,5,M._BLOKUJ_
+      +                          15S);
+   976  009E0C  0100               	movlb	__Lparam shr (0+8)
+   977  009E0E  0E91               	movlw	low (_DtI2C+13)
+   978  009E10  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   979  009E12  0E01               	movlw	high (_DtI2C+13)
+   980  009E14  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   981  009E16  0E05               	movlw	5
+   982  009E18  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   983  009E1A  EE03  F008         	lfsr	0,_M+2
+   984  009E1E  30EF               	rrcf	indf0,w,c
+   985  009E20  6E00               	movwf	btemp,c
+   986  009E22  3200               	rrcf	btemp,f,c
+   987  009E24  3000               	rrcf	btemp,w,c
+   988  009E26  0B01               	andlw	1
+   989  009E28  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+   990  009E2A  EC37  F06A         	call	_BitSet	;wreg free
+   991                           ;i2c_s.c: 324: BitSet(&DtI2C.PORTC,0,RD4);
+   992  009E2E  0100               	movlb	__Lparam shr (0+8)
+   993  009E30  0E92               	movlw	low (_DtI2C+14)
+   994  009E32  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+   995  009E34  0E01               	movlw	high (_DtI2C+14)
+   996  009E36  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+   997  009E38  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+   998  009E3A  0E00               	movlw	0
+   999  009E3C  B883               	btfsc	3971,4,c	;volatile
+  1000  009E3E  0E01               	movlw	1
+  1001  009E40  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1002  009E42  EC37  F06A         	call	_BitSet	;wreg free
+  1003                           ;i2c_s.c: 325: BitSet(&DtI2C.PORTC,1,1);
+  1004  009E46  0100               	movlb	__Lparam shr (0+8)
+  1005  009E48  0E92               	movlw	low (_DtI2C+14)
+  1006  009E4A  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1007  009E4C  0E01               	movlw	high (_DtI2C+14)
+  1008  009E4E  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1009  009E50  0E01               	movlw	1
+  1010  009E52  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1011  009E54  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1012  009E56  EC37  F06A         	call	_BitSet	;wreg free
+  1013                           ;i2c_s.c: 326: BitSet(&DtI2C.PORTC,3,RD3);
+  1014  009E5A  0100               	movlb	__Lparam shr (0+8)
+  1015  009E5C  0E92               	movlw	low (_DtI2C+14)
+  1016  009E5E  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1017  009E60  0E01               	movlw	high (_DtI2C+14)
+  1018  009E62  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1019  009E64  0E03               	movlw	3
+  1020  009E66  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1021  009E68  0E00               	movlw	0
+  1022  009E6A  B683               	btfsc	3971,3,c	;volatile
+  1023  009E6C  0E01               	movlw	1
+  1024  009E6E  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1025  009E70  EC37  F06A         	call	_BitSet	;wreg free
+  1026                           ;i2c_s.c: 327: BitSet(&DtI2C.PORTC,5,RB5);
+  1027  009E74  0100               	movlb	__Lparam shr (0+8)
+  1028  009E76  0E92               	movlw	low (_DtI2C+14)
+  1029  009E78  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1030  009E7A  0E01               	movlw	high (_DtI2C+14)
+  1031  009E7C  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1032  009E7E  0E05               	movlw	5
+  1033  009E80  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1034  009E82  0E00               	movlw	0
+  1035  009E84  BA81               	btfsc	3969,5,c	;volatile
+  1036  009E86  0E01               	movlw	1
+  1037  009E88  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1038  009E8A  EC37  F06A         	call	_BitSet	;wreg free
+  1039                           ;i2c_s.c: 328: BitSet(&DtI2C.PORTC,6,RC0);
+  1040  009E8E  0100               	movlb	__Lparam shr (0+8)
+  1041  009E90  0E92               	movlw	low (_DtI2C+14)
+  1042  009E92  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1043  009E94  0E01               	movlw	high (_DtI2C+14)
+  1044  009E96  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1045  009E98  0E06               	movlw	6
+  1046  009E9A  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1047  009E9C  0E00               	movlw	0
+  1048  009E9E  B082               	btfsc	3970,0,c	;volatile
+  1049  009EA0  0E01               	movlw	1
+  1050  009EA2  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1051  009EA4  EC37  F06A         	call	_BitSet	;wreg free
+  1052                           ;i2c_s.c: 329: BitSet(&DtI2C.PORTC,7,RC5);
+  1053  009EA8  0100               	movlb	__Lparam shr (0+8)
+  1054  009EAA  0E92               	movlw	low (_DtI2C+14)
+  1055  009EAC  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1056  009EAE  0E01               	movlw	high (_DtI2C+14)
+  1057  009EB0  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1058  009EB2  0E07               	movlw	7
+  1059  009EB4  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1060  009EB6  0E00               	movlw	0
+  1061  009EB8  BA82               	btfsc	3970,5,c	;volatile
+  1062  009EBA  0E01               	movlw	1
+  1063  009EBC  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1064  009EBE  EC37  F06A         	call	_BitSet	;wreg free
+  1065                           ;i2c_s.c: 331: BitSet(&DtI2C.PORTD,0,0);
+  1066  009EC2  0100               	movlb	__Lparam shr (0+8)
+  1067  009EC4  0E93               	movlw	low (_DtI2C+15)
+  1068  009EC6  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1069  009EC8  0E01               	movlw	high (_DtI2C+15)
+  1070  009ECA  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1071  009ECC  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1072  009ECE  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1073  009ED0  EC37  F06A         	call	_BitSet	;wreg free
+  1074                           ;i2c_s.c: 332: BitSet(&DtI2C.PORTD,1,RD0);
+  1075  009ED4  0100               	movlb	__Lparam shr (0+8)
+  1076  009ED6  0E93               	movlw	low (_DtI2C+15)
+  1077  009ED8  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1078  009EDA  0E01               	movlw	high (_DtI2C+15)
+  1079  009EDC  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1080  009EDE  0E01               	movlw	1
+  1081  009EE0  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1082  009EE2  0E00               	movlw	0
+  1083  009EE4  B083               	btfsc	3971,0,c	;volatile
+  1084  009EE6  0E01               	movlw	1
+  1085  009EE8  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1086  009EEA  EC37  F06A         	call	_BitSet	;wreg free
+  1087                           ;i2c_s.c: 333: BitSet(&DtI2C.PORTD,2,RD1);
+  1088  009EEE  0100               	movlb	__Lparam shr (0+8)
+  1089  009EF0  0E93               	movlw	low (_DtI2C+15)
+  1090  009EF2  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1091  009EF4  0E01               	movlw	high (_DtI2C+15)
+  1092  009EF6  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1093  009EF8  0E02               	movlw	2
+  1094  009EFA  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1095  009EFC  0E00               	movlw	0
+  1096  009EFE  B283               	btfsc	3971,1,c	;volatile
+  1097  009F00  0E01               	movlw	1
+  1098  009F02  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1099  009F04  EC37  F06A         	call	_BitSet	;wreg free
+  1100                           ;i2c_s.c: 334: BitSet(&DtI2C.PORTD,3,RD2);
+  1101  009F08  0100               	movlb	__Lparam shr (0+8)
+  1102  009F0A  0E93               	movlw	low (_DtI2C+15)
+  1103  009F0C  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1104  009F0E  0E01               	movlw	high (_DtI2C+15)
+  1105  009F10  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1106  009F12  0E03               	movlw	3
+  1107  009F14  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1108  009F16  0E00               	movlw	0
+  1109  009F18  B483               	btfsc	3971,2,c	;volatile
+  1110  009F1A  0E01               	movlw	1
+  1111  009F1C  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1112  009F1E  EC37  F06A         	call	_BitSet	;wreg free
+  1113                           ;i2c_s.c: 335: BitSet(&DtI2C.PORTD,4,PFN._res);
+  1114  009F22  0100               	movlb	__Lparam shr (0+8)
+  1115  009F24  0E93               	movlw	low (_DtI2C+15)
+  1116  009F26  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1117  009F28  0E01               	movlw	high (_DtI2C+15)
+  1118  009F2A  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1119  009F2C  0E04               	movlw	4
+  1120  009F2E  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1121  009F30  EE00  F06B         	lfsr	0,_PFN
+  1122  009F34  38EF               	swapf	indf0,w,c
+  1123  009F36  6E00               	movwf	btemp,c
+  1124  009F38  3000               	rrcf	btemp,w,c
+  1125  009F3A  0B01               	andlw	1
+  1126  009F3C  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1127  009F3E  EC37  F06A         	call	_BitSet	;wreg free
+  1128                           ;i2c_s.c: 336: BitSet(&DtI2C.PORTD,5,PFN._off);
+  1129  009F42  0100               	movlb	__Lparam shr (0+8)
+  1130  009F44  0E93               	movlw	low (_DtI2C+15)
+  1131  009F46  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1132  009F48  0E01               	movlw	high (_DtI2C+15)
+  1133  009F4A  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1134  009F4C  0E05               	movlw	5
+  1135  009F4E  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1136  009F50  EE00  F06B         	lfsr	0,_PFN
+  1137  009F54  30EF               	rrcf	indf0,w,c
+  1138  009F56  6E00               	movwf	btemp,c
+  1139  009F58  3000               	rrcf	btemp,w,c
+  1140  009F5A  0B01               	andlw	1
+  1141  009F5C  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1142  009F5E  EC37  F06A         	call	_BitSet	;wreg free
+  1143                           ;i2c_s.c: 337: BitSet(&DtI2C.PORTD,6,PFN._zima);
+  1144  009F62  0100               	movlb	__Lparam shr (0+8)
+  1145  009F64  0E93               	movlw	low (_DtI2C+15)
+  1146  009F66  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1147  009F68  0E01               	movlw	high (_DtI2C+15)
+  1148  009F6A  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1149  009F6C  0E06               	movlw	6
+  1150  009F6E  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1151  009F70  EE00  F06B         	lfsr	0,_PFN
+  1152  009F74  38EF               	swapf	indf0,w,c
+  1153  009F76  0B01               	andlw	1
+  1154  009F78  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1155  009F7A  EC37  F06A         	call	_BitSet	;wreg free
+  1156                           ;i2c_s.c: 339: if(DtKNF.tpkt!=0)
+  1157  009F7E  EE01  F0C2         	lfsr	0,_DtKNF+14
+  1158  009F82  50EF               	movf	indf0,w,c
+  1159  009F84  E01C               	bz	l73
+  1160                           ;i2c_s.c: 340: {
+  1161  009F86  0100               	movlb	__Lparam shr (0+8)
+  1162  009F88  0E94               	movlw	low (_DtI2C+16)
+  1163  009F8A  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1164  009F8C  0E01               	movlw	high (_DtI2C+16)
+  1165  009F8E  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1166  009F90  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1167  009F92  0103               	movlb	(_M+2) shr (0+8)
+  1168  009F94  BB08               	btfsc	(_M+2)& (0+255),5,b
+  1169  009F96  D003               	goto	u300
+  1170  009F98  0103               	movlb	_M shr (0+8)
+  1171  009F9A  A106               	btfss	_M& (0+255),0,b
+  1172  009F9C  D002               	goto	u316
+  1173  009F9E                     u300:
+  1174  009F9E  6A00               	clrf	btemp,c
+  1175  009FA0  D007               	goto	L2
+  1176  009FA2                     u316:
+  1177  009FA2  0E0B               	movlw	11
+  1178  009FA4  EC50  F063         	call	_RdPrt
+  1179  009FA8  0E00               	movlw	0
+  1180  009FAA  B0D8               	btfsc	status,0,c
+  1181  009FAC  0E01               	movlw	1
+  1182  009FAE  6E00               	movwf	btemp,c
+  1183  009FB0                     L2:
+  1184  009FB0  6A01               	clrf	btemp+1,c
+  1185  009FB2  5000               	movf	btemp,w,c
+  1186  009FB4  0100               	movlb	__Lparam shr (0+8)
+  1187  009FB6  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1188  009FB8  EC37  F06A         	call	_BitSet	;wreg free
+  1189                           ;i2c_s.c: 342: }
+  1190  009FBC  D03B               	goto	l74
+  1191  009FBE                     l73:
+  1192                           ;i2c_s.c: 343: else
+  1193  009FBE  0103               	movlb	_M shr (0+8)
+  1194  009FC0  B706               	btfsc	_M& (0+255),3,b
+  1195  009FC2  D006               	goto	u360
+  1196  009FC4  0103               	movlb	_M shr (0+8)
+  1197  009FC6  B306               	btfsc	_M& (0+255),1,b
+  1198  009FC8  D003               	goto	u360
+  1199  009FCA  0103               	movlb	_M shr (0+8)
+  1200  009FCC  AF06               	btfss	_M& (0+255),7,b
+  1201  009FCE  D00E               	goto	l75
+  1202  009FD0                     u360:
+  1203  009FD0  0103               	movlb	(_M+4) shr (0+8)
+  1204  009FD2  A30A               	btfss	(_M+4)& (0+255),1,b
+  1205  009FD4  D00B               	goto	l75
+  1206  009FD6  0100               	movlb	__Lparam shr (0+8)
+  1207  009FD8  0E94               	movlw	low (_DtI2C+16)
+  1208  009FDA  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1209  009FDC  0E01               	movlw	high (_DtI2C+16)
+  1210  009FDE  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1211  009FE0  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1212  009FE2  0E01               	movlw	1
+  1213  009FE4  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1214  009FE6  EC37  F06A         	call	_BitSet	;wreg free
+  1215  009FEA  D024               	goto	l74
+  1216  009FEC                     l75:
+  1217                           ;i2c_s.c: 346: else
+  1218  009FEC  0103               	movlb	(_M+2) shr (0+8)
+  1219  009FEE  BB08               	btfsc	(_M+2)& (0+255),5,b
+  1220  009FF0  D018               	goto	l77
+  1221  009FF2  0103               	movlb	_M shr (0+8)
+  1222  009FF4  B106               	btfsc	_M& (0+255),0,b
+  1223  009FF6  D015               	goto	l77
+  1224                           ;i2c_s.c: 349: BitSet(&DtI2C.ST_GLOBAL0,0,(RdPrt
+      +                          (11)&&DtCW._wpz_CW)?1:0);
+  1225  009FF8  0100               	movlb	__Lparam shr (0+8)
+  1226  009FFA  0E94               	movlw	low (_DtI2C+16)
+  1227  009FFC  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1228  009FFE  0E01               	movlw	high (_DtI2C+16)
+  1229  00A000  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1230  00A002  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1231  00A004  0E0B               	movlw	11
+  1232  00A006  EC50  F063         	call	_RdPrt
+  1233  00A00A  E305               	bnc	u440
+  1234  00A00C  0100               	movlb	_DtCW shr (0+8)
+  1235  00A00E  A770               	btfss	_DtCW& (0+255),3,b
+  1236  00A010  D002               	goto	u440
+  1237  00A012  0E01               	movlw	1
+  1238  00A014  D001               	goto	u450
+  1239  00A016                     u440:
+  1240  00A016  0E00               	movlw	0
+  1241  00A018                     u450:
+  1242  00A018  0100               	movlb	__Lparam shr (0+8)
+  1243  00A01A  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1244  00A01C  EC37  F06A         	call	_BitSet	;wreg free
+  1245  00A020  D009               	goto	l74
+  1246  00A022                     l77:
+  1247                           ;i2c_s.c: 350: else
+  1248  00A022  0100               	movlb	__Lparam shr (0+8)
+  1249  00A024  0E94               	movlw	low (_DtI2C+16)
+  1250  00A026  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1251  00A028  0E01               	movlw	high (_DtI2C+16)
+  1252  00A02A  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1253  00A02C  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1254  00A02E  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1255  00A030  EC37  F06A         	call	_BitSet	;wreg free
+  1256  00A034                     l74:
+  1257                           ;i2c_s.c: 352: }
+  1258  00A034  0100               	movlb	__Lparam shr (0+8)
+  1259  00A036  0E94               	movlw	low (_DtI2C+16)
+  1260  00A038  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1261  00A03A  0E01               	movlw	high (_DtI2C+16)
+  1262  00A03C  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1263  00A03E  0E01               	movlw	1
+  1264  00A040  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1265  00A042  0E0C               	movlw	12
+  1266  00A044  EC50  F063         	call	_RdPrt
+  1267  00A048  0E00               	movlw	0
+  1268  00A04A  B0D8               	btfsc	status,0,c
+  1269  00A04C  0E01               	movlw	1
+  1270  00A04E  0100               	movlb	__Lparam shr (0+8)
+  1271  00A050  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1272  00A052  EC37  F06A         	call	_BitSet	;wreg free
+  1273                           ;i2c_s.c: 355: BitSet(&DtI2C.ST_GLOBAL0,2,1);
+  1274  00A056  0100               	movlb	__Lparam shr (0+8)
+  1275  00A058  0E94               	movlw	low (_DtI2C+16)
+  1276  00A05A  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1277  00A05C  0E01               	movlw	high (_DtI2C+16)
+  1278  00A05E  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1279  00A060  0E02               	movlw	2
+  1280  00A062  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1281  00A064  0E01               	movlw	1
+  1282  00A066  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1283  00A068  EC37  F06A         	call	_BitSet	;wreg free
+  1284                           ;i2c_s.c: 356: BitSet(&DtI2C.ST_GLOBAL0,3,RdPrt(
+      +                          1));
+  1285  00A06C  0100               	movlb	__Lparam shr (0+8)
+  1286  00A06E  0E94               	movlw	low (_DtI2C+16)
+  1287  00A070  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1288  00A072  0E01               	movlw	high (_DtI2C+16)
+  1289  00A074  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1290  00A076  0E03               	movlw	3
+  1291  00A078  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1292  00A07A  0E01               	movlw	1
+  1293  00A07C  EC50  F063         	call	_RdPrt
+  1294  00A080  0E00               	movlw	0
+  1295  00A082  B0D8               	btfsc	status,0,c
+  1296  00A084  0E01               	movlw	1
+  1297  00A086  0100               	movlb	__Lparam shr (0+8)
+  1298  00A088  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1299  00A08A  EC37  F06A         	call	_BitSet	;wreg free
+  1300                           ;i2c_s.c: 357: BitSet(&DtI2C.ST_GLOBAL0,4,!RdPrt
+      +                          (2));
+  1301  00A08E  0100               	movlb	__Lparam shr (0+8)
+  1302  00A090  0E94               	movlw	low (_DtI2C+16)
+  1303  00A092  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1304  00A094  0E01               	movlw	high (_DtI2C+16)
+  1305  00A096  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1306  00A098  0E04               	movlw	4
+  1307  00A09A  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1308  00A09C  0E02               	movlw	2
+  1309  00A09E  EC50  F063         	call	_RdPrt
+  1310  00A0A2  0E00               	movlw	0
+  1311  00A0A4  A0D8               	btfss	status,0,c
+  1312  00A0A6  0E01               	movlw	1
+  1313  00A0A8  0100               	movlb	__Lparam shr (0+8)
+  1314  00A0AA  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1315  00A0AC  EC37  F06A         	call	_BitSet	;wreg free
+  1316                           ;i2c_s.c: 358: BitSet(&DtI2C.ST_GLOBAL0,5,!RdPrt
+      +                          (8));
+  1317  00A0B0  0100               	movlb	__Lparam shr (0+8)
+  1318  00A0B2  0E94               	movlw	low (_DtI2C+16)
+  1319  00A0B4  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1320  00A0B6  0E01               	movlw	high (_DtI2C+16)
+  1321  00A0B8  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1322  00A0BA  0E05               	movlw	5
+  1323  00A0BC  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1324  00A0BE  0E08               	movlw	8
+  1325  00A0C0  EC50  F063         	call	_RdPrt
+  1326  00A0C4  0E00               	movlw	0
+  1327  00A0C6  A0D8               	btfss	status,0,c
+  1328  00A0C8  0E01               	movlw	1
+  1329  00A0CA  0100               	movlb	__Lparam shr (0+8)
+  1330  00A0CC  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1331  00A0CE  EC37  F06A         	call	_BitSet	;wreg free
+  1332                           ;i2c_s.c: 359: BitSet(&DtI2C.ST_GLOBAL0,6,PFN._r
+      +                          es);
+  1333  00A0D2  0100               	movlb	__Lparam shr (0+8)
+  1334  00A0D4  0E94               	movlw	low (_DtI2C+16)
+  1335  00A0D6  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1336  00A0D8  0E01               	movlw	high (_DtI2C+16)
+  1337  00A0DA  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1338  00A0DC  0E06               	movlw	6
+  1339  00A0DE  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1340  00A0E0  EE00  F06B         	lfsr	0,_PFN
+  1341  00A0E4  38EF               	swapf	indf0,w,c
+  1342  00A0E6  6E00               	movwf	btemp,c
+  1343  00A0E8  3000               	rrcf	btemp,w,c
+  1344  00A0EA  0B01               	andlw	1
+  1345  00A0EC  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1346  00A0EE  EC37  F06A         	call	_BitSet	;wreg free
+  1347                           ;i2c_s.c: 360: BitSet(&DtI2C.ST_GLOBAL0,7,!RdPrt
+      +                          (5));
+  1348  00A0F2  0100               	movlb	__Lparam shr (0+8)
+  1349  00A0F4  0E94               	movlw	low (_DtI2C+16)
+  1350  00A0F6  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1351  00A0F8  0E01               	movlw	high (_DtI2C+16)
+  1352  00A0FA  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1353  00A0FC  0E07               	movlw	7
+  1354  00A0FE  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1355  00A100  0E05               	movlw	5
+  1356  00A102  EC50  F063         	call	_RdPrt
+  1357  00A106  0E00               	movlw	0
+  1358  00A108  A0D8               	btfss	status,0,c
+  1359  00A10A  0E01               	movlw	1
+  1360  00A10C  0100               	movlb	__Lparam shr (0+8)
+  1361  00A10E  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1362  00A110  EC37  F06A         	call	_BitSet	;wreg free
+  1363                           ;i2c_s.c: 362: BitSet(&DtI2C.ST_GLOBAL2,0,DtKNF.
+      +                          opdg);
+  1364  00A114  0100               	movlb	__Lparam shr (0+8)
+  1365  00A116  0E95               	movlw	low (_DtI2C+17)
+  1366  00A118  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1367  00A11A  0E01               	movlw	high (_DtI2C+17)
+  1368  00A11C  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1369  00A11E  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1370  00A120  C1CE  F0FA         	movff	_DtKNF+26,?_BitSet+3
+  1371  00A124  EC37  F06A         	call	_BitSet	;wreg free
+  1372                           ;i2c_s.c: 363: BitSet(&DtI2C.ST_GLOBAL2,1,DtKNF.
+      +                          rdgz);
+  1373  00A128  0100               	movlb	__Lparam shr (0+8)
+  1374  00A12A  0E95               	movlw	low (_DtI2C+17)
+  1375  00A12C  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1376  00A12E  0E01               	movlw	high (_DtI2C+17)
+  1377  00A130  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1378  00A132  0E01               	movlw	1
+  1379  00A134  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1380  00A136  C1C3  F0FA         	movff	_DtKNF+15,?_BitSet+3
+  1381  00A13A  EC37  F06A         	call	_BitSet	;wreg free
+  1382                           ;i2c_s.c: 364: BitSet(&DtI2C.ST_GLOBAL2,2,0);
+  1383  00A13E  0100               	movlb	__Lparam shr (0+8)
+  1384  00A140  0E95               	movlw	low (_DtI2C+17)
+  1385  00A142  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1386  00A144  0E01               	movlw	high (_DtI2C+17)
+  1387  00A146  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1388  00A148  0E02               	movlw	2
+  1389  00A14A  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1390  00A14C  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1391  00A14E  EC37  F06A         	call	_BitSet	;wreg free
+  1392                           ;i2c_s.c: 365: BitSet(&DtI2C.ST_GLOBAL2,3,RdPrt(
+      +                          9));
+  1393  00A152  0100               	movlb	__Lparam shr (0+8)
+  1394  00A154  0E95               	movlw	low (_DtI2C+17)
+  1395  00A156  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1396  00A158  0E01               	movlw	high (_DtI2C+17)
+  1397  00A15A  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1398  00A15C  0E03               	movlw	3
+  1399  00A15E  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1400  00A160  0E09               	movlw	9
+  1401  00A162  EC50  F063         	call	_RdPrt
+  1402  00A166  0E00               	movlw	0
+  1403  00A168  B0D8               	btfsc	status,0,c
+  1404  00A16A  0E01               	movlw	1
+  1405  00A16C  0100               	movlb	__Lparam shr (0+8)
+  1406  00A16E  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1407  00A170  EC37  F06A         	call	_BitSet	;wreg free
+  1408                           ;i2c_s.c: 366: BitSet(&DtI2C.ST_GLOBAL2,4,RdPrt(
+      +                          9));
+  1409  00A174  0100               	movlb	__Lparam shr (0+8)
+  1410  00A176  0E95               	movlw	low (_DtI2C+17)
+  1411  00A178  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1412  00A17A  0E01               	movlw	high (_DtI2C+17)
+  1413  00A17C  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1414  00A17E  0E04               	movlw	4
+  1415  00A180  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1416  00A182  0E09               	movlw	9
+  1417  00A184  EC50  F063         	call	_RdPrt
+  1418  00A188  0E00               	movlw	0
+  1419  00A18A  B0D8               	btfsc	status,0,c
+  1420  00A18C  0E01               	movlw	1
+  1421  00A18E  0100               	movlb	__Lparam shr (0+8)
+  1422  00A190  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1423  00A192  EC37  F06A         	call	_BitSet	;wreg free
+  1424                           ;i2c_s.c: 367: BitSet(&DtI2C.ST_GLOBAL2,5,PFN._l
+      +                          ato||PFN._zima);
+  1425  00A196  0100               	movlb	__Lparam shr (0+8)
+  1426  00A198  0E95               	movlw	low (_DtI2C+17)
+  1427  00A19A  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1428  00A19C  0E01               	movlw	high (_DtI2C+17)
+  1429  00A19E  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1430  00A1A0  0E05               	movlw	5
+  1431  00A1A2  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1432  00A1A4  0100               	movlb	_PFN shr (0+8)
+  1433  00A1A6  B76B               	btfsc	_PFN& (0+255),3,b
+  1434  00A1A8  D003               	goto	u481
+  1435  00A1AA  0100               	movlb	_PFN shr (0+8)
+  1436  00A1AC  A96B               	btfss	_PFN& (0+255),4,b
+  1437  00A1AE  D002               	goto	u480
+  1438  00A1B0                     u481:
+  1439  00A1B0  0E01               	movlw	1
+  1440  00A1B2  D001               	goto	u490
+  1441  00A1B4                     u480:
+  1442  00A1B4  0E00               	movlw	0
+  1443  00A1B6                     u490:
+  1444  00A1B6  0100               	movlb	__Lparam shr (0+8)
+  1445  00A1B8  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1446  00A1BA  EC37  F06A         	call	_BitSet	;wreg free
+  1447                           ;i2c_s.c: 368: BitSet(&DtI2C.ST_GLOBAL2,6,PFN._l
+      +                          ato||PFN._zima);
+  1448  00A1BE  0100               	movlb	__Lparam shr (0+8)
+  1449  00A1C0  0E95               	movlw	low (_DtI2C+17)
+  1450  00A1C2  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1451  00A1C4  0E01               	movlw	high (_DtI2C+17)
+  1452  00A1C6  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1453  00A1C8  0E06               	movlw	6
+  1454  00A1CA  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1455  00A1CC  0100               	movlb	_PFN shr (0+8)
+  1456  00A1CE  B76B               	btfsc	_PFN& (0+255),3,b
+  1457  00A1D0  D003               	goto	u521
+  1458  00A1D2  0100               	movlb	_PFN shr (0+8)
+  1459  00A1D4  A96B               	btfss	_PFN& (0+255),4,b
+  1460  00A1D6  D002               	goto	u520
+  1461  00A1D8                     u521:
+  1462  00A1D8  0E01               	movlw	1
+  1463  00A1DA  D001               	goto	u530
+  1464  00A1DC                     u520:
+  1465  00A1DC  0E00               	movlw	0
+  1466  00A1DE                     u530:
+  1467  00A1DE  0100               	movlb	__Lparam shr (0+8)
+  1468  00A1E0  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1469  00A1E2  EC37  F06A         	call	_BitSet	;wreg free
+  1470                           ;i2c_s.c: 369: BitSet(&DtI2C.ST_GLOBAL2,7,!RdPrt
+      +                          (4));
+  1471  00A1E6  0100               	movlb	__Lparam shr (0+8)
+  1472  00A1E8  0E95               	movlw	low (_DtI2C+17)
+  1473  00A1EA  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1474  00A1EC  0E01               	movlw	high (_DtI2C+17)
+  1475  00A1EE  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1476  00A1F0  0E07               	movlw	7
+  1477  00A1F2  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1478  00A1F4  0E04               	movlw	4
+  1479  00A1F6  EC50  F063         	call	_RdPrt
+  1480  00A1FA  0E00               	movlw	0
+  1481  00A1FC  A0D8               	btfss	status,0,c
+  1482  00A1FE  0E01               	movlw	1
+  1483  00A200  0100               	movlb	__Lparam shr (0+8)
+  1484  00A202  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1485  00A204  EC37  F06A         	call	_BitSet	;wreg free
+  1486                           ;i2c_s.c: 371: BitSet(&DtI2C.ST_GLOBAL3,0,M._ROZ
+      +                          RUCH);
+  1487  00A208  0100               	movlb	__Lparam shr (0+8)
+  1488  00A20A  0E96               	movlw	low (_DtI2C+18)
+  1489  00A20C  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1490  00A20E  0E01               	movlw	high (_DtI2C+18)
+  1491  00A210  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1492  00A212  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1493  00A214  EE03  F007         	lfsr	0,_M+1
+  1494  00A218  30EF               	rrcf	indf0,w,c
+  1495  00A21A  6E00               	movwf	btemp,c
+  1496  00A21C  3000               	rrcf	btemp,w,c
+  1497  00A21E  0B01               	andlw	1
+  1498  00A220  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1499  00A222  EC37  F06A         	call	_BitSet	;wreg free
+  1500                           ;i2c_s.c: 372: BitSet(&DtI2C.ST_GLOBAL3,1,M._WYL
+      +                          ACZ);
+  1501  00A226  0100               	movlb	__Lparam shr (0+8)
+  1502  00A228  0E96               	movlw	low (_DtI2C+18)
+  1503  00A22A  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1504  00A22C  0E01               	movlw	high (_DtI2C+18)
+  1505  00A22E  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1506  00A230  0E01               	movlw	1
+  1507  00A232  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1508  00A234  EE03  F007         	lfsr	0,_M+1
+  1509  00A238  50EF               	movf	indf0,w,c
+  1510  00A23A  0B01               	andlw	1
+  1511  00A23C  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1512  00A23E  EC37  F06A         	call	_BitSet	;wreg free
+  1513                           ;i2c_s.c: 374: BitSet(&DtI2C.ST_GLOBAL3,2,0);
+  1514  00A242  0100               	movlb	__Lparam shr (0+8)
+  1515  00A244  0E96               	movlw	low (_DtI2C+18)
+  1516  00A246  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1517  00A248  0E01               	movlw	high (_DtI2C+18)
+  1518  00A24A  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1519  00A24C  0E02               	movlw	2
+  1520  00A24E  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1521  00A250  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1522  00A252  EC37  F06A         	call	_BitSet	;wreg free
+  1523                           ;i2c_s.c: 375: BitSet(&DtI2C.ST_GLOBAL3,3,M._RUS
+      +                          Z_POMPE);
+  1524  00A256  0100               	movlb	__Lparam shr (0+8)
+  1525  00A258  0E96               	movlw	low (_DtI2C+18)
+  1526  00A25A  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1527  00A25C  0E01               	movlw	high (_DtI2C+18)
+  1528  00A25E  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1529  00A260  0E03               	movlw	3
+  1530  00A262  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1531  00A264  EE03  F008         	lfsr	0,_M+2
+  1532  00A268  30EF               	rrcf	indf0,w,c
+  1533  00A26A  0B01               	andlw	1
+  1534  00A26C  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1535  00A26E  EC37  F06A         	call	_BitSet	;wreg free
+  1536                           ;i2c_s.c: 376: BitSet(&DtI2C.ST_GLOBAL3,4,M._RUS
+      +                          Z_NTC_CO);
+  1537  00A272  0100               	movlb	__Lparam shr (0+8)
+  1538  00A274  0E96               	movlw	low (_DtI2C+18)
+  1539  00A276  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1540  00A278  0E01               	movlw	high (_DtI2C+18)
+  1541  00A27A  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1542  00A27C  0E04               	movlw	4
+  1543  00A27E  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1544  00A280  EE03  F009         	lfsr	0,_M+3
+  1545  00A284  30EF               	rrcf	indf0,w,c
+  1546  00A286  0B01               	andlw	1
+  1547  00A288  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1548  00A28A  EC37  F06A         	call	_BitSet	;wreg free
+  1549                           ;i2c_s.c: 377: BitSet(&DtI2C.ST_GLOBAL3,5,M._RUS
+      +                          Z_PLOMIEN);
+  1550  00A28E  0100               	movlb	__Lparam shr (0+8)
+  1551  00A290  0E96               	movlw	low (_DtI2C+18)
+  1552  00A292  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1553  00A294  0E01               	movlw	high (_DtI2C+18)
+  1554  00A296  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1555  00A298  0E05               	movlw	5
+  1556  00A29A  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1557  00A29C  EE03  F007         	lfsr	0,_M+1
+  1558  00A2A0  34EF               	rlcf	indf0,w,c
+  1559  00A2A2  34EF               	rlcf	indf0,w,c
+  1560  00A2A4  0B01               	andlw	1
+  1561  00A2A6  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1562  00A2A8  EC37  F06A         	call	_BitSet	;wreg free
+  1563                           ;i2c_s.c: 378: BitSet(&DtI2C.ST_GLOBAL3,6,M._RUS
+      +                          Z_STB);
+  1564  00A2AC  0100               	movlb	__Lparam shr (0+8)
+  1565  00A2AE  0E96               	movlw	low (_DtI2C+18)
+  1566  00A2B0  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1567  00A2B2  0E01               	movlw	high (_DtI2C+18)
+  1568  00A2B4  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1569  00A2B6  0E06               	movlw	6
+  1570  00A2B8  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1571  00A2BA  EE03  F009         	lfsr	0,_M+3
+  1572  00A2BE  38EF               	swapf	indf0,w,c
+  1573  00A2C0  0B01               	andlw	1
+  1574  00A2C2  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1575  00A2C4  EC37  F06A         	call	_BitSet	;wreg free
+  1576                           ;i2c_s.c: 379: BitSet(&DtI2C.ST_GLOBAL3,7,M._BLO
+      +                          KUJ_3M);
+  1577  00A2C8  0100               	movlb	__Lparam shr (0+8)
+  1578  00A2CA  0E96               	movlw	low (_DtI2C+18)
+  1579  00A2CC  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1580  00A2CE  0E01               	movlw	high (_DtI2C+18)
+  1581  00A2D0  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1582  00A2D2  0E07               	movlw	7
+  1583  00A2D4  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1584  00A2D6  EE03  F008         	lfsr	0,_M+2
+  1585  00A2DA  30EF               	rrcf	indf0,w,c
+  1586  00A2DC  6E00               	movwf	btemp,c
+  1587  00A2DE  3000               	rrcf	btemp,w,c
+  1588  00A2E0  0B01               	andlw	1
+  1589  00A2E2  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1590  00A2E4  EC37  F06A         	call	_BitSet	;wreg free
+  1591                           ;i2c_s.c: 381: BitSet(&DtI2C.ST_GLOBAL4,0,M._RUS
+      +                          Z_48);
+  1592  00A2E8  0100               	movlb	__Lparam shr (0+8)
+  1593  00A2EA  0E97               	movlw	low (_DtI2C+19)
+  1594  00A2EC  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1595  00A2EE  0E01               	movlw	high (_DtI2C+19)
+  1596  00A2F0  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1597  00A2F2  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1598  00A2F4  EE03  F007         	lfsr	0,_M+1
+  1599  00A2F8  30EF               	rrcf	indf0,w,c
+  1600  00A2FA  6E00               	movwf	btemp,c
+  1601  00A2FC  3200               	rrcf	btemp,f,c
+  1602  00A2FE  3000               	rrcf	btemp,w,c
+  1603  00A300  0B01               	andlw	1
+  1604  00A302  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1605  00A304  EC37  F06A         	call	_BitSet	;wreg free
+  1606                           ;i2c_s.c: 382: BitSet(&DtI2C.ST_GLOBAL4,1,0);
+  1607  00A308  0100               	movlb	__Lparam shr (0+8)
+  1608  00A30A  0E97               	movlw	low (_DtI2C+19)
+  1609  00A30C  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1610  00A30E  0E01               	movlw	high (_DtI2C+19)
+  1611  00A310  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1612  00A312  0E01               	movlw	1
+  1613  00A314  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1614  00A316  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1615  00A318  EC37  F06A         	call	_BitSet	;wreg free
+  1616                           ;i2c_s.c: 383: BitSet(&DtI2C.ST_GLOBAL4,2,M._MOD
+      +                          ULUJ);
+  1617  00A31C  0100               	movlb	__Lparam shr (0+8)
+  1618  00A31E  0E97               	movlw	low (_DtI2C+19)
+  1619  00A320  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1620  00A322  0E01               	movlw	high (_DtI2C+19)
+  1621  00A324  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1622  00A326  0E02               	movlw	2
+  1623  00A328  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1624  00A32A  EE03  F008         	lfsr	0,_M+2
+  1625  00A32E  38EF               	swapf	indf0,w,c
+  1626  00A330  0B01               	andlw	1
+  1627  00A332  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1628  00A334  EC37  F06A         	call	_BitSet	;wreg free
+  1629                           ;i2c_s.c: 384: BitSet(&DtI2C.ST_GLOBAL4,3,0);
+  1630  00A338  0100               	movlb	__Lparam shr (0+8)
+  1631  00A33A  0E97               	movlw	low (_DtI2C+19)
+  1632  00A33C  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1633  00A33E  0E01               	movlw	high (_DtI2C+19)
+  1634  00A340  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1635  00A342  0E03               	movlw	3
+  1636  00A344  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1637  00A346  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1638  00A348  EC37  F06A         	call	_BitSet	;wreg free
+  1639                           ;i2c_s.c: 385: BitSet(&DtI2C.ST_GLOBAL4,4,M._OST
+      +                          _PL);
+  1640  00A34C  0100               	movlb	__Lparam shr (0+8)
+  1641  00A34E  0E97               	movlw	low (_DtI2C+19)
+  1642  00A350  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1643  00A352  0E01               	movlw	high (_DtI2C+19)
+  1644  00A354  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1645  00A356  0E04               	movlw	4
+  1646  00A358  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1647  00A35A  EE03  F00A         	lfsr	0,_M+4
+  1648  00A35E  30EF               	rrcf	indf0,w,c
+  1649  00A360  6E00               	movwf	btemp,c
+  1650  00A362  3000               	rrcf	btemp,w,c
+  1651  00A364  0B01               	andlw	1
+  1652  00A366  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1653  00A368  EC37  F06A         	call	_BitSet	;wreg free
+  1654                           ;i2c_s.c: 386: BitSet(&DtI2C.ST_GLOBAL4,5,M._VWY
+      +                          BIEG);
+  1655  00A36C  0100               	movlb	__Lparam shr (0+8)
+  1656  00A36E  0E97               	movlw	low (_DtI2C+19)
+  1657  00A370  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1658  00A372  0E01               	movlw	high (_DtI2C+19)
+  1659  00A374  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1660  00A376  0E05               	movlw	5
+  1661  00A378  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1662  00A37A  EE03  F007         	lfsr	0,_M+1
+  1663  00A37E  38EF               	swapf	indf0,w,c
+  1664  00A380  6E00               	movwf	btemp,c
+  1665  00A382  3200               	rrcf	btemp,f,c
+  1666  00A384  3000               	rrcf	btemp,w,c
+  1667  00A386  0B01               	andlw	1
+  1668  00A388  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1669  00A38A  EC37  F06A         	call	_BitSet	;wreg free
+  1670                           ;i2c_s.c: 387: BitSet(&DtI2C.ST_GLOBAL4,6,0);
+  1671  00A38E  0100               	movlb	__Lparam shr (0+8)
+  1672  00A390  0E97               	movlw	low (_DtI2C+19)
+  1673  00A392  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1674  00A394  0E01               	movlw	high (_DtI2C+19)
+  1675  00A396  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1676  00A398  0E06               	movlw	6
+  1677  00A39A  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1678  00A39C  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1679  00A39E  EC37  F06A         	call	_BitSet	;wreg free
+  1680                           ;i2c_s.c: 388: BitSet(&DtI2C.ST_GLOBAL4,7,M._ZMK
+      +                          COCW);
+  1681  00A3A2  0100               	movlb	__Lparam shr (0+8)
+  1682  00A3A4  0E97               	movlw	low (_DtI2C+19)
+  1683  00A3A6  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1684  00A3A8  0E01               	movlw	high (_DtI2C+19)
+  1685  00A3AA  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1686  00A3AC  0E07               	movlw	7
+  1687  00A3AE  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1688  00A3B0  EE03  F007         	lfsr	0,_M+1
+  1689  00A3B4  30EF               	rrcf	indf0,w,c
+  1690  00A3B6  0B01               	andlw	1
+  1691  00A3B8  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1692  00A3BA  EC37  F06A         	call	_BitSet	;wreg free
+  1693                           ;i2c_s.c: 390: DtI2C.TPRZ_CW=0;
+  1694  00A3BE  0101               	movlb	(_DtI2C+20) shr (0+8)
+  1695  00A3C0  6B98               	clrf	(_DtI2C+20)& (0+255),b
+  1696                           ;i2c_s.c: 392: DtI2C.ST0_WSW=0;
+  1697  00A3C2  6B99               	clrf	(_DtI2C+21)& (0+255),b
+  1698                           ;i2c_s.c: 393: BitSet(&DtI2C.ST0_WSW,0,!M.ERR_BT
+      +                          Y&&M._RUSZ_PLOMIEN);
+  1699  00A3C4  0100               	movlb	__Lparam shr (0+8)
+  1700  00A3C6  0E99               	movlw	low (_DtI2C+21)
+  1701  00A3C8  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1702  00A3CA  0E01               	movlw	high (_DtI2C+21)
+  1703  00A3CC  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1704  00A3CE  6BF9               	clrf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1705  00A3D0  EE03  F011         	lfsr	0,_M+11
+  1706  00A3D4  50EF               	movf	indf0,w,c
+  1707  00A3D6  E105               	bnz	u560
+  1708  00A3D8  0103               	movlb	(_M+1) shr (0+8)
+  1709  00A3DA  AF07               	btfss	(_M+1)& (0+255),7,b
+  1710  00A3DC  D002               	goto	u560
+  1711  00A3DE  0E01               	movlw	1
+  1712  00A3E0  D001               	goto	u570
+  1713  00A3E2                     u560:
+  1714  00A3E2  0E00               	movlw	0
+  1715  00A3E4                     u570:
+  1716  00A3E4  0100               	movlb	__Lparam shr (0+8)
+  1717  00A3E6  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1718  00A3E8  EC37  F06A         	call	_BitSet	;wreg free
+  1719                           ;i2c_s.c: 394: BitSet(&DtI2C.ST0_WSW,1,!M.ERR_BT
+      +                          Y&&M._RUSZ_STB);
+  1720  00A3EC  0100               	movlb	__Lparam shr (0+8)
+  1721  00A3EE  0E99               	movlw	low (_DtI2C+21)
+  1722  00A3F0  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1723  00A3F2  0E01               	movlw	high (_DtI2C+21)
+  1724  00A3F4  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1725  00A3F6  0E01               	movlw	1
+  1726  00A3F8  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1727  00A3FA  EE03  F011         	lfsr	0,_M+11
+  1728  00A3FE  50EF               	movf	indf0,w,c
+  1729  00A400  E105               	bnz	u600
+  1730  00A402  0103               	movlb	(_M+3) shr (0+8)
+  1731  00A404  A909               	btfss	(_M+3)& (0+255),4,b
+  1732  00A406  D002               	goto	u600
+  1733  00A408  0E01               	movlw	1
+  1734  00A40A  D001               	goto	u610
+  1735  00A40C                     u600:
+  1736  00A40C  0E00               	movlw	0
+  1737  00A40E                     u610:
+  1738  00A40E  0100               	movlb	__Lparam shr (0+8)
+  1739  00A410  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1740  00A412  EC37  F06A         	call	_BitSet	;wreg free
+  1741                           ;i2c_s.c: 396: BitSet(&DtI2C.ST0_WSW,2,0);
+  1742  00A416  0100               	movlb	__Lparam shr (0+8)
+  1743  00A418  0E99               	movlw	low (_DtI2C+21)
+  1744  00A41A  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1745  00A41C  0E01               	movlw	high (_DtI2C+21)
+  1746  00A41E  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1747  00A420  0E02               	movlw	2
+  1748  00A422  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1749  00A424  6BFA               	clrf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1750  00A426  EC37  F06A         	call	_BitSet	;wreg free
+  1751                           ;i2c_s.c: 397: if(DtKNF.robg==0) BitSet(&DtI2C.S
+      +                          T0_WSW,4,!M.ERR_BTY&&M._RUSZ_POMPE&&M._prb_PRZ);
+  1752  00A42A  EE01  F0C9         	lfsr	0,_DtKNF+21
+  1753  00A42E  50EF               	movf	indf0,w,c
+  1754  00A430  E158               	bnz	l81
+  1755  00A432  0100               	movlb	__Lparam shr (0+8)
+  1756  00A434  0E99               	movlw	low (_DtI2C+21)
+  1757  00A436  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1758  00A438  0E01               	movlw	high (_DtI2C+21)
+  1759  00A43A  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1760  00A43C  0E04               	movlw	4
+  1761  00A43E  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1762  00A440  EE03  F011         	lfsr	0,_M+11
+  1763  00A444  50EF               	movf	indf0,w,c
+  1764  00A446  E108               	bnz	u670
+  1765  00A448  0103               	movlb	(_M+2) shr (0+8)
+  1766  00A44A  A308               	btfss	(_M+2)& (0+255),1,b
+  1767  00A44C  D005               	goto	u670
+  1768  00A44E  0103               	movlb	(_M+5) shr (0+8)
+  1769  00A450  A10B               	btfss	(_M+5)& (0+255),0,b
+  1770  00A452  D002               	goto	u670
+  1771  00A454  0E01               	movlw	1
+  1772  00A456  D001               	goto	u680
+  1773  00A458                     u670:
+  1774  00A458  0E00               	movlw	0
+  1775  00A45A                     u680:
+  1776  00A45A  0100               	movlb	__Lparam shr (0+8)
+  1777  00A45C  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1778  00A45E  EC37  F06A         	call	_BitSet	;wreg free
+  1779                           ;i2c_s.c: 399: switch(M.ERR_BTY)
+  1780  00A462  D03F               	goto	l81
+  1781  00A464                     l82:
+  1782                           ;i2c_s.c: 400: {
+  1783                           ;i2c_s.c: 402: DtI2C.ERR_BTY=1;
+  1784  00A464  0E01               	movlw	1
+  1785  00A466  CFE8 F19A          	movff	wreg,_DtI2C+22
+  1786                           ;i2c_s.c: 403: break;
+  1787  00A46A  0C01               	retlw	1
+  1788  00A46C                     l83:
+  1789                           ;i2c_s.c: 404: case 0x02:
+  1790                           ;i2c_s.c: 405: DtI2C.ERR_BTY=2;
+  1791  00A46C  0E02               	movlw	2
+  1792  00A46E  CFE8 F19A          	movff	wreg,_DtI2C+22
+  1793                           ;i2c_s.c: 406: break;
+  1794  00A472  0C02               	retlw	2
+  1795  00A474                     l84:
+  1796                           ;i2c_s.c: 407: case 0x03:
+  1797                           ;i2c_s.c: 408: DtI2C.ERR_BTY=3;
+  1798  00A474  0E03               	movlw	3
+  1799  00A476  CFE8 F19A          	movff	wreg,_DtI2C+22
+  1800                           ;i2c_s.c: 409: break;
+  1801  00A47A  0C03               	retlw	3
+  1802  00A47C                     l85:
+  1803                           ;i2c_s.c: 410: case 0x04:
+  1804                           ;i2c_s.c: 411: BitSet(&DtI2C.ST0_WSW,3,1);
+  1805  00A47C  0100               	movlb	__Lparam shr (0+8)
+  1806  00A47E  0E99               	movlw	low (_DtI2C+21)
+  1807  00A480  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1808  00A482  0E01               	movlw	high (_DtI2C+21)
+  1809  00A484  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1810  00A486  0E03               	movlw	3
+  1811  00A488  D027               	goto	L8
+  1812                           ;i2c_s.c: 412: break;
+  1813  00A48A                     l86:
+  1814                           ;i2c_s.c: 413: case 0x05:
+  1815                           ;i2c_s.c: 414: if(DtKNF.robg==0) DtI2C.ERR_BTY=5
+      +                          ;
+  1816  00A48A  EE01  F0C9         	lfsr	0,_DtKNF+21
+  1817  00A48E  50EF               	movf	indf0,w,c
+  1818  00A490  E104               	bnz	l87
+  1819  00A492  0E05               	movlw	5
+  1820  00A494  CFE8 F19A          	movff	wreg,_DtI2C+22
+  1821  00A498  0C05               	retlw	5
+  1822  00A49A                     l87:
+  1823                           ;i2c_s.c: 415: else BitSet(&DtI2C.ST0_WSW,4,1);
+  1824  00A49A  0100               	movlb	__Lparam shr (0+8)
+  1825  00A49C  0E99               	movlw	low (_DtI2C+21)
+  1826  00A49E  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1827  00A4A0  0E01               	movlw	high (_DtI2C+21)
+  1828  00A4A2  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1829  00A4A4  0E04               	movlw	4
+  1830  00A4A6  D018               	goto	L8
+  1831                           ;i2c_s.c: 416: break;
+  1832  00A4A8                     l89:
+  1833                           ;i2c_s.c: 417: case 0x06:
+  1834                           ;i2c_s.c: 418: DtI2C.ERR_BTY=6;
+  1835  00A4A8  0E06               	movlw	6
+  1836  00A4AA  CFE8 F19A          	movff	wreg,_DtI2C+22
+  1837                           ;i2c_s.c: 419: break;
+  1838  00A4AE  0C06               	retlw	6
+  1839  00A4B0                     l90:
+  1840                           ;i2c_s.c: 420: case 0x07:
+  1841                           ;i2c_s.c: 421: BitSet(&DtI2C.ST0_WSW,5,1);
+  1842  00A4B0  0100               	movlb	__Lparam shr (0+8)
+  1843  00A4B2  0E99               	movlw	low (_DtI2C+21)
+  1844  00A4B4  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1845  00A4B6  0E01               	movlw	high (_DtI2C+21)
+  1846  00A4B8  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1847  00A4BA  0E05               	movlw	5
+  1848  00A4BC  D00D               	goto	L8
+  1849                           ;i2c_s.c: 422: break;
+  1850  00A4BE                     l91:
+  1851                           ;i2c_s.c: 423: case 0x08:
+  1852                           ;i2c_s.c: 424: BitSet(&DtI2C.ST0_WSW,6,1);
+  1853  00A4BE  0100               	movlb	__Lparam shr (0+8)
+  1854  00A4C0  0E99               	movlw	low (_DtI2C+21)
+  1855  00A4C2  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1856  00A4C4  0E01               	movlw	high (_DtI2C+21)
+  1857  00A4C6  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1858  00A4C8  0E06               	movlw	6
+  1859  00A4CA  D006               	goto	L8
+  1860                           ;i2c_s.c: 425: break;
+  1861  00A4CC                     l92:
+  1862                           ;i2c_s.c: 426: case 0x09:
+  1863                           ;i2c_s.c: 427: BitSet(&DtI2C.ST0_WSW,7,1);
+  1864  00A4CC  0100               	movlb	__Lparam shr (0+8)
+  1865  00A4CE  0E99               	movlw	low (_DtI2C+21)
+  1866  00A4D0  6FF7               	movwf	?_BitSet^(__Lparam& (0+65280)),b
+  1867  00A4D2  0E01               	movlw	high (_DtI2C+21)
+  1868  00A4D4  6FF8               	movwf	(?_BitSet+1)^(__Lparam& (0+65280)),b
+  1869  00A4D6  0E07               	movlw	7
+  1870  00A4D8                     L8:
+  1871  00A4D8  6FF9               	movwf	(?_BitSet+2)^(__Lparam& (0+65280)),b
+  1872  00A4DA  0E01               	movlw	1
+  1873  00A4DC  6FFA               	movwf	(?_BitSet+3)^(__Lparam& (0+65280)),b
+  1874  00A4DE  EF37  F06A         	goto	_BitSet	;wreg free
+  1875                           ;i2c_s.c: 428: break;
+  1876  00A4E2                     l81:
+  1877  00A4E2  C311  FFE8         	movff	_M+11,wreg
+  1878  00A4E6  0A01               	xorlw	1
+  1879  00A4E8  E0BD               	bz	l82
+  1880  00A4EA  0A03               	xorlw	3
+  1881  00A4EC  E0BF               	bz	l83
+  1882  00A4EE  0A01               	xorlw	1
+  1883  00A4F0  E0C1               	bz	l84
+  1884  00A4F2  0A07               	xorlw	7
+  1885  00A4F4  E0C3               	bz	l85
+  1886  00A4F6  0A01               	xorlw	1
+  1887  00A4F8  E0C8               	bz	l86
+  1888  00A4FA  0A03               	xorlw	3
+  1889  00A4FC  E0D5               	bz	l89
+  1890  00A4FE  0A01               	xorlw	1
+  1891  00A500  E0D7               	bz	l90
+  1892  00A502  0A0F               	xorlw	15
+  1893  00A504  E0DC               	bz	l91
+  1894  00A506  0A01               	xorlw	1
+  1895  00A508  E0E1               	bz	l92
+  1896  00A50A  0012               	return	
+  1897                           ;i2c_s.c: 430: }
+  1898  00A50C                     __end_of_FormatDataIMY:
+  1899  000000                     
+  1900  000000                     
+  1901  000000                     
+  1902  000000                     
+  1903  000000                     
+  1904  000000                     
+  1905  000000                     
+  1906  000000                     
+  1907  000000                     
+  1908  000000                     
+  1909  000000                     
+  1910  000000                     
+  1911  000000                     
+  1912  000000                     
+  1913  000000                     
+  1914  000000                     
+  1915  000000                     
+  1916  000000                     
+  1917  000000                     
+  1918  000000                     
+  1919  000000                     
+  1920  000000                     
+  1921  000000                     
+  1922  000000                     
+  1923  000000                     
+  1924  000000                     
+  1925  000000                     
+  1926  000000                     
+  1927  000000                     
+  1928  000000                     
+  1929  000000                     
+  1930  000000                     
+  1931  000000                     
+  1932  000000                     
+  1933  000000                     
+  1934  000000                     
+  1935  000000                     
+  1936  000000                     
+  1937  000000                     
+  1938  000000                     
+  1939  000000                     
+  1940  000000                     
+  1941  000000                     
+  1942  000000                     
+  1943  000000                     
+  1944  000000                     
+  1945  000000                     
+  1946  000000                     
+  1947  000000                     
+  1948  000000                     
+  1949  000000                     
+  1950  000000                     
+  1951  000000                     
+  1952  000000                     
+  1953  000000                     
+  1954  000000                     
+  1955  000000                     
+  1956  000000                     
+  1957  000000                     
+  1958  000000                     
+  1959  000000                     
+  1960  000000                     
+  1961  000000                     
+  1962  000000                     
+  1963  000000                     
+  1964  000000                     
+  1965  000000                     
+  1966  000000                     
+  1967  000000                     
+  1968  000000                     
+  1969  000000                     
+  1970  000000                     
+  1971  000000                     
+  1972  000000                     
+  1973  000000                     
+  1974  000000                     
+  1975  000000                     
+  1976  000000                     
+  1977  000000                     
+  1978  000000                     
+  1979  000000                     
+  1980  000000                     
+  1981  000000                     
+  1982  000000                     
+  1983  000000                     
+  1984  000000                     
+  1985  000000                     
+  1986  000000                     
+  1987  000000                     
+  1988  000000                     
+  1989  000000                     
+  1990  000000                     
+  1991  000000                     
+  1992  000000                     
+  1993  000000                     
+  1994  000000                     
+  1995  000000                     
+  1996  000000                     
+  1997  000000                     
+  1998  000000                     
+  1999  000000                     
+  2000  000000                     
+  2001  000000                     
+  2002  000000                     
+  2003  000000                     
+  2004  000000                     
+  2005  000000                     
+  2006  000000                     
+  2007  000000                     
+  2008  000000                     
+  2009  000000                     
+  2010  000000                     
+  2011  000000                     
+  2012  000000                     
+  2013  000000                     
+  2014  000000                     
+  2015  000000                     
+  2016  000000                     
+  2017  000000                     
+  2018  000000                     
+  2019  000000                     
+  2020  000000                     
+  2021  000000                     
+  2022  000000                     
+  2023  000000                     
+  2024  000000                     
+  2025  000000                     
+  2026  000000                     
+  2027  000000                     
+  2028  000000                     
+  2029  000000                     
+  2030  000000                     
+  2031  000000                     
+  2032  000000                     
+  2033  000000                     
+  2034  000000                     
+  2035  000000                     
+  2036  000000                     
+  2037  000000                     
+  2038  000000                     
+  2039  000000                     
+  2040  000000                     
+  2041  000000                     
+  2042  000000                     
+  2043  000000                     
+  2044  000000                     
+  2045  000000                     
+  2046  000000                     
+  2047  000000                     
+  2048  000000                     
+  2049  000000                     
+  2050  000000                     
+  2051  000000                     
+  2052  000000                     
+  2053  000000                     
+  2054  000000                     
+  2055  000000                     
+  2056  000000                     
+  2057  000000                     
+  2058  000000                     
+  2059  000000                     
+  2060  000000                     
+  2061  000000                     
+  2062  000000                     
+  2063  000000                     
+  2064  000000                     
+  2065  000000                     
+  2066  000000                     
+  2067  000000                     
+  2068  000000                     
+  2069  000000                     
+  2070  000000                     
+  2071  000000                     
+  2072  000000                     
+  2073  000000                     
+  2074  000000                     
+  2075  000000                     
+  2076  000000                     
+  2077  000000                     
+  2078  000000                     
+  2079  000000                     
+  2080  000000                     
+  2081  000000                     
+  2082  000000                     
+  2083  000000                     
+  2084  000000                     
+  2085  000000                     
+  2086  000000                     
+  2087  000000                     
+  2088  000000                     
+  2089  000000                     
+  2090  000000                     
+  2091  000000                     
+  2092  000000                     
+  2093  000000                     
+  2094  000000                     
+  2095  000000                     
+  2096  000000                     
+  2097  000000                     
+  2098  000000                     
+  2099  000000                     
+  2100  000000                     
+  2101  000000                     
+  2102  000000                     
+  2103  000000                     
+  2104  000000                     
+  2105  000000                     
+  2106  000000                     
+  2107  000000                     
+  2108  000000                     
+  2109  000000                     
+  2110  000000                     
+  2111  000000                     
+  2112  000000                     
+  2113  000000                     
+  2114  000000                     
+  2115  000000                     
+  2116  000000                     
+  2117  000000                     
+  2118  000000                     
+  2119  000000                     
+  2120  000000                     
+  2121  000000                     
+  2122  000000                     
+  2123  000000                     
+  2124  000000                     
+  2125  000000                     
+  2126  000000                     
+  2127  000000                     
+  2128  000000                     
+  2129  000000                     
+  2130  000000                     
+  2131  000000                     
+  2132  000000                     
+  2133  000000                     
+  2134  000000                     
+  2135  000000                     
+  2136  000000                     
+  2137  000000                     
+  2138  000000                     
+  2139  000000                     
+  2140  000000                     
+  2141  000000                     
+  2142  000000                     
+  2143  000000                     
+  2144  000000                     
+  2145  000000                     
+  2146  000000                     
+  2147  000000                     
+  2148  000000                     
+  2149  000000                     
+  2150  000000                     
+  2151  000000                     
+  2152  000000                     
+  2153  000000                     
+  2154  000000                     
+  2155  000000                     
+  2156  000000                     
+  2157  000000                     
+  2158  000000                     
+  2159  000000                     
+  2160  000000                     
+  2161  000000                     
+  2162  000000                     
+  2163  000000                     
+  2164  000000                     
+  2165  000000                     
+  2166  000000                     
+  2167  000000                     
+  2168  000000                     
+  2169  000000                     
+  2170  000000                     
+  2171  000000                     
+  2172  000000                     
+  2173  000000                     
+  2174  000000                     
+  2175  000000                     
+  2176  000000                     
+  2177  000000                     
+  2178  000000                     
+  2179  000000                     
+  2180  000000                     
+  2181  000000                     
+  2182  000000                     
+  2183  000000                     
+  2184  000000                     
+  2185  000000                     
+  2186  000000                     
+  2187  000000                     
+  2188  000000                     
+  2189  000000                     
+  2190  000000                     
+  2191  000000                     
+  2192  000000                     
+  2193  000000                     
+  2194  000000                     
+  2195  000000                     
+  2196  000000                     
+  2197  000000                     
+  2198  000000                     
+  2199  000000                     
+  2200  000000                     
+  2201  000000                     
+  2202  000000                     
+  2203  000000                     
+  2204  000000                     
+  2205  000000                     
+  2206  000000                     
+  2207  000000                     
+  2208  000000                     
+  2209  000000                     
+  2210  000000                     
+  2211  000000                     
+  2212  000000                     
+  2213  000000                     
+  2214  000000                     
+  2215  000000                     
+  2216  000000                     
+  2217  000000                     
+  2218  000000                     
+  2219  000000                     
+  2220  000000                     
+  2221  000000                     
+  2222  000000                     
+  2223  000000                     
+  2224  000000                     
+  2225  000000                     
+  2226  000000                     
+  2227  000000                     
+  2228  000000                     
+  2229  000000                     
+  2230  000000                     
+  2231  000000                     
+  2232  000000                     
+  2233  000000                     
+  2234  000000                     
+  2235  000000                     
+  2236  000000                     
+  2237  000000                     
+  2238  000000                     
+  2239  000000                     
+  2240  000000                     
+  2241  000000                     
+  2242  000000                     
+  2243  000000                     
+  2244  000000                     
+  2245  000000                     
+  2246  000000                     
+  2247  000000                     
+  2248  000000                     
+  2249  000000                     
+  2250  000000                     
+  2251  000000                     
+  2252  000000                     
+  2253  000000                     
+  2254  000000                     
+  2255  000000                     
+  2256  000000                     
+  2257  000000                     
+  2258  000000                     
+  2259  000000                     
+  2260  000000                     
+  2261  000000                     
+  2262  000000                     
+  2263  000000                     
+  2264  000000                     
+  2265  000000                     
+  2266  000000                     
+  2267  000000                     
+  2268  000000                     
+  2269  000000                     
+  2270  000000                     
+  2271  000000                     
+  2272  000000                     
+  2273  000000                     
+  2274  000000                     
+  2275  000000                     
+  2276  000000                     
+  2277  000000                     
+  2278  000000                     
+  2279  000000                     
+  2280  000000                     
+  2281  000000                     
+  2282  000000                     
+  2283  000000                     
+  2284  000000                     
+  2285  000000                     
+  2286  000000                     
+  2287  000000                     
+  2288  000000                     
+  2289  000000                     
+  2290  000000                     
+  2291  000000                     
+  2292  000000                     
+  2293  000000                     
+  2294  000000                     
+  2295  000000                     
+  2296  000000                     
+  2297  000000                     
+  2298  000000                     
+  2299  000000                     
+  2300  000000                     
+  2301  000000                     
+  2302  000000                     
+  2303  000000                     
+  2304  000000                     
+  2305  000000                     
+  2306  000000                     
+  2307  000000                     
+  2308  000000                     
+  2309  000000                     
+  2310  000000                     
+  2311  000000                     
+  2312  000000                     
+  2313  000000                     
+  2314  000000                     
+  2315  000000                     
+  2316  000000                     
+  2317  000000                     
+  2318  000000                     
+  2319  000000                     
+  2320  000000                     
+  2321  000000                     
+  2322  000000                     
+  2323  000000                     
+  2324  000000                     
+  2325  000000                     
+  2326  000000                     
+  2327  000000                     
+  2328  000000                     
+  2329  000000                     
+  2330  000000                     
+  2331  000000                     
+  2332  000000                     
+  2333  000000                     
+  2334  000000                     
+  2335  000000                     
+  2336  000000                     
+  2337  000000                     
+  2338  000000                     
+  2339  000000                     
+  2340  000000                     
+  2341  000000                     
+  2342  000000                     
+  2343  000000                     
+  2344  000000                     
+  2345  000000                     
+  2346  000000                     
+  2347  000000                     
+  2348  000000                     
+  2349  000000                     
+  2350  000000                     
+  2351  000000                     
+  2352  000000                     
+  2353  000000                     
+  2354  000000                     
+  2355  000000                     
+  2356  000000                     
+  2357  000000                     
+  2358  000000                     
+  2359  000000                     
+  2360  000000                     
+  2361  000000                     
+  2362  000000                     
+  2363  000000                     
+  2364  000000                     
+  2365  000000                     
+  2366  000000                     
+  2367  000000                     
+  2368  000000                     
+  2369  000000                     
+  2370  000000                     
+  2371  000000                     
+  2372  000000                     
+  2373  000000                     
+  2374  000000                     
+  2375  000000                     
+  2376  000000                     
+  2377  000000                     
+  2378  000000                     
+  2379  000000                     
+  2380  000000                     
+  2381  000000                     
+  2382  000000                     
+  2383  000000                     
+  2384  000000                     
+  2385  000000                     
+  2386  000000                     
+  2387  000000                     
+  2388  000000                     
+  2389  000000                     
+  2390  000000                     
+  2391  000000                     
+  2392  000000                     
+  2393  000000                     
+  2394  000000                     
+  2395  000000                     
+  2396  000000                     
+  2397  000000                     
+  2398  000000                     
+  2399  000000                     
+  2400  000000                     
+  2401  000000                     
+  2402  000000                     
+  2403  000000                     
+  2404  000000                     
+  2405  000000                     
+  2406  000000                     
+  2407  000000                     
+  2408  000000                     
+  2409  000000                     
+  2410  000000                     
+  2411  000000                     
+  2412  000000                     
+  2413  000000                     
+  2414  000000                     
+  2415  000000                     
+  2416  000000                     
+  2417  000000                     
+  2418  000000                     
+  2419  000000                     
+  2420  000000                     
+  2421  000000                     
+  2422  000000                     
+  2423  000000                     
+  2424  000000                     
+  2425  000000                     
+  2426  000000                     
+  2427  000000                     
+  2428  000000                     
+  2429  000000                     
+  2430  000000                     
+  2431  000000                     
+  2432  000000                     
+  2433  000000                     
+  2434  000000                     
+  2435  000000                     
+  2436  000000                     
+  2437  000000                     
+  2438  000000                     
+  2439  000000                     
+  2440  000000                     
+  2441  000000                     
+  2442  000000                     
+  2443  000000                     
+  2444  000000                     
+  2445  000000                     
+  2446  000000                     
+  2447  000000                     
+  2448  000000                     
+  2449  000000                     
+  2450  000000                     
+  2451  000000                     
+  2452  000000                     
+  2453  000000                     
+  2454  000000                     
+  2455  000000                     
+  2456  000000                     
+  2457  000000                     
+  2458  000000                     
+  2459  000000                     
+  2460                           
+  2461                           	psect	bigbss
+  2462  000E72                     _dt:
+  2463  000E72                     	ds	1
+  2464  000000                     
+  2465  000000                     
+  2466  000000                     
+  2467  000000                     
+  2468  000000                     
+  2469  000000                     
+  2470  000000                     
+  2471                           
+  2472                           	psect	bss
+  2473  000184                     _DtI2C:
+  2474  000184                     	ds	23
+  2475  000184                     _BufI2C:
+  2476  000184                     	ds	25
+  2477                           
+  2478                           	psect	temp
+  2479  000000                     btemp:
+  2480  000000                     	ds	6
+  2481                           prodl	equ	0xFF3
+  2482                           indf0	equ	0xFEF
+  2483                           fsr0h	equ	0xFEA
+  2484                           fsr0l	equ	0xFE9
+  2485                           wreg	equ	0xFE8
+  2486                           fsr1l	equ	0xFE1
+  2487                           fsr2l	equ	0xFD9
+  2488                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Thu Jul 28 10:43:08 2016
+
+                      _M 0306                       l22 990E  
+                     l23 9964                       l24 9920  
+                     l26 994C                       l35 9978  
+                     l53 9B1C                       l37 99EE  
+                     l29 9958                       l62 9B6A  
+                     l54 9B16                       l38 99DE  
+                     l55 9B1A                       l39 99E2  
+                     l72 9D88                       l56 9B28  
+                     l48 9AE4                       l81 A4E2  
+                     l73 9FBE                       l49 9AEE  
+                     l90 A4B0                       l82 A464  
+                     l74 A034                       l91 A4BE  
+                     l83 A46C                       l75 9FEC  
+                     l92 A4CC                       l84 A474  
+                     l85 A47C                       l77 A022  
+                     l69 9B66                       l86 A48A  
+                     l87 A49A                       l89 A4A8  
+                     u70 99BA                       u75 999C  
+                     _dt 0E72                      u210 9B60  
+                    u300 9F9E                      u240 9CEA  
+                    u241 9CE6                      u250 9CEC  
+                    u316 9FA2                      u600 A40C  
+                    u520 A1DC                      u440 A016  
+                    u360 9FD0                      u521 A1D8  
+                    u610 A40E                      u530 A1DE  
+                    u450 A018                      _PFN 006B  
+                    u560 A3E2                      u480 A1B4  
+                    u481 A1B0                      u570 A3E4  
+                    u490 A1B6                      u670 A458  
+                    u680 A45A                      _PMP 02F1  
+                    _PWM 01D6                      wreg 000FE8  
+             ?a_SetTData 00F7                     f5843 00FA  
+                   _DtCO 007F                     _DtCS 0063  
+                   _DtCW 0070                     _DtIN 0092  
+                   fsr0h 000FEA                     indf0 000FEF  
+                   fsr0l 000FE9                     fsr1l 000FE1  
+                   fsr2l 000FD9                     btemp 0000  
+                   ftadd D80E                     ftmul D5A2  
+                   fttol D99A          __end_of_InitI2C 9900  
+        __end_of_LiczCHK 99BE                     prodl 000FF3  
+                ?_BitSet 00F7                  ?_GetBit 00F7  
+__end_of_TransmitDataI2C 99F4                    _RSDT1 0326  
+                  _DtI2C 0184                    _DtKNF 01B4  
+                  _RdPrt C6A0               used_btemp0 0001  
+             used_btemp1 0001               used_btemp2 0001  
+             used_btemp3 0001               used_btemp4 0001  
+             used_btemp5 0001                    lbtoft DB44  
+                  status 000FD8                  _InitI2C 98D8  
+                _LiczCHK 9972         __end_of_SetRData 9B14  
+       __end_of_SetTData 9B0E               _I2CSlaveTR 9900  
+                __Lparam 00A6            _ReceptDataI2C 99F4  
+     __end_of_I2CSlaveTR 9972                  __ramtop 1000  
+  __end_of_ReceptDataI2C 9A2C           __end_of_ToWork 9A2E  
+          _FormatDataIMY 9B14                   _BufI2C 019B  
+                 _BitSet D46E                   _GetBit D422  
+                 _ToWork 9A2C    __end_of_FormatDataIMY A50C  
+        _TransmitDataI2C 99BE                 _SetRData 9B0E  
+               _SetTData 9A2E  

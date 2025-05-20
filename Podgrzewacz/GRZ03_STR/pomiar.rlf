@@ -1,0 +1,1969 @@
+˝
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+                                                       Wed Jun 11 12:30:08 2014
+
+
+     1                           	processor	18F46K20
+     2                           	opt	pw 80
+     3                           	psect	text,global,reloc=2,class=CODE,delta=1
+     4                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     5                           	psect	bss,global,class=RAM,space=1,delta=1
+     ˝6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000˝000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000  ˝                   
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000       ˝              
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000            ˝         
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                 ˝    
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+˝    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97                           
+    98                           	psect	text
+    99                           ;˝pic18f45k20.h: 20: static volatile near unsigne
+      +                          d char TOSU @ 0xFFF;
+   100                           ;pic18f45k20.h: 21: static volatile near unsigne
+      +                          d char TOSH @ 0xFFE;
+   101                           ;pic18f45k20.h: 22: static volatile near unsigne
+      +                          d char TOSL @ 0xFFD;
+   102                           ;pic18f45k20.h: 23: static volatile near unsigne
+      +                          d char STKPTR @ 0xFF˝C;
+   103                           ;pic18f45k20.h: 24: static volatile near unsigne
+      +                          d char PCLATU @ 0xFFB;
+   104                           ;pic18f45k20.h: 25: static volatile near unsigne
+      +                          d char PCLATH @ 0xFFA;
+   105                           ;pic18f45k20.h: 26: static volatile near unsigne
+      +                          d char PCL @ 0xFF9;
+   106                           ;pic18f45k20.h: 27: static volatile far unsigned
+      +      ˝                     char * TBLPTR @ 0xFF6;
+   107                           ;pic18f45k20.h: 28: static volatile near unsigne
+      +                          d char TBLPTRU @ 0xFF8;
+   108                           ;pic18f45k20.h: 29: static volatile near unsigne
+      +                          d char TBLPTRH @ 0xFF7;
+   109                           ;pic18f45k20.h: 30: static volatile near unsigne
+      +                          d char TBLPTRL @ 0xFF6;
+   110                           ;pic18f45k20.h:˝ 31: static volatile near unsigne
+      +                          d char TABLAT @ 0xFF5;
+   111                           ;pic18f45k20.h: 32: static volatile near unsigne
+      +                          d char PRODH @ 0xFF4;
+   112                           ;pic18f45k20.h: 33: static volatile near unsigne
+      +                          d char PRODL @ 0xFF3;
+   113                           ;pic18f45k20.h: 34: static volatile near unsigne
+      +                          d char INTCON @ 0xFF2;
+   114 ˝                          ;pic18f45k20.h: 35: static near unsigned char IN
+      +                          TCON2 @ 0xFF1;
+   115                           ;pic18f45k20.h: 36: static volatile near unsigne
+      +                          d char INTCON3 @ 0xFF0;
+   116                           ;pic18f45k20.h: 37: static volatile near unsigne
+      +                          d char INDF0 @ 0xFEF;
+   117                           ;pic18f45k20.h: 38: static volatile near unsigne
+      +                     ˝     d char POSTINC0 @ 0xFEE;
+   118                           ;pic18f45k20.h: 39: static volatile near unsigne
+      +                          d char POSTDEC0 @ 0xFED;
+   119                           ;pic18f45k20.h: 40: static volatile near unsigne
+      +                          d char PREINC0 @ 0xFEC;
+   120                           ;pic18f45k20.h: 41: static volatile near unsigne
+      +                          d char PLUSW0 @ 0xFEB;
+   121                           ;pic18f45k20.h: 42: static vo˝latile near unsigne
+      +                          d char FSR0H @ 0xFEA;
+   122                           ;pic18f45k20.h: 43: static volatile near unsigne
+      +                          d char FSR0L @ 0xFE9;
+   123                           ;pic18f45k20.h: 44: static volatile near unsigne
+      +                          d char WREG @ 0xFE8;
+   124                           ;pic18f45k20.h: 45: static volatile near unsigne
+      +                          d char INDF1 @ 0xFE7;
+   125                  ˝         ;pic18f45k20.h: 46: static volatile near unsigne
+      +                          d char POSTINC1 @ 0xFE6;
+   126                           ;pic18f45k20.h: 47: static volatile near unsigne
+      +                          d char POSTDEC1 @ 0xFE5;
+   127                           ;pic18f45k20.h: 48: static volatile near unsigne
+      +                          d char PREINC1 @ 0xFE4;
+   128                           ;pic18f45k20.h: 49: static volatile near unsigne
+      +                         ˝ d char PLUSW1 @ 0xFE3;
+   129                           ;pic18f45k20.h: 50: static volatile near unsigne
+      +                          d char FSR1H @ 0xFE2;
+   130                           ;pic18f45k20.h: 51: static volatile near unsigne
+      +                          d char FSR1L @ 0xFE1;
+   131                           ;pic18f45k20.h: 52: static near unsigned char BS
+      +                          R @ 0xFE0;
+   132                           ;pic18f45k20.h: 53: static volatile near unsigne
+   ˝   +                          d char INDF2 @ 0xFDF;
+   133                           ;pic18f45k20.h: 54: static volatile near unsigne
+      +                          d char POSTINC2 @ 0xFDE;
+   134                           ;pic18f45k20.h: 55: static volatile near unsigne
+      +                          d char POSTDEC2 @ 0xFDD;
+   135                           ;pic18f45k20.h: 56: static volatile near unsigne
+      +                          d char PREINC2 @ 0xFDC;
+   136                           ;pic1˝8f45k20.h: 57: static volatile near unsigne
+      +                          d char PLUSW2 @ 0xFDB;
+   137                           ;pic18f45k20.h: 58: static volatile near unsigne
+      +                          d char FSR2H @ 0xFDA;
+   138                           ;pic18f45k20.h: 59: static volatile near unsigne
+      +                          d char FSR2L @ 0xFD9;
+   139                           ;pic18f45k20.h: 60: static volatile near unsigne
+      +                          d char STATUS @ 0xFD˝8;
+   140                           ;pic18f45k20.h: 61: static volatile near unsigne
+      +                          d char TMR0H @ 0xFD7;
+   141                           ;pic18f45k20.h: 62: static volatile near unsigne
+      +                          d char TMR0L @ 0xFD6;
+   142                           ;pic18f45k20.h: 64: static volatile near unsigne
+      +                          d int TMR0 @ 0xFD6;
+   143                           ;pic18f45k20.h: 65: static near unsigned char T0
+      +        ˝                  CON @ 0xFD5;
+   144                           ;pic18f45k20.h: 66: static volatile near unsigne
+      +                          d char OSCCON @ 0xFD3;
+   145                           ;pic18f45k20.h: 67: static volatile near unsigne
+      +                          d char HLVDCON @ 0xFD2;
+   146                           ;pic18f45k20.h: 68: static volatile near unsigne
+      +                          d char WDTCON @ 0xFD1;
+   147                           ;pic18f45k20.h: 69: static vol˝atile near unsigne
+      +                          d char RCON @ 0xFD0;
+   148                           ;pic18f45k20.h: 70: static volatile near unsigne
+      +                          d char TMR1H @ 0xFCF;
+   149                           ;pic18f45k20.h: 71: static volatile near unsigne
+      +                          d char TMR1L @ 0xFCE;
+   150                           ;pic18f45k20.h: 73: static volatile near unsigne
+      +                          d int TMR1 @ 0xFCE;
+   151                     ˝      ;pic18f45k20.h: 74: static near unsigned char T1
+      +                          CON @ 0xFCD;
+   152                           ;pic18f45k20.h: 75: static volatile near unsigne
+      +                          d char TMR2 @ 0xFCC;
+   153                           ;pic18f45k20.h: 76: static near unsigned char PR
+      +                          2 @ 0xFCB;
+   154                           ;pic18f45k20.h: 77: static near unsigned char T2
+      +                          CON @ 0xFCA;
+   155            ˝               ;pic18f45k20.h: 78: static volatile near unsigne
+      +                          d char SSPBUF @ 0xFC9;
+   156                           ;pic18f45k20.h: 79: static near unsigned char SS
+      +                          PADD @ 0xFC8;
+   157                           ;pic18f45k20.h: 80: static volatile near unsigne
+      +                          d char SSPSTAT @ 0xFC7;
+   158                           ;pic18f45k20.h: 81: static volatile near unsigne
+      +                          d char˝ SSPCON1 @ 0xFC6;
+   159                           ;pic18f45k20.h: 82: static volatile near unsigne
+      +                          d char SSPCON2 @ 0xFC5;
+   160                           ;pic18f45k20.h: 83: static volatile near unsigne
+      +                          d char ADRESH @ 0xFC4;
+   161                           ;pic18f45k20.h: 84: static volatile near unsigne
+      +                          d char ADRESL @ 0xFC3;
+   162                           ;pic18f45k20.h: 86: static volatile near un˝signe
+      +                          d int ADRES @ 0xFC3;
+   163                           ;pic18f45k20.h: 87: static volatile near unsigne
+      +                          d char ADCON0 @ 0xFC2;
+   164                           ;pic18f45k20.h: 88: static near unsigned char AD
+      +                          CON1 @ 0xFC1;
+   165                           ;pic18f45k20.h: 89: static near unsigned char AD
+      +                          CON2 @ 0xFC0;
+   166                           ;pic18f45k20.h: 90: ˝static volatile near unsigne
+      +                          d char CCPR1H @ 0xFBF;
+   167                           ;pic18f45k20.h: 91: static volatile near unsigne
+      +                          d char CCPR1L @ 0xFBE;
+   168                           ;pic18f45k20.h: 93: static volatile near unsigne
+      +                          d int CCPR1 @ 0xFBE;
+   169                           ;pic18f45k20.h: 94: static volatile near unsigne
+      +                          d char CCP1CON @ 0xFBD;
+   170     ˝                      ;pic18f45k20.h: 95: static volatile near unsigne
+      +                          d char CCPR2H @ 0xFBC;
+   171                           ;pic18f45k20.h: 96: static volatile near unsigne
+      +                          d char CCPR2L @ 0xFBB;
+   172                           ;pic18f45k20.h: 98: static volatile near unsigne
+      +                          d int CCPR2 @ 0xFBB;
+   173                           ;pic18f45k20.h: 99: static volatile near unsigne
+      +                   ˝       d char CCP2CON @ 0xFBA;
+   174                           ;pic18f45k20.h: 100: static near unsigned char P
+      +                          STRCON @ 0xFB9;
+   175                           ;pic18f45k20.h: 101: static volatile near unsign
+      +                          ed char BAUDCTL @ 0xFB8;
+   176                           ;pic18f45k20.h: 102: static volatile near unsign
+      +                          ed char PWM1CON @ 0xFB7;
+   177                           ;pic18f45k20.h: 103: static volati˝le near unsign
+      +                          ed char ECCP1AS @ 0xFB6;
+   178                           ;pic18f45k20.h: 104: static volatile near unsign
+      +                          ed char CVRCON @ 0xFB5;
+   179                           ;pic18f45k20.h: 105: static volatile near unsign
+      +                          ed char CVRCON2 @ 0xFB4;
+   180                           ;pic18f45k20.h: 106: static volatile near unsign
+      +                          ed char TMR3H @ 0xFB3;
+   181             ˝              ;pic18f45k20.h: 107: static volatile near unsign
+      +                          ed char TMR3L @ 0xFB2;
+   182                           ;pic18f45k20.h: 109: static volatile near unsign
+      +                          ed int TMR3 @ 0xFB2;
+   183                           ;pic18f45k20.h: 110: static near unsigned char T
+      +                          3CON @ 0xFB1;
+   184                           ;pic18f45k20.h: 111: static near unsigned char S
+      +                          PBRGH @ 0x˝FB0;
+   185                           ;pic18f45k20.h: 112: static near unsigned char S
+      +                          PBRG @ 0xFAF;
+   186                           ;pic18f45k20.h: 114: static near unsigned char S
+      +                          PBRG1 @ 0xFAF;
+   187                           ;pic18f45k20.h: 115: static volatile near unsign
+      +                          ed char RCREG @ 0xFAE;
+   188                           ;pic18f45k20.h: 117: static volatile near unsign
+      +                  ˝        ed char RCREG1 @ 0xFAE;
+   189                           ;pic18f45k20.h: 118: static volatile near unsign
+      +                          ed char TXREG @ 0xFAD;
+   190                           ;pic18f45k20.h: 120: static volatile near unsign
+      +                          ed char TXREG1 @ 0xFAD;
+   191                           ;pic18f45k20.h: 121: static volatile near unsign
+      +                          ed char TXSTA @ 0xFAC;
+   192                           ;pic18f45k20.h: 123: static v˝olatile near unsign
+      +                          ed char TXSTA1 @ 0xFAC;
+   193                           ;pic18f45k20.h: 124: static volatile near unsign
+      +                          ed char RCSTA @ 0xFAB;
+   194                           ;pic18f45k20.h: 126: static volatile near unsign
+      +                          ed char RCSTA1 @ 0xFAB;
+   195                           ;pic18f45k20.h: 128: static near unsigned char E
+      +                          EADRH @ 0xFAA;
+   196                   Ü        ;pic18f45k20.h: 130: static near unsigned char E
+      +                          EADR @ 0xFA9;
+   197                           ;pic18f45k20.h: 131: static volatile near unsign
+      +                          ed char EEDATA @ 0xFA8;
+   198                           ;pic18f45k20.h: 132: static volatile near unsign
+      +                          ed char EECON2 @ 0xFA7;
+   199        4text                       _InitDataPmr:
+   200                           ;       param _tm assigned to ?_PmrTim3+0
+   201  000000                     _PmrTim3$tm	set	?_PmrTim3
+   202  000000                     
+   203                           ;pomiar.c: 37: DtCW._err_CW=0;
+   204        4text          1   bss    	 .                	movlb	_DtCW shr (0+8)
+   205        4text          ë   1ˇ   bss    
+ n                	bcf	_DtCW& (0+255),0,b
+   206                           ;pomiar.c: 38: DtCW._su_CW=0;
+   207        4text          ì   1ˇ   bss    
+ n                	bcf	_DtCW& (0+255),1,b
+   208                           ;pomiar.c: 39: DtCW._ad_CW=0;
+   209        4text          ï   1ˇ   bss    
+ m                	bcf	_DtCW& (0+255),2,b
+   210                           ;pomiar.c: 40: DtCW.indCW=0;
+   211        4text          k   1ˇ   bss (   
+ e                	clrf	(_DtCW+10)& (0+255),b
+   212                           ;pomiar.c: 41: }
+   213        4text 
+    &   0012               	return	
+   214        4text     ¨                      __end_of_InitDataPmr:
+   215                           ;pomiar.c: 44: void IncPmrTimer(void)
+   216                           ;pomiar.c: 45: {
+   217        4text     °                      _IncPmrTimer:
+   218  000000                     
+   219                           ;pomiar.c: 46: if(PmrtimFlt1<0xff) PmrtimFlt1++;
+   220        4text          ¿   ¸bigbss             ¸temp  *          	movff	_PmrtimFlt1,btemp
+   221        4text          (   1temp  '                	incf	btemp,w,c
+   222        4text     %   E002               	bz	l11
+   223        4text             1   bigbss    	 4                	movlb	_PmrtimFlt1 shr (0+8)
+   224        4text          +   1ˇ   bigbss    
+ 6                	incf	_PmrtimFlt1& (0+255),f,b
+   225        4text     t                      l11:
+   226                           ;pomiar.c: 47: if(PmrtimFlt2<0xff) PmrtimFlt2++;
+   227        4text          ¿   ¸bigbss             ¸temp  *          	movff	_PmrtimFlt2,btemp
+   228        4text          (   1temp  '                	incf	btemp,w,c
+   229        4text     %   E002               	bz	l12
+   230        4text              1   bigbss    	 4                	movlb	_PmrtimFlt2 shr (0+8)
+   231        4text "         +   1ˇ   bigbss    
+ 6                	incf	_PmrtimFlt2& (0+255),f,b
+   232        4text $    ò                      l12:
+   233                           ;pomiar.c: 48: if(PmrtimFlt3<0xffff) PmrtimFlt3+
+      +                          +;
+   234        4text $            1   bss    	 4                	movlb	_PmrtimFlt3 shr (0+8)
+   235        4text &            1ˇ   bss    
+ :                	comf	(_PmrtimFlt3+1)& (0+255),w,b
+   236        4text (    (   0EFF               	movlw	255
+   237        4text *    /   B4D8               	btfsc	status,2,c
+   238        4text ,            1ˇ   bss    
+ 7                	xorwf	_PmrtimFlt3& (0+255),w,b
+   239        4text .    /   B4D8               	btfsc	status,2,c
+   240        4text 0    &   0012               	return	
+   241        4text 2         K   1ˇ   bss    
+ 8                	infsnz	_PmrtimFlt3& (0+255),f,b
+   242        4text 4         +   1ˇ   bss    
+ l                	incf	(_PmrtimFlt3+1)& (0+255),f,b
+   243                           ;pomiar.c: 49: }
+   244        4text 6    &   0012               	return	
+   245        4text 8    ™                      __end_of_IncPmrTimer:
+   246                           ;pomiar.c: 52: void StartTim1(void)
+   247                           ;pomiar.c: 53: {
+   248        4text 8    ã                      _StartTim1:
+   249  000000                     
+   250                           ;pomiar.c: 54: PmrtimFlt1=0;
+   251        4text 8            1   bigbss    	 4                	movlb	_PmrtimFlt1 shr (0+8)
+   252        4text :         k   1ˇ   bigbss    
+ f                	clrf	_PmrtimFlt1& (0+255),b
+   253                           ;pomiar.c: 55: }
+   254        4text <    &   0012               	return	
+   255        4text >    ±                      __end_of_StartTim1:
+   256                           ;pomiar.c: 56: bit PmrTim1(unsigned char tm)
+   257                           ;pomiar.c: 57: {
+   258        4text >    Ç                      _PmrTim1:
+   259  000000                     
+   260                           ; _tm loaded to fsr2l
+   261        4text >    x   6ED9               	movwf	fsr2l,c
+   262                           ;pomiar.c: 58: if(PmrtimFlt1<tm) return 0;
+   263        4text @    -   50D9               	movf	fsr2l,w,c
+   264        4text B            1   bigbss    	 4                	movlb	_PmrtimFlt1 shr (0+8)
+   265        4text D         a   1ˇ   bigbss    
+ 6                	cpfslt	_PmrtimFlt1& (0+255),b
+   266        4text F    '   D002               	goto	l16
+   267        4text H    -   90D8               	bcf	status,0,c
+   268        4text J    &   0012               	return	
+   269        4text L    \                      l16:
+   270                           ;pomiar.c: 59: return 1;
+   271        4text L    -   80D8               	bsf	status,0,c
+   272        4text N    X   0012               	return	
+   273                           ;pomiar.c: 60: }
+   274        4text P    ¶                      __end_of_PmrTim1:
+   275                           ;pomiar.c: 63: void StartTim2(void)
+   276                           ;pomiar.c: 64: {
+   277        4text P    ã                      _StartTim2:
+   278  000000                     
+   279                           ;pomiar.c: 65: PmrtimFlt2=0;
+   280        4text P            1   bigbss    	 4                	movlb	_PmrtimFlt2 shr (0+8)
+   281        4text R         k   1ˇ   bigbss    
+ f                	clrf	_PmrtimFlt2& (0+255),b
+   282                           ;pomiar.c: 66: }
+   283        4text T    &   0012               	return	
+   284        4text V    ±                      __end_of_StartTim2:
+   285                           ;pomiar.c: 67: bit PmrTim2(unsigned char tm)
+   286                           ;pomiar.c: 68: {
+   287        4text V    Ç                      _PmrTim2:
+   288  000000                     
+   289                           ; _tm loaded to fsr2l
+   290        4text V    x   6ED9               	movwf	fsr2l,c
+   291                           ;pomiar.c: 69: if(PmrtimFlt2<tm) return 0;
+   292        4text X    -   50D9               	movf	fsr2l,w,c
+   293        4text Z            1   bigbss    	 4                	movlb	_PmrtimFlt2 shr (0+8)
+   294        4text \         a   1ˇ   bigbss    
+ 6                	cpfslt	_PmrtimFlt2& (0+255),b
+   295        4text ^    '   D002               	goto	l19
+   296        4text `    -   90D8               	bcf	status,0,c
+   297        4text b    &   0012               	return	
+   298        4text d    \                      l19:
+   299                           ;pomiar.c: 70: return 1;
+   300        4text d    -   80D8               	bsf	status,0,c
+   301        4text f    X   0012               	return	
+   302                           ;pomiar.c: 71: }
+   303        4text h    ¶                      __end_of_PmrTim2:
+   304                           ;pomiar.c: 74: void StartTim3(void)
+   305                           ;pomiar.c: 75: {
+   306        4text h    ã                      _StartTim3:
+   307  000000                     
+   308                           ;pomiar.c: 76: PmrtimFlt3=0;
+   309        4text h         Ó   ˆ   bss    	   
+         1bss    ˇ   
+ %          	lfsr	0,_PmrtimFlt3
+   310        4text l    .   6AEE               	clrf	postinc0,c
+   311        4text n    `   6AEE               	clrf	postinc0,c
+   312                           ;pomiar.c: 77: }
+   313        4text p    &   0012               	return	
+   314        4text r    ∞                      __end_of_StartTim3:
+   315                           ;pomiar.c: 78: bit PmrTim3(unsigned int tm)
+   316                           ;pomiar.c: 79: {
+   317        4text r             2 ?_PmrTim3  %                	dw	?_PmrTim3
+   318        4text t    ó                      _PmrTim3:
+   319  000000                     
+   320                           ;pomiar.c: 80: if(PmrtimFlt3<tm) return 0;
+   321        4text t         ¿   ¸bss             ¸temp  *          	movff	_PmrtimFlt3,btemp
+   322        4text x         ¿   ¸bss             ¸temp     .          	movff	_PmrtimFlt3+1,btemp+1
+   323        4text |            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   324        4text ~       *  Q   1 ˇ   __Lparam 
+ ?_PmrTim3     C                	movf	(?_PmrTim3+1)^(__Lparam& (0+65280)),w
+   325        4text Ä         \   1temp     *                	subwf	btemp+1,w,c
+   326        4text Ç    &   E102               	bnz	u65
+   327        4text Ñ       $  Q   1 ˇ   __Lparam 
+ ?_PmrTim3  ?                	movf	?_PmrTim3^(__Lparam& (0+65280)),w
+   328        4text Ü         \   1temp  (                	subwf	btemp,w,c
+   329        4text à    "                      u65:
+   330        4text à    %   E202               	bc	l22
+   331        4text ä    -   90D8               	bcf	status,0,c
+   332        4text å    &   0012               	return	
+   333        4text é    \                      l22:
+   334                           ;pomiar.c: 81: return 1;
+   335        4text é    -   80D8               	bsf	status,0,c
+   336        4text ê    X   0012               	return	
+   337                           ;pomiar.c: 82: }
+   338        4text í    ¶                      __end_of_PmrTim3:
+   339                           ;pomiar.c: 85: void GoldenEye(void)
+   340                           ;pomiar.c: 86: {
+   341        4text í    ç                      _GoldenEye:
+   342  000000                     
+   343                           ;pomiar.c: 87: signed char dt;
+   344        4text í         ¿   ¸bss      +   FFE8         	movff	_DtCW+2,wreg
+   345        4text ñ            1   bss "   	 2                	movlb	(_DtCW+4) shr (0+8)
+   346        4text ò         ]   1ˇ   bss "   
+ 5                	subwf	(_DtCW+4)& (0+255),w,b
+   347        4text ö    …   6ED9               	movwf	fsr2l,c
+   348                           ;pomiar.c: 92: if((DtCW.CW>=(DtCW.PPCW+11))||(Dt
+      +                          CW.CW<=(DtCW.PPCW-11))) DtCW.SCW=DtCW.CW;
+   349        4text ú    '   0E0B               	movlw	11
+   350        4text û         ¿   ¸bss "            ¸temp     (          	movff	_DtCW+4,btemp+2
+   351        4text ¢         j   1temp     '                	clrf	btemp+3,c
+   352        4text §         &   1temp     *                	addwf	btemp+2,f,c
+   353        4text ¶    &   0E00               	movlw	0
+   354        4text ®         "   1temp     +                	addwfc	btemp+3,f,c
+   355        4text ™         ¿   ¸bss              ¸temp  &          	movff	_DtCW+2,btemp
+   356        4text Æ         j   1temp     '                	clrf	btemp+1,c
+   357        4text ∞         P   1temp     )                	movf	btemp+1,w,c
+   358        4text ≤    (   0A80               	xorlw	128
+   359        4text ¥         n   1temp     (                	movwf	btemp+4,c
+   360        4text ∂         P   1temp     )                	movf	btemp+3,w,c
+   361        4text ∏    (   0A80               	xorlw	128
+   362        4text ∫         \   1temp     *                	subwf	btemp+4,w,c
+   363        4text º    &   E102               	bnz	u75
+   364        4text æ         P   1temp     )                	movf	btemp+2,w,c
+   365        4text ¿         \   1temp  (                	subwf	btemp,w,c
+   366        4text ¬    "                      u75:
+   367        4text ¬    %   E215               	bc	u90
+   368        4text ƒ         ¿   ¸bss              ¸temp  &          	movff	_DtCW+2,btemp
+   369        4text »         j   1temp     '                	clrf	btemp+1,c
+   370        4text           ¿   ¸bss "            ¸temp     (          	movff	_DtCW+4,btemp+2
+   371        4text Œ    (   0EF5               	movlw	245
+   372        4text –         $   1temp     *                	addwf	btemp+2,w,c
+   373        4text “    .   6EF6               	movwf	tblptrl,c
+   374        4text ‘    -   6AF7               	clrf	tblptrh,c
+   375        4text ÷    (   0EFF               	movlw	255
+   376        4text ÿ    1   22F7               	addwfc	tblptrh,f,c
+   377        4text ⁄    /   50F7               	movf	tblptrh,w,c
+   378        4text ‹    (   0A80               	xorlw	128
+   379        4text ﬁ         n   1temp     (                	movwf	btemp+2,c
+   380        4text ‡         P   1temp     )                	movf	btemp+1,w,c
+   381        4text ‚    (   0A80               	xorlw	128
+   382        4text ‰         \   1temp     *                	subwf	btemp+2,w,c
+   383        4text Ê    &   E102               	bnz	u85
+   384        4text Ë         P   1temp  '                	movf	btemp,w,c
+   385        4text Í    0   5CF6               	subwf	tblptrl,w,c
+   386        4text Ï    "                      u85:
+   387        4text Ï    &   E303               	bnc	l24
+   388        4text Ó    "                      u90:
+   389        4text Ó         ¿   ¸bss              ¸bss )    )          	movff	_DtCW+2,_DtCW+11
+   390        4text Ú    &   0012               	return	
+   391        4text Ù    W                      l24:
+   392                           ;pomiar.c: 93: else
+   393        4text Ù    .   BED9               	btfsc	fsr2l,7,c
+   394        4text ˆ    Y   D01C               	goto	l26
+   395                           ;pomiar.c: 96: {
+   396        4text ¯    -   50D9               	movf	fsr2l,w,c
+   397        4text ˙    (   0A80               	xorlw	128
+   398        4text ¸    )   0F7D               	addlw	-131
+   399        4text ˛    -   50D9               	movf	fsr2l,w,c
+   400        4text     $   E201               	bc	L6
+   401        4text    [   D00F               	goto	L4
+   402                           ;pomiar.c: 98: else
+   403        4text    !                      L6:
+   404        4text    (   0A80               	xorlw	128
+   405        4text    )   0F7D               	addlw	-131
+   406        4text    &   E306               	bnc	l29
+   407        4text 
+   -   50D9               	movf	fsr2l,w,c
+   408        4text    (   0A80               	xorlw	128
+   409        4text    )   0F77               	addlw	-137
+   410        4text    %   E202               	bc	l29
+   411        4text    &   0E03               	movlw	3
+   412        4text    &   D006               	goto	L4
+   413        4text    X                      l29:
+   414                           ;pomiar.c: 100: else
+   415        4text    -   50D9               	movf	fsr2l,w,c
+   416        4text    (   0A80               	xorlw	128
+   417        4text    )   0F77               	addlw	-137
+   418        4text    &   E303               	bnc	l28
+   419        4text    -   50D9               	movf	fsr2l,w,c
+   420        4text     '   080B               	sublw	11
+   421        4text "   !                      L4:
+   422        4text "   ,   6EE1               	movwf	fsr1l,c
+   423        4text $   i                      l28:
+   424                           ;pomiar.c: 102: DtCW.SCW=DtCW.CW+pop;
+   425        4text $   -   50E1               	movf	fsr1l,w,c
+   426        4text &           1   bss     	 2                	movlb	(_DtCW+2) shr (0+8)
+   427        4text (        %   1ˇ   bss     
+ 5                	addwf	(_DtCW+2)& (0+255),w,b
+   428        4text *      CFE8      ¸bss )    Z           	movff	wreg,_DtCW+11
+   429                           ;pomiar.c: 103: }
+   430        4text .   &   0012               	return	
+   431        4text 0   X                      l26:
+   432                           ;pomiar.c: 104: else
+   433        4text 0      CFD9      ¸temp  %           	movff	fsr2l,btemp
+   434        4text 4        j   1temp     '                	clrf	btemp+1,c
+   435        4text 6        æ   1temp  (                	btfsc	btemp,7,c
+   436        4text 8           1temp     )                	decf	btemp+1,f,c
+   437        4text :           1temp  '                	comf	btemp,f,c
+   438        4text <           1temp     )                	comf	btemp+1,f,c
+   439        4text >        J   1temp  )                	infsnz	btemp,f,c
+   440        4text @        *   1temp     )                	incf	btemp+1,f,c
+   441        4text B        P   1temp     )                	movf	btemp+1,w,c
+   442        4text D   (   0A80               	xorlw	128
+   443        4text F   )   0F80               	addlw	-128
+   444        4text H   &   0E03               	movlw	3
+   445        4text J   /   B4D8               	btfsc	status,2,c
+   446        4text L        \   1temp  (                	subwf	btemp,w,c
+   447        4text N   %   E203               	bc	l33
+   448        4text P   -   50D9               	movf	fsr2l,w,c
+   449        4text R   &   0800               	sublw	0
+   450        4text T   &   D034               	goto	L5
+   451        4text V   X                      l33:
+   452                           ;pomiar.c: 107: else
+   453        4text V      CFD9      ¸temp  %           	movff	fsr2l,btemp
+   454        4text Z        j   1temp     '                	clrf	btemp+1,c
+   455        4text \        æ   1temp  (                	btfsc	btemp,7,c
+   456        4text ^           1temp     )                	decf	btemp+1,f,c
+   457        4text `           1temp  '                	comf	btemp,f,c
+   458        4text b           1temp     )                	comf	btemp+1,f,c
+   459        4text d        J   1temp  )                	infsnz	btemp,f,c
+   460        4text f        *   1temp     )                	incf	btemp+1,f,c
+   461        4text h        P   1temp     )                	movf	btemp+1,w,c
+   462        4text j   (   0A80               	xorlw	128
+   463        4text l   )   0F80               	addlw	-128
+   464        4text n   &   0E03               	movlw	3
+   465        4text p   /   B4D8               	btfsc	status,2,c
+   466        4text r        \   1temp  (                	subwf	btemp,w,c
+   467        4text t   &   E312               	bnc	l35
+   468        4text v      CFD9      ¸temp  %           	movff	fsr2l,btemp
+   469        4text z        j   1temp     '                	clrf	btemp+1,c
+   470        4text |        æ   1temp  (                	btfsc	btemp,7,c
+   471        4text ~           1temp     )                	decf	btemp+1,f,c
+   472        4text Ä           1temp  '                	comf	btemp,f,c
+   473        4text Ç           1temp     )                	comf	btemp+1,f,c
+   474        4text Ñ        J   1temp  )                	infsnz	btemp,f,c
+   475        4text Ü        *   1temp     )                	incf	btemp+1,f,c
+   476        4text à        P   1temp     )                	movf	btemp+1,w,c
+   477        4text ä   (   0A80               	xorlw	128
+   478        4text å   )   0F80               	addlw	-128
+   479        4text é   &   0E09               	movlw	9
+   480        4text ê   /   B4D8               	btfsc	status,2,c
+   481        4text í        \   1temp  (                	subwf	btemp,w,c
+   482        4text î   %   E202               	bc	l35
+   483        4text ñ   &   0E03               	movlw	3
+   484        4text ò   &   D012               	goto	L5
+   485        4text ö   X                      l35:
+   486                           ;pomiar.c: 109: else
+   487        4text ö      CFD9      ¸temp  %           	movff	fsr2l,btemp
+   488        4text û        j   1temp     '                	clrf	btemp+1,c
+   489        4text †        æ   1temp  (                	btfsc	btemp,7,c
+   490        4text ¢           1temp     )                	decf	btemp+1,f,c
+   491        4text §           1temp  '                	comf	btemp,f,c
+   492        4text ¶           1temp     )                	comf	btemp+1,f,c
+   493        4text ®        J   1temp  )                	infsnz	btemp,f,c
+   494        4text ™        *   1temp     )                	incf	btemp+1,f,c
+   495        4text ¨        P   1temp     )                	movf	btemp+1,w,c
+   496        4text Æ   (   0A80               	xorlw	128
+   497        4text ∞   )   0F80               	addlw	-128
+   498        4text ≤   &   0E09               	movlw	9
+   499        4text ¥   /   B4D8               	btfsc	status,2,c
+   500        4text ∂        \   1temp  (                	subwf	btemp,w,c
+   501        4text ∏   &   E303               	bnc	l34
+   502        4text ∫   -   50D9               	movf	fsr2l,w,c
+   503        4text º   '   0F0B               	addlw	11
+   504        4text æ   !                      L5:
+   505        4text æ   ,   6EE1               	movwf	fsr1l,c
+   506        4text ¿   i                      l34:
+   507                           ;pomiar.c: 111: DtCW.SCW=DtCW.CW-pop;
+   508        4text ¿   -   50E1               	movf	fsr1l,w,c
+   509        4text ¬           1   bss     	 2                	movlb	(_DtCW+2) shr (0+8)
+   510        4text ƒ        ]   1ˇ   bss     
+ 5                	subwf	(_DtCW+2)& (0+255),w,b
+   511        4text ∆      CFE8      ¸bss )    Z           	movff	wreg,_DtCW+11
+   512                           ;pomiar.c: 112: }
+   513        4text     &   0012               	return	
+   514        4text Ã   ∞                      __end_of_GoldenEye:
+   515                           ;pomiar.c: 117: void PredkoscZmianCW(void)
+   516                           ;pomiar.c: 118: {
+   517        4text Ã   •                      _PredkoscZmianCW:
+   518  000000                     
+   519                           ;pomiar.c: 119: static unsigned char ffcw,indff;
+   520        4text Ã           1    _M    	 0                	movlb	(_M+25) shr (0+8)
+   521        4text Œ        ≥   1ˇ    _M    
+ 3                	btfsc	(_M+25)& (0+255),1,b
+   522        4text –   Z   D005               	goto	l39
+   523                           ;pomiar.c: 123: {
+   524        4text “           1   bigbss 	 .                	movlb	F1368 shr (0+8)
+   525        4text ‘        k   1ˇ   bigbss 
+ h                	clrf	F1368& (0+255),b
+   526                           ;pomiar.c: 125: indff=0;
+   527        4text ÷           1   bigbss    	 .                	movlb	F1369 shr (0+8)
+   528        4text ÿ        k   1ˇ   bigbss    
+ a                	clrf	F1369& (0+255),b
+   529                           ;pomiar.c: 126: }
+   530        4text ⁄   '   D036               	goto	l40
+   531        4text ‹   X                      l39:
+   532                           ;pomiar.c: 127: else
+   533        4text ‹           1   bigbss    	 .                	movlb	F1369 shr (0+8)
+   534        4text ﬁ        S   1ˇ   bigbss    
+ 0                	movf	F1369& (0+255),f,b
+   535        4text ‡   Y   E10C               	bnz	l41
+   536                           ;pomiar.c: 130: {
+   537        4text ‚   +   6AD9               	clrf	fsr2l,c
+   538        4text ‰   "                      l42:
+   539        4text ‰   -   50D9               	movf	fsr2l,w,c
+   540        4text Ê      "  Ó   ˆ   bigbss    	   
+         1bigbss    ˇ   
+           	lfsr	0,_wff
+   541        4text Í   .   26E9               	addwf	fsr0l,f,c
+   542        4text Ï   &   0E00               	movlw	0
+   543        4text Ó   /   22EA               	addwfc	fsr0h,f,c
+   544        4text    +   6AEF               	clrf	indf0,c
+   545        4text Ú   -   2AD9               	incf	fsr2l,f,c
+   546        4text Ù   &   0E09               	movlw	9
+   547        4text ˆ   -   64D9               	cpfsgt	fsr2l,c
+   548        4text ¯   '   D7F5               	goto	l42
+   549        4text ˙   U                      l41:
+   550                           ;pomiar.c: 132: }
+   551        4text ˙           1   bigbss    	 .                	movlb	F1369 shr (0+8)
+   552        4text ¸        +   1ˇ   bigbss    
+ n                	incf	F1369& (0+255),f,b
+   553                           ;pomiar.c: 134: if(indff>=9)
+   554        4text ˛   &   0E08               	movlw	8
+   555        4text          e   1ˇ   bigbss    
+ 0                	cpfsgt	F1369& (0+255),b
+   556        4text    Z   D016               	goto	l45
+   557                           ;pomiar.c: 135: {
+   558        4text    &   0E09               	movlw	9
+   559        4text       CFE8      ¸bigbss     ô           	movff	wreg,F1369
+   560                           ;pomiar.c: 137: for(i=0;i<9;i++) wff[i]=wff[i+1]
+      +                          ;
+   561        4text 
+   +   6AD9               	clrf	fsr2l,c
+   562        4text    "                      l46:
+   563        4text    -   50D9               	movf	fsr2l,w,c
+   564        4text       (  Ó   ˆ   bigbss 	   	   
+            1bigbss 	   ˇ   
+            	lfsr	1,_wff+1
+   565        4text    .   26E1               	addwf	fsr1l,f,c
+   566        4text    &   0E00               	movlw	0
+   567        4text    /   22E2               	addwfc	fsr1h,f,c
+   568        4text    -   50D9               	movf	fsr2l,w,c
+   569        4text       "  Ó   ˆ   bigbss    	   
+         1bigbss    ˇ   
+           	lfsr	0,_wff
+   570        4text    .   26E9               	addwf	fsr0l,f,c
+   571        4text     &   0E00               	movlw	0
+   572        4text "   /   22EA               	addwfc	fsr0h,f,c
+   573        4text $   0   CFE7 FFEF          	movff	indf1,indf0
+   574        4text (   -   2AD9               	incf	fsr2l,f,c
+   575        4text *   &   0E08               	movlw	8
+   576        4text ,   -   64D9               	cpfsgt	fsr2l,c
+   577        4text .   '   D7EE               	goto	l46
+   578        4text 0   U                      l45:
+   579                           ;pomiar.c: 138: }
+   580        4text 0        ¿   ¸bigbss     )   FFE8         	movff	F1369,wreg
+   581        4text 4      "  Ó   ˆ   bigbss    	   
+         1bigbss    ˇ   
+           	lfsr	0,_wff
+   582        4text 8   .   26E9               	addwf	fsr0l,f,c
+   583        4text :   &   0E00               	movlw	0
+   584        4text <   /   22EA               	addwfc	fsr0h,f,c
+   585        4text >        ¿   ¸bigbss  )   FFE8         	movff	F1368,wreg
+   586        4text B           1   bss     	 2                	movlb	(_DtCW+2) shr (0+8)
+   587        4text D        ]   1ˇ   bss     
+ 5                	subwf	(_DtCW+2)& (0+255),w,b
+   588        4text F   ,   6EEF               	movwf	indf0,c
+   589        4text H   U                      l40:
+   590                           ;pomiar.c: 140: }
+   591        4text H        ¿   ¸bss              ¸bigbss  \          	movff	_DtCW+2,F1368
+   592                           ;pomiar.c: 142: w=0;
+   593        4text L   y   6AE1               	clrf	fsr1l,c
+   594                           ;pomiar.c: 143: for(i=0;i<10;i++) w+=wff[i];
+   595        4text N   +   6AD9               	clrf	fsr2l,c
+   596        4text P   "                      l49:
+   597        4text P   -   50D9               	movf	fsr2l,w,c
+   598        4text R      "  Ó   ˆ   bigbss    	   
+         1bigbss    ˇ   
+           	lfsr	0,_wff
+   599        4text V   .   26E9               	addwf	fsr0l,f,c
+   600        4text X   &   0E00               	movlw	0
+   601        4text Z   /   22EA               	addwfc	fsr0h,f,c
+   602        4text \   -   50EF               	movf	indf0,w,c
+   603        4text ^   .   26E1               	addwf	fsr1l,f,c
+   604        4text `   -   2AD9               	incf	fsr2l,f,c
+   605        4text b   &   0E09               	movlw	9
+   606        4text d   -   64D9               	cpfsgt	fsr2l,c
+   607        4text f   f   D7F4               	goto	l49
+   608                           ;pomiar.c: 144: DtCW.ddDCW=w;
+   609        4text h      CFE1      ¸bss '    Z           	movff	fsr1l,_DtCW+9
+   610                           ;pomiar.c: 145: }
+   611        4text l   &   0C09               	retlw	9
+   612        4text n   ∞                      __end_of_PredkoscZmianCW:
+   613                           ;pomiar.c: 148: void FltParMod(void)
+   614                           ;pomiar.c: 149: {
+   615        4text n   û                      _FltParMod:
+   616  000000                     
+   617                           ;pomiar.c: 150: static unsigned char indtm,fcw;
+   618        4text n        ¿   ¸bss      +   FFE8         	movff	_DtCW+2,wreg
+   619        4text r           1   bigbss    	 .                	movlb	F1375 shr (0+8)
+   620        4text t        a   1ˇ   bigbss    
+ 0                	cpfslt	F1375& (0+255),b
+   621        4text v   '   D005               	goto	l53
+   622        4text x        ¿   ¸bigbss     )   FFE8         	movff	F1375,wreg
+   623        4text |           1   bss     	 2                	movlb	(_DtCW+2) shr (0+8)
+   624        4text ~        ]   1ˇ   bss     
+ 5                	subwf	(_DtCW+2)& (0+255),w,b
+   625        4text Ä   &   D004               	goto	L3
+   626        4text Ç   h                      l53:
+   627                           ;pomiar.c: 157: else wr=fcw-DtCW.CW;
+   628        4text Ç        ¿   ¸bss      +   FFE8         	movff	_DtCW+2,wreg
+   629        4text Ü           1   bigbss    	 .                	movlb	F1375 shr (0+8)
+   630        4text à        ]   1ˇ   bigbss    
+ 1                	subwf	F1375& (0+255),w,b
+   631        4text ä   !                      L3:
+   632        4text ä   r   6ED9               	movwf	fsr2l,c
+   633                           ;pomiar.c: 158: if(wr) DtCW.indCW++;
+   634        4text å   -   50D9               	movf	fsr2l,w,c
+   635        4text é   %   E002               	bz	l55
+   636        4text ê           1   bss (   	 3                	movlb	(_DtCW+10) shr (0+8)
+   637        4text í        +   1ˇ   bss (   
+ 5                	incf	(_DtCW+10)& (0+255),f,b
+   638        4text î   l                      l55:
+   639                           ;pomiar.c: 159: if(wr>=2) DtCW.indCW=10;
+   640        4text î   &   0E01               	movlw	1
+   641        4text ñ   -   64D9               	cpfsgt	fsr2l,c
+   642        4text ò   '   D003               	goto	l56
+   643        4text ö   '   0E0A               	movlw	10
+   644        4text ú      CFE8      ¸bss (    '           	movff	wreg,_DtCW+10
+   645        4text †   f                      l56:
+   646                           ;pomiar.c: 161: PredkoscZmianCW();
+   647        4text †   y   DF95               	call	_PredkoscZmianCW	;wreg free
+   648                           ;pomiar.c: 164: indtm++;
+   649        4text ¢           1   bigbss    	 .                	movlb	F1374 shr (0+8)
+   650        4text §        +   1ˇ   bigbss    
+ m                	incf	F1374& (0+255),f,b
+   651                           ;pomiar.c: 165: if(indtm>9)
+   652        4text ¶   &   0E09               	movlw	9
+   653        4text ®        e   1ˇ   bigbss    
+ 0                	cpfsgt	F1374& (0+255),b
+   654        4text ™   Y   0C09               	retlw	9
+   655                           ;pomiar.c: 166: {
+   656        4text ¨        k   1ˇ   bigbss    
+ q                	clrf	F1374& (0+255),b
+   657                           ;pomiar.c: 170: if(DtCW.indCW<=7)
+   658        4text Æ   &   0E08               	movlw	8
+   659        4text ∞           1   bss (   	 3                	movlb	(_DtCW+10) shr (0+8)
+   660        4text ≤        a   1ˇ   bss (   
+ 5                	cpfslt	(_DtCW+10)& (0+255),b
+   661        4text ¥   Z   D003               	goto	l58
+   662                           ;pomiar.c: 171: {
+   663        4text ∂        k   1ˇ   bss &   
+ q                	clrf	(_DtCW+8)& (0+255),b
+   664                           ;pomiar.c: 173: DtCW._fpCW=1;
+   665        4text ∏        Ö   1ˇ   bss    
+ f                	bsf	(_DtCW+1)& (0+255),2,b
+   666                           ;pomiar.c: 174: }
+   667        4text ∫   '   D009               	goto	l59
+   668        4text º   X                      l58:
+   669                           ;pomiar.c: 175: else
+   670        4text º        ¿   ¸bigbss     )   FFE8         	movff	F1375,wreg
+   671        4text ¿           1   bss     	 2                	movlb	(_DtCW+2) shr (0+8)
+   672        4text ¬        ]   1ˇ   bss     
+ 5                	subwf	(_DtCW+2)& (0+255),w,b
+   673        4text ƒ      CFE8      ¸bss &    e           	movff	wreg,_DtCW+8
+   674                           ;pomiar.c: 178: DtCW._fpCW=1;
+   675        4text »        Ö   1ˇ   bss    
+ q                	bsf	(_DtCW+1)& (0+255),2,b
+   676                           ;pomiar.c: 179: fcw=DtCW.CW;
+   677        4text          ¿   ¸bss              ¸bigbss     &          	movff	_DtCW+2,F1375
+   678        4text Œ   U                      l59:
+   679                           ;pomiar.c: 180: }
+   680        4text Œ           1   bss (   	 3                	movlb	(_DtCW+10) shr (0+8)
+   681        4text –        k   1ˇ   bss (   
+ f                	clrf	(_DtCW+10)& (0+255),b
+   682                           ;pomiar.c: 182: }
+   683        4text “   &   0012               	return	
+   684        4text ‘   ±                      __end_of_FltParMod:
+   685                           ;pomiar.c: 187: void FiltrPomiarowyCW(void)
+   686                           ;pomiar.c: 188: {
+   687        4text ‘   ï                      _FiltrPomiarowyCW:
+   688  000000                     
+   689                           ;pomiar.c: 191: if(PmrTim1(20))
+   690        4text ‘   '   0E14               	movlw	20
+   691        4text ÷   ,   DEB3               	call	_PmrTim1
+   692        4text ÿ   Y   E302               	bnc	l61
+   693                           ;pomiar.c: 192: {
+   694        4text ⁄   w   DEAE               	call	_StartTim1	;wreg free
+   695                           ;pomiar.c: 194: GoldenEye();
+   696        4text ‹   9   DEDA               	call	_GoldenEye	;wreg free
+   697        4text ﬁ   U                      l61:
+   698                           ;pomiar.c: 195: }
+   699        4text ﬁ        ¿   ¸bss              ¸temp  &          	movff	_DtCW+2,btemp
+   700        4text ‚        ¿   ¸bss "            ¸temp     (          	movff	_DtCW+4,btemp+1
+   701        4text Ê   '   0EFE               	movlw	-2
+   702        4text Ë        &   1temp     *                	addwf	btemp+1,f,c
+   703        4text Í        P   1temp  '                	movf	btemp,w,c
+   704        4text Ï        \   1temp     *                	subwf	btemp+1,w,c
+   705        4text Ó      CFE8      ¸bss %    g           	movff	wreg,_DtCW+7
+   706                           ;pomiar.c: 199: if(PmrTim2(10))
+   707        4text Ú   '   0E0A               	movlw	10
+   708        4text Ù   ,   DEB0               	call	_PmrTim2
+   709        4text ˆ   /   A0D8               	btfss	status,0,c
+   710        4text ¯   Y   0012               	return	
+   711                           ;pomiar.c: 200: {
+   712        4text ˙   w   DEAA               	call	_StartTim2	;wreg free
+   713                           ;pomiar.c: 202: FltParMod();
+   714        4text ¸   l   D7B8               	goto	_FltParMod	;wreg free
+   715                           ;pomiar.c: 203: }
+   716        4text ˛   ∞                      __end_of_FiltrPomiarowyCW:
+   717                           ;pomiar.c: 207: void PomiarCW(void)
+   718                           ;pomiar.c: 208: {
+   719        4text ˛   ì                      _PomiarCW:
+   720  000000                     
+   721                           ;pomiar.c: 209: DtCW.AC_CW=ReadAC(1);
+   722        4text ˛   &   0E01               	movlw	1
+   723        4text          Ï   1ˇ       _ReadAC 	
+         ¸	    _ReadAC 	           	call	_ReadAC
+   724        4text       CFE8      ¸bss *    x           	movff	wreg,_DtCW+12
+   725                           ;pomiar.c: 210: DtCW.CW=ReadTabNTC(DtCW.AC_CW);
+   726        4text         ¿   ¸bss *    ,   FFE8         	movff	_DtCW+12,wreg
+   727        4text       !  Ï   1ˇ       _ReadTabNTC 	
+         ¸	    _ReadTabNTC 	 #          	call	_ReadTabNTC
+   728        4text       CFE8      ¸bss      †           	movff	wreg,_DtCW+2
+   729                           ;pomiar.c: 212: if(DtCW.AC_CW<=0x28||DtCW.AC_CW>
+      +                          =0xF5)
+   730        4text    '   0E29               	movlw	41
+   731        4text            1   bss *   	 3                	movlb	(_DtCW+12) shr (0+8)
+   732        4text         a   1ˇ   bss *   
+ 5                	cpfslt	(_DtCW+12)& (0+255),b
+   733        4text    (   D001               	goto	u341
+   734        4text    (   D003               	goto	u360
+   735        4text    #                      u341:
+   736        4text    (   0EF4               	movlw	-12
+   737        4text          e   1ˇ   bss *   
+ 5                	cpfsgt	(_DtCW+12)& (0+255),b
+   738        4text "   '   D005               	goto	l64
+   739        4text $   V                      u360:
+   740                           ;pomiar.c: 213: {
+   741        4text $           1   bss    	 .                	movlb	_DtCW shr (0+8)
+   742        4text &        Å   1ˇ   bss    
+ o                	bsf	_DtCW& (0+255),0,b
+   743                           ;pomiar.c: 215: DtCW._su_CW=0;
+   744        4text (        ì   1ˇ   bss    
+ o                	bcf	_DtCW& (0+255),1,b
+   745                           ;pomiar.c: 216: DtCW._ad_CW=0;
+   746        4text *        ï   1ˇ   bss    
+ h                	bcf	_DtCW& (0+255),2,b
+   747                           ;pomiar.c: 217: return;
+   748        4text ,   &   0012               	return	
+   749        4text .   h                      l64:
+   750                           ;pomiar.c: 219: else DtCW._err_CW=0;
+   751        4text .           1   bss    	 .                	movlb	_DtCW shr (0+8)
+   752        4text 0        ë   1ˇ   bss    
+ p                	bcf	_DtCW& (0+255),0,b
+   753                           ;pomiar.c: 220: if(DtCW.PCW<55)
+   754        4text 2   '   0E37               	movlw	55
+   755        4text 4           1   bss !   	 2                	movlb	(_DtCW+3) shr (0+8)
+   756        4text 6        a   1ˇ   bss !   
+ 4                	cpfslt	(_DtCW+3)& (0+255),b
+   757        4text 8   Z   D010               	goto	l66
+   758                           ;pomiar.c: 221: {
+   759        4text :   '   0E41               	movlw	65
+   760        4text <        e   1ˇ   bss     
+ 4                	cpfsgt	(_DtCW+2)& (0+255),b
+   761        4text >   '   D002               	goto	l67
+   762        4text @        Ö   1ˇ   bss    
+ /                	bsf	_DtCW& (0+255),2,b
+   763        4text B   '   D002               	goto	l68
+   764        4text D   g                      l67:
+   765                           ;pomiar.c: 223: else DtCW._ad_CW=0;
+   766        4text D           1   bss    	 .                	movlb	_DtCW shr (0+8)
+   767        4text F        ï   1ˇ   bss    
+ /                	bcf	_DtCW& (0+255),2,b
+   768        4text H   t                      l68:
+   769                           ;pomiar.c: 224: if(DtCW.CW<=65-2) DtCW._su_CW=1;
+   770        4text H   '   0E40               	movlw	64
+   771        4text J           1   bss     	 2                	movlb	(_DtCW+2) shr (0+8)
+   772        4text L        a   1ˇ   bss     
+ 4                	cpfslt	(_DtCW+2)& (0+255),b
+   773        4text N   '   D002               	goto	l69
+   774        4text P        É   1ˇ   bss    
+ /                	bsf	_DtCW& (0+255),1,b
+   775        4text R   '   0C40               	retlw	64
+   776        4text T   g                      l69:
+   777                           ;pomiar.c: 225: else DtCW._su_CW=0;
+   778        4text T           1   bss    	 .                	movlb	_DtCW shr (0+8)
+   779        4text V        ì   1ˇ   bss    
+ b                	bcf	_DtCW& (0+255),1,b
+   780                           ;pomiar.c: 226: }
+   781        4text X   &   0012               	return	
+   782        4text Z   X                      l66:
+   783                           ;pomiar.c: 227: else
+   784        4text Z   '   0E46               	movlw	70
+   785        4text \           1   bss     	 2                	movlb	(_DtCW+2) shr (0+8)
+   786        4text ^        e   1ˇ   bss     
+ 4                	cpfsgt	(_DtCW+2)& (0+255),b
+   787        4text `   '   D002               	goto	l72
+   788        4text b        Ö   1ˇ   bss    
+ /                	bsf	_DtCW& (0+255),2,b
+   789        4text d   '   D002               	goto	l73
+   790        4text f   g                      l72:
+   791                           ;pomiar.c: 230: else DtCW._ad_CW=0;
+   792        4text f           1   bss    	 .                	movlb	_DtCW shr (0+8)
+   793        4text h        ï   1ˇ   bss    
+ /                	bcf	_DtCW& (0+255),2,b
+   794        4text j   t                      l73:
+   795                           ;pomiar.c: 231: if(DtCW.CW<=70-2) DtCW._su_CW=1;
+   796        4text j   '   0E45               	movlw	69
+   797        4text l           1   bss     	 2                	movlb	(_DtCW+2) shr (0+8)
+   798        4text n        a   1ˇ   bss     
+ 4                	cpfslt	(_DtCW+2)& (0+255),b
+   799        4text p   '   D002               	goto	l74
+   800        4text r        É   1ˇ   bss    
+ /                	bsf	_DtCW& (0+255),1,b
+   801        4text t   '   0C45               	retlw	69
+   802        4text v   g                      l74:
+   803                           ;pomiar.c: 232: else DtCW._su_CW=0;
+   804        4text v           1   bss    	 .                	movlb	_DtCW shr (0+8)
+   805        4text x        ì   1ˇ   bss    
+ b                	bcf	_DtCW& (0+255),1,b
+   806                           ;pomiar.c: 233: }
+   807        4text z   &   0012               	return	
+   808        4text |   ©                      __end_of_PomiarCW:
+   809                           ;pomiar.c: 237: void SetModPCW(void)
+   810                           ;pomiar.c: 238: {
+   811        4text |   ë                      _SetModPCW:
+   812  000000                     
+   813                           ;pomiar.c: 239: if(M._AKTYWNE_KNF)
+   814        4text |           1    _M    	 0                	movlb	(_M+22) shr (0+8)
+   815        4text ~        Q   1ˇ    _M    
+ 2                	movf	(_M+22)& (0+255),w,b
+   816        4text Ä           1ˇ    _M    
+ 3                	iorwf	(_M+23)& (0+255),w,b
+   817        4text Ç   X   E004               	bz	l77
+   818                           ;pomiar.c: 240: {
+   819        4text Ñ   '   0E3C               	movlw	60
+   820        4text Ü      CFE8      ¸bss "    Y           	movff	wreg,_DtCW+4
+   821                           ;pomiar.c: 242: }
+   822        4text ä   '   0C3C               	retlw	60
+   823        4text å   l                      l77:
+   824                           ;pomiar.c: 243: else DtCW.PPCW=DtCW.PCW;
+   825        4text å        ¿   ¸bss !            ¸bss "    [          	movff	_DtCW+3,_DtCW+4
+   826                           ;pomiar.c: 244: }
+   827        4text ê   &   0012               	return	
+   828        4text í   ©                      __end_of_SetModPCW:
+   829                           ;pomiar.c: 246: void WritePCW(void)
+   830                           ;pomiar.c: 247: {
+   831        4text í   ë                      _WritePCW:
+   832  000000                     
+   833                           ;pomiar.c: 248: if(!M._AKTYWNE_KNF)
+   834        4text í           1    _M    	 0                	movlb	(_M+22) shr (0+8)
+   835        4text î        Q   1ˇ    _M    
+ 2                	movf	(_M+22)& (0+255),w,b
+   836        4text ñ           1ˇ    _M    
+ 3                	iorwf	(_M+23)& (0+255),w,b
+   837        4text ò   /   A4D8               	btfss	status,2,c
+   838        4text ö   Y   0012               	return	
+   839                           ;pomiar.c: 249: {
+   840        4text ú           1   bss    	 2                	movlb	(_DtCW+1) shr (0+8)
+   841        4text û        £   1ˇ   bss    
+ 5                	btfss	(_DtCW+1)& (0+255),1,b
+   842        4text †   &   0012               	return	
+   843        4text ¢   &   0E06               	movlw	6
+   844        4text §        Ï   1ˇ       _RTdS 	
+         ¸	    _RTdS 	           	call	_RTdS
+   845        4text ®        n   1temp  &                	movwf	btemp,c
+   846        4text ™   '   0E14               	movlw	20
+   847        4text ¨        \   1temp  (                	subwf	btemp,w,c
+   848        4text Æ   /   A0D8               	btfss	status,0,c
+   849        4text ∞   Y   0012               	return	
+   850                           ;pomiar.c: 251: {
+   851        4text ≤           1   bss    	 2                	movlb	(_DtCW+1) shr (0+8)
+   852        4text ¥        ì   1ˇ   bss    
+ r                	bcf	(_DtCW+1)& (0+255),1,b
+   853                           ;pomiar.c: 253: StartRTdS(6);
+   854        4text ∂   &   0E06               	movlw	6
+   855        4text ∏         Ï   1ˇ       _StartRTdS 	
+         ¸	    _StartRTdS 	 a          	call	_StartRTdS
+   856                           ;pomiar.c: 254: WriteEEPCW();
+   857        4text º      !  Ô   1ˇ       _WriteEEPCW 	
+         ¸	    _WriteEEPCW 	 a          	goto	_WriteEEPCW	;wreg free
+   858                           ;pomiar.c: 255: }
+   859        4text ¿   ©                      __end_of_WritePCW:
+   860                           ;pomiar.c: 259: void PomiarPCW(void)
+   861                           ;pomiar.c: 260: {
+   862        4text ¿   ô                      _PomiarPCW:
+   863  000000                     
+   864                           ;pomiar.c: 261: static unsigned char pnst;
+   865        4text ¿   '   0E23               	movlw	35
+   866        4text ¬      CFE8      ¸bss #    g           	movff	wreg,_DtCW+5
+   867                           ;pomiar.c: 264: DtCW.maxPCW=60;
+   868        4text ∆   '   0E3C               	movlw	60
+   869        4text »      CFE8      ¸bss $    q           	movff	wreg,_DtCW+6
+   870                           ;pomiar.c: 287: if(!(RdPrt(0)&&RdPrt(1)))
+   871        4text Ã   &   0E00               	movlw	0
+   872        4text Œ        Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   873        4text “   '   E304               	bnc	u490
+   874        4text ‘   &   0E01               	movlw	1
+   875        4text ÷        Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   876        4text ⁄   %   E27C               	bc	l83
+   877        4text ‹   V                      u490:
+   878                           ;pomiar.c: 288: {
+   879        4text ‹           1    _M    	 0                	movlb	(_M+16) shr (0+8)
+   880        4text ﬁ        ø   1ˇ    _M    
+ 3                	btfsc	(_M+16)& (0+255),7,b
+   881        4text ‡   '   D079               	goto	l83
+   882        4text ‚           1    _M    	 0                	movlb	(_M+24) shr (0+8)
+   883        4text ‰        µ   1ˇ    _M    
+ 3                	btfsc	(_M+24)& (0+255),2,b
+   884        4text Ê   '   D076               	goto	l83
+   885        4text Ë           1    _M    	 0                	movlb	(_M+16) shr (0+8)
+   886        4text Í        Ω   1ˇ    _M    
+ 3                	btfsc	(_M+16)& (0+255),6,b
+   887        4text Ï   '   D073               	goto	l83
+   888        4text Ó           1    _M    	 0                	movlb	(_M+24) shr (0+8)
+   889        4text         ≥   1ˇ    _M    
+ 3                	btfsc	(_M+24)& (0+255),1,b
+   890        4text Ú   Z   D070               	goto	l83
+   891                           ;pomiar.c: 290: {
+   892        4text Ù           1    _M    	 0                	movlb	(_M+22) shr (0+8)
+   893        4text ˆ        Q   1ˇ    _M    
+ 2                	movf	(_M+22)& (0+255),w,b
+   894        4text ¯           1ˇ    _M    
+ 3                	iorwf	(_M+23)& (0+255),w,b
+   895        4text ˙   &   E16C               	bnz	l83
+   896        4text ¸           1    _M    	 0                	movlb	(_M+18) shr (0+8)
+   897        4text ˛        Q   1ˇ    _M    
+ 2                	movf	(_M+18)& (0+255),w,b
+   898        4text             1ˇ    _M    
+ 3                	iorwf	(_M+19)& (0+255),w,b
+   899        4text    Y   E168               	bnz	l83
+   900                           ;pomiar.c: 292: {
+   901        4text    &   0E00               	movlw	0
+   902        4text         Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   903        4text 
+   X   E21C               	bc	l86
+   904                           ;pomiar.c: 294: {
+   905        4text            1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   906        4text            1bss !    ,                	movlw	low (_DtCW+3)
+   907        4text       *  o   1 ˇ   __Lparam 
+ ?_ReadDataXONLI  F                	movwf	?_ReadDataXONLI^(__Lparam& (0+65280)),b
+   908        4text            1bss !    -                	movlw	high (_DtCW+3)
+   909        4text       0  o   1 ˇ   __Lparam 
+ ?_ReadDataXONLI     l                	movwf	(?_ReadDataXONLI+1)^(__Lparam& (0+65280))
+      +                          ,b
+   910        4text         ¿   ¸bss $            ¸ ?_ReadDataXONLI     2          	movff	_DtCW+6,?_ReadDataXONLI+2
+   911        4text    &   0E01               	movlw	1
+   912        4text       0  o   1 ˇ   __Lparam 
+ ?_ReadDataXONLI     l                	movwf	(?_ReadDataXONLI+3)^(__Lparam& (0+65280))
+      +                          ,b
+   913        4text       0  o   1 ˇ   __Lparam 
+ ?_ReadDataXONLI     l                	movwf	(?_ReadDataXONLI+4)^(__Lparam& (0+65280))
+      +                          ,b
+   914        4text          Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   915        4text $   &   0E00               	movlw	0
+   916        4text &   /   B0D8               	btfsc	status,0,c
+   917        4text (   &   0E01               	movlw	1
+   918        4text *      $  Ï   1ˇ       _ReadDataXONLI 	
+         ¸	    _ReadDataXONLI 	 Ø          	call	_ReadDataXONLI
+   919                           ;pomiar.c: 296: if(RdPrt(1)&&(DtCW.PCW==DtCW.max
+      +                          PCW)) DtCW._newPCW=1;
+   920        4text .   &   0E01               	movlw	1
+   921        4text 0        Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   922        4text 4   &   E307               	bnc	l86
+   923        4text 6        ¿   ¸bss $    +   FFE8         	movff	_DtCW+6,wreg
+   924        4text :           1   bss !   	 2                	movlb	(_DtCW+3) shr (0+8)
+   925        4text <        c   1ˇ   bss !   
+ 4                	cpfseq	(_DtCW+3)& (0+255),b
+   926        4text >   '   D002               	goto	l86
+   927        4text @           1   bss    	 2                	movlb	(_DtCW+1) shr (0+8)
+   928        4text B        Å   1ˇ   bss    
+ 3                	bsf	(_DtCW+1)& (0+255),0,b
+   929        4text D   U                      l86:
+   930                           ;pomiar.c: 297: }
+   931        4text D   &   0E01               	movlw	1
+   932        4text F        Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   933        4text J   X   E21D               	bc	l88
+   934                           ;pomiar.c: 299: {
+   935        4text L           1    __Lparam 	 1                	movlb	__Lparam shr (0+8)
+   936        4text N           1bss !    ,                	movlw	low (_DtCW+3)
+   937        4text P      *  o   1 ˇ   __Lparam 
+ ?_ReadDataXONLD  F                	movwf	?_ReadDataXONLD^(__Lparam& (0+65280)),b
+   938        4text R           1bss !    -                	movlw	high (_DtCW+3)
+   939        4text T      0  o   1 ˇ   __Lparam 
+ ?_ReadDataXONLD     l                	movwf	(?_ReadDataXONLD+1)^(__Lparam& (0+65280))
+      +                          ,b
+   940        4text V        ¿   ¸bss #            ¸ ?_ReadDataXONLD     2          	movff	_DtCW+5,?_ReadDataXONLD+2
+   941        4text Z   &   0E01               	movlw	1
+   942        4text \      0  o   1 ˇ   __Lparam 
+ ?_ReadDataXONLD     l                	movwf	(?_ReadDataXONLD+3)^(__Lparam& (0+65280))
+      +                          ,b
+   943        4text ^      0  o   1 ˇ   __Lparam 
+ ?_ReadDataXONLD     l                	movwf	(?_ReadDataXONLD+4)^(__Lparam& (0+65280))
+      +                          ,b
+   944        4text `   &   0E00               	movlw	0
+   945        4text b        Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   946        4text f   &   0E00               	movlw	0
+   947        4text h   /   B0D8               	btfsc	status,0,c
+   948        4text j   &   0E01               	movlw	1
+   949        4text l      $  Ï   1ˇ       _ReadDataXONLD 	
+         ¸	    _ReadDataXONLD 	 Ø          	call	_ReadDataXONLD
+   950                           ;pomiar.c: 301: if(RdPrt(0)&&(DtCW.PCW==DtCW.min
+      +                          PCW)) DtCW._newPCW=1;
+   951        4text p   &   0E00               	movlw	0
+   952        4text r        Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   953        4text v   &   E307               	bnc	l88
+   954        4text x        ¿   ¸bss #    +   FFE8         	movff	_DtCW+5,wreg
+   955        4text |           1   bss !   	 2                	movlb	(_DtCW+3) shr (0+8)
+   956        4text ~        c   1ˇ   bss !   
+ 4                	cpfseq	(_DtCW+3)& (0+255),b
+   957        4text Ä   '   D002               	goto	l88
+   958        4text Ç           1   bss    	 2                	movlb	(_DtCW+1) shr (0+8)
+   959        4text Ñ        Å   1ˇ   bss    
+ 3                	bsf	(_DtCW+1)& (0+255),0,b
+   960        4text Ü   U                      l88:
+   961                           ;pomiar.c: 302: }
+   962        4text Ü   &   0E00               	movlw	0
+   963        4text à        Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   964        4text å   %   E210               	bc	l90
+   965        4text é   &   0E01               	movlw	1
+   966        4text ê        Ï   1ˇ       _RdPrt 	
+         ¸	    _RdPrt 	           	call	_RdPrt
+   967        4text î   X   E20C               	bc	l90
+   968                           ;pomiar.c: 304: {
+   969        4text ñ           1   bss    	 2                	movlb	(_DtCW+1) shr (0+8)
+   970        4text ò        £   1ˇ   bss    
+ 5                	btfss	(_DtCW+1)& (0+255),1,b
+   971        4text ö   Z   D007               	goto	l91
+   972                           ;pomiar.c: 306: {
+   973        4text ú   &   0E06               	movlw	6
+   974        4text û        Ï   1ˇ       _RTdS 	
+         ¸	    _RTdS 	           	call	_RTdS
+   975        4text ¢        n   1temp  &                	movwf	btemp,c
+   976        4text §   &   0E06               	movlw	6
+   977        4text ¶        \   1temp  (                	subwf	btemp,w,c
+   978        4text ®   Y   E302               	bnc	l90
+   979                           ;pomiar.c: 308: }
+   980        4text ™   h                      l91:
+   981                           ;pomiar.c: 309: else DtCW._newPCW=0;
+   982        4text ™           1   bss    	 2                	movlb	(_DtCW+1) shr (0+8)
+   983        4text ¨        ë   1ˇ   bss    
+ 3                	bcf	(_DtCW+1)& (0+255),0,b
+   984        4text Æ   U                      l90:
+   985                           ;pomiar.c: 310: }
+   986        4text Æ        ¿   ¸bss !    +   FFE8         	movff	_DtCW+3,wreg
+   987        4text ≤           1   bigbss    	 .                	movlb	F1386 shr (0+8)
+   988        4text ¥           1ˇ   bigbss    
+ 1                	xorwf	F1386& (0+255),w,b
+   989        4text ∂   X   E010               	bz	l97
+   990                           ;pomiar.c: 312: {
+   991        4text ∏        ¿   ¸bss !            ¸bigbss     g          	movff	_DtCW+3,F1386
+   992                           ;pomiar.c: 315: DtCW._newPCW=1;
+   993        4text º           1   bss    	 2                	movlb	(_DtCW+1) shr (0+8)
+   994        4text æ        Å   1ˇ   bss    
+ t                	bsf	(_DtCW+1)& (0+255),0,b
+   995                           ;pomiar.c: 316: RNst(DtCW.PCW);
+   996        4text ¿        ¿   ¸bss !    +   FFE8         	movff	_DtCW+3,wreg
+   997        4text ƒ        Ï   1ˇ       _RNst 	
+         ¸	    _RNst 	 ^          	call	_RNst
+   998                           ;pomiar.c: 318: DtCW._wrtPCW=1;
+   999        4text »           1   bss    	 2                	movlb	(_DtCW+1) shr (0+8)
+  1000        4text          É   1ˇ   bss    
+ r                	bsf	(_DtCW+1)& (0+255),1,b
+  1001                           ;pomiar.c: 319: StartRTdS(6);
+  1002        4text Ã   &   0E06               	movlw	6
+  1003        4text Œ         Ï   1ˇ       _StartRTdS 	
+         ¸	    _StartRTdS 	 U          	call	_StartRTdS
+  1004                           ;pomiar.c: 320: }
+  1005        4text “   µ   D002               	goto	l97
+  1006                           ;pomiar.c: 322: }else DtCW._newPCW=0;
+  1007                           ;pomiar.c: 323: }else DtCW._newPCW=0;
+  1008        4text ‘   "                      l83:
+  1009        4text ‘           1   bss    	 2                	movlb	(_DtCW+1) shr (0+8)
+  1010        4text ÷        ë   1ˇ   bss    
+ 3                	bcf	(_DtCW+1)& (0+255),0,b
+  1011        4text ÿ   `                      l97:
+  1012                           ;pomiar.c: 325: SetModPCW();
+  1013        4text ÿ   ∫   DF51               	call	_SetModPCW	;wreg free
+  1014                           ;pomiar.c: 326: DtCW.DAD_CW=ReturnACfromNTC(DtCW
+      +                          .PPCW-(3-1));
+  1015        4text ⁄        ¿   ¸bss "    +   FFE8         	movff	_DtCW+4,wreg
+  1016        4text ﬁ   '   0FFE               	addlw	-2
+  1017        4text ‡      &  Ï   1ˇ       _ReturnACfromNTC 	
+          ¸	    _ReturnACfromNTC 	 (          	call	_ReturnACfromNTC
+  1018        4text ‰      CFE8      ¸bss ,    ™           	movff	wreg,_DtCW+14
+  1019                           ;pomiar.c: 327: DtCW.MAD_CW=ReturnACfromNTC(DtCW
+      +                          .PPCW-(3-1)-9);
+  1020        4text Ë        ¿   ¸bss "    +   FFE8         	movff	_DtCW+4,wreg
+  1021        4text Ï   (   0FF5               	addlw	-11
+  1022        4text Ó      &  Ï   1ˇ       _ReturnACfromNTC 	
+          ¸	    _ReturnACfromNTC 	 (          	call	_ReturnACfromNTC
+  1023        4text Ú      CFE8      ¸bss +    Z           	movff	wreg,_DtCW+13
+  1024                           ;pomiar.c: 328: }
+  1025        4text ˆ   &   0012               	return	
+  1026        4text ¯   ˝                     __end_of_PomiarPCW:
+  1027  000000                     
+  1028  000000                     
+  1029  000000                     
+  1030  000000                     
+  1031  000000                     
+  1032  000000                     
+  1033  000000                     
+  1034  000000                     
+  1035  000000                     
+  1036  000000                     
+  1037  000000                     
+  1038  000000                     
+  1039  000000                     
+˝  1040  000000                     
+  1041  000000                     
+  1042  000000                     
+  1043  000000                     
+  1044  000000                     
+  1045  000000                     
+  1046  000000                     
+  1047  000000                     
+  1048  000000                     
+  1049  000000                     
+  1050  000000                     
+  1051  000000                     
+  1052  000000                     
+  1053  000000                     
+  105˝4  000000                     
+  1055  000000                     
+  1056  000000                     
+  1057  000000                     
+  1058  000000                     
+  1059  000000                     
+  1060  000000                     
+  1061  000000                     
+  1062  000000                     
+  1063  000000                     
+  1064  000000                     
+  1065  000000                     
+  1066  000000                     
+  1067  000000                     
+  1068  00˝0000                     
+  1069  000000                     
+  1070  000000                     
+  1071  000000                     
+  1072  000000                     
+  1073  000000                     
+  1074  000000                     
+  1075  000000                     
+  1076  000000                     
+  1077  000000                     
+  1078  000000                     
+  1079  000000                     
+  1080  000000                     
+  1081  000000                     
+  1082  000000 ˝                    
+  1083  000000                     
+  1084  000000                     
+  1085  000000                     
+  1086  000000                     
+  1087  000000                     
+  1088  000000                     
+  1089  000000                     
+  1090  000000                     
+  1091  000000                     
+  1092  000000                     
+  1093  000000                     
+  1094  000000                     
+  1095  000000                     
+  1096  000000      ˝               
+  1097  000000                     
+  1098  000000                     
+  1099  000000                     
+  1100  000000                     
+  1101  000000                     
+  1102  000000                     
+  1103  000000                     
+  1104  000000                     
+  1105  000000                     
+  1106  000000                     
+  1107  000000                     
+  1108  000000                     
+  1109  000000                     
+  1110  000000           ˝          
+  1111  000000                     
+  1112  000000                     
+  1113  000000                     
+  1114  000000                     
+  1115  000000                     
+  1116  000000                     
+  1117  000000                     
+  1118  000000                     
+  1119  000000                     
+  1120  000000                     
+  1121  000000                     
+  1122  000000                     
+  1123  000000                     
+  1124  000000                ˝     
+  1125  000000                     
+  1126  000000                     
+  1127  000000                     
+  1128  000000                     
+  1129  000000                     
+  1130  000000                     
+  1131  000000                     
+  1132  000000                     
+  1133  000000                     
+  1134  000000                     
+  1135  000000                     
+  1136  000000                     
+  1137  000000                     
+  1138  000000                     ˝
+  1139  000000                     
+  1140  000000                     
+  1141  000000                     
+  1142  000000                     
+  1143  000000                     
+  1144  000000                     
+  1145  000000                     
+  1146  000000                     
+  1147  000000                     
+  1148  000000                     
+  1149  000000                     
+  1150  000000                     
+  1151  000000                     
+  1152  000000                     
+  11˝53  000000                     
+  1154  000000                     
+  1155  000000                     
+  1156  000000                     
+  1157  000000                     
+  1158  000000                     
+  1159  000000                     
+  1160  000000                     
+  1161  000000                     
+  1162  000000                     
+  1163  000000                     
+  1164  000000                     
+  1165  000000                     
+  1166  000000                     
+  1167  0˝00000                     
+  1168  000000                     
+  1169  000000                     
+  1170  000000                     
+  1171  000000                     
+  1172  000000                     
+  1173  000000                     
+  1174  000000                     
+  1175  000000                     
+  1176  000000                     
+  1177  000000                     
+  1178  000000                     
+  1179  000000                     
+  1180  000000                     
+  1181  000000˝                     
+  1182  000000                     
+  1183  000000                     
+  1184  000000                     
+  1185  000000                     
+  1186  000000                     
+  1187  000000                     
+  1188  000000                     
+  1189  000000                     
+  1190  000000                     
+  1191  000000                     
+  1192  000000                     
+  1193  000000                     
+  1194  000000                     
+  1195  000000     ˝                
+  1196  000000                     
+  1197  000000                     
+  1198  000000                     
+  1199  000000                     
+  1200  000000                     
+  1201  000000                     
+  1202  000000                     
+  1203  000000                     
+  1204  000000                     
+  1205  000000                     
+  1206  000000                     
+  1207  000000                     
+  1208  000000                     
+  1209  000000          ˝           
+  1210  000000                     
+  1211  000000                     
+  1212  000000                     
+  1213  000000                     
+  1214  000000                     
+  1215  000000                     
+  1216  000000                     
+  1217  000000                     
+  1218  000000                     
+  1219  000000                     
+  1220  000000                     
+  1221  000000                     
+  1222  000000                     
+  1223  000000               ˝      
+  1224  000000                     
+  1225  000000                     
+  1226  000000                     
+  1227  000000                     
+  1228  000000                     
+  1229  000000                     
+  1230  000000                     
+  1231  000000                     
+  1232  000000                     
+  1233  000000                     
+  1234  000000                     
+  1235  000000                     
+  1236  000000                     
+  1237  000000                    ˝ 
+  1238  000000                     
+  1239  000000                     
+  1240  000000                     
+  1241  000000                     
+  1242  000000                     
+  1243  000000                     
+  1244  000000                     
+  1245  000000                     
+  1246  000000                     
+  1247  000000                     
+  1248  000000                     
+  1249  000000                     
+  1250  000000                     
+  1251  000000                     
+  1˝252  000000                     
+  1253  000000                     
+  1254  000000                     
+  1255  000000                     
+  1256  000000                     
+  1257  000000                     
+  1258  000000                     
+  1259  000000                     
+  1260  000000                     
+  1261  000000                     
+  1262  000000                     
+  1263  000000                     
+  1264  000000                     
+  1265  000000                     
+  1266  ˝000000                     
+  1267  000000                     
+  1268  000000                     
+  1269  000000                     
+  1270  000000                     
+  1271  000000                     
+  1272  000000                     
+  1273  000000                     
+  1274  000000                     
+  1275  000000                     
+  1276  000000                     
+  1277  000000                     
+  1278  000000                     
+  1279  000000                     
+  1280  00000˝0                     
+  1281  000000                     
+  1282  000000                     
+  1283  000000                     
+  1284  000000                     
+  1285  000000                     
+  1286  000000                     
+  1287  000000                     
+  1288  000000                     
+  1289  000000                     
+  1290  000000                     
+  1291  000000                     
+  1292  000000                     
+  1293  000000                     
+  1294  000000    ˝                 
+  1295  000000                     
+  1296  000000                     
+  1297  000000                     
+  1298  000000                     
+  1299  000000                     
+  1300  000000                     
+  1301  000000                     
+  1302  000000                     
+  1303  000000                     
+  1304  000000                     
+  1305  000000                     
+  1306  000000                     
+  1307  000000                     
+  1308  000000         ˝            
+  1309  000000                     
+  1310  000000                     
+  1311  000000                     
+  1312  000000                     
+  1313  000000                     
+  1314  000000                     
+  1315  000000                     
+  1316  000000                     
+  1317  000000                     
+  1318  000000                     
+  1319  000000                     
+  1320  000000                     
+  1321  000000                     
+  1322  000000              ˝       
+  1323  000000                     
+  1324  000000                     
+  1325  000000                     
+  1326  000000                     
+  1327  000000                     
+  1328  000000                     
+  1329  000000                     
+  1330  000000                     
+  1331  000000                     
+  1332  000000                     
+  1333  000000                     
+  1334  000000                     
+  1335  000000                     
+  1336  000000                   ˝  
+  1337  000000                     
+  1338  000000                     
+  1339  000000                     
+  1340  000000                     
+  1341  000000                     
+  1342  000000                     
+  1343  000000                     
+  1344  000000                     
+  1345  000000                     
+  1346  000000                     
+  1347  000000                     
+  1348  000000                     
+  1349  000000                     
+  1350  000000                     
+  ˝1351  000000                     
+  1352  000000                     
+  1353  000000                     
+  1354  000000                     
+  1355  000000                     
+  1356  000000                     
+  1357  000000                     
+  1358  000000                     
+  1359  000000                     
+  1360  000000                     
+  1361  000000                     
+  1362  000000                     
+  1363  000000                     
+  1364  000000                     
+  1365 ˝ 000000                     
+  1366  000000                     
+  1367  000000                     
+  1368  000000                     
+  1369  000000                     
+  1370  000000                     
+  1371  000000                     
+  1372  000000                     
+  1373  000000                     
+  1374  000000                     
+  1375  000000                     
+  1376  000000                     
+  1377  000000                     
+  1378  000000                     
+  1379  0000˝00                     
+  1380  000000                     
+  1381  000000                     
+  1382  000000                     
+  1383  000000                     
+  1384  000000                     
+  1385  000000                     
+  1386  000000                     
+  1387  000000                     
+  1388  000000                     
+  1389  000000                     
+  1390  000000                     
+  1391  000000                     
+  1392  000000                     
+  1393  000000   ˝                  
+  1394  000000                     
+  1395  000000                     
+  1396  000000                     
+  1397  000000                     
+  1398  000000                     
+  1399  000000                     
+  1400  000000                     
+  1401  000000                     
+  1402  000000                     
+  1403  000000                     
+  1404  000000                     
+  1405  000000                     
+  1406  000000                     
+  1407  000000        ˝             
+  1408  000000                     
+  1409  000000                     
+  1410  000000                     
+  1411  000000                     
+  1412  000000                     
+  1413  000000                     
+  1414  000000                     
+  1415  000000                     
+  1416  000000                     
+  1417  000000                     
+  1418  000000                     
+  1419  000000                     
+  1420  000000                     
+  1421  000000             ˝        
+  1422  000000                     
+  1423  000000                     
+  1424  000000                     
+  1425  000000                     
+  1426  000000                     
+  1427  000000                     
+  1428  000000                     
+  1429  000000                     
+  1430  000000                     
+  1431  000000                     
+  1432  000000                     
+  1433  000000                     
+  1434  000000                     
+  1435  000000                  ˝   
+  1436  000000                     
+  1437  000000                     
+  1438  000000                     
+  1439  000000                     
+  1440  000000                     
+  1441  000000                     
+  1442  000000                     
+  1443  000000                     
+  1444  000000                     
+  1445  000000                     
+  1446  000000                     
+  1447  000000                     
+  1448  000000                     
+  1449  000000                     
+ ˝ 1450  000000                     
+  1451  000000                     
+  1452  000000                     
+  1453  000000                     
+  1454  000000                     
+  1455  000000                     
+  1456  000000                     
+  1457  000000                     
+  1458  000000                     
+  1459  000000                     
+  1460  000000                     
+  1461  000000                     
+  1462  000000                     
+  1463                           
+  1464  /                          	psect	bigbss
+  1465        4bigbss                        F1368:
+   1466        4bigbss  #                      	ds	1
+  1467        4bigbss                        F1369:
+   1468        4bigbss  #                      	ds	1
+  1469        4bigbss                        F1374:
+   1470        4bigbss  #                      	ds	1
+  1471        4bigbss                        F1375:
+   1472        4bigbss  #                      	ds	1
+  1473        4bigbss                        F1386:
+   1474        4bigbss  ˝                     	ds	1
+  1475  000000                     
+  1476  000000                     
+  1477  000000                     
+  1478  000000                     
+  1479  000000                     
+  1480  000000                     
+  1481  000000                     
+  1482  000000                     
+  1483  000000                     
+  1484  000000                     
+  1485  000000                     
+  1486  000000                     
+  1487  000000                     
+  1488  000000˝                     
+  1489  000000                     
+  1490  000000                     
+  1491  000000                     
+  1492  000000                     
+  1493  000000                     
+  1494  000000                     
+  1495  000000                     
+  1496  000000                     
+  1497  000000                     
+  1498  000000                     
+  1499  000000                     
+  1500  000000                     
+  1501  000000                     
+  1502  000000     ˝                
+  1503  000000                     
+  1504  000000                     
+  1505  000000                     
+  1506  000000                     
+  1507  000000                     
+  1508  000000                     
+  1509  000000                     
+  1510  000000                     
+  1511  000000                     
+  1512  000000                     
+  1513  000000                     
+  1514  000000                     
+  1515  000000                     
+  1516  000000          ˝           
+  1517  000000                     
+  1518  000000                     
+  1519  000000                     
+  1520  000000                     
+  1521  000000                     
+  1522  000000                     
+  1523  000000                     
+  1524  000000                     
+  1525  000000                     
+  1526  000000                     
+  1527  000000                     
+  1528  000000                     
+  1529  000000                     
+  1530  000000               ˝      
+  1531  000000                     
+  1532  000000                     
+  1533  000000                     
+  1534  000000                     
+  1535  000000                     
+  1536  000000                     
+  1537  000000                     
+  1538  000000                     
+  1539  000000                     
+  1540  000000                     
+  1541  000000                     
+  1542  000000                     
+  1543  000000                     
+  1544  000000                    * 
+  1545  000000                     
+  1546  000000                     
+  1547  000000                     
+  1548  000000                     
+  1549  000000                     
+  1550  000000                     
+  1551  000000                     
+  1552  000000                     
+  1553        4bigbss  "                      _PmrtimFlt1:
+   1554        4bigbss  #                      	ds	1
+  1555        4bigbss  "                      _PmrtimFlt2:
+   1556        4bigbss  ˝                     	ds	1
+  1557  000000                     
+  1558  000000                     
+  1559  000000                     
+  1560  000000                     
+  1561  000000                     
+  1562  000000                     
+  1563  000000                     
+  1564  000000                     
+  1565  000000                     
+  1566  000000                     
+  1567  000000                     
+  1568  000000                     
+  1569  000000                     
+  1570  000000˝                     
+  1571  000000                     
+  1572  000000                     
+  1573  000000                     
+  1574  000000                     
+  1575  000000                     
+  1576  000000                     
+  1577  000000                     
+  1578  000000                     
+  1579  000000                     
+  1580  000000                     
+  1581  000000                     
+  1582  000000                     
+  1583  000000                     
+  1584  000000     ˝                
+  1585  000000                     
+  1586  000000                     
+  1587  000000                     
+  1588  000000                     
+  1589  000000                     
+  1590  000000                     
+  1591  000000                     
+  1592  000000                     
+  1593  000000                     
+  1594  000000                     
+  1595  000000                     
+  1596  000000                     
+  1597  000000                     
+  1598  000000          »            
+  1599  000000                     
+  1600  000000                     
+  1601  000000                     
+  1602  000000                     
+  1603  000000                     
+  1604        4bigbss                        _pnst:
+   1605        4bigbss  è                      	ds	1
+  1606  000000                     
+  1607  000000                     
+  1608  000000                     
+  1609        4bigbss                        _wff:
+   1610        4bigbss  r                      	ds	12
+  1611                           
+  1612                           	psect	bss
+  1613        4bss                        _DtCS:
+   1614        4bss  #                      	ds	2
+  1615        4bss  "                      _PmrtimFlt3:
+   1616        4bss  ≥                      	ds	2
+  1617  000000                     
+  1618  000000                     
+  1619  000000                     
+  1620  000000                     
+  1621        4bss                        _pbf:
+   1622        4bss  #                      	ds	2
+  1623        4bss                        _DtZW:
+   1624        4bss  #                      	ds	4
+  1625        4bss                        _PFN:
+   1626        4bss  #                      	ds	5
+  1627        4bss                        _DtCO:
+   1628        4bss  $                      	ds	15
+  1629        4bss                        _DtCW:
+   1630        4bss  s                      	ds	15
+  1631                           
+  1632                           	psect	temp
+  1633        4temp                        btemp:
+   1634        4temp  ˝                     	ds	5
+  1635                           tblptrh	equ	0xFF7
+  1636                           tblptrl	equ	0xFF6
+  1637                           indf0	equ	0xFEF
+  1638                           postinc0	equ	0xFEE
+  1639                           fsr0h	equ	0xFEA
+  1640                           fsr0l	equ	0xFE9
+  1641                           wreg	equ	0xFE8
+  1642                           indf1	equ	0xFE7
+  1643                           fsr1h	equ	0xFE2
+  1644                           fsr1l	equ	0xFE1
+  1645                           fsr2l	equ	0xFD9
+  1646                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V9.51PL3
+Symbol Table                                           Wed Jun 11 12:30:08 2014
+
+                       _M       4 _M                     _PomiarCW       4text ˛      
+                      l11       4text                              l12       4text $       
+                      l22       4text é                             l40       4text H      
+                      l24       4text Ù                             l16       4text L       
+                      l41       4text ˙                            l33       4text V      
+                      l42       4text ‰                            l34       4text ¿      
+                      l26       4text 0                            l35       4text ö      
+                      l19       4text d                             l28       4text $      
+                      l61       4text ﬁ                            l53       4text Ç      
+                      l45       4text 0                            l29       4text       
+                      l46       4text                             l55       4text î      
+                      l39       4text ‹                            l72       4text f      
+                      l64       4text .                            l56       4text †      
+                      l73       4text j                            l49       4text P      
+                      l90       4text Æ                            l74       4text v      
+                      l66       4text Z                            l58       4text º      
+                      l91       4text ™                            l83       4text ‘      
+                      l67       4text D                            l59       4text Œ      
+                      l68       4text H                            l77       4text å      
+                      l69       4text T                            l86       4text D      
+                      l88       4text Ü                            l97       4text ÿ      
+                      u65       4text à                             u90       4text Ó       
+                      u75       4text ¬                             u85       4text Ï       
+               _PomiarPCW       4text ¿             __end_of_PomiarPCW       4text ¯      
+                     u341       4text                            u360       4text $      
+                     _PFN       4bss 
+                            u490       4text ‹      
+                _WritePCW       4text í                           _pbf       4bss        
+                     _wff       4bigbss     ?                        wreg 000FE8  
+               _StartRTdS       4 _StartRTdS                    _StartTim1       4text 8       
+               _StartTim2       4text P                      _StartTim3       4text h       
+         _ReturnACfromNTC       4 _ReturnACfromNTC                         F1374       4bigbss        
+                    F1375       4bigbss                            F1368       4bigbss     
+                    F1369       4bigbss                            F1386       4bigbss        
+       __end_of_StartTim1       4text >              __end_of_StartTim2       4text V       
+       __end_of_StartTim3       4text r                 ?_ReadDataXONLD       4 ?_ReadDataXONLD     
+          ?_ReadDataXONLI       4 ?_ReadDataXONLI                   _PmrtimFlt1       4bigbss        
+              _PmrtimFlt2       4bigbss                      _PmrtimFlt3       4bss        
+                    _DtCO       4bss                            _DtCS       4bss     
+                    _DtCW       4bss                            _DtZW       4bss        
+                    _RTdS       4 _RTdS                         _RNst       4 _RNst     
+                    _pnst       4bigbss                           fsr0h 000FEA  
+                    fsr1h 000FE2                      indf0 000FEF  
+                    fsr0l 000FE9                      indf1 000FE7  
+                    fsr1l 000FE1                      fsr2l 000FD9  
+                    btemp       4temp              __end_of_PmrTim1       4text P       
+         __end_of_PmrTim2       4text h                __end_of_PmrTim3       4text í       
+__end_of_FiltrPomiarowyCW       4text ˛               _PredkoscZmianCW       4text Ã      
+              _WriteEEPCW       4 _WriteEEPCW                        _RdPrt       4 _RdPrt     
+              used_btemp0       4 used_btemp0                   used_btemp1       4 used_btemp1     
+              used_btemp2       4 used_btemp2                   used_btemp3       4 used_btemp3     
+              used_btemp4       4 used_btemp4                  _IncPmrTimer       4text        
+     __end_of_IncPmrTimer       4text 8    ?                      status 000FD8  
+                 _PmrTim1       4text >                        _PmrTim2       4text V       
+                 _PmrTim3       4text t                        __Lparam       4 __Lparam     
+                ?_PmrTim3       4 ?_PmrTim3             __end_of_PomiarCW       4text |      
+                 __ramtop       4 __ramtop             __end_of_WritePCW       4text ¿      
+ __end_of_PredkoscZmianCW       4text n              _FiltrPomiarowyCW       4text ‘      
+             _InitDataPmr       4text                _ReadDataXONLD       4 _ReadDataXONLD     
+           _ReadDataXONLI       4 _ReadDataXONLI          __end_of_InitDataPmr       4text        
+                  _ReadAC       4 _ReadAC  ?                    postinc0 000FEE  
+               _FltParMod       4text n                    _ReadTabNTC       4 _ReadTabNTC     
+       __end_of_FltParMod       4text ‘   a                     tblptrh 000FF7  
+                  tblptrl 000FF6                 _GoldenEye       4text í       
+       __end_of_GoldenEye       4text Ã                     _SetModPCW       4text |      
+       __end_of_SetModPCW       4text í      
+   

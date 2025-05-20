@@ -1,0 +1,134 @@
+/*global.h*/
+//Parametry globalne
+
+#ifndef	_GLOBAL_H
+#define	_GLOBAL_H 1
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+#if	defined(_18C242) || defined(_18C252) || defined(_18F248) || defined(_18F258)
+#define _PIC_PORT 3			//liczba portow procesora
+#endif
+#if defined(_18F442) || defined(_18F452) || defined(_18F448) || defined(_18F458)||defined(_18F4525)||defined(_18F46K20)
+#define _PIC_PORT 5			//liczba portow procesora
+#endif
+#ifndef _PIC_PORT
+#define _PIC_PORT 0			//wywolanie komunikatu bledu dla niezdefiniowanej rodziny PIC
+#endif
+
+#define _EXT_OSC 8 			//czestotliwosc oscylatora [MHz]
+#define _PLL 1				//1 modul PLL (0-nieaktywny,1-aktywny)
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+//Podstawowe parametry 
+//timery
+//RTcS
+//*************************************************************
+//RTdS
+#define _RTON	0			//pwron.c - timer zwloki po zalaczeniu zasilania
+#define _RTKEY	1			//keypad.c - timer konsoli
+#define _RTKEY2	2			//main.c - timer konsoli
+#define _RTMOD	3			//rgl.c - timer procedury modulacji
+#define _RTMOD2 4			//main.c - timer procedury modulacji
+#define _RTRSPL 5			//main.c - timer blokady zerowania licznika prob E1
+#define _RTPCW 6			//main.c - timer procedury zapisu PCW
+#define _RTFVNT  7			//vntregtch.c - timer filtracji wartosci predkosci obrotowej
+#define _RTFKVN  8			//vntregtch.c - timer kalibracji
+#define _RTFVNT2 9			//vntregtch.c - timer kalibracji
+//*************************************************************
+//RTS
+#define _RTKONF1 0			//konfig.c - timer konfiguracji
+#define _RTKONF2 1			//konfig.c - timer konfiguracji
+#define _RTROZ	2			//main.c - timer procedury rozruchu
+#define _RTRPL	3			//main.c - timer procedury rusz plomien
+#define _RTRCI	4			//main.c - detekcja poprawnosci pracy wentylatora 				
+#define _RTVWB	5			//main.c - timer wybiegu wentylatora
+#define _RTSRV0 6			//main.c - timer wejscia do funkcji serwisowej
+#define _RTSTR 7			//main.c - timer wyzerowanie znacznikow rozruchu sterownika po wlaczeniu zasilania lub resecie
+//*************************************************************
+//RTM
+#define _RTKONF3 0			//konfig.c - timer aktywnosci konfiguracji
+#define _RTSRV1 1			//main.c - timer aktywnosci funkcji serwisowej
+//*************************************************************
+//RTG
+//*************************************************************
+//--------------------------------------------------------------
+//UART
+#define _MY_ADDR			0x00 //adres wlasny modulu AMMY0
+//--------------------------------------------------------------
+//----------------------------------------------
+//Oznaczenia WE/WY procesora
+//------
+//PORTA
+							//RA0 COTemp (AN0)
+							//RA1 CWTemp (AN1)
+							//RA2 ZWTemp (AN2)
+							//RA3 CisnCO (AN3)
+#define _PRZ_CW		RA4		//WE
+							//RA5 coTemp2(AN4)
+#define _CIG_NO		RA6		//WE
+#define _STB 		RA7		//WE
+
+//------
+//PORTB
+//****************
+#define _TAC_INT	RB0		//WE	
+#define _K2			RB1		//WE
+#define _K1			RB2		//WE
+#define _K3			RB3		//WE
+#define _K4			RB4		//WE
+#define _PRZ_CO		RB5		//WE
+#define _KNF		RB6		//WE	wejscie sygnalu na cele konfiguracji
+//*****************
+#define _MUX		_K3		//WY
+//------
+//PORTC
+//******************
+#define _CIG_NC 	RC0		//WE
+							//RC1 PWM2 (WY)
+							//RC2 PWM (WY)
+							//RC3 SCL (WE)
+							//RC4 SDA (WE)
+#define _MOD_ON		RC5		//WE
+							//RC6 TX (WE)
+							//RC7 RX (WE)
+//*****************
+//------
+//PORTD
+							//WY - WYSWIETLACZ
+//*************************
+#define _GRZEJ		RD0		//WY	
+#define _KCO_CW		RD1		//WY
+#define _POMPA		RD2		//WY	
+#define _VNT		RD3		//WY	
+#define _PLOMIEN	RD4 	//WY
+#define _RT			RD5		//WY	
+							//RD6 NC	
+#define _DCFAN		RD7		//WY
+//************************
+//------
+//PORTE	
+
+//***********************
+#define _STR		RE0		//WE/WY
+#define _DTA		RE1		//WE/WY
+#define _CLK		RE2		//WE/WY
+							//RE3 ISP (WE)
+//***********************
+
+//----------------------------------------------
+//port.c
+//Numery filtrowanych sygnalow cyfrowych
+#define S_KDW		0		//1/1	
+#define S_KUP		1		//1/1
+#define S_CIG_NC	2		//2/1
+#define S_CIG_NO	3		//2/1
+#define S_STB		4		//2/2
+#define S_PLM		5		//4/4
+#define S_WCW		6		//2/2
+#define S_ERR_CW	7		//5/5		
+#define S_MOD_ON	8		//2/2
+#define S_CIG_NO_1S	9		//2/10
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+#endif	/*_GLOBAL_H*/
