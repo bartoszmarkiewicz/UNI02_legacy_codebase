@@ -3798,13 +3798,18 @@ void KontrolaWentylatora(void)
 	else
 	{
         // sprawd? czy zmierzone obroty s? wi?ksze ni? próg, je?li prawda komin jest zablokowany
-        if (M.VVNT > 500){
+        // Fan tacho RB0
+        // Fan PWM RD7 _FFPWM PWM3
+        unsigned int predkoscWentZmierzona = ProcToVNT(M.VVNT);
+        unsigned int predkoscWentOczekiwana = DPWMtoVNT(PWM.BufPWM3);
+        
+        if (predkoscWentZmierzona- predkoscWentOczekiwana> 400 ){
             M.ERR_BTY=0x07; //TODO: kod b??du do definiowania
             PrintErr(M.ERR_BTY,1);
             ToWriteESTAT();
 			ErrPTG();
         }
-		else if(M.VVNT) 											//predkosc niezerowa?
+        else if(M.VVNT) 											//predkosc niezerowa?
 		{
 			StartRTS(_RTRCI);	
 		}
