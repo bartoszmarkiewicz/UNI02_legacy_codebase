@@ -3797,7 +3797,14 @@ void KontrolaWentylatora(void)
 	}
 	else
 	{
-		if(M.VVNT) 											//predkosc niezerowa?
+        // sprawd? czy zmierzone obroty s? wi?ksze ni? próg, je?li prawda komin jest zablokowany
+        if (M.VVNT > 500){
+            M.ERR_BTY=0x07; //TODO: kod b??du do definiowania
+            PrintErr(M.ERR_BTY,1);
+            ToWriteESTAT();
+			ErrPTG();
+        }
+		else if(M.VVNT) 											//predkosc niezerowa?
 		{
 			StartRTS(_RTRCI);	
 		}
