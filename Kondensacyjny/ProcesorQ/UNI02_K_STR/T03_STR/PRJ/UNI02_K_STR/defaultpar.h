@@ -202,7 +202,7 @@
 #define _DTAERR	0               //kod awaryjny
 //----------
 #define _DPWMPMP 1              //P12 domyslny typ pompy (1-PWM) **************
-#define _DEFRCCW   0            //P33 rodzaj czujnika przeplywu CW (0-stykowy, 1-impulsowy)
+#define _DEFRCCW   1            //P33 rodzaj czujnika przeplywu CW (0-stykowy, 1-impulsowy)
 //----------
 
 #define _DPRFAN 0               //P23 domyslny typ wentylatora (0-FIME,1-NG40,2-fabryczny)
