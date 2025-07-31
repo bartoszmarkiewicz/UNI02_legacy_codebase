@@ -10,4 +10,4 @@ unsigned int CalkVNTtoPWMH(unsigned int nst);
 unsigned int CalkVNTtoPopPWMH(unsigned char nst,unsigned char pop);
 unsigned char CalkTimStr(unsigned char vstr);
 unsigned char ProcToVNT(unsigned char wrt);
-unsigned char DPWMtoVNT(unsigned char dpwm);
+unsigned char DPWMtoVNT(unsigned int dpwm);

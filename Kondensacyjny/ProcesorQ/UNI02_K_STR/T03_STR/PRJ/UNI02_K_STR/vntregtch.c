@@ -1114,21 +1114,21 @@ unsigned int DVNTtoPWM(unsigned int dvnt)
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
 //Zwraca aproksymowana wartosc VNT dla zadanej wartosci PWM
-unsigned char DPWMtoVNT(unsigned char dpwm)
+unsigned char DPWMtoVNT(unsigned int dpwm)
 {
-	unsigned char i,v1,v2,p1,p2,dv;
+	unsigned int i,v1,v2,p1,p2,dv;
 	signed long int pw;
 	signed long int wsp=0;
 	
 	dv=dpwm;
 	for(i=0;i<nkpkt;i++)
 	{
-		v2=Kvnt[i].dpwm;
-		p2=Kvnt[i].dvnt;
+		v2=Kvnt2[i].dpwm;
+		p2=Kvnt2[i].dvnt;
 		if(i!=0)
 		{
- 			v1=Kvnt[i-1].dpwm;
-			p1=Kvnt[i-1].dvnt;
+ 			v1=Kvnt2[i-1].dpwm;
+			p1=Kvnt2[i-1].dvnt;
 		}
 		else
 		{		

@@ -1,5 +1,5 @@
 /*main.c*/  
-/*Oprogramowanie rodziny sterownikow T03 (na bazie p³ytki UNI-02)*/
+/*Oprogramowanie rodziny sterownikow T03 (na bazie pï¿½ytki UNI-02)*/
 /*Wersja z modulacja PWM pompy, automat grzewczy*/
 /*wprowadzony parametr P18, wybieg na powyzszonej mocy minimalnej , mozliwosc przerwania procedury kalibracji*/
 //UWAGA:
@@ -11,7 +11,7 @@
     //Deaktywacja blokady dla zaworu 3DR na obieg CO w przypadku kotlow 1F przy TCW>85C
     //Dezaktywacja czasowej pracy z moca maksymalna zdefiniowana w konfiguracji
     //M.STRB=2
-    //Jak dla PFN.STRB=1 tylko bez procedury kalibracji wentylatora i bez wstepnego wybiegu pompy po wlaczeniu zasilania. Ignorowane s± polecenia interfejsu OT
+    //Jak dla PFN.STRB=1 tylko bez procedury kalibracji wentylatora i bez wstepnego wybiegu pompy po wlaczeniu zasilania. Ignorowane sï¿½ polecenia interfejsu OT
 
 #include "../../proj.tp.h"
 
@@ -144,7 +144,7 @@ void main_prc(void)
 //------------------
 
 //------------------
-	//Sprawd¿ czy nastapilo wylaczenie awaryjne z blokada
+	//Sprawdï¿½ czy nastapilo wylaczenie awaryjne z blokada
 	if((M.ERR_BTY=ReadEEPROM(_ADRERR))) 		//uruchomienie po wylaczeniu awaryjnym?
 	{
 		if(DtKNF.robg==_OTWARTY) 			//obieg otwarty?
@@ -322,6 +322,7 @@ void main_prc(void)
 		DecyzjaAntyLeg();		//decyzja o realizacji funkcji ANTYLEGIONELLA
 		KolejkaPobudzen();		//aktywacja pobudzen wg priorytetu	
 		KontrolaWentylatora();	//kontrola poprawnosci pracy wentylatora
+        KontrolaZatkania();
 		RefLCDData();			//aktualizacja danych wysylanych do modulu LCD
         RefBHist(0);            //aktualizacja bufora zdarzen
 	//----------------
@@ -376,7 +377,8 @@ void PomALL(void)
     FiltrPomiarowyCOCW();	//filtr danych opisujacych stan temperatur
     PomiarCS();				//wartosc cisnienia w instalacji CO
     PomiarIN();				//wartosc temperatury na powrocie
-    PomiarPrzCW();          //detekcja przeplywu w obiegu CW
+    PomiarPrzCW(); //detekcja przeplywu w obiegu CW
+    KontrolaZatkania();
 }
 //------------------
 //------------------
@@ -498,6 +500,7 @@ void KalibracjaWentylatora(void)
 		}
 	}
 	StartRTS(_RTMPMP);
+    _VNT_GetValue();
 	M._PO_KAL=1;
     M._KNF_KAL=0;
 }
@@ -747,15 +750,15 @@ void RefLCDData(void)
     InBitSet(&RSDT1.outSTAT4,_PMP_ON,_POMPA_GetValue());                                //stan pracy pompy (0-postoj, 1-paraca)
     InBitSet(&RSDT1.outSTAT4,_KCOCW,_KCO_CW_GetValue());                                //zawor 3d (0-obieg CW, 1-obieg CO)   
     InBitSet(&RSDT1.outSTAT4,_PRZ_CO2,(RdPrt(S_PRZ_CO)!=0)?1:0);             //zawor 3d (0-obieg CW, 1-obieg CO)    
-    InBitSet(&RSDT1.outSTAT4,_GRZ_ON,_GRZEJ_GetValue());                                //pobudzenie modu³u kontroli plomienia (0-postoj, 1-paraca)
+    InBitSet(&RSDT1.outSTAT4,_GRZ_ON,_GRZEJ_GetValue());                                //pobudzenie moduï¿½u kontroli plomienia (0-postoj, 1-paraca)
 #else
     InBitSet(&RSDT1.outSTAT4,_PMP_ON,M.POB_PMP);                                //stan pracy pompy (0-postoj, 1-paraca)
     InBitSet(&RSDT1.outSTAT4,_KCOCW,M.POB_KCOCW);                                //zawor 3d (0-obieg CW, 1-obieg CO)   
     InBitSet(&RSDT1.outSTAT4,_PRZ_CO2,(RdPrt(S_PRZ_CO)!=0)?1:0);             //zawor 3d (0-obieg CW, 1-obieg CO)    
-    InBitSet(&RSDT1.outSTAT4,_GRZ_ON,M.POB_GRZ);                                //pobudzenie modu³u kontroli plomienia (0-postoj, 1-paraca)    
+    InBitSet(&RSDT1.outSTAT4,_GRZ_ON,M.POB_GRZ);                                //pobudzenie moduï¿½u kontroli plomienia (0-postoj, 1-paraca)    
 #endif  
 #if _TST_RT==0    
-    InBitSet(&RSDT1.outSTAT5,_STK_RT2,(_RT_GetValue())?1:0);                            //styk wejscia pobudzenia RT/obni¿enie nocne (0-rozwarty, 1-zwarty)
+    InBitSet(&RSDT1.outSTAT5,_STK_RT2,(_RT_GetValue())?1:0);                            //styk wejscia pobudzenia RT/obniï¿½enie nocne (0-rozwarty, 1-zwarty)
 #else
     InBitSet(&RSDT1.outSTAT5,_STK_RT2,1);
 #endif
@@ -2859,7 +2862,7 @@ void Rozruch(void)
 	StartRTM(_RTMMAXCO);
 	switch(M.ROZ)
 	{
-		//dla kotla z otwartym obiegiem wstêpne, kontrolne wylaczenie pompy 
+		//dla kotla z otwartym obiegiem wstï¿½pne, kontrolne wylaczenie pompy 
 		case 0:
 		{
 			if((DtKNF.robg==_OTWARTY)||(DtKNF.tpkt==_UNICO))	//uniko lub obieg otwarty?
@@ -3761,7 +3764,7 @@ void ReloadPlomien(void)
 		M.LICZNIK_PL=0;
 	}
 	if(M._RUSZ_PLOMIEN) StartRTS(_RTRPL2);
-	if(RTS(_RTRPL2)>_TPLPR2)					//po zadanym czasie wyzeruj licznik_zaników_plomienia/min
+	if(RTS(_RTRPL2)>_TPLPR2)					//po zadanym czasie wyzeruj licznik_zanikï¿½w_plomienia/min
 	{
 		M.LICZNIK_PL2=0;
 	}
@@ -3786,6 +3789,84 @@ void SymulacjaPlomienia(void)
 }
 #endif
 //------------------
+void KontrolaZatkania(void){
+    // --- Dodane zmienne do wykrywania wzrostu obrotï¿½w przy sta?ym PWM ---
+    static unsigned int lastPWM = 0;
+    static int lastVVNT = 0;
+    static int stablePWMcount = 0;
+    static int wzrostProg = 200; // prï¿½g wzrostu obrotï¿½w (dostosuj wg potrzeb)
+    int predkoscWentOczekiwana = 0;
+    int predkoscWentOczekiwana2 = 0;
+    static unsigned char ignoreOnce = 0; // flaga ignorowania po kalibracji
+    static int vvnt_hist[5] = {0};
+    static int idx = 0;
+    // --------------------------------------------------------------------
+    
+    //Po zako?czeniu kalibracji ustaw flag? ignorowania
+    if (M._PO_KAL && !ignoreOnce) {
+        ignoreOnce = 1;
+        return;
+    }
+    
+    if(!_VNT_GetValue()||!PWM.BufPWM3) 									//wentylator stoi
+	{
+        stablePWMcount = 0;
+        lastPWM = 0;
+        lastVVNT = 0;
+	}
+    
+    /*if(RdPrt(S_PLM) && (M.VVNT >= (int)(0.9 * DtKNF.mmax) || M.rVVNT> 5000)) {
+        if((PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
+            stablePWMcount++;
+        }
+        if(stablePWMcount >= 5) {
+            /*vvnt_hist[idx] = M.rVVNT;
+            idx = (idx + 1) % 5;
+            int suma = 0;
+            for(int i=0; i<5; i++) suma += vvnt_hist[i];
+            int avg = suma / 5;
+            if(M.rVVNT > avg + wzrostProg){*/
+            /*if(M.rVVNT > lastVVNT + wzrostProg) {
+                // Wzrost obrotÃ³w przy staÅ‚ym PWM - zgÅ‚oÅ› bÅ‚Ä…d
+                M.ERR_BTY=0x13; // nowy kod bÅ‚Ä™du (przykÅ‚adowy)
+                PrintErr(M.ERR_BTY,1);
+                ToWriteESTAT();
+                ErrPTG();
+            }
+        }
+        else {
+            stablePWMcount = 0;
+        }
+        lastPWM = PWM.BufPWM3;
+        lastVVNT = M.rVVNT;
+    }*/
+    else
+    { 											//predkosc niezerowa?{
+            // --- Wykrywanie wzrostu obrotï¿½w przy sta?ym PWM ---
+            if(RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
+            //if(PWM.BufPWM3==lastPWM){
+                stablePWMcount++;
+                if(stablePWMcount >= 5 && (M.VVNT >= (int)(0.9*DtKNF.mmax) || (M.rVVNT >= 5000))) { // np. 5 cykli z rz?du ten sam PWM
+                    predkoscWentOczekiwana = DPWMtoVNT(PWM.BufPWM3);
+                    predkoscWentOczekiwana2 = ProcToVNT(predkoscWentOczekiwana);
+                    if (M.rVVNT > predkoscWentOczekiwana2*100 + wzrostProg ){
+                    //if(M.rVVNT > lastVVNT + wzrostProg) {
+                        // Wzrost obrotï¿½w przy sta?ym PWM - zg?o? b??d
+                        M.ERR_BTY=0x12; // nowy kod b??du (przyk?adowy)
+                        PrintErr(M.ERR_BTY,1);
+                        ToWriteESTAT();
+                        ErrPTG();
+                    }
+                }
+            }
+            else {
+                stablePWMcount = 1;
+                lastPWM = PWM.BufPWM3;
+            }
+        lastVVNT = M.VVNT;
+        lastPWM = PWM.BufPWM3;
+    }
+}
 //------------------
 //Detekcja poprawnosci pracy wentylatora
 void KontrolaWentylatora(void)
@@ -3796,25 +3877,11 @@ void KontrolaWentylatora(void)
 		StartRTS(_RTRCI);
 	}
 	else
-	{
-        // sprawd? czy zmierzone obroty s? wi?ksze ni? próg, je?li prawda komin jest zablokowany
-        // Fan tacho RB0
-        // Fan PWM RD7 _FFPWM PWM3
-        if( DtCW.PCW ==  0,9*DtCW.maxPCW || DtCO.PCO == 0.9*DtCO.maxPCO){
-            unsigned int predkoscWentZmierzona = ProcToVNT(M.VVNT);
-            unsigned int predkoscWentOczekiwana = DPWMtoVNT(PWM.BufPWM3);
-
-            if (predkoscWentZmierzona- predkoscWentOczekiwana > 250 ){
-                M.ERR_BTY=0x12; //TODO: kod b??du do definiowania
-                PrintErr(M.ERR_BTY,1);
-                ToWriteESTAT();
-                ErrPTG();
-            }
-        }
-        else if(M.VVNT) 											//predkosc niezerowa?
+	{   
+        if(M.VVNT) 											//predkosc niezerowa?
 		{
 			StartRTS(_RTRCI);	
-		}
+        }
 		else
 		{	
 			if(RTS(_RTRCI)>_TCIBLK)	

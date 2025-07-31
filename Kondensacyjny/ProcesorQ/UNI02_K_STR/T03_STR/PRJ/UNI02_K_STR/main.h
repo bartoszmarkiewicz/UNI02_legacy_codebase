@@ -110,6 +110,7 @@ void DecyzjaOdp(void);
 void SetLowPMP(void);
 void LicznikGodzin(void);
 void SymulacjaPlomienia(void);
+void KontrolaZatkania(void);
 
 //----------------------------------------------------------
 #endif		/*_MAIN_H*/
