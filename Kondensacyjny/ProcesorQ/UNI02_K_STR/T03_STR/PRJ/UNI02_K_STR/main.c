@@ -3846,7 +3846,7 @@ void KontrolaZatkania(void){
             if(RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
             //if(PWM.BufPWM3==lastPWM){
                 stablePWMcount++;
-                if(stablePWMcount >= 5 && (M.VVNT >= (int)(0.9*DtKNF.mmax) || (M.rVVNT >= 5000))) { // np. 5 cykli z rz?du ten sam PWM
+                if(stablePWMcount >= 5 && (M.VVNT >= (int)(0.9*DtKNF.mmax))) { // np. 5 cykli z rz?du ten sam PWM
                     predkoscWentOczekiwana = DPWMtoVNT(PWM.BufPWM3);
                     predkoscWentOczekiwana2 = ProcToVNT(predkoscWentOczekiwana);
                     if (M.rVVNT > predkoscWentOczekiwana2*100 + wzrostProg ){
