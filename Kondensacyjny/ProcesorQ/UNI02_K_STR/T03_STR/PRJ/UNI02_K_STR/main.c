@@ -3814,32 +3814,6 @@ void KontrolaZatkania(void){
         lastPWM = 0;
         lastVVNT = 0;
 	}
-    
-    /*if(RdPrt(S_PLM) && (M.VVNT >= (int)(0.9 * DtKNF.mmax) || M.rVVNT> 5000)) {
-        if((PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
-            stablePWMcount++;
-        }
-        if(stablePWMcount >= 5) {
-            /*vvnt_hist[idx] = M.rVVNT;
-            idx = (idx + 1) % 5;
-            int suma = 0;
-            for(int i=0; i<5; i++) suma += vvnt_hist[i];
-            int avg = suma / 5;
-            if(M.rVVNT > avg + wzrostProg){*/
-            /*if(M.rVVNT > lastVVNT + wzrostProg) {
-                // Wzrost obrotów przy stałym PWM - zgłoś błąd
-                M.ERR_BTY=0x13; // nowy kod błędu (przykładowy)
-                PrintErr(M.ERR_BTY,1);
-                ToWriteESTAT();
-                ErrPTG();
-            }
-        }
-        else {
-            stablePWMcount = 0;
-        }
-        lastPWM = PWM.BufPWM3;
-        lastVVNT = M.rVVNT;
-    }*/
     else
     { 											//predkosc niezerowa?{
             // --- Wykrywanie wzrostu obrot�w przy sta?ym PWM ---
