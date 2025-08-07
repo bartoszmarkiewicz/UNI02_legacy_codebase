@@ -3789,6 +3789,29 @@ void SymulacjaPlomienia(void)
 }
 #endif
 //------------------
+/**
+ * @brief Kontroluje stan wentylatora pod kątem wykrywania wzrostu obrotów przy stałym sygnale PWM.
+ *
+ * Funkcja monitoruje prędkość wentylatora oraz sygnał PWM, aby wykryć nieprawidłowy wzrost obrotów
+ * przy niezmienionym sygnale sterującym (PWM). Może to wskazywać na potencjalne zatkanie lub inne
+ * nieprawidłowości w pracy wentylatora. Po wykryciu takiej sytuacji zgłaszany jest odpowiedni błąd.
+ *
+ * Zasada działania:
+ * - Po zakończeniu kalibracji ustawiana jest flaga ignorowania pierwszego wywołania.
+ * - Jeśli wentylator stoi lub PWM jest zerowy, resetowane są zmienne pomocnicze.
+ * - Jeśli PWM utrzymuje się na stałym poziomie przez określoną liczbę cykli, a prędkość wentylatora
+ *   przekracza oczekiwaną wartość o zadany próg, zgłaszany jest błąd.
+ *
+ * Zmienne statyczne służą do przechowywania historii wartości PWM i prędkości wentylatora oraz
+ * liczby kolejnych cykli ze stałym PWM.
+ *
+ * Warunki błędu:
+ * - PWM utrzymuje się na stałym poziomie przez co najmniej 5 cykli.
+ * - Prędkość wentylatora przekracza oczekiwaną wartość o określony próg (wzrostProg).
+ * - Zgłaszany jest błąd (kod 0x12), wywoływane są funkcje obsługi błędu.
+ *
+ * @note Funkcja korzysta z zewnętrznych zmiennych i funkcji, takich jak M, PWM, RdPrt, DPWMtoVNT, ProcToVNT, PrintErr, ToWriteESTAT, ErrPTG.
+ */
 void KontrolaZatkania(void){
     // --- Dodane zmienne do wykrywania wzrostu obrot�w przy sta?ym PWM ---
     static unsigned int lastPWM = 0;
@@ -3815,16 +3838,14 @@ void KontrolaZatkania(void){
         lastVVNT = 0;
 	}
     else
-    { 											//predkosc niezerowa?{
+    {
             // --- Wykrywanie wzrostu obrot�w przy sta?ym PWM ---
             if(RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
-            //if(PWM.BufPWM3==lastPWM){
                 stablePWMcount++;
                 if(stablePWMcount >= 5 && (M.VVNT >= (int)(0.9*DtKNF.mmax))) { // np. 5 cykli z rz?du ten sam PWM
                     predkoscWentOczekiwana = DPWMtoVNT(PWM.BufPWM3);
                     predkoscWentOczekiwana2 = ProcToVNT(predkoscWentOczekiwana);
                     if (M.rVVNT > predkoscWentOczekiwana2*100 + wzrostProg ){
-                    //if(M.rVVNT > lastVVNT + wzrostProg) {
                         // Wzrost obrot�w przy sta?ym PWM - zg?o? b??d
                         M.ERR_BTY=0x12; // nowy kod b??du (przyk?adowy)
                         PrintErr(M.ERR_BTY,1);
