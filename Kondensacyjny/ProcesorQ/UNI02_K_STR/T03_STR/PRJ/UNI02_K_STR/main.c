@@ -3818,11 +3818,9 @@ void KontrolaZatkania(void){
     static int lastVVNT = 0;
     static int stablePWMcount = 0;
     static int wzrostProg = 200; // pr�g wzrostu obrot�w (dostosuj wg potrzeb)
-    int predkoscWentOczekiwana = 0;
-    int predkoscWentOczekiwana2 = 0;
-    static unsigned char ignoreOnce = 0; // flaga ignorowania po kalibracji
-    static int vvnt_hist[5] = {0};
-    static int idx = 0;
+    unsigned char pwmZadane = 0;
+    unsigned char predkoscWentOczekiwana = 0;
+    static bool ignoreOnce = 0; // flaga ignorowania po kalibracji;
     // --------------------------------------------------------------------
     
     //Po zako?czeniu kalibracji ustaw flag? ignorowania
@@ -3839,25 +3837,40 @@ void KontrolaZatkania(void){
 	}
     else
     {
-            // --- Wykrywanie wzrostu obrot�w przy sta?ym PWM ---
-            if(RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
-                stablePWMcount++;
-                if(stablePWMcount >= 5 && (M.VVNT >= (int)(0.9*DtKNF.mmax))) { // np. 5 cykli z rz?du ten sam PWM
-                    predkoscWentOczekiwana = DPWMtoVNT(PWM.BufPWM3);
-                    predkoscWentOczekiwana2 = ProcToVNT(predkoscWentOczekiwana);
-                    if (M.rVVNT > predkoscWentOczekiwana2*100 + wzrostProg ){
-                        // Wzrost obrot�w przy sta?ym PWM - zg?o? b??d
-                        M.ERR_BTY=0x12; // nowy kod b??du (przyk?adowy)
-                        PrintErr(M.ERR_BTY,1);
-                        ToWriteESTAT();
-                        ErrPTG();
-                    }
+        char maxRPM = 0;
+        if(M._RPM_CW==1){
+            maxRPM=ProcToVNT(DtKNF.mxcw);
+        }
+        else{
+            maxRPM=ProcToVNT(DtKNF.def_mxco);
+        }
+        
+        // --- Wykrywanie wzrostu obrot�w przy sta?ym PWM ---
+        if(RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
+            stablePWMcount++;
+            if(stablePWMcount >= 5 && (M.VVNT >= (int)(0.9*maxRPM))) { // np. 5 cykli z rz?du ten sam PWM 
+                pwmZadane = DPWMtoVNT(PWM.BufPWM3);
+                predkoscWentOczekiwana = ProcToVNT(pwmZadane);
+                int blad = 0;
+                if (predkoscWentOczekiwana<maxRPM){
+                    blad = predkoscWentOczekiwana*100 + wzrostProg;
+                }
+                else{
+                    blad = maxRPM*100+wzrostProg;
+                }
+                if (M.rVVNT >= blad){
+                    // Wzrost obrot�w przy sta?ym PWM - zg?o? b??d
+                    M.ERR_BTY=0x12; // nowy kod b??du (przyk?adowy)
+                    PrintErr(M.ERR_BTY,1);
+                    ToWriteESTAT();
+                    ErrPTG();
                 }
             }
-            else {
-                stablePWMcount = 1;
-                lastPWM = PWM.BufPWM3;
-            }
+        }
+        else {
+            stablePWMcount = 1;
+            lastPWM = PWM.BufPWM3;
+        }
         lastVVNT = M.VVNT;
         lastPWM = PWM.BufPWM3;
     }
