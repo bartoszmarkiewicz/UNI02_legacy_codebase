@@ -1151,6 +1151,41 @@ unsigned char DPWMtoVNT(unsigned int dpwm)
 	}
 	return p2;	//maksymalne wypelnienie dla predkosci poza zakresem
 }
+
+unsigned int PWMtoVNT(unsigned int dpwm)
+{
+	unsigned int i,v1,v2,p1,p2,dv;
+	signed long int pw;
+	signed long int wsp=0;
+	
+	dv=dpwm;
+	for(i=0;i<nkpkt;i++)
+	{
+		v2=Kvnt2[i].dpwm;
+		p2=Kvnt2[i].dvnt;
+		if(i!=0)
+		{
+ 			v1=Kvnt2[i-1].dpwm;
+			p1=Kvnt2[i-1].dvnt;
+		}
+		else
+		{		
+ 			v1=0;
+			p1=0;
+		}
+		if((v2>dv&&v1<dv)||v2==dv)
+		{
+			wsp=(signed long int)(p2-p1)*1000;
+			wsp/=(v2-v1); //wspolczynnik kierunkowy prostej
+			pw=(signed long int)(dv-v1)*wsp;
+			pw/=1000;
+			
+			pw+=p1; 				//y=[(y1-y0)/(x1-x0)]*(x-x1)+y0
+			return pw;
+		}
+	}
+	return p2;	//maksymalne wypelnienie dla predkosci poza zakresem
+}
 #endif
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
