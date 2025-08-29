@@ -78,7 +78,8 @@ DtMINMAX MinMax[_KNPAR1]=
 	_ADRPWTM, _KMINPWTM, _KMAXPWTM,				//31 przewyzszenie temperaturowe    
     
 	_ADRRCCW, _KMINCCW, _KMAXCCW,				//32 rodzaj czujnika przeplywu CW (0-stykowy, 1-impulsowy) 
-	_ADRTWPM, _KMINTPM, _KMAXTPM,				//33 czas wybiegu pompy po grzaniu obiegu CO     
+	_ADRTWPM, _KMINTPM, _KMAXTPM,				//33 czas wybiegu pompy po grzaniu obiegu CO
+    _ADRPROGVNT, _KMINPROGVNT, _KMAXPROGVNT,				//34 obroty ktore spowoduj? wykrycie zatkania
 };
 //-------------------------------------------------------------------------------
 
@@ -346,6 +347,7 @@ unsigned char RefKnfPar(void)
 		switch(RSDT1.vKNF)
 		{
             case 11:                                            //(43)jedenasta wersja paczki danych plyty LCD  
+                DtKNF.progVNT=RSDT1.inprogVNT;
                 DtKNF.tpcw=RSDT1.inTPCW;         
                 DtKNF.tmpm=RSDT1.inTMPM;                
             case 10:                                            //(41)dziesiata wersja paczki danych plyty LCD  
@@ -588,7 +590,11 @@ unsigned char SaveKnfPar(void)
         if((DtKNF.tmpm>MinMax[33].min)&&(DtKNF.tmpm<MinMax[33].max)||DtKNF.tmpm==MinMax[33].min||DtKNF.tmpm==MinMax[33].max)
         {
             if_WriteEEPROM(_ADRTWPM,DtKNF.tmpm);    //czas wybiegu pompy CO                  
-        }        
+        }
+        if((DtKNF.progVNT>MinMax[34].min)&&(DtKNF.progVNT<MinMax[34].max)||DtKNF.progVNT==MinMax[34].min||DtKNF.tmpm==MinMax[34].max)
+        {
+            if_WriteEEPROM(_ADRPROGVNT,DtKNF.progVNT);    //prog wykrycia zatkania komina               
+        }
 		RSDT1.RRD_KNF=0;
 		RSDT1.RD_KNF=0;
 		return 1;
@@ -858,6 +864,9 @@ void RdEEParam(void)
     SetParPrzCw();
 	RSDT1.outTPCW=DtKNF.tpcw;
     InBitSet(&RSDT1.outKSTAT0,_CWIMP,((DtKNF.tpkt!=_UNICO)&&(DtKNF.tpcw!=0))?1:0);  //rodzaj czujnika przeplywu CW (0-stykowy, 1-impulsowy)
+    
+    DtKNF.progVNT=ReadEEPROM(_ADRPROGVNT);
+    RSDT1.outprogVNT=DtKNF.progVNT;
     
     DtKNF.tmpm=ReadEEPROM(_ADRTWPM);       //czas wybiegu pompy CO   
 	RSDT1.outTMPM=DtKNF.tmpm;

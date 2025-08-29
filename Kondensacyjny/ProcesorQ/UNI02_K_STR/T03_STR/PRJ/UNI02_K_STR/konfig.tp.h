@@ -75,7 +75,8 @@ typedef struct	{
                 unsigned char tL3;      //czas blokady L3 obiegu CO
                 
                 unsigned char tpcw;      //rodzaj czujnika przeplywu CW
-                unsigned char tmpm;      //czas wybiegu pompy CO                
+                unsigned char tmpm;      //czas wybiegu pompy CO
+                unsigned char progVNT;   //liczba obrotów która spowoduje E18
                 
                 float P;
                 float I;

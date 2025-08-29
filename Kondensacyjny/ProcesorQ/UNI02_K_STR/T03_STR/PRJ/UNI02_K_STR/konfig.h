@@ -8,7 +8,7 @@
 #include "history.h"
 /*---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
-#define	_KNPAR1 34			//ogolna liczba parametrow podlegajacych modyfikacji
+#define	_KNPAR1 35			//ogolna liczba parametrow podlegajacych modyfikacji
 
 /*---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
@@ -149,7 +149,10 @@
 #define _KMAXCCW 1
 
 #define _KMINTPM 20			//czas wybiegu pompy po grzaniu obiegu CO
-#define _KMAXTPM 240        
+#define _KMAXTPM 240    
+
+#define _KMINPROGVNT 100			//czas wybiegu pompy po grzaniu obiegu CO
+#define _KMAXPROGVNT 900  
 /*---------------------------------------------------------------------------------*/
 //wartosci jakie moga przyjac poszczegolne parametry
 //aktywacja funkcji ?Anty-Legionella

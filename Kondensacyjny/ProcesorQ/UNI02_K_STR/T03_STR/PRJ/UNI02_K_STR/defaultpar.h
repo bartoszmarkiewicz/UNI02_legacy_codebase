@@ -141,6 +141,7 @@
 
 #define _ADRRCCW   0x01D0        //rodzaj czujnika przeplywu CW (0-stykowy, 1-impulsowy)
 #define _ADRTWPM   0x01D1        //czas wybiegu pompy po grzaniu obiegu CO
+#define _ADRPROGVNT   0x01D2        //prog wyzwolenia zatkania komina
 
 #define _ADRRLO   0x01D4        //godziny pracy LO
 #define _ADRRHI   0x01D5        //godziny pracy HI   

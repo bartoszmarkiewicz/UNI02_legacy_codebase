@@ -3857,7 +3857,7 @@ void KontrolaZatkania(void){
                 predkoscWentOczekiwana = PWMtoVNT(PWM.BufPWM3);
                 int blad = 0;
                 if (M._AKTYWNE_SRW){
-                    blad = maxRPM*100 + wzrostProg;
+                    blad = maxRPM*100 + DtKNF.progVNT;
                 }
                 else{
                     blad = predkoscWentOczekiwana+wzrostProg;

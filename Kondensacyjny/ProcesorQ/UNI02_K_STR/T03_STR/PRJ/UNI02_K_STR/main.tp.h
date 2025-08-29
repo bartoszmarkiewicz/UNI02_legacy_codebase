@@ -290,7 +290,8 @@ typedef struct	{
         unsigned char outPWTM; 
         
         unsigned char outTPCW;
-        unsigned char outTMPM;        
+        unsigned char outTMPM;
+        unsigned char outprogVNT;
 
         unsigned char outRPKNF;	//wartosc parametru do odczytu
         unsigned char outWPKNF;	//wartosc parametru po zapisie
@@ -351,6 +352,7 @@ typedef struct	{
 
         unsigned char inTPCW;
         unsigned char inTMPM;
+        unsigned char inprogVNT;
         
 //komunikacja LIN
         unsigned char inLIDN;
