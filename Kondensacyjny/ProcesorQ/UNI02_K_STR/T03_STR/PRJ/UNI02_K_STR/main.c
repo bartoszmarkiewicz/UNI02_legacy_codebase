@@ -3879,8 +3879,31 @@ void KontrolaZatkania(void){
             stablePWMcount = 0;
             lastPWM = PWM.BufPWM3;
         }
-        lastVVNT = M.VVNT;
-        lastPWM = PWM.BufPWM3;
+        /*if(!M._AKTYWNE_KNF && RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
+            stablePWMcount++;
+            if(stablePWMcount > 50){
+                if(M.VVNT >= (int)(0.9*maxRPM)){
+                    if (M.VVNT >= lastVVNT + wzrostProg/100){
+                        // Wzrost obrot�w przy sta?ym PWM - zg?o? b??d
+                        WritePWM3H(maxRPM/3);
+                        for(char i = 0; i<10; i++){
+                            asm("nop");
+                        }
+                        M.ERR_BTY=0x12; // nowy kod b??du (przyk?adowy)
+                        PrintErr(M.ERR_BTY,1);
+                        ToWriteESTAT();
+                        ErrPTG();
+                    }
+                    lastVVNT = M.VVNT;
+                }
+            }
+        }
+        else{
+            stablePWMcount = 0;
+            lastVVNT = 0;
+            lastPWM = PWM.BufPWM3;
+        }
+        lastPWM = PWM.BufPWM3;*/
     }
 }
 //------------------
