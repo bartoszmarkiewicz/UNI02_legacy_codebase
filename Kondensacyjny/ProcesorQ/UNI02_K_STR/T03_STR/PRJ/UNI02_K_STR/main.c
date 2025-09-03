@@ -3851,18 +3851,22 @@ void KontrolaZatkania(void){
         }
         
         // --- Wykrywanie wzrostu obrot�w przy sta?ym PWM ---
-        if(!M._AKTYWNE_KNF && M._PRACA && RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
+        if(!M._AKTYWNE_KNF && M._PRACA && RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 5)) && (PWM.BufPWM3 <= (lastPWM + 5))) {
             stablePWMcount++;
-            if(stablePWMcount >= 50 && (M.VVNT >= (int)(0.9*maxRPM))) { // np. 5 cykli z rz?du ten sam PWM 
+            if(stablePWMcount >= 100 && (M.VVNT >= (int)(0.9*maxRPM))) { // np. 5 cykli z rz?du ten sam PWM 
                 predkoscWentOczekiwana = PWMtoVNT(PWM.BufPWM3);
                 int blad = 0;
                 if (M._AKTYWNE_SRW){
-                    blad = maxRPM*100 + DtKNF.progVNT;
+                    blad = maxRPM*100 + wzrostProg;
                 }
                 else{
                     blad = predkoscWentOczekiwana+wzrostProg;
                 }
-                if (M.rVVNT >= blad){
+                float e = 0.0;
+                if(M.rVVNT>0){
+                    e = (M.VVNT*100)/M.rVVNT;
+                }
+                if ((e > 0.99 && e < 1.01) && M.rVVNT > blad){
                     // Wzrost obrot�w przy sta?ym PWM - zg?o? b??d
                     WritePWM3H(maxRPM/3);
                     for(char i = 0; i<10; i++){
