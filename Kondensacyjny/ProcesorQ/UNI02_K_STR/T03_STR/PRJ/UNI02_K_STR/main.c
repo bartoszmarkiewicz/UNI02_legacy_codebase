@@ -3820,8 +3820,18 @@ void KontrolaZatkania(void){
     static int wzrostProg = 200; // pr�g wzrostu obrot�w (dostosuj wg potrzeb)
     unsigned char pwmZadane = 0;
     unsigned int predkoscWentOczekiwana = 0;
-    static bool ignoreOnce = 0; // flaga ignorowania po kalibracji;
+    static bool prevModuluj = 0;
+    static int ignoreCycles = 0;
     // --------------------------------------------------------------------
+    if(!prevModuluj && M._MODULUJ) {
+        ignoreCycles = 1000;
+    }
+    prevModuluj = M._MODULUJ;
+    
+    if (ignoreCycles > 0) {
+        ignoreCycles--;
+        return;
+    }
     
     //Po zako?czeniu kalibracji ustaw flag? ignorowania
     if (M._PO_KAL && !ignoreOnce) {
@@ -3851,7 +3861,7 @@ void KontrolaZatkania(void){
         }
         
         // --- Wykrywanie wzrostu obrot�w przy sta?ym PWM ---
-        if(!M._AKTYWNE_KNF && M._PRACA && RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 5)) && (PWM.BufPWM3 <= (lastPWM + 5))) {
+        if(!M._AKTYWNE_KNF && M._PRACA && M._MODULUJ && RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 5)) && (PWM.BufPWM3 <= (lastPWM + 5))) {
             stablePWMcount++;
             if(stablePWMcount >= 100 && (M.VVNT >= (int)(0.9*maxRPM))) { // np. 5 cykli z rz?du ten sam PWM 
                 predkoscWentOczekiwana = PWMtoVNT(PWM.BufPWM3);
