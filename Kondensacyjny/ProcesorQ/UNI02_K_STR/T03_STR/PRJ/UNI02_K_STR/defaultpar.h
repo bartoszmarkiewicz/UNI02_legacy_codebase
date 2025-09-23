@@ -221,6 +221,7 @@
 #define _DEFKRES  0             //flaga wymuszonej kalibracji wentylatora po programowym restarcie oprogramowania
 
 #define _DEFTWPM   _TWBCO       //P34 [sek] czas wybiegu pompy po grzaniu obiegu CO
+#define _PROGVNT 2              //P35 obroty wentylatora przy detekcji zatkania *100
 //UWAGA: F88
 //1. liczby dodatnie:
 //int=float*256

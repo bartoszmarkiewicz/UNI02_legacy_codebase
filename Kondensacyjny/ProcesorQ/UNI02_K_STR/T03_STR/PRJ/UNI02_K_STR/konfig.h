@@ -151,8 +151,8 @@
 #define _KMINTPM 20			//czas wybiegu pompy po grzaniu obiegu CO
 #define _KMAXTPM 240    
 
-#define _KMINPROGVNT 100			//czas wybiegu pompy po grzaniu obiegu CO
-#define _KMAXPROGVNT 900  
+#define _KMINPROGVNT 0			//przewyzszenie obrotow w celu wykrycia zatkania komina *100
+#define _KMAXPROGVNT 9
 /*---------------------------------------------------------------------------------*/
 //wartosci jakie moga przyjac poszczegolne parametry
 //aktywacja funkcji ?Anty-Legionella

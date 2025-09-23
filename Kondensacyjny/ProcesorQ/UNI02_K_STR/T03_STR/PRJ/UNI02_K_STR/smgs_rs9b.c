@@ -257,7 +257,7 @@ void SaveRSToData(void)
                 
 				RSDT1.inTPCW=GetRSRBuf(40);
 				RSDT1.inTMPM=GetRSRBuf(41);  
-                
+                RSDT1.inprogVNT=GetRSRBuf(42);
 				RSDT1.RD_KNF=1;
 			}
 			break;
@@ -798,7 +798,7 @@ void SaveDataToRS(unsigned char tDTA)
 		}
 		case _RD_KNF2:                                          //identyfikator paczki danych            
 		{
-			ndat=GetNDAT(42);                                        //liczba danych wysy³anych (+ CHK)
+			ndat=GetNDAT(43);                                        //liczba danych wysy³anych (+ CHK)
             SetExNDatCHK(ndat);            
 			SetRSTBuf(0,_LCD_ADDR);				//0 - adres master            
 			//SetRSTBuf(1,chkndat);				//1 - liczba przesy³anych danych (ndat)
@@ -844,7 +844,7 @@ void SaveDataToRS(unsigned char tDTA)
             
             SetRSTBuf(39,RSDT1.outTPCW);              
             SetRSTBuf(40,RSDT1.outTMPM);
-            
+            SetRSTBuf(41,RSDT1.outprogVNT);
 			SetRSCHK(ndat);			//ndat - CHK z bajtow [0..ndat] i zapisuje na poz. ndat
 			//ndat - CHK
 			break;

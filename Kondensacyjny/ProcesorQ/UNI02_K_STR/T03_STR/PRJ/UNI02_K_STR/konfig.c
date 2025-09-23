@@ -79,7 +79,7 @@ DtMINMAX MinMax[_KNPAR1]=
     
 	_ADRRCCW, _KMINCCW, _KMAXCCW,				//32 rodzaj czujnika przeplywu CW (0-stykowy, 1-impulsowy) 
 	_ADRTWPM, _KMINTPM, _KMAXTPM,				//33 czas wybiegu pompy po grzaniu obiegu CO
-    _ADRPROGVNT, _KMINPROGVNT, _KMAXPROGVNT,				//34 obroty ktore spowoduj? wykrycie zatkania
+    _ADRPROGVNT, _KMINPROGVNT, _KMAXPROGVNT,	//34 obroty ktore spowoduj? wykrycie zatkania
 };
 //-------------------------------------------------------------------------------
 

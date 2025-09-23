@@ -3817,13 +3817,13 @@ void KontrolaZatkania(void){
     static unsigned int lastPWM = 0;
     static int lastVVNT = 0;
     static int stablePWMcount = 0;
-    static int wzrostProg = 200; // pr�g wzrostu obrot�w (dostosuj wg potrzeb)
-    unsigned char pwmZadane = 0;
+    int wzrostProg = DtKNF.progVNT * 100; // pr�g wzrostu obrot�w (dostosuj wg potrzeb)
     unsigned int predkoscWentOczekiwana = 0;
     static bool prevModuluj = 0;
     static int ignoreCycles = 0;
+    static bool ignoreOnce = 0;
     // --------------------------------------------------------------------
-    if(!prevModuluj && M._MODULUJ) {
+    if(prevModuluj != M._MODULUJ) {
         ignoreCycles = 1000;
     }
     prevModuluj = M._MODULUJ;
