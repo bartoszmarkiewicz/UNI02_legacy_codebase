@@ -2674,7 +2674,7 @@ void DecWsw(void)
 void DecWsw(void)
 {
     signed int bfdta; //kkk
-    
+#if _TDEMO == 0    
 	if(PFNf_ferr||PFNf_fmsg) 
 	{
 		ClrMarkMinMax();
@@ -2686,6 +2686,7 @@ void DecWsw(void)
 		}
 	}
 	else EndErr();
+#endif
 	//if(!PFNf_aktywne_KNF&&!PFNf_ferr)
 	if(!PFNf_aktywne_KNF&&!PFNf_aktywne_LKNF&&!PFNf_ferr)        //kkk
 	{

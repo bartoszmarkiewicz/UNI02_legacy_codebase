@@ -9,7 +9,7 @@
 #define _KODKT_2F 2
 /*---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
-#define	_KNPAR  34			//domyslna ogolna liczba parametrow podlegajacych modyfikacji dla ver 5     
+#define	_KNPAR  35			//domyslna ogolna liczba parametrow podlegajacych modyfikacji dla ver 5     
 #define	_KNPAR1 15			//wsteczna ogolna liczba parametrow podlegajacych modyfikacji dla ver 1
 #define	_KNPAR2 17          //wsteczna ogolna liczba parametrow podlegajacych modyfikacji dla ver 2
 #define	_KNPAR3 18          //wsteczna ogolna liczba parametrow podlegajacych modyfikacji dla ver 3
@@ -20,7 +20,7 @@
 #define	_KNPAR8 29          //wsteczna ogolna liczba parametrow podlegajacych modyfikacji dla ver 8
 #define	_KNPAR9 31          //wsteczna ogolna liczba parametrow podlegajacych modyfikacji dla ver 9
 #define	_KNPAR10 32         //wsteczna ogolna liczba parametrow podlegajacych modyfikacji dla ver 10
-#define	_KNPAR11 34         //wsteczna ogolna liczba parametrow podlegajacych modyfikacji dla ver 10    
+#define	_KNPAR11 35         //wsteczna ogolna liczba parametrow podlegajacych modyfikacji dla ver 10    
 /*---------------------------------------------------------------------------------*/
 #define _TKNFINI 5			//[s] maksymalny czas na inicjalizacje danych
 #define _TKNFEXT 60			//10[min] maksymalny czas aktywnosci procedury konfiguracji 

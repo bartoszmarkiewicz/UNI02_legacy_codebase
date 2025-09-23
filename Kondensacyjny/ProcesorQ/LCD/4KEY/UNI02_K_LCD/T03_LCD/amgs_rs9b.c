@@ -418,7 +418,8 @@ void SaveRSToData(void)
                 RSDT1.outPWTM=GetRSRBuf(38);
                 
                 RSDT1.outTPCW=GetRSRBuf(39);   
-                RSDT1.outTMPM=GetRSRBuf(40);                
+                RSDT1.outTMPM=GetRSRBuf(40);
+                RSDT1.outPROGVNT=GetRSRBuf(41);
 				RSDT1f_RD_KNF=1;
 			}
 			break;
@@ -696,7 +697,7 @@ void SaveDataToRS(unsigned char tDTA)
 		}
 		case _RD_KNF2:				//identyfikator paczki danych
 		{
-			ndat=GetNDAT(43);
+			ndat=GetNDAT(44);
 
             SetExNDatCHK(ndat);            
 			SetRSTBuf(0,_UNI02_ADDR);		//0 - adres slave
@@ -741,7 +742,8 @@ void SaveDataToRS(unsigned char tDTA)
             SetRSTBuf(39,RSDT1.inPWTM);    
             
             SetRSTBuf(40,RSDT1.inTPCW);      
-            SetRSTBuf(41,RSDT1.inTMPM);            
+            SetRSTBuf(41,RSDT1.inTMPM);
+            SetRSTBuf(42,RSDT1.inPROGVNT);
 			SetRSCHK(ndat);					//ndat - CHK z bajtow [0..ndat] i zapisuje na poz. ndat
 			//ndat - CHK
 			break;

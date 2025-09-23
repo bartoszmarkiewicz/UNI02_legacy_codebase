@@ -963,7 +963,7 @@ void Mark(unsigned char z,unsigned char s)
 //---------------------------------------------------------
 //---------------------------------------------------------
 //wysterowanie znakow dla funkcji serwisowej
-/*void MarkSVAL(unsigned char s,unsigned char mx,unsigned al)
+void MarkSVAL(unsigned char s,unsigned char mx,unsigned al)
 {
 	//static unsigned char bs;
 
@@ -990,7 +990,7 @@ void Mark(unsigned char z,unsigned char s)
 		}
 	}
 	//bs=s;
-}*/
+}
 void ClrMarkMinMax(void)
 {
 	Mark(_GZ_MXCO,0);

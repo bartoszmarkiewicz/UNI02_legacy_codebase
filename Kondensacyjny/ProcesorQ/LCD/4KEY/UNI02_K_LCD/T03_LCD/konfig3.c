@@ -78,7 +78,8 @@ const CDtPZK CPZK[_KNPAR]=
     5 ,15,0b01010100,			//31 przewyzszenie temperaturowe    
     
     0 , 1,0b01000100,			//32 rodzaj czujnika przeplywu CW (0-stykowy, 1-impulsowy) (2F)     
-    20 ,240,0b01000100			//33 czas wybiegu pompy CO     
+    20 ,240,0b01000100,			//33 czas wybiegu pompy CO
+    0 ,9,0b01000100			    //34 zatkanie komina *100     
 };
 /*---------------------------------------------------------------------------------*/
 //Podstawowe cechy kolejnych parametrow
@@ -245,7 +246,10 @@ void UpdateKnfPar(const unsigned char par)
                 RSDT1.inTPCW=PZK[32].dta;		//32 rodzaj czujnika przeplywu CW (0-stykowy, 1-impulsowy)
             break;
             case 33:
-                RSDT1.inTMPM=PZK[33].dta;		//33 czas wybiegu pompy CO                
+                RSDT1.inTMPM=PZK[33].dta;		//33 czas wybiegu pompy CO               
+            break;
+            case 34:
+                RSDT1.inPROGVNT=PZK[34].dta;		//34 czas wybiegu pompy CO               
             break;            
         }
     }
@@ -632,6 +636,7 @@ void MKonfiguracja(void)
                     
                     RSDT1.inTPCW=PZK[32].dta=PZK[32].bfdta=RSDT1.outTPCW;       //32 rodzaj czujnika przeplywu CW (0-stykowy, 1-impulsowy)
                     RSDT1.inTMPM=PZK[33].dta=PZK[33].bfdta=RSDT1.outTMPM;       //33 czas wybiegu pompy CO
+                    RSDT1.inPROGVNT=PZK[34].dta=PZK[34].bfdta=RSDT1.outPROGVNT; //34 obroty przywy¿szenia wykrywajace zatkanie
                     
                     DecShowHide();												//pokaz/ukryj parametry
                     if(PZK[5].fl.shw) DtKNF.PRM=nrp=5;							//domyslnie zaznaczony parametr nr 5 - wybor typu kotla

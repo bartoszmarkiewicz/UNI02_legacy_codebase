@@ -635,6 +635,7 @@ typedef struct	{
 
                 unsigned char outTPCW;
                 unsigned char outTMPM;
+                unsigned char outPROGVNT;
                 
                 unsigned char outLIDN; //komenda zwrotna LIN odpowiedzi UNI-02
                 unsigned char outLDTA1;//parametr1 odpowiedzi UNI-02 na komende LIN
@@ -696,6 +697,8 @@ typedef struct	{
                 
                 unsigned char inTPCW;
                 unsigned char inTMPM;
+                unsigned char inPROGVNT;
+                
                 
 //komunikaty z LIN
                 unsigned char inLIDN; //komenda LIN dla  UNI-02
