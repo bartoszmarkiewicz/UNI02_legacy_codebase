@@ -378,7 +378,7 @@ void PomALL(void)
     PomiarCS();				//wartosc cisnienia w instalacji CO
     PomiarIN();				//wartosc temperatury na powrocie
     PomiarPrzCW(); //detekcja przeplywu w obiegu CW
-    KontrolaZatkania();
+    //KontrolaZatkania();
 }
 //------------------
 //------------------
@@ -3860,10 +3860,14 @@ void KontrolaZatkania(void){
             maxRPM=DtKNF.mmax;
         }
         
+        if(M._AKTYWNE_PGD || M._AKTYWNE_PGD2 || M._LIN_RT || M._I10V_RT || M._IOT_RT || wzrostProg == 0){
+            return;
+        }
+       
         // --- Wykrywanie wzrostu obrot�w przy sta?ym PWM ---
-        if(!M._AKTYWNE_KNF && M._PRACA && M._MODULUJ && RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 5)) && (PWM.BufPWM3 <= (lastPWM + 5))) {
+        if(!M._AKTYWNE_KNF && M._PRACA && RdPrt(S_PLM)&&(PWM.BufPWM3 >= (lastPWM - 5)) && (PWM.BufPWM3 <= (lastPWM + 5))) {
             stablePWMcount++;
-            if(stablePWMcount >= 100 && (M.VVNT >= (int)(0.5*maxRPM))) { // np. 5 cykli z rz?du ten sam PWM 
+            if(stablePWMcount >= 200 && (M.VVNT >= (int)(0.5*DtKNF.mmax))) { // np. 5 cykli z rz?du ten sam PWM 
                 predkoscWentOczekiwana = PWMtoVNT(PWM.BufPWM3);
                 int blad = 0;
                 if (M._AKTYWNE_SRW){
@@ -3892,32 +3896,7 @@ void KontrolaZatkania(void){
         else {
             stablePWMcount = 0;
             lastPWM = PWM.BufPWM3;
-        }
-        /*if(!M._AKTYWNE_KNF && RdPrt(S_PLM) && (PWM.BufPWM3 >= (lastPWM - 10)) && (PWM.BufPWM3 <= (lastPWM + 10))) {
-            stablePWMcount++;
-            if(stablePWMcount > 50){
-                if(M.VVNT >= (int)(0.9*maxRPM)){
-                    if (M.VVNT >= lastVVNT + wzrostProg/100){
-                        // Wzrost obrot�w przy sta?ym PWM - zg?o? b??d
-                        WritePWM3H(maxRPM/3);
-                        for(char i = 0; i<10; i++){
-                            asm("nop");
-                        }
-                        M.ERR_BTY=0x12; // nowy kod b??du (przyk?adowy)
-                        PrintErr(M.ERR_BTY,1);
-                        ToWriteESTAT();
-                        ErrPTG();
-                    }
-                    lastVVNT = M.VVNT;
-                }
-            }
-        }
-        else{
-            stablePWMcount = 0;
-            lastVVNT = 0;
-            lastPWM = PWM.BufPWM3;
-        }
-        lastPWM = PWM.BufPWM3;*/
+        }   
     }
 }
 //------------------
