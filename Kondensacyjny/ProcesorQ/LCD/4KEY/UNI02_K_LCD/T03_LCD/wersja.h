@@ -3,7 +3,7 @@
 #ifndef	_WERSJA_H
 #define	_WERSJA_H
 //----------------------------------------------------------
-#define _WERSJA 20			//aktualna wersja produkcyjna oprogramowania (1=1.1, 2=1.2 ... 10=2.0) UWAGA max 16
+#define _WERSJA 22			//aktualna wersja produkcyjna oprogramowania (1=1.1, 2=1.2 ... 10=2.0) UWAGA max 16
                             //UWAGA: dla serwisu 17
 
 /*

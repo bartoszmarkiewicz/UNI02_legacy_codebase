@@ -1,5 +1,5 @@
 //----------------------------------------------------------
-#define _WERSJA 19			//18aktualna wersja produkcyjna oprogramowania (1=1.1, 2=1.2 ... 10=2.0)
+#define _WERSJA 22			//18aktualna wersja produkcyjna oprogramowania (1=1.1, 2=1.2 ... 10=2.0)
 
 /*
 Wersja 1 - opracowana 30.05.2014	
