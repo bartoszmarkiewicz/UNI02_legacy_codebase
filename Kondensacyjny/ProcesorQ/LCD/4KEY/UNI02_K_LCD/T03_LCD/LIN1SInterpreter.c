@@ -2615,7 +2615,8 @@ unsigned char LIN1StartMultiResponse_RD(void)
             tbuf[31]=RSDT1.outPWTM;   
             
             tbuf[32]=RSDT1.outTPCW; 
-            tbuf[33]=RSDT1.outTMPM;            
+            tbuf[33]=RSDT1.outTMPM;
+            tbuf[34]=RSDT1.outPROGVNT;
             //******************************
             ifInitAutoMFrame(3);      
             //******************************             
