@@ -1113,7 +1113,7 @@ void KolejkaPobudzen(void)
 					if(DtCW.CW>=_AL_PCW)
 					{
 						M._pob_AL=0;					//wylacz wymuszenie grzania
-						M._AKTYWNE_AL=0;				//deaktywuj funkcje ANTYLEGIONELLA
+						//M._AKTYWNE_AL=0;				//deaktywuj funkcje ANTYLEGIONELLA
 					}
 				}                 
 				M._pob_CW=0;		//zerowanie pobudzen o nizszym priorytecie
