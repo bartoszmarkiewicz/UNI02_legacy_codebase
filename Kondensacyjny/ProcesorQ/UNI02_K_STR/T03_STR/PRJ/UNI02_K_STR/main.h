@@ -16,7 +16,7 @@
 #define _TPLPR2	60			//[s] czas po ktorym zerowany jest licznik wystapien sytuacji awaryjnej E1
 #define _NCYKLI_PL 3		//liczba prob przy braku plomienia dla gazu ziemnego
 #define _NCYKLI_PL2 5		//maks.liczba wystapien sytuacji awaryjnych E1 w okr. odcinku czasu do wylaczenia z blokada
-#define _NGODZIN_AL 167		//liczba godzin po kt�rej nastapi aktywacja grzania AL 167h +1h
+#define _NGODZIN_AL 168		//liczba godzin po kt�rej nastapi aktywacja grzania AL 168H
 #define _NGODZIN_SRVAL 10	//liczba minut po kt�rej nastapi aktywacja grzania AL (w trybie kontrolnym)
 #define _TCIBLK 5			//[s] blokada 5 sek. po probie ciagu 15 sek.
 #define _TPR48 24			//[h] czas do wybiegu pompy 24h
